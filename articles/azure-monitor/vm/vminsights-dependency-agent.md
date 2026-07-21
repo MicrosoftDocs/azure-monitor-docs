@@ -4,6 +4,7 @@ description: This article describes how to upgrade the VM Insights Dependency Ag
 ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 02/17/2026
+ai-usage: ai-assisted
 ---
 
 # Dependency Agent in Azure Monitor VM insights
@@ -142,17 +143,41 @@ If Dependency Agent fails to start, check the logs for detailed error informatio
 
 **Method 1:** In Windows, go to **Add and remove programs**, find Microsoft Dependency Agent, click on the ellipsis to open the context menu, and select **Uninstall**.
 
-**Method 2:** Use the uninstaller located in the Microsoft Dependency Agent folder, for example, `C:\Program Files\Microsoft Dependency Agent"\Uninstall_v.w.x.y.exe` (where v.w.x.y is the version number).
+**Method 2:** Use the uninstaller located in the installation directory: `C:\Program Files\Microsoft Dependency Agent`. Use the command that matches the installed agent version.
+
+| Dependency Agent version | Command to run from the installation directory |
+|---|---|
+| 9.7.7.4050 and later | `Uninstall_<version>.exe /S` |
+| Prior to 9.7.7.4050 | `Uninstall.exe /S` |
+
+> [!NOTE]
+> Uninstallers from versions prior to 9.7.4.3150 don't have a Microsoft digital signature.
 
 ### Manually uninstall Dependency Agent on Linux
 
+For version 9.10.2.9060 and later:
+
 1. Sign in on the computer with a user account that has sudo privileges to execute commands as root.
 
-1. Run the following command:
+1. Run the uninstaller script:
 
     ```bash
     sudo /opt/microsoft/dependency-agent/uninstall -s
     ```
+
+For versions prior to 9.10.2.9060, which don't include an uninstaller script, use the package manager command that matches your distribution:
+
+**Debian/Ubuntu:**
+
+```bash
+sudo dpkg --purge dependency-agent dependency-agent-service microsoft-dependency-agent-dkms
+```
+
+**RPM-based distributions (Red Hat, CentOS, SLES):**
+
+```bash
+sudo rpm -e --allmatches dependency-agent
+```
 
 ## Dependency Agent Linux support
 

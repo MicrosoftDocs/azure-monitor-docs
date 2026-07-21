@@ -4,6 +4,7 @@ description: This article provides guidance to customers about the retirement of
 ms.topic: concept-article
 ms.custom: linux-related-content
 ms.date: 07/02/2026
+ai-usage: ai-assisted
 ---
 
 # VM Insights Map and Dependency Agent retirement guidance
@@ -63,11 +64,74 @@ Resources
 ```
 To run the query, use the [Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade). The query runs in the existing Azure portal scope. For more information on how to set scope and run Azure Resource Graph queries in the portal, see [Quickstart: Run Resource Graph query using Azure portal](/azure/governance/resource-graph/first-query-portal).
 
+### Find Dependency Agent installations using Log Analytics
+
+Run the following query in your Log Analytics workspace to identify Dependency Agent installations.
+
+```kusto
+VMComputer
+| where TimeGenerated >= ago(7d)
+| extend IsVMSS = isnotempty(AzureVmScaleSetResourceId)
+| extend
+    ResourceId = tolower(iff(IsVMSS, AzureVmScaleSetResourceId,
+                  _ResourceId))
+| extend _Key = iff(isnotempty(ResourceId), ResourceId, AgentId),
+                   Name = tolower(iff(IsVMSS, AzureVmScaleSetName, DisplayName)),
+    SubscriptionId = tolower(AzureSubscriptionId)
+| summarize arg_max(TimeGenerated, *) by _Key, SubscriptionId
+| project-rename MostRecentData = TimeGenerated
+| project
+    SubscriptionId,
+    Name,
+    OperatingSystem = OperatingSystemFamily,
+    DependencyAgentVersion,
+    MostRecentData,
+    ResourceGroup = extract(@"/resourcegroups/([^/]*)", 1, ResourceId),
+    Type = case(
+        ResourceId contains "microsoft.compute/virtualmachines/", "VM",
+        ResourceId contains "microsoft.compute/virtualmachinescalesets/", "VMSS",
+        ResourceId contains "microsoft.hybridcompute/machines/", "ARC",
+        "Other"
+    ),
+    Notes = iff(
+        OperatingSystemFamily == "linux" or
+        parse_version(DependencyAgentVersion) >= parse_version("9.10.10"),
+        "",
+        "Caution"
+    ),
+    ResourceLink = iff(
+        ResourceId startswith "/subscriptions/",
+        strcat("https://portal.azure.com/#resource", ResourceId),
+        ""
+    )
+| sort by
+    SubscriptionId asc,
+    ResourceGroup asc,
+    Name asc,
+    Type asc
+```
+
+The `Type` column classifies each system as follows:
+
+| Type | Description |
+|---|---|
+| VM | Azure Virtual Machine |
+| VMSS | Azure Virtual Machine Scale Set |
+| ARC | Azure Arc connected machine |
+| Other | Couldn't be classified as VM, VMSS, or ARC. Might include standalone installations that aren't connected to an Azure resource. `ResourceId` and `ResourceLink` are empty for these. |
+
+For Azure connected resources (VM, VMSS, ARC), right-click a cell in the `ResourceLink` column and select **Go to link** to go directly to the resource in the Azure portal. The `ResourceLink` column is empty for installations that aren't connected to an Azure resource (`Type` = `Other`). If the `Notes` column shows `Caution` for a system, that machine is running an older version of Dependency Agent that might cause a system crash during uninstallation. Proceed carefully with those systems.
+
 ## Disabling the VM Insights Map experience
 
 ### Removing Dependency Agent from a single VM 
 
 For steps to uninstall, see [Uninstall the Dependency Agent](vminsights-dependency-agent-uninstall.md).
+
+For manual uninstallation instructions:
+
+- [Manually uninstall Dependency Agent on Windows](vminsights-dependency-agent.md#manually-uninstall-dependency-agent-on-windows)
+- [Manually uninstall Dependency Agent on Linux](vminsights-dependency-agent.md#manually-uninstall-dependency-agent-on-linux)
 
 ## Key dates 
 
