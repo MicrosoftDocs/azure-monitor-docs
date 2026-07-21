@@ -10,7 +10,7 @@ ms.reviewer: shseth, nmangum
 
 # Configure agents with Azure Monitor Agent settings
 
-This article describes how to configure the [Azure Monitor Agent](azure-monitor-agent-overview.md) on Azure Virtual Machines (VM), Virtual Machine Scale Sets, and Azure Arc-enabled servers. Many of your applications and services log telemetry using the Azure Monitor Agent. You can configure Azure Monitor Agents using the central control plane and creating the Agent Settings Data Collection Rule (DCR).
+This article describes how to configure the [Azure Monitor Agent](azure-monitor-agent-overview.md) on Azure Virtual Machines (VMs), Virtual Machine Scale Sets, and Azure Arc-enabled servers. Many applications and services log telemetry by using the Azure Monitor Agent. You can configure Azure Monitor Agents by using the central control plane and creating the Agent Settings Data Collection Rule (DCR).
 
 ## Prerequisites
 

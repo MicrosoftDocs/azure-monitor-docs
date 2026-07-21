@@ -32,7 +32,7 @@ On the subscriptions overview tab, the workbook automatically detects the follow
 - Arc-enabled servers
 - Hybrid machines without Arc where the legacy agent is deployed
 
-Each item has a tab providing a detailed view of the resources in that category.
+Each item has a tab that provides a detailed view of the resources in that category.
 
  :::image type="content" source="./media/azure-monitor-agent-migration-helper-workbook/subscriptions-overview.png" lightbox="./media/azure-monitor-agent-migration-helper-workbook/subscriptions-overview.png" alt-text="A screenshot showing subscriptions overview tab.":::
 
@@ -103,10 +103,10 @@ For more information, see [Move from Automation Update Management to Azure Updat
 
 The Azure Monitor Workspace Auditing workbook helps you understand your workspaces.
 This workbook collects all of your Log Analytics workspaces and shows you the following for each workspace:
-1. All data sources sending data to the workspace.
-1. The agents sending heartbeats to the workspace.
-1. The resources sending data to the workspace.
-1. Any Application Insights resources sending data to the workspace.
+1. All data sources that send data to the workspace.
+1. The agents that send heartbeats to the workspace.
+1. The resources that send data to the workspace.
+1. Any Application Insights resources that send data to the workspace.
 
 To use the Azure Monitor Workspace Auditing workbook, follow the steps below
 
@@ -125,6 +125,6 @@ The **Data Collection** tab shows the data sources collected into this workspace
 :::image type="content" source="./media/azure-monitor-agent-migration-helper-workbook/workspace-auditing-workbook-data-collection.png" lightbox="./media/azure-monitor-agent-migration-helper-workbook/workspace-auditing-workbook-data-collection.png"  alt-text="A screenshot showing the workbook data collection tab.":::
 
 The following tabs are also available in the workbook:
-- **Agents**: Lists the agents sending heartbeats to the workspace.
-- **Azure Resources**: Lists the resources sending data to the workspace.
+- **Agents**: Lists the agents that send heartbeats to the workspace.
+- **Azure Resources**: Lists the resources that send data to the workspace.
 - **Application Insights**: Lists the Application Insights resources that send data to the workspace.

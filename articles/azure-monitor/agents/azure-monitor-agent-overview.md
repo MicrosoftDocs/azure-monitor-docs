@@ -129,7 +129,7 @@ The following tables compare Azure Monitor Agent and legacy agent capabilities o
 
 ## Supported data sources
 
-For a list of data sources the Azure Monitor Agent can collect and how to configure them, see [Collect data with the Azure Monitor Agent](../vm/data-collection.md).
+For a list of data sources that the Azure Monitor Agent can collect and instructions on how to configure them, see [Collect data with the Azure Monitor Agent](../vm/data-collection.md).
 
 ## Related content
 
