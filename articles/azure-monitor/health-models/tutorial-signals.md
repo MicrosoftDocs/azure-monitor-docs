@@ -2,7 +2,7 @@
 title: Configure signals in an Azure Monitor health model (preview)
 description: Learn how to configure Azure resource metric signals, Log Analytics workspace signals, and Azure Monitor workspace PromQL signals for entities in Azure Monitor health models.
 ms.topic: tutorial
-ms.date: 06/20/2026
+ms.date: 07/20/2026
 ai-usage: ai-assisted
 ---
 
@@ -53,9 +53,9 @@ Use an Azure resource signal to evaluate platform metrics from the resource repr
 
 1. Configure threshold logic for **Degraded** and **Unhealthy**.
 
-1. Optional: If available for the metric, apply suggested thresholds or enable dynamic thresholds.
+1. Optional: If available for the metric, apply suggested thresholds, or set **Threshold type** to **Dynamic** to enable dynamic thresholds.
 
-   Dynamic thresholds adapt to historical behavior and seasonal patterns. During warm-up or sparse-data periods, health evaluation can temporarily rely on available in-place statistics until enough history is collected.
+   Dynamic thresholds adapt to the metric's normal patterns and seasonal variance instead of using a fixed value. Set the **Sensitivity** and **Lookback window** to tune how the signal learns normal behavior. During warm-up or sparse-data periods, health evaluation temporarily relies on available in-place statistics until enough history is collected. For more information, see [Dynamic thresholds](./concepts.md#dynamic-thresholds).
 
 1. Select one of the following actions:
 
@@ -67,7 +67,7 @@ Use an Azure resource signal to evaluate platform metrics from the resource repr
 :::image type="content" source="media/signals/azure-resource-signals.png" lightbox="media/signals/azure-resource-signals.png" alt-text="Screenshot of Azure resource signal settings in the entity editor.":::
 
 > [!NOTE]
-> For low-traffic resources, metric signals can temporarily show **Unknown** until sufficient data points are available.
+> A metric signal shows as **Unknown** when no traffic is visible on the resource. It resolves once traffic begins to flow. The metric charts reflect the same behavior, so they can look misleading until enough data is collected.
 
 ## Add a Log Analytics workspace signal (KQL)
 

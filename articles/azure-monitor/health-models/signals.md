@@ -2,7 +2,7 @@
 title: Signals in Azure Monitor health models (preview)
 description: Learn signal concepts and configuration for Azure Monitor health models, including signal types, data sources, definitions, and thresholds.
 ms.topic: how-to
-ms.date: 05/25/2026
+ms.date: 07/20/2026
 ai-usage: ai-assisted
 ---
 
@@ -17,6 +17,7 @@ Each entity in a health model can use any of the available signal types describe
 | Azure resource | Samples a [platform metric](../essentials/data-platform-metrics.md) from a specific resource and compares it against numeric thresholds. |
 | Log Analytics workspace | Runs a [log query](../logs/queries.md) from a Log Analytics workspace and evaluates the result. |
 | Azure Monitor workspace | Runs a [PromQL query](../metrics/metrics-explorer.md) from an Azure Monitor workspace and evaluates the result. |
+| Azure Resource Health | Uses the [Azure Resource Health](../../service-health/resource-health-overview.md) status of the resource represented by the entity, so platform-reported availability contributes to the entity's health state. |
 
 ## Configure signals in the designer
 The **Signals** tab of the [entity editor](./designer.md#entities) allows you to create or edit signals and assign them to the entity. If a signal type is defined for the entity, then you can configure its details. If not, then you're given an option to enable and configure that type.
@@ -67,8 +68,15 @@ The following tables describe the properties that define an Azure resource signa
 | Dimension filter | Only available if a dimension is selected. Filters data for only the specified dimension value. |
 | Aggregation Type | Method used to aggregate the different data samples over the *Time grain*. Metric data is sampled every minute, so there will typically be multiple values collected over the time grain specified for the signal. Different aggregations will be available for different metrics.<br><br>Examples of common aggregations include:<br><br>- Average - Average of the values collected over the time grain<br>- Maximum - Maximum of the different values collected over the time grain<br>- Total - Sum total of the values collected over the time grain |
 | Time grain | Length of time over which metric values are collected and then aggregated using the specified aggregation method. |
+| Threshold type | Determines how signal values are compared to thresholds. Select **Static** to use the fixed degraded and unhealthy values that you specify, or **Dynamic** to let the signal learn the metric's normal behavior. For more information, see [Dynamic thresholds](./concepts.md#dynamic-thresholds). |
+| Sensitivity | Available for dynamic thresholds. Controls how easily the signal reacts to deviations from the machine learning-computed baseline. |
+| Lookback window | Available for dynamic thresholds. Defines how much historical data is used to learn normal behavior. |
 | Degraded threshold | If this calculation is true, and the Unhealthy calculation is false, then the state of the entity is set to **Degraded**. If both this and the Unhealthy calculation are false, then the health of the entity is set to **Healthy**. Select **Remove threshold** to not use a degraded threshold. |
 | Unhealthy threshold | If this calculation is true, then the state of the entity is set to **Unhealthy**. If this calculation is false, then the **Degraded** threshold is checked. |
+
+When you set **Threshold type** to **Dynamic**, the signal editor shows the **Sensitivity** and **Lookback window** settings.
+
+:::image type="content" source="media/signals/dynamic-threshold.png" lightbox="media/signals/dynamic-threshold.png" alt-text="Screenshot of the Edit signal pane with Threshold type set to Dynamic, showing the Sensitivity and Lookback window settings.":::
 
 ### [Log Analytics workspace](#tab/loganalyticsworkspace)
 
@@ -131,6 +139,13 @@ The following table describes the properties that define Azure Monitor workspace
 
 ---
 
+
+## Azure Resource Health signals
+Azure Resource Health signals use Azure platform health information as a signal on an entity. This signal surfaces whether resource availability or platform-reported issues are contributing to the entity's health state, alongside the metric and query signals that you define.
+
+Add an Azure Resource Health signal from the **Signals** tab of the [entity editor](./designer.md#entities), under the entity's Azure resource. For more information about the underlying status, see [Azure Resource Health overview](../../service-health/resource-health-overview.md).
+
+:::image type="content" source="media/signals/resource-health-signal.png" lightbox="media/signals/resource-health-signal.png" alt-text="Screenshot of the entity editor Signals tab with the Resource Health signal enabled for an entity's Azure resource.":::
 
 ## Thresholds
 Thresholds are numeric values that are compared to the value of the signal to determine its health state. Each signal definition has two thresholds, one for the **Degraded** state and one for the **Unhealthy** state. The degraded threshold is optional, but the unhealthy threshold is required. 
