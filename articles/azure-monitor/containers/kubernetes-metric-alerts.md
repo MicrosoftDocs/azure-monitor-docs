@@ -22,16 +22,16 @@ Using the Azure portal, the Prometheus rule group will be created in the same re
 
     :::image type="content" source="media/kubernetes-metric-alerts/setup-recommendations.png" lightbox="media/kubernetes-metric-alerts/setup-recommendations.png" alt-text="Screenshot of AKS cluster showing Set up recommendations button.":::
 
-2.  The available Prometheus and platform alert rules are displayed with the Prometheus rules organized by pod, cluster, and node level. Toggle a group of Prometheus rules to enable that set of rules. Expand the group to see the individual rules. You can leave the defaults or disable individual rules and edit their name and severity.
+1. The available Prometheus and platform alert rules are displayed with the Prometheus rules organized by pod, cluster, and node level. Toggle a group of Prometheus rules to enable that set of rules. Expand the group to see the individual rules. You can leave the defaults or disable individual rules and edit their name and severity.
 
     :::image type="content" source="media/kubernetes-metric-alerts/recommended-alert-rules-enable-prometheus.png" lightbox="media/kubernetes-metric-alerts/recommended-alert-rules-enable-prometheus.png" alt-text="Screenshot of enabling Prometheus alert rule.":::
 
-3. Toggle a platform metric rule to enable that rule. You can expand the rule to modify its details such as the name, severity, and threshold.
+1. Toggle a platform metric rule to enable that rule. You can expand the rule to modify its details such as the name, severity, and threshold.
 
     :::image type="content" source="media/kubernetes-metric-alerts/recommended-alert-rules-enable-platform.png" lightbox="media/kubernetes-metric-alerts/recommended-alert-rules-enable-platform.png" alt-text="Screenshot of enabling platform metric alert rule.":::
 
-4. Select one or more notification methods to create a new action group, or select an existing action group with the notification details for this set of alert rules. In addition to email, SMS, and voice, you can send alert notifications to a Microsoft Teams channel. For steps, see [Post a Teams message](../alerts/alerts-logic-apps.md?tabs=send-teams-message#set-up-an-action) in [Customize alert notifications by using Logic Apps](../alerts/alerts-logic-apps.md).
-5.	Click **Save** to save the rule group.
+1. Select one or more notification methods to create a new action group, or select an existing action group with the notification details for this set of alert rules. In addition to email, SMS, and voice, you can send alert notifications to a Microsoft Teams channel. For steps, see [Post a Teams message](../alerts/alerts-logic-apps.md?tabs=send-teams-message#set-up-an-action) in [Customize alert notifications by using Logic Apps](../alerts/alerts-logic-apps.md).
+1. Select **Save** to save the rule group.
 
 
 ### [Azure Resource Manager](#tab/arm)
