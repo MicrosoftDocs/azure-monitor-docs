@@ -4,10 +4,10 @@ description: Learn how to assign a work item from the Code Optimizations portal 
 ms.topic: how-to
 ms.service: azure-monitor
 ms.subservice: optimization-insights
-author: hhunter-ms
-ms.author: hannahhunter
+author: austinmccollum
+ms.author: austinmc
 ms.date: 03/17/2026
-ms.reviewer: jan.kalis
+ms.reviewer: hannahhunter
 #customer intent: As an application developer using Code Optimizations, I want to use GitHub Copilot to create and assign work items.
 ---
 
