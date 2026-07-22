@@ -12,7 +12,7 @@ ms.reviewer: aul
 Container Insights defaults to managed identity authentication, which has a monitoring agent that uses the [cluster's managed identity](/azure/aks/use-managed-identity) to send data to Azure Monitor. It replaced the legacy certificate-based local authentication and removed the requirement of adding a Monitoring Metrics Publisher role to the cluster.
 
 > [!IMPORTANT]
-> Legacy authentication for Container Insights has been retired. [Migrate to managed identity authentication](#migrate-to-managed-identity-authentication).
+> Legacy authentication for Container Insights is retired. [Migrate to managed identity authentication](#migrate-to-managed-identity-authentication). After September 30, 2026, clusters still using legacy authentication aren't supported and no support is provided for clusters using legacy authentication unless migrated to managed identity authentication.
 
 This article describes how to migrate to managed identity authentication if you enabled Container insights using legacy authentication method, and also how to enable legacy authentication if you have that requirement.
 
@@ -60,7 +60,7 @@ KubernetesConfigurationResources
 
 ## Migrate to managed identity authentication
 
-If you enabled Container insights before managed identity authentication was available, you can use the following methods to migrate your clusters.
+If you enabled Container insights before managed identity authentication was available, you can use the following methods to migrate your clusters. Managed identity authentication is more secure and performant. It gives you access to newer Azure Monitor Container Insights features, such as syslog collection and high scale logs mode.
 
 ## [Azure CLI](#tab/cli)
 
@@ -97,8 +97,8 @@ AKS clusters must first disable monitoring and then upgrade to managed identity.
 
 ### Arc-enabled Kubernetes
 
->[!NOTE]
-> Managed identity authentication is not supported for Arc-enabled Kubernetes clusters with **ARO**.
+> [!NOTE]
+> Arc-enabled Azure Red Hat OpenShift (ARO) clusters support managed identity authentication. Customers using Arc-enabled ARO clusters can migrate from legacy authentication to managed identity authentication.
 
 1. Retrieve the Log Analytics workspace configured for Container insights extension.
 
@@ -121,6 +121,43 @@ This shell script is the recommended migration method for bulk migration of mult
 
 
 ---
+
+
+### What happens when I migrate to managed identity authentication?
+
+When you migrate to managed identity authentication, Container Insights changes how it authenticates with Azure Monitor. This migration doesn't change your applications, workloads, or Kubernetes resources beyond the Container Insights monitoring configuration.
+
+**What stays the same**
+
+- You keep your existing Log Analytics workspace and previously collected monitoring data.
+
+- Container Insights keeps collecting and sending monitoring data after migration.
+
+- Existing dashboards, workbooks, alerts, and queries that use Container Insights data keep working as long as data is collected successfully after migration.
+
+- You don't need to change your application code or workloads.
+
+**What changes**
+
+- Container Insights stops using legacy authentication and starts using managed identity authentication.
+
+- Your cluster monitoring configuration is updated to use the supported authentication model required for future Container Insights functionality and support.
+
+**Migration impact**
+
+During migration, data collection might be temporarily interrupted while the monitoring configuration is updated. After migration, verify that monitoring data is flowing to your workspace and that your expected monitoring experiences are functioning correctly.
+
+**Recommended validation after migration**
+
+After migrating, validate that:
+
+- Container Insights reports health and telemetry successfully.
+
+- New logs and metrics arrive in your Log Analytics workspace.
+
+- Any custom monitoring configurations continue to function as expected.
+
+- Existing alerts, dashboards, and operational workflows continue to receive data.
 
 
 ## Enable legacy authentication
