@@ -149,7 +149,7 @@ if (-not $operationId) {
 }
 
 if ($operationId) {
-    $operationUrl = $operationId[0]  # Take first value
+    $operationUrl = [string]$operationId  # Take first value
     Write-Host "Polling operation status at: $operationUrl"
 
     while ($true) {
