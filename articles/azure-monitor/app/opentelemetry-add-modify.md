@@ -1,8 +1,9 @@
 ---
 title: Add and Modify OpenTelemetry in Application Insights
-description: Learn how to add and modify OpenTelemetry (OTel) in Application Insights. Includes .NET, Java, Node.js, and Python applications, custom attributes, telemetry processors, and log and trace modifications.
+description: Learn how to add and modify OpenTelemetry (OTel) in Application Insights. Includes .NET, Java, Node.js, and Python applications, custom attributes, end-user feedback, telemetry processors, and log and trace modifications.
 ms.topic: how-to
-ms.date: 03/27/2026
+ms.date: 07/24/2026
+ai-usage: ai-assisted
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom:
@@ -2488,6 +2489,208 @@ from opentelemetry import trace
 trace_id = trace.get_current_span().get_span_context().trace_id
 span_id = trace.get_current_span().get_span_context().span_id
 ```
+
+---
+
+## Capture end user feedback for GenAI agents
+
+Capture end-user feedback, such as a thumbs up or thumbs down on an agent response, and send it to Application Insights as a custom event. Emit the feedback as an OpenTelemetry log record with the reserved event name `gen_ai.evaluation.result`.
+
+Because the record includes the `microsoft.custom_event.name` attribute, Application Insights stores it in the `customEvents` table. All other attributes become custom dimensions. Use `gen_ai.response.id` to join the feedback to the corresponding agent response, trace, request, and dependency telemetry.
+
+To show the feedback on the trace details page in Microsoft Foundry, set `microsoft.gen_ai.human_evaluation.source` to `end_user` and `microsoft.gen_ai.evaluation.actor.type` to `human`. Emit the event within the active trace context for the agent interaction so it retains the same trace and span correlation.
+
+> [!IMPORTANT]
+> Trace annotations in Microsoft Foundry are in preview. Preview features are provided without a service-level agreement and aren't recommended for production workloads. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+### Feedback event attributes
+
+| Attribute | Required | Description | Example |
+|---|---|---|---|
+| `microsoft.custom_event.name` | Yes | Routes the log record to the `customEvents` table. Use the reserved event name. | `gen_ai.evaluation.result` |
+| `gen_ai.evaluation.name` | Yes | Identifies the evaluation metric. Use `task_completion` for thumbs-up or thumbs-down feedback. | `task_completion` |
+| `gen_ai.evaluation.score.value` | Yes | Records the numeric score. Use `1.0` for thumbs up or `0.0` for thumbs down. | `1.0` |
+| `gen_ai.evaluation.score.label` | Yes | Records the human-readable label for the score. | `pass` or `fail` |
+| `gen_ai.evaluation.explanation` | No | Provides an optional free-text comment. | `Helpful response` |
+| `gen_ai.response.id` | Recommended | Correlates the feedback with the agent response. | `resp-123` |
+| `microsoft.gen_ai.human_evaluation.source` | Yes for Foundry annotations | Identifies the feedback provider. | `end_user` |
+| `microsoft.gen_ai.evaluation.actor.type` | Yes for Foundry annotations | Identifies the evaluation as human-submitted. | `human` |
+| `internal_properties` | Yes for Foundry annotations | Provides JSON-encoded scoring metadata that Foundry uses to render the evaluation. | `{"gen_ai.evaluation.type":"boolean", ...}` |
+
+For a binary thumbs-up or thumbs-down evaluation, include these values in `internal_properties`:
+
+- `gen_ai.evaluation.type`: `boolean`
+- `gen_ai.evaluation.min_value`: `0.0`
+- `gen_ai.evaluation.max_value`: `1.0`
+- `gen_ai.evaluation.threshold`: `1.0`
+- `gen_ai.evaluation.desirable_direction`: `increase`
+
+> [!CAUTION]
+> Redact personally identifiable information (PII) and other sensitive data from `gen_ai.evaluation.explanation` before ingestion.
+
+### Send feedback
+
+The following examples use the Microsoft OpenTelemetry distro to send a positive `task_completion` evaluation. Emit the event from the request handler or other code that still has the originating agent interaction's trace context.
+
+# [.NET](#tab/net)
+
+```csharp
+using System.Text.Json;
+using Microsoft.OpenTelemetry;
+using OpenTelemetry;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddOpenTelemetry()
+    .UseMicrosoftOpenTelemetry(options =>
+    {
+        options.Exporters = ExportTarget.AzureMonitor;
+        options.AzureMonitor.ConnectionString =
+            builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"];
+    });
+
+var app = builder.Build();
+
+app.MapPost("/feedback", (ILoggerFactory loggerFactory) =>
+{
+    var logger = loggerFactory.CreateLogger("genai-eval");
+    var attributes = new List<KeyValuePair<string, object?>>
+    {
+        new("microsoft.custom_event.name", "gen_ai.evaluation.result"),
+        new("gen_ai.evaluation.name", "task_completion"),
+        new("gen_ai.evaluation.score.value", 1.0),
+        new("gen_ai.evaluation.score.label", "pass"),
+        new("gen_ai.evaluation.explanation", "Helpful response"),
+        new("gen_ai.response.id", "resp-123"),
+        new("microsoft.gen_ai.human_evaluation.source", "end_user"),
+        new("microsoft.gen_ai.evaluation.actor.type", "human"),
+        new("internal_properties", JsonSerializer.Serialize(new Dictionary<string, string>
+        {
+            ["gen_ai.evaluation.type"] = "boolean",
+            ["gen_ai.evaluation.min_value"] = "0.0",
+            ["gen_ai.evaluation.max_value"] = "1.0",
+            ["gen_ai.evaluation.threshold"] = "1.0",
+            ["gen_ai.evaluation.desirable_direction"] = "increase",
+        })),
+    };
+
+    logger.Log(
+        LogLevel.Information,
+        eventId: default,
+        state: attributes,
+        exception: null,
+        formatter: static (_, _) => "Human evaluation submitted");
+
+    return Results.Ok();
+});
+
+app.Run();
+```
+
+# [Node.js](#tab/nodejs)
+
+```typescript
+import { logs } from "@opentelemetry/api-logs";
+import { useMicrosoftOpenTelemetry } from "@microsoft/opentelemetry";
+
+useMicrosoftOpenTelemetry({
+  azureMonitor: {
+    azureMonitorExporterOptions: {
+      connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING,
+    },
+  },
+});
+
+logs.getLogger("genai-eval").emit({
+  body: "Human evaluation submitted",
+  attributes: {
+    "microsoft.custom_event.name": "gen_ai.evaluation.result",
+    "gen_ai.evaluation.name": "task_completion",
+    "gen_ai.evaluation.score.value": 1.0,
+    "gen_ai.evaluation.score.label": "pass",
+    "gen_ai.evaluation.explanation": "Helpful response",
+    "gen_ai.response.id": "resp-123",
+    "microsoft.gen_ai.human_evaluation.source": "end_user",
+    "microsoft.gen_ai.evaluation.actor.type": "human",
+    internal_properties: JSON.stringify({
+      "gen_ai.evaluation.type": "boolean",
+      "gen_ai.evaluation.min_value": "0.0",
+      "gen_ai.evaluation.max_value": "1.0",
+      "gen_ai.evaluation.threshold": "1.0",
+      "gen_ai.evaluation.desirable_direction": "increase",
+    }),
+  },
+});
+```
+
+# [Python](#tab/python)
+
+```python
+import json
+import logging
+import os
+
+from microsoft.opentelemetry import use_microsoft_opentelemetry
+
+use_microsoft_opentelemetry(
+    enable_azure_monitor=True,
+    azure_monitor_connection_string=os.environ[
+        "APPLICATIONINSIGHTS_CONNECTION_STRING"
+    ],
+    logger_name="genai-eval",
+)
+
+logger = logging.getLogger("genai-eval")
+logger.setLevel(logging.INFO)
+
+logger.info(
+    "Human evaluation submitted",
+    extra={
+        "microsoft.custom_event.name": "gen_ai.evaluation.result",
+        "gen_ai.evaluation.name": "task_completion",
+        "gen_ai.evaluation.score.value": 1.0,
+        "gen_ai.evaluation.score.label": "pass",
+        "gen_ai.evaluation.explanation": "Helpful response",
+        "gen_ai.response.id": "resp-123",
+        "microsoft.gen_ai.human_evaluation.source": "end_user",
+        "microsoft.gen_ai.evaluation.actor.type": "human",
+        "internal_properties": json.dumps(
+            {
+                "gen_ai.evaluation.type": "boolean",
+                "gen_ai.evaluation.min_value": "0.0",
+                "gen_ai.evaluation.max_value": "1.0",
+                "gen_ai.evaluation.threshold": "1.0",
+                "gen_ai.evaluation.desirable_direction": "increase",
+            }
+        ),
+    },
+)
+```
+
+---
+
+### Query feedback in Application Insights
+
+Feedback events appear in the `customEvents` table with the event name `gen_ai.evaluation.result`. The GenAI attributes are available as custom dimensions.
+
+```kusto
+customEvents
+| where name == "gen_ai.evaluation.result"
+| extend
+    responseId = tostring(customDimensions["gen_ai.response.id"]),
+    score = todouble(customDimensions["gen_ai.evaluation.score.value"]),
+    label = tostring(customDimensions["gen_ai.evaluation.score.label"]),
+    source = tostring(customDimensions["microsoft.gen_ai.human_evaluation.source"]),
+    internalProperties = parse_json(tostring(customDimensions["internal_properties"]))
+| extend evaluationType = tostring(internalProperties["gen_ai.evaluation.type"])
+| project timestamp, responseId, score, label, source, evaluationType
+| order by timestamp desc
+```
+
+For more information, see:
+
+- [Log end user feedback in Microsoft Foundry](/azure/foundry/observability/how-to/log-end-user-feedback)
+- [Annotate traces with human feedback in Microsoft Foundry](/azure/foundry/observability/how-to/trace-annotations)
 
 ---
 
