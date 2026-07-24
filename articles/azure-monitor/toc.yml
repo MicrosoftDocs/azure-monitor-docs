@@ -861,6 +861,8 @@ items:
     - name: Performance
       displayName: Performance
       href: agents/azure-monitor-agent-performance.md
+    - name: Extension versions
+      href: agents/azure-monitor-agent-extension-versions.md
     - name: Migrate from Log Analytics Agent
       items:
       - name: Migration guidance
@@ -1750,8 +1752,6 @@ items:
       href: logs/basic-logs-azure-tables.md
   - name: Windows diagnostics extension schema
     href: agents/diagnostics-extension-schema-windows.md
-  - name: Azure Monitor Agent extension versions
-    href: agents/azure-monitor-agent-extension-versions.md
   - name: Azure PowerShell
     items:
     - name: Azure Monitor
