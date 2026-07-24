@@ -2492,7 +2492,7 @@ span_id = trace.get_current_span().get_span_context().span_id
 
 ---
 
-## Capture end user feedback for GenAI agents
+## Capture end-user feedback for GenAI agents
 
 Capture end-user feedback, such as a thumbs up or thumbs down on an agent response, and send it to Application Insights as a custom event. Emit the feedback as an OpenTelemetry log record with the reserved event name `gen_ai.evaluation.result`.
 
@@ -2532,7 +2532,7 @@ For a binary thumbs-up or thumbs-down evaluation, include these values in `inter
 
 The following examples use the Microsoft OpenTelemetry distro to send a positive `task_completion` evaluation. Emit the event from the request handler or other code that still has the originating agent interaction's trace context.
 
-# [.NET](#tab/net)
+# [ASP.NET Core](#tab/aspnetcore)
 
 ```csharp
 using System.Text.Json;
@@ -2586,6 +2586,64 @@ app.MapPost("/feedback", (ILoggerFactory loggerFactory) =>
 
 app.Run();
 ```
+
+# [.NET](#tab/net)
+
+```csharp
+using System.Text.Json;
+using Microsoft.OpenTelemetry;
+using OpenTelemetry;
+
+var builder = Host.CreateApplicationBuilder(args);
+
+builder.Services.AddOpenTelemetry()
+    .UseMicrosoftOpenTelemetry(options =>
+    {
+        options.Exporters = ExportTarget.AzureMonitor;
+        options.AzureMonitor.ConnectionString =
+            builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"];
+    });
+
+using var host = builder.Build();
+var logger = host.Services
+    .GetRequiredService<ILoggerFactory>()
+    .CreateLogger("genai-eval");
+
+var attributes = new List<KeyValuePair<string, object?>>
+{
+    new("microsoft.custom_event.name", "gen_ai.evaluation.result"),
+    new("gen_ai.evaluation.name", "task_completion"),
+    new("gen_ai.evaluation.score.value", 1.0),
+    new("gen_ai.evaluation.score.label", "pass"),
+    new("gen_ai.evaluation.explanation", "Helpful response"),
+    new("gen_ai.response.id", "resp-123"),
+    new("microsoft.gen_ai.human_evaluation.source", "end_user"),
+    new("microsoft.gen_ai.evaluation.actor.type", "human"),
+    new("internal_properties", JsonSerializer.Serialize(new Dictionary<string, string>
+    {
+        ["gen_ai.evaluation.type"] = "boolean",
+        ["gen_ai.evaluation.min_value"] = "0.0",
+        ["gen_ai.evaluation.max_value"] = "1.0",
+        ["gen_ai.evaluation.threshold"] = "1.0",
+        ["gen_ai.evaluation.desirable_direction"] = "increase",
+    })),
+};
+
+logger.Log(
+    LogLevel.Information,
+    eventId: default,
+    state: attributes,
+    exception: null,
+    formatter: static (_, _) => "Human evaluation submitted");
+```
+
+# [Java](#tab/java)
+
+Use the OpenTelemetry Logs API to emit `gen_ai.evaluation.result` with the attributes in the preceding table. This section doesn't provide a Microsoft OpenTelemetry distro sample for Java.
+
+# [Java native](#tab/java-native)
+
+Use the OpenTelemetry Logs API to emit `gen_ai.evaluation.result` with the attributes in the preceding table. This section doesn't provide a Microsoft OpenTelemetry distro sample for Java native.
 
 # [Node.js](#tab/nodejs)
 
