@@ -2510,20 +2510,11 @@ To show the feedback on the trace details page in Microsoft Foundry, set `micros
 | `microsoft.custom_event.name` | Yes | Routes the log record to the `customEvents` table. Use the reserved event name. | `gen_ai.evaluation.result` |
 | `gen_ai.evaluation.name` | Yes | Identifies the evaluation metric. Use `task_completion` for thumbs-up or thumbs-down feedback. | `task_completion` |
 | `gen_ai.evaluation.score.value` | Yes | Records the numeric score. Use `1.0` for thumbs up or `0.0` for thumbs down. | `1.0` |
-| `gen_ai.evaluation.score.label` | Yes | Records the human-readable label for the score. | `pass` or `fail` |
+| `gen_ai.evaluation.score.label` | Yes | Records the human-readable label for the score, only two values accepted. | `pass` or `fail` are the only acceptable values |
 | `gen_ai.evaluation.explanation` | No | Provides an optional free-text comment. | `Helpful response` |
 | `gen_ai.response.id` | Recommended | Correlates the feedback with the agent response. | `resp-123` |
 | `microsoft.gen_ai.human_evaluation.source` | Yes for Foundry annotations | Identifies the feedback provider. | `end_user` |
 | `microsoft.gen_ai.evaluation.actor.type` | Yes for Foundry annotations | Identifies the evaluation as human-submitted. | `human` |
-| `internal_properties` | Yes for Foundry annotations | Provides JSON-encoded scoring metadata that Foundry uses to render the evaluation. | `{"gen_ai.evaluation.type":"boolean", ...}` |
-
-For a binary thumbs-up or thumbs-down evaluation, include these values in `internal_properties`:
-
-- `gen_ai.evaluation.type`: `boolean`
-- `gen_ai.evaluation.min_value`: `0.0`
-- `gen_ai.evaluation.max_value`: `1.0`
-- `gen_ai.evaluation.threshold`: `1.0`
-- `gen_ai.evaluation.desirable_direction`: `increase`
 
 > [!CAUTION]
 > Redact personally identifiable information (PII) and other sensitive data from `gen_ai.evaluation.explanation` before ingestion.
