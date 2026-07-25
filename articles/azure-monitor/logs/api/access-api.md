@@ -135,7 +135,7 @@ The Log Analytics API supports Microsoft Entra authentication with three differe
 
 In the client credentials flow, the token is used with the Log Analytics endpoint. A single request is made to receive a token by using the credentials provided for your app in the previous step when you [register an app in Microsoft Entra ID](register-app-for-token.md).
 
-Use `resource=https://api.loganalytics.azure.com`.
+Use `resource=https://api.loganalytics.io`.
 
 [!INCLUDE [Get a token](../../fundamentals/includes/get-authentication-token.md)]
 
