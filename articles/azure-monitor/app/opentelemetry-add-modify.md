@@ -2496,13 +2496,6 @@ span_id = trace.get_current_span().get_span_context().span_id
 
 Capture end-user feedback, such as a thumbs up or thumbs down on an agent response, and send it to Application Insights as a custom event. Emit the feedback as an OpenTelemetry log record with the reserved event name `gen_ai.evaluation.result`.
 
-Because the record includes the `microsoft.custom_event.name` attribute, Application Insights stores it in the `customEvents` table. All other attributes become custom dimensions. Use `gen_ai.response.id` to join the feedback to the corresponding agent response, trace, request, and dependency telemetry.
-
-To show the feedback on the trace details page in Microsoft Foundry, set `microsoft.gen_ai.human_evaluation.source` to `end_user` and `microsoft.gen_ai.evaluation.actor.type` to `human`. Emit the event within the active trace context for the agent interaction so it retains the same trace and span correlation.
-
-> [!IMPORTANT]
-> Trace annotations in Microsoft Foundry are in preview. Preview features are provided without a service-level agreement and aren't recommended for production workloads. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-
 ### Feedback event attributes
 
 | Attribute | Required | Description | Example |
@@ -2513,11 +2506,11 @@ To show the feedback on the trace details page in Microsoft Foundry, set `micros
 | `gen_ai.evaluation.score.label` | Yes | Records the human-readable label for the score, only two values accepted. | `pass` or `fail` are the only acceptable values |
 | `gen_ai.evaluation.explanation` | No | Provides an optional free-text comment. | `Helpful response` |
 | `gen_ai.response.id` | Recommended | Correlates the feedback with the agent response. | `resp-123` |
-| `microsoft.gen_ai.human_evaluation.source` | Yes for Foundry annotations | Identifies the feedback provider. | `end_user` |
-| `microsoft.gen_ai.evaluation.actor.type` | Yes for Foundry annotations | Identifies the evaluation as human-submitted. | `human` |
+| `microsoft.gen_ai.human_evaluation.source` | Yes for [Foundry annotations](/azure/foundry/observability/how-to/trace-annotations#log-end-user-feedback-as-trace-annotations) | Identifies the feedback provider. | `end_user` or `builder` |
+| `microsoft.gen_ai.evaluation.actor.type` | Yes for [Foundry annotations](/azure/foundry/observability/how-to/trace-annotations#log-end-user-feedback-as-trace-annotations) | Identifies the evaluation as human-submitted. | `human` |
 
 > [!CAUTION]
-> Redact personally identifiable information (PII) and other sensitive data from `gen_ai.evaluation.explanation` before ingestion.
+> Redact personally identifiable information (PII) and other sensitive data from `gen_ai.evaluation.explanation` or use Log Analytics security features such as [row level security](../logs/granular-rbac-log-analytics.md) or [table-level access](../logs/manage-table-access.md) to protect the data.
 
 ### Send feedback
 
@@ -2630,11 +2623,11 @@ logger.Log(
 
 # [Java](#tab/java)
 
-Use the OpenTelemetry Logs API to emit `gen_ai.evaluation.result` with the attributes in the preceding table. This section doesn't provide a Microsoft OpenTelemetry distro sample for Java.
+Use the OpenTelemetry Logs API to emit `gen_ai.evaluation.result` with the attributes in the preceding table.
 
 # [Java native](#tab/java-native)
 
-Use the OpenTelemetry Logs API to emit `gen_ai.evaluation.result` with the attributes in the preceding table. This section doesn't provide a Microsoft OpenTelemetry distro sample for Java native.
+Use the OpenTelemetry Logs API to emit `gen_ai.evaluation.result` with the attributes in the preceding table.
 
 # [Node.js](#tab/nodejs)
 
@@ -2720,7 +2713,7 @@ logger.info(
 
 ### Query feedback in Application Insights
 
-Feedback events appear in the `customEvents` table with the event name `gen_ai.evaluation.result`. The GenAI attributes are available as custom dimensions.
+Feedback events appear in the `customEvents` table with the event name `gen_ai.evaluation.result`. The GenAI attributes are available as custom dimensions. Use `gen_ai.response.id` to join the feedback to the corresponding agent response, trace, request, and dependency telemetry.
 
 ```kusto
 customEvents
