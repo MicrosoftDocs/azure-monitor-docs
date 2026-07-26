@@ -274,9 +274,9 @@ Any autoscale action resets the cooldown for all the rules in the profile. After
 > - Scale-out cooldown: 60 minutes  
 > - Scale-in cooldown: 40 minutes  
 > - A CPU spike occurred. A scale-out action runs at 10:00. The cooldown is reset for all rules.
-> - A CPU went back to normal usage. A scale-in action runs at 13:00. The cooldown is reset for all rules. 
+> - A CPU returned to normal usage. A scale-in action runs at 13:00. The cooldown is reset for all rules. 
 > - A CPU spike occurs at 13:20 and meets the scale-out rule condition.
-> - Scale-out action waits 40 minutes, until the scale-out active cooldown ends. The next eligible scaling-out action is at 14:00.
+> - Scale-out action must wait 40 minutes, until the scale-out active cooldown ends. The next scaling-out action will fire at 14:00.
 
 ## Next steps
 
