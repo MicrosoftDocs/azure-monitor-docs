@@ -13,7 +13,7 @@ A Log Analytics workspace stores log data in tables. Each table is a collection 
 
 The following diagram shows the main configuration options for a table:
 
-:::image type="content" source="media/manage-logs-tables/azure-monitor-logs-table-management.png" alt-text="Diagram that shows table configuration options, including table type, schema, plan, and interactive and long-term retention." lightbox="media/manage-logs-tables/azure-monitor-logs-table-management.png":::
+:::image type="content" source="media/logs-table-overview/azure-monitor-logs-table-management.png" alt-text="Diagram that shows table configuration options, including table type, schema, plan, and interactive and long-term retention." lightbox="media/logs-table-overview/azure-monitor-logs-table-management.png":::
 
 ## Table types
 
@@ -21,22 +21,24 @@ A Log Analytics workspace contains tables of several types. The table type deter
 
 | Table type | Data source | Schema |
 |------------|-------------|--------|
-| Azure table | Logs from Azure resources or required by Azure services and solutions | Azure Monitor Logs creates Azure tables automatically based on Azure services you use and [diagnostic settings](../essentials/diagnostic-settings.md) you configure for specific resources. Each Azure table has a predefined schema. You can [add custom columns](create-custom-table.md#add-or-delete-a-custom-column) to store transformed or enriched data. |
+| Azure table | Logs from Azure resources or required by Azure services and solutions | Azure Monitor Logs creates Azure tables automatically based on Azure services you use and [diagnostic settings](../essentials/diagnostic-settings.md) you configure for specific resources. Each Azure table has a predefined schema. [Add custom columns](create-custom-table.md#add-or-delete-a-custom-column) to store transformed or enriched data. |
 | Custom table | Non-Azure resources and any other data source, such as file-based logs | You define the schema based on the data you collect. See [Add or delete tables and columns in Azure Monitor Logs](create-custom-table.md). |
 | Search results | All data stored in a Log Analytics workspace | The schema is based on the query you define when you [run the search job](search-jobs.md). You can't edit the schema of existing search results tables. |
 | Restored logs | Data stored in a specific table in the workspace | A restored logs table has the same schema as the source table from which you [restore logs](restore.md). You can't edit the schema of existing restored logs tables. |
 
+<br>
+
 ## Table plans
 
-[Configure a table's plan](logs-table-plans.md) based on how often you access the data in the table and what query capabilities you need:
+[Configure a table plan](logs-table-plans.md) based on how often you access the data in the table and what query capabilities you need.
 
 | Table plan | Recommended use case |
 |------------|---------------------|
-| Analytics | Continuous monitoring, real-time detection, and performance analytics. This plan makes log data available for interactive multi-table queries and use by features and services for 30 days to two years. |
+| Analytics | Continuous monitoring, real-time detection, and performance analytics. This plan makes log data available for interactive multitable queries and use by features and services for 30 days to two years. |
 | Basic | Troubleshooting and incident response. This plan offers discounted ingestion and optimized single-table queries for 30 days. |
-| Auxiliary | Low-touch data, such as verbose logs, and data required for auditing and compliance. This plan offers low-cost ingestion and unoptimized single-table queries for the entire retention period. |
+| Auxiliary | Low-touch data, such as verbose logs, and data required for auditing and compliance. This plan offers low-cost ingestion with the trade-off of unoptimized single-table queries for the total retention period. |
 
-For full details about table plans, see [Azure Monitor Logs table plans](data-platform-logs.md#table-plans).
+For more details about choosing a table plan, see [Azure Monitor Logs table plans](data-platform-logs.md#table-plans).
 
 ## Retention
 
@@ -49,21 +51,15 @@ Each table has two retention stages:
 
 Use [table-level retention settings](data-retention-configure.md) to set both stages independently per table. 
 
-To access data in long-term retention, run a search job. Search jobs are a type of on-demand query that run against the entire dataset in a workspace, including data in long-term retention. For more information, see [Search jobs in Azure Monitor Logs](search-jobs.md).
-
-## Ingestion-time transformations
-
-Before log data reaches a table, you can use data collection rules to filter out unwanted records and transform data to match your table schema. Transformations run at ingestion time, so only the processed data is stored, which reduces costs and simplifies downstream queries.
-
-For more information, see [Data collection transformations in Azure Monitor](../data-collection/data-collection-transformations.md).
+To access data in long-term retention, run a search job. Search jobs are on-demand, asynchronous queries that run against the entire dataset in a workspace, including data in long-term retention. For more information, see [Search jobs in Azure Monitor Logs](search-jobs.md).
 
 ## Table schema
 
-A table's schema is the set of columns that define what data the table can hold. The schema includes column names and data types.
+A table schema is the set of columns that define what data the table can hold. The schema includes column names and data types.
 
 ### Column data types
 
-The following data types are supported for columns in a Log Analytics workspace table, as reported by the Tables API:
+The Tables API supports the following data types for columns in a Log Analytics workspace table:
 
 | Type | Description |
 |------|-------------|
@@ -76,9 +72,15 @@ The following data types are supported for columns in a Log Analytics workspace 
 | `datetime` | Date and time value |
 | `guid` | GUID values are stored and queried as `string` |
 
-Data collection rules (DCRs) support data types in their [stream declarations](../data-collection/data-collection-rule-structure.md#data-types), but don't support `guid` types. Azure Monitor Logs stores GUID values as the `string` type. The `guid` label that appears is a logical type annotation only, and it behaves identically to `string` for all ingestion and query operations.
+Data collection rules (DCRs) support data types in their [stream declarations](../data-collection/data-collection-rule-structure.md#data-types), but they don't support `guid` types. Azure Monitor Logs stores GUID values as the `string` type. The `guid` label that appears is a logical type annotation only, and it behaves identically to `string` for all ingestion and query operations.
 
-You don't need a `transformKql` expression to convert GUID values to strings. Azure Monitor Logs writes GUID values as strings regardless of how the source data serializes them.
+You don't need to transform GUID values to strings. Azure Monitor Logs writes GUID values as strings regardless of how the source data creates them.
+
+## Transform data to match the table
+
+Before log data reaches a table, data collection rules (DCRs) use transformations to filter out unwanted records and match your table schema. Since only the processed data is stored, this approach reduces costs and simplifies downstream queries.
+
+For more information, see [Data collection transformations in Azure Monitor](../data-collection/data-collection-transformations.md).
 
 ## Related content
 

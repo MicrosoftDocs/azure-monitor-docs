@@ -1142,22 +1142,20 @@ items:
         - name: Tables overview
           displayName: column types, data types, GUID, string, plans, retention
           href: logs/logs-table-overview.md
-        - name: View and manage table properties
-          href: logs/manage-logs-tables.md
-        - name: Select a table plan
+        - name: Configure a table plan
           displayName: Basic, Analytics, Auxiliary, cost optimization
           href: logs/logs-table-plans.md
+        - name: Create and delete tables and columns
+          href: logs/create-custom-table.md
+        - name: View and manage table properties
+          href: logs/manage-logs-tables.md
         - name: Manage data retention
           displayName: Log retention, log archive, archive, cost optimization
           href: logs/data-retention-configure.md
-        - name: Add or delete tables and columns
-          href: logs/create-custom-table.md
         - name: Delete data from a log table
           href: logs/delete-log-data.md
         - name: Manage table-level read access
           href: logs/manage-table-access.md
-        - name: Set up a table with the Auxiliary plan
-          href: logs/create-custom-table-auxiliary.md
       - name: Search jobs and data restore
         items:
         - name: Run a search job
