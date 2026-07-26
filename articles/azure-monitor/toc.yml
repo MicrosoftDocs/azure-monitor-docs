@@ -99,6 +99,8 @@ items:
       href: aiops/observability-agent-governance-faq.md
 - name: Monitoring scenarios
   items:
+  - name: Monitor telemetry with business data in Fabric
+    href: fundamentals/monitor-cross-domain-fabric.md
   - name: Monitor applications with Application Insights
     items:
     - name: Application Insights overview
