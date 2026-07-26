@@ -266,6 +266,18 @@ Autoscale calculates the new capacity determined by the **scaleAction** of each 
 
 Each time autoscale calculates the result of a scale-in action, it evaluates whether that action would trigger a scale-out action. The scenario where a scale action triggers the opposite scale action is known as flapping. Autoscale might defer a scale-in action to avoid flapping or might scale by a number less than what was specified in the rule. For more information on flapping, see [Flapping in autoscale](./autoscale-custom-metric.md).
 
+### How does autoscale evaluate cooldown?
+Any autoscale action resets the cooldown for all the rules in the profile. After any autoscale action (scale-out or scale-in), autoscale records the last scale action time. From that point in time, each rule (in and out) is evaluated by using its own cooldown value, measured from that most recent scale action time. As a result, a scale-in action can temporarily delay scale-out eligibility, and a scale-out action can temporarily delay scale-in eligibility, until the corresponding rule cooldowns have elapsed.
+
+> [!NOTE]
+> **Example timeline**
+> - Scale-out cooldown: 60 minutes  
+> - Scale-in cooldown: 40 minutes  
+> - A CPU spike occurred. A scale-out action runs at 10:00. The cooldown is reset for all rules.
+> - A CPU went back to normal usage. A scale-in action runs at 13:00. The cooldown is reset for all rules. 
+> - A CPU spike occurs at 13:20 and meets the scale-out rule condition.
+> - Scale-out action waits 40 minutes, until the scale-out active cooldown ends. The next eligible scaling-out action is at 14:00.
+
 ## Next steps
 
 Learn more about autoscale:
