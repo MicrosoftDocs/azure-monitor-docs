@@ -13,7 +13,7 @@ ROBOTS: NOINDEX
 
 > [!IMPORTANT]
 > ## Feature Retirement
-> You can no longer create **new** data collection rules by using this feature, starting from February 2026. **This preview feature will be retired on July 31, 2026**. After this date, existing configurations that use this capability stop sending data and Microsoft no longer supports the same.
+> Starting February 2026, you can no longer create **new** data collection rules by using this feature. **This preview feature will be retired on July 31, 2026**. After this date, existing configurations that use this capability stop sending data and Microsoft no longer supports the same.
 >
 > To ensure continued support, you will need to update to alternatives below to continue using AMA or other Azure solutions that provide a more reliable, scalable and performant solution to send data to respective destinations.
 >
@@ -50,7 +50,7 @@ ROBOTS: NOINDEX
 > | Destination | Alternatives |   
 > |-------------|----------------------------------------------------------------------|
 > | Azure Storage blobs | If you're using AMA to send data to storage for longer term storage and lower costs, update existing AMA configurations to send data to custom tables with low-cost [Auxiliary plan](../logs/create-custom-table.md#create-a-custom-table) for cost-effective logging and added benefits of Log Analytics. | 
-> | Azure Event Hubs | If you're using AMA to send data to Event Hubs, update existing AMA configuration to send data to Azure Monitor Logs and leverage the [data export capability](../logs/logs-data-export.md) to send to Event Hub(s). There is no replacement available for AMA directly uploading to Event Hubs. |  
+> | Azure Event Hubs | If you're using AMA to send data to Event Hubs, update existing AMA configuration to send data to Azure Monitor Logs and leverage the [data export capability](../logs/logs-data-export.md) to send to Event Hubs. There's no replacement available for AMA directly uploading to Event Hubs. |
 
 
 ## Supported data types
