@@ -3,6 +3,7 @@ title:  Remove Dependency Agent from Azure Virtual Machines and Virtual Machine 
 description: Detailed process for safely uninstalling the Dependency Agent from both Windows and Linux-based Azure virtual machines and virtual machine scale set instances.
 ms.topic: how-to
 ms.date: 03/10/2026
+ai-usage: ai-assisted
 ---
 
 # Remove Dependency Agent from Azure Virtual Machines and Virtual Machine Scale Sets
@@ -75,14 +76,17 @@ Get-AzVMExtension -ResourceGroupName <resource-group-name> -VMName <vm-name> | F
 ```powershell
 (Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>).VirtualMachineProfile.ExtensionProfile.Extensions | Format-Table Type,Publisher,Name
 ```
+
 ---
+
+Standalone or manually installed Dependency Agent instances don't appear as an extension and don't show up in the previous methods. To find these agents, run the Log Analytics query in [Finding VMs currently using VM Insights map](vminsights-maps-retirement.md#finding-vms-currently-using-vm-insights-map).
 
 ## Update Data Collection Rule Assignments (DCRA)
 
 This step disables sending process and connection data to the workspace. Prior to this step, verify that you removed or disabled any alerts and monitoring in your environment that depend upon this data.
 
 
-#### [Azure portal](#tab/portal)
+### [Azure portal](#tab/portal)
 The portal can't make changes for all possible Data Collection Rule Associations (DCRA), since the VM might be associated with multiple DCRs. Use the query below in the [Azure Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade) to check if your VM can use the Azure portal to update its DCRA. If it doesn't return *Ok to use portal*, you need to use PowerShell or CLI to update each DCRA.
 
 ```kusto
@@ -232,6 +236,12 @@ Update-AzVmss -ResourceGroupName $rgName -Name $vmssName -VirtualMachineScaleSet
 
 If the virtual machine scale set is configured with [manual upgrade mode](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy), then an extra step is required to remove the extension from any currently running instances. See [Performing manual upgrades on Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-perform-manual-upgrades). 
 
+## Manually remove a standalone installation
+
+The previous methods only remove Dependency Agent that you installed as a VM or virtual machine scale set extension. If you installed Dependency Agent manually, use the manual uninstall steps instead:
+
+- [Manually uninstall Dependency Agent on Windows](vminsights-dependency-agent.md#manually-uninstall-dependency-agent-on-windows)
+- [Manually uninstall Dependency Agent on Linux](vminsights-dependency-agent.md#manually-uninstall-dependency-agent-on-linux)
 
 ## Verify removal
 
