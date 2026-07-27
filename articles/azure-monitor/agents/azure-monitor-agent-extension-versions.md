@@ -45,7 +45,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 | Date | Windows | Linux | Metrics | Highlights |
 |---|---|---|---|---|
-| [July 2026](#july-2026) | — | 1.43 | — | TBD |
+| [July 2026](#july-2026) | 1.44 | 1.43 | 2.2026.617.1755 | CEF parsing improvements, OpenSSL 3.6.3 |
 | [June 2026](#june-2026) | — | 1.42 | — | Performance improvements, SUSE 16 support, CVE and memory leak fixes |
 | [May 2026](#may-2026) | 1.43 | — | 2.2026.424.2329 | Installer crash fix, OpenSSL 3.6.2, security dependency updates |
 | [April 2026](#april-2026) | 1.42 | 1.41 | — | **[Breaking change](#linux-breaking-change):** CEF/Syslog handling. OpenSSL 3.6.1, XPath parsing, performance enhancements |
@@ -62,7 +62,13 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 ## July 2026
 
-**Versions:** Linux 1.43
+**Versions:** Windows 1.44, Linux 1.43
+
+### Windows 
+
+- Updated OpenSSL to 3.6.3.
+- Updated Metrics Extension to version 2.2026.617.1755.
+- Updated other internal libraries for security and reliability improvements.
 
 ### Linux
 
