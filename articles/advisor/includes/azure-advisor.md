@@ -1,42 +1,55 @@
 ---
 ms.service: azure-advisor
 ms.topic: include
-ms.date: 07/07/2022
+ms.date: 07/24/2026
 author: ikhapova
 ms.author: ikhapova
 ---
 
-### Get cost savings summary from Azure Advisor
+### Potential cost savings from recommendations
 
-This query summarizes the monthly cost savings of each [Azure Advisor](../advisor-overview.md) recommendation.
+This query calculates the monthly cost savings of [Azure Advisor](../advisor-overview.md) recommendations.
 
 ```kusto
-AdvisorResources
-| where type == 'microsoft.advisor/recommendations'
-| where properties.category == 'Cost'
-| extend
-  resources = tostring(properties.resourceMetadata.resourceId),
-  savings = todouble(properties.extendedProperties.savingsAmount),
-  solution = tostring(properties.shortDescription.solution),
-  currency = tostring(properties.extendedProperties.savingsCurrency)
+advisorresources
+| where type =~ "microsoft.advisor/metadata"
+| where tostring(properties.language)=="en"
+| where tostring(properties.recommendationCategory)=="Cost"
+| extend recommendationTypeId=tostring(properties.recommendationTypeId)
+| project recommendationTypeId,
+    metadataSolution=tostring(properties.label)
+| join kind=inner (
+    advisorresources
+    | where type =~ "microsoft.advisor/recommendations"
+    | extend recommendationTypeId=tostring(properties.recommendationTypeId)
+    | extend
+        resources=tostring(properties.resourceMetadata.resourceId),
+        savings=todouble(properties.extendedProperties.savingsAmount),
+        tracked=tobool(properties.tracked),
+        recommendationSolution=tostring(properties.label),
+        currency=tostring(properties.extendedProperties.savingsCurrency)
+    | project recommendationTypeId,resources,savings,tracked,recommendationSolution,currency
+) on recommendationTypeId
+| extend solution = iff(tracked == true, recommendationSolution, metadataSolution)
 | summarize
-  dcount(resources),
-  bin(sum(savings), 0.01)
-  by solution, currency
-| project solution, dcount_resources, sum_savings, currency
+    dcount_resources=dcount(resources),
+    sum_savings=bin(sum(savings),0.01)
+    by solution,currency
+| where sum_savings > 0
+| project solution,dcount_resources,sum_savings,currency
 | order by sum_savings desc
 ```
 
 # [Azure CLI](#tab/azure-cli)
 
 ```azurecli-interactive
-az graph query -q "AdvisorResources | where type == 'microsoft.advisor/recommendations' | where properties.category == 'Cost' | extend resources = tostring(properties.resourceMetadata.resourceId), savings = todouble(properties.extendedProperties.savingsAmount), solution = tostring(properties.shortDescription.solution), currency = tostring(properties.extendedProperties.savingsCurrency) | summarize dcount(resources), bin(sum(savings), 0.01) by solution, currency | project solution, dcount_resources, sum_savings, currency | order by sum_savings desc"
+az graph query -q "advisorresources | where type =~ "microsoft.advisor/metadata" | where tostring(properties.language)=="en" | where tostring(properties.recommendationCategory)=="Cost" | extend recommendationTypeId=tostring(properties.recommendationTypeId) | project recommendationTypeId,     metadataSolution=tostring(properties.label) | join kind=inner (     advisorresources | where type =~ "microsoft.advisor/recommendations" | extend recommendationTypeId=tostring(properties.recommendationTypeId) | extend         resources=tostring(properties.resourceMetadata.resourceId),         savings=todouble(properties.extendedProperties.savingsAmount),         tracked=tobool(properties.tracked),        recommendationSolution=tostring(properties.label),         currency=tostring(properties.extendedProperties.savingsCurrency) | project recommendationTypeId,resources,savings,tracked,recommendationSolution,currency ) on recommendationTypeId | extend solution = iff(tracked == true, recommendationSolution, metadataSolution) | summarize     dcount_resources=dcount(resources),     sum_savings=bin(sum(savings),0.01)     by solution,currency | where sum_savings > 0 | project solution,dcount_resources,sum_savings,currency | order by sum_savings desc"
 ```
 
 # [Azure PowerShell](#tab/azure-powershell)
 
 ```azurepowershell-interactive
-Search-AzGraph -Query "AdvisorResources | where type == 'microsoft.advisor/recommendations' | where properties.category == 'Cost' | extend resources = tostring(properties.resourceMetadata.resourceId), savings = todouble(properties.extendedProperties.savingsAmount), solution = tostring(properties.shortDescription.solution), currency = tostring(properties.extendedProperties.savingsCurrency) | summarize dcount(resources), bin(sum(savings), 0.01) by solution, currency | project solution, dcount_resources, sum_savings, currency | order by sum_savings desc"
+Search-AzGraph -Query "advisorresources | where type =~ "microsoft.advisor/metadata" | where tostring(properties.language)=="en" | where tostring(properties.recommendationCategory)=="Cost" | extend recommendationTypeId=tostring(properties.recommendationTypeId) | project recommendationTypeId,     metadataSolution=tostring(properties.label) | join kind=inner (     advisorresources | where type =~ "microsoft.advisor/recommendations" | extend recommendationTypeId=tostring(properties.recommendationTypeId) | extend         resources=tostring(properties.resourceMetadata.resourceId),         savings=todouble(properties.extendedProperties.savingsAmount),         tracked=tobool(properties.tracked),        recommendationSolution=tostring(properties.label),         currency=tostring(properties.extendedProperties.savingsCurrency) | project recommendationTypeId,resources,savings,tracked,recommendationSolution,currency ) on recommendationTypeId | extend solution = iff(tracked == true, recommendationSolution, metadataSolution) | summarize     dcount_resources=dcount(resources),     sum_savings=bin(sum(savings),0.01)     by solution,currency | where sum_savings > 0 | project solution,dcount_resources,sum_savings,currency | order by sum_savings desc"
 ```
 
 # [Portal](#tab/azure-portal)
