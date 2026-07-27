@@ -66,9 +66,9 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 ### Windows 
 
-- Updated OpenSSL to 3.6.3
+- Updated OpenSSL to 3.6.3.
 - Updated Metrics Extension to version 2.2026.617.1755.
-- Other internal library updates for security and reliability improvements
+- Updated other internal libraries for security and reliability improvements.
 
 ### Linux
 
