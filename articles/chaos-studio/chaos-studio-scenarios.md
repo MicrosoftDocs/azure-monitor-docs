@@ -3,7 +3,7 @@ title: Scenarios in Azure Chaos Studio
 description: Reference for all available Scenarios in Azure Chaos Studio Workspaces. Each Scenario simulates a real outage pattern using composed Actions.
 author: nikhilkaul-msft
 ms.topic: reference
-ms.date: 07/20/2026
+ms.date: 07/23/2026
 ai-usage: ai-assisted
 ---
 
@@ -187,7 +187,7 @@ Hibernates standalone virtual machines to simulate sudden compute loss, then res
 Applies sustained CPU stress inside target virtual machines to validate application behavior under CPU contention. You set the pressure level (percentage) and duration.
 
 > [!NOTE]
-> CPU Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent, which is installed automatically during the run and removed afterward. See [Agent-based Scenario requirements](#agent-based-scenario-requirements).
+> CPU Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Chaos Studio installs the agent extension automatically during the run and removes it afterward. For target VM and operating system requirements, see [Agent-based Scenario requirements](#agent-based-scenario-requirements).
 
 | Property | Value |
 |---|---|
@@ -200,7 +200,7 @@ Applies sustained CPU stress inside target virtual machines to validate applicat
 Consumes physical memory inside target virtual machines to validate application behavior under memory contention. You set the pressure level (percentage) and duration.
 
 > [!NOTE]
-> Physical Memory Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent, which is installed automatically during the run and removed afterward. See [Agent-based Scenario requirements](#agent-based-scenario-requirements).
+> Physical Memory Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Chaos Studio installs the agent extension automatically during the run and removes it afterward. For target VM and operating system requirements, see [Agent-based Scenario requirements](#agent-based-scenario-requirements).
 
 | Property | Value |
 |---|---|
@@ -208,14 +208,31 @@ Consumes physical memory inside target virtual machines to validate application 
 | Target resources | Virtual Machines (standalone only) |
 | Outage category | Resource pressure |
 
-#### Agent-based Scenario requirements
+## Agent-based Scenario requirements
 
-The CPU Pressure and Physical Memory Pressure Scenarios run inside the target VM through the Chaos Studio agent, and have requirements that service-direct Scenarios don't:
+Most Scenarios use service-direct actions that operate on resources through Azure management APIs. Agent-based Scenarios, such as CPU Pressure and Physical Memory Pressure, instead run the fault inside the target virtual machine through the Chaos Studio agent. Chaos Studio installs the agent extension automatically when the run starts and removes it when the run ends, so you don't install or manage the agent yourself.
 
-- **Standalone virtual machines only.** Virtual machine scale sets aren't supported yet.
-- **Windows and Linux VMs with a managed identity.** VM sizes that use Arm-based processors aren't supported yet.
-- **Public outbound connectivity.** The target VM must be able to reach the Chaos Studio service over public outbound connectivity. VMs restricted to private networking aren't supported.
-- **Find them under My scenarios.** Agent-based Scenarios don't appear in the recommended Scenarios list. In the Azure portal, find and run them from **My scenarios**.
+Each target virtual machine must meet the following requirements:
+
+- It's a standalone virtual machine. Virtual machine scale sets aren't supported yet.
+- It has a managed identity.
+- It runs a supported operating system.
+- It can reach the Chaos Studio service over public outbound connectivity. VMs restricted to private networking aren't supported.
+
+In the Azure portal, agent-based Scenarios don't appear in the recommended Scenarios list. Find and run them from **My scenarios**.
+
+### Supported operating systems
+
+Agent-based Scenarios support both Windows and Linux virtual machines. VM sizes that use Arm-based processors aren't supported yet. On Linux, fault actions are validated on the following distributions:
+
+| Distribution | Supported versions |
+|---|---|
+| Ubuntu | 22.04 and later |
+| Debian | 11 and later |
+| Red Hat Enterprise Linux | 8.6 and later |
+| Oracle Linux | 8.4 and later |
+
+Other distributions or versions might work, but they aren't validated and Chaos Studio can't guarantee behavior on them.
 
 ## Create a custom Scenario
 

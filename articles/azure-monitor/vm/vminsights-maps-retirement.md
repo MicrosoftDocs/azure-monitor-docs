@@ -22,7 +22,7 @@ Specifically, customers won't be able to:
 - Send new data to Azure Monitor Log Analytics using the Dependency Agent.
 - Query the Service Map API   
 
-Customers will still have access to existing VM Insights Map data ingested by Dependency Agent in the associated tables (`VMComputer`, `VMProcess`, `VMConnection`, `VMBoundPort`). This data is retained as per the settings in the customers’ Log Analytics workspace.  
+Existing VM Insights Map data ingested by the Dependency Agent remains available in the associated tables (`VMComputer`, `VMProcess`, `VMConnection`, `VMBoundPort`). Your Log Analytics workspace settings determine data retention.  
 
 As part of the retirement process, 
 
@@ -33,9 +33,21 @@ As part of the retirement process,
  
 ## Recommended action  
 
-Customers are recommended to offboard from the VM Insights Map feature. If you want to continue collecting data about processes running on virtual machines and external process dependencies, we recommend considering a replacement solution from the Azure Marketplace. If applicable, customers can consider [using the Azure Monitor Agent for inventory tracking](/azure/automation/change-tracking/manage-change-tracking-monitoring-agent).  
+Offboard from the VM Insights Map feature. If you want to continue collecting data about processes running on virtual machines and external process dependencies, consider a replacement solution from the Azure Marketplace. If applicable, consider [using the Azure Monitor Agent for inventory tracking](/azure/automation/change-tracking/manage-change-tracking-monitoring-agent). If you deployed the Dependency Agent to your VMs through an Azure Policy initiative assignment, see [Migrate Dependency Agent policy and initiative assignments](dependency-agent-migrate-policy.md) for how to identify and update those assignments.
 
 ## Finding VMs currently using VM Insights map 
+
+### Azure Advisor retirement recommendations
+
+Azure Advisor shows a retirement recommendation, **Migrate from Dependency Agent and VM Insights Map**, for resources with Dependency Agent installed.
+
+To find it, in the Azure portal go to **Advisor** > **Recommendations** > **Reliability**, add a filter with **Recommendation Type** set to **Migrate from Dependency Agent and VM Insights Map**, and select **Apply**.
+
+Check the Advisor dashboard for this recommendation on the following resource types:
+
+- Virtual Machines
+- Virtual Machine Scale Sets
+- Azure Arc Machines
 
 ### Query for finding VMs
 
@@ -140,3 +152,31 @@ For manual uninstallation instructions:
 | 30 June 2025  | Retirement announcement |
 | 30 September 2025  | Customers restricted from onboarding new VMs using the Azure portal  |
 | 30 June 2028 | Product retired. Documentation archived and all experiences removed.  | 
+
+## Frequently asked questions
+
+**Does this retirement affect VM Insights performance monitoring?**
+
+No. VM Insights performance monitoring uses Azure Monitor Agent and isn't affected by this retirement.
+
+**Will my existing data in `VMComputer`, `VMProcess`, `VMConnection`, and `VMBoundPort` be deleted?**
+
+No. Your Log Analytics workspace retains already ingested data according to its retention settings.
+
+**The Dependency Agent was deployed to my VMs through a policy assignment that I don't manage. What should I do?**
+
+Contact your Azure administrator to remove the policy or initiative assignment that deploys the Dependency Agent. See [Migrate Dependency Agent policy and initiative assignments](dependency-agent-migrate-policy.md).
+
+**Do I need to act before 30 June 2028?**
+
+Don't install the Dependency Agent on new systems. Existing installations reach end of support on 30 June 2028, and data ingestion is disabled sometime after that date. Offboard as soon as possible.
+
+## Support
+
+For assistance with offboarding and migration, use the following resources:
+
+- [Microsoft Q&A](https://aka.ms/azmon-qna) - post questions tagged with `azure-monitor`.
+- [Azure support plans](https://azure.microsoft.com/support/create-ticket) - open a support ticket for migration assistance.
+- Azure Advisor - check your Advisor dashboard for personalized retirement recommendations and affected resource lists.
+
+Support for Dependency Agent issues is available until 30 June 2028. After that date, Microsoft provides no further support for the Dependency Agent.

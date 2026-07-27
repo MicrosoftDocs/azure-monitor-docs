@@ -4,12 +4,15 @@ description: Learn about the Chaos Studio agent, which runs inside virtual machi
 services: chaos-studio
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 06/17/2026
+ms.date: 07/22/2026
 ms.reviewer: nikhilkaul
 ai-usage: ai-assisted
 ---
 
 # Chaos Studio agent overview
+
+> [!NOTE]
+> This section covers the agent used with the classic experiments model, which you install and manage yourself. In [Workspaces (preview)](chaos-studio-workspaces-overview.md), the CPU Pressure and Physical Memory Pressure scenarios handle the agent for you automatically, with no installation or setup. If you're using workspaces, start with [Agent-based Scenario requirements](chaos-studio-scenarios.md#agent-based-scenario-requirements) instead.
 
 The Chaos Studio agent is a component that runs inside your virtual machines (VMs) to inject faults that can't be achieved through the Azure control plane alone. Faults like CPU pressure, memory pressure, and network latency require in-guest access to the operating system, and the agent provides that access.
 
