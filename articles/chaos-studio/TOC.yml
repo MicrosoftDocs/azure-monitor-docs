@@ -102,7 +102,7 @@
           href: chaos-studio-bicep.md
         - name: Azure Policy definitions
           href: sample-policy-targets.md
-- name: Chaos Studio agent
+- name: Chaos Studio agent (classic)
   items:
     - name: Overview
       href: chaos-agent-overview.md
