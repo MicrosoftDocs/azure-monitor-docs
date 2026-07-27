@@ -17,6 +17,7 @@ This article lists significant changes to Azure Monitor documentation.
 |---|---|---|
 |Logs|[Export job (preview)](../logs/export-job.md)|Export historical records from a Log Analytics workspace to Azure Blob Storage in Parquet format by using the new export job feature in preview. This on-demand feature is an alternative to data export rules for backup, analysis, and compliance scenarios. For more information, see the [announcement on the Azure Observability Blog](https://techcommunity.microsoft.com/blog/AzureObservabilityBlog/export-historical-data-from-log-analytics-workspace-with-export-job-preview/4532425).|
 |Logs|[Log Analytics overview](../logs/log-analytics-overview.md#left-sidebar)|Expanded the Log Analytics overview with query history documentation, covering how to access, rerun, and manage recent queries in the Log Analytics workspace query editor.|
+|Logs|[Configure a table plan in a Log Analytics workspace](../logs/logs-table-plans.md)|Merged the standalone Auxiliary plan article into the [custom table creation](../logs/create-custom-table.md#create-a-custom-table) and overview articles. Highlights new features bringing Auxiliary logs up to the standards of Basic and Analytics. Added data continuity guidance for table plan changes.|
 |Logs|[Log Analytics autosave](../logs/log-analytics-overview.md#autosave)|Log Analytics now automatically saves your session state, including query tabs, work mode, query scope, and time range, to your browser's local storage. Your work is restored when you reopen Logs for the same resource in the same browser, and saved state is retained for 30 days.|
 |Metrics|[Advanced platform metrics (preview)](../metrics/metrics-advanced-platform.md)|Advanced platform metrics are now in preview. Enable this paid tier of platform metrics on supported Azure resources to collect more granular metrics and analyze them with the same Azure Monitor tools and APIs used for standard platform metrics.|
 
@@ -90,7 +91,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Logs|[Best practices for Azure Monitor Logs](../logs/best-practices-logs.md)|Refreshed best practices and dedicated cluster guidance for query performance, cluster sizing, and cost management.|
 |Logs|[Tables feature support](../logs/tables-feature-support.md)|Added 89 more tables that support transformations and refreshed the supported tables list for the Logs Ingestion API.|
 |Logs|[Audit queries in Azure Monitor Logs](../logs/query-audit.md)|Documented support for obfuscating string literals in Log Analytics query audit logs.|
-|Logs|[Set up a table with the Auxiliary plan](../logs/create-custom-table-auxiliary.md)|Updated Auxiliary plan guidance to match the renamed portal experience and custom log creation terminology.|
+|Logs|[Set up a table with the Auxiliary plan](../logs/create-custom-table.md#create-a-custom-table)|Updated Auxiliary plan guidance to match the renamed portal experience and custom log creation terminology.|
 |Logs|[Customer-managed keys](../logs/customer-managed-keys.md)|Removed outdated CLI workaround guidance after the underlying issue was fixed.|
 |Platform|[Azure Monitor activity log](../platform/activity-log.md)|Consolidated Activity Log REST API guidance into the main article, added examples, and clarified event descriptions.|
 
@@ -294,7 +295,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Essentials|[Azure Monitor and Prometheus](../metrics/prometheus-metrics-overview.md)|Managed Prometheus for Arc-enabled clusters now GA.|
 |General|[Azure Monitor enterprise monitoring architecture](../enterprise-monitoring-architecture.md)|New article with sample enterprise architecture for Azure Monitor.|
 |Logs|[Migrate from using batch and beta queries to the standard Log Analytics query API](../logs/api/migrate-batch-and-beta.md)|Announcement of deprecation for Beta and Batch APIs|
-|Logs|[Set up a table with the Auxiliary plan in your Log Analytics workspace](../logs/create-custom-table-auxiliary.md)|Auxiliary logs now GA|
+|Logs|[Set up a table with the Auxiliary plan in your Log Analytics workspace](../logs/create-custom-table.md#create-a-custom-table)|Auxiliary logs now GA.|
 |Logs|[Delete data from a Log Analytics workspace by using the Delete Data API](../logs/delete-log-data.md)|New Delete data API to make async requests to remove sensitive, personal or corrupt log entries from LA tables.|
 |Logs|[Tutorial: Use Log Analytics](../logs/log-analytics-tutorial.md)|Our tutorial page titles are now consistent, making it easier to find what you're looking for.|
 |Logs|[Enhance resilience by replicating your Log Analytics workspace across regions (Preview)](../logs/workspace-replication.md)|Log Analytics workspace replication now GA with additional regions added.|
@@ -378,7 +379,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Essentials|[Structure of a data collection rule in Azure Monitor](../data-collection/data-collection-rule-structure.md)|Updated DCR JSON structure|
 |General|[Best practices for monitoring at-scale with Azure Monitor](monitor-at-scale.md)|We've published a new article describing our at-scale monitoring solutions.|
 |General|[Migrate to the Change Analysis API powered by Azure Resource Graph](../change/change-analysis-migration.md)|Change Analysis (classic) migration and retirement announcement.|
-|Logs|[Set up a table with the Auxiliary plan in your Log Analytics workspace (Preview)](../logs/create-custom-table-auxiliary.md)|Added support for the Auxiliary table plan in West EU and West US 2 regions.|
+|Logs|[Set up a table with the Auxiliary plan in your Log Analytics workspace (Preview)](../logs/create-custom-table.md#create-a-custom-table)|Added support for the Auxiliary table plan in West EU and West US 2 regions.|
 |Logs|[Structure of transformation in Azure Monitor](../data-collection/data-collection-transformations-kql.md)|Added `parse` operator limitations and information about ingestion latency introduced by transformations.|
 |Logs|[Enhance resilience by replicating your Log Analytics workspace across regions (Preview)](../logs/workspace-replication.md)|Added information about how Azure Monitor protects in-transit data during a regional when you enable workspace replication.|
 |Logs|[Functions in Azure Monitor log queries](../logs/functions.md)|Added ARM template example of how to create a function in Azure Monitor Logs. |
@@ -464,7 +465,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Essentials|[Monitor and troubleshoot DCR data collection in Azure Monitor](../data-collection/data-collection-monitor.md)|Corrected an error in KQL using InputStreamId.|
 |General|[Analyze and visualize monitoring data](best-practices-analysis.md)|We've updated our visualization recommendations to better guide customers when to use Azure Managed Grafana and when to use Azure Workbooks.|
 |Logs|[Best practices for Azure Monitor Logs](../logs/best-practices-logs.md)|Updated overview of features that enhance resilience of your Log Analytics workspace, including a new video. |
-|Logs|[Set up a table with the Auxiliary plan in your Log Analytics workspace (Preview)](../logs/create-custom-table-auxiliary.md)|New article that explains how to set up a table with the Auxiliary plan. |
+|Logs|[Set up a table with the Auxiliary plan in your Log Analytics workspace (Preview)](../logs/create-custom-table.md#create-a-custom-table)|New article that explains how to set up a table with the Auxiliary plan. |
 |Logs|[Azure Monitor Logs overview](../logs/data-platform-logs.md)|Updated Azure Monitor Logs overview provides a high-level overview of data collection, management, retrieval, and consumption for a range of use cases.|
 |Logs|[Run search jobs in Azure Monitor](../logs/search-jobs.md)|New video that explains how to use search jobs in Azure Monitor Logs.|
 |Logs|[Aggregate data in a Log Analytics workspace by using summary rules (Preview)](../logs/summary-rules.md)|New video that explains how to use summary rules to optimize data in your Log Analytics workspace.|
