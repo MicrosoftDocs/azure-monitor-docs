@@ -2,7 +2,7 @@
 title: Azure Monitor Logs
 description: This article explains how Azure Monitor Logs works and how people with different monitoring needs and skills can use the basic and advanced capabilities that Azure Monitor Logs offers.
 ms.topic: concept-article
-ms.date: 04/06/2026
+ms.date: 05/25/2026
 
 # Customer intent: As new user or decision-maker evaluating Azure Monitor Logs, I want to understand how Azure Monitor Logs addresses my monitoring and analysis needs.
 ---
@@ -65,14 +65,17 @@ You can use one Log Analytics workspace to store any type of log required for an
 
 Table plans let you manage data costs based on how often you use the data in a table and the type of analysis you need the data for.
 
-The following video provides an overview of how table plans enable multi-tier logging in Azure Monitor Logs:
+This video provides an overview of how table plans enable multi-tier logging in Azure Monitor Logs:
 
 > [!VIDEO https://www.youtube.com/embed/sn5-c8wYJcw?cc_load_policy=1&cc_lang_pref=auto]
 
 
-The diagram and table compare the Analytics, Basic, and Auxiliary table plans. For information about interactive and long-term retention, see [Manage data retention in a Log Analytics workspace](../logs/data-retention-configure.md). For information about how to select or modify a table plan, see [Select a table plan](logs-table-plans.md). 
+The following diagram and table compare the Analytics, Basic, and Auxiliary table plans. For information about interactive and long-term retention, see [Manage data retention in a Log Analytics workspace](../logs/data-retention-configure.md). For information about how to select or modify a table plan, see [Select a table plan](logs-table-plans.md). 
 
 :::image type="content" source="media/data-platform-logs/azure-monitor-logs-data-plans.png" lightbox="media/data-platform-logs/azure-monitor-logs-data-plans.png" alt-text="Diagram that presents an overview of the capabilities provided by the Analytics, Basic, and Auxiliary table plans.":::
+
+
+### Table feature comparison
 
 | Features                                               | Analytics                                                    | Basic                                                        | Auxiliary                           |
 | ------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -81,8 +84,10 @@ The diagram and table compare the Analytics, Basic, and Auxiliary table plans. F
 |Ingestion cost |Standard                                                            | Reduced                                                            | Minimal                                                            | 
 |Query price included |✅                                                            | ❌                                                            | ❌                                                            | 
 | Optimized query performance                                      | ✅                                                         | ✅                                                         | ❌ Slower queries.<br>Good for auditing. Not optimized for real-time analysis.                                                      |
-| Query capabilities                                            | [Full query capabilities](../logs/get-started-queries.md).                                     | [Full Kusto Query Language (KQL) on a single table](basic-logs-query.md), which you can extend with data from an Analytics table using [lookup](/azure/data-explorer/kusto/query/lookup-operator). | [Full KQL on a single table](basic-logs-query.md), which you can extend with data from an Analytics table using [lookup](/azure/data-explorer/kusto/query/lookup-operator). |
+| Query capabilities                                            | [Full query capabilities](../logs/get-started-queries.md).                                     | [Full Kusto Query Language (KQL) on a single table](basic-logs-query.md), which you can extend with data from an Analytics table using [lookup](/azure/data-explorer/kusto/query/lookup-operator) | [Full KQL on a single table](basic-logs-query.md), which you can extend with data from an Analytics table using [lookup](/azure/data-explorer/kusto/query/lookup-operator) |
+| Resource query scope | ✅ Resource and Log Analytics workspace [scope](scope.md#query-scope) | ❌ [Log Analytics query scope](scope.md#query-scope) only            |  ❌ [Log Analytics query scope](scope.md#query-scope) only                                 |
 | [Alerts](../alerts/alerts-overview.md)                                                 | ✅                                                            | ✅ (Simple Log Alerts)                                                           | ❌                                                            |
+| [Customer lockbox](/azure/security/fundamentals/customer-lockbox-overview)                                                 | ✅                                                            | ✅                                                        | ❌                                                            |
 | [Insights](../insights/insights-overview.md)                                             | ✅                                                            |     ❌                                                        |                                             ❌               |
 | [Dashboards](../visualize/best-practices-visualize.md)                                             | ✅                                                            |     ✅ Cost per query for dashboard refreshes not included.<sup>1</sup>                                                        |                                             Possible, but slow to refresh, cost per query for dashboard refreshes not included.<sup>1</sup>               |
 | [Data export rules](logs-data-export.md)                                             | ✅                                                            |     ✅                                                        |                                             ❌               |
@@ -90,6 +95,7 @@ The diagram and table compare the Analytics, Basic, and Auxiliary table plans. F
 | [Search jobs](../logs/search-jobs.md)                  | ✅                                                            | ✅                                                            | ✅                                                            |
 | [Summary rules](../logs/summary-rules.md)              | ✅                                                            | ✅ KQL limited to a single table                              | ✅ KQL limited to a single table                              |
 | [Restore](../logs/restore.md)                          | ✅                                                            | ✅                                                            | ❌                                                            |
+| [Workspace replication](workspace-replication.md) | ✅                                                            | ✅                                                            | ❌                                                        |
 | Analytics retention                                  | 30 days (90 days for Microsoft Sentinel and Application Insights).<br> Can be extended to up to two years at a prorated monthly long-term retention charge. | Not Applicable      | Not Applicable                                                |
 | Total retention                                        | Up to 12 years                                               | Up to 12 years                                               | Up to 12 years                  |
 
@@ -98,22 +104,15 @@ The diagram and table compare the Analytics, Basic, and Auxiliary table plans. F
 > [!NOTE]
 > The Basic and Auxiliary table plans aren't available for workspaces in [legacy pricing tiers](cost-logs.md#legacy-pricing-tiers).
 
-
-> [!NOTE]
-> Azure Monitor doesn't currently support the following features in the Auxiliary table plan:
-> - [Log Analytics workspace replication](workspace-replication.md); Azure Monitor doesn't replicate data in tables with the Auxiliary plan to your secondary workspace. Therefore, this data isn't protected against data loss in the event of a regional failure and isn't available when you switch over to your secondary workspace.
-> - [Customer Lockbox for Microsoft Azure](/azure/security/fundamentals/customer-lockbox-overview); The Lockbox interface doesn't apply to tables with the Auxiliary plan. This interface is normally where you review and approve or reject customer data access requests in response to a customer-initiated support ticket or a problem identified by Microsoft,
-
-
 ## Kusto Query Language (KQL) and Log Analytics 
 
-Use a [Kusto Query Language (KQL)](/azure/data-explorer/kusto/query/) query to get data from a Log Analytics workspace. KQL queries in Log Analytics are read-only requests that process data and return results. It's a powerful tool that can analyze millions of records quickly. Use KQL to explore your logs, transform and aggregate data, discover patterns, identify anomalies and outliers, and more.  
+You retrieve data from a Log Analytics workspace by using a [Kusto Query Language (KQL)](/azure/data-explorer/kusto/query/) query. KQL is a read-only request that processes data and returns results. It's a powerful tool that can analyze millions of records quickly. Use KQL to explore your logs, transform and aggregate data, discover patterns, identify anomalies and outliers, and more.  
 
 Log Analytics is a tool in the Azure portal for running log queries and analyzing their results. [Log Analytics Simple mode](log-analytics-simple-mode.md) lets any user, regardless of their knowledge of KQL, retrieve data from one or more tables with one click. A set of controls lets you explore and analyze the retrieved data by using the most popular Azure Monitor Logs functionality in an intuitive, spreadsheet-like experience.
 
 :::image type="content" source="media/log-analytics-explorer/log-analytics-simple-mode-user-interface.png" alt-text="Screenshot that shows Log Analytics Simple mode." lightbox="media/log-analytics-explorer/log-analytics-simple-mode-user-interface.png":::
 
-If you're familiar with KQL, you can use Log Analytics KQL mode to edit and create queries. Then use these queries in Azure Monitor features such as alerts and workbooks, or share them with other users. 
+If you're familiar with KQL, use Log Analytics KQL mode to edit and create queries. Then use these queries in Azure Monitor features such as alerts and workbooks, or share them with other users.  
 
 For more information about Log Analytics, see [Overview of Log Analytics in Azure Monitor](./log-analytics-overview.md). 
 
@@ -123,7 +122,7 @@ Many of Azure Monitor's [ready-to-use, curated Insights experiences](../insights
 
 :::image type="content" source="../containers/media/kubernetes-monitoring-overview/containers-insights-experience.png" lightbox="../containers/media/kubernetes-monitoring-overview/containers-insights-experience.png" alt-text="A screenshot that shows the built-in Container Insights monitoring experience in Azure Monitor.":::
 
-[Create your own visualizations and reports](../best-practices-analysis.md#built-in-visualization-tools) by using workbooks, dashboards, and Power BI. Azure Monitor also integrates with [Azure Managed Grafana](../visualize/visualize-grafana-overview.md) to provide built-in Grafana dashboards in the Azure portal for certain services, such as Azure Database for PostgreSQL. These dashboards visualize real-time metrics like CPU, storage, and active connections. They support correlating metrics with resource logs for troubleshooting.
+[Create your own visualizations and reports](../best-practices-analysis.md#built-in-visualization-tools) by using workbooks, dashboards, and Power BI. Azure Monitor also integrates with [Azure Managed Grafana](../visualize/visualize-grafana-overview.md). Some services, such as Azure Database for PostgreSQL, offer built-in Grafana dashboards in the Azure portal that visualize real-time metrics like CPU, storage, and active connections, and let you correlate metrics with resource logs for troubleshooting.  
 
 > [!TIP]
 > Instead of running complex queries on large data sets or long time ranges, use [summary rules](../logs/summary-rules.md) to aggregate data for custom dashboards, workbooks, and reports. Summary rules aggregate data from one or more tables as the data arrives at your Log Analytics workspace. Visualizing the aggregated data directly from a custom table of summarized data, instead of querying raw data from one or more tables, improves query performance and reduces query errors and timeouts.
@@ -138,19 +137,19 @@ This table describes some of the ways that you can use the data you collect in A
 | Aggregate| Use [summary rules](./summary-rules.md) to aggregate information you need for alerting and analysis from the raw log data you ingest. This aggregation optimizes your costs, analysis capabilities, and query performance. |
 | Detect and analyze anomalies | [Use built-in or custom anomaly detection algorithms](./kql-machine-learning-azure-monitor.md) to identify unusual patterns or behaviors in your log data. This approach helps in early detection of potential issues. |
 | Alert | Configure a [log search alert rule](../alerts/alerts-log.md) or [metric alert for logs](../alerts/alerts-metric-logs.md) to send a notification or take [automated action](../alerts/action-groups.md) when a particular condition occurs. |
-| Visualize | Pin query results rendered as tables or charts to an [Azure dashboard](/azure/azure-portal/azure-portal-dashboards).<br>Create a [workbook](../visualize/workbooks-overview.md) to combine multiple sets of data in an interactive report. <br>Export the results of a query to [Power BI](./log-powerbi.md) to use different visualizations and share with people outside Azure.<br>Export the results of a query to [Grafana](../visualize/visualize-grafana-overview.md) to use its dashboarding and combine with other data sources. Some Azure services, such as Azure Database for PostgreSQL, also have built-in Grafana dashboards in the Azure portal powered by Azure Monitor.|
+| Visualize | Pin query results rendered as tables or charts to an [Azure dashboard](/azure/azure-portal/azure-portal-dashboards).<br>Create a [workbook](../visualize/workbooks-overview.md) to combine multiple sets of data in an interactive report. <br>Export the results of a query to [Power BI](./log-powerbi.md) to use different visualizations and share with people outside Azure.<br>Export the results of a query to [Grafana](../visualize/visualize-grafana-overview.md) to use its dashboarding and combine with other data sources.|
 | Get insights | [Insights](../insights/insights-overview.md) provide a customized monitoring experience for particular resources and services.  |
 | Retrieve | Access log query results from:<ul><li>The command line by using [Azure CLI](/cli/azure/monitor/log-analytics) or [Azure PowerShell cmdlets](/powershell/module/az.operationalinsights).</li><li>A custom app by using the [REST API](/rest/api/loganalytics/) or client library for [.NET](/dotnet/api/overview/azure/Monitor.Query-readme), [Go](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/monitor/query/azlogs#section-readme), [Java](/java/api/overview/azure/monitor-query-readme), [JavaScript](/javascript/api/overview/azure/monitor-query-readme), or [Python](/python/api/overview/azure/monitor-query-readme).</li></ul> |
 | Import | Upload logs from a custom app via the [REST API](/azure/azure-monitor/logs/logs-ingestion-api-overview) or client library for [.NET](/dotnet/api/overview/azure/Monitor.Ingestion-readme), [Go](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/monitor/ingestion/azlogs), [Java](/java/api/overview/azure/monitor-ingestion-readme), [JavaScript](/javascript/api/overview/azure/monitor-ingestion-readme), or [Python](/python/api/overview/azure/monitor-ingestion-readme). |
-| Export | <ul><li>Configure [data export rules](./logs-data-export.md) to an Azure Storage account or Azure Event Hubs as new records arrive.</li><li>Run an on-demand [export job (preview)](./export-job.md) to move historical records from a single table and time range to Azure Blob Storage in Parquet format.</li><li>Build a workflow to retrieve log data and copy it to an external location by using [Azure Logic Apps](/azure/connectors/connectors-azure-monitor-logs).</li></ul> |
-| Bring your own analysis | [Analyze data in Azure Monitor Logs using a notebook](../logs/notebooks-azure-monitor-logs.md) to create streamlined, multistep processes on top of data you collect in Azure Monitor Logs. This approach is especially useful for purposes such as [building and running machine learning pipelines](../aiops/aiops-and-agentic-operations.md#build-a-custom-machine-learning-pipeline), advanced analysis, and troubleshooting guides (TSGs) for Support needs. |
-| Retain data for auditing and compliance | [Send data directly to a table with the Auxiliary plan](./create-custom-table-auxiliary.md) and [extend retention of data in any table](./data-retention-configure.md) to keep data for auditing and compliance to up to 12 years. The low-cost Auxiliary table plan and in-workspace, long-term retention let you reduce costs and use your data quickly and easily when you need it.|
+| Export | Configure [automated export of log data](./logs-data-export.md) to an Azure Storage account or Azure Event Hubs.<br>Build a workflow to retrieve log data and copy it to an external location by using [Azure Logic Apps](/azure/connectors/connectors-azure-monitor-logs). |
+| Bring your own analysis | [Analyze data in Azure Monitor Logs using a notebook](../logs/notebooks-azure-monitor-logs.md) to create streamlined, multistep processes on top of data you collect in Azure Monitor Logs. This approach is especially useful for purposes such as [building and running machine learning pipelines](../aiops/aiops-machine-learning.md#create-your-own-machine-learning-pipeline-on-data-in-azure-monitor-logs), advanced analysis, and troubleshooting guides (TSGs) for Support needs. |
+| Retain data for auditing and compliance | [Send data directly to a table with the Auxiliary plan](./create-custom-table.md#create-a-custom-table) and [extend retention of data in any table](./data-retention-configure.md) to keep data for auditing and compliance to up to 12 years. The low-cost Auxiliary table plan and in-workspace, long-term retention let you reduce costs and use your data quickly and easily when you need it.|
 
 ## Working with Microsoft Sentinel and Microsoft Defender for Cloud
 
 [Microsoft Sentinel](/azure/sentinel/overview) and [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction) perform [Security monitoring](../best-practices-plan.md#security-monitoring-solutions) in Azure.
 
-These services store their data in Azure Monitor Logs for you to analyze it with other log data collected by Azure Monitor.
+These services store their data in Azure Monitor Logs so that security teams can analyze it with other log data collected by Azure Monitor.
 
 ### Learn more
 

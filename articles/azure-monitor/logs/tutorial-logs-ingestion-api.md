@@ -21,7 +21,7 @@ The steps required to configure the Logs ingestion API are as follows:
 1. See [Sample code to send data to Azure Monitor using Logs ingestion API](tutorial-logs-ingestion-code.md) for sample code to send data to using the Logs ingestion API.
 
 > [!NOTE]
-> This article includes options for using a DCR ingestion endpoint or a data collection endpoint (DCE). You can choose to user either one, but a DCE is required with Logs ingestion API if private link is used. See [When is a DCE required?](../data-collection/data-collection-endpoint-overview.md#when-is-a-dce-required).
+> This article includes options for using a DCR ingestion endpoint or a data collection endpoint (DCE). Choose either one, but a DCE is required with Logs ingestion API if private link is used. See [When is a DCE required?](../data-collection/data-collection-endpoint-overview.md#when-is-a-dce-required).
 
 ## Prerequisites
 To complete this tutorial, you need:
@@ -64,10 +64,7 @@ Start by registering a Microsoft Entra application to authenticate against the A
 
 ## Create data collection endpoint
 
-## [DCR endpoint](#tab/dcr)
 A DCE isn't required if you use the DCR ingestion endpoint.
-
-## [DCE](#tab/dce)
 
 A [DCE](../data-collection/data-collection-endpoint-overview.md) is required to accept the data being sent to Azure Monitor. After you configure the DCE and link it to a DCR, you can send data over HTTP from your application. The DCE must be located in the same region as the DCR and the Log Analytics workspace where the data will be sent.
 
@@ -135,7 +132,6 @@ A [DCE](../data-collection/data-collection-endpoint-overview.md) is required to 
 
     :::image type="content" source="media/tutorial-logs-ingestion-api/data-collection-endpoint-json.png" lightbox="media/tutorial-logs-ingestion-api/data-collection-endpoint-json.png" alt-text="Screenshot that shows the DCE resource ID.":::
 
----
 
 ## Create new table in Log Analytics workspace
 
