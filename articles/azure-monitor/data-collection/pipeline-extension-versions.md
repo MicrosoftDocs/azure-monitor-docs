@@ -21,7 +21,7 @@ This article describes the version details for the Azure Monitor pipeline Arc-en
 > [!WARNING]
 > Review these changes before upgrading:
 >
-> - **Durable-buffer upgrade behavior:** When upgrading from a version earlier than 1.5.0, data that remains in the durable buffer is orphaned by a storage-path change and isn't forwarded. This affects only pipelines with durable buffering enabled. Allow the buffer to drain before upgrading or account for possible loss of buffered data.
+> - **Durable-buffer upgrade behavior:** When upgrading from a version earlier than 1.5.0, a storage-path change orphaned data that remains in the durable buffer and isn't forwarded. This change affects only pipelines with durable buffering enabled. To avoid data loss, allow the buffer to drain before upgrading or account for possible loss of buffered data.
 > - **Metric rename:** The customer-visible `processor_duration` metric is renamed to `processing_duration`. Update dependent queries, alerts, dashboards, and workbooks.
 
 - **Improved error-log visibility** — the `AzureMonitorPipelineLogErrors` table now identifies the customer-visible component and emitting event. This release also fixes an issue that prevented some delivered error logs from appearing.
