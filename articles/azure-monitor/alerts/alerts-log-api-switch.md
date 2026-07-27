@@ -84,7 +84,7 @@ Invoke-AzRestMethod @invokeAzRestMethodParams
 
 # [REST](#tab/rest)
 
-The following REST example uses the [Alerts Version - Put](/rest/api/loganalytics/alerts-version/put) REST API operation.
+The following REST example uses the Alerts Version - Put REST API operation.
 
 ```REST
 PUT https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}/alertsversion?api-version=2017-04-26-preview
