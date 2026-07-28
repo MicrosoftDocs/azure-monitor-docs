@@ -2,8 +2,9 @@
 title: Autoscale diagnostics
 description: This article shows you how to configure diagnostics in autoscale.
 ms.topic: how-to
-ms.date: 11/01/2024
+ms.date: 07/27/2026
 ms.reviewer: akkumari
+ai-usage: ai-assisted
 
 # Customer intent: As a DevOps admin, I want to collect and analyze autoscale metrics and logs.
 ---
@@ -88,6 +89,8 @@ Logged when autoscale evaluates if it shouldn't scale because of a cool-down per
   }
 }
 ```
+
+The `cooldown` and `lastScaleActionTime` values reflect the most recent scale action in either direction, not a separate cooldown timer for each direction. When `skipRuleEvaluationForCooldown` is `true`, autoscale skips the rule because the cooldown from that last scale action is still active. For more information, see the [How does autoscale evaluate cooldown?](autoscale-understanding-settings.md#how-does-autoscale-evaluate-cooldown) section.
 
 ### Rule evaluation
 

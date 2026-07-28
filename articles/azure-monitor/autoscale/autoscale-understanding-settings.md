@@ -2,8 +2,9 @@
 title: Understand autoscale settings in Azure Monitor
 description: This article explains autoscale settings, how they work, and how they apply to Azure Virtual Machines, Azure Cloud Services, and the Web Apps feature of Azure App Service.
 ms.topic: how-to
-ms.date: 02/13/2025
+ms.date: 07/27/2026
 ms.reviewer: akkumari
+ai-usage: ai-assisted
 ---
 # Understand autoscale settings
 
@@ -265,6 +266,17 @@ If no scale-out rules are triggered, autoscale evaluates the scale-in rules, tha
 Autoscale calculates the new capacity determined by the **scaleAction** of each of those rules. To ensure service availability, autoscale scales in by as little as possible to achieve the maximum capacity specified. For example, assume two scale-in rules, one that decreases capacity by 50% and one that decreases capacity by three instances. If the first rule results in five instances and the second rule results in seven, autoscale scales in to seven instances.
 
 Each time autoscale calculates the result of a scale-in action, it evaluates whether that action would trigger a scale-out action. The scenario where a scale action triggers the opposite scale action is known as flapping. Autoscale might defer a scale-in action to avoid flapping or might scale by a number less than what was specified in the rule. For more information on flapping, see [Flapping in autoscale](./autoscale-custom-metric.md).
+
+### How does autoscale evaluate cooldown?
+
+After any scale action, autoscale records the time of that action and waits for a cooldown period before it scales again in either direction. The cooldown that applies is the one on the rule that most recently fired, not a separate cooldown for each direction. A scale-out temporarily blocks the next scale action for the scale-out cooldown, and a scale-in temporarily blocks the next scale action for the scale-in cooldown.
+
+Consider a profile with a scale-out cooldown of 60 minutes and a scale-in cooldown of 40 minutes:
+
+1. A CPU spike triggers a scale-out action at 10:00. The 60-minute scale-out cooldown applies, so no further scale action occurs until 11:00.
+1. CPU returns to normal and a scale-in action runs at 13:00. The 40-minute scale-in cooldown now applies, so no scale action occurs, in either direction, until 13:40.
+1. CPU spikes again at 13:20 and meets the scale-out rule's condition. Because the scale-in cooldown is still in effect, autoscale defers the scale-out.
+1. The scale-out action runs at 13:40, when the cooldown from the most recent scale action, the 13:00 scale-in, elapses.
 
 ## Next steps
 
