@@ -70,13 +70,10 @@ The following tables describe the properties that define an Azure resource signa
 | Time grain | Length of time over which metric values are collected and then aggregated using the specified aggregation method. |
 | Threshold type | Determines how signal values are compared to thresholds. Select **Static** to use the fixed degraded and unhealthy values that you specify, or **Dynamic** to let the signal learn the metric's normal behavior. For more information, see [Dynamic thresholds](./concepts.md#dynamic-thresholds). |
 | Sensitivity | Available for dynamic thresholds. Controls how easily the signal reacts to deviations from the machine learning-computed baseline. |
-| Lookback window | Available for dynamic thresholds. Defines how much historical data is used to learn normal behavior. |
 | Degraded threshold | If this calculation is true, and the Unhealthy calculation is false, then the state of the entity is set to **Degraded**. If both this and the Unhealthy calculation are false, then the health of the entity is set to **Healthy**. Select **Remove threshold** to not use a degraded threshold. |
 | Unhealthy threshold | If this calculation is true, then the state of the entity is set to **Unhealthy**. If this calculation is false, then the **Degraded** threshold is checked. |
 
-When you set **Threshold type** to **Dynamic**, the signal editor shows the **Sensitivity** and **Lookback window** settings.
-
-:::image type="content" source="media/signals/dynamic-threshold.png" lightbox="media/signals/dynamic-threshold.png" alt-text="Screenshot of the Edit signal pane with Threshold type set to Dynamic, showing the Sensitivity and Lookback window settings.":::
+When you set **Threshold type** to **Dynamic**, the signal editor shows the **Sensitivity** setting.
 
 ### [Log Analytics workspace](#tab/loganalyticsworkspace)
 
