@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
+  <defs>
+    <linearGradient
+      id="grad1"
+      x1="7.5"
+      y1="2"
+      x2="7.5"
+      y2="14"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#70DCDF" />
+      <stop offset="1" stop-color="#49AEB1" />
+    </linearGradient>
+  </defs>
+
+  <rect
+    x="2"
+    y="2"
+    width="11"
+    height="12"
+    rx="2"
+    fill="url(#grad1)"
+  />
+
+  <path
+    opacity="0.6"
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="M4 5a1 1 0 0 1 1-1h5a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h5a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1Z"
+    fill="#DDFEFF"
+  />
+</svg>
