@@ -15,14 +15,14 @@ The Azure Monitor Agent supports connections by using direct proxies, a Log Anal
 
 You must enable [Azure Virtual Network service tags](/azure/virtual-network/service-tags-overview) on the virtual network for the virtual machine (VM). Both `AzureMonitor` and `AzureResourceManager` tags are required. See the `AzureMonitor` entry in [Available service tags](/azure/virtual-network/service-tags-overview#available-service-tags) for any other requirements.
 
-You can use Azure Virtual Network service tags to define network access controls on [network security groups](/azure/virtual-network/network-security-groups-overview#security-rules), [Azure Firewall](/azure/firewall/service-tags), and user-defined routes. Use service tags in place of specific IP addresses when you create security rules and routes. For scenarios where you can't use Azure Virtual Network service tags, see the firewall requirements later in this article.
+You can use Azure Virtual Network service tags to define network access controls on [network security groups](/azure/virtual-network/network-security-groups-overview#security-rules), [Azure Firewall](/azure/firewall/service-tags), and user-defined routes. Use service tags instead of specific IP addresses in security rules and routes. For scenarios where you can't use Azure Virtual Network service tags, see the firewall requirements later in this article.
 
 > [!NOTE]
 > You can't use network service tags to define network access controls for Azure Monitor to include data collection endpoint (DCE) public IP addresses. If you have custom logs or Internet Information Services (IIS) log data collection rules (DCRs), consider allowing the DCE's public IP addresses. This configuration ensures the scenarios work until these scenarios are supported via network service tags.
 
 ## Firewall endpoints
 
-The following table provides the endpoints that firewalls must provide access to for different clouds. Each endpoint is an outbound connection to port 443.
+The following table lists the endpoints that firewalls must allow for different clouds. Each endpoint is an outbound connection to port 443.
 
 > [!IMPORTANT]
 > For all endpoints, disable HTTPS inspection.
@@ -39,7 +39,7 @@ The following table provides the endpoints that firewalls must provide access to
 
 
 
-Replace the suffix in the endpoints with the suffix in the following table for respective clouds:
+Replace the endpoint suffix with the suffix in the following table for each cloud:
 
 | Cloud                                | Suffix |
 |:-------------------------------------|:-------|
@@ -57,7 +57,7 @@ Replace the suffix in the endpoints with the suffix in the following table for r
 
 ## Proxy configuration
 
-The Azure Monitor Agent extensions for Windows and Linux can communicate through either a proxy server or a [Log Analytics gateway](gateway.md) to Azure Monitor by using the HTTPS protocol. Use the extensions for Azure VMs, scale sets, and Azure Arc for servers. Use the extensions settings for configuration as described in the following steps. Both anonymous authentication and basic authentication by using a username and password are supported.
+The Azure Monitor Agent extensions for Windows and Linux can communicate through either a proxy server or a [Log Analytics gateway](gateway.md) to Azure Monitor by using the HTTPS protocol. Use the extensions for Azure VMs, scale sets, and Azure Arc for servers, configured as described in the following steps. Both anonymous authentication and basic authentication by using a username and password are supported.
 
 > [!IMPORTANT]
 > Azure Arc-enabled servers don't support OMS Gateway for proxy connectivity, private link connectivity, and public endpoint connectivity options.
@@ -66,7 +66,7 @@ The Azure Monitor Agent extensions for Windows and Linux can communicate through
 > Proxy configuration isn't supported for [Azure Monitor Metrics (preview)](../metrics/metrics-custom-overview.md) as a destination. If you send metrics to this destination, it uses the public internet without any proxy.
 
 > [!NOTE]
-> Setting the Linux system proxy through environment variables like `http_proxy` and `https_proxy` is supported only when you use the Azure Monitor Agent for Linux version 1.24.2 or later. For the Azure Resource Manager template (ARM template), if you configure a proxy, use the ARM template shown here as an example of how to declare the proxy settings inside the ARM template. Also, a user can set global environment variables that all systemd services pick up [via the DefaultEnvironment variable in /etc/systemd/system.conf](https://www.man7.org/linux/man-pages/man5/systemd-system.conf.5.html).
+> Setting the Linux system proxy through environment variables like `http_proxy` and `https_proxy` is supported only when you use the Azure Monitor Agent for Linux version 1.24.2 or later. For the Azure Resource Manager template (ARM template), if you configure a proxy, use the example here to declare the proxy settings. Also, a user can set global environment variables that all systemd services pick up [via the DefaultEnvironment variable in /etc/systemd/system.conf](https://www.man7.org/linux/man-pages/man5/systemd-system.conf.5.html).
 
 Use the commands in the following examples based on your environment and configuration.
 

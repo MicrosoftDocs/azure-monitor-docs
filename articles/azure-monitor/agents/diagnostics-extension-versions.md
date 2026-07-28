@@ -10,7 +10,7 @@ ms.custom:
 
 # Microsoft Azure Diagnostics (WAD) extension configuration schema versions and history
 
-This article provides the version history of the [Azure Diagnostics extension for Windows (WAD)](diagnostics-extension-overview.md) schema versions shipped as part of the Microsoft Azure SDK.
+This article provides the version history of the [Azure Diagnostics extension for Windows (WAD)](diagnostics-extension-overview.md) schema versions shipped with the Microsoft Azure SDK.
 
 [!INCLUDE [diagnostics-extension-deprecation](includes/diagnostics-extension-deprecation.md)]
 
@@ -190,13 +190,13 @@ When you migrate from Azure SDK 2.5 to Azure SDK 2.6 or later, if you had a diag
 
 The checkbox for **Update development storage connection strings for Diagnostics and Caching with Microsoft Azure storage account credentials when publishing to Microsoft Azure** gives you a convenient way to update any development storage account connection strings with the Azure storage account specified during publishing.
 
-For example, suppose you select the checkbox and the diagnostics connection string specifies `UseDevelopmentStorage=true`. When you publish the project to Azure, Visual Studio automatically updates the diagnostics connection string with the storage account you specified in the Publish wizard. However, if a real storage account was specified as the diagnostics connection string, then that account is used instead.
+For example, suppose you select the checkbox and the diagnostics connection string specifies `UseDevelopmentStorage=true`. When you publish the project to Azure, Visual Studio automatically updates the diagnostics connection string with the storage account you specified in the Publish wizard. However, if a real storage account was specified as the diagnostics connection string, that account is used instead.
 
 ### Diagnostics functionality differences between Azure SDK 2.4 and earlier and Azure SDK 2.5 and later
 
-If you're upgrading your project from Azure SDK 2.4 to Azure SDK 2.5 or later, you should bear in mind the following diagnostics functionality differences.
+If you're upgrading your project from Azure SDK 2.4 to Azure SDK 2.5 or later, you should consider the following diagnostics functionality differences.
 
-* **Configuration APIs are deprecated** – Programmatic configuration of diagnostics is available in Azure SDK 2.4 or earlier versions, but is deprecated in Azure SDK 2.5 and later. If your diagnostics configuration is currently defined in code, you need to reconfigure those settings from scratch in the migrated project in order for diagnostics to keep working. The diagnostics configuration file for Azure SDK 2.4 is diagnostics.wadcfg, and diagnostics.wadcfgx for Azure SDK 2.5 and later.
+* **Configuration APIs are deprecated** – Programmatic configuration of diagnostics is available in Azure SDK 2.4 or earlier versions, but is deprecated in Azure SDK 2.5 and later. If your diagnostics configuration is currently defined in code, you need to reconfigure those settings from scratch in the migrated project for diagnostics to keep working. The diagnostics configuration file for Azure SDK 2.4 is diagnostics.wadcfg, and diagnostics.wadcfgx for Azure SDK 2.5 and later.
 * **Diagnostics for cloud service applications can only be configured at the role level, not at the instance level.**
 * **Every time you deploy your app, the diagnostics configuration is updated** – It can cause parity issues if you change your diagnostics configuration from Server Explorer and then redeploy your app.
 * **In Azure SDK 2.5 and later, crash dumps are configured in the diagnostics configuration file, not in code** – If you have crash dumps configured in code, you have to manually transfer the configuration from code to the configuration file, because the crash dumps aren't transferred during the migration to Azure SDK 2.6.
