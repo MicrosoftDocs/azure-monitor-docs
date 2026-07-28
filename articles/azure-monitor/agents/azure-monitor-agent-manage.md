@@ -20,6 +20,7 @@ For prerequisites and other requirements for using the Azure Monitor Agent, see 
 * [Azure Monitor Agent supported operating systems and environments](./azure-monitor-agent-supported-operating-systems.md)
 * [Azure Monitor Agent requirements](./azure-monitor-agent-requirements.md)
 * [Azure Monitor Agent network configuration](./azure-monitor-agent-network-configuration.md)
+* [Azure Monitor Agent extension versions](./azure-monitor-agent-extension-versions.md)
 
 > [!IMPORTANT]
 > If the agent connects to the Log Analytics workspace by using Azure private link, see [Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor](../fundamentals/private-link-vm-kubernetes.md).

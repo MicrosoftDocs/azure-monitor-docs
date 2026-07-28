@@ -3,7 +3,7 @@ title: Log query scope in Azure Monitor Log Analytics
 description: Describes the scope and time range for a log query in Azure Monitor Log Analytics.
 ms.topic: concept-article
 ms.reviewer: ilanawaitser
-ms.date: 08/29/2025
+ms.date: 05/26/2026
 
 ---
 
@@ -49,8 +49,7 @@ You can't use the following commands in a query when scoped to a resource since 
 ## Query scope limits
 Setting the scope to a resource or set of resources is a powerful feature of Log Analytics since it allows you to automatically consolidate distributed data in a single query. It can significantly affect performance though if data needs to be retrieved from workspaces across multiple Azure regions.
 
-Log Analytics helps protect against excessive overhead from queries that span workspaces in multiple regions by issuing a warning or error when a certain number of regions are being used. 
-Your query receives a warning if the scope includes workspaces in 5 or more regions. it will still run, but it might take excessive time to complete.
+Log Analytics helps protect against excessive overhead from queries that span workspaces in multiple regions by issuing a warning or error when a certain number of regions are being used. Your query receives a warning if the scope includes workspaces in five or more regions. It still runs, but it might take excessive time to complete.
 <!-- convertborder later -->
 :::image type="content" source="media/scope/query-warning.png" lightbox="media/scope/query-warning.png" alt-text="Screenshot of query warning." border="false":::
 
@@ -58,6 +57,7 @@ Your query will be blocked from running if the scope includes workspaces in 20 o
 <!-- convertborder later -->
 :::image type="content" source="media/scope/query-failed.png" lightbox="media/scope/query-failed.png" alt-text="Screenshot of query failed." border="false":::
 
+Queries are also blocked when the scope includes tables in the Basic or Auxiliary plans since they only support queries on the workspace scope.
 
 ## Time range
 The time range specifies the set of records that are evaluated for the query based on when the record was created. This is defined by the **TimeGenerated** column on every record in the workspace or application as specified in the following table. For a classic Application Insights application, the **timestamp** column is used for the time range.

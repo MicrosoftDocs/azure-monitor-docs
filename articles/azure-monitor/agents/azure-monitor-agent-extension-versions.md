@@ -22,13 +22,13 @@ Azure Monitor Agent versions are released on a regular cadence and deployed by u
 
 ### How releases work
 
-New agent versions are released periodically to deliver security fixes, reliability improvements, and new features. After a version is released, automatic updates deploy it in stages across Azure regions:
+New agent versions are released periodically to deliver security updates, reliability improvements, and new features. After a version is released, it rolls out progressively across Azure regions through automatic updates.
 
-- For **Azure VMs and scale sets**, automatic updates typically complete within **4–6 weeks** of rollout start.
-- **Arc-enabled servers** follow a similar staged rollout and might take longer due to additional validation steps.
-- During rollout, different resources might run different agent versions until the update reaches them.
+- Across Azure VMs, Virtual Machine Scale Sets, and Arc-enabled servers **within the same region, a new version becomes available for both manual and automatic updates (if enabled) at the same time** as part of coordinated rollout process.
+- Rollouts happen region by region, and it can take **4–6 weeks** from the start of the rollout before the version is available in all supported regions.
+- During the rollout period, resources in different regions **might see or run different agent versions until the rollout is complete**.
 
-If you need the latest version before automatic updates reach your resources, you can manually install a version once it's available in your region. For more information, see [Azure Monitor Agent installation and management guidance](azure-monitor-agent-overview.md).
+For more information, see [Azure Monitor Agent installation and management guidance](azure-monitor-agent-overview.md).
 
 ### Release notes availability
 
@@ -45,6 +45,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 | Date | Windows | Linux | Metrics | Highlights |
 |---|---|---|---|---|
+| [July 2026](#july-2026) | 1.44 | 1.43 | 2.2026.617.1755 | CEF parsing improvements, OpenSSL 3.6.3 |
 | [June 2026](#june-2026) | — | 1.42 | — | Performance improvements, SUSE 16 support, CVE and memory leak fixes |
 | [May 2026](#may-2026) | 1.43 | — | 2.2026.424.2329 | Installer crash fix, OpenSSL 3.6.2, security dependency updates |
 | [April 2026](#april-2026) | 1.42 | 1.41 | — | **[Breaking change](#linux-breaking-change):** CEF/Syslog handling. OpenSSL 3.6.1, XPath parsing, performance enhancements |
@@ -57,43 +58,24 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 | [May 2025](#may-2025) | 1.35.1 | 1.35.1–1.35.7 | — | Metrics Agent launch, JSON parsing |
 | [March 2025](#march-2025) | 1.34.0 | 1.34.5 | — | Agent Settings refactoring, race condition fixes |
 | [January 2025](#january-2025) | 1.32.0 | 1.33.4 | — | Disk quota tuning |
-| [November 2024](#november-2024) | 1.31.0 | — | — | Proxy selection, Sentinel enhancements |
-| [October 2024](#october-2024) | 1.30.0 | — | — | Custom Logs timestamp delimiter |
-| [September 2024](#september-2024) | — | 1.33.1 | — | Azure Linux 3, Ubuntu 24.04 LTS, Arm64 |
-| [August 2024](#august-2024) | 1.29 | 1.32.6 | — | SecurityEvent columns, OpenSSL dynamic linking |
-| [June 2024](#june-2024) | 1.28.2 | — | — | Resource ID encoding, GovSG endpoint |
-| [May 2024](#may-2024) | 1.27.0 | — | — | Fluent-bit security fix, proxy improvements |
-| [April 2024](#april-2024) | 1.26.0 | 1.31.1 | — | Firewall Logs profile filter, Arc proxy |
-| [March 2024](#march-2024) | 1.25.0 | 1.31.0 | — | **[Breaking change](#march-2024):** JSON auto-parsing |
-| [February 2024](#february-2024) | 1.24.0 | 1.30.3–1.30.2 | — | IIS memory leak fix, TLS 1.3 |
-| [January 2024](#january-2024) | 1.23.0 | 1.29.5–1.29.6 | — | TLS 1.3 support |
-| [December 2023](#december-2023) | 1.22.0 | 1.29.4 | — | CPU spikes fix, Fluent Bit binary |
-| [October 2023](#october-2023) | 1.21.0 | 1.28.11 | — | CPU optimization, multiple IIS subscriptions |
-| [September 2023](#september-2023) | 1.20.0 | — | — | Event Log subscription reset fix |
-| [August 2023](#august-2023) | 1.19.0 | — | — | Tag name prefixes |
-| [July 2023](#july-2023) | 1.18.0 | — | — | Event Log callback error fix |
-| [June 2023](#june-2023) | 1.17.0 | 1.27.4 | — | FilePath column, OpenSSL dynamic linking |
-| [May 2023](#may-2023) | 1.16.0.0 | 1.26.2–1.26.5 | — | Large Event support, CIS/SELinux hardening |
-| [April 2023](#april-2023) | 1.15.0 | — | — | Large Event region support, Fluent Bit 2.0.9 |
-| [March 2023](#march-2023) | 1.14.0.0 | — | — | Text file collection improvements |
-| [February 2023](#february-2023) | 1.13.1 | 1.25.2 | — | Data loss fix, Fluent Bit buffering |
-| [January 2023](#january-2023) | 1.12.0 | 1.25.1 | — | RHEL 9 support, EventLevel fix |
-| [November–December 2022](#novemberdecember-2022) | 1.11.0 | — | — | Air-gapped cloud support |
-| [October 2022](#october-2022) | 1.10.0.0 | 1.24.2 | — | Proxy environment variables |
-| [September 2022](#september-2022) | 1.9.0 | — | — | Reliability improvements |
-| [August 2022](#august-2022) | 1.8.0 | 1.22.2 | — | Lookback time extended to 72 hours |
-| [July 2022](#july-2022) | 1.7.0 | — | — | Sentinel timestamp fix |
-| [June 2022](#june-2022) | 1.6.0 | — | — | User assigned identity fixes |
-| [May 2022](#may-2022) | 1.5.0.0 | 1.21.0 | — | Debian 11 support |
-| [April 2022](#april-2022) | 1.4.1 | 1.19.3 | — | Private IP in Heartbeat |
-| [March 2022](#march-2022) | 1.3.0 | 1.17.5.0 | — | XML format and timestamp fixes |
-| [February 2022](#february-2022) | 1.2.0 | 1.15.3 | — | AMA Client installer fixes |
-| [January 2022](#january-2022) | 1.1.5.1 | 1.15.2.0 | — | Syslog RFC compliance |
-| [December 2021](#december-2021) | 1.1.4 | 1.14.7.0 | — | Arc-enabled server fixes |
-| [September 2021](#september-2021) | 1.1.3.2 | 1.12.2.0 | — | Data loss fix |
-| [August 2021](#august-2021) | 1.1.2.0 | 1.10.9.0 | — | Metrics-only destination support |
-| [July 2021](#july-2021) | 1.1.1 | 1.10.5.0 | — | Direct proxies and Log Analytics gateway |
-| [June 2021](#june-2021) | 1.0.12 | 1.9.1.0 | — | General availability |
+| [Older versions (Unsupported)](#older-versions-unsupported) |  
+
+## July 2026
+
+**Versions:** Windows 1.44, Linux 1.43
+
+### Windows 
+
+- Updated OpenSSL to 3.6.3.
+- Updated Metrics Extension to version 2.2026.617.1755.
+- Updated other internal libraries for security and reliability improvements.
+
+### Linux
+
+- Improved detection and parsing of CEF events when the `CEF:` marker appears after a long prefix, such as metadata added by relays or forwarders.
+- Fixed installation failures caused by disk-space checks evaluating the wrong mounted volume. AMA now checks the volume containing each target directory.
+- Fixed behavior to correctly interpret `"true"` string values in extension public settings as enabled.
+- Fixed a crash that could occur when writing rows containing null string values to Log Analytics.
 
 ## June 2026
 
@@ -368,6 +350,8 @@ The `CommonSecurityLog` table is unaffected in both versions.
 ### Linux
 
 - Added the ability to tune the disk quota for the Linux agent. Use the agent settings DCR to change the quota between 4,000 MB and 1,000,000 MB. The default is 10,000 MB.
+
+## Older versions (Unsupported)
 
 ## November 2024
 

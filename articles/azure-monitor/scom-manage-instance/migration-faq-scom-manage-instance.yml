@@ -6,8 +6,9 @@ metadata:
   ms.topic: faq
   ms.service: azure-monitor
   ms.subservice: operations-manager-managed-instance
-  author: aakashbsrj
-  ms.author: aakashb
+  author: austinmccollum
+  ms.author: austinmc
+  ms.reviewer: aakashb
 title: Migrate from Azure Monitor SCOM Managed Instance - Frequently asked questions
 summary: This article answers frequently asked questions about migration from Azure Monitor SCOM Managed Instance.
 sections:

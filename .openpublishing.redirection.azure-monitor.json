@@ -9890,6 +9890,11 @@
    "redirect_document_id": true
   },
   {
+   "source_path": "articles/azure-monitor/logs/create-custom-table-auxiliary.md",
+   "redirect_url": "/azure/azure-monitor/logs/create-custom-table#create-a-custom-table",
+   "redirect_document_id": true
+  },
+  {
    "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-classiccompute-domainnames-slots-roles-metrics.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false

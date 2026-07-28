@@ -14,19 +14,21 @@ items:
         expanded: false
         href: supported-logs/toc.yml
   - name: Azure Monitor Log Analytics tables
-    href: ./tables-index.md
     items:
+      - name: Log Analytics tables by feature support
+        href: ./tables-features.md
+      - name: Log Analytics tables by resource provider
+        href: ./tables-index.md
       - name: Log Analytics tables by category
         href: ./tables-category.md
+      - name: Log Analytics tables by sample queries
+        href: ./queries-by-table.md
       - name: Log Analytics tables by resource type
         expanded: false
         href: tables/tables-by-resource-type-toc/toc.yml
       - name: Log Analytics tables by table name
         expanded: false
         href: tables/tables-by-table-name-toc/toc.yml
-  - name: Log Analytics sample queries
-    href: ./queries-by-table.md
-    items:
       - name: Sample queries by table
         expanded: false
         href: queries/toc.yml

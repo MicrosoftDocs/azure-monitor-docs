@@ -4,10 +4,10 @@ description: Learn how to identify and remove CPU and memory bottlenecks using A
 ms.topic: concept-article
 ms.service: azure-monitor
 ms.subservice: optimization-insights
-author: hhunter-ms
-ms.author: hannahhunter
+author: austinmccollum
+ms.author: austinmc
 ms.date: 03/13/2026
-ms.reviewer: jan.kalis
+ms.reviewer: hannahhunter
 ms.collection: ce-skilling-ai-copilot
 ms.update-cycle: 180-days
 #customer intent: As an application developer, I want to improve app performance by using Code Optimizations in Azure.

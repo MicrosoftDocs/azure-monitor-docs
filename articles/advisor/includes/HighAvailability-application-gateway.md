@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/23/2026
+ms.date: 07/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -488,13 +488,14 @@ Azure Firewall SLAs vary by deployment type such as single or multiple availabil
 
 **Impact:** High
   
-For more information, see [Deploy Azure Firewall with Availability Zones using PowerShell](https://aka.ms/learnmore_firewalls)  
+For more information, see [Deploy Azure Firewall with Availability Zones](https://aka.ms/learnmore_firewalls)  
 
 ResourceType: microsoft.network/azurefirewalls  
 Recommendation ID: e82f5b61-b0f8-48e7-8e18-5aa1f57bff81  
 Subcategory: HighAvailability
 
 <!--e82f5b61-b0f8-48e7-8e18-5aa1f57bff81_end-->
+
 
 <!--796b9be0-487d-4daa-8771-f08e4d7c9c0c_begin-->
 
@@ -770,5 +771,59 @@ Recommendation ID: 1e97d137-7812-474d-af09-6d5b3e2a1508
 Subcategory: undefined
 
 <!--1e97d137-7812-474d-af09-6d5b3e2a1508_end-->
+
+<!--99934ff1-ff0f-4e64-afcc-2a9659ff0166_begin-->
+
+#### Deploy Azure Bastion into the virtual network in secondary Azure region  
+  
+Azure Bastion is a single-region service, if the primary region becomes unavailable, the Bastion resource will also be unavailable. To ensure disaster recovery, it's recommended to deploy Azure Bastion into separate virtual networks across different regions.  
+  
+**Potential benefits**: Provides disaster recovery from regional outages  
+
+**Impact:** Medium
+  
+For more information, see [Reliability in Azure Bastion](/azure/reliability/reliability-bastion#multi-region-support)  
+
+ResourceType: microsoft.network/bastionhosts  
+Recommendation ID: 99934ff1-ff0f-4e64-afcc-2a9659ff0166  
+Subcategory: undefined
+
+<!--99934ff1-ff0f-4e64-afcc-2a9659ff0166_end-->
+
+<!--dc0e3387-0bc5-4eac-800a-47d90becd2a9_begin-->
+
+#### Deploy Azure Bastion across availability zones  
+  
+Azure Bastion provides secure operational access to workload components. By distributing your Bastion resource across multiple availability zones, you can enhance the resiliency and reliability of your production workloads.  
+  
+**Potential benefits**: Provide high availability and resilience to failures  
+
+**Impact:** Medium
+  
+For more information, see [Reliability in Azure Bastion](/azure/reliability/reliability-bastion)  
+
+ResourceType: microsoft.network/bastionhosts  
+Recommendation ID: dc0e3387-0bc5-4eac-800a-47d90becd2a9  
+Subcategory: undefined
+
+<!--dc0e3387-0bc5-4eac-800a-47d90becd2a9_end-->
+
+<!--ec16c75d-3cce-496c-b6db-673cfff50134_begin-->
+
+#### Update VPN client profile for Point-to-Site connections  
+  
+Azure VPN Gateway is migrating gateway certificates referenced by Point-to-Site (P2S) VPN client profiles. If P2S connections continue to rely on previously distributed client profiles, your users and devices might fail to connect to VPN Gateway. Update your VPN Gateway Point-to-Site client profile.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [How to Update Your VPN Client Profile - Azure VPN Gateway](/azure/vpn-gateway/point-to-site-user-vpn-profile-update?tabs=vpn-gateway)  
+
+ResourceType: microsoft.network/virtualnetworks  
+Recommendation ID: ec16c75d-3cce-496c-b6db-673cfff50134  
+Subcategory: undefined
+
+<!--ec16c75d-3cce-496c-b6db-673cfff50134_end-->
 
 <!--articleBody-->
