@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/28/2025
+ms.date: 07/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Cache for Redis
@@ -93,7 +93,7 @@ Contoso recommendation - R4
   
 **Potential benefits**: Test Potential Benefits  
 
-**Impact:** Low
+**Impact:** Medium
   
   
 
@@ -102,6 +102,7 @@ Recommendation ID: 4ea9775d-8a8e-481c-8594-5aabd8214431
 Subcategory: undefined
 
 <!--4ea9775d-8a8e-481c-8594-5aabd8214431_end-->
+
 
 <!--f3aded79-f9ff-4ce4-99e3-2ffcf11161a4_begin-->
 
