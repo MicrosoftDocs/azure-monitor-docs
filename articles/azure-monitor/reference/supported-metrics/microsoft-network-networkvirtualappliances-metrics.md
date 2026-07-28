@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Network/NetworkVirtualAppliances
 description: Reference for Microsoft.Network/NetworkVirtualAppliances metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/13/2026
+ms.date: 07/20/2026
 ms.custom: Microsoft.Network/NetworkVirtualAppliances, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -27,6 +27,7 @@ The following table lists the metrics available for the Microsoft.Network/Networ
 For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
 
 For information on metric retention, see [Azure Monitor Metrics overview](/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics).
+
 
 
 ### Category: Availability
