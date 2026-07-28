@@ -3,7 +3,7 @@ title: Create and manage action groups in Azure Monitor
 description: Find out how to create and manage action groups. Learn about notifications and actions that action groups enable, such as email, webhooks, and Azure functions.
 ms.topic: how-to
 ms.reviewer: jagummersall
-ms.date: 04/24/2026
+ms.date: 07/21/2026
 ms.custom: references_regions, devx-track-arm-template, has-azure-ad-ps-ref, azure-ad-ref-level-one-done
 ---
 
@@ -11,7 +11,7 @@ ms.custom: references_regions, devx-track-arm-template, has-azure-ad-ps-ref, azu
 
 When Azure Monitor data indicates a potential issue in your infrastructure or application, it triggers an alert. To ensure timely response, you can attach action groups to these alerts, which are collections of notification preferences and automated actions.
 
-Action groups define who get notified and what actions are taken when an alert fires. They support multiple notification types, including voice call, SMS, push notifications, email, and automated actions (for example, triggering a webhook or [Azure Function](/azure/azure-functions/functions-overview)). These groups are used across services like Azure Monitor, [Azure Service Health](/azure/service-health/overview), and [Azure Advisor](/azure/advisor/advisor-overview).
+Action groups define who gets notified and what actions are taken when an alert fires. Notification types include voice call, SMS, push notifications, and email. Automated actions can trigger a webhook, an [Azure Function](/azure/azure-functions/functions-overview), or a Logic Apps workflow that posts a message to **Microsoft Teams**. Use action groups across services like Azure Monitor, [Azure Service Health](/azure/service-health/overview), and [Azure Advisor](/azure/advisor/advisor-overview).
 
 Each action is made up of:
 
@@ -72,7 +72,7 @@ An action group can contain one or more automated actions. The following table d
 | Event hubs | An Event Hubs action publishes notifications to Event Hubs. It's the only action type that supports [Azure Private Link](/azure/event-hubs/private-link-service) and [network security perimeter (NSP)](/azure/private-link/network-security-perimeter-concepts). For more information about Event Hubs, see [Azure Event Hubs—A big data streaming platform and event ingestion service](/azure/event-hubs/event-hubs-about). You can subscribe to the alert notification stream from your event receiver. *Event hub supports cross-tenant support up to api version _2023-09-01-preview_ |
 | Functions | Calls an existing HTTP trigger endpoint in functions. For more information, see [Azure Functions](/azure/azure-functions/functions-get-started).<br><br>When you define the function action, the function's HTTP trigger endpoint and access key are saved in the action definition, for example, `https://azfunctionurl.azurewebsites.net/api/httptrigger?code=<access_key>`. If you change the access key for the function, you must remove and re-create the function action in the action group.<br><br>Your endpoint must support the HTTP POST method.<br><br>The function must have access to the storage account. If it doesn't have access, keys aren't available and the function URI isn't accessible.<br><br>[Learn about restoring access to the storage account](/azure/azure-functions/functions-recover-storage-account). |
 | ITSM | An ITSM action requires an ITSM connection. To learn how to create an ITSM connection, see [ITSM integration](./itsmc-overview.md). |
-| Logic apps |You can use [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) to build and customize workflows for integration and to customize your alert notifications. |
+| Logic apps | You can use [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) to build integration workflows and customize alert notifications. For example, use a logic app to post an alert notification to a **Microsoft Teams** channel. For steps, see [Customize alert notifications by using Logic Apps](./alerts-logic-apps.md?tabs=send-teams-message#set-up-an-action). |
 | Secure webhook | When you use a secure webhook action, you must use Microsoft Entra ID to secure the connection between your action group and your endpoint, which is a protected web API. See [Configure authentication for Secure webhook](#configure-authentication-for-secure-webhook). Secure webhook doesn't support basic authentication. If you're using basic authentication, use the Webhook action. |
 | Webhook | If you use the webhook action, your target webhook endpoint must be able to process the various JSON payloads that different alert sources emit.<br><br>You can't pass security certificates through a webhook action. To use basic authentication, you must pass your credentials through the URI.<br>If the webhook endpoint expects a specific schema, for example, the Microsoft Teams schema, use the **Logic Apps** action type to manipulate the alert schema to meet the target webhook's expectations.<br><br>For information about the rules used for retrying webhook actions, see [Webhook](#webhook). |
 
@@ -84,7 +84,7 @@ An action group can contain one or more automated actions. The following table d
 
 1. Select **Alerts**, and then select **Action groups**.
 
-    :::image type="content" source="media/action-groups/manage-action-groups.png" alt-text="Screenshot of the Alerts page in the Azure portal with the action groups button highlighter.":::
+    :::image type="content" source="media/action-groups/manage-action-groups.png" lightbox="media/action-groups/manage-action-groups.png" alt-text="Screenshot of the Alerts page in the Azure portal with the action groups button highlighter.":::
 
 1. Select **Create** from the top action bar.
 
@@ -97,7 +97,7 @@ An action group can contain one or more automated actions. The following table d
 
 1. In the **Instance details** section, enter values for **Action group name** and **Display name**. The display name is used in place of a full action group name when the group is used to send notifications.
 
-    :::image type="content" source="media/action-groups/action-group-1-basics.png" alt-text="Screenshot that shows the Create action group dialog. Values are visible in the Subscription, Resource group, Action group name, and Display name boxes.":::
+    :::image type="content" source="media/action-groups/action-group-1-basics.png" lightbox="media/action-groups/action-group-1-basics.png" alt-text="Screenshot that shows the Create action group dialog. Values are visible in the Subscription, Resource group, Action group name, and Display name boxes.":::
 
 1. Configure notifications. Select **Next: Notifications**, or select the **Notifications** tab at the top of the page.
 
@@ -109,7 +109,7 @@ An action group can contain one or more automated actions. The following table d
 
     1. Select if you want to enable the **Common alert schema**. The common alert schema is a single extensible and unified alert payload that can be used across all the alert services in Azure Monitor. For more information about the common schema, see [Common alert schema](./alerts-common-schema.md).
 
-        :::image type="content" source="~/reusable-content/ce-skilling/azure/media/azure-monitor/action-group-2-notifications.png" alt-text="Screenshot that shows the Notifications tab of the Create action group dialog. Configuration information for an email notification is visible.":::
+        :::image type="content" source="~/reusable-content/ce-skilling/azure/media/azure-monitor/action-group-2-notifications.png" lightbox="~/reusable-content/ce-skilling/azure/media/azure-monitor/action-group-2-notifications.png" alt-text="Screenshot that shows the Notifications tab of the Create action group dialog. Configuration information for an email notification is visible.":::
 
     1. Select **OK**.
 
@@ -117,7 +117,7 @@ An action group can contain one or more automated actions. The following table d
 
 1. Define a list of actions to trigger when an alert is triggered. Select an action type and enter a name for each action. For available options, see [Action types](#action-types).
 
-    :::image type="content" source="media/action-groups/action-group-3-actions.png" alt-text="Screenshot that shows the Actions tab of the Create action group dialog. Several options are visible in the Action type list.":::
+    :::image type="content" source="media/action-groups/action-group-3-actions.png" lightbox="media/action-groups/action-group-3-actions.png" alt-text="Screenshot that shows the Actions tab of the Create action group dialog. Several options are visible in the Action type list.":::
 
 1. (Optional) If you'd like to assign a key-value pair to the action group to categorize your Azure resources, select **Next: Tags** or the **Tags** tab. Otherwise, skip this step.
 
@@ -139,15 +139,15 @@ When you create or update an action group in the Azure portal, you can test the 
 
 1. Select a sample type and the notification and action types that you want to test. Then select **Test**.
 
-    :::image type="content" source="media/action-groups/test-sample-action-group.png" alt-text="Screenshot that shows the Test sample action group page with an email notification type and a webhook action type.":::
+    :::image type="content" source="media/action-groups/test-sample-action-group.png" lightbox="media/action-groups/test-sample-action-group.png" alt-text="Screenshot that shows the Test sample action group page with an email notification type and a webhook action type.":::
 
 1. If you close the window or select **Back to test setup** while the test is running, the test is stopped, and you don't get test results.
 
-    :::image type="content" source="media/action-groups/stop-running-test.png" alt-text="Screenshot that shows the Test Sample action group page. A dialog contains a Stop button and asks the user about stopping the test.":::
+    :::image type="content" source="media/action-groups/stop-running-test.png" lightbox="media/action-groups/stop-running-test.png" alt-text="Screenshot that shows the Test Sample action group page. A dialog contains a Stop button and asks the user about stopping the test.":::
 
 1. When the test is finished, a test status of either **Success** or **Failed** appears. If the test failed and you want to get more information, select **View details**.
 
-    :::image type="content" source="media/action-groups/test-sample-failed.png" alt-text="Screenshot that shows the Test sample action group page showing a test that failed.":::
+    :::image type="content" source="media/action-groups/test-sample-failed.png" lightbox="media/action-groups/test-sample-failed.png" alt-text="Screenshot that shows the Test sample action group page showing a test that failed.":::
     
     You can use the information in the **Error details** section to understand the issue. Then you can edit, save changes, and test the action group again.
     
@@ -449,7 +449,7 @@ If your primary email doesn't receive notifications, configure the email address
 1. Select **Users** in the left-hand menu to show a list of all users.
 1. Select the user whose *primary email* you want to review.
 
-    :::image type="content" source="media/action-groups/active-directory-user-profile.png" alt-text="Screenshot that shows the Azure portal All users page. Information about one user is visible but is indecipherable." border="true":::
+    :::image type="content" source="media/action-groups/active-directory-user-profile.png" lightbox="media/action-groups/active-directory-user-profile.png" alt-text="Screenshot that shows the Azure portal All users page. Information about one user is visible but is indecipherable." border="true":::
 
 1. In the user profile under **Properties**, look at **Contact info** for an **Email** value. If it's blank:
 
@@ -457,7 +457,7 @@ If your primary email doesn't receive notifications, configure the email address
     1. Enter an email address.
     1. At the top of the page, select **Save**.
 
-    :::image type="content" source="media/action-groups/active-directory-add-primary-email.png" alt-text="Screenshot that shows a user profile page in the Azure portal. The Edit button and the Email box are called out." border="true":::
+    :::image type="content" source="media/action-groups/active-directory-add-primary-email.png" lightbox="media/action-groups/active-directory-add-primary-email.png" alt-text="Screenshot that shows a user profile page in the Azure portal. The Edit button and the Email box are called out." border="true":::
 
 You may have a limited number of email actions per action group. To check which limits apply to your situation, see [Azure Monitor service limits](../service-limits.md).
 
@@ -659,7 +659,7 @@ If you use the webhook action, your target webhook endpoint must be able to proc
     1. Copy the `$myApp.ObjectId` value that's in the script.
     1. In the webhook action definition, in the **Object Id** box, enter the value that you copied.
 
-    :::image type="content" source="media/action-groups/action-groups-secure-webhook.png" alt-text="Screenshot that shows the Secured Webhook dialog in the Azure portal with the Object ID box." border="true":::
+    :::image type="content" source="media/action-groups/action-groups-secure-webhook.png" lightbox="media/action-groups/action-groups-secure-webhook.png" alt-text="Screenshot that shows the Secured Webhook dialog in the Azure portal with the Object ID box." border="true":::
 
 ### Secure webhook PowerShell script
 
@@ -772,9 +772,9 @@ To ensure you can continue using the runbook actions, you need to:
     > [!NOTE]
     > All 5 runbooks in the dropdown have been reconfigured at the backend to authenticate using Managed Identity instead of Run as account. System-assigned Managed Identity in Automation account would be enabled with VM Contributor role at the subscription level would be assigned automatically.
 
-    :::image type="content" source="media/action-groups/action-group-runbook-add.png" alt-text="Screenshot of adding a runbook action to an action group.":::
+    :::image type="content" source="media/action-groups/action-group-runbook-add.png" lightbox="media/action-groups/action-group-runbook-add.png" alt-text="Screenshot of adding a runbook action to an action group.":::
 
-    :::image type="content" source="media/action-groups/action-group-runbook-configure.png" alt-text="Screenshot of configuring the runbook action.":::
+    :::image type="content" source="media/action-groups/action-group-runbook-configure.png" lightbox="media/action-groups/action-group-runbook-configure.png" alt-text="Screenshot of configuring the runbook action.":::
 
 1. Delete old runbook action which links to a *Run as account* runbook.
 

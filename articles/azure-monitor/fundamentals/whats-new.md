@@ -2,7 +2,7 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 07/15/2026
+ms.date: 07/28/2026
 ---
 
 # What's new in Azure Monitor documentation
@@ -19,6 +19,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Logs|[Log Analytics overview](../logs/log-analytics-overview.md#left-sidebar)|Expanded the Log Analytics overview with query history documentation, covering how to access, rerun, and manage recent queries in the Log Analytics workspace query editor.|
 |Logs|[Configure a table plan in a Log Analytics workspace](../logs/logs-table-plans.md)|Merged the standalone Auxiliary plan article into the [custom table creation](../logs/create-custom-table.md#create-a-custom-table) and overview articles. Highlights new features bringing Auxiliary logs up to the standards of Basic and Analytics. Added data continuity guidance for table plan changes.|
 |Logs|[Log Analytics autosave](../logs/log-analytics-overview.md#autosave)|Log Analytics now automatically saves your session state, including query tabs, work mode, query scope, and time range, to your browser's local storage. Your work is restored when you reopen Logs for the same resource in the same browser, and saved state is retained for 30 days.|
+|Logs|[Azure Monitor Logs table feature support](../reference/tables-features.md)|New reference article listing every Azure Monitor Logs table and its support for the Basic plan, the Auxiliary / Lake plan, DCR workspace transformations, and the Logs Ingestion API. The same four features now appear in the **Table attributes** section of all 900+ individual table reference articles using standardized terminology, and the reference table of contents reflects the new grouping.|
 |Metrics|[Advanced platform metrics (preview)](../metrics/metrics-advanced-platform.md)|Advanced platform metrics are now in preview. Enable this paid tier of platform metrics on supported Azure resources to collect more granular metrics and analyze them with the same Azure Monitor tools and APIs used for standard platform metrics.|
 
 ### June 2026

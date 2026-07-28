@@ -38,7 +38,7 @@ Each item has a tab that provides a detailed view of the resources in that categ
 
 The Migration status table appears at the bottom of the page.
 
-The table includes the following columns:
+The table includes these columns:
 - Subscription
 - Resource Type
 - Resource count
@@ -90,7 +90,7 @@ You can also see this information in the **Legacy solutions** tab on your Log An
 
 The AMA migration Helper workbook provides you with guidance on which of your machines are using the update Management solution and how to migrate them.
 
-The **Azure Automation Update Management** tab provides a detailed view of the machines in your subscriptions that are using the Update Management solution.  It detects your automation accounts linked to your workspace, shows the machines that may require migration, their status, and the ability to migrate them.
+The **Azure Automation Update Management** tab provides a detailed view of the machines in your subscriptions that use the Update Management solution. It detects your automation accounts linked to your workspace, shows the machines that might require migration, their status, and the ability to migrate them.
 
 Select **Migrate Now** to go to the Azure Update Manager migration tool(Preview). 
 
@@ -101,12 +101,12 @@ For more information, see [Move from Automation Update Management to Azure Updat
 
 ## Workspace Auditing workbook
 
-The Azure Monitor Workspace Auditing workbook is another workbook tool to help you understand your workspaces. 
+The Azure Monitor Workspace Auditing workbook helps you understand your workspaces.
 This workbook collects all of your Log Analytics workspaces and shows you the following for each workspace:
-1. All data sources that are sending data to the workspace.
-1. The agents that are sending heartbeats to the workspace. 
-1. The resources that are sending data to the workspace.
-1. Any Application Insights resources that are sending data to the workspace.
+1. All data sources that send data to the workspace.
+1. The agents that send heartbeats to the workspace.
+1. The resources that send data to the workspace.
+1. Any Application Insights resources that send data to the workspace.
 
 To use the Azure Monitor Workspace Auditing workbook, follow the steps below
 
@@ -120,11 +120,11 @@ To use the Azure Monitor Workspace Auditing workbook, follow the steps below
 
 :::image type="content" source="./media/azure-monitor-agent-migration-helper-workbook/workspace-auditing-workbook.png" lightbox="./media/azure-monitor-agent-migration-helper-workbook/workspace-auditing-workbook.png"  alt-text="A screenshot showing the edit workbook page.":::
 
-The **Data Collection** tab shows the data sources that have been collected into this workspace over th last seven days. The table includes the data source, whether it's billable and the volume of data ingested, and the last time data was received from that data source.
+The **Data Collection** tab shows the data sources collected into this workspace over the last seven days. The table includes the data source, whether it's billable, the volume of data ingested, and the last time the workspace received data from that data source.
 
 :::image type="content" source="./media/azure-monitor-agent-migration-helper-workbook/workspace-auditing-workbook-data-collection.png" lightbox="./media/azure-monitor-agent-migration-helper-workbook/workspace-auditing-workbook-data-collection.png"  alt-text="A screenshot showing the workbook data collection tab.":::
 
 The following tabs are also available in the workbook:
-- **Agents**: Lists the agents that are sending heartbeats to the workspace. 
-- **Azure Resources**: Lists the resources that are sending data to the workspace. 
-- **Application Insights**:  The Application Insights resources that are sending data to the workspace.
+- **Agents**: Lists the agents that send heartbeats to the workspace.
+- **Azure Resources**: Lists the resources that send data to the workspace.
+- **Application Insights**: Lists the Application Insights resources that send data to the workspace.

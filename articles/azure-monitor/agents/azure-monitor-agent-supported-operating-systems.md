@@ -39,7 +39,7 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 
 ## Linux operating systems
 
-Azure Monitor Agent supports the following Linux distributions, grouped by distribution family. Superscript numbers next to the checkmarks indicate additional notes, such as ARM64 support or prerequisite requirements. See the footnotes for details.
+Azure Monitor Agent supports the following Linux distributions, grouped by distribution family. Superscript numbers next to the checkmarks indicate additional notes, such as ARM64 support or prerequisite requirements. See the footnotes.
 
 ### Red Hat-based distributions
 
@@ -115,7 +115,7 @@ The Azure Monitor Agent supports all standard Windows hardening standards, inclu
 > [!NOTE]
 > Only the Azure Monitor Agent for Linux supports the hardening standards described in this section. The [Dependency Agent](../vm/vminsights-dependency-agent.md) and the [Azure Diagnostics extension](./diagnostics-extension-overview.md) don't support these standards.
 
-The Azure Monitor Agent for Linux supports various hardening standards for Linux operating systems and distributions. Each release of the agent is tested and certified against the supported hardening standards by using images that are publicly available in Azure Marketplace, including images published by [Center for Internet Security (CIS)](/compliance/regulatory/offering-cis-benchmark). The agent supports only settings and hardening that apply to those images. It doesn't support CIS-published images that have more customizations or images customized with settings and hardening that differ from official CIS benchmarks.
+The Azure Monitor Agent for Linux supports various hardening standards. Each release of the agent is tested and certified against the supported hardening standards by using images that are publicly available in Azure Marketplace, including images published by [Center for Internet Security (CIS)](/compliance/regulatory/offering-cis-benchmark). The agent supports only settings and hardening that apply to those images. It doesn't support CIS-published images that have more customizations or images customized with settings and hardening that differ from official CIS benchmarks.
 
 Currently supported hardening standards:
 
@@ -140,7 +140,7 @@ Currently supported hardening standards:
 > [!IMPORTANT]  
 > Configuring your Linux machine system-wide crypto policy to "FUTURE" doesn't work with the Azure Monitor Agent. This policy disables certain cryptographic algorithms and prevents communication with back-end Azure Monitor services that use best-practice crypto policies. Specifically, the FUTURE policy disables some algorithms that use less than 3,072-bit keys, such as SHA-1, RSA, and Diffie-Hellman.
 >
-> To identify the current policy setting mode, run the following `update-crypto-policies` command:
+> To identify the current policy, run the following `update-crypto-policies` command:
 >
 > ```cmd
 > sudo update-crypto-policies --show

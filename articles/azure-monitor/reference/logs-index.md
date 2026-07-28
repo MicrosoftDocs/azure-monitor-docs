@@ -2,7 +2,7 @@
 title: Supported Resource log categories for Azure Monitor
 description: Understand the supported services and event schemas for Azure Monitor resource logs.
 ms.topic: generated-reference
-ms.date: 07/09/2026
+ms.date: 07/27/2026
 
 # NOTE This list is largely auto-generated. Any modification made to this list via GitHub might be written over without warning. Contact the author of this article for details on how to make permanent updates.
 ---
@@ -19,9 +19,7 @@ A combination of the resource type (available in the `resourceId` property) and 
 
 [Azure Monitor Log Analytics](https://azure.microsoft.com/pricing/details/monitor/), [Azure Storage](https://azure.microsoft.com/product-categories/storage/), [Azure Event Hubs](https://azure.microsoft.com/pricing/details/event-hubs/), and partners who integrate directly with Azure Monitor (for example, [Datadog](/azure/partner-solutions/datadog/overview)) have costs associated with ingesting data and storing data. Check the pricing pages linked in the previous sentence to understand the costs for those services. Resource logs are just one type of data that you can send to those locations.
 
-In addition, there might be costs to export some categories of resource logs to those locations. For frequently asked questions, see [Diagnostic settings FAQ](../platform/diagnostic-settings-faq.md].
-
-Logs with possible export costs are listed in the next section. Select the links below to see which log categories have export costs associated with them. For more information on export pricing, see the **Platform Logs** section on the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor/).
+In addition, there might be costs to export some categories of resource logs to those locations. Logs with possible export costs are listed in the next section. Select the links below to see which log categories have export costs associated with them. For more information on export pricing, see the **Platform Logs** section on the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Supported metrics and log categories by resource type
 
