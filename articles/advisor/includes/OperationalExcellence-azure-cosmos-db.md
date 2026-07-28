@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/24/2026
+ms.date: 07/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure Cosmos DB
@@ -76,13 +76,14 @@ Mirroring Azure Cosmos DB in Microsoft Fabric is now available in preview for No
 
 **Impact:** Low
   
-For more information, see [Microsoft Fabric Mirrored Databases From Azure Cosmos DB (Preview) - Microsoft Fabric](/fabric/database/mirrored-database/azure-cosmos-db)  
+For more information, see [Microsoft Fabric Mirrored Databases From Azure Cosmos DB - Microsoft Fabric](/fabric/database/mirrored-database/azure-cosmos-db)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 54537590-fff7-4680-bdf8-5e37b5cf0c12  
 
 
 <!--54537590-fff7-4680-bdf8-5e37b5cf0c12_end-->
+
 
 <!--a850ac78-dcea-485d-9c86-17a5f2cf56c4_begin-->
 
@@ -94,13 +95,14 @@ Save costs by switching to resource-specific diagnostic settings for Azure Cosmo
 
 **Impact:** Medium
   
-For more information, see [Monitor data using diagnostic settings - Azure Cosmos DB](/azure/cosmos-db/monitor-resource-logs?tabs=azure-portal#create-diagnostic-settings)  
+For more information, see [Monitor Data using Diagnostic Settings - Azure Cosmos DB](/azure/cosmos-db/monitor-resource-logs?tabs=azure-portal#create-diagnostic-settings)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: a850ac78-dcea-485d-9c86-17a5f2cf56c4  
 
 
 <!--a850ac78-dcea-485d-9c86-17a5f2cf56c4_end-->
+
 
 <!--5c48d9ec-397c-4f11-a342-929a1208c375_begin-->
 
