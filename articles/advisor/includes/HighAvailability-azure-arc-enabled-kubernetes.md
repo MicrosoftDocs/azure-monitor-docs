@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 07/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Arc-enabled Kubernetes
@@ -18,17 +18,18 @@ ms.custom: HighAvailability Azure Arc-enabled Kubernetes
   
 For the best Azure Arc enabled Kubernetes experience, improved stability and new functionality, upgrade to the latest agent version.  
   
-**Potential benefits**: Arc-enabled K8s latest agent version  
+**Potential benefits**: Gain improved stability.  
 
 **Impact:** Medium
   
-For more information, see [Upgrade Azure Arc-enabled Kubernetes agents - Azure Arc ](https://aka.ms/ArcK8sAgentUpgradeDocs)  
+For more information, see [Upgrade Azure Arc-enabled Kubernetes agents - Azure Arc](https://aka.ms/ArcK8sAgentUpgradeDocs)  
 
 ResourceType: microsoft.kubernetes/connectedclusters  
 Recommendation ID: 6d55ea5b-6e80-4313-9b80-83d384667eaa  
-Subcategory: ServiceUpgradeAndRetirement
+Subcategory: null
 
 <!--6d55ea5b-6e80-4313-9b80-83d384667eaa_end-->
+
 
 <!--7e161911-fa97-4d8c-88a0-d7c4b9432eb0_begin-->
 

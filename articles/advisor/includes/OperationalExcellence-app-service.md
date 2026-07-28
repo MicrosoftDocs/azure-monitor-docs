@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 07/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence App Service
@@ -47,5 +47,23 @@ Recommendation ID: abe69199-cad8-4eb8-a915-15bcf58ff369
 
 
 <!--abe69199-cad8-4eb8-a915-15bcf58ff369_end-->
+
+<!--b414fddb-cc29-43ec-8649-771e3cdf8d5c_begin-->
+
+#### Turn on profiler to collect code level performance recommendations  
+  
+Turn on profiler to collect code level performance recommendations  
+  
+**Potential benefits**: Improve performance of the apps.  
+
+**Impact:** Low
+  
+For more information, see [Monitor and analyze runtime behavior with Code Optimizations - Azure Monitor](https://aka.ms/codeoptimizations/docs)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: b414fddb-cc29-43ec-8649-771e3cdf8d5c  
+
+
+<!--b414fddb-cc29-43ec-8649-771e3cdf8d5c_end-->
 
 <!--articleBody-->

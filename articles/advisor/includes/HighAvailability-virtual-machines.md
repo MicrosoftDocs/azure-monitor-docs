@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/23/2026
+ms.date: 07/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -212,13 +212,14 @@ Set the DNS Servers for the VM at the Virtual Network level to ensure consistenc
 
 **Impact:** Low
   
-For more information, see [Name resolution for resources in Azure virtual networks ](https://aka.ms/azvnetnameres)  
+For more information, see [Azure Virtual Network Name Resolution Guide](https://aka.ms/azvnetnameres)  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 490262e8-313c-431f-a143-a9c2cadba41b  
 Subcategory: Other
 
 <!--490262e8-313c-431f-a143-a9c2cadba41b_end-->
+
 
 <!--651c7925-17a3-42e5-85cd-73bd095cf27f_begin-->
 
@@ -958,5 +959,77 @@ Recommendation ID: 5d4bb790-d34a-4b45-81d7-4dd060e59853
 Subcategory: undefined
 
 <!--5d4bb790-d34a-4b45-81d7-4dd060e59853_end-->
+
+<!--8a78574f-a993-424a-b9f1-f7db72aa04b4_begin-->
+
+#### Replace with zonal or multi-zone Virtual Machine Scale Set to survive zone outages.  
+  
+Replace Availability Sets with zonal or zone-spanning Virtual Machine Scale Sets (VMSS) or single VMs deployed across multiple zones. Availability Sets are regional constructs and cannot provide ZR.  
+  
+**Potential benefits**: Higher uptime with zonal VM distribution  
+
+**Impact:** High
+  
+For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
+
+ResourceType: microsoft.compute/availabilitysets  
+Recommendation ID: 8a78574f-a993-424a-b9f1-f7db72aa04b4  
+Subcategory: undefined
+
+<!--8a78574f-a993-424a-b9f1-f7db72aa04b4_end-->
+
+<!--9aa53d84-e3d4-455a-9d88-aa586dbb858d_begin-->
+
+#### Review and Migrate VM Workloads  
+  
+Azure Virtual Machine (VM) series F, Fs, Fsv2, Lsv2, G, Gs, Av2 and B are being retired. These VM series will no longer be available for use or purchase. Applications and workloads currently operating on these VM types will need to be migrated to newer VM series.  
+  
+**Potential benefits**: Avoid service disruption by proactively migrating workloads  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500682)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 9aa53d84-e3d4-455a-9d88-aa586dbb858d  
+Subcategory: undefined
+
+<!--9aa53d84-e3d4-455a-9d88-aa586dbb858d_end-->
+
+<!--6003c82f-b5b8-41c5-9436-dc7ed4f7e91f_begin-->
+
+#### [Test arclares] Automated recommendation  
+  
+This is the recommendation description.  
+  
+**Potential benefits**: Enhanced VM resilience to failures  
+
+**Impact:** High
+  
+For more information, see [virtualMachines](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/azure-resources/Compute/virtualMachines/#deploy-vms-across-availability-zones)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 6003c82f-b5b8-41c5-9436-dc7ed4f7e91f  
+Subcategory: undefined
+
+<!--6003c82f-b5b8-41c5-9436-dc7ed4f7e91f_end-->
+
+<!--9621aae9-8f79-41f6-ad8f-4101e95cbf13_begin-->
+
+#### Migrate away from HPC pack  
+  
+HPC Pack will no longer receive updates or support from Microsoft. Customers should migrate to Azure native services (Azure Batch or AKS as appropriate).  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 9621aae9-8f79-41f6-ad8f-4101e95cbf13  
+Subcategory: undefined
+
+<!--9621aae9-8f79-41f6-ad8f-4101e95cbf13_end-->
 
 <!--articleBody-->

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 07/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure VMware Solution
@@ -12,22 +12,40 @@ ms.custom: HighAvailability Azure VMware Solution
   
 ## Azure VMware Solution  
   
-<!--42be4c34-135c-4ec7-b3a6-dd3b8ed7b049_begin-->
+<!--a066eddb-adbe-4e68-ae1a-55fb3ae7332d_begin-->
 
-#### Migrate AV36P nodes to a new Azure VMware Solution node type  
+#### Monitor when Azure VMware Solution Private Cloud is reaching the capacity limit  
   
-AV36P node type is retiring. Migrate from AV36P nodes to a new Azure VMware Solution node type before the end of current AV36P reserved instance term.  
+Set an alert for when the node count in Azure VMware Solution Private Cloud hits or exceeds 90 hosts, enabling timely planning for a new private cloud.  
   
-**Potential benefits**: Avoid potential disruptions  
+**Potential benefits**: Proactive capacity planning  
 
 **Impact:** Medium
   
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=557094)  
+For more information, see [Azure Well-Architected Framework workloads - Microsoft Azure Well-Architected Framework](/azure/well-architected/azure-vmware/monitoring#configure-and-streamline-alerts)  
 
 ResourceType: microsoft.avs/privateclouds  
-Recommendation ID: 42be4c34-135c-4ec7-b3a6-dd3b8ed7b049  
+Recommendation ID: a066eddb-adbe-4e68-ae1a-55fb3ae7332d  
 Subcategory: undefined
 
-<!--42be4c34-135c-4ec7-b3a6-dd3b8ed7b049_end-->
+<!--a066eddb-adbe-4e68-ae1a-55fb3ae7332d_end-->
+
+<!--33cf174f-fb0e-4f1d-8e86-e4ca69e7ea69_begin-->
+
+#### Private Cloud has customer actionable blocker  
+  
+Private Cloud has customer actionable blocker  
+  
+**Potential benefits**: Meeting SLA  
+
+**Impact:** High
+  
+For more information, see [Private Cloud Maintenance - Azure VMware Solution](/azure/azure-vmware/azure-vmware-solution-private-cloud-maintenance-best-practices#alert-codes-and-remediation-table)  
+
+ResourceType: microsoft.avs/privateclouds  
+Recommendation ID: 33cf174f-fb0e-4f1d-8e86-e4ca69e7ea69  
+Subcategory: undefined
+
+<!--33cf174f-fb0e-4f1d-8e86-e4ca69e7ea69_end-->
 
 <!--articleBody-->

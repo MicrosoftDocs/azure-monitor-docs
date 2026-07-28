@@ -4,7 +4,7 @@ description: Operational excellence recommendations
 ms.topic: article
 author: kanika1894
 ms.author: kapasrij
-ms.date: 04/14/2026
+ms.date: 07/28/2026
 ---
 
 # Operational Excellence recommendations
@@ -38,6 +38,8 @@ You can get these recommendations on the **Operational Excellence** tab of the A
 [!INCLUDE [OperationalExcellence-azure-arc-enabled-kubernetes.md](./includes/OperationalExcellence-azure-arc-enabled-kubernetes.md)]
 
 [!INCLUDE [OperationalExcellence-azure-cache-for-redis.md](./includes/OperationalExcellence-azure-cache-for-redis.md)]
+
+[!INCLUDE [OperationalExcellence-azure-communication-services.md](./includes/OperationalExcellence-azure-communication-services.md)]
 
 [!INCLUDE [OperationalExcellence-azure-container-apps.md](./includes/OperationalExcellence-azure-container-apps.md)]
 
