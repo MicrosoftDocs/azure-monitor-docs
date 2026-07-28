@@ -9,11 +9,11 @@ ms.reviewer: shseth, nmangum
 
 # Troubleshoot issues with the Log Analytics agent for Windows
 
-This article helps you troubleshoot errors you might experience with the Log Analytics agent for Windows in Azure Monitor. It suggests possible solutions to resolve them.
+This article helps you troubleshoot errors with the Log Analytics agent for Windows in Azure Monitor. It suggests solutions to resolve them.
 
 ## Log Analytics Troubleshooting Tool
 
-The Log Analytics agent for Windows Troubleshooting Tool is a collection of PowerShell scripts that help you find and diagnose problems with the Log Analytics agent. The agent installation automatically includes the tool. Running the tool should be your first step in diagnosing an issue.
+The Log Analytics agent for Windows Troubleshooting Tool is a collection of PowerShell scripts that help you find and diagnose problems with the agent. The agent installation automatically includes the tool. Running it should be your first step in diagnosing an issue.
 
 ### Use the Troubleshooting Tool
 
@@ -52,13 +52,13 @@ The Troubleshooting Tool checks the following scenarios:
 
 ## Important troubleshooting sources
 
- To help troubleshoot problems related to the Log Analytics agent for Windows, the agent logs events to the Windows Event Log. It uses the *Application and Services\Operations Manager* section.
+To troubleshoot Log Analytics agent for Windows problems, the agent logs events to the Windows Event Log. It uses the *Application and Services\Operations Manager* section.
 
 ## Connectivity issues
 
-If the agent communicates through a proxy server or firewall, restrictions might prevent communication between the source computer and the Azure Monitor service. If misconfiguration blocks communication, registration with a workspace might fail while attempting to install the agent or configure the agent post-setup to report to another workspace. Agent communication might fail after successful registration. This section describes methods to troubleshoot this type of issue by using the Windows agent.
+If the agent communicates through a proxy server or firewall, restrictions might prevent communication between the source computer and the Azure Monitor service. If misconfiguration blocks communication, registration with a workspace might fail while installing the agent or configuring it post-setup to report to another workspace. Agent communication might fail after successful registration. This section describes methods to troubleshoot this issue by using the Windows agent.
 
-Double-check that the firewall or proxy is configured to allow the ports and URLs described in the following table. Also confirm that HTTP inspection isn't enabled for web traffic. It can prevent a secure TLS channel between the agent and Azure Monitor.
+Double-check that the firewall or proxy allows the ports and URLs in the following table. Also confirm that HTTP inspection isn't enabled for web traffic. It can prevent a secure TLS channel between the agent and Azure Monitor.
 
 |Agent resource|Ports |Direction |Bypass HTTPS inspection|
 |------|---------|--------|--------|   
@@ -67,11 +67,11 @@ Double-check that the firewall or proxy is configured to allow the ports and URL
 |*.blob.core.windows.net |Port 443 |Outbound|Yes |  
 |*.agentsvc.azure-automation.net |Port 443 |Outbound|Yes |  
 
-For firewall information required for Azure Government, see [Azure Government management](/azure/azure-government/compare-azure-government-global-azure#azure-monitor). You can use the Azure Automation Hybrid Runbook Worker to connect to and register with the Automation service to use runbooks or management solutions. It must be able to reach the required ports and URLs listed at [Configure your network for the Hybrid Runbook Worker](/azure/automation/automation-hybrid-runbook-worker#network-planning).
+For firewall information for Azure Government, see [Azure Government management](/azure/azure-government/compare-azure-government-global-azure#azure-monitor). You can use the Azure Automation Hybrid Runbook Worker to connect to and register with the Automation service to use runbooks or management solutions. It must reach the required ports and URLs listed at [Configure your network for the Hybrid Runbook Worker](/azure/automation/automation-hybrid-runbook-worker#network-planning).
 
 You can verify if the agent is successfully communicating with Azure Monitor by using several methods:
 
-- Enable the [Azure Log Analytics Agent Health assessment](../insights/solution-agenthealth.md) in the workspace. From the Agent Health dashboard, view the **Count of unresponsive agents** column to quickly see if the agent is listed.
+- Enable the [Azure Log Analytics Agent Health assessment](../insights/solution-agenthealth.md) in the workspace. From the Agent Health dashboard, view the **Count of unresponsive agents** column to see if the agent is listed.
 - Run the following query to confirm the agent reports a heartbeat to its configured workspace. Replace `<ComputerName>` with the actual name of the machine.
 
     ```

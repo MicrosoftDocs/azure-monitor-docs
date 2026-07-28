@@ -9,26 +9,26 @@ ms.custom: ai-assisted
 
 # Migrate from Log Analytics agent custom log table to Azure Monitor Agent DCR-based custom log table
 
-This article explains how to migrate a custom text log table from the legacy Log Analytics agent (MMA). The migrated table can then be used as the destination for custom text logs collected by Azure Monitor Agent (AMA) through a data collection rule (DCR).
+This article explains how to migrate a custom text log table from the legacy Log Analytics agent (MMA) so you can use it as the destination for custom text logs that Azure Monitor Agent (AMA) collects through a data collection rule (DCR).
 
 ## Background
 
-You must configure Log Analytics agent custom text logs to support new DCR features that allow AMA to write to the table. Consider the following:
+You must configure Log Analytics agent custom text logs to support new DCR features that let AMA write to the table. Consider the following points:
 
 * The table is reconfigured to enable all features for DCR-based custom logs.
 * AMA can write data to any column in the table.
-* Log Analytics agent custom text logs lose the ability to write to that table.
+* Log Analytics agent custom text logs can no longer write to that table.
 
-To continue writing your custom data from both the Log Analytics agent and AMA, each agent must have its own custom log table. Your data queries in Log Analytics that process your data must join the two tables until the migration is complete, at which point you can remove the join.
+To keep writing your custom data from both the Log Analytics agent and AMA, each agent needs its own custom log table. Your data queries in Log Analytics must join the two tables until the migration is complete, at which point you can remove the join.
 
 ## Migration
 
 You should follow the steps only if the following criteria are met:
 
 * You created the original table using the Custom Log Wizard.
-* You're going to preserve the existing data in the table.
+* You want to preserve the existing data in the table.
 * You don't need Log Analytics agents to send data to the existing table.
-* You're going to exclusively write new data using a [DCR for AMA custom text logs](data-collection-log-text.md) and possibly configure an [ingestion time transformation](azure-monitor-agent-transformation.md).
+* You want to exclusively write new data by using a [DCR for AMA custom text logs](data-collection-log-text.md) and possibly configure an [ingestion time transformation](azure-monitor-agent-transformation.md).
 
 ## Procedure
 
