@@ -25,6 +25,18 @@ Only the operators listed in this article are supported in transformations.
 
 The [parse](/kusto/query/parse-operator?view=azure-monitor&preserve-view=true) operator in a transformation is limited to 10 columns per statement for performance reasons. If your transformation requires parsing more than 10 columns, split it into multiple statements as described in [Break up large parse commands](../logs/query-optimization.md#break-up-large-parse-commands).
 
+> [!IMPORTANT]
+> When you use `parse kind=regex` in a transformation, the regular expression must match the *entire* input string for the parsed columns to be populated. This behavior differs from Log Analytics and Microsoft Sentinel queries, where a partial match still populates the parsed fields. As a result, a `parse kind=regex` statement that works in a Log Analytics or Sentinel query might not populate any fields when used in a transformation.
+>
+> To make a `parse kind=regex` statement work in a transformation, ensure the pattern accounts for the full input string. Add a trailing matcher after the last captured column so that the expression extends to the end of the line. For example, appending `@'\sby' *` to the pattern extends the match past the last field and enforces a full-line match:
+>
+> ```kusto
+> source
+> | parse kind=regex SyslogMessage with @'^%FTD-4-106023:\s+Deny\s+' Protocol: string @'\s+src\s+' SrcInterface: string @':' SrcIP: string @'\/' SrcPort: long @'\s+dst\s+' DstInterface: string @':' DstIP: string @'\/' DstPort: long @'\sby' *
+> ```
+>
+> Alternatively, convert the statement to pure regex parsing with the `parse` operator, which also enforces a full-line match in transformations.
+
 ### Handle dynamic data
 
 Consider the following input with [dynamic data](/kusto/query/scalar-data-types/dynamic?view=azure-monitor&preserve-view=true):
