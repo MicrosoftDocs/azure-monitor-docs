@@ -1,9 +1,12 @@
 ---
 ms.topic: include
 title: Query Based Metric Alerts
-description: This template shows an example ARM (JSON) template for creating a query-based metric alert rule in Azure Monitor using PromQL.
+description: This template shows an example ARM template for creating a query-based metric alert rule in Azure Monitor using PromQL.
 ms.date: 03/19/2026
 ---
+
+<details>
+<summary>Create resource-centric query-based metric alert rule with user-assigned identity</summary>
 
 ```json
 {
@@ -12,38 +15,38 @@ ms.date: 03/19/2026
   "parameters": {
     "subscriptionId": {
       "type": "string",
-      "defaultValue": "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+      "defaultValue": "<SubscriptionId>"
     },
     "resourceGroupName": {
       "type": "string",
-      "defaultValue": "myResourceGroup"
+      "defaultValue": "<ResourceGroupName>"
     },
     "ruleName": {
       "type": "string",
-      "defaultValue": "Sample query based alert rule"
+      "defaultValue": "<RuleName>"
     },
     "userAssignedMiName": {
       "type": "string",
-      "defaultValue": "myUserAssignedIdentity"
+      "defaultValue": "<UserAssignedMiName>"
     },
     "clusterName": {
       "type": "string",
-      "defaultValue": "myCluster"
+      "defaultValue": "<ClusterName>"
     },
     "actionGroupName": {
       "type": "string",
-      "defaultValue": "myActionGroup"
+      "defaultValue": "<ActionGroupName>"
     },
     "location": {
       "type": "string",
-      "defaultValue": "eastus"
+      "defaultValue": "<Location>"
     }
   },
   "resources": [
     {
       "name": "[parameters('ruleName')]",
       "type": "Microsoft.Insights/metricAlerts",
-      "apiVersion": "2024-03-01-preview",
+      "apiVersion": "<ApiVersion>",
       "location": "[parameters('location')]",
       "identity": {
         "type": "UserAssigned",
@@ -93,3 +96,5 @@ ms.date: 03/19/2026
   ]
 }
 ```
+
+</details>

@@ -5,16 +5,19 @@ description: This template shows an example Bicep template for creating a query-
 ms.date: 03/19/2026
 ---
 
-```bicep
-param subscriptionId string = 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e'
-param resourceGroupName string = 'myResourceGroup'
-param ruleName string = 'Sample query based alert rule'
-param userAssignedMiName string = 'myUserAssignedIdentity'
-param clusterName string = 'myCluster'
-param actionGroupName string = 'myActionGroup'
-param location string = 'eastus'
+<details>
+<summary>Create resource-centric query-based metric alert rule with user-assigned identity</summary>
 
-resource sampleQueryBasedAlertRule 'Microsoft.Insights/metricAlerts@2024-03-01-preview' = {
+```bicep
+param subscriptionId string = '<SubscriptionId>'
+param resourceGroupName string = '<ResourceGroupName>'
+param ruleName string = '<RuleName>'
+param userAssignedMiName string = '<UserAssignedMiName>'
+param clusterName string = '<ClusterName>'
+param actionGroupName string = '<ActionGroupName>'
+param location string = '<Location>'
+
+resource sampleQueryBasedAlertRule 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
   name: ruleName
   location: location
   identity: {
@@ -63,3 +66,5 @@ resource sampleQueryBasedAlertRule 'Microsoft.Insights/metricAlerts@2024-03-01-p
   }
 }
 ```
+
+</details>
