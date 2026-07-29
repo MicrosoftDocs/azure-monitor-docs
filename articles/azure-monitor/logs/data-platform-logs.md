@@ -2,7 +2,7 @@
 title: Azure Monitor Logs
 description: This article explains how Azure Monitor Logs works and how people with different monitoring needs and skills can use the basic and advanced capabilities that Azure Monitor Logs offers.
 ms.topic: concept-article
-ms.date: 05/25/2026
+ms.date: 07/29/2026
 
 # Customer intent: As new user or decision-maker evaluating Azure Monitor Logs, I want to understand how Azure Monitor Logs addresses my monitoring and analysis needs.
 ---
@@ -91,6 +91,7 @@ The following diagram and table compare the Analytics, Basic, and Auxiliary tabl
 | [Insights](../insights/insights-overview.md)                                             | ✅                                                            |     ❌                                                        |                                             ❌               |
 | [Dashboards](../visualize/best-practices-visualize.md)                                             | ✅                                                            |     ✅ Cost per query for dashboard refreshes not included.<sup>1</sup>                                                        |                                             Possible, but slow to refresh, cost per query for dashboard refreshes not included.<sup>1</sup>               |
 | [Data export rules](logs-data-export.md)                                             | ✅                                                            |     ✅                                                        |                                             ❌               |
+| [Export job (preview)](export-job.md)                                             | ✅                                                            |     ✅                                                        |                                             ❌               |
 | [Microsoft Sentinel](/azure/sentinel/overview)                                             | ✅                                                         |     ✅                                                        |                                             ✅               |
 | [Search jobs](../logs/search-jobs.md)                  | ✅                                                            | ✅                                                            | ✅                                                            |
 | [Summary rules](../logs/summary-rules.md)              | ✅                                                            | ✅ KQL limited to a single table                              | ✅ KQL limited to a single table                              |
@@ -103,6 +104,8 @@ The following diagram and table compare the Analytics, Basic, and Auxiliary tabl
 
 > [!NOTE]
 > The Basic and Auxiliary table plans aren't available for workspaces in [legacy pricing tiers](cost-logs.md#legacy-pricing-tiers).
+>
+> The Auxiliary table plan is generally available in all Azure public cloud regions except Qatar Central. It isn't available in Azure US Government or Microsoft Azure operated by 21Vianet.
 
 ## Kusto Query Language (KQL) and Log Analytics 
 
