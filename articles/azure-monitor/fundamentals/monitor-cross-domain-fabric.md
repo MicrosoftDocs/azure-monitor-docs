@@ -57,6 +57,5 @@ Because the data stays in Azure Monitor, Fabric doesn't add a second ingestion c
 - [Mirroring Azure Monitor in Microsoft Fabric](/fabric/mirroring/catalog-mirroring/azure-monitor)
 - [Tutorial: Configure a Microsoft Fabric mirrored Azure Monitor item](/fabric/mirroring/catalog-mirroring/azure-monitor-tutorial)
 - [Skills for Fabric overview](/fabric/fundamentals/skills-for-fabric-overview)
-- [Cross-domain intelligence with Azure Monitor data in Microsoft Fabric](https://community.fabric.microsoft.com/t5/Fabric-Updates-Blog/Cross-domain-intelligence-with-Azure-Monitor-data-in-Microsoft/ba-p/5279352)
 - [AIOps and agentic operations in Azure Monitor](../aiops/aiops-and-agentic-operations.md)
 - [Azure Monitor Logs overview](../logs/data-platform-logs.md)
