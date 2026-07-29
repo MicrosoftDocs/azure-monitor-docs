@@ -229,11 +229,16 @@ Poll `validations/latest` again. The configuration is ready to run once `status`
 
 ## Keep permissions in sync
 
-Re-run Step 1 whenever:
+The exact RBAC actions and scopes a Scenario needs are derived from *which faults run against which resources*. Any change to either side can change the permissions your custom role must grant, so treat the permission set as something to re-derive rather than set once.
 
-- You change the Scenario, its configuration, filters, or exclusions. The resolved resource set&mdash;and therefore the required scopes&mdash;can change.
-- Your Workspace discovers new resources that fall in scope.
-- A Scenario update adds new Action permissions. New Actions can introduce more `requiredPermissions` that your custom role doesn't yet grant.
+Re-run Step 1 (and update your custom role) whenever:
+
+- **You change the Scenario or the faults it uses.** Adding, removing, or swapping faults changes the set of `requiredPermissions`&mdash;each fault contributes its own control-plane and data-plane actions.
+- **You change the configuration, filters, or exclusions.** These change which resources the Scenario resolves to, and therefore which scopes need role assignments.
+- **You change the discovery scope, or the resources inside it.** Broadening or narrowing the Workspace scope, or adding, removing, or retyping resources within it, changes both the resolved targets (the `resourceId` values you assign on) and the actions required for them.
+- **A Scenario update adds new Action permissions.** A newer fault version can introduce more `requiredPermissions` that your existing custom role doesn't yet grant.
+
+Because a custom role only grants the actions you copied into it, any of these changes can leave your role missing an action or your identity missing an assignment&mdash;which surfaces as fresh `permission` errors on the next validation. Re-validating after any such change confirms your role and assignments still cover everything before you run the Scenario.
 
 The `recommendedRoles` field always shows the built-in role equivalent for reference, so you can compare your custom role against what automatic assignment would have granted.
 
