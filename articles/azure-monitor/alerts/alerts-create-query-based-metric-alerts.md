@@ -2,8 +2,8 @@
 title: Create Query-Based Metric Alerts (Preview)
 description: This article explains how to create query-based metric alert rules in Azure Monitor using PromQL, covering prerequisites, rule configuration options, managed identity requirements, deployment methods, and how to view and manage alerts in the Azure portal.
 ms.topic: how-to
-ms.date: 10/11/2025
-ms.custom: ai-assisted
+ms.date: 07/29/2026
+ai-usage: ai-assisted
 ---
 
 # Create query-based metric alerts (Preview)
@@ -22,37 +22,36 @@ This article explains how to create query-based metric alert rules in Azure Moni
 
 ## Enable workspace resource-centric stamping and access
 
-You can enable resource-centric stamping and access for a workspace using one of the following methods:
+Enable resource-centric stamping and access for a workspace by using one of the following methods:
 
-> [!NOTE]
-> All methods use the preview API version 2025-05-03-preview. The `properties.metrics.enableAccessUsingResourcePermissions` shape is not available in the most recent GA version 2023-04-03.
+# [Azure CLI](#tab/cli)
 
-# [Azure CLI](#tab/cli-1)
+The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to call the [`Azure Monitor Workspaces - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-azure-monitor-workspaces) REST API operation.
 
-[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
-
-```azurecli
-subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-resourceGroupName="myResourceGroup"
-accountName="myAccountName"
-apiVersion="2025-05-03-preview"
-providers="microsoft.monitor/accounts/$accountName"
-resourceId="/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers"
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+accountName="<AccountName>"
+apiVersion="<ApiVersion>"
 payloadFile="./enable-stamping.json"
 
-az account set --subscription "$subscriptionId"
+# Get the subscription ID from the current Azure CLI context
+subscriptionId=$(az account show --query id --output tsv)
 
-az rest \
-  --method put \
-  --uri "$resourceId?api-version=$apiVersion" \
-  --body @"$payloadFile"
+# Build the full resource ID for the Azure Monitor workspace
+path="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+provider="Microsoft.Monitor/accounts/$accountName"
+url="$path/providers/$provider"
+
+# Enable resource-centric stamping and access
+az rest --method put --url "$url?api-version=$apiVersion" --body "@$payloadFile"
 ```
 
 **Payload file (enable-stamping.json):**
 
 ```json
 {
-  "location": "eastus",
+  "location": "<Location>",
   "properties": {
     "metrics": {
       "enableAccessUsingResourcePermissions": true
@@ -61,35 +60,42 @@ az rest \
 }
 ```
 
-# [PowerShell](#tab/powershell-1)
+# [Azure PowerShell](#tab/powershell)
 
-[!INCLUDE [Azure PowerShell using REST](../includes/powershell-using-rest.md)]
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Azure Monitor Workspaces - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-azure-monitor-workspaces) REST API operation.
 
-```azurepowershell
-$subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-$resourceGroupName = "myResourceGroup"
-$accountName = "myAccountName"
-$apiVersion = "2025-05-03-preview"
-$providers = "microsoft.monitor/accounts/$accountName"
-$resourceId = "/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers"
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$accountName = "<AccountName>"
+$apiVersion = "<ApiVersion>"
 $payloadFile = "./enable-stamping.json"
 
-Set-AzContext -Subscription $subscriptionId
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
 
-$restParams = @{
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$provider = "Microsoft.Monitor/accounts/$accountName"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider$queryString"
+
+# Send request
+$invokeAzRestMethodParams = @{
     Method  = "PUT"
-    Path    = "$resourceId?api-version=$apiVersion"
+    Uri     = $url
     Payload = Get-Content -Raw -Path $payloadFile
 }
 
-Invoke-AzRestMethod @restParams
+Invoke-AzRestMethod @invokeAzRestMethodParams
 ```
 
 **Payload file (enable-stamping.json):**
 
 ```json
 {
-  "location": "eastus",
+  "location": "<Location>",
   "properties": {
     "metrics": {
       "enableAccessUsingResourcePermissions": true
@@ -98,15 +104,17 @@ Invoke-AzRestMethod @restParams
 }
 ```
 
-# [REST](#tab/rest-1)
+# [REST](#tab/rest)
+
+The following REST example uses the [`Azure Monitor Workspaces - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-azure-monitor-workspaces) REST API operation.
 
 ```REST
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.monitor/accounts/{accountName}?api-version={apiVersion}
-Authorization: Bearer {accessToken}
+PUT https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.Monitor/accounts/{AccountName}?api-version={apiVersion}
+Authorization: Bearer {AccessToken}
 Content-Type: application/json
 
 {
-  "location": "{location}",
+  "location": "<Location>",
   "properties": {
     "metrics": {
       "enableAccessUsingResourcePermissions": true
@@ -115,15 +123,18 @@ Content-Type: application/json
 }
 ```
 
-# [Bicep](#tab/bicep-1)
+# [Bicep](#tab/bicep)
+
+> [!NOTE]
+> Template deployments are create-or-update operations. Deploying this template updates the existing Azure Monitor Workspace rather than applying a partial change.
 
 The following Bicep example uses the [Microsoft.Monitor accounts](/azure/templates/microsoft.monitor/accounts?pivots=deployment-language-bicep) resource type.
 
 ```bicep
-param accountName string = 'myAccountName'
-param location string = 'eastus'
+param accountName string = '<AccountName>'
+param location string = '<Location>'
 
-resource monitorWorkspace 'Microsoft.Monitor/accounts@2025-05-03-preview' = {
+resource monitorWorkspace 'Microsoft.Monitor/accounts@<ApiVersion>' = {
   name: accountName
   location: location
   properties: {
@@ -134,9 +145,15 @@ resource monitorWorkspace 'Microsoft.Monitor/accounts@2025-05-03-preview' = {
 }
 ```
 
-# [ARM (JSON)](#tab/arm-1)
+# [ARM template](#tab/arm)
 
-The following ARM (JSON) example uses the [Microsoft.Monitor accounts](/azure/templates/microsoft.monitor/accounts?pivots=deployment-language-arm-template) resource type.
+> [!NOTE]
+> Template deployments are create-or-update operations. Deploying this template updates the existing Azure Monitor Workspace rather than applying a partial change.
+
+The following ARM template example uses the [Microsoft.Monitor accounts](/azure/templates/microsoft.monitor/accounts?pivots=deployment-language-arm-template) resource type.
+
+<details>
+<summary>Enable resource-centric stamping and access on an Azure Monitor workspace</summary>
 
 ```json
 {
@@ -145,17 +162,17 @@ The following ARM (JSON) example uses the [Microsoft.Monitor accounts](/azure/te
   "parameters": {
     "accountName": {
       "type": "string",
-      "defaultValue": "myAccountName"
+      "defaultValue": "<AccountName>"
     },
     "location": {
       "type": "string",
-      "defaultValue": "eastus"
+      "defaultValue": "<Location>"
     }
   },
   "resources": [
     {
       "type": "Microsoft.Monitor/accounts",
-      "apiVersion": "2025-05-03-preview",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('accountName')]",
       "location": "[parameters('location')]",
       "properties": {
@@ -168,27 +185,20 @@ The following ARM (JSON) example uses the [Microsoft.Monitor accounts](/azure/te
 }
 ```
 
----
+</details>
 
-| Variable | Example value | Purpose |
-|----------|---------------|---------|
-| host | *management.azure.com* | Implicit ARM endpoint |
-| subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
-| resourceGroupName | myResourceGroup | User input |
-| accountName | myAccountName | User input |
-| location | eastus | User input |
-| apiVersion | 2025-05-03-preview | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
+---
 
 ## Deploy a query-based metric alert
 
-You can create and configure query-based metric alert rules by using the Azure portal or one of the programmatic approaches in this section. The REST, Azure CLI, and Azure PowerShell examples use direct REST requests to create or update the alert rule, while the ARM (JSON) and Bicep examples use template-based deployments.
+Create and configure query-based metric alert rules by using the Azure portal or one of the programmatic approaches in this section. The REST, Azure CLI, and Azure PowerShell examples use direct REST requests to create or update the alert rule, while the Bicep and ARM template examples use deployment templates.
 
 The examples in this section create a resource-centric, query-based metric alert rule that uses an Azure Kubernetes Service (AKS) cluster as its scope and a user-assigned managed identity. The following sections describe some of the required properties and configuration options. Edit the examples to use your own scope, location, query, action groups, and other values.
 
 # [Portal](#tab/portal-2)
 
 > [!NOTE]
-> You can only select one resource type at a time in the Azure portal. For example, you can't select virtual machines and Kubernetes services.
+> In the Azure portal, select only one resource type at a time. For example, you can't select virtual machines and Kubernetes services.
 <!--
 > [!VIDEO f94188c4-ca77-41bd-984f-cda31a59a41b]
 -->
@@ -220,39 +230,39 @@ From the *Create an alert rule* page:
 
 # [Azure CLI](#tab/cli-2)
 
-[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
+The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to call the [`Metric Alerts - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-metric-alerts) REST API operation.
 
-```azurecli
-subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-resourceGroupName="myResourceGroup"
-ruleName="Sample query based alert rule"
-userAssignedMiName="myUserAssignedIdentity"
-clusterName="myCluster"
-actionGroupName="myActionGroup"
-apiVersion="2024-03-01-preview"
-resourceId="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Insights/metricAlerts/$ruleName"
-payloadFile=./query-based-metric-alert.json
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+ruleName="<RuleName>"
+apiVersion="<ApiVersion>"
+payloadFile="./query-based-metric-alert.json"
 
-az account set --subscription $subscriptionId
+# Get the subscription ID from the current Azure CLI context
+subscriptionId=$(az account show --query id --output tsv)
 
-az rest \
-  --method put \
-  --uri "https://management.azure.com$resourceId?api-version=$apiVersion" \
-  --body @$payloadFile
+# Build the full resource ID for the metric alert rule
+path="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+provider="Microsoft.Insights/metricAlerts/$ruleName"
+url="$path/providers/$provider"
+
+# Create the query-based metric alert rule
+az rest --method put --url "$url?api-version=$apiVersion" --body "@$payloadFile"
 ```
 
 **Payload file (query-based-metric-alert.json):**
 
-> [!NOTE]
-> Azure CLI doesn't support deployment-style parameters in JSON payload files for `az rest`. Because the JSON file is used directly as the request body, this example includes example values in the file.
+<details>
+<summary>Create resource-centric query-based metric alert rule with user-assigned identity</summary>
 
 ```json
 {
-  "location": "eastus",
+  "location": "<Location>",
   "identity": {
     "type": "UserAssigned",
     "userAssignedIdentities": {
-      "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUserAssignedIdentity": {}
+      "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<UserAssignedMiName>": {}
     }
   },
   "properties": {
@@ -261,7 +271,7 @@ az rest \
     "severity": 3,
     "targetResourceType": "microsoft.monitor/accounts",
     "scopes": [
-      "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.ContainerService/managedClusters/myCluster"
+      "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.ContainerService/managedClusters/<ClusterName>"
     ],
     "evaluationFrequency": "PT1M",
     "criteria": {
@@ -283,7 +293,7 @@ az rest \
     },
     "actions": [
       {
-        "actionGroupId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Insights/actionGroups/myActionGroup"
+        "actionGroupId": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.Insights/actionGroups/<ActionGroupName>"
       }
     ],
     "actionProperties": {
@@ -296,44 +306,51 @@ az rest \
 }
 ```
 
-# [PowerShell](#tab/powershell-2)
+</details>
 
-[!INCLUDE [Azure PowerShell using REST](../includes/powershell-using-rest.md)]
+# [Azure PowerShell](#tab/powershell-2)
 
-```azurepowershell
-$subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-$resourceGroupName = "myResourceGroup"
-$ruleName = "Sample query based alert rule"
-$userAssignedMiName = "myUserAssignedIdentity"
-$clusterName = "myCluster"
-$actionGroupName = "myActionGroup"
-$apiVersion = "2024-03-01-preview"
-$resourceId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Insights/metricAlerts/$ruleName"
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Metric Alerts - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-metric-alerts) REST API operation.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$ruleName = "<RuleName>"
+$apiVersion = "<ApiVersion>"
 $payloadFile = "./query-based-metric-alert.json"
 
-Set-AzContext -Subscription $subscriptionId
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
 
-$restParams = @{
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$provider = "Microsoft.Insights/metricAlerts/$ruleName"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider$queryString"
+
+# Send request
+$invokeAzRestMethodParams = @{
     Method  = "PUT"
-    Path    = "$resourceId?api-version=$apiVersion"
+    Uri     = $url
     Payload = Get-Content -Raw -Path $payloadFile
 }
 
-Invoke-AzRestMethod @restParams
+Invoke-AzRestMethod @invokeAzRestMethodParams
 ```
 
 **Payload file (query-based-metric-alert.json):**
 
-> [!NOTE]
-> Azure PowerShell doesn't support deployment-style parameters in JSON payload files for Invoke-AzRestMethod. Because the JSON file is used directly as the request body, this example includes example values in the file.
+<details>
+<summary>Create resource-centric query-based metric alert rule with user-assigned identity</summary>
 
 ```json
 {
-  "location": "eastus",
+  "location": "<Location>",
   "identity": {
     "type": "UserAssigned",
     "userAssignedIdentities": {
-      "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUserAssignedIdentity": {}
+      "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<UserAssignedMiName>": {}
     }
   },
   "properties": {
@@ -342,7 +359,7 @@ Invoke-AzRestMethod @restParams
     "severity": 3,
     "targetResourceType": "microsoft.monitor/accounts",
     "scopes": [
-      "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.ContainerService/managedClusters/myCluster"
+      "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.ContainerService/managedClusters/<ClusterName>"
     ],
     "evaluationFrequency": "PT1M",
     "criteria": {
@@ -364,7 +381,7 @@ Invoke-AzRestMethod @restParams
     },
     "actions": [
       {
-        "actionGroupId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Insights/actionGroups/myActionGroup"
+        "actionGroupId": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.Insights/actionGroups/<ActionGroupName>"
       }
     ],
     "actionProperties": {
@@ -376,20 +393,27 @@ Invoke-AzRestMethod @restParams
   }
 }
 ```
+
+</details>
 
 # [REST](#tab/rest-2)
 
+The following REST example uses the [`Metric Alerts - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-metric-alerts) REST API operation.
+
+<details>
+<summary>Create resource-centric query-based metric alert rule with user-assigned identity</summary>
+
 ```REST
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/metricAlerts/{ruleName}?api-version={apiVersion}
-Authorization: Bearer {accessToken}
+PUT https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.Insights/metricAlerts/{RuleName}?api-version={apiVersion}
+Authorization: Bearer {AccessToken}
 Content-Type: application/json
 
 {
-  "location": "<location>",
+  "location": "<Location>",
   "identity": {
     "type": "UserAssigned",
     "userAssignedIdentities": {
-      "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<userAssignedMiName>": {}
+      "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<UserAssignedMiName>": {}
     }
   },
   "properties": {
@@ -398,7 +422,7 @@ Content-Type: application/json
     "severity": 3,
     "targetResourceType": "microsoft.monitor/accounts",
     "scopes": [
-      "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ContainerService/managedClusters/<clusterName>"
+      "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.ContainerService/managedClusters/<ClusterName>"
     ],
     "evaluationFrequency": "PT1M",
     "criteria": {
@@ -420,7 +444,7 @@ Content-Type: application/json
     },
     "actions": [
       {
-        "actionGroupId": "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.Insights/actionGroups/<actionGroupName>"
+        "actionGroupId": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.Insights/actionGroups/<ActionGroupName>"
       }
     ],
     "actionProperties": {
@@ -433,36 +457,32 @@ Content-Type: application/json
 }
 ```
 
+</details>
+
 # [Bicep](#tab/bicep-2)
+
+> [!NOTE]
+> Template deployments are create-or-update operations. Deploying this template updates the existing alert rule rather than applying a partial change.
 
 The following Bicep example uses the [Microsoft.Insights metricAlerts](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type.
 
 [!INCLUDE [alerts-query-based-metric-alert-template-bicep](includes/alerts-query-based-metric-alert-template-bicep.md)]
 
-# [ARM (JSON)](#tab/arm-2)
+# [ARM template](#tab/arm-2)
 
-The following ARM (JSON) example uses the [Microsoft.Insights metricAlerts](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
+> [!NOTE]
+> Template deployments are create-or-update operations. Deploying this template updates the existing alert rule rather than applying a partial change.
+
+The following ARM template example uses the [Microsoft.Insights metricAlerts](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
 
 [!INCLUDE [alerts-query-based-metric-alert-template-json](includes/alerts-query-based-metric-alert-template-json.md)]
 
 ---
 
-| Variable | Example value | Purpose |
-|----------|---------------|---------|
-| host | *management.azure.com* | Implicit ARM endpoint |
-| subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
-| resourceGroupName | myResourceGroup | User input |
-| ruleName | myRule | User input |
-| location | eastus | User input |
-| userAssignedMiName | myUserAssignedIdentity | User input |
-| clusterName | myCluster | User input |
-| actionGroupName | myActionGroup | User input |
-| apiVersion | 2024-03-01-preview | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
-
 ## Query-based metric alert configuration details
 
 > [!NOTE]
-> In the following sections, the JSON examples apply to ARM (JSON) templates and to the JSON request bodies used by REST, Azure CLI with `az rest`, and Azure PowerShell with `Invoke-AzRestMethod`. The Bicep examples show the equivalent configuration in Bicep syntax.
+> In the following sections, the JSON examples apply to ARM templates and to the JSON request bodies used by REST, Azure CLI with `az rest`, and Azure PowerShell with `Invoke-AzRestMethod`. The Bicep examples show the equivalent configuration in Bicep syntax.
 
 ### User-assigned managed identity
 
@@ -475,7 +495,7 @@ Create and configure the user-assigned managed identity with permissions before 
   identity: {
     type: 'UserAssigned',
     userAssignedIdentities: {
-      '/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<userAssignedMiName>': {}
+      '/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<UserAssignedMiName>': {}
     }
   }
 }
@@ -488,7 +508,7 @@ Create and configure the user-assigned managed identity with permissions before 
   "identity": {
     "type": "UserAssigned",
     "userAssignedIdentities": {
-      "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<userAssignedMiName>": {}
+      "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<UserAssignedMiName>": {}
     }
   }
 }
@@ -496,7 +516,7 @@ Create and configure the user-assigned managed identity with permissions before 
 
 ---
 
-> [!NOTE] 
+> [!NOTE]
 > If the managed identity isn't configured correctly with the needed permissions/role, the alert rule might be created successfully but alert evaluations fail since access to the metrics isn't possible.
 
 ### System assigned managed identity
@@ -507,13 +527,13 @@ This feature simplifies the process of granting permissions to your managed iden
 
 For automatic role assignment to succeed, you must have one of the following roles on the rule scope:
 
-* *Owner* 
-* *User Access Administrator* 
-* A custom role with *Microsoft.Authorization/roleAssignments/write* permission 
-* [Delegated admin permissions for the target scope](/azure/role-based-access-control/delegate-role-assignments-portal). For creating metric alert rule with system-assigned managed identity, you must be allowed to grant Monitoring Reader role on the target scope.
+* *Owner*
+* *User Access Administrator*
+* A custom role with *Microsoft.Authorization/roleAssignments/write* permission
+* [Delegated admin permissions for the target scope](/azure/role-based-access-control/delegate-role-assignments-portal). To create a metric alert rule with a system-assigned managed identity that is automatically assigned the proper role, you must be allowed to grant Monitoring Reader role on the target scope.
 
 > [!NOTE]
-> If you try to create a rule using system-assigned managed identity and you don’t have permissions for automatic role assignment, the rule creation fails.
+> If you try to create a rule that uses a system-assigned managed identity and you don't have permissions for automatic role assignment, the rule creation fails.
 
 Set the `identity` -> `type` property to `SystemAssigned` as in the following example:
 
@@ -543,11 +563,9 @@ A new System Assigned MI is created with the rule.
 
 ### Query-based rule conditions
 
-To configure a Query-based metric alert rules, the condition property `odata.type`  should be set to `Microsoft.Azure.Monitor.PromQLCriteria`
+To create a query-based alert rule condition, set `odata.type` to `Microsoft.Azure.Monitor.PromQLCriteria`. In this case, define the condition by using a PromQL expression in the query property.
 
-To create a query-based rule condition, `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`. In this case, the condition is defined using a PromQL expression in the new query property. 
-
-The optional property `for` causes the alert rule to wait for a certain duration after the first time the condition is met before an alert is fired. For example, if `for` is set to 10 minutes, the alert rule condition must be met during each evaluation for 10 minutes before the alert is eventually fired. 
+The optional property `for` causes the alert rule to wait for a certain duration after the first time the condition is met before an alert fires. For example, if you set `for` to 10 minutes, the alert rule condition must be met during each evaluation for 10 minutes before the alert eventually fires.
 
 > [!NOTE]
 > The metric alert rule query and for properties are equivalent to the Prometheus alert rule expression and for clauses, respectively.
@@ -558,10 +576,10 @@ Query-based metric alert rule support two types of query scope:
 
 #### Resource scope (resource-centric rules)
 
-You can query metrics emitted to any Workspace by:
+Query metrics are emitted to any workspace by:
 
-* a specific Azure resource, or by multiple resources from the same subscription or 
-* a resource group such as Azure Kubernetes clusters (AKS) or 
+* a specific Azure resource, or by multiple resources from the same subscription, or
+* a resource group such as Azure Kubernetes clusters (AKS), or
 * a Virtual Machine (VM).
 
 For resource-centric rules, the following scope options are supported:
@@ -570,17 +588,17 @@ For resource-centric rules, the following scope options are supported:
 
 | Scope | Example |
 |-------|---------|
-| Single resource | `scopes: ['/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/microsoft.containerservice/managedclusters/<clusterName>']` |
-| Resource group | `scopes: ['/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>']` |
-| Subscription | `scopes: ['/subscriptions/<subscriptionId>']` |
+| Single resource | `scopes: ['/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.ContainerService/managedClusters/<ClusterName>']` |
+| Resource group | `scopes: ['/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>']` |
+| Subscription | `scopes: ['/subscriptions/<SubscriptionId>']` |
 
 # [JSON](#tab/json-3)
 
 | Scope | Example |
 |-------|---------|
-| Single resource | `"scopes": ["/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/microsoft.containerservice/managedclusters/<clusterName>"]` |
-| Resource group | `"scopes": ["/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>"]` |
-| Subscription | `"scopes": ["/subscriptions/<subscriptionId>"]` |
+| Single resource | `"scopes": ["/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.ContainerService/managedClusters/<ClusterName>"]` |
+| Resource group | `"scopes": ["/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>"]` |
+| Subscription | `"scopes": ["/subscriptions/<SubscriptionId>"]` |
 
 ---
 
@@ -588,17 +606,17 @@ The system locates the Workspace where the resource metrics reside. The rule que
 
 #### Azure Monitor Workspace scope (workspace-centric rules)
 
-You can query metrics emitted to a specific Azure Monitor Workspace, regardless of the emitting resources.
+Query metrics emitted to a specific Azure Monitor Workspace, regardless of the emitting resources.
 
 For workspace scope, include the Workspace Azure Resource Manager ID in the Scopes[] list.
 
 # [Bicep](#tab/bicep-3)
 
-Example: `scopes: ['/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/microsoft.monitor/accounts/<azureMonitorWorkspaceName>']`
+Example: `scopes: ['/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.Monitor/accounts/<AzureMonitorWorkspaceName>']`
 
 # [JSON](#tab/json-3)
 
-Example: `"scopes": ["/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/microsoft.monitor/accounts/<azureMonitorWorkspaceName>"]`
+Example: `"scopes": ["/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.Monitor/accounts/<AzureMonitorWorkspaceName>"]`
 
 ---
 
@@ -608,23 +626,23 @@ The rule query can refer to any metrics stored in the Azure Monitor Workspace.
 
 ### View fired query-based metric alerts
 
-You can view fired and resolved query-based metric alerts in the Azure portal together with all other alert types:
+View fired and resolved query-based metric alerts in the Azure portal together with all other alert types:
 
 1. On the Monitor menu in the Azure portal, select **Alerts**.
 1. If *Monitor service* doesn't appear as a filter option, select **Add Filter** and add it.
 1. Set the **Monitor service filter** to *Metric query*.
 1. Select the **alert name** to view the details of a specific fired or resolved alert.
 
-You can also view alerts fired for a specific resource. On the resource menu in the Azure portal, select Alerts. You can then filter for the Metric Query monitoring service.
+Alerts fired for a specific resource are also available from the resource itself. On the resource menu in the Azure portal, select Alerts, and then filter for the Metric Query monitoring service.
 
 ### View alert rule details in the Azure portal
 
-You can view query-based metric alert rules in the Azure portal together with all other alert rules. Filter for only query-based metric rules, and set the **Signal types** filter to *Metrics* to see all metric alert rules, including query-based rules.
+View query-based metric alert rules in the Azure portal together with all other alert rules. Filter for only query-based metric rules, and set the **Signal types** filter to *Metrics* to see all metric alert rules, including query-based rules.
 
 ## Modify a query-based alert
 
 > [!NOTE]
-> To modify an existing rule in your subscription using ARM (JSON) or Bicep templates, edit the template file and repeat the deployment procedure.
+> To modify an existing rule in your subscription by using an ARM template or Bicep templates, edit the template file and repeat the deployment procedure.
 
 To edit a query-based metric alert rule in the Azure portal:
 
