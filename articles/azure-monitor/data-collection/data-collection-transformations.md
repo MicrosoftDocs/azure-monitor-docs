@@ -23,7 +23,7 @@ The following tables in a Log Analytics workspace support transformations.
 
 - Any Azure table listed in [Tables that support transformations in Azure Monitor Logs](../logs/tables-feature-support.md). The [Azure Monitor data reference](/azure/azure-monitor/reference/) also includes whether the table supports transformations and lists other attributes for each table. 
 - Any custom table created for the Azure Monitor Agent.
-- Custom tables with the [Auxiliary plan](../logs/create-custom-table-auxiliary.md).
+- Custom tables with the [Auxiliary plan](../logs/create-custom-table.md#create-a-custom-table).
 
 ## Create a transformation
 
