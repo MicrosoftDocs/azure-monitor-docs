@@ -24,6 +24,7 @@ This article shows you how to:
 
 - A [Chaos Studio Workspace](chaos-studio-workspaces-overview.md) with a managed identity and at least one Scenario configuration.
 - Permission to create custom roles and assign roles on the target resources (**Owner** or **User Access Administrator** on those resources).
+- Read access for the Workspace managed identity on the scope you want Chaos Studio to discover, so that resource discovery can resolve your targets. See [Make sure resource discovery has completed](#make-sure-resource-discovery-has-completed) in Step 1.
 - The [Azure CLI](/cli/azure/install-azure-cli) installed, or access to Azure Cloud Shell.
 
 ## Why custom roles instead of automatic assignment
@@ -37,6 +38,39 @@ Automatic assignment is convenient, but built-in roles are broad. To grant only 
 Validation resolves your Scenario against the discovered resources, then checks whether the managed identity has the required RBAC permissions on each resolved target. When permissions are missing, validation reports exactly what is missing, what is required, and on which resource.
 
 Throughout this article, replace the placeholders (`{subscriptionId}`, `{rg}`, `{ws}`, `{scenario}`, `{name}`) with your own values.
+
+### Make sure resource discovery has completed
+
+Before validation can report permission errors, Chaos Studio must **discover** the resources in the Workspace scope. Discovery runs as the Workspace managed identity, so that identity needs **read access** on the scope first. If it doesn't, discovery fails and validation reports a discovery error (for example, `ResourceDiscoveryNotReadyError` or `ResourceDiscoveryPermissionError`) instead of the permission errors you're looking for.
+
+Grant the managed identity read access on the scope you want discovered. The built-in **Reader** role is the simplest option; to stay strictly least-privilege, you can instead use a custom role that contains only the `*/read` actions for the resource types in scope.
+
+```azurecli-interactive
+az role assignment create \
+  --assignee-object-id <managed-identity-principalId> \
+  --assignee-principal-type ServicePrincipal \
+  --role "Reader" \
+  --scope "/subscriptions/{subscriptionId}/resourceGroups/{rg}"
+```
+
+(Step 3 shows how to get the managed identity's `principalId`.)
+
+Then trigger discovery and wait for it to finish. This is a long-running operation that returns `202 Accepted`:
+
+```azurecli-interactive
+az rest --method post \
+  --url "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{rg}/providers/Microsoft.Chaos/workspaces/{ws}/refreshRecommendations?api-version=2026-05-01-preview"
+```
+
+Poll the singleton `evaluations/latest` resource until `status` is `Succeeded`:
+
+```azurecli-interactive
+az rest --method get \
+  --url "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{rg}/providers/Microsoft.Chaos/workspaces/{ws}/evaluations/latest?api-version=2026-05-01-preview" \
+  --query "properties.status" -o tsv
+```
+
+You can review what was found in the `discoveredResources` collection on the Workspace. Once discovery succeeds, continue to validation below.
 
 ### Run validation
 
@@ -73,12 +107,11 @@ The following example is a `RequiresAttention` response with two permission erro
         {
           "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso-prod/providers/Microsoft.Compute/virtualMachines/contoso-vm-01",
           "requiredPermissions": [
-            "Microsoft.Compute/virtualMachines/read",
-            "Microsoft.Compute/virtualMachines/deallocate/action",
+            "Microsoft.Compute/virtualMachines/powerOff/action",
             "Microsoft.Compute/virtualMachines/start/action"
           ],
           "missingPermissions": [
-            "Microsoft.Compute/virtualMachines/deallocate/action",
+            "Microsoft.Compute/virtualMachines/powerOff/action",
             "Microsoft.Compute/virtualMachines/start/action"
           ],
           "recommendedRoles": [
@@ -127,8 +160,7 @@ Create a role definition JSON file named *chaos-vm-nsg-role.json*:
   "Name": "Chaos Studio - Contoso VM and NSG scenario (least privilege)",
   "Description": "Only the RBAC actions required by the Contoso zone-down Scenario configuration.",
   "Actions": [
-    "Microsoft.Compute/virtualMachines/read",
-    "Microsoft.Compute/virtualMachines/deallocate/action",
+    "Microsoft.Compute/virtualMachines/powerOff/action",
     "Microsoft.Compute/virtualMachines/start/action",
     "Microsoft.Network/networkSecurityGroups/read",
     "Microsoft.Network/networkSecurityGroups/write"
@@ -193,7 +225,7 @@ az rest --method post \
   --url "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{rg}/providers/Microsoft.Chaos/workspaces/{ws}/scenarios/{scenario}/configurations/{name}/validate?api-version=2026-05-01-preview"
 ```
 
-Poll `validations/latest` again. The configuration is ready to run once `status` is `Succeeded` (or `Accepted` for non-blocking warnings) and `validationErrors` no longer contains a `permission` array.
+Poll `validations/latest` again. The configuration is ready to run once `status` is `Succeeded` (or `Accepted` for non-blocking warnings) and `validationErrors` is `null` (or no longer contains a `permission` array).
 
 ## Keep permissions in sync
 
