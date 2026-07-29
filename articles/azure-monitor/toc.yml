@@ -666,6 +666,9 @@ items:
       - name: Use the designer
         displayName: health models
         href: health-models/designer.md
+      - name: Use the Azure CLI
+        displayName: health models, CLI, command line
+        href: health-models/cli.md
       - name: Configure signals
         displayName: health models
         href: health-models/signals.md
