@@ -25,8 +25,6 @@ Here's an example of Zava airport operations using cross-domain intelligence. Th
 
 :::image type="content" source="media/monitor-cross-domain-fabric/airport-example.png" lightbox="media/monitor-cross-domain-fabric/airport-example.png" alt-text="Screenshot of the Zava airport cross-domain view: IT sees application errors and infrastructure alerts, business sees the delayed flight and passenger counts, and the agent recommends coordinated actions.":::
 
-For more information, see the blog post, [Cross-domain intelligence with Azure Monitor and Microsoft Fabric](https://aka.ms/Cross-domain-intelligence-Azure-Monitor-Fabric).
-
 ## When to use it
 
 Combining Azure Monitor data with Fabric serves two related needs:
