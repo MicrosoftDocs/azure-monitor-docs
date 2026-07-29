@@ -103,5 +103,6 @@ Modify the filter to show only entities matching particular criteria. For exampl
 ## Next steps
 - [Understand the concepts of health models](./concepts.md).
 - [Configure signals in health models](./signals.md).
+- Alternatively, [use the Azure CLI](./cli.md) to build and configure a health model from the command line.
 - [Configure alerts in health models](./alerts.md).
 - [Analyze health state of the health model and its entities](./analyze-health.md).
