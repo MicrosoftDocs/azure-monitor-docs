@@ -2,7 +2,7 @@
 title: Restore logs in Azure Monitor
 description: Restore a specific time range of data in a Log Analytics workspace for high-performance queries.
 ms.topic: how-to
-ms.date: 11/24/2025
+ms.date: 07/29/2026
 ms.reviewer: adi.biran
 ---
 
@@ -129,12 +129,10 @@ Deleting the restored table doesn't delete the data in the source table.
 > Restored data is available as long as the underlying source data is available. When you delete the source table from the workspace or when the source table's retention period ends, the data is dismissed from the restored table. However, the empty table will remain if you do not delete it explicitly. 
 
 ## Limitations
-Restore is subject to the following limitations. 
+Restore is subject to the following limitations:
 
-You can: 
-
+- Restore data from tables in the Analytics or Basic plan. The [Auxiliary plan](data-platform-logs.md#table-plans) isn't supported.
 - Restore data from a period of at least two days.
-
 - Restore up to 60 TB.
 - Run up to two restore processes in a workspace concurrently.
 - Run only one active restore on a specific table at a given time. Executing a second restore on a table that already has an active restore fails. 
