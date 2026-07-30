@@ -11,7 +11,7 @@ ms.custom: template-concept, devx-track-arm-template
 # Permissions and security in Azure Chaos Studio
 
 > [!NOTE]
-> If you're using [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md), the Workspace's managed identity executes fault actions on your behalf. The portal prompts you to assign any missing roles to the Workspace identity, both on the Workspace and when you configure a Scenario. For details, see [How role assignments happen](chaos-studio-workspace-permissions.md#how-role-assignments-happen). The information on this page applies when you create experiments directly.
+> If you're using [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md), the workspace's managed identity executes fault actions on your behalf. The portal prompts you to assign any missing roles to the workspace identity, both on the workspace and when you configure a scenario. For details, see [How role assignments happen](chaos-studio-workspace-permissions.md#how-role-assignments-happen). The information on this page applies when you create experiments directly.
 
 Azure Chaos Studio enables you to improve service resilience by systematically injecting faults into your Azure resources. Fault injection is a powerful way to improve service resilience, but it can also be dangerous. Causing failures in your application can have more impact than originally intended and open opportunities for malicious actors to infiltrate your applications.
 

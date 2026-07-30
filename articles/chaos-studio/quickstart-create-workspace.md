@@ -59,11 +59,11 @@ The Workspace's managed identity is the principal that executes Actions at runti
 
 1. Select **Next: Review + Create**.
 
-You grant the identity its permissions after the Workspace is created: the portal prompts you to fix missing read access on the Workspace, and to fix missing Scenario permissions when you configure a Scenario. See [How role assignments happen](chaos-studio-workspace-permissions.md#how-role-assignments-happen).
+You grant the identity its permissions after the workspace is created: the portal prompts you to fix missing read access on the workspace, and to fix missing scenario permissions when you configure a scenario. See [How role assignments happen](chaos-studio-workspace-permissions.md#how-role-assignments-happen).
 
 ## Review and create
 
-1. Review your Workspace configuration. Confirm the scope and identity settings.
+1. Review your workspace configuration. Confirm the scope and identity settings.
 
 1. Select **Create**.
 
@@ -71,7 +71,7 @@ You grant the identity its permissions after the Workspace is created: the porta
 
 1. Select **Go to resource** to open your new Workspace.
 
-1. If the portal shows a banner saying the identity is missing read permissions on the Workspace scope, select **Assign the Reader role over the Workspace Scope**. To create role assignments, you need Owner or User Access Administrator rights on the scope.
+1. If the portal shows a banner saying the identity is missing read permissions on the workspace scope, select **Assign the Reader role over the Workspace Scope**. To create role assignments, you need Owner or User Access Administrator rights on the scope.
 
 ## Explore the Scenario library
 
@@ -85,7 +85,7 @@ Once the Workspace finishes discovery, it populates the Scenario library based o
 
 1. If the Scenario requires configuration, such as choosing which availability zone to target, fill in the required parameters. You can also exclude specific resources from the run if you need to protect certain resources while testing the rest. Select **Save configuration**.
 
-1. Validation checks whether the Workspace's managed identity can perform every action the Scenario needs on the target resources. If validation reports missing permissions, select **Fix Permissions** to grant the identity the recommended built-in roles. To assign roles yourself, or to use least-privilege custom roles instead of built-in roles, see [How role assignments happen](chaos-studio-workspace-permissions.md#how-role-assignments-happen).
+1. Validation checks whether the workspace's managed identity can perform every action the scenario needs on the target resources. If validation reports missing permissions, select **Fix Permissions** to grant the identity the recommended built-in roles. To assign roles yourself, or to use least-privilege custom roles instead of built-in roles, see [How role assignments happen](chaos-studio-workspace-permissions.md#how-role-assignments-happen).
 
 ## Run the Scenario
 
