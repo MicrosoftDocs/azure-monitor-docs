@@ -22,7 +22,7 @@ Azure Monitor Agent versions are released on a regular cadence and deployed by u
 
 ### Release notes availability
 
-Microsoft publishes release notes as soon as the rollout begins, so there maybe versions listed here that are not visible in your region for an ongoing rollout. This timing ensures the release notes reflect a version that's fully available across regions.
+Microsoft publishes release notes as soon as the rollout begins, so there might be versions listed here that aren't visible in your region for an ongoing rollout. This timing ensures the release notes reflect a version that's fully available across regions.
 
 ### When can I see a new version?
 
