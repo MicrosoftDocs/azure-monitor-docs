@@ -3,7 +3,7 @@ title: Troubleshoot Workspaces and Scenarios in Azure Chaos Studio
 description: Resolve common problems with Azure Chaos Studio Workspaces and Scenarios, including empty resource discovery, role assignment failures, and Scenario runs that fail or skip Actions.
 author: nikhilkaul-msft
 ms.topic: troubleshooting-general
-ms.date: 07/17/2026
+ms.date: 07/30/2026
 ai-usage: ai-assisted
 ---
 
@@ -40,9 +40,9 @@ Discovery runs after you create the Workspace or change its scope, and it can ta
 
 1. Wait a few minutes, then refresh the resource view. Discovery picks up changes to the scope automatically; there's no manual step to trigger it.
 
-## Automatic role assignment fails for a service group scope
+## Fix Permissions fails for a service group scope
 
-For a Workspace scoped to a service group, the automatic role assignment option might fail or report that it can't fix the missing permissions. This is a known issue during the public preview. As a workaround, assign the required roles manually:
+For a Workspace scoped to a service group, the **Fix Permissions** option on the Scenario configuration page might fail or report that it can't fix the missing permissions. This is a known issue during the public preview. As a workaround, assign the required roles manually:
 
 1. In the Azure portal, go to the scope you want the Workspace to act on (for service groups, assign at the underlying subscriptions or resource groups that contain your target resources).
 1. Select **Access control (IAM)** > **Add** > **Add role assignment**.

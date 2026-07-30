@@ -3,7 +3,7 @@ title: Limitations and known issues in Chaos Studio workspaces (preview)
 description: Understand the current limitations and known issues in the Azure Chaos Studio workspaces and scenarios public preview, and which capabilities require the classic experiments model.
 author: nikhilkaul-msft
 ms.topic: troubleshooting-known-issue
-ms.date: 07/20/2026
+ms.date: 07/30/2026
 ai-usage: ai-assisted
 ---
 
@@ -33,7 +33,7 @@ This article lists the current limitations of the Azure Chaos Studio [workspaces
 
 ## Known issues
 
-- **Automatic role assignment fails for service group scopes.** For a workspace scoped to a service group, automatic role assignment might fail or report that it can't fix missing permissions. Assign the required roles manually as a workaround. See [Troubleshoot workspaces and scenarios](troubleshoot-workspaces-scenarios.md#automatic-role-assignment-fails-for-a-service-group-scope).
+- **Fix Permissions fails for service group scopes.** For a workspace scoped to a service group, the **Fix Permissions** option might fail or report that it can't fix missing permissions. Assign the required roles manually as a workaround. See [Troubleshoot workspaces and scenarios](troubleshoot-workspaces-scenarios.md#fix-permissions-fails-for-a-service-group-scope).
 
 - **Transient portal issues in the scenario designer and My scenarios.** The portal experience is updated frequently during the preview, and you might occasionally encounter transient issues when editing or configuring scenarios. See [Troubleshoot workspaces and scenarios](troubleshoot-workspaces-scenarios.md#the-portal-behaves-unexpectedly-in-the-scenario-designer-or-my-scenarios) for workarounds.
 

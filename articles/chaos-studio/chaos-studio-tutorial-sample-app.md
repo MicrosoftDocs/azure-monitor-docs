@@ -3,7 +3,7 @@ title: "Tutorial: Deploy a sample app and test zone resilience on AKS"
 description: Deploy a sample application to a zone-redundant AKS cluster, break it with an Azure Chaos Studio zone-down scenario, and then fix the deployment and prove it survives a rerun.
 author: nikhilkaul-msft
 ms.topic: tutorial
-ms.date: 07/29/2026
+ms.date: 07/30/2026
 ai-usage: ai-assisted
 ---
 
@@ -71,7 +71,7 @@ The AKS store demo is a small retail storefront with a web front end, a product 
 1. Deploy the application:
 
     ```bash
-    kubectl apply -f https://raw.githubusercontent.com/Azure-Samples/aks-store-demo/main/aks-store-quickstart.yaml
+    kubectl apply -f https://raw.githubusercontent.com/Azure-Samples/aks-store-demo/2.2.0/aks-store-quickstart.yaml
     ```
 
     The manifest deploys every component with a single replica. The cluster is zone redundant, but the application isn't. This tutorial exposes and then fixes this resilience gap.
@@ -124,13 +124,15 @@ AKS places the cluster's node virtual machine scale sets in a separate *infrastr
 
 1. On the **Scope** tab, select **Resource group** as the scope type, and then select the infrastructure resource group from step 1.
 
-1. On the **Identity** tab, choose **System-assigned** and enable **Automatic role assignment** so the workspace's managed identity gets the roles it needs for this test. If your organization restricts automatic role assignments, assign the roles manually instead. See [Permissions and identity in Chaos Studio Workspaces](chaos-studio-workspace-permissions.md).
+1. On the **Identity** tab, choose **System-assigned**.
 
 1. Select **Review + Create** > **Create**, and then **Go to resource**.
 
     After discovery completes, the cluster's node virtual machine scale set (named like `aks-nodepool1-12345678-vmss`) appears as a discovered resource.
 
-For a full walkthrough of each workspace creation step, see the [workspace quickstart](quickstart-create-workspace.md).
+1. If the portal shows a banner saying the identity is missing read permissions on the workspace scope, select **Assign the Reader role over the Workspace Scope**. To create role assignments, you need Owner or User Access Administrator rights on the infrastructure resource group.
+
+You grant the identity the roles the scenario itself needs in the next section, where validation tells you exactly what's missing. For a full walkthrough of each workspace creation step, see the [workspace quickstart](quickstart-create-workspace.md).
 
 ## Set up your view of the failure
 
@@ -153,6 +155,10 @@ The **Compute Zone Down** scenario simulates an availability zone failure by shu
 
 1. Configure the scenario. For the availability zone, enter the zone number where the `store-front` pod runs, which you found earlier. Select **Save configuration**.
 
+1. Validation checks whether the workspace's managed identity can perform every action the scenario needs on the target resources. If validation reports missing permissions, select **Fix Permissions** on the scenario configuration page to grant the identity the recommended built-in roles. For this scenario, that's Virtual Machine Contributor on the node virtual machine scale set. To assign the roles yourself, or to use least-privilege custom roles instead of built-in roles, see [Permissions and identity in Chaos Studio Workspaces](chaos-studio-workspace-permissions.md) and [Use least-privilege custom roles with Chaos Studio Workspaces](chaos-studio-workspaces-least-privilege-roles.md).
+
+    If a required role is still missing at run time, the run starts anyway, but the shutdown actions fail with a permissions error in the scenario report.
+
 1. Select **Run** and confirm. The run typically takes 5 to 10 minutes.
 
 It can take a few minutes after the run starts for the shutdowns to take effect, so don't be alarmed if nothing changes immediately. Then:
@@ -167,19 +173,19 @@ This result is the finding. The cluster was zone redundant and Kubernetes did se
 
 Now make the application match the cluster's zone redundancy.
 
-1. Scale the front end to three replicas so it runs in every zone:
+1. Scale the front end to three replicas, and add a topology spread constraint that tells the scheduler to spread them across zones:
 
     ```bash
-    kubectl scale deployment store-front --replicas=3
+    kubectl patch deployment store-front --patch '{"spec":{"replicas":3,"template":{"spec":{"topologySpreadConstraints":[{"maxSkew":1,"topologyKey":"topology.kubernetes.io/zone","whenUnsatisfiable":"ScheduleAnyway","labelSelector":{"matchLabels":{"app":"store-front"}}}]}}}}'
     ```
 
-1. Confirm the replicas landed on different nodes:
+    The constraint matters as much as the replica count. More replicas alone don't guarantee zone coverage, because the scheduler can place two of them in the same zone. The spread constraint distributes them one per zone. `ScheduleAnyway` makes the constraint a preference instead of a hard requirement, so replacement pods can still schedule during a real zone outage instead of staying pending.
+
+1. Confirm the replicas landed on different nodes, one per zone:
 
     ```bash
     kubectl get pods -l app=store-front -o wide
     ```
-
-    If two replicas share a node, delete one with `kubectl delete pod <name>` so the scheduler places it on the free node.
 
 1. In the workspace, run the **Compute Zone Down** scenario again with the same target zone.
 
