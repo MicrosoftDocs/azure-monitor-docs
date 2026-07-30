@@ -44,7 +44,7 @@ This test simulates a zone failure, so it's only meaningful against a cluster th
 
 1. To validate how nodes are distributed across zones, return to your AKS cluster and select **Settings** > **Node pools**. Select the node pool name and check **Availability zones**.
 
-Optionally, deploy a sample application to the cluster before the test so you can observe application-level impact - whether the app stays reachable while nodes are down.
+Optionally, deploy a sample application to the cluster before the test so you can observe application-level impact - whether the app stays reachable while nodes are down. For an end-to-end walkthrough that starts from a fresh cluster and a sample application, see [Tutorial: Deploy a sample application and test its zone resilience with Chaos Studio](chaos-studio-tutorial-sample-app.md).
 
 ## Run the Compute Zone Down scenario
 

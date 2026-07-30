@@ -22,6 +22,8 @@
       href: chaos-studio-scenario-reports.md
     - name: Permissions and identity
       href: chaos-studio-workspace-permissions.md
+    - name: "Tutorial: Deploy a sample app and test zone resilience on AKS"
+      href: chaos-studio-tutorial-sample-app.md
     - name: "Tutorial: PostgreSQL zone-down failover"
       href: chaos-studio-tutorial-postgresql-failover.md
     - name: Test workload resiliency on AKS (preview)

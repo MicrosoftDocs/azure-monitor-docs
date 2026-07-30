@@ -124,6 +124,7 @@ If you created resources specifically for this quickstart, delete them to avoid 
 
 ## Next steps
 
+- [Tutorial: Deploy a sample application and test its zone resilience with Chaos Studio](chaos-studio-tutorial-sample-app.md)
 - [Workspaces in Azure Chaos Studio](chaos-studio-workspaces-overview.md)
 - [Scenarios in Azure Chaos Studio](chaos-studio-scenarios.md)
 - [Scenario reports in Azure Chaos Studio](chaos-studio-scenario-reports.md)
