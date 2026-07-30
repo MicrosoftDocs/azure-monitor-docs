@@ -3,7 +3,7 @@ title: What are Workspaces in Azure Chaos Studio?
 description: Learn about Workspaces, the resource that organizes resilience testing in Azure Chaos Studio. Workspaces discover your resources, recommend Scenarios, and generate reports.
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 07/17/2026
+ms.date: 07/30/2026
 ms.custom: references_regions
 ai-usage: ai-assisted
 ---
@@ -33,7 +33,7 @@ A Workspace has four main parts:
 > [!NOTE]
 > Workspaces are logical resources that can operate on resources in any Azure region, regardless of where the Workspace itself is deployed. You don't need to create a Workspace in the same region as your target resources. This is a significant improvement over the classic model, where targets and capabilities had to be co-located with your resources.
 
-**Identity** is the managed identity the Workspace uses to execute Actions against your resources. The identity serves as a security boundary: it ensures that only an authorized principal with the right Azure role-based access control (Azure RBAC) role assignments can run Actions against specific resources. You control the blast radius by granting the identity roles on exactly the resources you want to test, and nothing more. You can use a system-assigned managed identity (created with the Workspace) or a user-assigned managed identity (shared across Workspaces). Chaos Studio can assign the required roles automatically during Workspace creation, or you can configure them manually.
+**Identity** is the managed identity the Workspace uses to execute Actions against your resources. The identity serves as a security boundary: it ensures that only an authorized principal with the right Azure role-based access control (Azure RBAC) role assignments can run Actions against specific resources. You control the blast radius by granting the identity roles on exactly the resources you want to test, and nothing more. You can use a system-assigned managed identity (created with the Workspace) or a user-assigned managed identity (shared across Workspaces). The portal prompts you to assign any missing roles after creation, or you can configure them manually.
 
 **Scenario library** is the catalog of Scenarios available in your Workspace. Chaos Studio populates the library based on the resources discovered in your scope. Each Scenario describes the outage pattern it simulates, the Actions it composes, and the resources it affects. You configure a Scenario by selecting it from the library and providing any required parameters, such as which availability zone to take down.
 
@@ -60,7 +60,7 @@ You have two options:
 - **System-assigned managed identity**: Created automatically with the Workspace and tied to its lifecycle. When you delete the Workspace, the identity is deleted.
 - **User-assigned managed identity**: Created separately and attached to the Workspace. You can share it across multiple Workspaces and manage its lifecycle independently.
 
-During Workspace creation, Chaos Studio can assign the required roles to the identity automatically based on the Actions in your selected Scenarios. If your organization restricts automatic role assignment, you can grant the permissions manually. See [Permissions and identity in Chaos Studio Workspaces](chaos-studio-workspace-permissions.md) for the full list of required role assignments.
+After you create the Workspace, the portal helps you assign the required roles. It prompts you to grant the identity read access on the scope, and when you save a Scenario configuration, validation reports any missing permissions and offers to fix them. If your organization restricts these assignments, you can grant the permissions manually. See [How role assignments happen](chaos-studio-workspace-permissions.md#how-role-assignments-happen) for the full list of required role assignments.
 
 ## Scenarios and Actions
 

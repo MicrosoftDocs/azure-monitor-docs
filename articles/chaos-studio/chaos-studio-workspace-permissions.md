@@ -3,7 +3,7 @@ title: Permissions and identity in Chaos Studio Workspaces
 description: Learn how managed identity, scope, and role assignments work in Azure Chaos Studio Workspaces.
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 07/17/2026
+ms.date: 07/30/2026
 ai-usage: ai-assisted
 ---
 
@@ -49,6 +49,16 @@ For the complete list of Actions and required roles, see the [Fault and action l
 
 > [!IMPORTANT]
 > If a required role is missing, the Scenario runs but the affected action fails. Check the [Scenario report](chaos-studio-scenario-reports.md) for permission-related errors.
+
+## How role assignments happen
+
+You can grant the Workspace identity its roles in three ways:
+
+- **Fix missing read access from the Workspace banner.** If the identity lacks read permissions on the Workspace scope, the portal shows a banner on the Workspace. Select **Assign the Reader role over the Workspace Scope** to assign the Reader role.
+- **Fix Scenario permissions from the configuration page.** When you save a Scenario configuration, validation checks whether the identity can perform every required action on the target resources. If permissions are missing, select **Fix Permissions** to assign the recommended built-in roles. Programmatically, the same operation is available as `fixResourcePermissions` on the Scenario configuration through the REST API.
+- **Assign roles yourself.** Use **Access control (IAM)** on the target resources. If built-in roles grant more than your policy allows, [create least-privilege custom roles](chaos-studio-workspaces-least-privilege-roles.md) from the validation output instead.
+
+To create role assignments with any of these methods, you need Owner or User Access Administrator rights on the target scope.
 
 ## Who can use a Workspace
 
