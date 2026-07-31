@@ -38,7 +38,7 @@ Set a custom table's plan when you [create it](create-custom-table.md). Azure ta
 
 - All tables support the **Analytics** plan. 
 - All DCR-based custom tables support all plans.
-- Azure table support for **Basic** and **Auxiliary / Lake** plans varies by table. For more information, see [Logs table feature support](basic-logs-azure-tables.md).
+- Azure table support for **Basic** and **Auxiliary / Lake** plans varies by table. For more information, see [Logs table feature support](../reference/tables-features.md).
 
 ## Change the table plan
 

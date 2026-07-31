@@ -3,7 +3,7 @@ title: Log data ingestion time in Azure Monitor | Microsoft Docs
 description: This article explains the different factors that affect latency in collecting log data in Azure Monitor.
 ms.topic: concept-article
 ms.reviewer: ivkhrul
-ms.date: 02/27/2026
+ms.date: 07/29/2026
 
 ---
 
@@ -83,11 +83,6 @@ When a new type of custom data is created from a [custom log](../agents/data-sou
 ## Check ingestion time
 
 Ingestion time might vary for different resources under different circumstances. Use log queries to identify specific behavior of your environment. The following table specifies how you determine the different times for a record as it's created and sent to Azure Monitor. For more information about log queries, see [Overview of Log Analytics](log-analytics-overview.md).
-
-> [!WARNING]
-> When ingesting logs into the Auxiliary tier of Azure Monitor, avoid submitting a single payload that contains TimeGenerated timestamps that span more than 30 minutes in one API call. This API call might lead to the following ingestion error code `RecordsTimeRangeIsMoreThan30Minutes`. This is a [known limitation](../fundamentals/service-limits.md#logs-ingestion-api) that's getting removed.
->
-> This restriction doesn't apply to Auxiliary logs that use [transformations](../data-collection/data-collection-transformations.md).
 
 | Step | Property or function | Comments |
 |:-----|:---------------------|:---------|
