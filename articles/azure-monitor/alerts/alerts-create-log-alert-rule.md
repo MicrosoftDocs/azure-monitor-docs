@@ -2,7 +2,7 @@
 title: Create Azure Monitor log search alert rules
 description: This article explains how to create a new Azure Monitor log search alert rule or edit an existing rule.
 ms.topic: how-to
-ms.date: 07/22/2025
+ms.date: 07/31/2026
 ms.reviewer: 
 
 #customer intent: As a customer, I want to create a new log search alert rule or edit an existing rule so that I can monitor my resources and receive alerts when certain conditions are met.
@@ -239,6 +239,9 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     | **Automatically resolve alerts** | Select this option to make the alert stateful. When an alert is stateful, the alert is resolved when the condition is no longer met for a specific time range. The time range differs based on the frequency of the alert:<br>**1 minute**: The alert condition isn't met for 10 minutes.<br>**5 to 15 minutes**: The alert condition isn't met for three frequency periods.<br>**15 minutes to 11 hours**: The alert condition isn't met for two frequency periods.<br>**11 to 12 hours**: The alert condition isn't met for one frequency period.<br>Stateful alert rules with a frequency of more than 12 hours are not supported.<br><br>Note that stateful log search alerts have [these limitations](/azure/azure-monitor/service-limits#alerts). |
     | **Mute actions** | Select this option to set a period of time to wait before alert actions are triggered again. In the **Mute actions for** field that appears, select the amount of time to wait after an alert is fired before triggering actions again. |
     | **Check workspace linked storage** | Select this option if workspace linked storage for alerts is configured. If no linked storage is configured, the rule isn't created. |
+
+    > [!NOTE]
+    > When you configure linked storage for the `Alerts` data source type, triggered log search alerts don't include the alert query in the alert payload or alert details. Azure Monitor stores the query in your customer-managed storage account, so omitting the query is expected behavior. The Azure portal displays the message "Search query has been redacted as linked storage account is configured on Log Analytics workspace". Use [alert dimensions](alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions) to provide context for fired alerts. For more information, see [Considerations before setting customer-managed key for saved log alert queries](../logs/customer-managed-keys.md#considerations-before-setting-customer-managed-key-for-saved-log-alert-queries).
 
 1. [!INCLUDE [alerts-wizard-custom=properties](includes/alerts-wizard-custom-properties.md)]
 
