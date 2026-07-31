@@ -28,7 +28,7 @@ Microsoft publishes release notes as soon as the rollout begins. Therefore, you 
 
 Once Microsoft releases a new version, it rolls out progressively across Azure regions through automatic updates. 
 
-- The monthly rollout for **Windows and Linux versions are separate and start on different dates**. Please refer to specific version details further below for start date.
+- The monthly rollout for **Windows and Linux versions are separate and start on different dates**. Refer to specific version details further in this article for the start date.
 - Across Azure VMs, Virtual Machine Scale Sets, and Arc-enabled servers **within the same region, a new version becomes available for both manual and automatic updates (if enabled) at the same time** as part of coordinated rollout process.
 - Rollouts happen region by region, and it can take **4–6 weeks** from the start of the rollout before the version is available in all supported regions.
 - During the rollout period, resources in different regions **might see or run different agent versions until the rollout is complete**.
