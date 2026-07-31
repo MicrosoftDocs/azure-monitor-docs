@@ -18,7 +18,7 @@ This article describes the version details for the Azure Monitor Agent (AMA) vir
 
 ## Release cadence and rollout timeline
 
-New agent versions are released periodically to deliver security updates, reliability improvements, and new features. These are released on a monthly cadence and deployed by using [Azure Safe Deployment Practices](https://azure.microsoft.com/blog/advancing-safe-deployment-practices/).
+Microsoft periodically releases new agent versions to deliver security updates, reliability improvements, and new features. These versions follow a monthly cadence and use [Azure Safe Deployment Practices](https://azure.microsoft.com/blog/advancing-safe-deployment-practices/) for deployment.
 
 ### Release notes availability
 
