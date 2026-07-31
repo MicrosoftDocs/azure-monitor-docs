@@ -22,7 +22,7 @@ Microsoft periodically releases new agent versions to deliver security updates, 
 
 ### Release notes availability
 
-Microsoft publishes release notes as soon as the rollout begins, so there might be versions listed here that aren't visible in your region for an ongoing rollout.
+Microsoft publishes release notes as soon as the rollout begins. Therefore, you might see versions listed here that aren't visible in your region for an ongoing rollout.
 
 ### When can I see a new version?
 
