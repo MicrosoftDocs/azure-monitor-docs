@@ -105,7 +105,7 @@ The following diagram and table compare the Analytics, Basic, and Auxiliary tabl
 > [!NOTE]
 > The Basic and Auxiliary table plans aren't available for workspaces in [legacy pricing tiers](cost-logs.md#legacy-pricing-tiers).
 >
-> The Auxiliary table plan is generally available in all Azure public cloud regions except Qatar Central. It isn't available in Azure US Government or Microsoft Azure operated by 21Vianet.
+> Find Azure Monitor Log Analytics availability in [Product Availability by Region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). The Auxiliary table plan matches Log Analytics availability except for Qatar Central.
 
 ## Kusto Query Language (KQL) and Log Analytics 
 
