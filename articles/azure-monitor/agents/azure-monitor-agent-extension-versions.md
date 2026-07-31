@@ -42,7 +42,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 ## Version summary
 
 > [!IMPORTANT]
-> The monthly rollout for Windows and Linux versions are separate and start on different dates. Please refer to version details further below for start date.
+> The monthly rollout for Windows and Linux versions are separate and start on different dates. For the start date, see the version details further below.
 > Every release contains security, quality, and reliability updates in addition to the changes listed here.
 
 | Month | Windows | Linux | Metrics | Highlights |
