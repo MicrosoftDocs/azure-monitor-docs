@@ -464,7 +464,7 @@ To stop ingesting data from the event hub, [delete all data collection rule asso
 ## Considerations
 
 * If you transfer a subscription between Microsoft Entra directories, you need to follow the steps described in [Known issues with managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/known-issues#transferring-a-subscription-between-azure-ad-directories) to continue ingesting data.
-* Azure Monitor Logs accepts up to a maximum size of 64 KB for messages ingested from Event Hubs.
+* Azure Monitor Logs accepts messages ingested from Event Hubs up to a maximum size of 64 KB.
 
 ## Alternative solutions
 
@@ -478,9 +478,9 @@ If you can't set up ingestion from Event Hubs because of [capacity constraints i
    - [Azure Monitor pipeline](../data-collection/pipeline-overview.md) collects telemetry from on-premises, edge, and multicloud environments.
    - [Logs Ingestion API](logs-ingestion-api-overview.md) sends data from any application that can make a REST API call.
 
-1. [Use Azure Logic Apps to pull events from Event Hubs](/azure/connectors/connectors-create-api-azure-event-hubs) and stream to a Log Analytics workspace with the [Logs Ingestion API](logs-ingestion-api-overview.md).
+1. [Use Azure Logic Apps to pull events from Event Hubs](/azure/connectors/connectors-create-api-azure-event-hubs) and stream to a Log Analytics workspace by using the [Logs Ingestion API](logs-ingestion-api-overview.md).
 
-1. [Stream events from an event hub to a Log Analytics workspace with the Logstash output plugin](/azure/sentinel/connect-logstash-data-connection-rules).
+1. [Stream events from an event hub to a Log Analytics workspace by using the Logstash output plugin](/azure/sentinel/connect-logstash-data-connection-rules).
 
 ## Related content
 
