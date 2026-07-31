@@ -21,9 +21,9 @@ The following diagram illustrates the transformation process for incoming data a
 
 The following tables in a Log Analytics workspace support transformations.
 
-- Any Azure table listed in [Tables that support transformations in Azure Monitor Logs](../logs/tables-feature-support.md). The [Azure Monitor data reference](/azure/azure-monitor/reference/) also includes whether the table supports transformations and lists other attributes for each table. 
+- Any Azure table listed in [Logs table feature support](../reference/tables-features.md) with the ![DCR transformations support](../reference/media/tables/collection-icon.svg "Workspace transformation") indicator.
 - Any custom table created for the Azure Monitor Agent.
-- Custom tables with the [Auxiliary plan](../logs/create-custom-table-auxiliary.md).
+- Custom tables with the [Auxiliary plan](../logs/data-platform-logs.md#table-plans).
 
 ## Create a transformation
 
