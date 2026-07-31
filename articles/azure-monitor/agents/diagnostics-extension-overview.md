@@ -15,7 +15,7 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 > [!IMPORTANT]
 > ### Migrate from Azure Diagnostic extension
 > 
-> Azure Diagnostics extension was deprecated on **March 31, 2026** and is no longer supported. Don't use new deployments of the extension.
+> Azure Diagnostics extension was retired on **March 31, 2026** and is no longer supported. Don't use new deployments of the extension.
 > 
 > To ensure continued support and access to new features, migrate from Azure Diagnostics extensions for Linux (LAD) and Windows (WAD) to alternative solutions following the [migration guidance](#migration-guidance). Remove LAD or WAD after you configure Azure Monitor Agent to avoid duplicate data.
 > 
@@ -37,13 +37,13 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 
 ## Migration guidance
 
-The Azure Diagnostics extension was deprecated on March 31, 2026. To ensure continued support and access to new features, migrate using the following options based on the data destination: 
+The Azure Diagnostics extension was retired on March 31, 2026. To ensure continued support and access to new features, migrate using the following options based on the data destination: 
  
 | Destination | Migration options |   
 |-------------|----------------------------------------------------------------------|
 | Azure Storage blobs | If you're using WAD or LAD agents to send data to storage for longer term storage and lower costs, migrate to [Azure Monitor Agent (AMA)](./azure-monitor-agent-migration-wad-lad.md). The AMA gives you the ability to send data to custom tables with the low-cost [Auxiliary logs plan](../logs/data-platform-logs.md#table-plans) for cost-effective logging and added benefits of Log Analytics. | 
 | Azure Event Hubs | If you're using WAD or LAD agents to send data to Event Hubs, migrate to using [Azure Monitor Logs data export capability](../logs/logs-data-export.md) to send logs to Event Hubs. | 
-| Azure Monitor metrics | For VM Guest OS Perf Counter scenarios, migrate to using AMW as a destination for [OpenTelemetry performance counters](../vm/metrics-opentelemetry-guest.md). For custom metric scenarios, migrate to using AMW as a destination for [OpenTelemetry metrics](../app/opentelemetry.md). |
+| Azure Monitor metrics | For VM Guest OS Perf Counter scenarios, migrate to using [Azure Monitor Workspaces (AMW)](../metrics/azure-monitor-workspace-overview.md) as a destination for [OpenTelemetry performance counters](../vm/metrics-opentelemetry-guest.md). For custom metric scenarios, migrate to using [Azure Monitor Workspaces (AMW)](../metrics/azure-monitor-workspace-overview.md) as a destination for [OpenTelemetry metrics](../app/opentelemetry.md). |
 
 ## Primary scenarios
 
