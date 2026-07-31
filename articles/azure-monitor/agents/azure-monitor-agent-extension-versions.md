@@ -26,7 +26,7 @@ Microsoft publishes release notes as soon as the rollout begins, so there might 
 
 ### When can I see a new version?
 
-Once a new version is released, it rolls out progressively across Azure regions through automatic updates. 
+Once Microsoft releases a new version, it rolls out progressively across Azure regions through automatic updates. 
 
 - The monthly rollout for **Windows and Linux versions are separate and start on different dates**. Please refer to specific version details further below for start date.
 - Across Azure VMs, Virtual Machine Scale Sets, and Arc-enabled servers **within the same region, a new version becomes available for both manual and automatic updates (if enabled) at the same time** as part of coordinated rollout process.
