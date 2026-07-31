@@ -37,8 +37,8 @@ The configuration requirements for remote-write depend on the authentication typ
 
 - Prometheus version 2.45 or greater is required for user-assigned managed identity authentication.
 - Prometheus version 2.48 or greater is required for Microsoft Entra application authentication.
-- Prometheus version 3.50 or greater is required for system-assigned managed identity authentication.
-- Prometheus version 3.60 or greater is required for Microsoft Entra workload identity authentication.
+- Prometheus version 3.5.0 or greater is required for system-assigned managed identity authentication.
+- Prometheus version 3.7.0 or greater is required for Microsoft Entra workload identity authentication.
 
 ## Azure Monitor workspace
 
