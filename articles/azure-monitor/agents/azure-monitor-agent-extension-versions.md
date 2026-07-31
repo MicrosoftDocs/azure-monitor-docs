@@ -13,21 +13,22 @@ ai-usage: ai-assisted
 
 This article describes the version details for the Azure Monitor Agent (AMA) virtual machine extension. This extension deploys the agent on virtual machines, scale sets, and Arc-enabled servers (on-premises servers with Azure Arc agent installed).
 
-> [!NOTE]
-> Microsoft supports Azure Monitor Agent versions released within the last year. Update to a version within this period. Microsoft releases all bug fixes in the latest version only.
+> [!IMPORTANT]
+> Microsoft supports Azure Monitor Agent versions released **within the last year only**. Update to a version within this period. Microsoft releases all bug fixes in the latest version only.
 
 ## Release cadence and rollout timeline
 
-Azure Monitor Agent versions are released on a regular cadence and deployed by using [Azure Safe Deployment Practices](https://azure.microsoft.com/blog/advancing-safe-deployment-practices/).
+New agent versions are released periodically to deliver security updates, reliability improvements, and new features. These are released on a monthly cadence and deployed by using [Azure Safe Deployment Practices](https://azure.microsoft.com/blog/advancing-safe-deployment-practices/).
 
 ### Release notes availability
 
-Microsoft publishes release notes as soon as the rollout begins, so there might be versions listed here that aren't visible in your region for an ongoing rollout. This timing ensures the release notes reflect a version that's fully available across regions.
+Microsoft publishes release notes as soon as the rollout begins, so there might be versions listed here that aren't visible in your region for an ongoing rollout.
 
 ### When can I see a new version?
 
-New agent versions are released periodically to deliver security updates, reliability improvements, and new features. After a version is released, it rolls out progressively across Azure regions through automatic updates.
+Once a new version is released, it rolls out progressively across Azure regions through automatic updates. 
 
+- The monthly rollout for **Windows and Linux versions are separate and start on different dates**. Please refer to specific version details further below for start date.
 - Across Azure VMs, Virtual Machine Scale Sets, and Arc-enabled servers **within the same region, a new version becomes available for both manual and automatic updates (if enabled) at the same time** as part of coordinated rollout process.
 - Rollouts happen region by region, and it can take **4–6 weeks** from the start of the rollout before the version is available in all supported regions.
 - During the rollout period, resources in different regions **might see or run different agent versions until the rollout is complete**.
@@ -41,9 +42,10 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 ## Version summary
 
 > [!IMPORTANT]
+> The monthly rollout for Windows and Linux versions are separate and start on different dates. Please refer to version details further below for start date.
 > Every release contains security, quality, and reliability updates in addition to the changes listed here.
 
-| Date | Windows | Linux | Metrics | Highlights |
+| Month | Windows | Linux | Metrics | Highlights |
 |---|---|---|---|---|
 | [Aug 2026](#aug-2026) | — | 1.44 | 2.2026.703.954 | Azure Linux 4 and Rocky Linux 10 support, OTLP metrics improvements, security and reliability fixes |
 | [July 2026](#july-2026) | 1.44 | 1.43 | 2.2026.617.1755 | CEF parsing improvements, OpenSSL 3.6.3 |
@@ -64,9 +66,9 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 ## Aug 2026
 
-**Versions:** Linux 1.44 (Rollout start date: Jul 30, 2026)
+**Versions:** Linux 1.44
 
-### Linux
+### Linux 1.44 (Rollout start date: Jul 31, 2026)
 
 **Customer action:** No configuration changes are required for existing deployments. Upgrade to Linux 1.44 to receive these changes. The new OTLP port settings are optional.
 
