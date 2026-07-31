@@ -55,7 +55,7 @@ Use an Azure resource signal to evaluate platform metrics from the resource repr
 
 1. Optional: If available for the metric, apply suggested thresholds, or set **Threshold type** to **Dynamic** to enable dynamic thresholds.
 
-   Dynamic thresholds adapt to the metric's normal patterns and seasonal variance instead of using a fixed value. Set the **Sensitivity** and **Lookback window** to tune how the signal learns normal behavior. During warm-up or sparse-data periods, health evaluation temporarily relies on available in-place statistics until enough history is collected. For more information, see [Dynamic thresholds](./concepts.md#dynamic-thresholds).
+   Dynamic thresholds adapt to the metric's normal patterns and seasonal variance instead of using a fixed value. Set the **Sensitivity** to tune how the signal learns normal behavior. During warm-up or sparse-data periods, health evaluation temporarily relies on available in-place statistics until enough history is collected. For more information, see [Dynamic thresholds](./concepts.md#dynamic-thresholds).
 
 1. Select one of the following actions:
 

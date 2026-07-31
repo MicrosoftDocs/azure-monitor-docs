@@ -57,10 +57,7 @@ In the following example, the entity is set to a degraded state since one of its
 ## Dynamic thresholds
 By default, a signal compares each value against fixed *static* thresholds that you set for the degraded and unhealthy states. For metrics with regular fluctuations or seasonal variance, use *dynamic thresholds* instead. They let the signal adapt to the metric's normal patterns rather than a fixed value.
 
-Dynamic thresholds use machine learning to compute a baseline from the metric's historical behavior. Two settings control how they work:
-
-- **Lookback window** defines how much historical data is used to learn normal behavior.
-- **Sensitivity** controls how easily the signal reacts to deviations from the machine learning-computed baseline.
+Dynamic thresholds use machine learning to compute a baseline from the metric's historical behavior. **Sensitivity** controls how easily the signal reacts to deviations from the machine learning-computed baseline.
 
 During warm-up periods, or when data is missing, the signal falls back to in-place statistical evaluation of the available data until enough history is collected. You configure dynamic thresholds on an Azure resource signal in the designer. For steps, see [Create and configure signals](./signals.md#signal-details).
 
