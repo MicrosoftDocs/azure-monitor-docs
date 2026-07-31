@@ -56,28 +56,28 @@ Azure Resource Graph serves as the supported integration point between service l
     "recommendationTypeId": "e877d6d4-e952-4f8a-a4c4-5f90e5ac1da9",
     "recommendationSubCategory": "ServiceUpgradeAndRetirement",
     "resourceMetadata": {
-        "action": {
-            "recommendedActionButtonText": "",
-            "actionApplicabilityScope": "",
-            "isRecommendedAction": false,
-            "description": null,
-            "actionType": "Blade",
-            "extensionName": "HubsExtension",
-            "actionId": "051cfb90-f2d9-4efa-a2ac-fe7a6ead9d4e",
-            "caption": null,
-            "bladeName": "ResourceMenuBlade",
-            "metadata": {
-                "id": "{resourceId}"
-            }
-        },
-        "singular": "Availability test",
-        "plural": "Availability tests"
+      "action": {
+        "recommendedActionButtonText": "",
+        "actionApplicabilityScope": "",
+        "isRecommendedAction": false,
+        "description": null,
+        "actionType": "Blade",
+        "extensionName": "HubsExtension",
+        "actionId": "051cfb90-f2d9-4efa-a2ac-fe7a6ead9d4e",
+        "caption": null,
+        "bladeName": "ResourceMenuBlade",
+        "metadata": {
+          "id": "{resourceId}"
+        }
+      },
+      "singular": "Availability test",
+      "plural": "Availability tests"
     },
     "exposedMetadataProperties": {
-        "SupportedSDKLanguages": null,
-        "AdditionalColumns": null,
-        "CostSavingInfo": null,
-        "Tip": null
+      "SupportedSDKLanguages": null,
+      "AdditionalColumns": null,
+      "CostSavingInfo": null,
+      "Tip": null
     },
     "recommendationCategory": "HighAvailability",
     "supportedResourceType": "microsoft.insights/webtests",
@@ -92,35 +92,35 @@ Azure Resource Graph serves as the supported integration point between service l
     "lastRefreshed": "2026-06-23T10:57:47.3066458Z",
     "language": "en",
     "actions": [
-        {
-            "recommendedActionButtonText": "",
-            "actionApplicabilityScope": "",
-            "isRecommendedAction": false,
-            "description": "Transition to using standard tests",
-            "actionType": "Document",
-            "actionId": "654f0880-edd0-4eea-9265-d2153628e197",
-            "caption": "Transition to using standard tests",
-            "isPostfixRequired": false,
-            "documentLink": "https://learn.microsoft.com/azure/azure-monitor/app/availability?tabs=standard"
-        }
+      {
+        "recommendedActionButtonText": "",
+        "actionApplicabilityScope": "",
+        "isRecommendedAction": false,
+        "description": "Transition to using standard tests",
+        "actionType": "Document",
+        "actionId": "654f0880-edd0-4eea-9265-d2153628e197",
+        "caption": "Transition to using standard tests",
+        "isPostfixRequired": false,
+        "documentLink": "https://learn.microsoft.com/azure/azure-monitor/app/availability?tabs=standard"
+      }
     ],
     "recommendationIngestionType": "Automated",
     "label": "The URL ping test capability of the application insights feature for Azure Monitor is being retired.",
     "sourceProperties": {
-        "serviceRetirement": {
-            "retirementFeatureName": "Single URL Ping Test",
-            "retirementDate": "2026-09-30T00:00:00Z",
-            "serviceHealth": {
-                "trackingIds": [
-                    "3KYM-7_G"
-                ],
-                "ashUrls": [
-                    "https://app.azure.com/h/3KYM-7_G/"
-                ]
-            }
+      "serviceRetirement": {
+        "retirementFeatureName": "Single URL Ping Test",
+        "retirementDate": "2026-09-30T00:00:00Z",
+        "serviceHealth": {
+          "trackingIds": [
+            "3KYM-7_G"
+          ],
+          "ashUrls": [
+            "https://app.azure.com/h/3KYM-7_G/"
+          ]
         }
+      }
     }
-}
+  }
 }
 ```
 
@@ -131,7 +131,8 @@ Azure Resource Graph serves as the supported integration point between service l
 advisorresources
 | where type == "microsoft.advisor/metadata"
 | extend props = parse_json(properties)
-| where props.recommendationCategory == "HighAvailability" and props.recommendationSubCategory ==  "ServiceUpgradeAndRetirement"
+| where props.recommendationCategory == "HighAvailability"
+| where props.recommendationSubCategory == "ServiceUpgradeAndRetirement"
 | where isnotempty(props.sourceProperties.serviceRetirement.serviceHealth.trackingIds)
 | mv-expand trackingId = props.sourceProperties.serviceRetirement.serviceHealth.trackingIds
 | extend trackingId = tostring(trackingId)
