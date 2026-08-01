@@ -195,6 +195,8 @@ In some scenarios, combining this data can result in cost savings. Typically, th
 * [MDCFileIntegrityMonitoringEvents](/azure/azure-monitor/reference/tables/mdcfileintegritymonitoringevents)
 * [WindowsEvent](/azure/azure-monitor/reference/tables/windowsevent)
 * [LinuxAuditLog](/azure/azure-monitor/reference/tables/linuxauditlog)
+* [DeviceCustomFileEvents](/azure/azure-monitor/reference/tables/devicecustomfileevents)
+* [DeviceCustomRegistryEvents](/azure/azure-monitor/reference/tables/devicecustomregistryevents)
 
 If the workspace is in the legacy Per Node pricing tier, the Defender for Cloud and Log Analytics allocations are combined and applied jointly to all billable ingested data. If the workspace has Microsoft Sentinel enabled on it, if Sentinel is using a classic pricing tier, the Defender data allocation applies only for the Log Analytics data ingestion billing, but not the classic Sentinel billing. If Sentinel is using a [simplified pricing tier](/azure/sentinel/enroll-simplified-pricing-tier), the Defender data allocation applies to the unified Sentinel billing. To learn more on how Microsoft Sentinel customers can benefit, see the [Microsoft Sentinel Pricing page](https://azure.microsoft.com/pricing/details/microsoft-sentinel/).
 
