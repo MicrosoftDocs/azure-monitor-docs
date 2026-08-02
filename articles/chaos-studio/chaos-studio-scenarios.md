@@ -219,6 +219,8 @@ Each target virtual machine must meet the following requirements:
 - It runs a supported operating system.
 - It can reach the Chaos Studio service over public outbound connectivity. VMs restricted to private networking aren't supported.
 
+If a Scenario run fails at the agent installation step, a network configuration is usually blocking the agent's connection. See [Problems connecting the Chaos agent to Chaos Studio](troubleshoot-workspaces-scenarios.md#problems-connecting-the-chaos-agent-to-chaos-studio).
+
 In the Azure portal, agent-based Scenarios don't appear in the recommended Scenarios list. Find and run them from **My scenarios**.
 
 ### Supported operating systems
