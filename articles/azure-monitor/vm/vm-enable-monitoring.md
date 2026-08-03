@@ -4,7 +4,7 @@ description: Learn how to enable monitoring for virtual machines and virtual mac
 ai-usage: ai-assisted
 ms.topic: how-to
 ms.reviewer: xpathak
-ms.date: 07/08/2026
+ms.date: 07/31/2026
 ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, devx-track-arm-template, devx-track-bicep
 
 ---
@@ -100,7 +100,9 @@ Use the following DCR definitions to enable enhanced monitoring for a virtual ma
     "dataSources": {
       "performanceCountersOTel": [
         {
-          "streams": "Microsoft-OtelPerfMetrics",
+          "streams": [
+            "Microsoft-OtelPerfMetrics"
+          ],
           "samplingFrequencyInSeconds": 60,
           "counterSpecifiers": [
               "system.filesystem.usage",
