@@ -3,7 +3,7 @@ title: Metrics experience for virtual machines in Azure Monitor
 description: Learn about OpenTelemetry System Metrics (Guest OS Performance Counters) in Azure Monitor and how they're modeled.
 ai-usage: ai-assisted
 ms.topic: concept-article
-ms.date: 05/28/2026
+ms.date: 07/31/2026
 ms.reviewer: tylerkight
 ---
 
@@ -23,7 +23,7 @@ The following table compares the OpenTelemetry-based and logs-based monitoring e
 | **Query language** | PromQL (Prometheus Query Language) | KQL (Kusto Query Language) |
 | **Latency** | Near real-time with low latency | Typically 1-3 minutes |
 | **Cost** | Default metrics free | Standard Log Analytics ingestion and retention costs |
-| **Multi-VM views** | Currently limited | Full VM insights multi-VM dashboards and workbooks |
+| **Multi-VM views** | At-scale default-metrics Grafana dashboard | Full VM insights multi-VM dashboards and workbooks |
 | **Correlation with logs** | Requires separate queries | Single workspace for metrics and logs enables correlation in one query |
 
 ## When to enable the logs-based experience
@@ -31,7 +31,7 @@ The following table compares the OpenTelemetry-based and logs-based monitoring e
 You should enable the metrics-based experience in all cases since collection of default metrics is free. Choose to also enable logs-based metrics if:
 
 - You need to monitor VM Scale Sets.
-- You want built-in multi-VM dashboards and trending views.
+- You need the broader VM insights multi-VM dashboards, workbooks, and trending views.
 - You want to correlate metrics and logs in a single query.
 - You already use queries, dashboards, or alerts based on the `InsightsMetrics` table.
 
@@ -64,9 +64,7 @@ Enhanced monitoring with OpenTelemetry uses a subset of the available system met
 - Metrics-based collection is currently only available for individual VMs and Arc-enabled servers. Logs-based collection can also be used for VM Scale Sets.
 - Metrics-based collection doesn't currently support [private link](../fundamentals/private-link-security.md).
 - You can't perform a single query across data in a Log Analytics workspace and Azure Monitor workspace. With logs-based collection, logs and metrics for your VMs are stored together, allowing you to correlate between them in a single KQL query. With metrics-based collection, metrics are stored in an Azure Monitor workspace and logs are stored in a Log Analytics workspace, requiring separate queries for each.
-- You can create your own workbooks and dashboards to view multi-VM charts using OpenTelemetry metrics, but there isn't a built-in experience in the Azure portal like the one available for logs-based collection.
-and logs are stored in a Log Analytics workspace, requiring separate queries for each.
-- You can create your own workbooks and dashboards to view multi-VM charts using OpenTelemetry metrics, but there isn't a built-in experience in the Azure portal like the one available for logs-based collection.
+- You can create custom workbooks and dashboards to view multi-VM OpenTelemetry metrics. The built-in multi-VM experience for metrics-based collection is limited to the [at-scale Grafana dashboard for default OpenTelemetry metrics](../visualize/grafana-azure-virtual-machines.md#monitor-multiple-virtual-machines). For broader multi-VM analysis and trending views, use logs-based VM insights dashboards and workbooks.
 
 > [!TIP]
 > Share your feedback on new performance counters or functionality you would like to see by posting to the Azure Monitor [GitHub Community](https://github.com/microsoft/AzureMonitorCommunity/discussions) or via [Portal feedback](/answers/questions/564554/where-can-i-submit-suggestions-for-azure).
