@@ -56,10 +56,10 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**CPU usage active**<br><br>CPU usage (active). |`cpu` | No | Percent |Average |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`, `CPU`|PT1M |Yes|
-|**network received bytes**<br><br>Cumulative network received bytes. |`ethtool_rx_bytes` | No | Bytes |Average, Minimum, Maximum, Count |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |No|
-|**network received packets**<br><br>Cumulative network received packets. |`ethtool_rx_packets` | No | Count |Average, Minimum, Maximum, Count |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |No|
-|**network transmitted bytes**<br><br>Cumulative network transmitted bytes. |`ethtool_tx_bytes` | No | Bytes |Average, Minimum, Maximum, Count |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |No|
-|**network transmitted packets**<br><br>Cumulative network transmitted packets. |`ethtool_tx_packets` | No | Count |Average, Minimum, Maximum, Count |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |No|
+|**network received bytes**<br><br>Cumulative network received bytes. |`ethtool_rx_bytes` | No | Bytes |Average, Minimum, Maximum |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |No|
+|**network received packets**<br><br>Cumulative network received packets. |`ethtool_rx_packets` | No | Count |Average, Minimum, Maximum |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |No|
+|**network transmitted bytes**<br><br>Cumulative network transmitted bytes. |`ethtool_tx_bytes` | No | Bytes |Average, Minimum, Maximum |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |No|
+|**network transmitted packets**<br><br>Cumulative network transmitted packets. |`ethtool_tx_packets` | No | Count |Average, Minimum, Maximum |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |No|
 |**memory utilization**<br><br>Memory utilization rate. |`percent_mem` | No | Percent |Average |`ClusterResourceName`, `DataCenterResourceName`, `Address`|PT1M |Yes|
 |**average CPU usage active**<br><br>Average CPU usage (active) across all the CPUs. |`total_cpu` | No | Percent |Average |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |Yes|
 

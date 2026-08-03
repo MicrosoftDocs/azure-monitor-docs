@@ -33,8 +33,8 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 ### Category: Pending Work
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Pending Bytes for Replication**<br><br>The size in bytes of the blob object pending for replication |`PendingBytesForReplication` | No | Bytes |Average, Minimum, Maximum |`TimeBucket`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
-|**Pending Operations for Replication**<br><br>The count of pending operations for replication |`PendingOperationsForReplication` | No | Count |Average, Minimum, Maximum |`TimeBucket`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**Pending Bytes for Replication**<br><br>The size in bytes of the blob object pending for replication |`PendingBytesForReplication` | No | Bytes |Average, Minimum, Maximum |`TimeBucket`|PT1M |No|
+|**Pending Operations for Replication**<br><br>The count of pending operations for replication |`PendingOperationsForReplication` | No | Count |Average, Minimum, Maximum |`TimeBucket`|PT1M |No|
 
 ## Next steps
 

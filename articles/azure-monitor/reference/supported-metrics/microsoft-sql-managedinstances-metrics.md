@@ -34,13 +34,16 @@ For a list of supported logs, see [Supported log categories - Microsoft.Sql/mana
 
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Average CPU percentage**<br><br>Average CPU percentage |`avg_cpu_percent` | No | Percent |Average, Maximum, Minimum |\<none\>|PT1M |Yes|
-|**IO bytes read**<br><br>IO bytes read |`io_bytes_read` | No | Bytes |Average, Maximum, Minimum |\<none\>|PT1M |Yes|
-|**IO bytes written**<br><br>IO bytes written |`io_bytes_written` | No | Bytes |Average, Maximum, Minimum |\<none\>|PT1M |Yes|
-|**IO requests count**<br><br>IO requests count |`io_requests` | No | Count |Average, Maximum, Minimum |\<none\>|PT1M |Yes|
-|**Storage space reserved**<br><br>Storage space reserved |`reserved_storage_mb` | No | Count |Average, Maximum, Minimum |\<none\>|PT1M |Yes|
-|**Storage space used**<br><br>Storage space used |`storage_space_used_mb` | No | Count |Average, Maximum, Minimum |\<none\>|PT1M |Yes|
-|**Virtual core count**<br><br>Virtual core count |`virtual_core_count` | No | Count |Average, Maximum, Minimum |\<none\>|PT1M |Yes|
+|**Average CPU percentage**<br><br>Average CPU utilization as a percentage of the instance's vCore limit. |`avg_cpu_percent` | No | Percent |Average, Maximum, Minimum |\<none\>|PT1M |Yes|
+|**Workers percentage**<br><br>Worker threads in use (%). |`avg_workers_percent` | No | Percent |Average, Maximum, Minimum |\<none\>|PT1M |Yes|
+|**IO bytes read**<br><br>Bytes read from storage by the instance. |`io_bytes_read` | No | Bytes |Average, Maximum, Minimum |\<none\>|PT1M |Yes|
+|**IO bytes written**<br><br>Bytes written to storage by the instance. |`io_bytes_written` | No | Bytes |Average, Maximum, Minimum |\<none\>|PT1M |Yes|
+|**IO requests count**<br><br>Number of I/O requests issued by the instance. |`io_requests` | No | Count |Average, Maximum, Minimum |\<none\>|PT1M |Yes|
+|**Log rate limit**<br><br>Maximum allowed transaction log write rate in MB/s. |`log_rate_limit_mbps` | No | Count |Average, Maximum, Minimum |\<none\>|PT1M |Yes|
+|**Log rate**<br><br>Current transaction log write rate in MB/s. Reflects write activity intensity across all databases on the instance. |`log_rate_mbps` | No | Count |Average, Maximum, Minimum |\<none\>|PT1M |Yes|
+|**Storage space reserved**<br><br>Storage space reserved for the instance, in MB. |`reserved_storage_mb` | No | Count |Average, Maximum, Minimum |\<none\>|PT1M |Yes|
+|**Storage space used**<br><br>Storage space used by the instance, in MB. |`storage_space_used_mb` | No | Count |Average, Maximum, Minimum |\<none\>|PT1M |Yes|
+|**Virtual core count**<br><br>Number of vCores provisioned for the managed instance. |`virtual_core_count` | No | Count |Average, Maximum, Minimum |\<none\>|PT1M |Yes|
 
 ## Next steps
 

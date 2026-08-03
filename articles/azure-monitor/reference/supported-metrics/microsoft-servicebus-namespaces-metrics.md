@@ -46,8 +46,8 @@ For a list of supported logs, see [Supported log categories - Microsoft.ServiceB
 |**Incoming Messages**<br><br>Incoming Messages for Microsoft.ServiceBus. |`IncomingMessages` | No | Count |Total (Sum) |`EntityName`|PT1M |Yes|
 |**Incoming Requests**<br><br>Incoming Requests for Microsoft.ServiceBus. |`IncomingRequests` | No | Count |Total (Sum) |`EntityName`|PT1M |Yes|
 |**Count of messages in a Queue/Topic.**<br><br>Count of messages in a Queue/Topic. |`Messages` | No | Count |Average, Minimum, Maximum |`EntityName`|PT1M |No|
-|**CPU**<br><br>Service bus premium namespace CPU usage metric. |`NamespaceCpuUsage` | No | Percent |Maximum |`Replica`|PT1M |No|
-|**Memory Usage**<br><br>Service bus premium namespace memory usage metric. |`NamespaceMemoryUsage` | No | Percent |Maximum |`Replica`|PT1M |No|
+|**CPU**<br><br>Service bus premium namespace CPU usage metric. |`NamespaceCpuUsage` | No | Percent |Total (Sum), Average, Minimum, Maximum |`Replica`|PT1M |No|
+|**Memory Usage**<br><br>Service bus premium namespace memory usage metric. |`NamespaceMemoryUsage` | No | Percent |Total (Sum), Average, Minimum, Maximum |`Replica`|PT1M |No|
 |**Outgoing Bytes.**<br><br>Outgoing Bytes for Microsoft.ServiceBus. |`OutgoingBytes` | No | Bytes |Total (Sum) |`EntityName`|PT1M |Yes|
 |**Outgoing Messages**<br><br>Outgoing Messages for Microsoft.ServiceBus. |`OutgoingMessages` | No | Count |Total (Sum) |`EntityName`|PT1M |Yes|
 |**Pending Checkpoint Operations Count.**<br><br>Pending Checkpoint Operations Count. |`PendingCheckpointOperationCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
