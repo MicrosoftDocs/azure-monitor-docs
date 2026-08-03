@@ -34,14 +34,14 @@ For a list of supported logs, see [Supported log categories - Microsoft.Network/
 
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Allocated SNAT Ports**<br><br>Total number of SNAT ports allocated within time period |`AllocatedSnatPorts` | No | Count |Average |`FrontendIPAddress`, `BackendIPAddress`, `ProtocolType`, `IsAwaitingRemoval`|PT1M |No|
+|**Allocated SNAT Ports**<br><br>Total number of SNAT ports allocated within time period |`AllocatedSnatPorts` | No | Count |Total (Sum), Average, Minimum, Maximum |`FrontendIPAddress`, `BackendIPAddress`, `ProtocolType`, `IsAwaitingRemoval`|PT1M |No|
 |**Byte Count**<br><br>Total number of Bytes transmitted within time period |`ByteCount` | No | Bytes |Total (Sum) |`FrontendIPAddress`, `FrontendPort`, `Direction`, `Protocol`|PT1M |Yes|
 |**Health Probe Status**<br><br>Average Load Balancer health probe status per time duration |`DipAvailability` | No | Count |Average |`ProtocolType`, `BackendPort`, `FrontendIPAddress`, `FrontendPort`, `BackendIPAddress`|PT1M |Yes|
 |**Health Probe Status**<br><br>Azure Cross-region Load Balancer backend health and status per time duration |`GlobalBackendAvailability` | No | Count |Average |`FrontendIPAddress`, `FrontendPort`, `BackendIPAddress`, `ProtocolType`, `FrontendRegion`, `BackendRegion`|PT1M |Yes|
 |**Packet Count**<br><br>Total number of Packets transmitted within time period |`PacketCount` | No | Count |Total (Sum) |`FrontendIPAddress`, `FrontendPort`, `Direction`, `Protocol`|PT1M |Yes|
 |**SNAT Connection Count**<br><br>Total number of new SNAT connections created within time period |`SnatConnectionCount` | No | Count |Total (Sum) |`FrontendIPAddress`, `BackendIPAddress`, `ConnectionState`|PT1M |Yes|
 |**SYN Count**<br><br>Total number of SYN Packets transmitted within time period |`SYNCount` | No | Count |Total (Sum) |`FrontendIPAddress`, `FrontendPort`, `Direction`, `Protocol`|PT1M |Yes|
-|**Used SNAT Ports**<br><br>Total number of SNAT ports used within time period |`UsedSnatPorts` | No | Count |Average |`FrontendIPAddress`, `BackendIPAddress`, `ProtocolType`, `IsAwaitingRemoval`|PT1M |No|
+|**Used SNAT Ports**<br><br>Total number of SNAT ports used within time period |`UsedSnatPorts` | No | Count |Total (Sum), Average, Minimum, Maximum |`FrontendIPAddress`, `BackendIPAddress`, `ProtocolType`, `IsAwaitingRemoval`|PT1M |No|
 |**Data Path Availability**<br><br>Average Load Balancer data path availability per time duration |`VipAvailability` | No | Count |Average |`FrontendIPAddress`, `FrontendPort`|PT1M |Yes|
 
 ## Next steps

@@ -54,9 +54,9 @@ For a list of supported logs, see [Supported log categories - Microsoft.Containe
 ### Category: ETCD
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**ETCD CPU Usage Percentage**<br><br>Maximum CPU percentage (based off current limit) used by ETCD pod across instances |`etcd_cpu_usage_percentage` | No | Percent |Maximum, Average |\<none\>|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |Yes|
-|**ETCD Database Usage Percentage**<br><br>Maximum utilization of the ETCD database across instances |`etcd_database_usage_percentage` | No | Percent |Maximum, Average |\<none\>|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |Yes|
-|**ETCD Memory Usage Percentage**<br><br>Maximum memory percentage (based off current limit) used by ETCD pod across instances |`etcd_memory_usage_percentage` | No | Percent |Maximum, Average |\<none\>|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |Yes|
+|**ETCD CPU Usage Percentage**<br><br>Maximum CPU percentage (based off current limit) used by ETCD pod across instances |`etcd_cpu_usage_percentage` | No | Percent |Maximum, Average |`partition`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |Yes|
+|**ETCD Database Usage Percentage**<br><br>Maximum utilization of the ETCD database across instances |`etcd_database_usage_percentage` | No | Percent |Maximum, Average |`partition`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |Yes|
+|**ETCD Memory Usage Percentage**<br><br>Maximum memory percentage (based off current limit) used by ETCD pod across instances |`etcd_memory_usage_percentage` | No | Percent |Maximum, Average |`partition`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |Yes|
 
 ### Category: Nodes
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|

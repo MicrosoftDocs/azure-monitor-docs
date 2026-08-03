@@ -35,8 +35,8 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |**AdminState**<br><br>Admin state of the port |`AdminState` | No | Count |Average, Minimum, Maximum, Count |`Link`|PT1M |Yes|
 |**FastPathRoutesCount**<br><br>Count of fastpath routes configured on port |`FastPathRoutesCountForDirectPort` | No | Count |Maximum |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |Yes|
 |**LineProtocol**<br><br>Line protocol status of the port |`LineProtocol` | No | Count |Average, Minimum, Maximum, Count |`Link`|PT1M |Yes|
-|**BitsInPerSecond**<br><br>Bits ingressing Azure per second |`PortBitsInPerSecond` | No | BitsPerSecond |Average, Minimum, Maximum, Count |`Link`|PT1M |No|
-|**BitsOutPerSecond**<br><br>Bits egressing Azure per second |`PortBitsOutPerSecond` | No | BitsPerSecond |Average, Minimum, Maximum, Count |`Link`|PT1M |No|
+|**BitsInPerSecond**<br><br>Bits ingressing Azure per second |`PortBitsInPerSecond` | No | BitsPerSecond |Average, Minimum, Maximum |`Link`|PT1M |No|
+|**BitsOutPerSecond**<br><br>Bits egressing Azure per second |`PortBitsOutPerSecond` | No | BitsPerSecond |Average, Minimum, Maximum |`Link`|PT1M |No|
 |**RxLightLevel**<br><br>Rx Light level in dBm |`RxLightLevel` | No | Count |Average, Minimum, Maximum, Count |`Link`, `Lane`|PT1M |Yes|
 |**TxLightLevel**<br><br>Tx light level in dBm |`TxLightLevel` | No | Count |Average, Minimum, Maximum, Count |`Link`, `Lane`|PT1M |Yes|
 

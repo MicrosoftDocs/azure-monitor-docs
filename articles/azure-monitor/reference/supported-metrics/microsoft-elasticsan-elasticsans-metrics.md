@@ -33,11 +33,11 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 ### Category: Capacity
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Provisioned Base**<br><br>The total provisioned base capacity unit of the SAN. |`ElasticSanProvisionedBase` | No | Bytes |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |Yes|
-|**Provisioned Capacity**<br><br>The total provisioned capacity reserved for the SAN. |`ElasticSanProvisionedCapacity` | No | Bytes |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |Yes|
-|**Snapshot Size**<br><br>The total snapshot size for all volumes under the SAN. |`ElasticSanSnapshotSize` | No | Bytes |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |Yes|
-|**Used Capacity**<br><br>The sum of all provisioned capacity of the volumes. |`ElasticSanUsedCapacity` | No | Bytes |Total (Sum) |\<none\>|PT1M |Yes|
-|**Provisioned Size**<br><br>The total provisioned capacity of the SAN |`ElasticSanUsedSize` | No | Bytes |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |Yes|
+|**Provisioned Base**<br><br>The baseline capacity configured for the Elastic SAN at creation time. This includes the initial reserved SAN capacity before any additional expansion capacity is added. |`ElasticSanProvisionedBase` | No | Bytes |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |Yes|
+|**Provisioned Capacity**<br><br>The total currently provisioned SAN capacity. This includes the original Provisioned Base plus any additional capacity expansions added afterward |`ElasticSanProvisionedCapacity` | No | Bytes |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |Yes|
+|**Snapshot Size**<br><br>The total snapshot size for the provisioned size under the SAN. |`ElasticSanSnapshotSize` | No | Bytes |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |Yes|
+|**Total Provisioned Volume Capacity**<br><br>The aggregate logical footprint of provisioned volumes plus snapshots within the SAN. |`ElasticSanUsedCapacity` | No | Bytes |Total (Sum) |\<none\>|PT1M |Yes|
+|**Provisioned Size**<br><br>The total allocated size of all volumes provisioned within the SAN. |`ElasticSanUsedSize` | No | Bytes |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |Yes|
 
 ### Category: Transaction
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|

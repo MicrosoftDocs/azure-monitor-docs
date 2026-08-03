@@ -3,7 +3,7 @@ title: Use Dashboards with Grafana for Azure Virtual Machines
 description: Learn how to use Azure Monitor dashboards with Grafana to monitor Azure Virtual Machines with prebuilt dashboards and custom visualizations.
 ms.topic: how-to
 ms.reviewer: kayodeprinceMS
-ms.date: 07/01/2026
+ms.date: 07/31/2026
 ai-usage: ai-assisted
 ---
 
@@ -29,6 +29,7 @@ Which dashboards are available and what data they show depends on how your virtu
 - Azure | Insights | Virtual Machines - OpenTelemetry - Default Metrics
 - Azure | Insights | Virtual Machines - OpenTelemetry - Detailed Metrics
 - Azure | Insights | Virtual Machines - OpenTelemetry - Process Monitoring
+- Azure | Insights | Virtual Machines - OpenTelemetry - At Scale Default Metrics
 - Azure | Insights | Virtual Machine - Log Analytics
 
 ## Open the Grafana experience in virtual machines
@@ -52,6 +53,12 @@ The following dashboards are designed for virtual machines that use the [OpenTel
 - **Azure | Insights | Virtual Machines - OpenTelemetry - Process Monitoring** focuses on process-level monitoring when `process.*` metric counters are configured in data collection rules.
 
 For more information, see [Collect and customize OpenTelemetry metrics for Azure virtual machines](/azure/azure-monitor/vm/metrics-opentelemetry-guest-modify).
+
+### Monitor multiple virtual machines
+
+Open **Monitor** > **Dashboards with Grafana**, and select **Azure | Insights | Virtual Machines - OpenTelemetry - At Scale Default Metrics**. This workspace-scoped dashboard shows default OpenTelemetry metrics for multiple virtual machines that send data to the same Azure Monitor workspace. Before you use the dashboard, [onboard each virtual machine to OpenTelemetry metrics](../vm/tutorial-enable-monitoring.md).
+
+:::image type="content" source="media/azure-virtual-machines/at-scale-default-metrics.png" alt-text="Screenshot of the at-scale OpenTelemetry dashboard showing CPU, memory, filesystem, and network metrics for multiple virtual machines." lightbox="media/azure-virtual-machines/at-scale-default-metrics.png":::
 
 ### Classic Log Analytics dashboard
 

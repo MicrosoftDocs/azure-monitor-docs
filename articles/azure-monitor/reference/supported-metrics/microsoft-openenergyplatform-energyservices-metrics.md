@@ -35,12 +35,12 @@ For a list of supported logs, see [Supported log categories - MICROSOFT.OPENENER
 ### Category: Capacity
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Data Volume**<br><br>Total bytes of Data. |`DataVolume` | No | Bytes |Average |`Tier`, `DataPartition`|PT1H |No|
+|**Data Volume (Preview)**<br><br>Total bytes of Data. |`DataVolume` | No | Bytes |Average |`Tier`, `DataPartition`|PT1H |No|
 
 ### Category: Traffic
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Total Http requests**<br><br>Total number of HTTP Requests in a specified time period. |`TotalHttpRequests` | No | Count |Total (Sum) |`destination_workload`, `data_partition_id`, `request_method`, `response_code`|PT1M |Yes|
+|**Total HTTP Requests (Preview)**<br><br>Total number of HTTP Requests in a specified time period. |`TotalHttpRequests` | No | Count |Total (Sum) |`destination_workload`, `data_partition_id`, `request_method`, `response_code`|PT1M |Yes|
 
 ## Next steps
 

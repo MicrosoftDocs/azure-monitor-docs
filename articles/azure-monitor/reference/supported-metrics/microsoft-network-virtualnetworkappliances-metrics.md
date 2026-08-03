@@ -32,14 +32,14 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Bytes Received**<br><br>Number of bytes the Network Interface received |`BytesReceived` | No | Bytes |Total (Sum) |\<none\>|PT1M |No|
-|**Bytes Sent**<br><br>Number of bytes the Network Interface sent |`BytesSent` | No | Bytes |Total (Sum) |\<none\>|PT1M |No|
-|**Inbound Flows Maximum Creation Rate**<br><br>The maximum creation rate of inbound flows (traffic going into the NIC) |`CreationRateMaxTotalFlowsIn` | No | CountPerSecond |Average |\<none\>|PT1M |No|
-|**Outbound Flows Maximum Creation Rate**<br><br>The maximum creation rate of outbound flows (traffic going out of the NIC) |`CreationRateMaxTotalFlowsOut` | No | CountPerSecond |Average |\<none\>|PT1M |No|
-|**Inbound Flows**<br><br>Inbound Flows are number of current flows in the inbound direction (traffic going into the NIC) |`CurrentTotalFlowsIn` | No | Count |Average |\<none\>|PT1M |No|
-|**Outbound Flows**<br><br>Outbound Flows are number of current flows in the outbound direction (traffic going out of the NIC) |`CurrentTotalFlowsOut` | No | Count |Average |\<none\>|PT1M |No|
-|**Packets Received**<br><br>Number of packets the Network Interface received |`PacketsReceived` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Packets Sent**<br><br>Number of packets the Network Interface sent |`PacketsSent` | No | Count |Total (Sum) |\<none\>|PT1M |No|
+|**Bytes Received**<br><br>Number of bytes the Network Interface received |`BytesReceived` | No | Bytes |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Bytes Sent**<br><br>Number of bytes the Network Interface sent |`BytesSent` | No | Bytes |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Inbound Flows Maximum Creation Rate**<br><br>The maximum creation rate of inbound flows (traffic going into the NIC) |`CreationRateMaxTotalFlowsIn` | No | CountPerSecond |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Outbound Flows Maximum Creation Rate**<br><br>The maximum creation rate of outbound flows (traffic going out of the NIC) |`CreationRateMaxTotalFlowsOut` | No | CountPerSecond |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Inbound Flows**<br><br>Inbound Flows are number of current flows in the inbound direction (traffic going into the NIC) |`CurrentTotalFlowsIn` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Outbound Flows**<br><br>Outbound Flows are number of current flows in the outbound direction (traffic going out of the NIC) |`CurrentTotalFlowsOut` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Packets Received**<br><br>Number of packets the Network Interface received |`PacketsReceived` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Packets Sent**<br><br>Number of packets the Network Interface sent |`PacketsSent` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
 
 ## Next steps
 
