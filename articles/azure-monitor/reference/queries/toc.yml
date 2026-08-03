@@ -419,6 +419,8 @@ items:
   href: DevCenterDiagnosticLogs.md
 - name: DevCenterResourceOperationLogs
   href: DevCenterResourceOperationLogs.md
+- name: DevOpsOperationsAudit
+  href: DevOpsOperationsAudit.md
 - name: DeviceCalendar
   href: DeviceCalendar.md
 - name: DeviceCleanup

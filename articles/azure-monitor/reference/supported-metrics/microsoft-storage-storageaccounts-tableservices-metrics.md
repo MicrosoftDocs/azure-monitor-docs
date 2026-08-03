@@ -35,9 +35,9 @@ For a list of supported logs, see [Supported log categories - Microsoft.Storage/
 ### Category: Capacity
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Table Capacity**<br><br>The amount of Table storage used by the storage account. |`TableCapacity` | No | Bytes |Average |\<none\>|PT1H |Yes|
-|**Table Count**<br><br>The number of tables in the storage account. |`TableCount` | No | Count |Average |\<none\>|PT1H |Yes|
-|**Table Entity Count**<br><br>The number of table entities in the storage account. |`TableEntityCount` | No | Count |Average |\<none\>|PT1H |Yes|
+|**Table Capacity**<br><br>The amount of Table storage used by the storage account. |`TableCapacity` | No | Bytes |Average |\<none\>|PT1H, PT6H, PT12H, P1D |Yes|
+|**Table Count**<br><br>The number of tables in the storage account. |`TableCount` | No | Count |Average |\<none\>|PT1H, PT6H, PT12H, P1D |Yes|
+|**Table Entity Count**<br><br>The number of table entities in the storage account. |`TableEntityCount` | No | Count |Average |\<none\>|PT1H, PT6H, PT12H, P1D |Yes|
 
 ### Category: Transaction
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|

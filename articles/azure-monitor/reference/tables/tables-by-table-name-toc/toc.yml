@@ -836,6 +836,8 @@
   href: ../devicetvmsoftwarevulnerabilities.md
 - name: DeviceTvmSoftwareVulnerabilitiesKB
   href: ../devicetvmsoftwarevulnerabilitieskb.md
+- name: DevOpsOperationsAudit
+  href: ../devopsoperationsaudit.md
 - name: DiscoveryBookshelfAuditLogs
   href: ../discoverybookshelfauditlogs.md
 - name: DiscoverySupercomputerAuditLogs
@@ -1274,6 +1276,8 @@
   href: ../purviewsecuritylogs.md
 - name: QualysKnowledgeBase
   href: ../qualysknowledgebase.md
+- name: QuantumProviderAccountDeviceOperationLogs
+  href: ../quantumprovideraccountdeviceoperationlogs.md
 - name: QuantumProviderAccountJobAuditLogs
   href: ../quantumprovideraccountjobauditlogs.md
 - name: QuantumProviderAccountQueueAuditLogs

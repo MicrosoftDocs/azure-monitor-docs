@@ -35,9 +35,9 @@ For a list of supported logs, see [Supported log categories - Microsoft.Storage/
 ### Category: Capacity
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Queue Capacity**<br><br>The amount of Queue storage used by the storage account. |`QueueCapacity` | No | Bytes |Average |\<none\>|PT1H |Yes|
-|**Queue Count**<br><br>The number of queues in the storage account. |`QueueCount` | No | Count |Average |\<none\>|PT1H |Yes|
-|**Queue Message Count**<br><br>The number of unexpired queue messages in the storage account. |`QueueMessageCount` | No | Count |Average |\<none\>|PT1H |Yes|
+|**Queue Capacity**<br><br>The amount of Queue storage used by the storage account. |`QueueCapacity` | No | Bytes |Average |\<none\>|PT1H, PT6H, PT12H, P1D |Yes|
+|**Queue Count**<br><br>The number of queues in the storage account. |`QueueCount` | No | Count |Average |\<none\>|PT1H, PT6H, PT12H, P1D |Yes|
+|**Queue Message Count**<br><br>The number of unexpired queue messages in the storage account. |`QueueMessageCount` | No | Count |Average |\<none\>|PT1H, PT6H, PT12H, P1D |Yes|
 
 ### Category: Transaction
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|

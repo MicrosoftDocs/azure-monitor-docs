@@ -216,6 +216,10 @@
   href: microsoft-kubernetesconfiguration-extensions-metrics.md
 - name: Microsoft.Kusto/clusters
   href: microsoft-kusto-clusters-metrics.md
+- name: Microsoft.Logic/automationProjects
+  href: microsoft-logic-automationprojects-metrics.md
+- name: Microsoft.Logic/automationProjects/applications
+  href: microsoft-logic-automationprojects-applications-metrics.md
 - name: Microsoft.Logic/IntegrationServiceEnvironments
   href: microsoft-logic-integrationserviceenvironments-metrics.md
 - name: Microsoft.Logic/Workflows
@@ -384,6 +388,8 @@
   href: microsoft-recoveryservices-vaults-metrics.md
 - name: Microsoft.Relay/namespaces
   href: microsoft-relay-namespaces-metrics.md
+- name: Microsoft.ResourceBuilder/workspaces
+  href: microsoft-resourcebuilder-workspaces-metrics.md
 - name: Microsoft.ResourceBuilder/workspaces/pipelines/jobs
   href: microsoft-resourcebuilder-workspaces-pipelines-jobs-metrics.md
 - name: microsoft.resources/subscriptions

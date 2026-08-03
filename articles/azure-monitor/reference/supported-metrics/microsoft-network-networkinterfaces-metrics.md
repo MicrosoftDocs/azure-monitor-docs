@@ -32,25 +32,25 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Bytes Received**<br><br>Number of bytes the Network Interface received |`BytesReceived` | No | Bytes |Total (Sum) |\<none\>|PT1M |No|
+|**Bytes Received**<br><br>Number of bytes the Network Interface received |`BytesReceived` | No | Bytes |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
 |**Bytes Received**<br><br>Number of bytes the Network Interface received |`BytesReceivedRate` | No | Bytes |Total (Sum) |\<none\>|PT1M |Yes|
-|**Bytes Sent**<br><br>Number of bytes the Network Interface sent |`BytesSent` | No | Bytes |Total (Sum) |\<none\>|PT1M |No|
+|**Bytes Sent**<br><br>Number of bytes the Network Interface sent |`BytesSent` | No | Bytes |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
 |**Bytes Sent**<br><br>Number of bytes the Network Interface sent |`BytesSentRate` | No | Bytes |Total (Sum) |\<none\>|PT1M |Yes|
-|**Inbound Flows Maximum Creation Rate**<br><br>The maximum creation rate of inbound flows (traffic going into the NIC) |`CreationRateMaxTotalFlowsIn` | No | CountPerSecond |Average |\<none\>|PT1M |No|
-|**Outbound Flows Maximum Creation Rate**<br><br>The maximum creation rate of outbound flows (traffic going out of the NIC) |`CreationRateMaxTotalFlowsOut` | No | CountPerSecond |Average |\<none\>|PT1M |No|
-|**Inbound Flows**<br><br>Inbound Flows are number of current flows in the inbound direction (traffic going into the NIC) |`CurrentTotalFlowsIn` | No | Count |Average |\<none\>|PT1M |No|
-|**Outbound Flows**<br><br>Outbound Flows are number of current flows in the outbound direction (traffic going out of the NIC) |`CurrentTotalFlowsOut` | No | Count |Average |\<none\>|PT1M |No|
-|**Mirror Bytes Received**<br><br>Number of mirrored bytes received |`MirrorBytesReceived` | No | Bytes |Total (Sum) |\<none\>|PT1M |No|
-|**Mirror Bytes Received Skipped**<br><br>Number of mirrored bytes received skipped |`MirrorBytesReceivedSkipped` | No | Bytes |Total (Sum) |\<none\>|PT1M |No|
-|**Mirror Bytes Sent**<br><br>Number of mirrored bytes sent |`MirrorBytesSent` | No | Bytes |Total (Sum) |\<none\>|PT1M |No|
-|**Mirror Bytes Sent Skipped**<br><br>Number of mirrored bytes sent skipped |`MirrorBytesSentSkipped` | No | Bytes |Total (Sum) |\<none\>|PT1M |No|
-|**Mirror Packets Received**<br><br>Number of mirrored packets received |`MirrorPacketsReceived` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Mirror Packets Received Skipped**<br><br>Number of mirrored packets received skipped |`MirrorPacketsReceivedSkipped` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Mirror Packets Sent**<br><br>Number of mirrored packets sent |`MirrorPacketsSent` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Mirror Packets Sent Skipped**<br><br>Number of mirrored packets sent skipped |`MirrorPacketsSentSkipped` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Packets Received**<br><br>Number of packets the Network Interface received |`PacketsReceived` | No | Count |Total (Sum) |\<none\>|PT1M |No|
+|**Inbound Flows Maximum Creation Rate**<br><br>The maximum creation rate of inbound flows (traffic going into the NIC) |`CreationRateMaxTotalFlowsIn` | No | CountPerSecond |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Outbound Flows Maximum Creation Rate**<br><br>The maximum creation rate of outbound flows (traffic going out of the NIC) |`CreationRateMaxTotalFlowsOut` | No | CountPerSecond |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Inbound Flows**<br><br>Inbound Flows are number of current flows in the inbound direction (traffic going into the NIC) |`CurrentTotalFlowsIn` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Outbound Flows**<br><br>Outbound Flows are number of current flows in the outbound direction (traffic going out of the NIC) |`CurrentTotalFlowsOut` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Mirror Bytes Received**<br><br>Number of mirrored bytes received |`MirrorBytesReceived` | No | Bytes |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Mirror Bytes Received Skipped**<br><br>Number of mirrored bytes received skipped |`MirrorBytesReceivedSkipped` | No | Bytes |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Mirror Bytes Sent**<br><br>Number of mirrored bytes sent |`MirrorBytesSent` | No | Bytes |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Mirror Bytes Sent Skipped**<br><br>Number of mirrored bytes sent skipped |`MirrorBytesSentSkipped` | No | Bytes |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Mirror Packets Received**<br><br>Number of mirrored packets received |`MirrorPacketsReceived` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Mirror Packets Received Skipped**<br><br>Number of mirrored packets received skipped |`MirrorPacketsReceivedSkipped` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Mirror Packets Sent**<br><br>Number of mirrored packets sent |`MirrorPacketsSent` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Mirror Packets Sent Skipped**<br><br>Number of mirrored packets sent skipped |`MirrorPacketsSentSkipped` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Packets Received**<br><br>Number of packets the Network Interface received |`PacketsReceived` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
 |**Packets Received**<br><br>Number of packets the Network Interface received |`PacketsReceivedRate` | No | Count |Total (Sum) |\<none\>|PT1M |Yes|
-|**Packets Sent**<br><br>Number of packets the Network Interface sent |`PacketsSent` | No | Count |Total (Sum) |\<none\>|PT1M |No|
+|**Packets Sent**<br><br>Number of packets the Network Interface sent |`PacketsSent` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
 |**Packets Sent**<br><br>Number of packets the Network Interface sent |`PacketsSentRate` | No | Count |Total (Sum) |\<none\>|PT1M |Yes|
 
 ## Next steps

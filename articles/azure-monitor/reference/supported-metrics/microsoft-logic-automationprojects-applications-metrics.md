@@ -1,17 +1,17 @@
 ---
-title: Supported metrics - MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES
-description: Reference for MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES metrics in Azure Monitor.
+title: Supported metrics - Microsoft.Logic/automationProjects/applications
+description: Reference for Microsoft.Logic/automationProjects/applications metrics in Azure Monitor.
 ms.topic: generated-reference
 ms.date: 07/31/2026
-ms.custom: MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES, naam
+ms.custom: Microsoft.Logic/automationProjects/applications, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-# Supported metrics for MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES
+# Supported metrics for Microsoft.Logic/automationProjects/applications
 
-The following table lists the metrics available for the MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES resource type.
+The following table lists the metrics available for the Microsoft.Logic/automationProjects/applications resource type.
 
 **Table headings**
 
@@ -29,18 +29,14 @@ For information on exporting metrics, see - [Metrics export using data collectio
 For information on metric retention, see [Azure Monitor Metrics overview](/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics).
 
 
-For a list of supported logs, see [Supported log categories - MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES](../supported-logs/microsoft-openenergyplatform-energyservices-logs.md)
+For a list of supported logs, see [Supported log categories - Microsoft.Logic/automationProjects/applications](../supported-logs/microsoft-logic-automationprojects-applications-logs.md)
 
 
-### Category: Capacity
+### Category: Billing
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Data Volume (Preview)**<br><br>Total bytes of Data. |`DataVolume` | No | Bytes |Average |`Tier`, `DataPartition`|PT1H |No|
-
-### Category: Traffic
-|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
-|---|---|---|---|---|---|---|---|
-|**Total HTTP Requests (Preview)**<br><br>Total number of HTTP Requests in a specified time period. |`TotalHttpRequests` | No | Count |Total (Sum) |`destination_workload`, `data_partition_id`, `request_method`, `response_code`|PT1M |Yes|
+|**Billing Usage for Automation Project Application**<br><br>Number of automation project application executions getting billed. |`BillingUsageAutomationProjectApplication` | No | Count |Total (Sum) |\<none\>|PT1M |Yes|
+|**Billing Usage for Automation Project Application Data Retention**<br><br>Number of automation project application data retention units getting billed. |`BillingUsageAutomationProjectApplicationDataRetention` | No | Count |Total (Sum) |\<none\>|PT1M |Yes|
 
 ## Next steps
 

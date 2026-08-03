@@ -35,11 +35,11 @@ For a list of supported logs, see [Supported log categories - Microsoft.EventHub
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**ActiveConnections**<br><br>Total Active Connections for Microsoft.EventHub. |`ActiveConnections` | No | Count |Maximum, Minimum, Average |\<none\>|PT1M |No|
-|**Capture Backlog.**<br><br>Backlog of bytes to be captured for Microsoft.EventHub. |`CaptureBacklog` | No | Count |Total (Sum) |`EntityName`|PT1M |No|
+|**Capture Backlog.**<br><br>Backlog of bytes to be captured for Microsoft.EventHub. |`CaptureBacklog` | No | Count |Total (Sum), Average, Minimum, Maximum |`EntityName`|PT1M |No|
 |**Captured Bytes.**<br><br>Captured Bytes for Microsoft.EventHub. |`CapturedBytes` | No | Bytes |Total (Sum) |`EntityName`|PT1M |No|
 |**Captured Messages.**<br><br>Captured Messages for Microsoft.EventHub. |`CapturedMessages` | No | Count |Total (Sum) |`EntityName`|PT1M |No|
-|**Connections Closed.**<br><br>Connections Closed for Microsoft.EventHub. |`ConnectionsClosed` | No | Count |Maximum |`EntityName`|PT1M |No|
-|**Connections Opened.**<br><br>Connections Opened for Microsoft.EventHub. |`ConnectionsOpened` | No | Count |Maximum |`EntityName`|PT1M |No|
+|**Connections Closed.**<br><br>Connections Closed for Microsoft.EventHub. |`ConnectionsClosed` | No | Count |Total (Sum), Average, Minimum, Maximum |`EntityName`|PT1M |No|
+|**Connections Opened.**<br><br>Connections Opened for Microsoft.EventHub. |`ConnectionsOpened` | No | Count |Total (Sum), Average, Minimum, Maximum |`EntityName`|PT1M |No|
 |**Archive backlog messages (Deprecated)**<br><br>Event Hub archive messages in backlog for a namespace (Deprecated) |`EHABL` | No | Count |Total (Sum) |\<none\>|PT1M |Yes|
 |**Archive message throughput (Deprecated)**<br><br>Event Hub archived message throughput in a namespace (Deprecated) |`EHAMBS` | No | Bytes |Total (Sum) |\<none\>|PT1M |Yes|
 |**Archive messages (Deprecated)**<br><br>Event Hub archived messages in a namespace (Deprecated) |`EHAMSGS` | No | Count |Total (Sum) |\<none\>|PT1M |Yes|

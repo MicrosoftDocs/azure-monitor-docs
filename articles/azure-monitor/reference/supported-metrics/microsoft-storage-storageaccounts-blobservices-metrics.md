@@ -35,13 +35,13 @@ For a list of supported logs, see [Supported log categories - Microsoft.Storage/
 ### Category: Capacity
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Blob Capacity**<br><br>The amount of storage used by the storage account's Blob service in bytes. |`BlobCapacity` | No | Bytes |Average |`BlobType`, `Tier`|PT1H |No|
-|**Blob Count**<br><br>The number of blob objects stored in the storage account. |`BlobCount` | No | Count |Average |`BlobType`, `Tier`|PT1H |No|
-|**Blob Provisioned Size**<br><br>The amount of storage provisioned in the storage account's Blob service in bytes. |`BlobProvisionedSize` | No | Bytes |Average |`BlobType`, `Tier`|PT1H |No|
-|**Container Blob Count**<br><br>The number of blob objects stored in the storage account at the container level. |`ContainerBlobCount` | [Yes](https://aka.ms/apm-microsoft-storage) | Count |Average |`ContainerName`, `BlobType`, `Tier`|PT1H |No|
-|**Blob Container Count**<br><br>The number of containers in the storage account. |`ContainerCount` | No | Count |Average |`AccessLevel`|PT1H |Yes|
-|**Container Blob Capacity**<br><br>The amount of storage used by the storage account's Blob service in bytes at the container level. |`ContainerUsedSize` | [Yes](https://aka.ms/apm-microsoft-storage) | Bytes |Average |`ContainerName`, `Tier`, `BlobType`|PT1H |No|
-|**Index Capacity**<br><br>The amount of storage used by Azure Data Lake Storage Gen2 hierarchical index. |`IndexCapacity` | No | Bytes |Average |\<none\>|PT1H |No|
+|**Blob Capacity**<br><br>The amount of storage used by the storage account's Blob service in bytes. |`BlobCapacity` | No | Bytes |Average |`BlobType`, `Tier`|PT1H, PT6H, PT12H, P1D |No|
+|**Blob Count**<br><br>The number of blob objects stored in the storage account. |`BlobCount` | No | Count |Average |`BlobType`, `Tier`|PT1H, PT6H, PT12H, P1D |No|
+|**Blob Provisioned Size**<br><br>The amount of storage provisioned in the storage account's Blob service in bytes. |`BlobProvisionedSize` | No | Bytes |Average |`BlobType`, `Tier`|PT1H, PT6H, PT12H, P1D |No|
+|**Container Blob Count**<br><br>The number of blob objects stored in the storage account at the container level. |`ContainerBlobCount` | [Yes](https://aka.ms/apm-microsoft-storage) | Count |Average |`ContainerName`, `BlobType`, `Tier`|PT1H, PT6H, PT12H, P1D |No|
+|**Blob Container Count**<br><br>The number of containers in the storage account. |`ContainerCount` | No | Count |Average |`AccessLevel`|PT1H, PT6H, PT12H, P1D |Yes|
+|**Container Blob Capacity**<br><br>The amount of storage used by the storage account's Blob service in bytes at the container level. |`ContainerUsedSize` | [Yes](https://aka.ms/apm-microsoft-storage) | Bytes |Average |`ContainerName`, `Tier`, `BlobType`|PT1H, PT6H, PT12H, P1D |No|
+|**Index Capacity**<br><br>The amount of storage used by Azure Data Lake Storage Gen2 hierarchical index. |`IndexCapacity` | No | Bytes |Average |\<none\>|PT1H, PT6H, PT12H, P1D |No|
 
 ### Category: Transaction
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|

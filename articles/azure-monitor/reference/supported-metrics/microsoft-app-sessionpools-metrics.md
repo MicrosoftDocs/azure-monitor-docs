@@ -34,6 +34,8 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**Executing Sessions Count**<br><br>Number of executing session pods in the session pool |`PoolExecutingPodCount` | No | Count |Total (Sum), Average, Maximum, Minimum |`poolName`|PT1M |Yes|
+|**Session API Request Count**<br><br>Number of session API requests in the session pool |`SessionApiRequestCount` | No | Count |Total (Sum), Average, Maximum, Minimum |`operationName`, `statusCode`|PT1M |Yes|
+|**Session API Average Response Time**<br><br>Average response time of session API requests in the session pool |`SessionApiResponseTime` | No | MilliSeconds |Total (Sum), Average, Maximum, Minimum |`operationName`, `statusCode`|PT1M |Yes|
 
 ### Category: Customer Container Session Pool
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|

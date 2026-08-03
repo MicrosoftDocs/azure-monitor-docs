@@ -50,8 +50,8 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 ### Category: Traffic
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Bits In Per Second**<br><br>Bits per second ingressing Azure via ExpressRoute Gateway which can be further split for specific connections |`ErGatewayConnectionBitsInPerSecond` | No | BitsPerSecond |Average |`ConnectionName`|PT1M |No|
-|**Bits Out Per Second**<br><br>Bits per second egressing Azure via ExpressRoute Gateway which can be further split for specific connections |`ErGatewayConnectionBitsOutPerSecond` | No | BitsPerSecond |Average |`ConnectionName`|PT1M |No|
+|**Bits In Per Second**<br><br>Bits per second ingressing Azure via ExpressRoute Gateway which can be further split for specific connections |`ErGatewayConnectionBitsInPerSecond` | No | BitsPerSecond |Total (Sum), Average, Minimum, Maximum |`ConnectionName`|PT1M |No|
+|**Bits Out Per Second**<br><br>Bits per second egressing Azure via ExpressRoute Gateway which can be further split for specific connections |`ErGatewayConnectionBitsOutPerSecond` | No | BitsPerSecond |Total (Sum), Average, Minimum, Maximum |`ConnectionName`|PT1M |No|
 
 ## Next steps
 

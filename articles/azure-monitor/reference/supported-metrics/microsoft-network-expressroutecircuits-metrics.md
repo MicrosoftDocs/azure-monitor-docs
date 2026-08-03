@@ -47,8 +47,8 @@ For a list of supported logs, see [Supported log categories - Microsoft.Network/
 ### Category: Circuit Traffic
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**BitsInPerSecond**<br><br>Bits ingressing Azure per second |`BitsInPerSecond` | No | BitsPerSecond |Average |`PeeringType`, `DeviceRole`|PT1M |Yes|
-|**BitsOutPerSecond**<br><br>Bits egressing Azure per second |`BitsOutPerSecond` | No | BitsPerSecond |Average |`PeeringType`, `DeviceRole`|PT1M |Yes|
+|**BitsInPerSecond**<br><br>Bits ingressing Azure per second |`BitsInPerSecond` | No | BitsPerSecond |Total (Sum), Average, Minimum, Maximum |`PeeringType`, `DeviceRole`|PT1M |Yes|
+|**BitsOutPerSecond**<br><br>Bits egressing Azure per second |`BitsOutPerSecond` | No | BitsPerSecond |Total (Sum), Average, Minimum, Maximum |`PeeringType`, `DeviceRole`|PT1M |Yes|
 |**EgressBandwidthUtilization**<br><br>Egress Link Bandwidth percentage utilization |`EgressBandwidthUtilization` | No | Percent |Maximum |`PeeringType`, `DeviceRole`|PT1M |Yes|
 |**IngressBandwidthUtilization**<br><br>Ingress Link Bandwidth percentage utilization |`IngressBandwidthUtilization` | No | Percent |Maximum |`PeeringType`, `DeviceRole`|PT1M |Yes|
 
@@ -60,8 +60,8 @@ For a list of supported logs, see [Supported log categories - Microsoft.Network/
 ### Category: GlobalReach Traffic
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**GlobalReachBitsInPerSecond**<br><br>Bits ingressing Azure per second |`GlobalReachBitsInPerSecond` | No | BitsPerSecond |Average |`PeeredCircuitSKey`|PT1M |No|
-|**GlobalReachBitsOutPerSecond**<br><br>Bits egressing Azure per second |`GlobalReachBitsOutPerSecond` | No | BitsPerSecond |Average |`PeeredCircuitSKey`|PT1M |No|
+|**GlobalReachBitsInPerSecond**<br><br>Bits ingressing Azure per second |`GlobalReachBitsInPerSecond` | No | BitsPerSecond |Total (Sum), Average, Minimum, Maximum |`PeeredCircuitSKey`|PT1M |No|
+|**GlobalReachBitsOutPerSecond**<br><br>Bits egressing Azure per second |`GlobalReachBitsOutPerSecond` | No | BitsPerSecond |Total (Sum), Average, Minimum, Maximum |`PeeredCircuitSKey`|PT1M |No|
 
 ## Next steps
 
