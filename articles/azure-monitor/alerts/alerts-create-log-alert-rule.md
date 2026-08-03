@@ -2,7 +2,7 @@
 title: Create Azure Monitor log search alert rules
 description: This article explains how to create a new Azure Monitor log search alert rule or edit an existing rule.
 ms.topic: how-to
-ms.date: 07/31/2026
+ms.date: 08/03/2026
 ms.reviewer: 
 
 #customer intent: As a customer, I want to create a new log search alert rule or edit an existing rule so that I can monitor my resources and receive alerts when certain conditions are met.
@@ -241,7 +241,13 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     | **Check workspace linked storage** | Select this option if workspace linked storage for alerts is configured. If no linked storage is configured, the rule isn't created. |
 
     > [!NOTE]
-    > When you configure linked storage for the `Alerts` data source type, triggered log search alerts don't include the alert query in the alert payload or alert details. Azure Monitor stores the query in your customer-managed storage account, so omitting the query is expected behavior. The Azure portal displays the message "Search query has been redacted as linked storage account is configured on Log Analytics workspace". Use [alert dimensions](alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions) to provide context for fired alerts. For more information, see [Considerations before setting customer-managed key for saved log alert queries](../logs/customer-managed-keys.md#considerations-before-setting-customer-managed-key-for-saved-log-alert-queries).
+    > When you configure linked storage for the `Alerts` data source type, triggered log search alerts don't include the alert query in the alert payload. In alert details, **Query** displays a comment in this format:
+    >
+    > ```kusto
+    > // Search query has been redacted as linked storage account is configured on Log Analytics workspace '<workspace-resource-id>'.
+    > ```
+    >
+    > This behavior is expected because Azure Monitor stores the query in your customer-managed storage account. Use [alert dimensions](alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions) to provide context for fired alerts. For more information, see [Considerations before setting customer-managed key for saved log alert queries](../logs/customer-managed-keys.md#considerations-before-setting-customer-managed-key-for-saved-log-alert-queries).
 
 1. [!INCLUDE [alerts-wizard-custom=properties](includes/alerts-wizard-custom-properties.md)]
 

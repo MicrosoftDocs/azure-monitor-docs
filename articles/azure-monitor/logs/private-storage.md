@@ -3,7 +3,7 @@ title: Use customer-managed storage accounts in Azure Monitor Logs
 description: Use your own Azure Storage account to ingest logs into Azure Monitor Logs.
 ms.topic: how-to
 ms.reviewer: noakuper
-ms.date: 07/31/2026
+ms.date: 08/03/2026
 ---
 
 # Use customer-managed storage accounts in Azure Monitor Logs
@@ -144,7 +144,13 @@ The applicable `dataSourceType` values are:
 ---
 
 > [!NOTE]
-> When you configure linked storage for the `Alerts` data source type, triggered log search alerts don't include the alert query in the alert payload or alert details. Azure Monitor stores the query in your customer-managed storage account, so omitting the query is expected behavior. The Azure portal displays the message "Search query has been redacted as linked storage account is configured on Log Analytics workspace". Use [alert dimensions](../alerts/alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions) to provide context for fired alerts. For more information, see [Considerations before setting customer-managed key for saved log alert queries](customer-managed-keys.md#considerations-before-setting-customer-managed-key-for-saved-log-alert-queries).
+> When you configure linked storage for the `Alerts` data source type, triggered log search alerts don't include the alert query in the alert payload. In alert details, **Query** displays a comment in this format:
+>
+> ```kusto
+> // Search query has been redacted as linked storage account is configured on Log Analytics workspace '<workspace-resource-id>'.
+> ```
+>
+> This behavior is expected because Azure Monitor stores the query in your customer-managed storage account. Use [alert dimensions](../alerts/alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions) to provide context for fired alerts. For more information, see [Considerations before setting customer-managed key for saved log alert queries](customer-managed-keys.md#considerations-before-setting-customer-managed-key-for-saved-log-alert-queries).
 
 ## Manage linked storage accounts
 
