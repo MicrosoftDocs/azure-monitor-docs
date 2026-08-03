@@ -3,6 +3,7 @@ title: Resource-scoped queries for Azure Monitor workspace
 description: Learn how to query Azure Monitor workspace metrics using resource-scoped queries with PromQL, including setup, authentication, and error handling.
 ms.topic: how-to
 ms.date: 07/29/2026
+ai-usage: ai-assisted
 author: tylerkight
 ms.author: tylerkight
 ---
