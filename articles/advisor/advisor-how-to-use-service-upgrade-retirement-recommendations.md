@@ -159,9 +159,8 @@ Azure Service Health is one of the ways you can proactively get information on u
 > For more information, see [What is Azure Service Health?](/azure/service-health/service-health-advisories#impacted-services-tab).
 
 ---
-
-> [!NOTE]
-> All channels support retirement recommendations only for Azure public cloud. For retirement recommendations on sovereign or national partner clouds, you can leverage https://github.com/microsoft/azure-retirement-impact-analyzer.
+## For non-public clouds 
+All channels support retirement recommendations only for Azure public cloud. For retirement recommendations on sovereign or national partner clouds, use [Azure Retirement Impact Analyzer](https://github.com/microsoft/azure-retirement-impact-analyzer).
 
 ## Coverage of services
 

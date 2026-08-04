@@ -33,7 +33,7 @@ Advisor score is a core feature of Advisor that helps you effectively and effici
 
 On **Advisor | Advisor score**, see the percentages for your overall Advisor score and a breakdown for each Advisor category.
 
-:::image alt-text="Screenshot of the entry point of Advisor Score in Azure Advisor." lightbox="./media/advisor-score.png" source="./media/advisor-score-preview.png" type="content":::
+:::image alt-text="Screenshot of the entry point of Advisor Score in Azure Advisor." lightbox="./media/advisor-score.png" source="./media/advisor-score.png" type="content":::
 
 ## Interpret an Advisor score
 
