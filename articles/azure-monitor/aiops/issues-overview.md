@@ -5,7 +5,7 @@ ms.topic: concept-article
 ms.service: azure-monitor
 ms.collection: ce-skilling-ai-copilot
 ms.reviewer: enauerman, ronitauber
-ms.date: 06/23/2026
+ms.date: 08/04/2026
 ai-usage: ai-assisted
 # Customer intent: As an Azure Monitor user, I want to understand what Azure Monitor issues are, how they relate to investigations, and how to use them to retain troubleshooting insights over time.
 ---
@@ -90,7 +90,7 @@ The following action types are supported:
 - Event Hubs
 - Azure Functions
 - Automation Runbook
-- Secure webhook
+- Secure webhook (use to connect to ServiceNow)
 - Webhook
 
 ### Configure actions
@@ -106,6 +106,8 @@ For more information about action groups, see [Action groups](/azure/azure-monit
 ### Example scenarios
 
 The following examples show how issue actions can support different response scenarios:
+
+- **Coordinate technical investigation and incident management with ServiceNow.** Send an issue to ServiceNow ITOM through a secure webhook. The Azure Monitor issue remains the technical workspace for on-call engineers, with related alerts, resources, and Observability Agent investigation results. The corresponding ServiceNow alert and ITSM incident support assignment, escalation, communications, and closure. With bidirectional sync enabled, relevant status changes remain aligned across both systems.
 
 - **Ticket creation and workflow integration** — Use a Logic App to create or update a work item in systems such as Azure DevOps or Jira when an issue is created or updated. The work item can include issue details such as severity, impacted resources, and operational context, helping teams track ownership, coordinate work, and manage resolution through their existing engineering processes.
 
