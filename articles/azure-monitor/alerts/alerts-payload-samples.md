@@ -231,7 +231,7 @@ The following are sample metric alert payloads.
       ],
       "dataSources": [
         {
-          "resourceId": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourcegroups/test/providers/microsoft.operationalinsights/workspaces/test",
+          "resourceId": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourcegroups/test/providers/microsoft.operationalinsights/workspaces/test",
           "tables": [
             "Heartbeat"
           ]
@@ -301,7 +301,7 @@ The following are sample metric alert payloads.
       ],
       "dataSources": [
         {
-          "resourceId": "/subscriptions/cccc2c2c-dd3d-ee4e-ff5f-aaaaaa6a6a6a/resourcegroups/test/providers/microsoft.operationalinsights/workspaces/test",
+          "resourceId": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourcegroups/test/providers/microsoft.operationalinsights/workspaces/test",
           "tables": [
             "Heartbeat"
           ]
@@ -350,8 +350,8 @@ The following are sample metric alert payloads.
           },
           "linkToSearchResultsUI": "https://portal.azure.com#@aaaabbbb-0000-cccc-1111-dddd2222eeee/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2FContoso%2Fproviders%2FMicrosoft.Compute%2FvirtualMachines%2FContoso%22%7D%5D%7D/q/eJzzSE0sKklKTSypUSjPSC1KVQjJzE11T81LLUosSU1RSEotKU9NzdNIAfJKgDIaRgZGBroG5roGliGGxlYmJlbGJnoGEKCpp4dDmSmKMk0A/prettify/1/timespan/2020-07-07T13%3a54%3a34.0000000Z%2f2020-07-09T13%3a54%3a34.0000000Z",
           "linkToFilteredSearchResultsUI": "https://portal.azure.com#@aaaabbbb-0000-cccc-1111-dddd2222eeee/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2FContoso%2Fproviders%2FMicrosoft.Compute%2FvirtualMachines%2FContoso%22%7D%5D%7D/q/eJzzSE0sKklKTSypUSjPSC1KVQjJzE11T81LLUosSU1RSEotKU9NzdNIAfJKgDIaRgZGBroG5roGliGGxlYmJlbGJnoGEKCpp4dDmSmKMk0A/prettify/1/timespan/2020-07-07T13%3a54%3a34.0000000Z%2f2020-07-09T13%3a54%3a34.0000000Z",
-          "linkToSearchResultsAPI": "https://api.loganalytics.io/v1/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/Contoso/providers/Microsoft.Compute/virtualMachines/Contoso/query?query=Heartbeat%7C%20where%20TimeGenerated%20between%28datetime%282020-07-09T13%3A44%3A34.0000000%29..datetime%282020-07-09T13%3A54%3A34.0000000%29%29&timespan=2020-07-07T13%3a54%3a34.0000000Z%2f2020-07-09T13%3a54%3a34.0000000Z",
-          "linkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/Contoso/providers/Microsoft.Compute/virtualMachines/Contoso/query?query=Heartbeat%7C%20where%20TimeGenerated%20between%28datetime%282020-07-09T13%3A44%3A34.0000000%29..datetime%282020-07-09T13%3A54%3A34.0000000%29%29&timespan=2020-07-07T13%3a54%3a34.0000000Z%2f2020-07-09T13%3a54%3a34.0000000Z"
+          "linkToSearchResultsAPI": "https://api.loganalytics.io/v1/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/Contoso/providers/Microsoft.Compute/virtualMachines/Contoso/query?query=Heartbeat%7C%20where%20TimeGenerated%20between%28datetime%282020-07-09T13%3A44%3A34.0000000%29..datetime%282020-07-09T13%3A54%3A34.0000000%29%29&timespan=2020-07-07T13%3a54%3a34.0000000Z%2f2020-07-09T13%3a54%3a34.0000000Z",
+          "linkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/Contoso/providers/Microsoft.Compute/virtualMachines/Contoso/query?query=Heartbeat%7C%20where%20TimeGenerated%20between%28datetime%282020-07-09T13%3A44%3A34.0000000%29..datetime%282020-07-09T13%3A54%3A34.0000000%29%29&timespan=2020-07-07T13%3a54%3a34.0000000Z%2f2020-07-09T13%3a54%3a34.0000000Z"
         }
       ],
       "windowStartTime": "2020-07-07T13:54:34Z",
@@ -868,8 +868,8 @@ Test **Log alerts V1** payloads only if your receiving endpoint or automation is
       "ResultCount": 2,
       "LinkToSearchResults": "https://portal.azure.com#@cccc2222-dd33-4444-55ee-666666ffffff/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2Faaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHi%2BWqUSguzc1NLMqsSlVwTE8vSk1PLElNCUvMKU21Tc4vzSvRaBcDeFgHiaBcDeFgHiaBcDeFgHiaBcDeFgHi/prettify/1/timespan/2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
       "LinkToFilteredSearchResultsUI": "https://portal.azure.com#@cccc2222-dd33-4444-55ee-666666ffffff/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2Faaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHiaBcDeFgHiaBcDeFgHiaBcDeFgHiaBcDeFgHidp%2BOPOhDKsHR%2FFeJXsTgzGJRmVui3KF3RpLyEJCX9A2iMl6jgxMn6jRevng3JmIHLdYtKP4DRI9mhc%3D/prettify/1/timespan/2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
-      "LinkToSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/dddd3333-ee44-5555-66ff-777777aaaaaa/query?query=Heartbeat%20%0A%7C%20summarize%20AggregatedValue%3Dcount%28%29%20by%20bin%28TimeGenerated%2C%205m%29&timespan=2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
-      "LinkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/dddd3333-ee44-5555-66ff-777777aaaaaa/query?query=Heartbeat%20%0A%7C%20summarize%20AggregatedValue%3Dcount%28%29%20by%20bin%28TimeGenerated%2C%205m%29%7C%20where%20todouble%28AggregatedValue%29%20%3E%200&timespan=2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
+      "LinkToSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/query?query=Heartbeat%20%0A%7C%20summarize%20AggregatedValue%3Dcount%28%29%20by%20bin%28TimeGenerated%2C%205m%29&timespan=2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
+      "LinkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/query?query=Heartbeat%20%0A%7C%20summarize%20AggregatedValue%3Dcount%28%29%20by%20bin%28TimeGenerated%2C%205m%29%7C%20where%20todouble%28AggregatedValue%29%20%3E%200&timespan=2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
       "SeverityDescription": "Informational",
       "WorkspaceId": "dddd3333-ee44-5555-66ff-777777aaaaaa",
       "SearchIntervalDurationMin": "1440",
@@ -906,7 +906,7 @@ Test **Log alerts V1** payloads only if your receiving endpoint or automation is
         ],
         "dataSources": [
           {
-            "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace",
+            "resourceId": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace",
             "region": "eastus",
             "tables": [
               "Heartbeat"
@@ -954,8 +954,8 @@ Test **Log alerts V1** payloads only if your receiving endpoint or automation is
       "ResultCount": 1,
       "LinkToSearchResults": "https://portal.azure.com#@cccc2222-dd33-4444-55ee-666666ffffff/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2Faaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHi%2ABCDE%3D%3D/prettify/1/timespan/2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
       "LinkToFilteredSearchResultsUI": "https://portal.azure.com#@cccc2222-dd33-4444-55ee-666666ffffff/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2Faaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHi%2ABCDE%3D%3D/prettify/1/timespan/2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
-      "LinkToSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/dddd3333-ee44-5555-66ff-777777aaaaaa/query?query=Heartbeat%0A&timespan=2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
-      "LinkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/dddd3333-ee44-5555-66ff-777777aaaaaa/query?query=Heartbeat%0A&timespan=2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
+      "LinkToSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/query?query=Heartbeat%0A&timespan=2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
+      "LinkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/query?query=Heartbeat%0A&timespan=2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
       "SeverityDescription": "Informational",
       "WorkspaceId": "dddd3333-ee44-5555-66ff-777777aaaaaa",
       "SearchIntervalDurationMin": "1440",
@@ -994,7 +994,7 @@ Test **Log alerts V1** payloads only if your receiving endpoint or automation is
         ],
         "dataSources": [
           {
-            "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace",
+            "resourceId": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace",
             "region": "eastus",
             "tables": [
               "Heartbeat"
@@ -1069,8 +1069,8 @@ You can also use `LinkToFilteredSearchResultsAPI` or `LinkToSearchResultsAPI` to
             },
             "linkToSearchResultsUI": "https://portal.azure.com#@cccc2222-dd33-4444-55ee-666666ffffff/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2Faaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHiJkLmNaBcDeFgHiJkLmNaBcDeFgHiJkLmNaBcDeFgHiJkLmN1234567890ZAZBZiaGBlaG5lbKlnAAFRmnp6WNUZoqvTBAA%3D/prettify/1/timespan/2021-11-16T10%3a17%3a39.0000000Z%2f2021-11-16T11%3a17%3a39.0000000Z",
             "linkToFilteredSearchResultsUI": "https://portal.azure.com#@cccc2222-dd33-4444-55ee-666666ffffff/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2Faaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHiJkLmN%2Fl35oOTZoKioEOouaBcDeFgHiJkLmN%2BaBcDeFgHiJkLmN%2BaBcDeFgHiJkLmN7HHgOCZTR0Ak%2FaBcDeFgHiJkLmN1234567890Ltcw%2FOqZS%2FuX0L5d%2Bx3iMHNzQiu3Y%2BzsjpFSWlOzgA87vAxeHW2MoAtQxe6OUvVrZR3XYZPXrd%2FIE/prettify/1/timespan/2021-11-16T10%3a17%3a39.0000000Z%2f2021-11-16T11%3a17%3a39.0000000Z",
-            "linkToSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/dddd3333-ee44-5555-66ff-777777aaaaaa/query?query=Heartbeat%7C%20where%20TimeGenerated%20between%28datetime%282021-11-16T10%3A17%3A39.0000000Z%29..datetime%282021-11-16T11%3A17%3A39.0000000Z%29%29&timespan=2021-11-16T10%3a17%3a39.0000000Z%2f2021-11-16T11%3a17%3a39.0000000Z",
-            "linkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/dddd3333-ee44-5555-66ff-777777aaaaaa/query?query=Heartbeat%7C%20where%20TimeGenerated%20between%28datetime%282021-11-16T10%3A17%3A39.0000000Z%29..datetime%282021-11-16T11%3A17%3A39.0000000Z%29%29%7C%20where%20tostring%28Computer%29%20%3D%3D%20%27test-computer%27&timespan=2021-11-16T10%3a17%3a39.0000000Z%2f2021-11-16T11%3a17%3a39.0000000Z"
+            "linkToSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/query?query=Heartbeat%7C%20where%20TimeGenerated%20between%28datetime%282021-11-16T10%3A17%3A39.0000000Z%29..datetime%282021-11-16T11%3A17%3A39.0000000Z%29%29&timespan=2021-11-16T10%3a17%3a39.0000000Z%2f2021-11-16T11%3a17%3a39.0000000Z",
+            "linkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/query?query=Heartbeat%7C%20where%20TimeGenerated%20between%28datetime%282021-11-16T10%3A17%3A39.0000000Z%29..datetime%282021-11-16T11%3A17%3A39.0000000Z%29%29%7C%20where%20tostring%28Computer%29%20%3D%3D%20%27test-computer%27&timespan=2021-11-16T10%3a17%3a39.0000000Z%2f2021-11-16T11%3a17%3a39.0000000Z"
           }
         ],
         "windowStartTime": "2025-04-15T18:08:03.626Z",
@@ -1283,14 +1283,14 @@ You can also use `LinkToFilteredSearchResultsAPI` or `LinkToSearchResultsAPI` to
       "channels": 1,
       "claims": null,
       "caller": null,
-      "correlationId": "12345678-abcd-efgh-ijkl-abcd12345678",
+      "correlationId": "aaaa0000-bb11-2222-33cc-444444dddddd",
       "eventSource": 2,
       "eventTimestamp": "2025-04-15T18:20:36.256Z",
       "httpRequest": null,
       "eventDataId": "eeeeeeee-4444-5555-6666-ffffffffffff",
       "level": 3,
       "operationName": "Microsoft.ServiceHealth/incident/action",
-      "operationId": "12345678-abcd-efgh-ijkl-abcd12345678",
+      "operationId": "aaaa0000-bb11-2222-33cc-444444dddddd",
       "properties": {
         "title": "TestActionGroup-TestServiceHealthAlert",
         "service": "AzureServiceName",

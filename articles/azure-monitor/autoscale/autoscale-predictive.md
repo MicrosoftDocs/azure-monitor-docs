@@ -68,7 +68,7 @@ Predictive autoscale adheres to the scaling boundaries you've set for your virtu
 
 ## Enable using an Azure Resource Manager template
 
-1. Retrieve the virtual machine scale set resource ID and resource group of your virtual machine scale set.  For example: /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/patest2/providers/Microsoft.Compute/virtualMachineScaleSets/patest2
+1. Retrieve the virtual machine scale set resource ID and resource group of your virtual machine scale set.  For example: /subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/patest2/providers/Microsoft.Compute/virtualMachineScaleSets/patest2
 
 1. Update the *autoscale_only_parameters* file with the virtual machine scale set resource ID and any autoscale setting parameters.
 
