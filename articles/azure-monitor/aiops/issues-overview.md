@@ -107,7 +107,7 @@ For more information about action groups, see [Action groups](/azure/azure-monit
 
 The following examples show how issue actions can support different response scenarios:
 
-- **Coordinate technical investigation and incident management with ServiceNow.** Send an issue to ServiceNow ITOM through a secure webhook. The Azure Monitor issue remains the technical workspace for on-call engineers, with related alerts, resources, and Observability Agent investigation results. The corresponding ServiceNow alert and ITSM incident support assignment, escalation, communications, and closure. With bidirectional sync enabled, relevant status changes remain aligned across both systems.
+- **Coordinate technical investigation and incident management with ServiceNow.** Send an issue to ServiceNow ITOM through a secure webhook. The Azure Monitor issue remains the technical workspace for on-call engineers, with related alerts, resources, and Observability Agent investigation results. The corresponding ServiceNow alert and ITSM incident support assignment, escalation, communications, and closure. When you enable bidirectional sync, relevant status changes stay aligned across both systems.
 
 - **Ticket creation and workflow integration** — Use a Logic App to create or update a work item in systems such as Azure DevOps or Jira when an issue is created or updated. The work item can include issue details such as severity, impacted resources, and operational context, helping teams track ownership, coordinate work, and manage resolution through their existing engineering processes.
 
