@@ -2,7 +2,8 @@
 title: Connect Grafana to Azure Monitor managed service for Prometheus
 description: Configure Azure Monitor managed service for Prometheus and Azure hosted Prometheus data as a data source for Azure Managed Grafana and self-managed Grafana. 
 ms.topic: how-to
-ms.date: 01/05/2025
+ms.date: 07/07/2026
+ai-usage: ai-assisted
 
 # Customer intent: As a developer or administrator, I want to connect Grafana to Azure Monitor managed service for Prometheus or Prometheus data hosted in an Azure Monitor workspace so that I can visualize and analyze the metrics.
 ---
@@ -23,10 +24,16 @@ Azure Monitor managed service for Prometheus stores data in an [Azure Monitor wo
 
 ## Configure Grafana
 
+Starting with Grafana 13, Azure authentication for Prometheus is available only through the **Azure Monitor Managed Service for Prometheus** data source plugin, not the core (open-source) Prometheus data source. In Grafana 11 and 12, the core Prometheus data source also supports Azure authentication. On Grafana 13 and later, use the Azure Monitor Managed Service for Prometheus plugin to connect to an Azure Monitor workspace. For background, see [Prometheus data source update: Redefining our big tent philosophy](https://grafana.com/blog/prometheus-data-source-update-redefining-our-big-tent-philosophy/). For migration details, see [Azure authentication for the Prometheus data source](https://grafana.com/docs/grafana/latest/datasources/prometheus/configure/azure-authentication/).
+
+> [!NOTE]
+> Existing Azure-authenticated Prometheus data sources migrate to the plugin automatically, so your dashboards, alerts, and queries keep working. Data sources that use non-Azure authentication are unaffected.
 
 ## [Azure Managed Grafana](#tab/azure-managed-grafana)
 
 An Azure Managed Grafana instance is automatically configured with a managed identity with the **Monitoring Data Reader** role required to allow the identity to read any monitoring data for the subscription. The identity is used to authenticate Grafana to Azure Monitor. 
+
+For more information about the data source plugins that Azure Managed Grafana supports, see [Manage data source plugins for Azure Managed Grafana](/azure/managed-grafana/how-to-data-source-plugins-managed-identity).
 
 ### Create the Prometheus data source in Grafana
 
@@ -34,7 +41,7 @@ Use the following steps to configure Prometheus as a data source:
 
 1. Open your Azure Managed Grafana workspace in the Azure portal and select the endpoint to view the Grafana workspace.
 1. Select **Connections** > **Data sources** and then  **Add data source**.
-1. Search for and select **Prometheus**.
+1. Search for and select the Prometheus data source. On Grafana 13 and later, select **Azure Monitor Managed Service for Prometheus**. On Grafana 11 and 12, select **Prometheus**.
 1. Paste the query endpoint from your Azure Monitor workspace into the **Prometheus server URL** field.
 1. Under **Authentication**, select **Azure Auth**.
 1. Under **Azure Authentication**, select **Managed Identity** from the **Authentication** dropdown list.
@@ -78,12 +85,12 @@ Use the following steps to enable Azure Authentication:
 Use the following steps to configure Prometheus as a data source:
 
 1. Open Grafana in your browser and select **Connections** > **Data sources**.
-2. Select **Add data source**.
-3. Search for and select **Prometheus**.
-4. Paste the query endpoint from your Azure Monitor workspace into the **Prometheus server URL** field.
-5. Under **Authentication**, select **Azure Auth**.
-6. Under **Azure Authentication**, select **Managed Identity** from the **Authentication** dropdown list.
-7. Scroll to the bottom of the page and select **Save & test**.
+1. Select **Add data source**.
+1. Search for and select the Prometheus data source. On Grafana 13 and later, select **Azure Monitor Managed Service for Prometheus**. On Grafana 11 and 12, select **Prometheus**.
+1. Paste the query endpoint from your Azure Monitor workspace into the **Prometheus server URL** field.
+1. Under **Authentication**, select **Azure Auth**.
+1. Under **Azure Authentication**, select **Managed Identity** from the **Authentication** dropdown list.
+1. Scroll to the bottom of the page and select **Save & test**.
 
     :::image type="content" source="media/prometheus-grafana/prometheus-data-source.png" lightbox="media/prometheus-grafana/prometheus-data-source.png" alt-text="Screenshot that shows configuration for Prometheus data source.":::
 
@@ -154,7 +161,7 @@ Versions 9.x and greater of Grafana support Azure Authentication, but it isn't e
 
 1. Open Grafana in your browser.
 1. Select **Connections** > **Data sources** and then select **Add data source**.
-1. Search for and select **Prometheus**.
+1. Search for and select the Prometheus data source. On Grafana 13 and later, select **Azure Monitor Managed Service for Prometheus**. On Grafana 11 and 12, select **Prometheus**.
 1. Paste the query endpoint from your Azure Monitor workspace into the **URL** field.
 1. Under **Authentication**, select **Azure Auth**. For earlier Grafana versions, under **Auth**, turn on **Azure Authentication**.
 1. Under **Azure Authentication**, select **App Registration** from the **Authentication** dropdown list.
@@ -168,6 +175,7 @@ Versions 9.x and greater of Grafana support Azure Authentication, but it isn't e
 
 ## Related content
 
+* [Manage data source plugins for Azure Managed Grafana](/azure/managed-grafana/how-to-data-source-plugins-managed-identity)
 * [Collect Prometheus metrics for your Azure Kubernetes Service (AKS) cluster](../containers/kubernetes-monitoring-enable.md)
 * [Collect Prometheus metrics for your Azure virtual machine scale set](prometheus-remote-write-virtual-machines.md)
 * [Configure Prometheus alerting and recording rules groups](prometheus-rule-groups.md)
