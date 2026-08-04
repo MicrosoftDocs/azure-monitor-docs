@@ -3,7 +3,7 @@ title: Use Azure Monitor Dashboards with Grafana
 description: Explains how to use Azure Monitor dashboards with Grafana.
 ms.topic: how-to
 ms.reviewer: kayodeprinceMS
-ms.date: 04/02/2026
+ms.date: 08/03/2026
 ai-usage: ai-assisted
 ---
 
@@ -139,6 +139,47 @@ Dashboards that you import or create require RBAC access configuration to share 
     > 'Microsoft.Dashboard/dashboard/read' and 'Microsoft.Dashboard/dashboard/write' can also be used to assign permissions with more fine-grained control.
 1. Copy the link to the dashboard to your clipboard.
 1. Paste the link into your preferred communication method to share it.
+
+## Link from one dashboard to another
+
+Dashboard data links let you move from a summary visualization to a related dashboard while preserving context. For example, the built-in Kubernetes dashboards pass the selected cluster and namespace to a pod dashboard. Data links differ from dashboard sharing links. Sharing links provide access to a dashboard, while data links navigate from a selected value or series.
+
+### Use a built-in dashboard link
+
+1. In the Azure portal, open your Azure Kubernetes Service (AKS) cluster.
+1. Under **Monitoring**, select **Dashboards with Grafana**.
+1. Select **Kubernetes | Compute Resources | Cluster**.
+1. In the **CPU Quota** table, select a namespace, such as **demo**.
+
+   :::image type="content" source="./media/visualizations-grafana/grafana-dashboard-drill-down.png" lightbox="./media/visualizations-grafana/grafana-dashboard-drill-down.png" alt-text="Screenshot of Dashboards with Grafana selected under Monitoring and linked namespaces in the CPU Quota table.":::
+
+The **Kubernetes | Compute Resources | Namespace (Pods)** dashboard opens. The link sets `var-cluster` to the source cluster and `var-namespace` to the selected namespace.
+
+### Add a data link to a panel
+
+Open a dashboard that you created or saved as a copy.
+
+1. Open the dashboard, and then select **Edit**.
+1. Hover over the panel. In the upper-right corner, select the vertical ellipsis, and then select **Edit**.
+
+   :::image type="content" source="./media/visualizations-grafana/grafana-dashboard-panel-edit-menu.png" lightbox="./media/visualizations-grafana/grafana-dashboard-panel-edit-menu.png" alt-text="Screenshot of the CPU Quota panel menu with the vertical ellipsis and Edit option highlighted.":::
+
+1. In the panel editor, expand **Data links and actions**, and then select **Add link**.
+1. In **Title**, enter a label for the link, such as `View namespace pods`.
+1. In **URL**, enter the target dashboard URL. Append query parameters that map values from the source dashboard to variables in the target dashboard. For example:
+
+   ```text
+   /d/KubernetesComputeResourcesNamespacePods/k8s-resources-namespace?${datasource:queryparam}&var-cluster=$cluster&var-namespace=${__data.fields.Namespace}
+   ```
+
+   This URL passes the current data source and cluster. It also sets the target dashboard's `namespace` variable to the value of the `Namespace` field in the selected row. Replace the dashboard path and variable names with the values used by your target dashboard.
+
+   :::image type="content" source="./media/visualizations-grafana/grafana-dashboard-add-data-link.png" lightbox="./media/visualizations-grafana/grafana-dashboard-add-data-link.png" alt-text="Screenshot of the Add link dialog with a title and URL that pass dashboard and namespace variables.":::
+
+1. To open the target dashboard in another browser tab, turn on **Open in new tab**. Then select **Save**.
+1. In the panel editor toolbar, select **Save** to save the dashboard.
+
+For more information about data link variables and supported visualizations, see [Configure data links and actions](https://grafana.com/docs/grafana/latest/panels-visualizations/configure-data-links/).
 
 ## Copy a dashboard to Azure Managed Grafana
 
