@@ -2,7 +2,8 @@
 title: Resource-scoped queries for Azure Monitor workspace
 description: Learn how to query Azure Monitor workspace metrics using resource-scoped queries with PromQL, including setup, authentication, and error handling.
 ms.topic: how-to
-ms.date: 05/08/2026
+ms.date: 07/29/2026
+ai-usage: ai-assisted
 author: tylerkight
 ms.author: tylerkight
 ---
@@ -24,6 +25,7 @@ Resource-scoped querying provides a more flexible and secure way to access metri
 
 - One or more Azure resources sending metrics to an Azure Monitor workspace
 - [Azure Monitor workspace](azure-monitor-workspace-overview.md) configured to receive metrics
+- The `Microsoft.Monitor` resource provider registered in each subscription that contains resources you query. This registration is especially important when the resources and workspace are in different subscriptions.
 - Appropriate [Azure RBAC permissions](#permissions-required) for the resources you want to query
 - Understanding of [PromQL basics](prometheus-api-promql.md)
 
@@ -271,6 +273,18 @@ Resource-scoped queries may return the following errors:
 ```
 
 **Solution**: Verify the authenticated identity has Monitoring Reader role (or higher) on the resources specified in the scoping header. If the workspace is in "Require workspace permissions" mode, also verify access to the workspace.
+
+### Microsoft.Monitor resource provider isn't registered
+
+**HTTP 403 Forbidden**
+
+```output
+Failed to authorize the request. Register the 'Microsoft.Monitor' resource provider on the resource's subscription and try again.
+```
+
+This error can occur when the `Microsoft.Monitor` resource provider isn't registered in the subscription that contains the resource specified in the `x-ms-azure-scoping` header. This scenario is more common when the resource and Azure Monitor workspace are in different subscriptions.
+
+**Solution**: Register the `Microsoft.Monitor` resource provider in the resource's subscription. For portal, Azure CLI, and Azure PowerShell instructions, see [Resolve errors for resource provider registration](/azure/azure-resource-manager/troubleshooting/error-register-resource-provider).
 
 ### Invalid token
 
