@@ -11,7 +11,7 @@ ms.date: 07/27/2026
 
 # CDBDataPlaneRequests15M
 
-The CDBDataPlaneRequests5M table consolidates logs for data-plane requests every fifteen minutes. These logs are aggregated based on the columns in the CDBDataPlaneRequests table. For detailed information about the log context, please refer to the CDBDataPlaneRequests table.
+The CDBDataPlaneRequests15M table consolidates logs for data-plane requests every fifteen minutes. These logs are aggregated based on the columns in the CDBDataPlaneRequests table. For detailed information about the log context, please refer to the CDBDataPlaneRequests table.
 
 ## Table attributes
 
