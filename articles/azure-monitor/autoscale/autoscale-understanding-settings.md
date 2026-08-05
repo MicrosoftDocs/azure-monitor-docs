@@ -2,7 +2,7 @@
 title: Understand autoscale settings in Azure Monitor
 description: This article explains autoscale settings, how they work, and how they apply to Azure Virtual Machines, Azure Cloud Services, and the Web Apps feature of Azure App Service.
 ms.topic: how-to
-ms.date: 07/27/2026
+ms.date: 08/05/2026
 ms.reviewer: akkumari
 ai-usage: ai-assisted
 ---
@@ -14,12 +14,10 @@ This article explains the autoscale settings.
 
 ## Autoscale setting schema
 
-The following example shows an autoscale setting with these attributes:
+The following example shows an autoscale setting with a single default profile and two metric rules in that profile:
 
-- A single default profile.
-- Two metric rules in this profile: one for scale-out, and one for scale-in.
-  - The scale-out rule is triggered when the virtual machine scale set's average percentage CPU metric is greater than 85% for the past 10 minutes.
-  - The scale-in rule is triggered when the virtual machine scale set's average is less than 60% for the past minute.
+- The scale-out rule triggers when the virtual machine scale set's average percentage CPU metric is greater than 85% for the past 10 minutes.
+- The scale-in rule triggers when the virtual machine scale set's average percentage CPU metric is less than 60% over the past 10 minutes, as specified by the rule's `timeWindow` value.
 
 > [!NOTE]
 > A setting can have multiple profiles. To learn more, see the [profiles](#autoscale-profiles) section. A profile can also have multiple scale-out rules and scale-in rules defined. To see how they're evaluated, see the [evaluation](#autoscale-evaluation) section.
