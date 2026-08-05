@@ -16,8 +16,8 @@ This article explains the autoscale settings.
 
 The following example shows an autoscale setting with a single default profile and two metric rules in that profile:
 
-- The scale-out rule is triggered when the virtual machine scale set's average percentage CPU metric is greater than 85% for the past 10 minutes.
-- The scale-in rule is triggered when the virtual machine scale set's average percentage CPU metric is less than 60% over the past 10 minutes, as specified by the rule's `timeWindow` value.
+- The scale-out rule triggers when the virtual machine scale set's average percentage CPU metric is greater than 85% for the past 10 minutes.
+- The scale-in rule triggers when the virtual machine scale set's average percentage CPU metric is less than 60% over the past 10 minutes, as specified by the rule's `timeWindow` value.
 
 > [!NOTE]
 > A setting can have multiple profiles. To learn more, see the [profiles](#autoscale-profiles) section. A profile can also have multiple scale-out rules and scale-in rules defined. To see how they're evaluated, see the [evaluation](#autoscale-evaluation) section.
