@@ -32,7 +32,7 @@ To create or edit an alert rule, you must have the following permissions:
 The format for extracting a dynamic value from the alert payload is: `${<path to schema field>}`, for example: `${data.essentials.monitorCondition}`.
 
 > [!NOTE]
-> Use the format of the common alert schema to specify the field in the payload even if the action groups configured for the alert rule don't use the common schema. For paths under `data.essentials`, see [Essentials fields](alerts-common-schema.md#essentials-fields). Fields under `data.alertContext` vary by monitoring service. For supported log search alert paths, see [Log search alerts context fields](alerts-common-schema.md#log-search-alerts-context-fields).
+> Use the format of the common alert schema to specify the field in the payload even if the action groups you configure for the alert rule don't use the common schema. For paths under `data.essentials`, see [Essentials fields](alerts-common-schema.md#essentials-fields). Fields under `data.alertContext` vary by monitoring service. For supported log search alert paths, see [Log search alerts context fields](alerts-common-schema.md#log-search-alerts-context-fields).
 
 ### Examples
 
