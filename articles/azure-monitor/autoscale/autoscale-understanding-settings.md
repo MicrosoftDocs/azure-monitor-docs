@@ -120,7 +120,7 @@ The following table describes the elements in the preceding autoscale setting's 
 
 ## Autoscale profiles
 
-Define up to 20 different profiles.  
+Define up to 20 different profiles per autoscale setting.  
 There are three types of autoscale profiles:
 
 - **Default profile**: Use the default profile if you don't need to scale your resource based on a particular date and time or day of the week. The default profile runs when there are no other applicable profiles for the current date and time. You can only have one default profile.
