@@ -10,6 +10,8 @@ ms.custom: template-concept
 
 # Targets and capabilities in Azure Chaos Studio
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 Before you can inject a fault against an Azure resource, the resource must first have corresponding targets and capabilities enabled. Targets and capabilities control which resources are enabled for fault injection and which faults can run against those resources.
 
 By using targets and capabilities [along with other security measures](chaos-studio-permissions-security.md), you can avoid accidental or malicious fault injection with Azure Chaos Studio. For example, with targets and capabilities, you can allow the CPU pressure fault to run against your production virtual machines while preventing the kill process fault from running against them.

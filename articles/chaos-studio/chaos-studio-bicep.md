@@ -11,6 +11,8 @@ ms.custom: devx-track-bicep
 
 # Use Bicep to create an experiment in Azure Chaos Studio 
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 [!INCLUDE [About Bicep](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-bicep-introduction.md)]
 
 This article includes a sample Bicep file to get started in Azure Chaos Studio, including:

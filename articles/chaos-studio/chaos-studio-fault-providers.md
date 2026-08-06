@@ -10,6 +10,8 @@ ms.reviewer: prashabora
 
 # Supported resource types and role assignments for Chaos Studio
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 The following table lists the supported resource types for faults, the target types, and suggested roles to use when you give an experiment permission to a resource of that type.
 
 More information about role assignments can be found on the [Azure built-in roles page](/azure/role-based-access-control/built-in-roles).

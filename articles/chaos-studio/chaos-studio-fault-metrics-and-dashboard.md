@@ -11,6 +11,8 @@ ms.custom: template-how-to
 
 # Measure fault impact with an Azure Monitor Workbook
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 A chaos experiment is only useful if you can measure the impact. While you can view metrics on individual resources, a centralized dashboard using Azure Workbooks provides a "single pane of glass" view to correlate the fault with its impact across multiple resources. This workbook serves as a reusable tool for all chaos experiments.
 
 The ability to visualize the direct correlation between your chaos experiments and their impact on system metrics is crucial for understanding system resilience. Azure Workbooks offer a powerful, customizable solution that allows you to create dynamic dashboards that can be reused across different experiments, resource groups, and subscriptions. By centralizing your fault analysis in a single dashboard, you can quickly identify how different types of faults affect your infrastructure and applications, enabling you to make informed decisions about system improvements and disaster recovery planning.

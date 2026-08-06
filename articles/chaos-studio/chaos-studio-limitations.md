@@ -4,17 +4,20 @@ description: Understand current limitations and known issues when you use Azure 
 services: chaos-studio
 author: prasha-microsoft 
 ms.topic: overview
-ms.date: 10/14/2024
+ms.date: 08/05/2026
 ms.reviewer: carlsonr
 ---
 
 # Azure Chaos Studio limitations and known issues
+
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 
 The following are known limitations in Chaos Studio. 
 
 ## Limitations
 
 - **Supported regions** - The target resources must be in [one of the regions supported by the Azure Chaos Studio](https://azure.microsoft.com/global-infrastructure/services/?products=chaos-studio).
+- **AKS Chaos Mesh faults require cluster admin credential retrieval** - Chaos Mesh faults retrieve the AKS cluster admin credential (`listClusterAdminCredential`) to run, even when the cluster uses AKS-managed Microsoft Entra authentication and the experiment identity uses a least-privilege custom role. Clusters that disable local accounts (`disableLocalAccounts` set to `true`) aren't supported. For details and the required configuration, see [Known limitation: cluster admin credential retrieval](chaos-studio-aks-authentication.md#known-limitation-cluster-admin-credential-retrieval).
 - **Resource Move not supported** - Azure Chaos Studio tracked resources (for example, Experiments) currently DON'T support Resource Move. Experiments can be easily copied (by copying Experiment JSON) for use in other subscriptions, resource groups, or regions. Experiments can also already target resources across regions. Extension resources (Targets and Capabilities) do support Resource Move. 
 - **VMs require network access to Chaos Studio** - For agent-based faults, the virtual machine must have outbound network access to the Chaos Studio agent service:
     - Regional endpoints to allowlist are listed in [Permissions and security in Azure Chaos Studio](chaos-studio-permissions-security.md#network-security).

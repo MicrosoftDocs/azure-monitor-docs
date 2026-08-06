@@ -11,6 +11,8 @@ ms.custom: devx-track-arm-template
 
 # ARM template samples for experiments in Azure Chaos Studio
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 This article includes sample [Azure Resource Manager templates (ARM templates)](/azure/azure-resource-manager/templates/syntax) to create a [chaos experiment](chaos-studio-chaos-experiments.md) in Azure Chaos Studio. Each sample includes a template file and a parameters file with sample values to provide to the template.
 
 ## Create an experiment (sample)
