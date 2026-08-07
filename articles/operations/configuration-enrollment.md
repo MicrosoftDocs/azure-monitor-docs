@@ -38,6 +38,7 @@ The enrollment requires a [user assigned managed identity](/entra/identity/manag
 
 If you're using a Log Analytics workspace or Azure Monitor workspace in a different subscription than the one being enabled for essential machine management, then the managed identity must also have **Contributor** permissions in the resource group of the Log Analytics workspace or Azure Monitor workspace.
 
+The user assigned managed identity also needs to have permissions to act on the following resource providers: **Microsoft.Insights** and **Microsoft.Authorization**. For more information, see [Configure assignment restriction for user-assigned managed identities](/entra/identity/managed-identities-azure-resources/configure-managed-identities-assignment-restriction).
 
 
 ## Features enabled
