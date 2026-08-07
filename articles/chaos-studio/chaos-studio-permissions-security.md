@@ -10,6 +10,8 @@ ms.custom: template-concept, devx-track-arm-template
 
 # Permissions and security in Azure Chaos Studio
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 > [!NOTE]
 > If you're using [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md), the workspace's managed identity executes fault actions on your behalf. The portal prompts you to assign any missing roles to the workspace identity, both on the workspace and when you configure a scenario. For details, see [How role assignments happen](chaos-studio-workspace-permissions.md#how-role-assignments-happen). The information on this page applies when you create experiments directly.
 

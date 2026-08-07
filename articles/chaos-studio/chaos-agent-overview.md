@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Chaos Studio agent overview
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 > [!NOTE]
 > This section covers the agent used with the classic experiments model, which you install and manage yourself. In [Workspaces (preview)](chaos-studio-workspaces-overview.md), the CPU Pressure and Physical Memory Pressure scenarios handle the agent for you automatically, with no installation or setup. If you're using workspaces, start with [Agent-based Scenario requirements](chaos-studio-scenarios.md#agent-based-scenario-requirements) instead.
 

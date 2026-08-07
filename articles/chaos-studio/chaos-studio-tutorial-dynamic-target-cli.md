@@ -11,6 +11,8 @@ ms.devlang: azurecli
 
 # Create a chaos experiment that uses dynamic targeting to select hosts
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 You can use dynamic targeting in a chaos experiment to choose a set of targets to run an experiment against. In this article, we show you how to dynamically target virtual machine scale sets to shut down based on availability zone. Running this experiment can help you test failover to an Azure Virtual Machine Scale Sets instance in a different region if there's an outage.
 
 You can use these same steps to set up and run an experiment for any fault that supports dynamic targeting. Currently, only virtual machine scale set shutdown supports dynamic targeting.

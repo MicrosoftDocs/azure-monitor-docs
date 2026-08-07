@@ -10,6 +10,8 @@ ms.author: nikhilkaul
 
 # Add Chaos Studio IPs as Authorized IPs on AKS
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 ## Overview
 
 Azure Kubernetes Service lets you [allow only certain IP ranges](/azure/aks/api-server-authorized-ip-ranges) to reach a cluster. If you have enabled this option, Chaos Studio's AKS faults might fail, unless you authorize the IP addresses used by Chaos Studio for communication.

@@ -11,6 +11,8 @@ ms.custom: template-how-to
 
 # Simulate a DNS outage with Azure Chaos Studio using a Network Security Group (NSG) Rule Fault
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 A healthy application depends on the ability to resolve hostnames quickly and reliably. But what happens if DNS — the backbone of service discovery on the Internet — becomes unavailable?
 
 In this tutorial, you’ll use **Azure Chaos Studio** to simulate a **DNS outage** by blocking DNS traffic (port 53) through a temporary Network Security Group (NSG) rule. This experiment helps you understand how your application behaves when it can’t resolve hostnames and allows you to validate fallback or retry strategies before a real incident occurs.
