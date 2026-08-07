@@ -11,6 +11,8 @@ ms.custom: none, devx-track-azurecli
 
 # Example Experiments
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 This article provides examples for creating experiments from your command line (CLI) and Azure portal parameter examples for various experiments. You can copy and paste the following commands into the CLI or Azure portal, and edit them for your specific resources. 
 
 Here's an example of where you would copy and paste the Azure portal parameter into:

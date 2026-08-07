@@ -10,6 +10,8 @@ ms.reviewer: nikhilkaul
 
 # Troubleshooting Chaos Agent
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 This page provides a consolidated guide to troubleshooting issues related to the Chaos Agent used in Azure Chaos Studio. Use this guide to diagnose problems during installation, verify network connectivity, interpret agent status messages, and resolve common errors.
 
 > [!NOTE]

@@ -12,6 +12,8 @@ ms.topic: how-to
  
 # Configure customer-managed keys (preview) for Azure Chaos Studio by using Azure Blob Storage
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 Azure Chaos Studio automatically encrypts all data stored in your experiment resource with service-managed keys that Microsoft provides. As an optional feature, you can add a second layer of security by also providing your own customer-managed encryption keys. Customer-managed keys (CMKs) offer greater flexibility for controlling access and key-rotation policies.
 
 When you use CMKs, you need to specify a user-assigned managed identity (UMI) to retrieve the key. The UMI you create must match the UMI that you use for the Chaos Studio experiment.

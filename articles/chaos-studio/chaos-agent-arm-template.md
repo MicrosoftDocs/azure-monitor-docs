@@ -11,6 +11,8 @@ ms.reviewer: nikhilkaul
 
 # Resource Manager template samples for agents in Chaos Studio
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 This article includes a sample [Azure Resource Manager template](/azure/azure-resource-manager/templates/syntax) to deploy and configure the [Chaos Agent](./chaos-agent-overview.md) on Azure virtual machine scale sets using a user-assigned managed identity. The sample deploys the Chaos Agent extension with all capabilities enabled on a VM scale set.
 
 ## Chaos Agent

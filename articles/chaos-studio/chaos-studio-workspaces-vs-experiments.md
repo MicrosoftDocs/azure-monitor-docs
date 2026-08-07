@@ -3,7 +3,7 @@ title: Compare workspaces and experiments in Azure Chaos Studio
 description: Understand the differences between Chaos Studio workspaces and the classic experiment model, the main advantages of workspaces, and when to choose each model.
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 07/30/2026
+ms.date: 08/05/2026
 ai-usage: ai-assisted
 ---
 
@@ -19,6 +19,7 @@ Both models inject real faults against your Azure resources, but they differ in 
 
 | Aspect | Workspaces (preview) | Experiments (classic) |
 |---|---|---|
+| Servicing state | Active development. New Chaos Studio features ship in the workspaces model. | Legacy model. There's no further feature development, and only critical fixes, such as security updates, are considered for backport. |
 | Onboarding | Set a scope (subscription, resource group, or service group). The workspace discovers supported resources automatically. | Enable a target and capabilities on each resource before it can be used in an experiment. |
 | Test definition | Start from a scenario template that already composes the right actions and sequencing for an outage pattern, or customize one in the scenario designer. | Assemble faults, steps, and branches manually, and select target resources for each fault. |
 | Finding what to test | The scenario library shows which scenarios apply to the resources discovered in your scope. | You choose faults from the fault library and check resource requirements yourself. |
@@ -61,6 +62,8 @@ Choose experiments when:
 - You need a fault that the scenario catalog doesn't yet cover, such as specific agent-based faults or [AKS Chaos Mesh faults](chaos-studio-tutorial-aks-portal.md) for in-cluster fault injection.
 - You rely on classic-only capabilities such as [dynamic targeting](chaos-studio-tutorial-dynamic-target-portal.md) or [scheduled experiment runs](tutorial-schedule.md).
 - You require a generally available service. Workspaces are in public preview and aren't recommended for production workloads yet.
+
+If you choose the classic model, keep its servicing state in mind: it's a legacy model with no further feature development, and only critical fixes, such as security updates, are considered for backport.
 
 ## Using both models together
 
