@@ -2,8 +2,9 @@
 title: Analyze metrics with Azure Monitor metrics explorer
 description: Learn how to analyze metrics with Azure Monitor metrics explorer by creating metrics charts, setting chart dimensions, time ranges, aggregation, filters, splitting, and sharing.
 ms.topic: how-to
-ms.date: 07/07/2026
+ms.date: 08/07/2026
 ms.reviewer: vitalyg
+ai-usage: ai-assisted
 ---
 
 # Analyze metrics with Azure Monitor metrics explorer
@@ -14,7 +15,9 @@ In Azure Monitor, [metrics](data-platform-metrics.md) are a series of measured v
 
 In addition to standard metrics, your application emits extra *custom* performance indicators or business-related metrics. [Custom metrics](metrics-custom-overview.md) can be emitted by any application or Azure resource and collected by using [Azure Monitor Insights](../visualize/insights-overview.md), agents running on virtual machines (for example, [Azure Monitor Agent](../agents/azure-monitor-agent-manage.md)), or [OpenTelemetry](../app/opentelemetry-enable.md).
 
-Azure Monitor [metrics explorer](metrics-explorer.md) is a component of the Azure portal that helps you plot charts, visually correlate trends, and investigate spikes and dips in metrics values. You can use metrics explorer to investigate the health and utilization of your resources.
+Azure Monitor [metrics explorer](metrics-explorer.md) is a component of the Azure portal that helps you plot charts, visually correlate trends, and investigate spikes and dips in metrics values. Use metrics explorer to investigate the health and utilization of your resources.
+
+To visualize metrics across multiple resources, resource groups, or a subscription, you need *Monitoring Reader* permission at the subscription level. For more information, see [Assign Azure roles in the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 Watch the following video for an overview of creating and working with metrics charts in Azure Monitor metrics explorer.
 <br><br>
@@ -22,11 +25,11 @@ Watch the following video for an overview of creating and working with metrics c
 
 ## Create a metric chart using PromQL
 
-You can now create charts using Prometheus query language (PromQL) for metrics stored in an [Azure Monitor workspace](azure-monitor-workspace-overview.md). For more information, see [Metrics explorer with PromQL (Preview)](metrics-explorer.md).
+Create charts by using Prometheus query language (PromQL) for metrics stored in an [Azure Monitor workspace](azure-monitor-workspace-overview.md). PromQL extends the standard chart controls with advanced queries, including label filtering, mathematical operations, and aggregations across time series. This capability requires an Azure Monitor workspace. For more information, see [Metrics explorer with PromQL](metrics-explorer.md).
 
 ## Create a metric chart
 
-You can open metrics explorer from the **Azure Monitor overview** page, or from the **Monitoring** section of any resource. In the Azure portal, select **Metrics**.
+Open metrics explorer from the **Azure Monitor overview** page or from the **Monitoring** section of any resource. In the Azure portal, select **Metrics**.
 
 :::image type="content" source="./media/analyze-metrics/metrics-menu.png" lightbox="./media/analyze-metrics/metrics-menu.png" alt-text="Screenshot that shows how to open metrics explorer in the Azure portal.":::
 
@@ -34,24 +37,21 @@ If you open metrics explorer from Azure Monitor, the **Select a scope** page ope
 
 Here's a summary of configuration tasks for creating a chart to analyze metrics:
 
-* [Select your resource and metric](#set-the-resource-scope) to see the chart. You can choose to work with one or multiple resources and view a single or multiple metrics.
+* [Select your resource and metric](#set-the-resource-scope) to see the chart. Choose to work with one or multiple resources and view single or multiple metrics.
 
-* [Configure the time settings](#configure-the-time-range) that are relevant for your investigation. You can set the time granularity to allow for pan and zoom on your chart, and configure aggregations to show values like the maximum and minimum.
+* [Configure the time settings](#configure-the-time-range) that are relevant for your investigation. Set the time granularity to allow pan and zoom on your chart, and configure aggregations to show values like the maximum and minimum.
 
 * [Use dimension filters and splitting](#use-dimension-filters-and-splitting) to analyze which segments of the metric contribute to the overall metric value and identify possible outliers in the data.
 
 * Work with advanced settings to customize your chart. [Lock the y-axis range](#lock-the-y-axis-range) to identify small data variations that might have significant consequences. [Correlate metrics to logs](#correlate-metrics-to-logs) to diagnose the cause of anomalies in your chart.
 
-* [Configure alerts](../alerts/alerts-metric-overview.md) and [receive notifications](#set-up-alert-rules) when the metric value exceeds or drops below a threshold.
+* [Configure alerts](../alerts/alerts-types.md) and [receive notifications](#set-up-alert-rules) when the metric value exceeds or drops below a threshold.
 
 * [Share your chart](#share-your-charts) or pin it to dashboards.
 
 ## Set the resource scope
 
-The resource scope picker in Azure Monitor metrics explorer lets you scope your chart to view metrics for a single resource or for multiple resources. To view metrics across multiple resources, the resources must be within the same subscription and region location. 
-
-> [!NOTE] 
-> You must have *Monitoring Reader* permission at the subscription level to visualize metrics across multiple resources, resource groups, or a subscription. For more information, see [Assign Azure roles in the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+The resource scope picker in Azure Monitor metrics explorer lets you scope your chart to view metrics for a single resource or for multiple resources. To view metrics across multiple resources, the resources must be within the same subscription and region location.
 
 ### Select a single resource
 
@@ -71,14 +71,11 @@ To view metrics for a single resource in Azure Monitor metrics explorer:
 
     :::image source="./media/analyze-metrics/available-single-resource.png" lightbox="./media/analyze-metrics/available-single-resource.png" alt-text="Screenshot that shows a single resource." :::
 
-    > [!TIP]
-    > If you want the capability to view the metrics for multiple resources at the same time, or to view metrics across a subscription or resource group, select **Upvote**.
-
 1. When you're satisfied with your selection, select **Apply**.
 
 ### Select multiple resources
 
-You can see which metrics can be queried across multiple resources at the top of the **Resource types** menu in the scope picker.
+At the top of the **Resource types** menu in the scope picker, you can see which metrics you can query across multiple resources.
 
 :::image source="./media/analyze-metrics/multiple-resource-compatible.png" lightbox="./media/analyze-metrics/multiple-resource-compatible.png" alt-text="Screenshot that shows a menu of resources that are compatible for charts with multiple resources."::: 
 
@@ -92,7 +89,7 @@ You can see which metrics can be queried across multiple resources at the top of
 
 ### Select a resource group or subscription 
 
-For types that are compatible with multiple resources, you can query for metrics across a subscription or multiple resource groups.
+For types that are compatible with multiple resources, query for metrics across a subscription or multiple resource groups.
 
 1. Start by selecting a subscription or one or more resource groups.
 
@@ -113,7 +110,7 @@ For types that are compatible with multiple resources, you can query for metrics
 The **time picker** lets you configure the time range for your metric chart to view data that's relevant to your monitoring scenario. By default, the chart shows the most recent 24 hours of metrics data. 
 
 > [!NOTE]
-> [Most metrics in Azure are stored for 93 days](data-platform-metrics.md#retention-of-metrics). You can query no more than 30 days of data on any single chart. You can [pan](#pan-across-metrics-data) the chart to view the full retention. The 30-day limitation doesn't apply to [log-based metrics](../app/pre-aggregated-metrics-log-metrics.md#log-based-metrics).
+> [Most metrics in Azure are stored for 93 days](data-platform-metrics.md#retention-of-metrics). You can query up to 30 days of data on any single chart. You can [pan](#pan-across-metrics-data) the chart to view the full retention. The 30-day limitation doesn't apply to [log-based metrics](../app/metrics-overview.md#log-based-metrics).
 
 Use the time picker to change the **Time range** for your data, such as the last 12 hours or the last 30 days. 
 
@@ -133,19 +130,19 @@ To pan, select the left and right arrows at the edge of the chart. The arrow con
 
 ### Zoom into metrics data
 
-You can configure the *time granularity* of the chart data to support zoom in and zoom out for the time range. Use the **time brush** to investigate an interesting area of the chart like a spike or a dip in the data. Select an area on the chart and the chart zooms in to show more detail for the selected area based on your granularity settings. If the time grain is set to **Automatic**, zooming selects a smaller time grain. The new time range applies to all charts in metrics explorer.
+Set the *time granularity* of the chart data to support zoom in and zoom out across the time range. Use the **time brush** to investigate an interesting area of the chart, such as a spike or a dip in the data. Select an area on the chart and the chart zooms in to show more detail for the selected area based on your granularity settings. If the time granularity is set to **Automatic**, zooming selects a smaller granularity. The new time range applies to all charts in metrics explorer.
 
 :::image source="media/analyze-metrics/metrics-zoom-control.gif" lightbox="media/analyze-metrics/metrics-zoom-control.gif" alt-text="Animated screenshot that shows the zoom feature in metrics explorer.":::
 
 ## View multiple metric lines and charts
 
-You can create charts that plot multiple metric lines or show multiple metric charts at the same time. This functionality allows you to:
+Create charts that plot multiple metric lines or show multiple metric charts at the same time to:
 
 * Correlate related metrics on the same graph to see how one value relates to another.
 * Display metrics that use different units of measure in close proximity.
 * Visually aggregate and compare metrics from multiple resources.
 
-Suppose you have five storage accounts and you want to know how much space they consume together. You can create a stacked area chart that shows the individual values and the sum of all the values at points in time.
+Suppose you have five storage accounts and want to know how much space they consume together. Create a stacked area chart that shows the individual values and the sum of all the values at points in time.
 
 After you create a chart, select **Add metric** to add another metric to the same chart.
 
@@ -171,7 +168,7 @@ Customized colors are preserved when you pin the chart to a dashboard. The follo
 
 ## Configure aggregation
 
-When you add a metric to a chart, metrics explorer applies a default aggregation. The default makes sense in basic scenarios, but you can use a different aggregation to gain more insights about the metric.
+When you add a metric to a chart, Metrics Explorer applies a default aggregation. The default aggregation works well in basic scenarios, but a different aggregation can reveal more insights about the metric.
 
 Before you use different aggregations on a chart, you should understand how metrics explorer handles them. Metrics are a series of measurements (or "metric values") that are captured over a time period. When you plot a chart, the values of the selected metric are separately aggregated over the *time granularity*.
 
@@ -201,9 +198,9 @@ For more information about how metric aggregation works, see [Azure Monitor metr
 
 ## Use dimension filters and splitting
 
-Filtering and splitting are powerful diagnostic tools for metrics that have dimensions. You can implement these options to analyze which segments of the metric contribute to the overall metric value and identify possible outliers in the metric data. These features show how various metric segments or dimensions affect the overall value of the metric.
+Filtering and splitting are powerful diagnostic tools for metrics that have dimensions. Use these options to analyze which segments of the metric contribute to the overall metric value and identify possible outliers in the metric data. These features show how various metric segments or dimensions affect the overall value of the metric.
 
-**Filtering** lets you choose which dimension values are included in the chart. You might want to show successful requests when you chart the *server response time* metric. You apply the filter on the *success of request* dimension.
+**Filtering** lets you choose which dimension values are included in the chart. For example, show only failed requests when you chart the *server response time* metric by applying the filter on the *success of request* dimension.
 
 **Splitting** controls whether the chart displays separate lines for each value of a dimension or aggregates the values into a single line. Splitting allows you to visualize how different segments of the metric compare with each other. You can see one line for an average CPU usage across all server instances, or you can see separate lines for each server.
 
@@ -212,7 +209,7 @@ Filtering and splitting are powerful diagnostic tools for metrics that have dime
 
 ### Add filters
 
-You can apply filters to charts whose metrics have dimensions. Consider a *Transaction count* metric that has a *Response type* dimension. This dimension indicates whether the response from transactions succeeded or failed. If you filter on this dimension, metrics explorer displays a chart line for only successful or only failed transactions.
+Apply filters to charts whose metrics have dimensions. Consider a *Transaction count* metric that has a *Response type* dimension. This dimension indicates whether the response from transactions succeeded or failed. If you filter on this dimension, metrics explorer displays a chart line for only successful or only failed transactions.
 
 1. Above the chart, select **Add filter** to open the **filter picker**.
 
@@ -224,7 +221,7 @@ You can apply filters to charts whose metrics have dimensions. Consider a *Trans
 
     :::image type="content" source="./media/analyze-metrics/filter-operator.png" lightbox="./media/analyze-metrics/filter-operator.png" alt-text="Screenshot that shows the operator that you can use with the filter.":::
 
-1. Select which dimension values you want to apply to the filter when you're plotting the chart. This example shows filtering out the successful storage transactions.
+1. Select which dimension values to apply to the filter when plotting the chart. This example selects the failed storage transactions.
 
     :::image type="content" source="./media/analyze-metrics/filter-values.png" lightbox="./media/analyze-metrics/filter-values.png" alt-text="Screenshot that shows the dropdown list for filter values in metrics explorer.":::
 
@@ -233,7 +230,7 @@ You can apply filters to charts whose metrics have dimensions. Consider a *Trans
 
 1. After you select the filter values, click outside the **filter picker** to complete the action. The chart shows how many storage transactions have failed.
 
-    :::image type="content" source="./media/analyze-metrics/filtered-chart.png" lightbox="./media/analyze-metrics/filtered-chart.png" alt-text="Screenshot that shows the successful filtered storage transactions in the updated chart in metrics explorer.":::
+    :::image type="content" source="./media/analyze-metrics/filtered-chart.png" lightbox="./media/analyze-metrics/filtered-chart.png" alt-text="Screenshot that shows the failed filtered storage transactions in the updated chart in metrics explorer.":::
 
 1. Repeat these steps to apply multiple filters to the same charts.
 
@@ -275,7 +272,7 @@ For more examples that use filtering and splitting, see [Metric chart examples](
 
 ## Lock the y-axis range
 
-Locking the range of the value (y) axis becomes important in charts that show small fluctuations of large values. Consider how a drop in the volume of successful requests from 99.99 percent to 99.5 percent might represent a significant reduction in the quality of service. Noticing a small fluctuation in a numeric value would be difficult or even impossible if you're using the default chart settings. In this case, you could lock the lowest boundary of the chart to 99 percent to make a small drop more apparent.
+Locking the range of the value (y) axis becomes important in charts that show small fluctuations of large values. Consider how a drop in the volume of successful requests from 99.99 percent to 99.5 percent might represent a significant reduction in the quality of service. Noticing a small fluctuation in a numeric value is difficult or even impossible if you're using the default chart settings. In this case, lock the lowest boundary of the chart to 99 percent to make a small drop more apparent.
 
 Another example is a fluctuation in the available memory. In this scenario, the value technically never reaches 0. Fixing the range to a higher value might make drops in available memory easier to spot.
 
@@ -293,7 +290,7 @@ You choose a fixed time granularity because chart values change when the time gr
 
 ## Set up alert rules
 
-You can use your visualization criteria to create a metric-based alert rule. The new alert rule includes your chart's target resource, metric, splitting, and filter dimensions. You can modify these settings by using the **Create an alert rule** pane.
+Use your visualization criteria to create a metric-based alert rule. The new alert rule includes your chart's target resource, metric, splitting, and filter dimensions. Modify these settings in the **Create an alert rule** pane.
 
 1. To create an alert rule, select **New alert rule** in the upper-right corner of the chart.
 
@@ -307,7 +304,7 @@ You can use your visualization criteria to create a metric-based alert rule. The
 
 1. Enter **Name** and **Description** values for the alert rule.
 
-1. Select a **Severity** level for the alert rule. Severities include **Critical**, **Error Warning**, **Informational**, and **Verbose**.
+1. Select a **Severity** level for the alert rule. Severities include **Critical**, **Error**, **Warning**, **Informational**, and **Verbose**.
 
 1. Select **Review + create** to review the alert rule.
 
@@ -315,7 +312,7 @@ You can use your visualization criteria to create a metric-based alert rule. The
 
 1. Select **Create** to create the alert rule.
 
-For more information, see [Create, view, and manage metric alerts](../alerts/alerts-metric.md).
+For more information, see [Create, view, and manage metric alerts](../alerts/alerts-create-metric-alert-rule.md).
 
 ## Correlate metrics to logs
 
@@ -323,7 +320,7 @@ In metrics explorer, the **Drill into Logs** feature helps you diagnose the root
 
 * **Activity log**: Provides insight into the operations on each Azure resource in the subscription from the outside (the management plane) and updates on Azure Service Health events. Use the activity log to determine the what, who, and when for any write operations (`PUT`, `POST`, or `DELETE`) taken on the resources in your subscription. There's a single activity log for each Azure subscription.
 * **Resource logs**: Provides insight into operations that you performed within an Azure resource (the data plane). Examples include getting a secret from a key vault or making a request to a database. The content of resource logs varies by the Azure service and resource type. You must enable logs for the resource.
-* **Recommended log** Provides scenario-based queries that you can use to investigate anomalies in metrics explorer.
+* **Recommended log**: Provides scenario-based queries to investigate anomalies in Metrics Explorer.
 
 Currently, **Drill into Logs** is available for the following resource providers: Azure Application Insights, Autoscale, Azure App Service, and Azure Storage.
 
@@ -341,7 +338,7 @@ Currently, **Drill into Logs** is available for the following resource providers
 
 ## Share your charts
 
-After you configure a chart, you can add it to a dashboard or workbook. By adding a chart to a dashboard or workbook, you can make it accessible to your team. You can also gain insights by viewing it in the context of other monitoring information.
+After you configure a chart, add it to a dashboard or workbook to make it accessible to your team. Viewing it alongside other monitoring information provides more insight.
 
 * To pin a configured chart to a dashboard, in the upper-right corner of the chart, select **Save to dashboard** > **Pin to dashboard**.
 
@@ -367,7 +364,7 @@ This section provides answers to common questions.
 
 ### Why are metrics from the guest OS of my Azure virtual machine not showing up in metrics explorer?
 
-[Platform metrics](../platform/monitor-azure-resource.md#metrics) are automatically collected for Azure resources. To collect metrics from the guest OS of a virtual machine, install the [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) and configure a data collection rule for guest OS performance counters. The Azure Monitor Agent replaces the Azure Diagnostics extension (WAD) and Log Analytics agent, which were previously used for guest OS metric routing. For a list of guest OS metrics available through the Azure Monitor Agent, see [Virtual machine guest performance counters](../vm/virtual-machine-guest-metrics.md).
+[Platform metrics](../platform/monitor-azure-resource.md#metrics) are automatically collected for Azure resources. To collect metrics from the guest OS of a virtual machine, install the [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) and configure a data collection rule for guest OS performance counters. The Azure Monitor Agent replaces the Azure Diagnostics extension (WAD) and Log Analytics agent, which were previously used for guest OS metric routing. For a list of guest OS metrics available through the Azure Monitor Agent, see [Virtual machine guest performance counters](../vm/data-collection-performance.md).
 
 [!INCLUDE [prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer](includes/prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer.md)]
 
@@ -376,4 +373,4 @@ This section provides answers to common questions.
 * [Troubleshoot metrics explorer](metrics-troubleshoot.md)
 * [Review available metrics for Azure services](../reference/metrics-index.md)
 * [Explore examples of configured charts](metric-chart-samples.md)
-* [Create custom KPI dashboards](../app/tutorial-app-dashboards.md)
+* [Create custom KPI dashboards](../app/overview-dashboard.md#create-custom-kpi-dashboards-using-application-insights)
