@@ -364,7 +364,7 @@ This section provides answers to common questions.
 
 ### Why are metrics from the guest OS of my Azure virtual machine not showing up in metrics explorer?
 
-[Platform metrics](../platform/monitor-azure-resource.md#metrics) are automatically collected for Azure resources. To collect metrics from the guest OS of a virtual machine, install the [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) and configure a data collection rule for guest OS performance counters. The Azure Monitor Agent replaces the Azure Diagnostics extension (WAD) and Log Analytics agent, which were previously used for guest OS metric routing. For a list of guest OS metrics available through the Azure Monitor Agent, see [Virtual machine guest performance counters](../vm/data-collection-performance.md).
+[Platform metrics](../platform/monitor-azure-resource.md#metrics-for-an-azure-resource) are automatically collected for Azure resources. To collect metrics from the guest OS of a virtual machine, install the [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) and configure a data collection rule for guest OS performance counters. The Azure Monitor Agent replaces the Azure Diagnostics extension (WAD) and Log Analytics agent, which were previously used for guest OS metric routing. For a list of guest OS metrics available through the Azure Monitor Agent, see [Virtual machine guest performance counters](../vm/data-collection-performance.md).
 
 [!INCLUDE [prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer](includes/prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer.md)]
 

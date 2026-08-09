@@ -1,10 +1,11 @@
 ---
-title: Data collection endpoints in Azure Monitor 
+title: Data collection endpoints in Azure Monitor
 description: Overview of how data collection endpoints work and how to create and set them up based on your deployment.
 ms.topic: how-to
-ms.date: 05/21/2025
+ms.date: 08/07/2026
 ms.custom: references_region
-ms.reviwer: nikeist
+ms.reviewer: nikeist
+ai-usage: ai-assisted
 ---
 
 # Data collection endpoints in Azure Monitor
@@ -12,44 +13,44 @@ ms.reviwer: nikeist
 A data collection endpoint (DCE) is an Azure resource that defines a unique set of endpoints related to data collection, configuration, and ingestion in Azure Monitor. This article provides an overview of data collection endpoints and explains how to create and set them up based on your deployment.
 
 > [!NOTE]
-> This article only relates to data collection scenarios in Azure Monitor that use a [data collection rule (DCR)](data-collection-rule-overview.md). Legacy data collection scenarios such as collecting resource logs with diagnostic settings or Application insights data collection don't yet use DCEs in any way.
+> This article only relates to data collection scenarios in Azure Monitor that use a [data collection rule (DCR)](data-collection-rule-overview.md). Legacy data collection scenarios such as collecting resource logs with diagnostic settings or Application Insights data collection don't yet use DCEs in any way.
 
 ## When is a DCE required?
 
-A DCE isn't always required for data collection since the data source may use a public endpoint or the ingestion endpoints in the DCR. The sections below describes those scenarios where a DCE is required.
+A DCE isn't always required for data collection since the data source might use a public endpoint or the ingestion endpoints in the DCR. The following sections describe the scenarios where a DCE is required.
 
-### Azure Monitor agent (AMA) 
+### Azure Monitor Agent (AMA)
 
-[AMA](../agents/azure-monitor-agent-overview.md) will use a public endpoint by default to retrieve its configuration from Azure Monitor. A DCE is only required if you're using [private link](../fundamentals/private-link-security.md). 
+[Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) uses a public endpoint by default to retrieve its configuration from Azure Monitor. A DCE is only required if you're using [Private Link](../fundamentals/private-link-security.md).
 
 > [!IMPORTANT]
-> Since Azure Monitor Private Link Scope (AMPLS) is dependent on DNS private link zones, any AMA installation connected to a network that shares DNS with AMPLS resources will require a DCE. Get more details at [Enable network isolation for Azure Monitor Agent by using Private Link](../fundamentals/private-link-security.md).
+> Since Azure Monitor Private Link Scope (AMPLS) is dependent on DNS Private Link zones, any Azure Monitor Agent installation connected to a network that shares DNS with AMPLS resources requires a DCE. For more information, see [Enable network isolation for Azure Monitor Agent by using Private Link](../fundamentals/private-link-security.md).
 
-You can view the agents associated with a DCE from its **Resources** page. Click **Add** to add additional agents. To remove them, select one or more agents and click **Disassociate** .
+View the agents associated with a DCE from its **Resources** page. Select **Add** to add more agents. To remove them, select one or more agents and select **Disassociate**.
 
 :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-resources.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-resources.png" alt-text="Screenshot resources for a DCE in the Azure portal.":::
 
 A DCE is required for certain [AMA data sources](../vm/data-collection.md). In this case, the DCE is specified in the DCR using that data source. If an agent is associated with multiple DCRs, a DCE is only required in those DCRs with data sources that require it. Other data sources can continue to use the public endpoint.
 
 > [!IMPORTANT]
-> If the data source is sending to a destination configured for private link, the DCE configured in the DCR for that data source must be added to AMPLS.
+> If the data source is sending to a destination configured for Private Link, the DCE configured in the DCR for that data source must be added to AMPLS.
 
 The following data sources currently require a DCE:
 
-* [Windows Firewall Logs](../agents/data-sources-firewall-logs.md)
+* [Windows Firewall Logs](../vm/data-collection-firewall-logs.md)
 * [Prometheus Metrics (Container Insights)](../containers/kubernetes-monitoring-enable.md)
 
-You can view the DCE for a DCR from the **Overview** page of the DCR. Click **Configure DCE** to modify it.
+View the DCE for a DCR from the **Overview** page of the DCR. Select **Configure DCE** to modify it.
 
 :::image type="content" source="media/data-collection-endpoint-overview/data-collection-rule-dce.png" lightbox="media/data-collection-endpoint-overview/data-collection-rule-dce.png" alt-text="Screenshot showing DCR overview page with DCE.":::
 
 ### Logs ingestion API
 
-When you [create a DCR for Logs ingestion API](../logs/logs-ingestion-api-overview.md#data-collection-rule-dcr), the DCR will have a `logsIngestion` property which is an endpoint that you can use to send logs using the API. If you use this endpoint, then you don't need a DCE. You can still use a DCE instead of the DCR endpoint if you prefer. You must use a DCE if you're sending data to a Log Analytics workspace configured for private link.
+When you [create a DCR for Logs ingestion API](../logs/logs-ingestion-api-overview.md#data-collection-rule-dcr), the DCR has a `logsIngestion` property, which is an endpoint for sending logs using the API. If you use this endpoint, you don't need a DCE. Use a DCE instead of the DCR endpoint if you prefer. You must use a DCE if you're sending data to a Log Analytics workspace configured for Private Link.
 
 ## Components of a DCE
 
-A data collection endpoint includes components required to ingest data into Azure Monitor and send configuration files to Azure Monitor Agent. 
+A data collection endpoint includes the components required to ingest data into Azure Monitor and send configuration files to Azure Monitor Agent.
 
 [How you set up endpoints for your deployment](#how-to-set-up-data-collection-endpoints-based-on-your-deployment) depends on whether your monitored resources and Log Analytics workspaces are in one or more regions.
 
@@ -67,61 +68,100 @@ This table describes the components of a data collection endpoint, related regio
 * **Scenario: All monitored resources are in the same region as the destination Log Analytics workspace**
 
     Set up one data collection endpoint to send configuration files and receive collected data.
-    
+
     :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-one-region.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-one-region.png" alt-text="A diagram that shows resources in a single region sending data and receiving configuration files using a data collection endpoint.":::
 
 * **Scenario: Monitored resources send data to a Log Analytics workspace in a different region**
 
     * Create a data collection endpoint in each region where you have Azure Monitor Agent deployed to send configuration files to the agents in that region.
-    
-    * Send data from all resources to a data collection endpoint in the region where your destination Log Analytics workspaces are located. 
-    
+
+    * Send data from all resources to a data collection endpoint in the region where your destination Log Analytics workspaces are located.
+
     :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-regionality.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-regionality.png" alt-text="A diagram that shows resources in two regions sending data and receiving configuration files using data collection endpoints.":::
 
 * **Scenario: Monitored resources in one or more regions send data to multiple Log Analytics workspaces in different regions**
 
     * Create a data collection endpoint in each region where you have Azure Monitor Agent deployed to send configuration files to the agents in that region.
-    
+
     * Create a data collection endpoint in each region with a destination Log Analytics workspace to send data to the Log Analytics workspaces in that region.
-    
+
     * Send data from each monitored resource to the data collection endpoint in the region where the destination Log Analytics workspace is located.
-    
+
     :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-regionality-multiple-workspaces.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-regionality-multiple-workspaces.png" alt-text="A diagram that shows monitored resources in multiple regions sending data to multiple Log Analytics workspaces in different regions using data collection endpoints.":::
 
-> [!NOTE]
-> By default, the Microsoft.Insights resource provider isn't registered in a Subscription. Ensure to register it successfully before trying to create a Data Collection Endpoint.
+## Prerequisites
+
+You must register the `Microsoft.Insights` resource provider in your subscription before you create a data collection endpoint. By default, this provider isn't registered. Register it by running the following command:
+
+```azurecli
+az provider register --namespace Microsoft.Insights
+```
 
 ## Create a data collection endpoint
 
 # [Azure portal](#tab/portal)
 
-1. On the **Azure Monitor** menu in the Azure portal, select **Data Collection Endpoints** under the **Settings** section. Select **Create** to create a new Data Collection Endpoint.
+1. On the **Azure Monitor** menu in the Azure portal, select **Data collection endpoints** under the **Settings** section.
     <!-- convertborder later -->
     :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-overview.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-overview.png" alt-text="Screenshot that shows data collection endpoints." border="false":::
 
-1. Select **Create** to create a new endpoint. Provide a **Rule name** and specify a **Subscription**, **Resource Group**, and **Region**. This information specifies where the DCE will be created.
+1. Select **Create** to create a new data collection endpoint. Enter a **Name** and specify a **Subscription**, **Resource group**, and **Region**. This information specifies where the DCE is created.
     <!-- convertborder later -->
-    :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-basics.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-basics.png" alt-text="Screenshot that shows data collection rule basics." border="false":::
+    :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-basics.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-basics.png" alt-text="Screenshot that shows data collection endpoint basics." border="false":::
 
-1. Select **Review + create** to review the details of the DCE. Select **Create** to create it.
+1. Select **Review + create** to review the details of the DCE, and then select **Create**.
+
+1. After deployment finishes, select **Go to resource**. On the endpoint's **Overview** page, confirm that **Provisioning state** shows **Succeeded** to verify that the DCE was created.
 
 # [CLI](#tab/cli)
 
-Create DCEs by using the [DCE commands](/cli/azure/monitor/data-collection/endpoint).
+Create a data collection endpoint by using [az monitor data-collection endpoint create](/cli/azure/monitor/data-collection/endpoint#az-monitor-data-collection-endpoint-create). The following example creates a DCE with public network access disabled. Replace the placeholder values with your own.
 
-Create associations between endpoints to your target machines or resources by using [az monitor data-collection rule association create](/cli/azure/monitor/data-collection/rule/association#az-monitor-data-collection-rule-association-create).
+```azurecli
+az monitor data-collection endpoint create \
+    --name "myCollectionEndpoint" \
+    --resource-group "myResourceGroup" \
+    --location "eastus" \
+    --public-network-access "Disabled"
+```
 
-# [REST API](#tab/restapi)
+Verify that the endpoint was created and review its provisioning state by using [az monitor data-collection endpoint show](/cli/azure/monitor/data-collection/endpoint#az-monitor-data-collection-endpoint-show):
 
-Create DCEs by using the [DCE REST APIs](/rest/api/monitor/data-collection-endpoints).
+```azurecli
+az monitor data-collection endpoint show \
+    --name "myCollectionEndpoint" \
+    --resource-group "myResourceGroup" \
+    --query "provisioningState"
+```
 
-Create associations between endpoints to your target machines or resources by using the [DCRA REST APIs](/rest/api/monitor/datacollectionruleassociations/create#examples).
+Create associations between endpoints and your target machines or resources by using [az monitor data-collection rule association create](/cli/azure/monitor/data-collection/rule/association#az-monitor-data-collection-rule-association-create).
+
+# [REST API](#tab/restapi)
+
+Create a data collection endpoint by using the [DCE REST API](/rest/api/monitor/data-collection-endpoints/create). Send a `PUT` request to the resource URI, replacing the placeholder values with your own. The following example uses API version `2024-03-11`.
+
+```http
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionEndpoints/{dataCollectionEndpointName}?api-version=2024-03-11
+
+{
+  "location": "eastus",
+  "properties": {
+    "networkAcls": {
+      "publicNetworkAccess": "Disabled"
+    }
+  }
+}
+```
+
+A successful response returns the created endpoint, including its `configurationAccess`, `logsIngestion`, and `metricsIngestion` endpoints and a `provisioningState` of `Succeeded`, which verifies that the DCE was created. For more operations, see the [DCE REST APIs](/rest/api/monitor/data-collection-endpoints).
+
+Create associations between endpoints and your target machines or resources by using the [DCRA REST APIs](/rest/api/monitor/datacollectionruleassociations/create#examples).
 
 ---
 
 ## Sample data collection endpoint
 
-The sample data collection endpoint (DCE) below is for virtual machines with Azure Monitor agent, with public network access disabled so that agent only uses private links to communicate and send data to Azure Monitor/Log Analytics.
+The following sample data collection endpoint (DCE) is for virtual machines with Azure Monitor Agent, with public network access disabled so that the agent only uses Private Link to communicate and send data to Azure Monitor and Log Analytics.
 
 ```json
 {
@@ -135,7 +175,7 @@ The sample data collection endpoint (DCE) below is for virtual machines with Azu
   },
   "properties": {
     "configurationAccess": {
-      "endpoint": "https://mycollectionendpoint-abcd.eastus-1.control.monitor.azure.com"
+      "endpoint": "https://mycollectionendpoint-abcd.eastus-1.handler.control.monitor.azure.com"
     },
     "logsIngestion": {
       "endpoint": "https://mycollectionendpoint-abcd.eastus-1.ingest.monitor.azure.com"

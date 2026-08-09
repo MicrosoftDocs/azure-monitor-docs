@@ -2,9 +2,10 @@
 title: Secure your Azure Monitor deployment
 description: This article provides instructions for deploying Azure Monitor securely and explains how Microsoft secures Azure Monitor. 
 ms.topic: best-practice
-ms.date: 03/19/2025
+ms.date: 08/07/2026
 ms.custom: horz-security
 ms.reviewer:
+ai-usage: ai-assisted
 ---
 
 # Secure your Azure Monitor deployment 
@@ -17,21 +18,29 @@ This article provides instructions for deploying Azure Monitor securely and expl
 
 ### Application Insights TLS ingestion
 
+Application Insights requires a minimum TLS version to ingest telemetry securely. The following requirements describe the supported versions and the deprecation timeline.
+
 [!INCLUDE [application-insights-tls-requirements](../app/includes/application-insights-tls-requirements.md)]
 
 [!INCLUDE [application-insights-tls-requirements](../app/includes/application-insights-tls-requirements-deprecating.md)]
 
 For more information, see [TLS support in Application Insights FAQ](../app/application-insights-faq.yml#tls-support).
 
-## Alerts
+## Alert rule and action group security
+
+Alert rules and action groups control how Azure Monitor detects issues and notifies responders. The following practices help you secure these components.
 
 [!INCLUDE [waf-alerts-security](../alerts/includes/waf-alerts-security.md)]
 
 ## Virtual machine monitoring
 
+Monitoring virtual machines relies on agents and data collection that require secure configuration. The following practices help you protect these components.
+
 [!INCLUDE [waf-vm-security](../vm/includes/waf-vm-security.md)]
 
 ## Container monitoring
+
+Container monitoring collects telemetry from Kubernetes clusters and the workloads that run on them. The following practices help you secure this data.
 
 [!INCLUDE [waf-containers-security](../containers/includes/waf-containers-security.md)]
 
@@ -59,4 +68,4 @@ Azure Monitor secure deployment instructions are based on and consistent with Az
 
 ## Next step
 
-* Learn more about [getting started with Azure Monitor](getting-started.md).
+* Learn more in the [Azure Monitor overview](./overview.md).
