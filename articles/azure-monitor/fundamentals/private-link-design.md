@@ -3,7 +3,8 @@ title: Design Azure Monitor Private Link configuration
 description: This article shows how to design your Azure Private Link setup
 ms.reviewer: noakuper
 ms.topic: concept-article
-ms.date: 10/23/2024
+ms.date: 08/07/2026
+ai-usage: ai-assisted
 ---
 
 # Design Azure Monitor private link configuration
@@ -12,7 +13,7 @@ When you create an [Azure Monitor Private Link Scope (AMPLS)](./private-link-sec
 
 ## AMPLS limits
 
-[!INCLUDE [ampls-limitations](../fundamentals//includes/ampls-limitations.md)]
+[!INCLUDE [ampls-limitations](./includes/ampls-limitations.md)]
 
 ## Plan by network topology
 
@@ -30,7 +31,7 @@ In the following diagram, virtual network 10.0.1.x connects to AMPLS1, which cre
 
 Hub-and-spoke networks should use a single private link connection set on the hub (main) network, and not on each spoke virtual network.
 
-You might prefer to create separate private links for your spoke virtual networks to allow each virtual network to access a limited set of monitoring resources. In this case, you can create a dedicated private endpoint and AMPLS for each virtual network. You must also verify they don't share the same DNS zones to avoid DNS overrides.
+You might prefer to create separate private links for your spoke virtual networks to allow each virtual network to access a limited set of monitoring resources. In this case, create a dedicated private endpoint and AMPLS for each virtual network. You must also verify they don't share the same DNS zones to avoid DNS overrides.
 
 :::image type="content" source="./media/private-link-design/hub-and-spoke-with-single-private-endpoint-with-data-collection-endpoint.png" lightbox="./media/private-link-design/hub-and-spoke-with-single-private-endpoint-with-data-collection-endpoint.png" alt-text="Diagram that shows a hub-and-spoke single private link." border="false":::
 
@@ -40,16 +41,23 @@ With network peering, networks can share each other's IP addresses and most like
 
 ### Isolated networks
 
-If your networks aren't peered, you must also separate their DNS to use private links. You can then create a separate private endpoint for each network, and a separate AMPLS object. Your AMPLS objects can link to the same workspaces/components or to different ones.
+If your networks aren't peered, you must also separate their DNS to use private links. Then create a separate private endpoint for each network, and a separate AMPLS object. Your AMPLS objects can link to the same workspaces or components, or to different ones.
 
 
 ## Access modes
-Private link access modes let you to control how private links affect your network traffic. Which you select is critical to ensuring continuous, uninterrupted network traffic. 
+Private link access modes let you control how private links affect your network traffic. The mode you select is critical to ensuring continuous, uninterrupted network traffic.
 
-Access modes can apply to all networks connected to your AMPLS or to specific networks connected. Data ingestion and queries each have their own setting. For example, you can set the **Private Only** mode for ingestion and the **Open** mode for queries.
+Access modes apply to all networks connected to your AMPLS or to specific connected networks. Data ingestion and queries each have their own setting. For example, set the **Private Only** mode for ingestion and the **Open** mode for queries.
+
+The following table compares the two access modes:
+
+| Access mode | Reaches private link resources in the AMPLS | Reaches resources outside the AMPLS | Prevents data exfiltration | Typical use |
+| --- | --- | --- | --- | --- |
+| **Private Only** | Yes | No | Yes. Blocks traffic out of the AMPLS to Azure Monitor resources. | Maximum security after all Azure Monitor resources are added to the AMPLS. |
+| **Open** | Yes, through private endpoints. | Yes, if those resources accept traffic from public networks. | No | Mixed access or gradual onboarding. |
 
 > [!IMPORTANT]
-> Log Analytics ingestion uses resource-specific endpoints so it doesn't adhere to AMPLS access modes. To assure Log Analytics ingestion requests can't access workspaces out of the AMPLS, set the network firewall to block traffic to public endpoints, regardless of the AMPLS access modes.
+> Log Analytics ingestion uses resource-specific endpoints, so it doesn't adhere to AMPLS access modes. To ensure Log Analytics ingestion requests can't access workspaces outside the AMPLS, set the network firewall to block traffic to public endpoints, regardless of the AMPLS access modes.
 
 ### Private Only access mode
 **Private Only** mode allows the virtual network to reach only private link resources in the AMPLS. This is the most secure option and prevents data exfiltration by blocking traffic out of the AMPLS to Azure Monitor resources.
@@ -61,11 +69,10 @@ Access modes can apply to all networks connected to your AMPLS or to specific ne
  
 :::image type="content" source="./media/private-link-design/azure-monitor-private-link-scope-open-access-mode.png" lightbox="./media/private-link-design/azure-monitor-private-link-scope-open-access-mode.png" alt-text="Diagram that shows the AMPLS Open access mode." border="false":::
 
-> [!IMPORTANT]
-> Apply caution when you select the access mode. Using Private Only will block traffic to resources not in the AMPLS across all networks that share the same DNS regardless of subscription or tenant. If you can't add all Azure Monitor resources to the AMPLS, start by adding select resources and applying themode. Switch to the Private Only mode for maximum security only after you've added all Azure Monitor resources to your AMPLS.
+Apply caution when you select the access mode. Private Only mode blocks traffic to resources not in the AMPLS across all networks that share the same DNS, regardless of subscription or tenant. If you can't add all Azure Monitor resources to the AMPLS, start by adding select resources and applying the mode. Switch to Private Only mode for maximum security only after you add all Azure Monitor resources to your AMPLS.
 
 ### Set access modes for specific networks
-The access modes set on the AMPLS resource affect all networks, but you can override these settings for specific networks.
+The access modes set on the AMPLS resource affect all networks. Override these settings for specific networks when a particular network needs different behavior.
 
 In the following diagram, VNet1 uses the Open mode and VNet2 uses the Private Only mode. Requests from VNet1 can reach Workspace 1 and Component 2 over a private link. Requests can reach Component 3 only if it [accepts traffic from public networks](#control-network-access-to-ampls-resources). VNet2 requests can't reach Component 3.
 
@@ -80,13 +87,12 @@ Azure Monitor components can be set to either:
 
 This granularity allows you to set access per workspace according to your specific needs. For example, you might accept ingestion only through private link-connected networks but still choose to accept queries from all networks, public and private.
 
-> [!NOTE]
-> Blocking queries from public networks means clients like machines and SDKs outside of the connected AMPLS can't query data in the resource. That data includes logs, metrics, and the live metrics stream. Blocking queries from public networks affects all experiences that run these queries, such as workbooks, dashboards, insights in the Azure portal, and queries run from outside the Azure portal.
+If you block queries from public networks, clients like machines and SDKs outside of the connected AMPLS can't query data in the resource, including logs, metrics, and the live metrics stream. This blocking affects all experiences that run these queries, such as workbooks, dashboards, insights in the Azure portal, and queries run from outside the Azure portal.
 
 Following are exceptions to this network access:
 
-- **Diagnostic logs**. Logs and metrics sent to a workspace from a [diagnostic setting](../essentials/diagnostic-settings.md) are over a secure private Microsoft channel and aren't controlled by these settings.
-- **Custom metrics or Azure Monitor guest metrics**. [Custom metrics](../essentials/metrics-custom-overview.md) sent from the Azure Monitor Agent aren't controlled by DCEs and can't be configured over private links.
+- **Diagnostic logs**. Logs and metrics sent to a workspace from a [diagnostic setting](../platform/diagnostic-settings.md) use a secure private Microsoft channel and aren't controlled by these settings.
+- **Custom metrics or Azure Monitor guest metrics**. [Custom metrics](../metrics/metrics-custom-overview.md) sent from the Azure Monitor Agent can't be configured over private links.
 
 > [!NOTE]
 > Queries sent through the Resource Manager API can't use Azure Monitor private links. These queries can only gain access if the target resource allows queries from public networks.
@@ -104,7 +110,7 @@ Following are exceptions to this network access:
 
 * Add resources hosting the monitored workloads to a private link. For example, see [Using private endpoints for Azure Web App](/azure/app-service/networking/private-endpoint).
 * Non-portal consumption experiences must also run on the private-linked virtual network that includes the monitored workloads.
-* [Provide your own storage account](../app/profiler-bring-your-own-storage.md) to support private links for the .NET Profiler and Debugger.
+* [Provide your own storage account](../profiler/profiler-bring-your-own-storage.md) to support private links for the .NET Profiler and Debugger.
 
 > [!NOTE]
 > To fully secure workspace-based Application Insights, lock down access to the Application Insights resource and the underlying Log Analytics workspace.
@@ -112,6 +118,6 @@ Following are exceptions to this network access:
 
 ## Next steps
 
-- Learn how to [configure your private link](../logs/private-link-configure.md).
+- Learn how to [configure your private link](./private-link-configure.md).
 - Learn about [private storage](../logs/private-storage.md) for custom logs and customer-managed keys.
 - Learn about [Private Link for Automation](/azure/automation/how-to/private-link-security).
