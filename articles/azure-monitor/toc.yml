@@ -680,6 +680,9 @@ items:
         href: health-models/discoveries.md
     - name: Tutorials
       items:
+      - name: Create a health model by using Bicep
+        displayName: health models
+        href: health-models/tutorial-bicep.md
       - name: Configure signals
         displayName: health models
         href: health-models/tutorial-signals.md

@@ -52,4 +52,5 @@ If you don't add the identities when the health model is created, you can add th
 
 ## Next steps
 - [Configure a health model using the designer](./designer.md).
+- [Create a health model by using Bicep](./tutorial-bicep.md).
 - [Understand the concepts of health models](./concepts.md).

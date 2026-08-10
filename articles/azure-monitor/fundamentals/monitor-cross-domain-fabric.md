@@ -1,6 +1,6 @@
 ---
 title: Mirror Azure Monitor Data in Microsoft Fabric (Preview)
-description: Learn how to bring Azure Monitor Logs data into Microsoft Fabric to combine telemetry with business data for cross-domain operational intelligence.
+description: Learn how to share Azure Monitor Logs data into Microsoft Fabric to combine telemetry with business data for cross-domain operational intelligence.
 ms.topic: concept-article
 ms.date: 07/29/2026
 ai-usage: ai-assisted
@@ -10,7 +10,7 @@ ai-usage: ai-assisted
 
 # Mirror Azure Monitor data in Microsoft Fabric (preview)
 
-Bring Azure Monitor Logs into Microsoft Fabric with the **Mirror Azure Monitor** feature which supports all Logs table plans: Analytics, Basic, and Auxiliary \ Lake. After your telemetry is in OneLake, combine it with the business data already in Fabric. Reason across IT signals and business records together and act on them in real time.
+Share Azure Monitor Logs in Microsoft Fabric with the **Mirror Azure Monitor** feature which supports all Logs table plans: Analytics, Basic, and Auxiliary \ Lake. After your telemetry is shared in OneLake, combine it with the business data already in Fabric. Reason across IT signals and business records together and act on them in real time.
 
 The **Mirror Azure Monitor** feature connects your logs to Fabric without copying the data or duplicating storage. Sending data through Azure Monitor ingestion to Fabric uses the data collection rule (DCR) feature, [Send data to a Fabric destination](../vm/send-fabric-destination.md).
 
