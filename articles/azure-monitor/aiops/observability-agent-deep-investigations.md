@@ -60,9 +60,9 @@ You start a deep investigation from several places in the Azure portal. Each ent
 
    :::image type="content" source="media/observability-agent-deep-investigations/investigate-alert-action.png" alt-text="Screenshot of Azure Monitor alerts page with an alert details pane open, highlighting the Investigate action." lightbox="media/observability-agent-deep-investigations/investigate-alert-action.png":::
 
-  After you select **Investigate**, the Observability Agent opens with a brief summary of its features and Azure Agent Credit (AAC) usage. Select **Start chat** to begin the investigation.
+    After you select **Investigate**, the Observability Agent opens in a Temporary chat and automatically scopes the investigation to the originating alert. It posts an opening message that outlines the planned analysis, including the impact time window, the triggering alert, the target resource, and the related signals it intends to correlate. These signals include monitoring rules, relevant metrics, and recent alerts on adjacent resources.
 
-   :::image type="content" source="media/observability-agent-deep-investigations/investigation-azure-agent-credits.png" alt-text="Screenshot of the Observability Agent dialog with the Start chat button highlighted, listing features and Azure Agent Credit (AAC) pricing details." lightbox="media/observability-agent-deep-investigations/investigation-azure-agent-credits.png":::
+   The agent then prompts you to provide any additional context before proceeding, or to confirm that it should begin the investigation using the scope shown.
 
 - **Alert email notification** — open the **Investigate** link from an Azure Monitor alert email to start an investigation without going through the alerts list first.
 - **Logs blade** — opens chat scoped to a Log Analytics workspace or query, where you can [escalate to a deep investigation](#escalate-from-chat-to-a-deep-investigation).
