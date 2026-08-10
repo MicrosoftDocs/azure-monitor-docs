@@ -60,7 +60,7 @@ You start a deep investigation from several places in the Azure portal. Each ent
 
    :::image type="content" source="media/observability-agent-deep-investigations/investigate-alert-action.png" alt-text="Screenshot of Azure Monitor alerts page with an alert details pane open, highlighting the Investigate action." lightbox="media/observability-agent-deep-investigations/investigate-alert-action.png":::
 
-   After you select Investigate, the Observability Agent opens in a Temporary chat and automatically scopes the investigation to the originating alert. It posts an opening message that outlines the planned analysis, including the impact time window, the triggering alert, the target resource, and the related signals it intends to correlate — such as monitoring rules, relevant metrics, and recent alerts on adjacent resources.
+    After you select **Investigate**, the Observability Agent opens in a Temporary chat and automatically scopes the investigation to the originating alert. It posts an opening message that outlines the planned analysis, including the impact time window, the triggering alert, the target resource, and the related signals it intends to correlate. These signals include monitoring rules, relevant metrics, and recent alerts on adjacent resources.
 
    The agent then prompts you to provide any additional context before proceeding, or to confirm that it should begin the investigation using the scope shown.
 
