@@ -68,7 +68,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 **Versions:** Linux 1.44
 
-### Linux 1.44 (Rollout start date: Jul 31, 2026)
+### Linux 1.44 (Rollout start date: Aug 10, 2026)
 
 **Customer action:** No configuration changes are required for existing deployments. Upgrade to Linux 1.44 to receive these changes. The new OTLP port settings are optional.
 
