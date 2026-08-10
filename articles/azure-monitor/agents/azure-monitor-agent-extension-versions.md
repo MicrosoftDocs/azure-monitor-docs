@@ -2,7 +2,7 @@
 title: Azure Monitor Agent extension versions
 description: Release notes and version history for the Azure Monitor Agent virtual machine extension, including Windows, Linux, and metrics updates.
 ms.topic: release-notes
-ms.date: 07/06/2026
+ms.date: 07/30/2026
 ms.custom: references_region
 ms.reviewer: shseth, nmangum
 ai-usage: ai-assisted
@@ -13,26 +13,27 @@ ai-usage: ai-assisted
 
 This article describes the version details for the Azure Monitor Agent (AMA) virtual machine extension. This extension deploys the agent on virtual machines, scale sets, and Arc-enabled servers (on-premises servers with Azure Arc agent installed).
 
-> [!NOTE]
-> Microsoft supports Azure Monitor Agent versions released within the last year. Update to a version within this period. Microsoft releases all bug fixes in the latest version only.
+> [!IMPORTANT]
+> Microsoft supports Azure Monitor Agent versions released **within the last year only**. Update to a version within this period. Microsoft releases all bug fixes in the latest version only.
 
 ## Release cadence and rollout timeline
 
-Azure Monitor Agent versions are released on a regular cadence and deployed by using [Azure Safe Deployment Practices](https://azure.microsoft.com/blog/advancing-safe-deployment-practices/).
+Microsoft periodically releases new agent versions to deliver security updates, reliability improvements, and new features. These versions follow a monthly cadence and use [Azure Safe Deployment Practices](https://azure.microsoft.com/blog/advancing-safe-deployment-practices/) for deployment.
 
-### How releases work
+### Release notes availability
 
-New agent versions are released periodically to deliver security updates, reliability improvements, and new features. After a version is released, it rolls out progressively across Azure regions through automatic updates.
+Microsoft publishes release notes as soon as the rollout begins. Therefore, you might see versions listed here that aren't visible in your region for an ongoing rollout.
 
+### When can I see a new version?
+
+Once Microsoft releases a new version, it rolls out progressively across Azure regions through automatic updates. 
+
+- The monthly rollout for **Windows and Linux versions are separate and start on different dates**. Refer to specific version details further in this article for the start date.
 - Across Azure VMs, Virtual Machine Scale Sets, and Arc-enabled servers **within the same region, a new version becomes available for both manual and automatic updates (if enabled) at the same time** as part of coordinated rollout process.
 - Rollouts happen region by region, and it can take **4–6 weeks** from the start of the rollout before the version is available in all supported regions.
 - During the rollout period, resources in different regions **might see or run different agent versions until the rollout is complete**.
 
 For more information, see [Azure Monitor Agent installation and management guidance](azure-monitor-agent-overview.md).
-
-### Release notes availability
-
-Microsoft publishes release notes after the rollout completes. This timing ensures the release notes reflect a version that's fully available across regions.
 
 ### Recommendation
 
@@ -41,10 +42,12 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 ## Version summary
 
 > [!IMPORTANT]
+> The monthly rollout for Windows and Linux versions are separate and start on different dates. For the start date, see the version details further below.
 > Every release contains security, quality, and reliability updates in addition to the changes listed here.
 
-| Date | Windows | Linux | Metrics | Highlights |
+| Month | Windows | Linux | Metrics | Highlights |
 |---|---|---|---|---|
+| [Aug 2026](#aug-2026) | — | 1.44 | 2.2026.703.954 | Azure Linux 4 and Rocky Linux 10 support, OTLP metrics improvements, security and reliability fixes |
 | [July 2026](#july-2026) | 1.44 | 1.43 | 2.2026.617.1755 | CEF parsing improvements, OpenSSL 3.6.3 |
 | [June 2026](#june-2026) | — | 1.42 | — | Performance improvements, SUSE 16 support, CVE and memory leak fixes |
 | [May 2026](#may-2026) | 1.43 | — | 2.2026.424.2329 | Installer crash fix, OpenSSL 3.6.2, security dependency updates |
@@ -59,6 +62,44 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 | [March 2025](#march-2025) | 1.34.0 | 1.34.5 | — | Agent Settings refactoring, race condition fixes |
 | [January 2025](#january-2025) | 1.32.0 | 1.33.4 | — | Disk quota tuning |
 | [Older versions (Unsupported)](#older-versions-unsupported) |  
+
+
+## Aug 2026
+
+**Versions:** Linux 1.44
+
+### Linux 1.44 (Rollout start date: Aug 10, 2026)
+
+**Customer action:** No configuration changes are required for existing deployments. Upgrade to Linux 1.44 to receive these changes. The new OTLP port settings are optional.
+
+#### Security
+
+- Updated the bundled Metrics Extension security dependencies, including OpenSSL 3.6.3 and cURL 8.20.0.
+- Updated the bundled OpenTelemetry Collector to 1.20260702.111930, which includes OpenTelemetry Collector 0.154.0 and Go 1.25.7. This update addresses:
+  - [CVE-2025-68121](https://www.cve.org/CVERecord?id=CVE-2025-68121): Improper certificate validation during TLS session resumption.
+  - [CVE-2025-61732](https://www.cve.org/CVERecord?id=CVE-2025-61732): Potential code injection through cgo documentation comments.
+
+#### New features
+
+- Added support for Azure Linux 4.
+- Added support for Rocky Linux 10 on x86_64 and Arm64.
+- Added support for overriding or disabling OTLP gRPC, HTTP, and Prometheus ingestion ports through Data Collection Rule (DCR) agent settings.
+- Added AKS workload identity authentication for custom OTLP metrics ingestion.
+- Added Metrics Extension support for the GovSG sovereign cloud.
+
+#### Improvements
+
+- Updated Metrics Extension to 2.2026.703.954.
+- Improved custom OTLP metrics ingestion by buffering metrics until configuration is available and adding ingestion counters for monitoring and troubleshooting.
+
+#### Fixes
+
+- Fixed a rare condition that could corrupt or lose transformed log data during forwarding.
+- Fixed SELinux labeling so AMA logs rotate correctly on RHEL 10.2 and later, preventing uncontrolled log-file growth.
+- Fixed syslog configuration regeneration and ensured the configured syslog port is reset when AMA is uninstalled.
+- Fixed Metrics Extension policy settings not reverting correctly after configuration reload.
+- Corrected metric type attributes when cumulative metrics are converted to delta metrics.
+
 
 ## July 2026
 
