@@ -57,5 +57,6 @@ Health models allow you to create alerts based on health state instead of indivi
 ## Next steps
 
 - [Create a new health model](./create.md).
+- [Create a health model by using Bicep](./tutorial-bicep.md).
 - [Monitor a health model](./monitoring.md).
 - [Understand the concepts of health models](./concepts.md).
