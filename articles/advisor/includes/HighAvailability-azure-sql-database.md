@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 08/11/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure SQL Database
@@ -222,40 +222,8 @@ Subcategory: undefined
 
 <!--46cc1fcd-f1eb-4558-a7fb-22ba33f9e8e9_end-->
 
-<!--38a03d36-66a4-4bc1-bda1-f4aaa189749a_begin-->
 
-#### Back Up Your Keys  
-  
-It is highly recommended to use Azure Key Vault (AKV) to store encryption keys related to Always Encrypted configurations, however it's not required. If you aren't using AKV, then ensure that your keys are properly backed up and stored in a secure manner.  
-  
-**Potential benefits**: Enhanced security and data recovery  
 
-**Impact:** Medium
-  
-For more information, see [Always Encrypted - SQL Server](/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17)  
 
-ResourceType: microsoft.sql/managedinstances  
-Recommendation ID: 38a03d36-66a4-4bc1-bda1-f4aaa189749a  
-Subcategory: undefined
-
-<!--38a03d36-66a4-4bc1-bda1-f4aaa189749a_end-->
-
-<!--1becb9c2-c90d-4739-99be-5b24228455a0_begin-->
-
-#### Back Up Your Keys  
-  
-It is highly recommended to use Azure Key Vault (AKV) to store encryption keys related to Always Encrypted configurations, however it's not required. If you aren't using AKV, then ensure that your keys are properly backed up and stored in a secure manner.  
-  
-**Potential benefits**: Enhanced security and data recovery  
-
-**Impact:** Medium
-  
-For more information, see [Always Encrypted - SQL Server](/sql/relational-databases/security/encryption/always-encrypted-database-engine?view=sql-server-ver17)  
-
-ResourceType: microsoft.sql/servers  
-Recommendation ID: 1becb9c2-c90d-4739-99be-5b24228455a0  
-Subcategory: undefined
-
-<!--1becb9c2-c90d-4739-99be-5b24228455a0_end-->
 
 <!--articleBody-->

@@ -4,7 +4,7 @@ description: Full list of available reliability recommendations in Advisor.
 author: kanika1894
 ms.author: kapasrij
 ms.topic: article
-ms.date: 07/28/2026
+ms.date: 08/11/2026
 ---
 
 # Reliability recommendations
@@ -125,6 +125,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 [!INCLUDE [HighAvailability-media-services.md](./includes/HighAvailability-media-services.md)]
 
 [!INCLUDE [HighAvailability-microsoft.baremetalinfrastructure.md](./includes/HighAvailability-microsoft-baremetalinfrastructure.md)]
+
+[!INCLUDE [HighAvailability-microsoft.baremetalinfrastructure.md](./includes/HighAvailability-microsoft.baremetalinfrastructure.md)]
 
 [!INCLUDE [HighAvailability-microsoft.bingsearch.md](./includes/HighAvailability-microsoft-bingsearch.md)]
 
