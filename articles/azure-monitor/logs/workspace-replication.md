@@ -69,7 +69,7 @@ If you write your own client to send log data to your Log Analytics workspace, e
 > [!IMPORTANT]
 > [Log search alert rules](../alerts/alerts-types.md#log-alerts) continue to work when you switch between regions unless the Alerts service in the active region isn't working properly or the alert rules aren't available. This can happen, for example, if the region in which the alert rules were created is entirely down. Replication of alert rules across regions isn't done automatically as part of workspace replication, but can be done by the user (for example by exporting from the primary region and importing to the secondary).
 
-* The [purge operation](personal-data-mgmt.md#delete), which deletes records from a workspace, removes the relevant records from both the primary and the secondary workspaces. If one of the workspace instances isn't available, the purge operation fails.
+* The [purge operation](personal-data-mgmt.md#purge-personal-data), which deletes records from a workspace, removes the relevant records from both the primary and the secondary workspaces. If one of the workspace instances isn't available, the purge operation fails.
 
 * A replicated workspace can't be deleted. To properly delete a workspace, first disable replication.
 

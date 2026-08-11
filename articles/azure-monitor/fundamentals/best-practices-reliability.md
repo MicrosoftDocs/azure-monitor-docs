@@ -4,19 +4,14 @@ description: Recommendations for configuring Azure Monitor to optimize reliabili
 ms.topic: best-practice
 ms.date: 05/21/2025
 ms.reviewer:
+ai-usage: ai-assisted
 ---
 
 # Reliability best practices in Azure Monitor
 
-In the cloud, we acknowledge that failures happen. Instead of trying to prevent failures altogether, the goal is to minimize the effects of a single failing component. Use the following information to monitor your virtual machines and their client workloads for failure.
+In the cloud, failures happen. Instead of trying to prevent failures altogether, minimize the effects of a single failing component. This article describes reliability recommendations for Azure Monitor Logs, alerts, virtual machines, and containers to keep monitoring and telemetry available when parts of a workload fail.
 
-This article describes [Reliability](/azure/architecture/framework/reliability/) for Azure Monitor as part of the [Azure Well-Architected Framework](/azure/architecture/framework/). The Azure Well-Architected Framework is a set of guiding tenets that can be used to improve the quality of a workload. The framework consists of five pillars of architectural excellence:
-
-* Reliability
-* Security
-* Cost Optimization
-* Operational Excellence
-* Performance Efficiency
+These recommendations apply the [Reliability pillar](/azure/well-architected/reliability/) of the [Azure Well-Architected Framework](/azure/well-architected/).
 
 ## Azure Monitor Logs
 
@@ -24,16 +19,20 @@ This article describes [Reliability](/azure/architecture/framework/reliability/)
 
 ## Alerts
 
-[!INCLUDE [waf-containers-reliability](../alerts/includes/waf-alerts-reliability.md)]
+[!INCLUDE [waf-alerts-reliability](../alerts/includes/waf-alerts-reliability.md)]
 
 ## Virtual machines
+
+Apply these recommendations to keep monitoring of your virtual machines and their client workloads available when a component fails.
 
 [!INCLUDE [waf-vm-reliability](../vm/includes/waf-vm-reliability.md)]
 
 ## Containers
 
+Apply these recommendations to keep monitoring of your container workloads available when a component fails.
+
 [!INCLUDE [waf-containers-reliability](../containers/includes/waf-containers-reliability.md)]
 
 ## Next step
 
-* Learn more about [getting started with Azure Monitor](getting-started.md).
+* Learn more in the [Azure Monitor overview](overview.md).
