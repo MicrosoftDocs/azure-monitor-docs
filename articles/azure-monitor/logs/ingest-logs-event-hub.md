@@ -3,7 +3,7 @@ title: Ingest events from Azure Event Hubs into Azure Monitor Logs (Preview)
 description: Ingest logs from Event Hubs into Azure Monitor Logs 
 ms.reviewer: ilanawaitser
 ms.topic: tutorial 
-ms.date: 07/31/2026
+ms.date: 08/11/2026
 ms.custom: references_regions 
 
 # Customer intent: As a DevOps engineer, I want to ingest data from an event hub into a Log Analytics workspace so that I can monitor logs that I send to Azure Event Hubs.
@@ -138,11 +138,11 @@ To collect data with a data collection rule, you need an endpoint. This tutorial
 
 1. From the data collection endpoint's Overview screen, select **JSON View**.
 
-    :::image type="content" source="media/ingest-logs-event-hub/data-collection-endpoint-details.png" lightbox="media/ingest-logs-event-hub/data-collection-rule-details.png" alt-text="Screenshot that shows the data collection endpoint Overview screen.":::
+    :::image type="content" source="media/ingest-logs-event-hub/data-collection-endpoint-details.png" lightbox="media/ingest-logs-event-hub/data-collection-endpoint-details.png" alt-text="Screenshot that shows the data collection endpoint Overview screen.":::
 
 1. Copy the **Resource ID** for the data collection rule. You use this information in the next step.
 
-    :::image type="content" source="media/ingest-logs-event-hub/data-collection-rule-json-view.png" lightbox="media/ingest-logs-event-hub/data-collection-rule-json-view.png" alt-text="Screenshot that shows the data collection endpoint JSON view.":::
+    :::image type="content" source="media/ingest-logs-event-hub/data-collection-endpoint-json-view.png" lightbox="media/ingest-logs-event-hub/data-collection-endpoint-json-view.png" alt-text="Screenshot that shows the data collection endpoint JSON view.":::
     
 ## Create a data collection rule
 
@@ -152,15 +152,15 @@ To create a data collection rule in the Azure portal:
 
 1. In the portal's search box, type in *template* and then select **Deploy a custom template**.
 
-    :::image type="content" source="media/tutorial-workspace-transformations-api/deploy-custom-template.png" lightbox="media/tutorial-workspace-transformations-api/deploy-custom-template.png" alt-text="Screenshot to deploy custom template.":::
+    :::image type="content" source="media/ingest-logs-event-hub/deploy-custom-template.png" lightbox="media/ingest-logs-event-hub/deploy-custom-template.png" alt-text="Screenshot to deploy custom template.":::
 
 1. Select **Build your own template in the editor**.
 
-    :::image type="content" source="media/tutorial-workspace-transformations-api/build-custom-template.png" lightbox="media/tutorial-workspace-transformations-api/build-custom-template.png" alt-text="Screenshot to build template in the editor.":::
+    :::image type="content" source="media/ingest-logs-event-hub/build-custom-template.png" lightbox="media/ingest-logs-event-hub/build-custom-template.png" alt-text="Screenshot to build template in the editor.":::
 
 1. Paste the following Resource Manager template into the editor and select **Save**.
 
-    :::image type="content" source="media/tutorial-workspace-transformations-api/edit-template.png" lightbox="media/tutorial-workspace-transformations-api/edit-template.png" alt-text="Screenshot to edit Resource Manager template.":::
+    :::image type="content" source="media/ingest-logs-event-hub/edit-template.png" lightbox="media/ingest-logs-event-hub/edit-template.png" alt-text="Screenshot to edit Resource Manager template.":::
 
     Notice the following details in the [data collection rule](#dcr-template):
 
@@ -229,7 +229,7 @@ To create a data collection rule in the Azure portal:
                 "apiVersion": "2022-06-01",
                 "identity": {
                     "type": "systemAssigned"
-                    },
+                },
                 "properties": {
                     "dataCollectionEndpointId": "[parameters('endpointResourceId')]",
                     "streamDeclarations": {
@@ -253,12 +253,12 @@ To create a data collection rule in the Azure portal:
                     "dataSources": {
                         "dataImports": {
                             "eventHub": {
-                                    "consumerGroup": "[parameters('consumerGroup')]",
-                                    "stream": "Custom-MyEventHubStream",
-                                    "name": "myEventHubDataSource1"
+                                "consumerGroup": "[parameters('consumerGroup')]",
+                                "stream": "Custom-MyEventHubStream",
+                                "name": "myEventHubDataSource1"
                             }
                         }
-                   },
+                    },
                     "destinations": {
                         "logAnalytics": [
                             {
@@ -446,7 +446,7 @@ To check your destination table for ingested events:
 
     You should see events from your event hub.
 
-:::image type="content" source="media/ingest-logs-event-hub/log-analytics-query-results-with-events.png" lightbox="media/ingest-logs-event-hub/log-analytics-query-results-with-events.png" alt-text="Screenshot showing the results of a simple query on a custom table. The results consist of events ingested from an event hub.":::
+    :::image type="content" source="media/ingest-logs-event-hub/log-analytics-query-results-with-events.png" lightbox="media/ingest-logs-event-hub/log-analytics-query-results-with-events.png" alt-text="Screenshot showing the results of a simple query on a custom table. The results consist of events ingested from an event hub.":::
 
 ## Clean up resources
 
