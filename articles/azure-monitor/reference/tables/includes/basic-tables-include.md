@@ -1,7 +1,7 @@
 ---
 ms.service: azure-monitor
 ms.topic: include
-ms.date: 07/31/2026
+ms.date: 08/12/2026
 ms.custom: Basic tables by service
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -30,7 +30,7 @@ ms.custom: Basic tables by service
 | Azure CloudHsm  | [AzureMetrics](../azuremetrics.md)<br>[CloudHsmHardwareOperationAuditLogs](../cloudhsmhardwareoperationauditlogs.md)<br>[CloudHsmServiceOperationAuditLogs](../cloudhsmserviceoperationauditlogs.md)|
 | Azure confidential ledger  | [ACLTransactionLogs](../acltransactionlogs.md)<br>[ACLUserDefinedLogs](../acluserdefinedlogs.md)<br>[LedgerTransactionLogs](../ledgertransactionlogs.md)<br>[LedgerUserDefinedLogs](../ledgeruserdefinedlogs.md)|
 | Azure Cosmos DB  | [AzureMetrics](../azuremetrics.md)<br>[CDBCassandraRequests](../cdbcassandrarequests.md)<br>[CDBControlPlaneRequests](../cdbcontrolplanerequests.md)<br>[CDBDataPlaneRequests](../cdbdataplanerequests.md)<br>[CDBDataPlaneRequests15M](../cdbdataplanerequests15m.md)<br>[CDBDataPlaneRequests5M](../cdbdataplanerequests5m.md)<br>[CDBGremlinRequests](../cdbgremlinrequests.md)<br>[CDBMongoRequests](../cdbmongorequests.md)<br>[CDBPartitionKeyRUConsumption](../cdbpartitionkeyruconsumption.md)<br>[CDBPartitionKeyStatistics](../cdbpartitionkeystatistics.md)<br>[CDBQueryRuntimeStatistics](../cdbqueryruntimestatistics.md)<br>[CDBTableApiRequests](../cdbtableapirequests.md)|
-| Azure Cosmos DB for MongoDB (vCore)  | [AzureMetrics](../azuremetrics.md)<br>[VCoreMongoRequests](../vcoremongorequests.md)|
+| Azure DocumentDB(with MongoDB compatibility)  | [AzureMetrics](../azuremetrics.md)<br>[VCoreMongoRequests](../vcoremongorequests.md)|
 | Azure Data Explorer Clusters  | [AzureMetrics](../azuremetrics.md)|
 | Azure Data Manager for Energy  | [OEPDataplaneLogs](../oepdataplanelogs.md)|
 | Azure Data Transfer  | [DataTransferOperations](../datatransferoperations.md)|
