@@ -12,7 +12,7 @@ ms.reviewer: aprilbadger
 This article describes how to create data collection rules (DCRs) for the Azure Monitor Agent (AMA) to send VM data to [Azure Data Explorer (ADX)](/azure/data-explorer/data-explorer-overview) and [Fabric eventhouses](/fabric/real-time-intelligence/eventhouse). This feature is in public preview.
 
 > [!IMPORTANT]
-> **The Azure Data Explorer destination described in this article retires on September 1, 2026.** After that date, DCRs stop sending data to ADX clusters, and Microsoft no longer supports this destination. Move affected data flows to another supported destination before September 1, 2026.
+> **The preview feature described in this article retires on September 1, 2026.** After that date, Microsoft no longer supports the Azure Data Explorer and Fabric eventhouse destinations for data collection rules. Use the [Mirror Azure Monitor (preview)](../fundamentals/monitor-cross-domain-fabric.md) feature instead.
 
 ## Prerequisites
 
