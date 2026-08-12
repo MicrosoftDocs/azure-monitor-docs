@@ -278,7 +278,7 @@ Microsoft.DocumentDb/databaseAccounts
 - [AzureMetrics](./tables/azuremetrics.md)
 - [AzureDiagnostics](./tables/azurediagnostics.md)
 
-### Azure Cosmos DB for MongoDB (vCore)
+### Azure DocumentDB (with MongoDB compatibility)
 
 Microsoft.DocumentDB/mongoClusters
 
