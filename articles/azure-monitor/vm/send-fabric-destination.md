@@ -2,7 +2,7 @@
 title: Send data to Fabric and Azure Data Explorer (Preview)
 description: This article describes how to use Azure Monitor Agent to upload data to Azure Data Explorer and Fabric.
 ms.topic: how-to
-ms.date: 04/07/2026
+ms.date: 08/12/2026
 ms.reviewer: aprilbadger
 # Customer intent: As a Azure architect or administrator, I want to send VM data to Azure Data Explorer and Fabric for advanced analytics and real-time event processing.
 ---
@@ -10,6 +10,9 @@ ms.reviewer: aprilbadger
 # Send virtual machine client data to Fabric and Azure Data Explorer (Preview)
 
 This article describes how to create data collection rules (DCRs) for the Azure Monitor Agent (AMA) to send VM data to [Azure Data Explorer (ADX)](/azure/data-explorer/data-explorer-overview) and [Fabric eventhouses](/fabric/real-time-intelligence/eventhouse). This feature is in public preview.
+
+> [!IMPORTANT]
+> **The Azure Data Explorer destination described in this article retires on September 1, 2026.** After that date, DCRs stop sending data to ADX clusters, and Microsoft no longer supports this destination. Move affected data flows to another supported destination before September 1, 2026.
 
 ## Prerequisites
 
