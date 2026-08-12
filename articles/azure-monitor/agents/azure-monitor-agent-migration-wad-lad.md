@@ -2,7 +2,7 @@
 title: Migrate to Azure Monitor Agent from Azure Diagnostic extensions (WAD/LAD)
 description: Learn how to migrate from Azure Diagnostics extensions (WAD/LAD) to Azure Monitor Agent, including key differences and configuration mapping.
 ms.topic: concept-article
-ms.date: 02/25/2026
+ms.date: 08/12/2026
 ms.reviewer: shseth, nmangum
 # Customer intent: As an azure administrator, I want to understand the process of migrating from the WAD/LAD agents agent to the AMA agent.
 ---
@@ -52,7 +52,7 @@ Use the following phased approach to migrate from WAD/LAD to AMA with DCRs.
 1. Create DCRs that replicate the WAD/LAD intent:
    1. [Standard VM data sources](../vm/data-collection.md#add-data-sources) like Windows events (for example, System, Application, Security), Linux syslog, performance counters.
    1. [Custom text logs](../vm/data-collection-log-text.md) (same file path wildcards; ensure custom tables exist; often requires a DCE) sent to low-cost [Auxiliary tier](../logs/data-platform-logs.md#table-plans) in Log Analytics.
-   1. [ADX-destination routing](../vm/send-fabric-destination.md#create-a-data-collection-rule).
+   1. [ADX-destination routing](../vm/send-fabric-destination.md#create-a-data-collection-rule). This preview destination retires on September 1, 2026. To analyze virtual machine data in Fabric after that date, send the data to a Log Analytics workspace and use [Mirror Azure Monitor](../fundamentals/monitor-cross-domain-fabric.md).
 
 > [!NOTE]
 > Keep Windows and Linux in separate DCRs to avoid accidental counter duplication (same metric from both naming styles).

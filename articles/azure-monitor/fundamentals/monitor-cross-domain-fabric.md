@@ -2,7 +2,7 @@
 title: Mirror Azure Monitor Data in Microsoft Fabric (Preview)
 description: Learn how to share Azure Monitor Logs data into Microsoft Fabric to combine telemetry with business data for cross-domain operational intelligence.
 ms.topic: concept-article
-ms.date: 07/29/2026
+ms.date: 08/12/2026
 ai-usage: ai-assisted
 
 # Customer intent: As an operations or platform lead, I want to understand how Azure Monitor data combines with business data in Microsoft Fabric so that I can reason across IT and business signals in one place.
@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 
 Share Azure Monitor Logs in Microsoft Fabric with the **Mirror Azure Monitor** feature which supports all Logs table plans: Analytics, Basic, and Auxiliary \ Lake. After your telemetry is shared in OneLake, combine it with the business data already in Fabric. Reason across IT signals and business records together and act on them in real time.
 
-The **Mirror Azure Monitor** feature connects your logs to Fabric without copying the data or duplicating storage. Sending data through Azure Monitor ingestion to Fabric uses the data collection rule (DCR) feature, [Send data to a Fabric destination](../vm/send-fabric-destination.md).
+The **Mirror Azure Monitor** feature connects your logs to Fabric without copying the data or duplicating storage. Sending data through Azure Monitor ingestion to Fabric uses the data collection rule (DCR) feature, [Send data to a Fabric destination](../vm/send-fabric-destination.md), which retires on September 1, 2026.
 
 This cross-domain operational intelligence combines application and infrastructure telemetry with ERP, CRM, and other business data. Agents reason over the combined signals and recommend or take coordinated action across IT and the business domain.
 
@@ -40,7 +40,7 @@ A **Mirrored Azure Monitor** item exposes selected Log Analytics tables to Fabri
 - The mirrored item exposes two access paths. An Eventhouse shortcut supports real-time Kusto Query Language (KQL) queries, dashboards, and operations agents. A Lakehouse shortcut supports Spark and Power BI.
 - Existing Azure Monitor retention and lifecycle policies continue to govern the data.
 
-The **Mirrored Azure Monitor** feature keeps logs in Azure Monitor, unlike the data collection rule (DCR) feature, which uses Azure Monitor ingestion to [send data directly to a Fabric destination](../vm/send-fabric-destination.md).
+The **Mirrored Azure Monitor** feature keeps logs in Azure Monitor, unlike the retiring data collection rule (DCR) feature, which uses Azure Monitor ingestion to [send data directly to a Fabric destination](../vm/send-fabric-destination.md).
 
 ## Onboard with AI and Fabric skill
 
