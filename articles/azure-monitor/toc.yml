@@ -1748,14 +1748,8 @@ items:
       href: platform/resource-logs-schema.md
     - name: Activity log schema
       href: platform/activity-log-schema.md
-  - name: Azure Monitor Logs
-    items:
-    - name: Logs tables reference
-      href: /azure/azure-monitor/reference/tables-index
-    - name: Tables that support transformations
-      href: logs/tables-feature-support.md
-    - name: Tables that support the Basic table plan
-      href: logs/basic-logs-azure-tables.md
+    - name: Azure Monitor Logs table feature support
+      href: reference/tables-features.md
   - name: Windows diagnostics extension schema
     href: agents/diagnostics-extension-schema-windows.md
   - name: Azure PowerShell

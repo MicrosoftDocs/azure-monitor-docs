@@ -66,7 +66,7 @@ The Azure Monitor Logs Ingestion API with data collection rules (DCRs) and data 
 For example, you might have [diagnostic settings](../essentials/diagnostic-settings.md) that send [resource logs](../essentials/resource-logs.md) for different Azure resources to your workspace. You can create a transformation for the table that collects the resource logs that filters this data for only records that you want. This method saves you the ingestion cost for records you don't need. You might also want to extract important data from certain columns and store it in other columns in the workspace to support simpler queries.
 
 > [!NOTE]
-> Not all tables in a Log Analytics workspace support transformations. See [Tables that support transformations in Azure Monitor Logs](tables-feature-support.md) for a list of supported tables.
+> Not all tables in a Log Analytics workspace support transformations. See [Tables that support transformations in Azure Monitor Logs](../reference/tables-features.md) for a list of supported tables.
 
 ## Cost
 
