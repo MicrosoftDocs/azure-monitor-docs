@@ -2,7 +2,7 @@
 title: Azure Monitor Agent extension versions
 description: Release notes and version history for the Azure Monitor Agent virtual machine extension, including Windows, Linux, and metrics updates.
 ms.topic: release-notes
-ms.date: 07/30/2026
+ms.date: 08/13/2026
 ms.custom: references_region
 ms.reviewer: shseth, nmangum
 ai-usage: ai-assisted
@@ -47,7 +47,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 | Month | Windows | Linux | Metrics | Highlights |
 |---|---|---|---|---|
-| [Aug 2026](#aug-2026) | — | 1.44 | 2.2026.703.954 | Azure Linux 4 and Rocky Linux 10 support, OTLP metrics improvements, security and reliability fixes |
+| [Aug 2026](#aug-2026) | 1.45 | 1.44 | 2.2026.703.954 | Windows data-integrity and reliability fixes, Linux distribution support, OTLP metrics improvements |
 | [July 2026](#july-2026) | 1.44 | 1.43 | 2.2026.617.1755 | CEF parsing improvements, OpenSSL 3.6.3 |
 | [June 2026](#june-2026) | — | 1.42 | — | Performance improvements, SUSE 16 support, CVE and memory leak fixes |
 | [May 2026](#may-2026) | 1.43 | — | 2.2026.424.2329 | Installer crash fix, OpenSSL 3.6.2, security dependency updates |
@@ -66,7 +66,27 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 ## Aug 2026
 
-**Versions:** Linux 1.44
+**Versions:** Windows 1.45, Linux 1.44
+
+### Windows 1.45 (Rollout start date: Aug 13, 2026)
+
+**Customer action:** No configuration changes are required for existing deployments. Upgrade to Windows 1.45 to receive these changes.
+
+#### Security
+
+- Updated OpenSSL to 3.6.3.
+- Updated Metrics Extension to 2.2026.703.954.
+
+#### Improvements
+
+- Improved on-disk buffering reliability by correcting Fluent Bit storage configuration.
+- Reduced unnecessary token refresh activity.
+
+#### Fixes
+
+- Fixed data corruption for floating-point, narrow integer, Boolean, character, and UTC values when events pass through local filters.
+- Fixed crash conditions during early AMA service startup and logging initialization.
+- Fixed duplicate user-assigned managed identity handling in long-running deployments.
 
 ### Linux 1.44 (Rollout start date: Aug 10, 2026)
 
