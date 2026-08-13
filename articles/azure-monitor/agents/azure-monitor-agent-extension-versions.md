@@ -84,7 +84,6 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 #### Fixes
 
-- Fixed data corruption for floating-point, narrow integer, Boolean, character, and UTC values when events pass through local filters.
 - Fixed crash conditions during early AMA service startup and logging initialization.
 
 ### Linux 1.44 (Rollout start date: Aug 10, 2026)
