@@ -334,7 +334,7 @@ To find the `<identity_resource_Id>` value, navigate to your user-assigned manag
 
 ### Ingest log data into an Azure table (optional)
 
-To ingest data into a [supported Azure table](logs-ingestion-api-overview.md#supported-tables): 
+To ingest data into an [Azure table that supports the Logs Ingestion API](../reference/tables-features.md):
 
 1. In the data collection rule, change `outputStream`: 
 

@@ -2,7 +2,8 @@
 title: Logs Ingestion API in Azure Monitor
 description: Send data to a Log Analytics workspace using REST API or client libraries.
 ms.topic: concept-article
-ms.date: 07/29/2026
+ms.date: 08/13/2026
+ai-usage: ai-assisted
 ---
 
 # Logs Ingestion API in Azure Monitor
@@ -179,129 +180,7 @@ See [Sample code to send data to Azure Monitor using Logs ingestion API](tutoria
 
 ## Supported tables
 
-Data sent to the ingestion API can be sent to the following tables:
-
-| Tables | Description |
-|:-------|:------------|
-| Custom tables | Any custom table that you create in your Log Analytics workspace. The target table must exist before you can send data to it. Custom tables must have the `_CL` suffix. |
-| Azure tables | The following Azure tables are currently supported. Other tables may be added to this list as support for them is implemented.<br><br>
-* [ABAPAuditLog](/azure/azure-monitor/reference/tables/abapauditlog)<br>
-* [ABAPAuthorizationDetails](/azure/azure-monitor/reference/tables/abapauthorizationdetails)<br>
-* [ABAPChangeDocsLog](/azure/azure-monitor/reference/tables/abapchangedocslog)<br>
-* [ABAPUserDetails](/azure/azure-monitor/reference/tables/abapuserdetails)<br>
-* [ADAssessmentRecommendation](/azure/azure-monitor/reference/tables/adassessmentrecommendation)<br>
-* [ADSecurityAssessmentRecommendation](/azure/azure-monitor/reference/tables/adsecurityassessmentrecommendation)<br>
-* [Anomalies](/azure/azure-monitor/reference/tables/anomalies)<br>
-* [ASimAuditEventLogs](/azure/azure-monitor/reference/tables/asimauditeventlogs)<br>
-* [ASimAuthenticationEventLogs](/azure/azure-monitor/reference/tables/asimauthenticationeventlogs)<br>
-* [ASimDhcpEventLogs](/azure/azure-monitor/reference/tables/asimdhcpeventlogs)<br>
-* [ASimDnsActivityLogs](/azure/azure-monitor/reference/tables/asimdnsactivitylogs)<br>
-* [ASimFileEventLogs](/azure/azure-monitor/reference/tables/asimfileeventlogs)<br>
-* [ASimNetworkSessionLogs](/azure/azure-monitor/reference/tables/asimnetworksessionlogs)<br>
-* [ASimProcessEventLogs](/azure/azure-monitor/reference/tables/asimprocesseventlogs)<br>
-* [ASimRegistryEventLogs](/azure/azure-monitor/reference/tables/asimregistryeventlogs)<br>
-* [ASimUserManagementActivityLogs](/azure/azure-monitor/reference/tables/asimusermanagementactivitylogs)<br>
-* [ASimWebSessionLogs](/azure/azure-monitor/reference/tables/asimwebsessionlogs)<br>
-* [AWSALBAccessLogs](/azure/azure-monitor/reference/tables/awsalbaccesslogs)<br>
-* [AWSCloudTrail](/azure/azure-monitor/reference/tables/awscloudtrail)<br>
-* [AWSCloudWatch](/azure/azure-monitor/reference/tables/awscloudwatch)<br>
-* AWSEKS<br>
-* [AWSELBFlowLogs](/azure/azure-monitor/reference/tables/awselbflowlogs)<br>
-* [AWSGuardDuty](/azure/azure-monitor/reference/tables/awsguardduty)<br>
-* [AWSNetworkFirewallAlert](/azure/azure-monitor/reference/tables/awsnetworkfirewallalert)<br>
-* [AWSNetworkFirewallFlow](/azure/azure-monitor/reference/tables/awsnetworkfirewallflow)<br>
-* [AWSNetworkFirewallTls](/azure/azure-monitor/reference/tables/awsnetworkfirewalltls)<br>
-* [AWSNLBAccessLogs](/azure/azure-monitor/reference/tables/awsnlbaccesslogs)<br>
-* [AWSRoute53Resolver](/azure/azure-monitor/reference/tables/awsroute53resolver)<br>
-* [AWSS3ServerAccess](/azure/azure-monitor/reference/tables/awss3serveraccess)<br>
-* [AWSSecurityHubFindings](/azure/azure-monitor/reference/tables/awssecurityhubfindings)<br>
-* [AWSVPCFlow](/azure/azure-monitor/reference/tables/awsvpcflow)<br>
-* [AWSWAF](/azure/azure-monitor/reference/tables/awswaf)<br>
-* [AzureAssessmentRecommendation](/azure/azure-monitor/reference/tables/azureassessmentrecommendation)<br>
-* [AzureMetricsV2](/azure/azure-monitor/reference/tables/azuremetricsv2)<br>
-* [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog)<br>
-* [CrowdStrikeAlerts](/azure/azure-monitor/reference/tables/crowdstrikealerts)<br>
-* CrowdStrikeAPIActivityAudit<br>
-* CrowdStrikeAuthActivityAudit<br>
-* [CrowdStrikeCases](/azure/azure-monitor/reference/tables/crowdstrikecases)<br>
-* CrowdStrikeCSPMIOAStreaming<br>
-* CrowdStrikeCSPMSearchStreaming<br>
-* CrowdStrikeCustomerIOC<br>
-* [CrowdStrikeDetections](/azure/azure-monitor/reference/tables/crowdstrikedetections)<br>
-* [CrowdStrikeHosts](/azure/azure-monitor/reference/tables/crowdstrikehosts)<br>
-* [CrowdStrikeIncidents](/azure/azure-monitor/reference/tables/crowdstrikeincidents)<br>
-* CrowdStrikeReconNotificationSummary<br>
-* CrowdStrikeRemoteResponseSessionEnd<br>
-* CrowdStrikeRemoteResponseSessionStart<br>
-* CrowdStrikeScheduledReportNotification<br>
-* CrowdStrikeUserActivityAudit<br>
-* [CrowdStrikeVulnerabilities](/azure/azure-monitor/reference/tables/crowdstrikevulnerabilities)<br>
-* [DeviceTvmSecureConfigurationAssessmentKB](/azure/azure-monitor/reference/tables/devicetvmsecureconfigurationassessmentkb)<br>
-* [DeviceTvmSoftwareVulnerabilitiesKB](/azure/azure-monitor/reference/tables/devicetvmsoftwarevulnerabilitieskb)<br>
-* [DnsAuditEvents](/azure/azure-monitor/reference/tables/dnsauditevents)<br>
-* [Event](/azure/azure-monitor/reference/tables/event)<br>
-* [ExchangeAssessmentRecommendation](/azure/azure-monitor/reference/tables/exchangeassessmentrecommendation)<br>
-* [ExchangeOnlineAssessmentRecommendation](/azure/azure-monitor/reference/tables/exchangeonlineassessmentrecommendation)<br>
-* [GCPApigee](/azure/azure-monitor/reference/tables/gcpapigee)<br>
-* [GCPAuditLogs](/azure/azure-monitor/reference/tables/gcpauditlogs)<br>
-* [GCPCDN](/azure/azure-monitor/reference/tables/gcpcdn)<br>
-* [GCPCloudRun](/azure/azure-monitor/reference/tables/gcpcloudrun)<br>
-* [GCPCloudSQL](/azure/azure-monitor/reference/tables/gcpcloudsql)<br>
-* [GCPComputeEngine](/azure/azure-monitor/reference/tables/gcpcomputeengine)<br>
-* [GCPDNS](/azure/azure-monitor/reference/tables/gcpdns)<br>
-* [GCPFirewallLogs](/azure/azure-monitor/reference/tables/gcpfirewalllogs)<br>
-* [GCPIAM](/azure/azure-monitor/reference/tables/gcpiam)<br>
-* [GCPIDS](/azure/azure-monitor/reference/tables/gcpids)<br>
-* [GCPMonitoring](/azure/azure-monitor/reference/tables/gcpmonitoring)<br>
-* [GCPNAT](/azure/azure-monitor/reference/tables/gcpnat)<br>
-* [GCPNATAudit](/azure/azure-monitor/reference/tables/gcpnataudit)<br>
-* [GCPResourceManager](/azure/azure-monitor/reference/tables/gcpresourcemanager)<br>
-* [GCPVPCFlow](/azure/azure-monitor/reference/tables/gcpvpcflow)<br>
-* [GKEAPIServer](/azure/azure-monitor/reference/tables/gkeapiserver)<br>
-* [GKEApplication](/azure/azure-monitor/reference/tables/gkeapplication)<br>
-* [GKEAudit](/azure/azure-monitor/reference/tables/gkeaudit)<br>
-* [GKEControllerManager](/azure/azure-monitor/reference/tables/gkecontrollermanager)<br>
-* [GKEHPADecision](/azure/azure-monitor/reference/tables/gkehpadecision)<br>
-* [GKEScheduler](/azure/azure-monitor/reference/tables/gkescheduler)<br>
-* [GoogleCloudSCC](/azure/azure-monitor/reference/tables/googlecloudscc)<br>
-* [GoogleWorkspaceReports](/azure/azure-monitor/reference/tables/googleworkspacereports)<br>
-* [IlumioInsights](/azure/azure-monitor/reference/tables/ilumioinsights)<br>
-* [OTelLogs](/azure/azure-monitor/reference/tables/otellogs)<br>
-* [QualysKnowledgeBase](/azure/azure-monitor/reference/tables/qualysknowledgebase)<br>
-* [Rapid7InsightVMCloudAssets](/azure/azure-monitor/reference/tables/rapid7insightvmcloudassets)<br>
-* [Rapid7InsightVMCloudVulnerabilities](/azure/azure-monitor/reference/tables/rapid7insightvmcloudvulnerabilities)<br>
-* [SCCMAssessmentRecommendation](/azure/azure-monitor/reference/tables/sccmassessmentrecommendation)<br>
-* [SCOMAssessmentRecommendation](/azure/azure-monitor/reference/tables/scomassessmentrecommendation)<br>
-* [SecurityEvent](/azure/azure-monitor/reference/tables/securityevent)<br>
-* SentinelAlibabaCloudAPIGatewayLogs<br>
-* SentinelAlibabaCloudVPCFlowLogs<br>
-* SentinelAlibabaCloudWAFLogs<br>
-* SentinelTheHiveData<br>
-* [SfBAssessmentRecommendation](/azure/azure-monitor/reference/tables/sfbassessmentrecommendation)<br>
-* [SfBOnlineAssessmentRecommendation](/azure/azure-monitor/reference/tables/sfbonlineassessmentrecommendation)<br>
-* [SharePointOnlineAssessmentRecommendation](/azure/azure-monitor/reference/tables/sharepointonlineassessmentrecommendation)<br>
-* [SPAssessmentRecommendation](/azure/azure-monitor/reference/tables/spassessmentrecommendation)<br>
-* [SQLAssessmentRecommendation](/azure/azure-monitor/reference/tables/sqlassessmentrecommendation)<br>
-* StorageInsightsAccountPropertiesDaily<br>
-* StorageInsightsDailyMetrics<br>
-* StorageInsightsHourlyMetrics<br>
-* StorageInsightsMonthlyMetrics<br>
-* StorageInsightsWeeklyMetrics<br>
-* [Syslog](/azure/azure-monitor/reference/tables/syslog)<br>
-* [ThreatIntelIndicators](/azure/azure-monitor/reference/tables/threatintelindicators)<br>
-* [ThreatIntelligenceIndicator](/azure/azure-monitor/reference/tables/threatintelligenceindicator)<br>
-* [ThreatIntelObjects](/azure/azure-monitor/reference/tables/threatintelobjects)<br>
-* [UCClient](/azure/azure-monitor/reference/tables/ucclient)<br>
-* [UCClientReadinessStatus](/azure/azure-monitor/reference/tables/ucclientreadinessstatus)<br>
-* [UCClientUpdateStatus](/azure/azure-monitor/reference/tables/ucclientupdatestatus)<br>
-* [UCDeviceAlert](/azure/azure-monitor/reference/tables/ucdevicealert)<br>
-* [UCDOAggregatedStatus](/azure/azure-monitor/reference/tables/ucdoaggregatedstatus)<br>
-* [UCDOStatus](/azure/azure-monitor/reference/tables/ucdostatus)<br>
-* [UCServiceUpdateStatus](/azure/azure-monitor/reference/tables/ucserviceupdatestatus)<br>
-* [UCUpdateAlert](/azure/azure-monitor/reference/tables/ucupdatealert)<br>
-* [WindowsClientAssessmentRecommendation](/azure/azure-monitor/reference/tables/windowsclientassessmentrecommendation)<br>
-* [WindowsEvent](/azure/azure-monitor/reference/tables/windowsevent)<br>
-* [WindowsServerAssessmentRecommendation](/azure/azure-monitor/reference/tables/windowsserverassessmentrecommendation)<br>
+The Logs Ingestion API supports custom tables and selected Azure tables. The target table must exist before you send data. Custom table names must have the `_CL` suffix. For the current list of Azure tables that support the API, see [Azure Monitor Logs table feature support](../reference/tables-features.md).
 
 > [!NOTE]
 > Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). `_ResourceId`, `id`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names. Custom columns you add to an Azure table must have the suffix `_CF`.

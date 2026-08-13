@@ -103,7 +103,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Logs|[Log Analytics workspace overview](../logs/log-analytics-workspace-overview.md)|Added a clarification note to help customers resolve a common workspace configuration question more quickly.|
 |Logs|[Log ingestion time in Azure Monitor](../logs/data-ingestion-time.md)|Updated ingestion latency guidance with refreshed measurements, tab-based comparisons, and links to related articles on diagnostic settings, resource logs, activity log, and metrics.|
 |Logs|[Best practices for Azure Monitor Logs](../logs/best-practices-logs.md)|Refreshed best practices and dedicated cluster guidance for query performance, cluster sizing, and cost management.|
-|Logs|[Tables feature support](../logs/tables-feature-support.md)|Added 89 more tables that support transformations and refreshed the supported tables list for the Logs Ingestion API.|
+|Logs|[Azure Monitor Logs table feature support](../reference/tables-features.md)|Added 89 more tables that support transformations and refreshed the supported tables list for the Logs Ingestion API.|
 |Logs|[Audit queries in Azure Monitor Logs](../logs/query-audit.md)|Documented support for obfuscating string literals in Log Analytics query audit logs.|
 |Logs|[Set up a table with the Auxiliary plan](../logs/create-custom-table.md#create-a-custom-table)|Updated Auxiliary plan guidance to match the renamed portal experience and custom log creation terminology.|
 |Logs|[Customer-managed keys](../logs/customer-managed-keys.md)|Removed outdated CLI workaround guidance after the underlying issue was fixed.|
@@ -185,7 +185,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Node.js samples](../app/opentelemetry-configuration.md?tabs=nodejs)| We published new OpenTelemetry Node.js samples across our portfolio based on the [authoritative parity source](/samples/azure/azure-sdk-for-js/monitor-opentelemetry-typescript).|
 |Data Collection|[DCR visualizer](../data-collection/data-collection-rule-view.md)| Published new article for viewing DCRs to deliver content for new DCR Visualizer.|
 |Fundamentals|[VM agents troubleshooting](best-practices-security.md#recommended-action)| Published self-service steps for identifying and remediating VM agents still outdated TLS.|
-|Logs|[New transforms tables](../logs/tables-feature-support.md)|New tables supported for transforms.|
+|Logs|[Azure Monitor Logs table feature support](../reference/tables-features.md)|New tables supported for transforms.|
 |Logs|[New regions](../logs/workspace-replication.md#supported-regions)|New regions supported for workspace replication.|
 
 ### September 2025
@@ -823,7 +823,7 @@ Application-Insights|[Enable a framework extension for Application Insights Java
 Autoscale|[Use autoscale actions to send email and webhook alert notifications in Azure Monitor](../autoscale/autoscale-webhook-email.md)|Article updated and refreshed|
 Containers|[Query logs from Container insights](../containers/container-insights-log-query.md#container-logs)|New section: Container logs, with sample queries|
 Containers|[Authentication for Container Insights](../containers/container-insights-authentication.md)|New article: Configure agent authentication for the Container Insights agent|
-Essentials|[Azure monitoring REST API walkthrough](../platform/rest-api-walkthrough.md)|Added multi resource request examples|
+Essentials|[Azure monitoring REST API walkthrough](../platform/rest-api-walkthrough.md)|Added multi-resource request examples|
 Essentials|[Azure Monitor managed service for Prometheus rule groups](../metrics/prometheus-rule-groups.md)| Added CLI & PowerShell reference and examples|
 Logs|[Set up resources required to send data to Azure Monitor Logs using the Logs Ingestion API](../logs/set-up-logs-ingestion-api-prerequisites.md)|New article. Run a PowerShell script to set up resources required to send data to Azure Monitor using the Logs Ingestion API.|
 Logs|[Migrate from the HTTP Data Collector API to the Log Ingestion API to send data to Azure Monitor Logs](../logs/custom-logs-migrate.md)|Updated guidance for migrating from the legacy Azure Monitor Data Collector API to the Log Ingestion API.|
@@ -1438,7 +1438,7 @@ All references to unsupported versions of .NET and .NET CORE are scrubbed from A
 
 | Article | Description |
 |:---|:---|
-| [Azure Monitor customer-managed key](../logs/customer-managed-keys.md) | Updated limitations and constraint. |
+| [Azure Monitor customer-managed key](../logs/customer-managed-keys.md) | Updated limitations and constraints. |
 | [Design a Log Analytics workspace architecture](../logs/workspace-design.md) | Rewritten to better describe decision criteria and include Microsoft Sentinel considerations. |
 | [Manage access to Log Analytics workspaces](../logs/manage-access.md) | Consolidated and rewrote all content on configuring workspace access. |
 | [Restore logs in Azure Monitor (preview)](../logs/restore.md) | Documented new Log Analytics table management configuration UI, which lets you configure a table's log plan and archive and retention policies. |
