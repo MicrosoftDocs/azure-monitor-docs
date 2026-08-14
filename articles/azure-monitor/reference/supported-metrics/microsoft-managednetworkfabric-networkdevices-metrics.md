@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.ManagedNetworkFabric/networkDevices
 description: Reference for Microsoft.ManagedNetworkFabric/networkDevices metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/14/2026
 ms.custom: Microsoft.ManagedNetworkFabric/networkDevices, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -40,7 +40,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.ManagedN
 ### Category: BGP Status
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**BGP Peer Status**<br><br>Operational state of the BGP peer. State is represented in numerical form. Idle : 1, Connect : 2, Active : 3, Opensent : 4, Openconfirm : 5, Established : 6 |`BgpPeerStatus` | No | Unspecified |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `IpAddress`|PT1M |Yes|
+|**BGP Peer Status**<br><br>Operational state of the BGP peer. State is represented in numerical form. Idle : 1, Connect : 2, Active : 3, Opensent : 4, Openconfirm : 5, Established : 6. |`BgpPeerStatus` | No | Unspecified |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `IpAddress`|PT1M |Yes|
 
 ### Category: Component Operational State
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
@@ -72,11 +72,11 @@ For a list of supported logs, see [Supported log categories - Microsoft.ManagedN
 ### Category: Interface State Counters
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Eth Interface In CRC Errors**<br><br>The total number of frames received that had a length (excluding framing bits, but including FCS octets) of between 64 and 1518 octets, inclusive, but had either a bad Frame Check Sequence (FCS) with an integral number of octets (FCS Error) or a bad FCS with a non-integral number of octets (Alignment Error) |`IfEthInCrcErrors` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`|PT1M |Yes|
+|**Eth Interface In CRC Errors**<br><br>The total number of frames received that had a length (excluding framing bits, but including FCS octets) of between 64 and 1518 octets, inclusive, but had either a bad Frame Check Sequence (FCS) with an integral number of octets (FCS Error) or a bad FCS with a non-integral number of octets (Alignment Error). |`IfEthInCrcErrors` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`|PT1M |Yes|
 |**Eth Interface In Fragment Frames**<br><br>The total number of frames received that were less than 64 octets in length (excluding framing bits but including FCS octets) and had either a bad Frame Check Sequence (FCS) with an integral number of octets (FCS Error) or a bad FCS with a non-integral number of octets (Alignment Error). |`IfEthInFragmentFrames` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`|PT1M |Yes|
 |**Eth Interface In Jabber Frames**<br><br>Number of jabber frames received on the interface. Jabber frames are typically defined as oversize frames which also have a bad CRC. |`IfEthInJabberFrames` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`|PT1M |Yes|
-|**Eth Interface In MAC Control Frames**<br><br>MAC layer control frames received on the interface |`IfEthInMacControlFrames` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`|PT1M |Yes|
-|**Eth Interface In MAC Pause Frames**<br><br>MAC layer PAUSE frames received on the interface |`IfEthInMacPauseFrames` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`|PT1M |Yes|
+|**Eth Interface In MAC Control Frames**<br><br>MAC layer control frames received on the interface. |`IfEthInMacControlFrames` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`|PT1M |Yes|
+|**Eth Interface In MAC Pause Frames**<br><br>MAC layer PAUSE frames received on the interface. |`IfEthInMacPauseFrames` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`|PT1M |Yes|
 |**Eth Interface In Maxsize Exceeded**<br><br>The total number frames received that are well-formed dropped due to exceeding the maximum frame size on the interface. |`IfEthInMaxsizeExceeded` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`|PT1M |Yes|
 |**Eth Interface In Oversize Frames**<br><br>The total number of frames received that were longer than 1518 octets (excluding framing bits, but including FCS octets) and were otherwise well formed. |`IfEthInOversizeFrames` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`|PT1M |Yes|
 |**Eth Interface Out MAC Control Frames**<br><br>MAC layer control frames sent on the interface. |`IfEthOutMacControlFrames` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`|PT1M |Yes|
@@ -110,6 +110,10 @@ For a list of supported logs, see [Supported log categories - Microsoft.ManagedN
 |**Interface Out Bits Rate Percent**<br><br>Percentage value of current output bits rate on the interface compared to the port speed. |`IfOutBitsRatePercent` | No | Percent |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`|PT1M |Yes|
 |**Interface Out Discards Rate**<br><br>The rate of outbound packets that were chosen to be discarded even though no errors had been detected to prevent their being transmitted. |`IfOutDiscardsRate` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`|PT1M |Yes|
 |**Interface Out Pkts Rate**<br><br>The calculated transmitted rate of the interface, measured in packets per second. |`IfOutPktsRate` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`|PT1M |Yes|
+|**Port Channel In Bits Rate of Ethernet Member Interface**<br><br>Ethernet Interface In Bits Rate mapped against the port-channel, measured in bits per second. |`PortChInBitsRate` | No | BitsPerSecond |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`, `PortChannelName`|PT1M |Yes|
+|**Port Channel In Pkts Rate of Ethernet Member Interface**<br><br>Ethernet Interface In Pkts Rate mapped to the the port-channel, measured in packets per second. |`PortChInPktsRate` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`, `PortChannelName`|PT1M |Yes|
+|**Port Channel Out Bits Rate of Ethernet Member Interface**<br><br>Ethernet Interface Out Bits Rate mapped to the the port-channel, measured in bits per second. |`PortChOutBitsRate` | No | BitsPerSecond |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`, `PortChannelName`|PT1M |Yes|
+|**Port Channel Out Pkts Rate of Ethernet Member Interface**<br><br>Ethernet Interface Out Pkts Rate mapped to the port-channel, measured in packets per second. |`PortChOutPktsRate` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`, `PortChannelName`|PT1M |Yes|
 
 ### Category: LACP State Counters
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
@@ -143,7 +147,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.ManagedN
 |---|---|---|---|---|---|---|---|
 |**Lldp Frame In**<br><br>The number of lldp frames received. |`LldpFrameIn` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`|PT1M |Yes|
 |**Lldp Frame Out**<br><br>The number of frames transmitted out. |`LldpFrameOut` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`|PT1M |Yes|
-|**Lldp Tlv Discards**<br><br>Lldp Tlv Discards |`LldpTlvDiscard` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`InterfaceName`, `FabricId`|PT1M |Yes|
+|**Lldp Tlv Discards**<br><br>Lldp Tlv Discards. |`LldpTlvDiscard` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`InterfaceName`, `FabricId`|PT1M |Yes|
 |**Lldp Tlv Unknown**<br><br>The number of frames received with unknown TLV. |`LldpTlvUnknown` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `InterfaceName`|PT1M |Yes|
 
 ### Category: Resource Utilization
@@ -161,11 +165,17 @@ For a list of supported logs, see [Supported log categories - Microsoft.ManagedN
 |**Power Supply Max Power Capacity**<br><br>Maximum power capacity of the power supply (watts). |`PowerSupplyCapacity` | No | Unspecified |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `ComponentName`|PT1M |Yes|
 |**Power Supply Input Current**<br><br>The input current draw of the power supply (amps). |`PowerSupplyInputCurrent` | No | Unspecified |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `ComponentName`|PT1M |Yes|
 |**Power Supply Input Voltage**<br><br>Input voltage to the power supply (volts). |`PowerSupplyInputVoltage` | No | Unspecified |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `ComponentName`|PT1M |Yes|
-|**Power Supply Output Current**<br><br>The output current supplied by the power supply (amps) |`PowerSupplyOutputCurrent` | No | Unspecified |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `ComponentName`|PT1M |Yes|
-|**Power Supply Output Power**<br><br>Output power supplied by the power supply (watts) |`PowerSupplyOutputPower` | No | Unspecified |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `ComponentName`|PT1M |Yes|
+|**Power Supply Output Current**<br><br>The output current supplied by the power supply (amps). |`PowerSupplyOutputCurrent` | No | Unspecified |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `ComponentName`|PT1M |Yes|
+|**Power Supply Output Power**<br><br>Output power supplied by the power supply (watts). |`PowerSupplyOutputPower` | No | Unspecified |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `ComponentName`|PT1M |Yes|
 |**Power Supply Output Voltage**<br><br>Output voltage supplied by the power supply (volts). |`PowerSupplyOutputVoltage` | No | Unspecified |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `ComponentName`|PT1M |Yes|
 |**Temperature Instantaneous**<br><br>The instantaneous value of temperature in degrees Celsius of the component. |`TemperatureInstant` | No | Unspecified |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `ComponentName`|PT1M |Yes|
 |**Temperature Max**<br><br>Max temperature in degrees Celsius of the component. The maximum value of the statistic over the sampling period. |`TemperatureMax` | No | Unspecified |Average, Minimum, Maximum, Total (Sum), Count |`FabricId`, `ComponentName`|PT1M |Yes|
+
+### Category: SLI
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Device Connectivity State**<br><br>gNMI control-plane health of the device over a trailing 20-minute window (evaluated every 5 minutes): 1 = Up (operation succeeds), 2 = Degraded (intermittent failures; up to 3 consecutive failing readings), 3 = Down (sustained failures; more than 3 consecutive failing readings). Use Maximum aggregation over a window to surface the worst state. |`DeviceConnectivityState` | No | Count |Maximum |`DeviceType`|PT1M |No|
+|**Device Operational State**<br><br>Operational health from CPU and memory utilization using per-device-type thresholds: 0 = Unknown (missing telemetry), 1 = Healthy, 2 = Degraded, 3 = Down. Use Maximum aggregation over a window to surface the worst state. |`DeviceOperationalState` | No | Count |Maximum |`DeviceType`|PT1M |No|
 
 ## Next steps
 

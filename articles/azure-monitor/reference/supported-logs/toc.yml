@@ -139,7 +139,7 @@ items:
   displayName: Update Events
 - name: Microsoft.Dashboard/grafana
   href: microsoft-dashboard-grafana-logs.md
-  displayName: Grafana Login Events,Grafana Usage Insights Events
+  displayName: Grafana Alert Authentication Failure Events,Grafana Login Events,Grafana Usage Insights Events
 - name: Microsoft.Databricks/workspaces
   href: microsoft-databricks-workspaces-logs.md
   displayName: Databricks Accounts,Databricks Brick Store HttpGateway,Databricks Budget Policy Central,Databricks Capsule8 Container Security Scanning Reports,Databricks Clam AV Scan,Databricks Cloud Storage Metadata,Databricks Cluster Libraries,Databricks Cluster Policies,Databricks Clusters,Databricks Dashboards,Databricks Data Monitoring,Databricks Data Rooms,Databricks DatabricksSQL,Databricks Delta Pipelines,Databricks Feature Store,Databricks File System,Databricks Files,Databricks Filesystem Logs,Databricks Genie,Databricks Git Credentials,Databricks Global Init Scripts,Databricks Groups,Databricks IAM Role,Databricks Ingestion,Databricks Jobs,Databricks Lakehouse Apps,Databricks Lakeview configuration,Databricks Lineage Tracking,Databricks Marketplace Consumer,Databricks Marketplace Provider,Databricks MLFlow Acled Artifact,Databricks MLFlow Experiment,Databricks Model Registry,Databricks Notebook,Databricks Online Tables,Databricks Partner Hub,Databricks Predictive Optimization,Databricks Remote History Service,Databricks Repos,Databricks Request For Access Events,Databricks Role Based Access Control,Databricks Secrets,Databricks Serverless Real-Time Inference,Databricks SQL Analytics,Databricks SQLPermissions,Databricks SSH,Databricks Unity Catalog,Databricks Vector Search,Databricks Web Terminal,Databricks Webhook Notifications,Databricks Workspace,Databricks Workspace Files,Instance Pools
@@ -281,6 +281,9 @@ items:
 - name: Microsoft.HealthDataAIServices/deidServices
   href: microsoft-healthdataaiservices-deidservices-logs.md
   displayName: Audit Logs
+- name: Microsoft.HorizonDB/clusters
+  href: microsoft-horizondb-clusters-logs.md
+  displayName: HorizonDB autovacuum statistics,HorizonDB query store query text,HorizonDB query store runtime statistics,HorizonDB query store waits statistics,HorizonDB server logs,HorizonDB sessions,HorizonDB transactions statistics
 - name: microsoft.insights/autoscalesettings
   href: microsoft-insights-autoscalesettings-logs.md
   displayName: Autoscale Evaluations,Autoscale Scale Actions
@@ -328,7 +331,7 @@ items:
   displayName: AmlOnlineEndpointConsoleLog,AmlOnlineEndpointEventLog,AmlOnlineEndpointTrafficLog
 - name: Microsoft.ManagedNetworkFabric/networkDevices
   href: microsoft-managednetworkfabric-networkdevices-logs.md
-  displayName: BGP Neighbor Updates,Bi-Directional Forwarding Detection Updates,Component State Updates,Interface State Updates,Interface Vxlan Updates,Network Instance Updates,System Session History Updates,System State Message Updates
+  displayName: BGP Neighbor Updates,Bi-Directional Forwarding Detection Updates,Component State Updates,Interface General Events,Interface State Updates,Interface Vxlan Updates,Network Instance Updates,System Session History Updates,System State Message Updates
 - name: Microsoft.Monitor/accounts
   href: microsoft-monitor-accounts-logs.md
   displayName: Metrics Usage Details
@@ -610,7 +613,7 @@ items:
   displayName: Creation Events,Critical events,Delete Events,Information Events,Maintenance Events,Update Events
 - name: Oracle.Database/cloudVmClusters
   href: oracle-database-cloudvmclusters-logs.md
-  displayName: Add Virtual Machine Events,Creation Events,Database Backup Events,Database Critical Events,Database Information Events,Database Restore Events,Delete and Terminate Events,System Health Events,Terminate Virtual Machine Events,Update Events
+  displayName: Add Virtual Machine Events,Creation Events,Critical events,Database Backup Events,Database Critical Events,Database Information Events,Database Restore Events,Delete and Terminate Events,System Health Events,Terminate Virtual Machine Events,Update Events
 - name: Oracle.Database/dbSystems
   href: oracle-database-dbsystems-logs.md
   displayName: Creation Events,Database Backup Events,Database Critical Events,Database Information Events,Database Restore Events,Delete and Terminate Events,System Health Events,Update Events

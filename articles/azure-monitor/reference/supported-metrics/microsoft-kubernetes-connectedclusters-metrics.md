@@ -2,7 +2,7 @@
 title: Supported metrics - microsoft.kubernetes/connectedClusters
 description: Reference for microsoft.kubernetes/connectedClusters metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/14/2026
 ms.custom: microsoft.kubernetes/connectedClusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -36,6 +36,7 @@ For a list of supported logs, see [Supported log categories - microsoft.kubernet
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**Total number of cpu cores in a connected cluster**<br><br>Total number of cpu cores in a connected cluster |`capacity_cpu_cores` | No | Count |Total (Sum), Average |\<none\>|PT1M |Yes|
+|**Cluster Connectivity Status**<br><br>Indicates whether the Azure Arc-enabled Kubernetes cluster is connected. A value of 1 is reported while the cluster is connected and syncing metadata; no data is reported while the cluster is not connected. |`ConnectivityStatus` | No | Count |Maximum, Average, Total (Sum) |\<none\>|PT1M |Yes|
 
 ### Category: Nodes (PREVIEW)
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|

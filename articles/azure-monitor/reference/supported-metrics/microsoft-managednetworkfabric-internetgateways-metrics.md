@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.ManagedNetworkFabric/internetGateways
 description: Reference for Microsoft.ManagedNetworkFabric/internetGateways metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/14/2026
 ms.custom: Microsoft.ManagedNetworkFabric/internetGateways, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -33,12 +33,12 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 ### Category: Proxy Connection Metrics
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Inbound active connections**<br><br>Count of inbound active connections |`InboundConnectionsActive` | No | Count |Average, Maximum, Minimum |`nfcId`, `gatewayType`|PT1M |Yes|
-|**Total inbound connections**<br><br>Count of inbound connections |`InboundConnectionsTotal` | No | Count |Average, Maximum, Minimum |`nfcId`, `gatewayType`|PT1M |Yes|
-|**Total outbound active connections**<br><br>Count of outbound active connections |`OutboundConnectionsActive` | No | Count |Average, Maximum, Minimum |`nfcId`, `gatewayType`|PT1M |Yes|
-|**Total outbound failed connections**<br><br>Count of outbound total failed connections |`OutboundConnectionsFail` | No | Count |Average, Maximum, Minimum |`nfcId`, `gatewayType`|PT1M |Yes|
-|**Total outbound connection timeouts**<br><br>Count of outbound connection timeouts |`OutboundConnectionsTimeout` | No | Count |Average, Maximum, Minimum |`nfcId`, `gatewayType`|PT1M |Yes|
-|**Total outbound connections**<br><br>Count of outbound total connections |`OutboundConnectionsTotal` | No | Count |Average, Maximum, Minimum |`nfcId`, `gatewayType`|PT1M |Yes|
+|**Inbound active connections**<br><br>Count of inbound active connections. |`InboundConnectionsActive` | No | Count |Average, Maximum, Minimum |`nfcId`, `gatewayType`|PT1M |Yes|
+|**Total inbound connections**<br><br>Count of inbound connections. |`InboundConnectionsTotal` | No | Count |Average, Maximum, Minimum |`nfcId`, `gatewayType`|PT1M |Yes|
+|**Total outbound active connections**<br><br>Count of outbound active connections. |`OutboundConnectionsActive` | No | Count |Average, Maximum, Minimum |`nfcId`, `gatewayType`|PT1M |Yes|
+|**Total outbound failed connections**<br><br>Count of outbound total failed connections. |`OutboundConnectionsFail` | No | Count |Average, Maximum, Minimum |`nfcId`, `gatewayType`|PT1M |Yes|
+|**Total outbound connection timeouts**<br><br>Count of outbound connection timeouts. |`OutboundConnectionsTimeout` | No | Count |Average, Maximum, Minimum |`nfcId`, `gatewayType`|PT1M |Yes|
+|**Total outbound connections**<br><br>Count of outbound total connections. |`OutboundConnectionsTotal` | No | Count |Average, Maximum, Minimum |`nfcId`, `gatewayType`|PT1M |Yes|
 
 ## Next steps
 

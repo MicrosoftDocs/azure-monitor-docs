@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.DocumentDB/DatabaseAccounts
 description: Reference for Microsoft.DocumentDB/DatabaseAccounts metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/14/2026
 ms.custom: Microsoft.DocumentDB/DatabaseAccounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -82,7 +82,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Document
 |**Gremlin Graph Updated**<br><br>Gremlin Graph Updated |`GremlinGraphUpdate` | No | Count |Count |`ResourceName`, `ChildResourceName`, `ApiKind`, `ApiKindResourceType`, `IsThroughputRequest`, `OperationType`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Gremlin Request Charges**<br><br>Request Units consumed for Gremlin requests made |`GremlinRequestCharges` | No | Count |Total (Sum), Average, Minimum, Maximum |`APIType`, `DatabaseName`, `CollectionName`, `Region`|PT1M |No|
 |**Gremlin Requests**<br><br>Number of Gremlin requests made |`GremlinRequests` | No | Count |Count |`APIType`, `DatabaseName`, `CollectionName`, `Region`, `ErrorCode`|PT1M |No|
-|**Index Usage**<br><br>Total index usage reported at 5 minutes granularity |`IndexUsage` | No | Bytes |Total (Sum), Average, Maximum, Minimum |`CollectionName`, `DatabaseName`, `Region`, `IsLeakedPartition`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**Index Usage**<br><br>Total index usage reported at 5 minutes granularity |`IndexUsage` | No | Bytes |Total (Sum), Average, Maximum, Minimum |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**IntegratedCacheEvictedEntriesSize**<br><br>Size of the entries evicted from the integrated cache |`IntegratedCacheEvictedEntriesSize` | No | Bytes |Average |`Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**IntegratedCacheItemExpirationCount**<br><br>Number of items evicted from the integrated cache due to TTL expiration |`IntegratedCacheItemExpirationCount` | No | Count |Average |`Region`, `CacheEntryType`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**IntegratedCacheItemHitRate**<br><br>Number of point reads that used the integrated cache divided by number of point reads routed through the dedicated gateway with eventual consistency |`IntegratedCacheItemHitRate` | No | Percent |Average |`Region`, `CacheEntryType`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|

@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.MachineLearningServices/workspaces
 description: Reference for Microsoft.MachineLearningServices/workspaces metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/14/2026
 ms.custom: Microsoft.MachineLearningServices/workspaces, arm
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -41,12 +41,6 @@ For a list of supported logs, see [Supported log categories - Microsoft.MachineL
 |**Runs**<br><br>Number of runs by AI Agents in this workspace |`Runs` | No | Count |Average, Maximum, Minimum, Total (Sum) |`AgentId`, `RunStatus`, `StatusCode`, `StreamType`|PT1M |No|
 |**Threads**<br><br>Number of events for AI Agent threads in this workspace |`Threads` | No | Count |Average, Maximum, Minimum, Total (Sum) |`EventType`|PT1M |No|
 |**Tokens**<br><br>Count of tokens by AI Agents in this workspace |`Tokens` | No | Count |Average, Maximum, Minimum, Total (Sum) |`AgentId`, `TokenType`|PT1M |No|
-|**ToolboxCallToolCalls**<br><br>Toolbox call_tool call events |`ToolboxCallToolCalls` | No | Count |Total (Sum) |`ToolboxName`, `ToolboxVersion`, `Status`|PT1M |No|
-|**ToolboxToolsDeferred**<br><br>Number of tools deferred by Tool Search in toolbox tools/list responses |`ToolboxToolsDeferred` | No | Count |Average, Maximum, Minimum, Total (Sum) |`ToolboxName`, `ToolboxVersion`|PT1M |No|
-|**ToolboxToolSearchCalls**<br><br>Toolbox tool_search call events |`ToolboxToolSearchCalls` | No | Count |Total (Sum) |`ToolboxName`, `ToolboxVersion`, `Status`|PT1M |No|
-|**ToolboxToolSearchEnabled**<br><br>Tool Search-enabled toolbox version creation events |`ToolboxToolSearchEnabled` | No | Count |Total (Sum) |`ToolboxName`, `ToolboxVersion`|PT1M |No|
-|**ToolboxToolSearchResults**<br><br>Number of tools returned by successful toolbox tool_search calls |`ToolboxToolSearchResults` | No | Count |Average, Maximum, Minimum, Total (Sum) |`ToolboxName`, `ToolboxVersion`|PT1M |No|
-|**ToolboxToolsVisible**<br><br>Number of tools visible to the model in toolbox tools/list responses |`ToolboxToolsVisible` | No | Count |Average, Maximum, Minimum, Total (Sum) |`ToolboxName`, `ToolboxVersion`|PT1M |No|
 |**ToolCalls**<br><br>Tool calls made by AI Agents in this workspace |`ToolCalls` | No | Count |Average, Maximum, Minimum, Total (Sum) |`AgentId`, `ToolName`|PT1M |No|
 
 ### Category: Model
