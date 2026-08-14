@@ -2,7 +2,7 @@
 title: Supported Resource log categories for Azure Monitor
 description: Understand the supported services and event schemas for Azure Monitor resource logs.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/14/2026
 
 # NOTE This list is largely auto-generated. Any modification made to this list via GitHub might be written over without warning. Contact the author of this article for details on how to make permanent updates.
 ---
@@ -87,6 +87,7 @@ Following table lists metrics and log categories available for each resource typ
 |`Microsoft.HealthcareApis` <a name="microsofthealthcareapis"></a>|[`services`](./supported-metrics/microsoft-healthcareapis-services-metrics.md)<br>[`workspaces/dicomservices`](./supported-metrics/microsoft-healthcareapis-workspaces-dicomservices-metrics.md)<br>[`workspaces/fhirservices`](./supported-metrics/microsoft-healthcareapis-workspaces-fhirservices-metrics.md)<br>[`workspaces/iotconnectors`](./supported-metrics/microsoft-healthcareapis-workspaces-iotconnectors-metrics.md)|[`services`](./supported-logs/microsoft-healthcareapis-services-logs.md)<br>[`workspaces/dicomservices`](./supported-logs/microsoft-healthcareapis-workspaces-dicomservices-logs.md)<br>[`workspaces/fhirservices`](./supported-logs/microsoft-healthcareapis-workspaces-fhirservices-logs.md)<br>[`workspaces/iotconnectors`](./supported-logs/microsoft-healthcareapis-workspaces-iotconnectors-logs.md)|
 |`Microsoft.`<br>`HealthcareInterop` <a name="microsofthealthcareinterop"></a>|[`fhirQueryEventBatchChannels`](./supported-metrics/microsoft-healthcareinterop-fhirqueryeventbatchchannels-metrics.md)<br>[`fhirQueryFlatFileBatchChannels`](./supported-metrics/microsoft-healthcareinterop-fhirqueryflatfilebatchchannels-metrics.md)|[`fhirQueryEventBatchChannels`](./supported-logs/microsoft-healthcareinterop-fhirqueryeventbatchchannels-logs.md)<br>[`fhirQueryFlatFileBatchChannels`](./supported-logs/microsoft-healthcareinterop-fhirqueryflatfilebatchchannels-logs.md)|
 |`Microsoft.`<br>`HealthDataAIServices` <a name="microsofthealthdataaiservices"></a>|N/A|[`deidServices`](./supported-logs/microsoft-healthdataaiservices-deidservices-logs.md)|
+|`Microsoft.HorizonDB` <a name="microsofthorizondb"></a>|[`clusters`](./supported-metrics/microsoft-horizondb-clusters-metrics.md)|[`clusters`](./supported-logs/microsoft-horizondb-clusters-logs.md)|
 |`microsoft.insights` <a name="microsoftinsights"></a>|[`autoscalesettings`](./supported-metrics/microsoft-insights-autoscalesettings-metrics.md)<br>[`components`](./supported-metrics/microsoft-insights-components-metrics.md)|[`autoscalesettings`](./supported-logs/microsoft-insights-autoscalesettings-logs.md)<br>[`components`](./supported-logs/microsoft-insights-components-logs.md)|
 |`Microsoft.Insights` <a name="microsoftinsights"></a>|[`datacollectionrules`](./supported-metrics/microsoft-insights-datacollectionrules-metrics.md)|[`datacollectionrules`](./supported-logs/microsoft-insights-datacollectionrules-logs.md)|
 |`microsoft.keyvault` <a name="microsoftkeyvault"></a>|[`managedhsms`](./supported-metrics/microsoft-keyvault-managedhsms-metrics.md)|[`managedhsms`](./supported-logs/microsoft-keyvault-managedhsms-logs.md)|
@@ -153,7 +154,6 @@ Following table lists metrics and log categories available for each resource typ
 |`Microsoft.FileShares` <a name="microsoftfileshares"></a>|[`fileShares`](./supported-metrics/microsoft-fileshares-fileshares-metrics.md)|N/A|
 |`Microsoft.HDInsight` <a name="microsofthdinsight"></a>|[`clusters`](./supported-metrics/microsoft-hdinsight-clusters-metrics.md)|N/A|
 |`Microsoft.HealthModel` <a name="microsofthealthmodel"></a>|[`healthmodels`](./supported-metrics/microsoft-healthmodel-healthmodels-metrics.md)|N/A|
-|`Microsoft.HorizonDB` <a name="microsofthorizondb"></a>|[`clusters`](./supported-metrics/microsoft-horizondb-clusters-metrics.md)|N/A|
 |`Microsoft.`<br>`HybridContainerService` <a name="microsofthybridcontainerservice"></a>|[`provisionedClusters`](./supported-metrics/microsoft-hybridcontainerservice-provisionedclusters-metrics.md)|N/A|
 |`microsoft.hybridnetwork` <a name="microsofthybridnetwork"></a>|[`networkfunctions`](./supported-metrics/microsoft-hybridnetwork-networkfunctions-metrics.md)<br>[`virtualnetworkfunctions`](./supported-metrics/microsoft-hybridnetwork-virtualnetworkfunctions-metrics.md)|N/A|
 |`Microsoft.IoTCentral` <a name="microsoftiotcentral"></a>|[`IoTApps`](./supported-metrics/microsoft-iotcentral-iotapps-metrics.md)|N/A|

@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Network/connections
 description: Reference for Microsoft.Network/connections metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/14/2026
 ms.custom: Microsoft.Network/connections, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -34,6 +34,8 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |---|---|---|---|---|---|---|---|
 |**BitsInPerSecond**<br><br>Bits ingressing Azure per second |`BitsInPerSecond` | No | BitsPerSecond |Average |\<none\>|PT1M |Yes|
 |**BitsOutPerSecond**<br><br>Bits egressing Azure per second |`BitsOutPerSecond` | No | BitsPerSecond |Average |\<none\>|PT1M |Yes|
+|**MulticloudInterconnectBitsInPerSecond**<br><br>Bits ingressing Azure per second |`ConnectionPerDeviceBitsInPerSecond` | No | BitsPerSecond |Average |\<none\>|PT1M |Yes|
+|**MulticloudInterconnectBitsOutPerSecond**<br><br>Bits egressing Azure per second |`ConnectionPerDeviceBitsOutPerSecond` | No | BitsPerSecond |Average |\<none\>|PT1M |Yes|
 
 ## Next steps
 

@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.ContainerService/managedClusters
 description: Reference for Microsoft.ContainerService/managedClusters metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/14/2026
 ms.custom: Microsoft.ContainerService/managedClusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -42,6 +42,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Containe
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**Inflight Requests**<br><br>Maximum number of currently used inflight requests on the apiserver per request kind in the last second |`apiserver_current_inflight_requests` | No | Count |Total (Sum), Average |`requestKind`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
+|**API Request Concurrency**<br><br>Current number of API Priority and Fairness execution seats being used by the API server. |`apiserver_flowcontrol_executing_seats` | No | Count |Total (Sum), Average |`priority_level`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
 
 ### Category: Cluster Autoscaler (PREVIEW)
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
@@ -84,6 +85,11 @@ For a list of supported logs, see [Supported log categories - Microsoft.Containe
 |---|---|---|---|---|---|---|---|
 |**Number of pods by phase**<br><br>Number of pods by phase |`kube_pod_status_phase` | No | Count |Total (Sum), Average |`phase`, `namespace`, `pod`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
 |**Number of pods in Ready state**<br><br>Number of pods in Ready state |`kube_pod_status_ready` | No | Count |Total (Sum), Average |`namespace`, `pod`, `condition`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
+
+### Category: Scheduler (PREVIEW)
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Pod Scheduling Rate**<br><br>Number of scheduler attempts over time, including outcome breakdowns such as scheduled and unschedulable. |`scheduler_schedule_attempts_rate` | No | CountPerSecond |Average |`result`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
 
 ## Next steps
 

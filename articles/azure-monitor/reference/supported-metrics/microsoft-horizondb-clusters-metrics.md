@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.HorizonDB/clusters
 description: Reference for Microsoft.HorizonDB/clusters metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/14/2026
 ms.custom: Microsoft.HorizonDB/clusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -28,6 +28,8 @@ For information on exporting metrics, see - [Metrics export using data collectio
 
 For information on metric retention, see [Azure Monitor Metrics overview](/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics).
 
+
+For a list of supported logs, see [Supported log categories - Microsoft.HorizonDB/clusters](../supported-logs/microsoft-horizondb-clusters-logs.md)
 
 
 ### Category: Activity

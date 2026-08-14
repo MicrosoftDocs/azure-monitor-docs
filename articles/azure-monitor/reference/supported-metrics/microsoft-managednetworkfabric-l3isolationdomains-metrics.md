@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.ManagedNetworkFabric/l3IsolationDomains
 description: Reference for Microsoft.ManagedNetworkFabric/l3IsolationDomains metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/14/2026
 ms.custom: Microsoft.ManagedNetworkFabric/l3IsolationDomains, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -53,7 +53,7 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 ### Category: Internal Network BGP Neighbor Updates
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Int NW BGP Neighbor AfiSafi Prefixes Installed**<br><br>The number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding. |`IntNwBgpNeighborAfiSafiPrefixesInstalled` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`DeviceId`, `FabricId`, `IsdResourceName`, `IsdNetworkArmId`, `InternalNetworkName`, `NeighborAddress`, `AfiSafiAfiSafiName`|PT1M |Yes|
+|**Int NW BGP Neighbor AfiSafi Prefixes Installed**<br><br>The number of prefixes received from the neighbor that are installed in the network instance RIB and actively used for forwarding. . |`IntNwBgpNeighborAfiSafiPrefixesInstalled` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`DeviceId`, `FabricId`, `IsdResourceName`, `IsdNetworkArmId`, `InternalNetworkName`, `NeighborAddress`, `AfiSafiAfiSafiName`|PT1M |Yes|
 |**Int NW BGP Neighbor AfiSafi Prefixes Received**<br><br>The number of prefixes that are received from the neighbor before applying any policies. |`IntNwBgpNeighborAfiSafiPrefixesReceived` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`DeviceId`, `FabricId`, `IsdResourceName`, `IsdNetworkArmId`, `InternalNetworkName`, `NeighborAddress`, `AfiSafiAfiSafiName`|PT1M |Yes|
 |**Int NW BGP Neighbor AfiSafi Prefixes Sent**<br><br>The number of prefixes that are advertised to the neighbor after applying any policies. |`IntNwBgpNeighborAfiSafiPrefixesSent` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`DeviceId`, `FabricId`, `IsdResourceName`, `IsdNetworkArmId`, `InternalNetworkName`, `NeighborAddress`, `AfiSafiAfiSafiName`|PT1M |Yes|
 |**Int NW BGP Neighbor Established Transitions**<br><br>Number of transitions to the Established state for the neighbor session. |`IntNwBgpNeighborEstablishedTransitions` | No | Count |Average, Minimum, Maximum, Total (Sum), Count |`DeviceId`, `FabricId`, `IsdResourceName`, `IsdNetworkArmId`, `InternalNetworkName`, `NeighborAddress`|PT1M |Yes|

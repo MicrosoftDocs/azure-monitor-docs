@@ -2,7 +2,7 @@
 title: Supported log categories - Oracle.Database/cloudVmClusters
 description: Reference for Oracle.Database/cloudVmClusters in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/14/2026
+ms.date: 08/14/2026
 ms.custom: Oracle.Database/cloudVmClusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -22,6 +22,7 @@ For a list of supported metrics, see [Supported metrics - Oracle.Database/cloudV
 |Database Backup Events|Yes||No|No||
 |Creation Events|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||
 |Database Critical Events|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||
+|Critical events|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||
 |Delete and Terminate Events|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||
 |System Health Events|Yes||No|No||
 |Database Information Events|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||

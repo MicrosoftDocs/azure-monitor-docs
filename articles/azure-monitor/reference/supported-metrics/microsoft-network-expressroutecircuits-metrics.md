@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Network/expressRouteCircuits
 description: Reference for Microsoft.Network/expressRouteCircuits metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/14/2026
 ms.custom: Microsoft.Network/expressRouteCircuits, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -41,6 +41,8 @@ For a list of supported logs, see [Supported log categories - Microsoft.Network/
 ### Category: Circuit Qos
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
+|**MulticloudInterconnectDroppedInBitsPerSecond**<br><br>Ingress bits of data dropped per second |`PerDeviceQosDropBitsInPerSecond` | No | BitsPerSecond |Average |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |Yes|
+|**MulticloudInterconnectDroppedOutBitsPerSecond**<br><br>Egress bits of data dropped per second |`PerDeviceQosDropBitsOutPerSecond` | No | BitsPerSecond |Average |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |Yes|
 |**DroppedInBitsPerSecond**<br><br>Ingress bits of data dropped per second |`QosDropBitsInPerSecond` | No | BitsPerSecond |Average |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |Yes|
 |**DroppedOutBitsPerSecond**<br><br>Egress bits of data dropped per second |`QosDropBitsOutPerSecond` | No | BitsPerSecond |Average |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |Yes|
 

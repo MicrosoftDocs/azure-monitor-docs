@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.Dashboard/grafana
 description: Reference for Microsoft.Dashboard/grafana in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/14/2026
+ms.date: 08/14/2026
 ms.custom: Microsoft.Dashboard/grafana, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -18,6 +18,7 @@ For a list of supported metrics, see [Supported metrics - Microsoft.Dashboard/gr
 
 |Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
 |---|---|---|---|---|---|
+|Grafana Alert Authentication Failure Events|Yes||No|No||
 |Grafana Login Events|Yes|[AGSGrafanaLoginEvents](/azure/azure-monitor/reference/tables/agsgrafanaloginevents)<p>Login events for an instance of Azure Managed Workspace for Grafana including user identity, user Grafana role (in success) and detailed message (in failure).|No|Yes|[Queries](/azure/azure-monitor/reference/queries/agsgrafanaloginevents)|
 |Grafana Usage Insights Events|Yes|[AGSGrafanaUsageInsightsEvents](/azure/azure-monitor/reference/tables/agsgrafanausageinsightsevents)<p>Usage insights events for an instance of Azure Managed Workspace for Grafana.|No|Yes||
 
