@@ -2,7 +2,8 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 07/31/2026
+ms.date: 08/13/2026
+ai-usage: ai-assisted
 ---
 
 # What's new in Azure Monitor documentation
@@ -10,6 +11,12 @@ ms.date: 07/31/2026
 This article lists significant changes to Azure Monitor documentation.
 
 ## 2026
+
+### August 2026
+
+| Subservice | Article | Description |
+| --- | --- | --- |
+| Logs | [Table feature comparison](../logs/data-platform-logs.md#table-feature-comparison)<br>[Configure a table plan in a Log Analytics workspace](../logs/logs-table-plans.md) | **Auxiliary / Lake** table plans take the next step in capabilities to let teams keep more of their data without stretching the budget.<br>- Expanded **Auxiliary / Lake** support for Azure tables<br>- Switch between **Analytics** and **Auxiliary / Lake** plans<br>- **Auxiliary / Lake** available in sovereign clouds.<br>For more information, see the Observability blog post, [Azure Monitor Auxiliary Logs expands with Azure tables support, plan switching, and sovereign clouds](https://techcommunity.microsoft.com/blog/azureobservabilityblog/azure-monitor-auxiliary-logs-expands-with-azure-tables-support-plan-switching-an/4525206). |
 
 ### July 2026
 
