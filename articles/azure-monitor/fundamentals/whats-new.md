@@ -830,7 +830,7 @@ Application-Insights|[Enable a framework extension for Application Insights Java
 Autoscale|[Use autoscale actions to send email and webhook alert notifications in Azure Monitor](../autoscale/autoscale-webhook-email.md)|Article updated and refreshed|
 Containers|[Query logs from Container insights](../containers/container-insights-log-query.md#container-logs)|New section: Container logs, with sample queries|
 Containers|[Authentication for Container Insights](../containers/container-insights-authentication.md)|New article: Configure agent authentication for the Container Insights agent|
-Essentials|[Azure monitoring REST API walkthrough](../platform/rest-api-walkthrough.md)|Added multi resource request examples|
+Essentials|[Azure monitoring REST API walkthrough](../platform/rest-api-walkthrough.md)|Added multi-resource request examples|
 Essentials|[Azure Monitor managed service for Prometheus rule groups](../metrics/prometheus-rule-groups.md)| Added CLI & PowerShell reference and examples|
 Logs|[Set up resources required to send data to Azure Monitor Logs using the Logs Ingestion API](../logs/set-up-logs-ingestion-api-prerequisites.md)|New article. Run a PowerShell script to set up resources required to send data to Azure Monitor using the Logs Ingestion API.|
 Logs|[Migrate from the HTTP Data Collector API to the Log Ingestion API to send data to Azure Monitor Logs](../logs/custom-logs-migrate.md)|Updated guidance for migrating from the legacy Azure Monitor Data Collector API to the Log Ingestion API.|
