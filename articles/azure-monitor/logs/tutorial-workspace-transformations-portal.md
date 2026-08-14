@@ -29,7 +29,7 @@ To complete this tutorial, you need:
 
 ## Overview
 
-In this tutorial, you'll reduce the storage requirement for the `LAQueryLogs` table by filtering out certain records. You'll also remove the contents of a column while parsing the column data to store a piece of data in a custom column. The [LAQueryLogs table](query-audit.md#audit-data) is created when you enable [log query auditing](query-audit.md) in a workspace. You can use this same basic process to create a transformation for any [supported table](tables-feature-support.md) in a Log Analytics workspace.
+In this tutorial, you reduce the storage requirement for the `LAQueryLogs` table by filtering out certain records. You also remove the contents of a column while parsing the column data to store a piece of data in a custom column. The [LAQueryLogs table](query-audit.md#audit-data) is created when you enable [log query auditing](query-audit.md) in a workspace. Use this same basic process to create a transformation for any [supported table](../reference/tables-features.md) in a Log Analytics workspace.
 
 This tutorial uses the Azure portal, which provides a wizard to walk you through the process of creating an ingestion-time transformation. After you finish the steps, you'll see that the wizard:
 
@@ -112,8 +112,8 @@ The cache that drives IntelliSense might take up to 24 hours to update.
 ### Transformation on a dynamic column isn't working
 A known issue currently affects dynamic columns. A temporary workaround is to explicitly parse dynamic column data by using `parse_json()` prior to performing any operations against them.
 
-## Next steps
+## Related content
 
 - [Read more about transformations](../essentials/data-collection-transformations.md)
-- [See which tables support workspace transformations](tables-feature-support.md)
+- [Tables that support workspace transformations](../reference/tables-features.md)
 - [Learn more about writing transformation queries](../essentials/data-collection-transformations-structure.md)

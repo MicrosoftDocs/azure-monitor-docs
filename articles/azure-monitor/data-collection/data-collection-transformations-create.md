@@ -465,7 +465,7 @@ There are multiple methods to create transformations depending on the data colle
 ## Limitations and considerations
 
 * Transformations run at ingestion time and contribute to data processing costs. However, filtering data by using transformations can reduce ingestion volume and storage costs. For more information, see [Cost optimization and Azure Monitor](../fundamentals/best-practices-cost.md).
-* Not all tables in a Log Analytics workspace support transformations. For a list of supported tables, see [Tables that support transformations in Azure Monitor Logs](../logs/tables-feature-support.md).
+* Not all tables in a Log Analytics workspace support transformations. For a list of supported tables, see [Tables that support transformations in Azure Monitor Logs](../reference/tables-features.md).
 * Not all KQL operators are supported in transformation queries. For more information, see [Supported KQL features in Azure Monitor transformations](data-collection-transformations-kql.md).
 * While a transformation can send a single data source to multiple tables, it can't send data to multiple workspaces. To send data from a single data source to multiple workspaces, create multiple DCRs.
 * The workspace transformation DCR can't send a single data source to multiple tables since the transformation is applied to the table itself.

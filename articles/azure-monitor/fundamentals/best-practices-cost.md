@@ -28,7 +28,7 @@ This article provides cost optimization recommendations for Azure Monitor, align
 
 | Recommendation | Benefit |
 |:---------------|:--------|
-| Collect only critical resource log data from Azure resources. | When you create [diagnostic settings](../platform/diagnostic-settings.md) to send [resource logs](../platform/resource-logs.md) for your Azure resources to a Log Analytics database, only specify those categories that you require. Since diagnostic settings don't allow granular filtering of resource logs, use a [workspace transformation](../data-collection/data-collection-transformations.md#workspace-transformation-dcr) to filter unneeded data for those resources that use a [supported table](../logs/tables-feature-support.md). See [Diagnostic settings in Azure Monitor](../platform/diagnostic-settings.md#controlling-costs) for details on how to configure diagnostic settings and using transformations to filter their data. |
+| Collect only critical resource log data from Azure resources. | When you create [diagnostic settings](../platform/diagnostic-settings.md) to send [resource logs](../platform/resource-logs.md) for your Azure resources to a Log Analytics database, only specify those categories that you require. Since diagnostic settings don't allow granular filtering of resource logs, use a [workspace transformation](../data-collection/data-collection-transformations.md#workspace-transformation-dcr) to filter unneeded data for those resources that use a [supported table](../reference/tables-features.md). See [Diagnostic settings in Azure Monitor](../platform/diagnostic-settings.md#controlling-costs) for details on how to configure diagnostic settings and using transformations to filter their data. |
 
 ## Alert cost optimization
 
