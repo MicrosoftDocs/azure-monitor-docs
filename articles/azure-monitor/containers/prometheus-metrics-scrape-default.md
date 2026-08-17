@@ -3,7 +3,7 @@ title: Default Prometheus metrics configuration in Azure Monitor
 description: This article lists the default targets, dashboards, and recording rules for Prometheus metrics in Azure Monitor.
 ms.topic: reference
 ms.date: 09/10/2025
-ms.reviewer: aul
+ms.reviewer: sunasing
 ---
 
 # Default Prometheus metrics configuration in Azure Monitor
@@ -39,7 +39,7 @@ The following targets are enabled by default.
 - `kube-state-metrics`
 - `networkobservabilityRetina`
 
-The following targets are enabled when [control plane metrics (preview)](/azure/aks/control-plane-metrics-monitor) is enabled. These targets are under "controlplane-metrics" of the ConfigMap.
+The following targets are enabled when [control plane metrics](/azure/aks/control-plane-metrics-monitor) is enabled. These targets are under "controlplane-metrics" of the ConfigMap.
 
 - `controlplane-apiserver`
 - `controlplane-etcd` 
