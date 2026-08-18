@@ -59,7 +59,7 @@ If you believe a metric alert should have fired but it didn't, and it isn't list
 
 1. **Check whether the metric emits a transient value when the resource starts.** 
 
-    Some metrics emit an initial zero or unrepresentative value immediately after a resource starts, before the underlying resource has fully initialized. An alert rule with a short aggregation granularity can evaluate that value and fire. Increase the **Aggregation granularity (Period)** so the transient sample is averaged out, or use an alert processing rule to suppress alerts during known start windows.
+    Some metrics emit an initial zero or unrepresentative value immediately after a resource starts, before the underlying resource fully initializes. An alert rule with a short aggregation granularity can evaluate that value and fire. Increase the **Aggregation granularity (Period)** so the transient sample is averaged out, or use an alert processing rule to suppress alerts during known start windows.
 
 ## The metric alert isn't triggered every time the condition is met
 
