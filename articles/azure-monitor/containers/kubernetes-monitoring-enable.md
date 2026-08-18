@@ -5,7 +5,7 @@ ms.service: azure-monitor
 ms.topic: how-to
 ms.custom: devx-track-azurecli, linux-related-content
 ms.reviewer: aul
-ms.date: 07/08/2026
+ms.date: 08/18/2026
 ai-usage: ai-assisted
 ---
 
@@ -125,6 +125,8 @@ Enable Managed Grafana for your cluster at the same time that you enable scrapin
 ### [Azure CLI](#tab/azure-cli)
 
 Enable Prometheus metrics on an AKS cluster using the `--enable-azure-monitor-metrics` option with the [`az aks create`](/cli/azure/aks#az-aks-create) command for a new cluster or the [`az aks update`](/cli/azure/aks#az-aks-update) command for an existing cluster. This option uses the configuration described in [Default Prometheus metrics configuration in Azure Monitor](./prometheus-metrics-scrape-default.md). To modify this configuration, see [Customize scraping of Prometheus metrics in Azure Monitor managed service for Prometheus](./prometheus-metrics-scrape-configuration.md).
+
+AKS control plane metrics require the separate `--enable-control-plane-metrics` option in addition to managed Prometheus. AKS collects API server and etcd metrics by default. To collect metrics from other control plane components, customize the collection configuration. Control plane metrics differ from [control plane logs](#enable-control-plane-logs-on-an-aks-cluster). Azure Monitor stores the metrics in the Azure Monitor workspace. Query them by using Prometheus explorer or a linked Azure Managed Grafana instance. For enablement and configuration instructions, see [Monitor Azure Kubernetes Service control plane metrics](/azure/aks/control-plane-metrics-monitor).
 
 Example commands:
 

@@ -2,7 +2,7 @@
 title: Default Prometheus metrics configuration in Azure Monitor
 description: This article lists the default targets, dashboards, and recording rules for Prometheus metrics in Azure Monitor.
 ms.topic: reference
-ms.date: 09/10/2025
+ms.date: 08/18/2026
 ms.reviewer: sunasing
 ---
 
@@ -41,8 +41,8 @@ The following targets are enabled by default.
 
 The following targets are enabled when [control plane metrics](/azure/aks/control-plane-metrics-monitor) is enabled. These targets are under "controlplane-metrics" of the ConfigMap.
 
-- `controlplane-apiserver`
-- `controlplane-etcd` 
+- `apiserver`
+- `etcd`
 
 The following targets are enabled when [Container Network Observability](/azure/aks/advanced-container-networking-services-overview) is enabled.
 
