@@ -2,7 +2,7 @@
 title: Troubleshoot log alerts in Azure Monitor | Microsoft Docs
 description: Common issues, errors, and resolutions for log alert rules in Azure.
 ms.topic: troubleshooting-general
-ms.date: 04/24/2026
+ms.date: 08/18/2026
 ms.custom: references_regions
 ---
 
@@ -180,7 +180,9 @@ resource providers to be registered in the managing tenant.
 
 [Register](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider)
 the Microsoft.Insights resource providers on a subscription in the managing tenant. If the managing tenant
-doesn't have an existing Azure subscription, register the resource providers manually:
+doesn't have an existing Azure subscription, create the required Microsoft service principals manually.
+Each command assigns the Contributor role to a different Microsoft application. The application IDs are
+fixed Microsoft values. Don't replace them:
 
 ```powershell
 $ManagingTenantId = "your-managing-Microsoft-Entra-tenant-id"
@@ -188,9 +190,13 @@ $ManagingTenantId = "your-managing-Microsoft-Entra-tenant-id"
 # Authenticate as a user with admin rights on the managing tenant
 Connect-AzAccount -Tenant $ManagingTenantId
 
-# Register the Microsoft.Insights resource provider Application IDs
+# Azure Lighthouse monitoring appID 1
 New-AzADServicePrincipal -ApplicationId 1215fb39-1d15-4c05-b2e3-d519ac3feab4 -Role Contributor
+
+# Azure Lighthouse monitoring appID 2
 New-AzADServicePrincipal -ApplicationId 6da94f3c-0d67-4092-a408-bb5d1cb08d2d -Role Contributor
+
+# Log Analytics API
 New-AzADServicePrincipal -ApplicationId ca7f3f0b-7d91-482c-8e09-c5d840d0eac5 -Role Contributor
 ```
 
