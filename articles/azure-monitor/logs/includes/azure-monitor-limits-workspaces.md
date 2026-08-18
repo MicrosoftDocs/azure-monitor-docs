@@ -1,6 +1,6 @@
 ---
 ms.topic: include
-ms.date: 05/08/2025
+ms.date: 07/15/2026
 ---
 
 
@@ -73,8 +73,8 @@ ms.date: 05/08/2025
 
 | Category | Limit | Comments |
 |:---------|:------|:---------|
-| Maximum columns in a table | 500 | **AzureDiagnostics** - columns above the limit are added to dynamic 'AdditionalFields' column<br>**Custom log created by Data collector API** - columns above the limit are added to dynamic 'AdditionalFields' column<br>**Custom log** - contact support to increase limit |
-| Maximum number of custom log tables | 500 | Contact support to increase limit |
+| Maximum columns in a table | 500 | **AzureDiagnostics** - columns above the limit are added to the dynamic `AdditionalFields` column<br>**Custom logs created by Data collector API** - columns above the limit are added to the dynamic `AdditionalFields` column<br>**Custom log** - contact support to increase limit |
+| Maximum number of custom log tables | 500 | If the combined total of active and soft-deleted tables reaches the limit, you can't create new tables. Either wait for the soft-deleted retention period of 15 days to expire which frees up capacity, or contact support to raise the limit. |
 | Maximum characters for column name | 45 | |
 
 <b id="data-ingestion-volume-rate">Data ingestion volume rate</b>

@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.ServiceBus/Namespaces
 description: Reference for Microsoft.ServiceBus/Namespaces metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/13/2026
+ms.date: 07/31/2026
 ms.custom: Microsoft.ServiceBus/Namespaces, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -22,7 +22,7 @@ The following table lists the metrics available for the Microsoft.ServiceBus/Nam
 - **Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
 - **Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
 - **Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
-- **DS Export** -S Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+- **DS Export** - Shows whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
 
 For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
 
@@ -46,8 +46,8 @@ For a list of supported logs, see [Supported log categories - Microsoft.ServiceB
 |**Incoming Messages**<br><br>Incoming Messages for Microsoft.ServiceBus. |`IncomingMessages` | No | Count |Total (Sum) |`EntityName`|PT1M |Yes|
 |**Incoming Requests**<br><br>Incoming Requests for Microsoft.ServiceBus. |`IncomingRequests` | No | Count |Total (Sum) |`EntityName`|PT1M |Yes|
 |**Count of messages in a Queue/Topic.**<br><br>Count of messages in a Queue/Topic. |`Messages` | No | Count |Average, Minimum, Maximum |`EntityName`|PT1M |No|
-|**CPU**<br><br>Service bus premium namespace CPU usage metric. |`NamespaceCpuUsage` | No | Percent |Maximum |`Replica`|PT1M |No|
-|**Memory Usage**<br><br>Service bus premium namespace memory usage metric. |`NamespaceMemoryUsage` | No | Percent |Maximum |`Replica`|PT1M |No|
+|**CPU**<br><br>Service bus premium namespace CPU usage metric. |`NamespaceCpuUsage` | No | Percent |Total (Sum), Average, Minimum, Maximum |`Replica`|PT1M |No|
+|**Memory Usage**<br><br>Service bus premium namespace memory usage metric. |`NamespaceMemoryUsage` | No | Percent |Total (Sum), Average, Minimum, Maximum |`Replica`|PT1M |No|
 |**Outgoing Bytes.**<br><br>Outgoing Bytes for Microsoft.ServiceBus. |`OutgoingBytes` | No | Bytes |Total (Sum) |`EntityName`|PT1M |Yes|
 |**Outgoing Messages**<br><br>Outgoing Messages for Microsoft.ServiceBus. |`OutgoingMessages` | No | Count |Total (Sum) |`EntityName`|PT1M |Yes|
 |**Pending Checkpoint Operations Count.**<br><br>Pending Checkpoint Operations Count. |`PendingCheckpointOperationCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|

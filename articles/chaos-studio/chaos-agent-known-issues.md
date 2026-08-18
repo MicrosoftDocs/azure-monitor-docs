@@ -11,6 +11,8 @@ ms.custom:
 
 # Chaos Agent Known Issues
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 This document provides a list of known issues encountered with the Chaos Agent in Azure Chaos Studio, along with recommended workarounds or solutions. This list is updated regularly as new issues are identified.
 
 ---

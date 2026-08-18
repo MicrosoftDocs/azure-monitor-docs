@@ -11,6 +11,8 @@ ms.custom: template-tutorial
 
 # Tutorial: Schedule a recurring experiment with Azure Chaos Studio
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 Azure Chaos Studio lets you run chaos experiments that intentionally fail part of your application or service to verify that it's resilient against those failures. It can be useful to run these chaos experiments periodically to ensure that your application's resilience hasn't regressed or to meet compliance requirements. In this tutorial, you use a [logic app](/azure/logic-apps/logic-apps-overview) to trigger an experiment to run once a day.
 
 In this tutorial, you learn how to:

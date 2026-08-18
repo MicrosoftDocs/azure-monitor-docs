@@ -2,7 +2,7 @@
 title: Create Azure Monitor log search alert rules
 description: This article explains how to create a new Azure Monitor log search alert rule or edit an existing rule.
 ms.topic: how-to
-ms.date: 07/22/2025
+ms.date: 08/03/2026
 ms.reviewer: 
 
 #customer intent: As a customer, I want to create a new log search alert rule or edit an existing rule so that I can monitor my resources and receive alerts when certain conditions are met.
@@ -102,6 +102,8 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 1. <a name="dimensions"></a>(Optional) In the **Split by dimensions** section, you can use dimensions to help provide context for the triggered alert.
 
     Dimensions are columns from your query results that contain additional data. When you use dimensions, the alert rule groups the query results by the dimension values and evaluates the results of each group separately. If the condition is met, the rule fires an alert for that group. The alert payload includes the combination that triggered the alert.
+
+    Avoid using changing metric values, timestamps, GUIDs, or other high-cardinality or volatile values as split-by dimensions. Azure Monitor evaluates each unique dimension combination as a separate alert. If a dimension value changes on every evaluation, Azure Monitor treats each result as a new alert instance, and features such as mute actions don't suppress notifications across those instances.
 
     You can apply up to six dimensions per alert rule. Dimensions can be only string or numeric columns. If you want to use a column that isn't a number or string type as a dimension, you must convert it to a string or numeric value in your query. If you select more than one dimension value, each time series that results from the combination triggers its own alert and is charged separately.
 
@@ -239,6 +241,15 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     | **Automatically resolve alerts** | Select this option to make the alert stateful. When an alert is stateful, the alert is resolved when the condition is no longer met for a specific time range. The time range differs based on the frequency of the alert:<br>**1 minute**: The alert condition isn't met for 10 minutes.<br>**5 to 15 minutes**: The alert condition isn't met for three frequency periods.<br>**15 minutes to 11 hours**: The alert condition isn't met for two frequency periods.<br>**11 to 12 hours**: The alert condition isn't met for one frequency period.<br>Stateful alert rules with a frequency of more than 12 hours are not supported.<br><br>Note that stateful log search alerts have [these limitations](/azure/azure-monitor/service-limits#alerts). |
     | **Mute actions** | Select this option to set a period of time to wait before alert actions are triggered again. In the **Mute actions for** field that appears, select the amount of time to wait after an alert is fired before triggering actions again. |
     | **Check workspace linked storage** | Select this option if workspace linked storage for alerts is configured. If no linked storage is configured, the rule isn't created. |
+
+    > [!NOTE]
+    > When you configure linked storage for the `Alerts` data source type, triggered log search alerts don't include the alert query in the alert payload. In alert details, **Query** displays a comment in this format:
+    >
+    > ```kusto
+    > // Search query has been redacted as linked storage account is configured on Log Analytics workspace '<workspace-resource-id>'.
+    > ```
+    >
+    > This behavior is expected because Azure Monitor stores the query in your customer-managed storage account. Use [alert dimensions](alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions) to provide context for fired alerts. For more information, see [Considerations before setting customer-managed key for saved log alert queries](../logs/customer-managed-keys.md#considerations-before-setting-customer-managed-key-for-saved-log-alert-queries).
 
 1. [!INCLUDE [alerts-wizard-custom=properties](includes/alerts-wizard-custom-properties.md)]
 

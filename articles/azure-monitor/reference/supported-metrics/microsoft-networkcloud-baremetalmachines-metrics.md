@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.NetworkCloud/bareMetalMachines
 description: Reference for Microsoft.NetworkCloud/bareMetalMachines metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/13/2026
+ms.date: 07/31/2026
 ms.custom: Microsoft.NetworkCloud/bareMetalMachines, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -22,7 +22,7 @@ The following table lists the metrics available for the Microsoft.NetworkCloud/b
 - **Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
 - **Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
 - **Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
-- **DS Export** -S Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+- **DS Export** - Shows whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
 
 For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
 
@@ -35,14 +35,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 ### Category: CPU
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**CPU Guest Usage (Deprecated)**<br><br>Percentage of time that the CPU is running a virtual CPU for a guest operating system. In the absence of data, this metric will default to 0. |`CpuUsageGuest` | No | Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
-|**CPU Guest Nice Usage (Deprecated)**<br><br>Percentage of time that the CPU is running low-priority processes on a virtual CPU for a guest operating system. In the absence of data, this metric will default to 0. |`CpuUsageGuestNice` | No | Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
 |**CPU Usage Idle**<br><br>Percentage of time that the CPU is idle. In the absence of data, this metric will default to 0. |`CpuUsageIdle` | No | Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
-|**CPU Usage IO Wait (Deprecated)**<br><br>Percentage of time that the CPU is waiting for I/O operations to complete. In the absence of data, this metric will default to 0. |`CpuUsageIowait` | No | Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
-|**CPU Usage IRQ (Deprecated)**<br><br>Percentage of time that the CPU is servicing hardware interrupt requests. In the absence of data, this metric will default to 0. |`CpuUsageIrq` | No | Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
-|**CPU Usage Nice (Deprecated)**<br><br>Percentage of time that the CPU is in user mode, running low-priority processes. In the absence of data, this metric will default to 0. |`CpuUsageNice` | No | Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
-|**CPU Usage Soft IRQ (Deprecated)**<br><br>Percentage of time that the CPU is servicing software interrupt requests. In the absence of data, this metric will default to 0. |`CpuUsageSoftirq` | No | Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
-|**CPU Usage Steal (Deprecated)**<br><br>Percentage of time that the CPU is in stolen time, which is time spent in other operating systems in a virtualized environment. In the absence of data, this metric will default to 0. |`CpuUsageSteal` | No | Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
 |**CPU Usage System**<br><br>Percentage of time that the CPU is in system mode. In the absence of data, this metric will default to 0. |`CpuUsageSystem` | No | Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
 |**CPU Usage Total**<br><br>Percentage of time that the CPU is active (not idle). In the absence of data, this metric will default to 150. |`CpuUsageTotal` | No | Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |Yes|
 |**CPU Usage User**<br><br>Percentage of time that the CPU is in user mode. In the absence of data, this metric will default to 0. |`CpuUsageUser` | No | Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
@@ -129,7 +122,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 |**Node Network Max Transmission**<br><br>Maximum Transmission Unit (MTU) for node network interfaces. In the absence of data, this metric will default to 0. |`NodeNetworkMtuBytes` | No | Bytes |Average |`Device`, `Host`, `MachineRole`|PT1M |No|
 |**Node Network Received Multicast Total**<br><br>Total amount of multicast traffic received by the node network interfaces. |`NodeNetworkReceiveMulticastTotal` | No | Bytes |Average |`Device`, `Host`, `MachineRole`|PT1M |No|
 |**Node Network Received Packets**<br><br>Total number of packets received by the node network interfaces. |`NodeNetworkReceivePackets` | No | Count |Average |`Device`, `Host`, `MachineRole`|PT1M |No|
-|**Node Network Speed Bytes**<br><br>Current network speed, in bytes per second, for the node network interfaces. In the absence of data, this metric will default to 0. |`NodeNetworkSpeedBytes` | No | Bytes |Average |`Device`, `Host`, `MachineRole`|PT1M |No|
+|**Node Network Speed Bytes**<br><br>Current network speed, in bytes per second, for the node network interfaces. |`NodeNetworkSpeedBytes` | No | Bytes |Average |`Device`, `Host`, `MachineRole`|PT1M |No|
 |**Node Network Up**<br><br>Indicates the operational status of the nodes network interfaces. Value is 1 if operstate is 'up', 0 otherwise. |`NodeNetworkStatus` | No | Count |Count |`Device`, `Host`, `MachineRole`|PT1M |No|
 |**Node Network Transmited Packets**<br><br>Total number of packets transmitted by the node network interfaces. |`NodeNetworkTransmitPackets` | No | Count |Average |`Device`, `Host`, `MachineRole`|PT1M |No|
 
@@ -145,7 +138,6 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 |**Host DMI Info**<br><br>Environment information about the Desktop Management Interface (DMI), value is always 1. Includes labels about the system's manufacturer, model, version, serial number and UUID. In the absence of data, this metric will default to 0. |`HostDmiInformation` | No | Unspecified |Count |`BiosDate`, `BiosRelease`, `BiosVendor`, `BiosVersion`, `BoardName`, `BoardVendor`, `BoardVersion`, `Host`, `MachineRole`, `ProductFamily`, `ProductName`, `ProductSku`, `SystemVendor`|PT1M |No|
 |**Node NTP Leap**<br><br>The raw leap flag value of the local NTP daemon. This indicates the status of leap seconds. Value is 0 if no adjustment is needed, 1 to add a leap second, 2 to delete a leap second, and 3 if the clock is unsynchronized. |`NodeNtpLeap` | No | Count |Average |`Host`, `MachineRole`|PT1M |No|
 |**Node NTP Root Delay Seconds**<br><br>Indicates the delay to synchronize with the root server. |`NodeNtpRootDelaySeconds` | No | Seconds |Average |`Host`, `MachineRole`|PT1M |No|
-|**Node NTP RTT (Deprecated)**<br><br>Round-trip time from node exporter collector to local NTP daemon. |`NodeNtpRtt` | No | Seconds |Average |`Host`, `MachineRole`|PT1M |No|
 |**Node NTP Sanity**<br><br>The aggregate health of the local NTP daemon. This includes checks for stratum, leap flag, freshness, root distance, and causality violations. Value is 1 if all checks pass, 0 otherwise. |`NodeNtpSanity` | No | Count |Average |`Host`, `MachineRole`|PT1M |No|
 |**Node NTP Stratum**<br><br>The stratum level of the local NTP daemon. This indicates the distance from the reference clock, with lower numbers representing closer proximity and higher accuracy. Values range from 1 (directly connected to reference clock) to 15 (further away), with 16 indicating the clock is unsynchronized. |`NodeNtpStratum` | No | Count |Average |`Host`, `MachineRole`|PT1M |No|
 |**Node OS Info**<br><br>Node OS information, value is always 1. Provides name and version for a device. |`NodeOsInfo` | No | Count |Count |`Host`, `MachineRole`, `Name`, `Version`|PT1M |No|

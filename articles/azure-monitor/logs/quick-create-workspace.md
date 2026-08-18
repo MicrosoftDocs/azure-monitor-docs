@@ -2,8 +2,9 @@
 title: Create a Log Analytics Workspace
 description: Learn how to create a Log Analytics workspace in Azure Monitor to collect log data from Azure, on-premises, and multicloud environments.
 ms.topic: how-to
-ms.date: 06/01/2026
+ms.date: 08/07/2026
 ms.reviewer: yossiy
+ai-usage: ai-assisted
 
 # Customer intent: As a DevOps engineer or IT expert, I want to set up a workspace to collect logs from multiple data sources from Azure, on-premises, and third-party cloud deployments.
 ---
@@ -22,9 +23,11 @@ You need `Microsoft.OperationalInsights/workspaces/write` permissions to the res
 
 ## Create a workspace
 
+Create a Log Analytics workspace by using the Azure portal, PowerShell, the Azure CLI, a Bicep file, or a Resource Manager template. Select the tab for the method you want to use.
+
 ## [Portal](#tab/azure-portal)
 
-Use the **Log Analytics workspaces** menu to create a workspace.
+Create a workspace in the Azure portal from the **Log Analytics workspaces** menu.
 
 1. In the [Azure portal](https://portal.azure.com), enter **Log Analytics** in the search box. As you begin typing, the list filters based on your input. Select **Log Analytics workspaces**.
 
@@ -46,9 +49,9 @@ Use the **Log Analytics workspaces** menu to create a workspace.
 The following sample script creates a workspace with no data source configuration.
 
 ```powershell
-$ResourceGroup = <"my-resource-group">
-$WorkspaceName = <"log-analytics-workspace-name">
-$Location = <"westeurope">
+$ResourceGroup = "my-resource-group"
+$WorkspaceName = "log-analytics-workspace-name"
+$Location = "westeurope"
 
 # Create the resource group if needed
 try {
@@ -64,19 +67,24 @@ New-AzOperationalInsightsWorkspace -Location $Location -Name $WorkspaceName -Res
 > [!NOTE]
 > Log Analytics was previously called Operational Insights. The PowerShell cmdlets use Operational Insights in Log Analytics commands.
   
-After you create a workspace, [configure a Log Analytics workspace in Azure Monitor by using PowerShell](./powershell-workspace-configuration.md).
+After you create a workspace, [configure a Log Analytics workspace in Azure Monitor by using PowerShell](./quick-create-workspace.md).
 
 ## [Azure CLI](#tab/azure-cli)
 
-Run the [az group create](/cli/azure/group#az-group-create) command to create a resource group or use an existing resource group. To create a workspace, use the [az monitor log-analytics workspace create](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-create) command.
+Run the [az group create](/cli/azure/group#az-group-create) command to create a resource group or use an existing resource group. To create a workspace, use the [az monitor log-analytics workspace create](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-create) command. The following commands use a single-line form for each command so they run in any shell, including PowerShell and the default Windows Cloud Shell:
 
 ```azurecli
-    az group create --name <myGroup> --location <myLocation>
-    az monitor log-analytics workspace create --resource-group <myGroup> \
-       --workspace-name <myWorkspace>
+az group create --name myGroup --location myLocation
+az monitor log-analytics workspace create --resource-group myGroup --workspace-name myWorkspace
 ```
 
-For more information about Azure Monitor Logs in Azure CLI, see [Managing Azure Monitor Logs in Azure CLI](./azure-cli-log-analytics-workspace-sample.md).
+To verify that the workspace was created, run the [az monitor log-analytics workspace show](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-show) command. The workspace also appears in the **Log Analytics workspaces** list in the Azure portal.
+
+```azurecli
+az monitor log-analytics workspace show --resource-group myGroup --workspace-name myWorkspace
+```
+
+For more information about Azure Monitor Logs in Azure CLI, see [Managing Azure Monitor Logs in Azure CLI](./manage-logs-tables.md).
 
 ## [Bicep](#tab/bicep)
 
@@ -104,14 +112,14 @@ param sku string = 'pergb2018'
 @description('Specifies the location for the workspace.')
 param location string
 
-@description('Number of days to retain data.')
+@description('Number of days to retain data. Remove this parameter if you use the Free pricing tier.')
 param retentionInDays int = 120
 
 @description('true to use resource or workspace permissions. false to require workspace permissions.')
 param resourcePermissions bool
 
 @description('Number of days to retain data in Heartbeat table.')
-param heartbeatTableRetention int
+param heartbeatTableRetention int = 30
 
 resource workspace 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
   name: workspaceName
@@ -135,9 +143,6 @@ resource workspaceName_Heartbeat 'Microsoft.OperationalInsights/workspaces/table
   }
 }
 ```
-
-> [!NOTE]
-> If you specify a pricing tier of **Free**, remove the **retentionInDays** element.
 
 ### Parameter file
 
@@ -197,7 +202,7 @@ For more information about Azure Resource Manager templates, see [Azure Resource
       "type": "int",
       "defaultValue": 120,
       "metadata": {
-        "description": "Number of days to retain data."
+        "description": "Number of days to retain data. Remove this parameter if you use the Free pricing tier."
       }
     },
     "resourcePermissions": {
@@ -208,6 +213,7 @@ For more information about Azure Resource Manager templates, see [Azure Resource
     },
     "heartbeatTableRetention": {
       "type": "int",
+      "defaultValue": 30,
       "metadata": {
         "description": "Number of days to retain data in Heartbeat table."
       }
@@ -237,15 +243,12 @@ For more information about Azure Resource Manager templates, see [Azure Resource
         "retentionInDays": "[parameters('heartbeatTableRetention')]"
       },
       "dependsOn": [
-        "workspace"
+        "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]"
       ]
     }
   ]
 }
 ```
-
-> [!NOTE]
-> If you specify a pricing tier of **Free**, remove the **retentionInDays** element.
 
 ### Parameter file
 
@@ -286,9 +289,9 @@ When you create a workspace that you deleted in the last 14 days and it's in [so
    1. [Permanently delete](../logs/delete-workspace.md#delete-a-workspace-permanently) your workspace.
    1. Create a new workspace by using the same workspace name.
   
-## Next steps
+## Related content
 
 Now that a workspace is available, configure collection of monitoring telemetry and run log searches to analyze that data. To learn more:
 
 * See [Monitor health of Log Analytics workspace in Azure Monitor](../logs/monitor-workspace.md) to create alert rules that monitor the health of your workspace.
-* See [Collect Azure resource logs](../essentials/resource-logs.md#send-to-log-analytics-workspace) to enable data collection from Azure resources by using diagnostic settings.
+* See [Collect Azure resource logs](../platform/resource-logs.md) to enable data collection from Azure resources by using diagnostic settings.

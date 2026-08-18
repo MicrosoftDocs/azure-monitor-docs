@@ -4,11 +4,13 @@ description: Learn about the different ways for Chaos Studio to authenticate wit
 services: chaos-studio
 author: rsgel
 ms.topic: how-to
-ms.date: 2/5/2025
+ms.date: 08/05/2026
 ms.author: nikhilkaul
 ---
 
 # Use Microsoft Entra authentication with Chaos Studio AKS faults
+
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 
 ## Overview
 
@@ -164,6 +166,9 @@ The following RBAC operations are used for AKS Chaos Mesh faults:
 
 If you prefer not to grant full ClusterRole and ClusterRoleBinding read/write access to the Chaos Studio experiment identity, you can manually create the necessary role and binding for Chaos Mesh. This is necessary for Chaos Mesh to ensure the experiment has permission to target the specified tenant namespace.
 
+> [!IMPORTANT]
+> This configuration reduces the Azure RBAC operations granted to the experiment identity. It doesn't remove the experiment's dependency on retrieving the cluster admin credential, and it doesn't enable experiments on clusters that disable local accounts. For details, see [Known limitation: cluster admin credential retrieval](#known-limitation-cluster-admin-credential-retrieval).
+
 There are two steps to this optional configuration.
 
 1. When assigning permissions to the experiment's managed identity, use a custom role with a limited set of permissions. The permissions required are:
@@ -205,3 +210,18 @@ There are two steps to this optional configuration.
       apiGroup: rbac.authorization.k8s.io
     
     ```
+
+## Known limitation: cluster admin credential retrieval
+
+Classic experiments that use Chaos Mesh faults depend on retrieving the AKS cluster admin credential through the `Microsoft.ContainerService/managedClusters/listClusterAdminCredential/action` operation. This dependency applies even when the cluster uses AKS-managed Microsoft Entra authentication and the experiment identity uses the least-privilege custom role described in this article. It has two consequences:
+
+- If the experiment identity isn't authorized to perform `listClusterAdminCredential`, the experiment fails. The cluster's [activity log](../azure-monitor/platform/activity-log.md) shows a 403 `AuthorizationFailed` error for the operation.
+- If the cluster disables local accounts (`disableLocalAccounts` set to `true`), Chaos Mesh faults can't run on the cluster. The experiment doesn't inject faults: no Chaos Mesh resources are created in the target namespace and no events are generated there, while the Chaos Mesh pod logs show no errors.
+
+To run Chaos Mesh faults on a cluster where these constraints apply:
+
+- Keep local accounts enabled on the cluster. For more information, see [Manage local accounts](/azure/aks/manage-local-accounts-managed-azure-ad).
+- Grant the experiment identity a role that includes the `Microsoft.ContainerService/managedClusters/listClusterAdminCredential/action` operation, such as [Azure Kubernetes Service Cluster Admin Role](/azure/role-based-access-control/built-in-roles/containers#azure-kubernetes-service-cluster-admin-role).
+- To constrain what the experiment can do inside the cluster, apply admission policies with [Azure Policy for AKS](/azure/aks/use-azure-policy) or another admission controller, such as Open Policy Agent Gatekeeper.
+
+The classic model doesn't provide a configuration that avoids cluster admin credential retrieval. If this approach doesn't meet your security requirements, use [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) for resilience testing instead. To get started on AKS, see [Test workload resiliency on AKS with Chaos Studio (preview)](chaos-studio-aks-guidance.md).

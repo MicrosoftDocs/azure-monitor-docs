@@ -10,6 +10,8 @@ ms.custom: template-how-to
 
 # Use a chaos experiment template to induce an outage on a Microsoft Entra ID instance
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 You can use a chaos experiment to verify that your application is resilient to failures by causing those failures in a controlled environment. In this article, you induce an outage on a Microsoft Entra ID resource using a pre-populated experiment template and Azure Chaos Studio.
 
 ## Prerequisites

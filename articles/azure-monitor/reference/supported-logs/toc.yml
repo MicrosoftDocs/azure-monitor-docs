@@ -139,7 +139,7 @@ items:
   displayName: Update Events
 - name: Microsoft.Dashboard/grafana
   href: microsoft-dashboard-grafana-logs.md
-  displayName: Grafana Login Events,Grafana Usage Insights Events
+  displayName: Grafana Alert Authentication Failure Events,Grafana Login Events,Grafana Usage Insights Events
 - name: Microsoft.Databricks/workspaces
   href: microsoft-databricks-workspaces-logs.md
   displayName: Databricks Accounts,Databricks Brick Store HttpGateway,Databricks Budget Policy Central,Databricks Capsule8 Container Security Scanning Reports,Databricks Clam AV Scan,Databricks Cloud Storage Metadata,Databricks Cluster Libraries,Databricks Cluster Policies,Databricks Clusters,Databricks Dashboards,Databricks Data Monitoring,Databricks Data Rooms,Databricks DatabricksSQL,Databricks Delta Pipelines,Databricks Feature Store,Databricks File System,Databricks Files,Databricks Filesystem Logs,Databricks Genie,Databricks Git Credentials,Databricks Global Init Scripts,Databricks Groups,Databricks IAM Role,Databricks Ingestion,Databricks Jobs,Databricks Lakehouse Apps,Databricks Lakeview configuration,Databricks Lineage Tracking,Databricks Marketplace Consumer,Databricks Marketplace Provider,Databricks MLFlow Acled Artifact,Databricks MLFlow Experiment,Databricks Model Registry,Databricks Notebook,Databricks Online Tables,Databricks Partner Hub,Databricks Predictive Optimization,Databricks Remote History Service,Databricks Repos,Databricks Request For Access Events,Databricks Role Based Access Control,Databricks Secrets,Databricks Serverless Real-Time Inference,Databricks SQL Analytics,Databricks SQLPermissions,Databricks SSH,Databricks Unity Catalog,Databricks Vector Search,Databricks Web Terminal,Databricks Webhook Notifications,Databricks Workspace,Databricks Workspace Files,Instance Pools
@@ -256,7 +256,10 @@ items:
   displayName: Application Metrics Logs,Archive Logs,Auto Scale Logs,Customer Managed Key Logs,DataDR Logs,Diagnostic Error Logs,Kafka Coordinator Logs,Kafka User Error Logs,Operational Logs,Runtime Audit Logs,VNet/IP Filtering Connection Logs
 - name: Microsoft.HardwareSecurityModules/cloudHsmClusters
   href: microsoft-hardwaresecuritymodules-cloudhsmclusters-logs.md
-  displayName: Hsm Service Operations
+  displayName: Hsm Hardware Operations,Hsm Service Operations
+- name: Microsoft.HardwareSecurityModules/paymentHsmClusters
+  href: microsoft-hardwaresecuritymodules-paymenthsmclusters-logs.md
+  displayName: Hsm Hardware Operations
 - name: Microsoft.HealthcareApis/services
   href: microsoft-healthcareapis-services-logs.md
   displayName: Audit logs,Diagnostic logs
@@ -278,6 +281,9 @@ items:
 - name: Microsoft.HealthDataAIServices/deidServices
   href: microsoft-healthdataaiservices-deidservices-logs.md
   displayName: Audit Logs
+- name: Microsoft.HorizonDB/clusters
+  href: microsoft-horizondb-clusters-logs.md
+  displayName: HorizonDB autovacuum statistics,HorizonDB query store query text,HorizonDB query store runtime statistics,HorizonDB query store waits statistics,HorizonDB server logs,HorizonDB sessions,HorizonDB transactions statistics
 - name: microsoft.insights/autoscalesettings
   href: microsoft-insights-autoscalesettings-logs.md
   displayName: Autoscale Evaluations,Autoscale Scale Actions
@@ -302,6 +308,12 @@ items:
 - name: microsoft.loadtestservice/loadtests
   href: microsoft-loadtestservice-loadtests-logs.md
   displayName: Azure Load Testing Operations
+- name: Microsoft.Logic/automationProjects
+  href: microsoft-logic-automationprojects-logs.md
+  displayName: Workflow runtime diagnostic events
+- name: Microsoft.Logic/automationProjects/applications
+  href: microsoft-logic-automationprojects-applications-logs.md
+  displayName: Workflow runtime diagnostic events
 - name: Microsoft.Logic/IntegrationAccounts
   href: microsoft-logic-integrationaccounts-logs.md
   displayName: Integration Account track events
@@ -319,7 +331,7 @@ items:
   displayName: AmlOnlineEndpointConsoleLog,AmlOnlineEndpointEventLog,AmlOnlineEndpointTrafficLog
 - name: Microsoft.ManagedNetworkFabric/networkDevices
   href: microsoft-managednetworkfabric-networkdevices-logs.md
-  displayName: BGP Neighbor Updates,Bi-Directional Forwarding Detection Updates,Component State Updates,Interface State Updates,Interface Vxlan Updates,Network Instance Updates,System Session History Updates,System State Message Updates
+  displayName: BGP Neighbor Updates,Bi-Directional Forwarding Detection Updates,Component State Updates,Interface General Events,Interface State Updates,Interface Vxlan Updates,Network Instance Updates,System Session History Updates,System State Message Updates
 - name: Microsoft.Monitor/accounts
   href: microsoft-monitor-accounts-logs.md
   displayName: Metrics Usage Details
@@ -371,9 +383,6 @@ items:
 - name: Microsoft.Network/networkSecurityPerimeters/profiles
   href: microsoft-network-networksecurityperimeters-profiles-logs.md
   displayName: NSP Inbound Access Allowed.,NSP Inbound Access Denied.,NSP Outbound Access Allowed.,NSP Outbound Access Denied.
-- name: Microsoft.Network/NetworkVirtualAppliances
-  href: microsoft-network-networkvirtualappliances-logs.md
-  displayName: ADG Syslog Event
 - name: microsoft.network/p2svpngateways
   href: microsoft-network-p2svpngateways-logs.md
   displayName: Gateway Diagnostic Logs,IKE Diagnostic Logs,P2S Diagnostic Logs
@@ -403,7 +412,7 @@ items:
   displayName: Security - Audit,Security - Break Glass Audit,Security - Critical,Security - Debug,Security - Defender,Security - Error,Security - Info,Security - Notice,Security - Warning,System - Critical,System - Debug,System - Error,System - Info,System - Notice,System - Warning
 - name: Microsoft.NetworkCloud/clusterManagers
   href: microsoft-networkcloud-clustermanagers-logs.md
-  displayName: Cluster Manager Deploy or Upgrade Logs
+  displayName: Cloud Init Diagnostic Logs,Cluster Manager Deploy or Upgrade Logs
 - name: Microsoft.NetworkCloud/clusters
   href: microsoft-networkcloud-clusters-logs.md
   displayName: IDRAC Container Logs,Kubernetes API Audit Logs,Kubernetes Logs,Platform Operation Logs,VM Orchestration Logs
@@ -427,7 +436,7 @@ items:
   displayName: Audit
 - name: MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES
   href: microsoft-openenergyplatform-energyservices-logs.md
-  displayName: ACZ API Logs,ACZ Worker Logs,Air Flow Task Logs,Audit Event,CRS Catalog Service Logs,CRS Conversion Service Logs,Dataset Service Logs,EDS DMS Logs,EDS Secret Logs,Elastic Operator Logs,Elasticsearch Logs,Entitlements Service Logs,File Service Logs,Indexer Service Logs,Legal Service Logs,Notification Service Logs,Partition Service Logs,PDSBackend Service Logs,PDSFrontend Service Logs,Register Service Logs,Reservoir DDMS Client Logs,Reservoir DDMS Server Logs,Rock and Fluid Samples DDMS Logs,Schema Service Logs,Search Extensions Service Logs,Search Service Logs,Storage Service Logs,Unit Service Logs,Wellbore Service Logs,WellDelivery Service Logs,Workflow Service Logs
+  displayName: ACZ API Logs,ACZ Worker Logs,Air Flow Task Logs,Audit Event,CRS Catalog Service Logs,CRS Conversion Service Logs,Dataset Service Logs,EDS DMS Logs,EDS Secret Logs,Elastic Operator Logs,Elasticsearch Logs,Entitlements Service Logs,File Service Logs,Indexer Service Logs,Legal Service Logs,Notification Service Logs,Partition Service Logs,PDSBackend Service Logs,PDSFrontend Service Logs,Register Service Logs,Reservoir DDMS Client Logs,Reservoir DDMS Server Logs,Rock and Fluid Samples DDMS Logs,Schema Service Logs,Search Extensions Service Logs,Search Service Logs,Seismic DDMS Logs,Storage Service Logs,Unit Service Logs,Wellbore Service Logs,WellDelivery Service Logs,Workflow Service Logs
 - name: Microsoft.OpenLogisticsPlatform/Workspaces
   href: microsoft-openlogisticsplatform-workspaces-logs.md
   displayName: Supply Chain Entity Operations,Supply Chain Event logs
@@ -469,7 +478,7 @@ items:
   displayName: Addon Azure Backup Alert Data,Addon Azure Backup Job Data,Addon Azure Backup Policy Data,Addon Azure Backup Protected Instance Data,Addon Azure Backup Storage Data,Azure Backup Operations,Azure Backup Reporting Data,Azure Site Recovery Events,Azure Site Recovery Jobs,Azure Site Recovery Protected Disk Data Churn,Azure Site Recovery Recovery Points,Azure Site Recovery Replicated Items,Azure Site Recovery Replicated Items Details,Azure Site Recovery Replication Data Upload Rate,Azure Site Recovery Replication Stats,Core Azure Backup Data
 - name: Microsoft.RedHatOpenShift/hcpOpenShiftClusters
   href: microsoft-redhatopenshift-hcpopenshiftclusters-logs.md
-  displayName: Cloud Controller Manager,CSI Azure Disk Controller,CSI Azure File Controller,CSI Snapshot Controller,Kubernetes API Server,Kubernetes Audit,Kubernetes Audit Admin Logs,Kubernetes Controller Manager,Kubernetes Scheduler
+  displayName: Cloud Controller Manager,Cluster API Provider,Cluster Autoscaler,CSI Azure Disk Controller,CSI Azure File Controller,CSI Snapshot Controller,Kubernetes API Server,Kubernetes Audit,Kubernetes Audit Admin Logs,Kubernetes Controller Manager,Kubernetes Scheduler
 - name: Microsoft.Relay/namespaces
   href: microsoft-relay-namespaces-logs.md
   displayName: HybridConnections Events,VNet/IP Filtering Connection Logs
@@ -604,10 +613,13 @@ items:
   displayName: Creation Events,Critical events,Delete Events,Information Events,Maintenance Events,Update Events
 - name: Oracle.Database/cloudVmClusters
   href: oracle-database-cloudvmclusters-logs.md
-  displayName: Add Virtual Machine Events,Creation Events,Database Backup Events,Database Critical Events,Database Information Events,Database Restore Events,Delete and Terminate Events,System Health Events,Terminate Virtual Machine Events,Update Events
+  displayName: Add Virtual Machine Events,Creation Events,Critical events,Database Backup Events,Database Critical Events,Database Information Events,Database Restore Events,Delete and Terminate Events,System Health Events,Terminate Virtual Machine Events,Update Events
 - name: Oracle.Database/dbSystems
   href: oracle-database-dbsystems-logs.md
   displayName: Creation Events,Database Backup Events,Database Critical Events,Database Information Events,Database Restore Events,Delete and Terminate Events,System Health Events,Update Events
 - name: Oracle.Database/exadbVmClusters
   href: oracle-database-exadbvmclusters-logs.md
   displayName: Add Virtual Machine events,Creation Events,Critical Events,Delete Events,Information Events,Maintenance Events,Terminate Virtual Machine Events,Update Events
+- name: Oracle.Database/exascaleDbStorageVaults
+  href: oracle-database-exascaledbstoragevaults-logs.md
+  displayName: Creation Events,Delete Events,Update Events

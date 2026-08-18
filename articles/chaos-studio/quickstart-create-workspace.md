@@ -3,7 +3,7 @@ title: "Quickstart: Create a Workspace and run your first Scenario"
 description: Get started with Azure Chaos Studio Workspaces by creating a Workspace, discovering your resources, and running a Scenario.
 author: nikhilkaul-msft
 ms.topic: quickstart
-ms.date: 07/17/2026
+ms.date: 07/30/2026
 ai-usage: ai-assisted
 ---
 
@@ -57,19 +57,21 @@ The Workspace's managed identity is the principal that executes Actions at runti
     - **System-assigned**: Chaos Studio creates a managed identity tied to this Workspace. The identity is deleted when the Workspace is deleted.
     - **User-assigned**: Select an existing user-assigned managed identity. This option is useful when you want to share one identity across multiple Workspaces or manage permissions centrally.
 
-1. (Optional) Enable **Automatic role assignment** to let Chaos Studio assign the required RBAC roles to the identity based on the Scenarios you run. If your organization restricts automatic role assignments, leave this off and assign permissions manually. See [Permissions and identity in Chaos Studio Workspaces](chaos-studio-workspace-permissions.md) for the required roles.
-
 1. Select **Next: Review + Create**.
+
+You grant the identity its permissions after the workspace is created: the portal prompts you to fix missing read access on the workspace, and to fix missing scenario permissions when you configure a scenario. See [How role assignments happen](chaos-studio-workspace-permissions.md#how-role-assignments-happen).
 
 ## Review and create
 
-1. Review your Workspace configuration. Confirm the scope, identity type, and role assignment settings.
+1. Review your workspace configuration. Confirm the scope and identity settings.
 
 1. Select **Create**.
 
    The deployment takes a few seconds. When it finishes, Chaos Studio begins discovering the resources in your scope.
 
 1. Select **Go to resource** to open your new Workspace.
+
+1. If the portal shows a banner saying the identity is missing read permissions on the workspace scope, select **Assign the Reader role over the Workspace Scope**. To create role assignments, you need Owner or User Access Administrator rights on the scope.
 
 ## Explore the Scenario library
 
@@ -82,6 +84,8 @@ Once the Workspace finishes discovery, it populates the Scenario library based o
 1. Select a Scenario to view its details. For example, **Compute Zone Down** simulates an availability zone failure by shutting down virtual machines and Azure Virtual Machine Scale Sets instances in a target zone.
 
 1. If the Scenario requires configuration, such as choosing which availability zone to target, fill in the required parameters. You can also exclude specific resources from the run if you need to protect certain resources while testing the rest. Select **Save configuration**.
+
+1. Validation checks whether the workspace's managed identity can perform every action the scenario needs on the target resources. If validation reports missing permissions, select **Fix Permissions** to grant the identity the recommended built-in roles. To assign roles yourself, or to use least-privilege custom roles instead of built-in roles, see [How role assignments happen](chaos-studio-workspace-permissions.md#how-role-assignments-happen).
 
 ## Run the Scenario
 
@@ -124,6 +128,7 @@ If you created resources specifically for this quickstart, delete them to avoid 
 
 ## Next steps
 
+- [Tutorial: Deploy a sample application and test its zone resilience with Chaos Studio](chaos-studio-tutorial-sample-app.md)
 - [Workspaces in Azure Chaos Studio](chaos-studio-workspaces-overview.md)
 - [Scenarios in Azure Chaos Studio](chaos-studio-scenarios.md)
 - [Scenario reports in Azure Chaos Studio](chaos-studio-scenario-reports.md)

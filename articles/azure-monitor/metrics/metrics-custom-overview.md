@@ -2,31 +2,34 @@
 title: Custom metrics in Azure Monitor (preview)
 description: Learn about custom metrics in Azure Monitor and how they're modeled.
 ms.topic: concept-article
-ms.date: 11/07/2024
+ms.date: 08/07/2026
 ms.reviewer: priyamishra
+ai-usage: ai-assisted
 ---
 
 # Custom metrics in Azure Monitor (preview)
 
-Azure makes some metrics available to you out of the box. These metrics are called [standard or platform](../reference/supported-metrics/metrics-index.md). Custom metrics are performance indicators or business-specific metrics. You can collect them through your application's telemetry. You can also use the Azure Monitor Agent or an external monitoring system. Once custom metrics are published to Azure Monitor, you can browse, query, and alert on them along side the standard Azure metrics.
+Azure provides metrics out of the box. These metrics are called [standard or platform](../reference/metrics-index.md) metrics. Custom metrics are performance indicators or business-specific metrics. You can collect them through your application's telemetry. You can also use the Azure Monitor Agent or an external monitoring system. After you publish custom metrics to Azure Monitor, you can browse, query, and alert on them along with the standard Azure metrics.
 
 > [!NOTE]
-> Azure Monitor custom metrics are currently in public preview. This feature will not be made Generally Available, as we are now offering an improved GA feature that achieves the same functionality and more: [Custom Metrics in Azure Monitor Workspaces](../app/opentelemetry.md). In addition to custom metrics, [OpenTelemetry performance counters](../vm/metrics-opentelemetry-guest.md) from the Guest OS of VMs are supported as well.
+> Azure Monitor custom metrics are in public preview. This feature won't be made generally available, because an improved generally available feature achieves the same functionality and more: [Application Insights with OpenTelemetry](../app/app-insights-overview.md). In addition to custom metrics, [OpenTelemetry performance counters](../vm/metrics-opentelemetry-guest.md) from the guest OS of VMs are supported as well.
+
+## Use the generally available replacement
+
+The custom metrics described in this article remain in preview and won't be made generally available. For new solutions, use the generally available OpenTelemetry-based path, which provides the same functionality and more. To get started, see [Application Insights with OpenTelemetry](../app/app-insights-overview.md) and [OpenTelemetry system metrics for virtual machines](../vm/metrics-opentelemetry-guest.md).
 
 ## Methods to send custom metrics
 
 Custom metrics can be sent to Azure Monitor via several methods:
 
-* Use Azure Application Insights SDK to instrument your application by sending custom telemetry to Azure Monitor.
+* Use the Application Insights SDK to instrument your application by sending custom telemetry to Azure Monitor.
 * Install the [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) on your Windows or Linux Azure virtual machine or virtual machine scale set and use a [data collection rule](../vm/data-collection.md) to send performance counters to Azure Monitor metrics.
 * Install the [InfluxData Telegraf agent](../agents/collect-custom-metrics-linux-telegraf.md) on your Azure Linux VM. Send metrics by using the Azure Monitor output plug-in.
 * Send custom metrics [directly to the Azure Monitor REST API](metrics-store-custom-rest-api.md).
 
-## Pricing model and retention
+## Pricing model
 
-In general, there's no cost to ingest standard metrics (platform metrics) into an Azure Monitor metrics store, but custom metrics incur costs when they enter general availability. Queries to the metrics API do incur costs. For details on when billing is enabled for custom metrics and metrics queries, check the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor/).
-
-Custom metrics are retained for the [same amount of time as platform metrics](data-platform-metrics.md#retention-of-metrics).
+Ingesting standard metrics (platform metrics) into an Azure Monitor metrics store is free. Native custom metrics are also free during the preview. Queries to the metrics API incur costs. Because custom metrics remain in preview and won't be made generally available, use the [generally available OpenTelemetry-based replacement](../app/app-insights-overview.md) for a supported billing model. For current metric and query pricing, see the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Custom metric definitions
 
@@ -40,7 +43,7 @@ Each metric data point you publish contains a namespace, name, and dimension inf
 After custom metrics are submitted to Azure Monitor, you can browse through them via the Azure portal and query them via the Azure Monitor REST APIs. You can also create alerts on them to notify you when certain conditions are met.
 
 > [!NOTE]
-> You need to have a reader or contributor role to view custom metrics. See [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader).
+> You need the [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) role to view custom metrics.
 
 ### Browse your custom metrics via the Azure portal
 
@@ -54,6 +57,8 @@ After custom metrics are submitted to Azure Monitor, you can browse through them
 For more information on viewing metrics in the Azure portal, see [Analyze metrics with Azure Monitor metrics explorer](analyze-metrics.md).
 
 ## Latency and storage retention
+
+Custom metrics are retained for the [same amount of time as platform metrics](data-platform-metrics.md#retention-of-metrics).
 
 A newly added metric or a newly added dimension to a metric might take up to 3 minutes to appear. After the data is in the system, it should appear in less than 30 seconds 99 percent of the time.
 
@@ -93,31 +98,37 @@ To see your current total active time series metrics and get more information fo
 
 Azure Monitor limits the combined length of all custom metric names to 64 KB, assuming UTF-8 encoding or 1 byte per character. If your metric names exceed this limit, Azure Monitor blocks access to metadata for the other metrics. The Azure portal omits those metric names from selection fields, and the API skips them when it returns metric definitions. You can still query the metric data directly, even without the metadata.
 
-When the limit is exceeded, reduce the number of metrics you're sending or shorten the length of their names. It then takes up to two days for the new metrics' names to appear. 
+When the limit is exceeded, reduce the number of metrics you're sending or shorten the length of their names. It takes up to two days for the new metrics' names to appear.
 
 To avoid reaching the limit, don't include variable or dimensional aspects in your metric names.
 For example, the metrics for server CPU usage,`CPU_server_12345678-319d-4a50-b27e-1234567890ab` and `CPU_server_abcdef01-319d-4a50-b27e-abcdef012345` should be defined as metric `CPU` and with a `Server` dimension.
 
 ## Design limitations and considerations
 
-**Using Application Insights for the purpose of auditing.** The Application Insights telemetry pipeline is optimized for minimizing the performance impact and limiting the network traffic from monitoring your application. As such, it throttles or samples (takes only a percentage of your telemetry and ignores the rest) if the initial dataset becomes too large. Because of this behavior, you can't use it for auditing purposes because some records are likely to be dropped.
+### Using Application Insights for auditing
 
-**Metrics with a variable in the name.** Don't use a variable as part of the metric name. Use a constant instead. Each time the variable changes its value, Azure Monitor generates a new metric. Azure Monitor then quickly hits the limit on the number of metrics. Generally, when developers want to include a variable in the metric name, they really want to track multiple time series within one metric and should use dimensions instead of variable metric names.
+The Application Insights telemetry pipeline is optimized to minimize the performance impact and limit the network traffic from monitoring your application. As such, it throttles or samples (takes only a percentage of your telemetry and ignores the rest) if the initial dataset becomes too large. Because of this behavior, you can't use it for auditing purposes because some records are likely to be dropped.
 
-**High-cardinality metric dimensions.** Metrics with too many valid values in a dimension (a *high cardinality*) are much more likely to hit the 50,000 limit. In general, you should never use a constantly changing value in a dimension. Timestamp, for example, should never be a dimension. You can use server, customer, or product ID, but only if you have a smaller number of each of those types.
+### Metrics with a variable in the name
+
+Don't use a variable as part of the metric name. Use a constant instead. Each time the variable changes its value, Azure Monitor generates a new metric. Azure Monitor then quickly hits the limit on the number of metrics. Generally, when developers want to include a variable in the metric name, they really want to track multiple time series within one metric and should use dimensions instead of variable metric names.
+
+### High-cardinality metric dimensions
+
+Metrics with too many valid values in a dimension (a *high cardinality*) are much more likely to hit the 50,000 limit. In general, you should never use a constantly changing value in a dimension. Timestamp, for example, should never be a dimension. You can use server, customer, or product ID, but only if you have a smaller number of each of those types.
 
 As a test, ask yourself if you would ever chart such data on a graph. If you have 10 or maybe even 100 servers, it might be useful to see them all on a graph for comparison. But if you have 1,000, the resulting graph would likely be difficult or impossible to read. A best practice is to keep it to fewer than 100 valid values. Up to 300 is a gray area. If you need to go over this amount, use Azure Monitor custom logs instead.
 
 If you have a variable in the name or a high-cardinality dimension, the following issues can occur:
 
 * Metrics become unreliable because of throttling.
-* Metrics Explorer doesn't work.
+* Metrics explorer doesn't work.
 * Alerting and notifications become unpredictable.
-* Costs can increase unexpectedly. Microsoft isn't charging for custom metrics with dimensions while this feature is in public preview. After charges start in the future, you'll incur unexpected charges. The plan is to charge for metrics consumption based on the number of time series monitored and number of API calls made.
+* Costs can increase unexpectedly because metric queries are billed. For a supported, generally available billing model, use the [OpenTelemetry-based replacement](../app/app-insights-overview.md).
 
 If the metric name or dimension value is populated with an identifier or high-cardinality dimension by mistake, you can easily fix it by removing the variable part.
 
-But if high cardinality is essential for your scenario, the aggregated metrics are probably not the right choice. Switch to using custom logs (that is, trackMetric API calls with [trackEvent](../app/api-custom-events-metrics.md#trackevent)). However, consider that logs don't aggregate values, so every single entry is stored. As a result, if you have a large volume of logs in a small time period (1 million a second, for example), it can cause throttling and ingestion delays.
+But if high cardinality is essential for your scenario, the aggregated metrics are probably not the right choice. Switch to using custom logs (that is, trackMetric API calls with [trackEvent](../app/usage.md#how-to-log-custom-events)). However, consider that logs don't aggregate values, so every single entry is stored. As a result, if you have a large volume of logs in a small time period (1 million a second, for example), it can cause throttling and ingestion delays.
 
 [!INCLUDE [application-insights-metrics-interval](../app/includes/application-insights-metrics-interval.md)]
 

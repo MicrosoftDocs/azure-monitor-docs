@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/24/2026
+ms.date: 07/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Application Gateway
@@ -381,5 +381,77 @@ Recommendation ID: 88ecf03e-51dc-4aa4-9a4d-2ee48c407f56
 
 
 <!--88ecf03e-51dc-4aa4-9a4d-2ee48c407f56_end-->
+
+<!--15ee33f6-5dc1-430f-a0f2-6873dd78a1e2_begin-->
+
+#### Resolve Azure Key Vault issue for your Application Gateway  
+  
+We detected that one or more of your Application Gateways is unable to obtain a certificate due to misconfigured Key Vault. You should fix this configuration immediately to avoid operational issues with your gateway.  
+  
+**Potential benefits**: Resolve control plane failures and data plane downtime  
+
+**Impact:** High
+  
+For more information, see [Common key vault errors in Application Gateway - Azure Application Gateway](https://aka.ms/agkverror)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: 15ee33f6-5dc1-430f-a0f2-6873dd78a1e2  
+
+
+<!--15ee33f6-5dc1-430f-a0f2-6873dd78a1e2_end-->
+
+<!--6aec5549-cbf8-4704-803c-c0946221176d_begin-->
+
+#### Enable connection monitors for your load balancer  
+  
+Connection Monitor helps you monitor resources, providing loss and latency. The current recommendation is to enable tests for your connection monitor.  
+  
+**Potential benefits**: Health tracking of Load balancer  
+
+**Impact:** Low
+  
+For more information, see [Connection Monitor Overview - Azure Network Watcher](/azure/network-watcher/connection-monitor-overview)  
+
+ResourceType: microsoft.network/loadbalancers  
+Recommendation ID: 6aec5549-cbf8-4704-803c-c0946221176d  
+
+
+<!--6aec5549-cbf8-4704-803c-c0946221176d_end-->
+
+<!--dbd1894e-eab1-4f48-9ab4-f4214fbcaa88_begin-->
+
+#### Retirement of Manually Registered Azure VPN Clients for ​Microsoft Azure  
+  
+We’re retiring manually registered Azure VPN clients for point-to-site connections with Microsoft Entra ID authentication for ​Azure Government and ​Microsoft Azure operated by 21Vianet clouds.  To improve security, we’ll only be supporting Microsoft-registered VPN clients after that date.  
+  
+**Potential benefits**: Avoid disconnections upon retirement  
+
+**Impact:** High
+  
+For more information, see [Migrate manually registered Azure VPN client to Microsoft-registered for P2S Microsoft Entra ID authentication - Azure VPN Gateway](/azure/vpn-gateway/point-to-site-entra-gateway-update)  
+
+ResourceType: microsoft.network/virtualnetworkgateways  
+Recommendation ID: dbd1894e-eab1-4f48-9ab4-f4214fbcaa88  
+
+
+<!--dbd1894e-eab1-4f48-9ab4-f4214fbcaa88_end-->
+
+<!--f798ee44-764a-4f20-a0cf-48da97d4ad91_begin-->
+
+#### Manage virtual network with IP Address Manager (IPAM)  
+  
+This virtual network isn't managed by IP Address Manager (IPAM). Associate it with an IPAM pool to centrally track IP address allocation, prevent overlapping address spaces, and simplify network planning across your organization.  
+  
+**Potential benefits**: Centralized IP address management and overlap prevention  
+
+**Impact:** Medium
+  
+For more information, see [What is IP address management (IPAM) in Azure Virtual Network Manager?](/azure/virtual-network-manager/concept-ip-address-management)  
+
+ResourceType: microsoft.network/virtualnetworks  
+Recommendation ID: f798ee44-764a-4f20-a0cf-48da97d4ad91  
+
+
+<!--f798ee44-764a-4f20-a0cf-48da97d4ad91_end-->
 
 <!--articleBody-->

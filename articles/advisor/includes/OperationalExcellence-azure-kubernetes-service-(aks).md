@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/28/2026
+ms.date: 08/11/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure Kubernetes Service (AKS)
@@ -179,5 +179,65 @@ Recommendation ID: 89e238d9-56e5-4f05-bd9a-295ebd55711d
 
 
 <!--89e238d9-56e5-4f05-bd9a-295ebd55711d_end-->
+
+
+
+<!--8b4d2e9e-8999-4677-8dfd-71911a6282bd_begin-->
+
+#### Simplify multi-cluster management with Azure Kubernetes Fleet Manager  
+  
+Use Azure Kubernetes Fleet Manager to centralize and simplify management of any Kubernetes cluster in any Azure Subscription associated with a single Entra ID Tenant.  
+  
+**Potential benefits**: Simplify multi-cluster Kubernetes management  
+
+**Impact:** Medium
+  
+For more information, see [Azure Kubernetes Fleet Manager](https://aka.ms/kubernetes-fleet/)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 8b4d2e9e-8999-4677-8dfd-71911a6282bd  
+
+
+<!--8b4d2e9e-8999-4677-8dfd-71911a6282bd_end-->
+
+<!--1d259bad-88f0-46d5-b40b-ce5825dc0914_begin-->
+
+#### Azure Kubernetes Fleet Manager simplifies multi-cluster management  
+  
+Use Azure Kubernetes Fleet Manager to simplify and centralize multi-cluster management of Kubernetes clusters in any Subscription associated with a single Entra Tenant.  
+  
+**Potential benefits**: Simplify and centralize multi-cluster management  
+
+**Impact:** Medium
+  
+For more information, see [Azure Kubernetes Fleet Manager](https://aka.ms/kubernetes-fleet/)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 1d259bad-88f0-46d5-b40b-ce5825dc0914  
+
+
+<!--1d259bad-88f0-46d5-b40b-ce5825dc0914_end-->
+
+
+
+<!--2f568da2-1934-419c-b299-c038ccea1ea0_begin-->
+
+#### Ensure your Istio service mesh add-on revision is up to date  
+  
+Unsupported Istio service mesh add-on revision is detected. Upgrading to a supported revision will allow receiving critical security patches and official support for the add-on.  
+  
+**Potential benefits**: Upgrade for receiving security patches and continued support  
+
+**Impact:** High
+  
+For more information, see [Upgrade Istio-based service mesh add-on for Azure Kubernetes Service - Azure Kubernetes Service](https://aka.ms/asm-aks-upgrade-docs)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 2f568da2-1934-419c-b299-c038ccea1ea0  
+
+
+<!--2f568da2-1934-419c-b299-c038ccea1ea0_end-->
+
+
 
 <!--articleBody-->

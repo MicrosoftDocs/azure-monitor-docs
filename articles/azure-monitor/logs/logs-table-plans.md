@@ -1,25 +1,27 @@
 ---
-title: Select a table plan based on data usage in a Log Analytics workspace
+title: Configure a Table Plan in a Log Analytics Workspace
 description: Use the Auxiliary, Basic, and Analytics Logs plans to reduce costs and take advantage of advanced analytics capabilities in Azure Monitor Logs.
 ms.reviewer: adi.biran
 ms.topic: how-to
-ms.date: 08/29/2025
+ms.date: 05/25/2026
+ai-usage: ai-assisted
 
-# Customer intent: As a Log Analytics workspace administrator, I want to manage configure the plans of tables in my Log Analytics workspace so that I pay less for data I use less frequently.
+# Customer intent: As a Log Analytics workspace administrator, I want to configure the tables in my Log Analytics workspace so that I pay less for data I use less frequently.
 ---
 
-# Select a table plan based on data usage in a Log Analytics workspace
+# Configure a table plan in a Log Analytics workspace
 
-You can use one Log Analytics workspace to store any type of log required for any purpose. For example:
+Log Analytics workspaces store any type of log for any purpose. They support three types of table plans to accomplish this goal: 
 
-* High-volume, verbose data that requires **cheap long-term storage for audit and compliance**
-* App and resource data for **troubleshooting** by developers
-* Key event and performance data for scaling and alerting to ensure ongoing **operational excellence and security**
-* Aggregated long-term data trends for **advanced analytics and machine learning** 
+| Table plan | Example purpose     |
+|:-----------|:------------------|
+| **Analytics**  | High-performance analytics and complex queries |
+| **Basic**     | Cost-effective storage for less frequently accessed data |
+| **Auxiliary / Lake** | High-volume, verbose data for long-term, inexpensive storage and aggregated data trends |
 
-Table plans let you manage data costs based on how often you use the data in a table and the type of analysis you need the data for. This article explains and how to set a table's plan.
+<br>
 
-For information about what each table plan offers and which use cases it's optimal for, see [Table plans](data-platform-logs.md#table-plans).
+Review the table plan selection criteria in [Table plans](data-platform-logs.md#table-plans), and then use the following steps to configure the table. 
 
 ## Permissions required
 
@@ -27,25 +29,35 @@ For information about what each table plan offers and which use cases it's optim
 |:-------|:---------------------|
 | View table plan | `Microsoft.OperationalInsights/workspaces/tables/read` permissions to the Log Analytics workspace, as provided by the [Log Analytics Reader built-in role](./manage-access.md#log-analytics-reader), for example |
 | Set table plan | `Microsoft.OperationalInsights/workspaces/write` and `microsoft.operationalinsights/workspaces/tables/write` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
-  
+
+<br>  
+
 ## Set the table plan
 
-You can set the table plan to Auxiliary only when you [create a custom table](create-custom-table-auxiliary.md#create-a-custom-table-with-the-auxiliary-plan) by using the API. Built-in Azure tables don't currently support the Auxiliary plan. After you create a table with an Auxiliary plan, you can't switch the table's plan.
+Set a custom table's plan when you [create it](create-custom-table.md). Azure tables default to the Analytics plan. Change the plan for any table after it's created based on these criteria:
 
-All tables support the Analytics plan and all DCR-based custom tables and [some Azure tables support the Basic log plan](basic-logs-azure-tables.md). You can switch between the Analytics and Basic plans, the change takes effect on existing data in the table immediately. 
+- All tables support the **Analytics** plan. 
+- All DCR-based custom tables support all plans.
+- Azure table support for **Basic** and **Auxiliary / Lake** plans varies by table. For more information, see [Logs table feature support](../reference/tables-features.md).
 
-When you change a table's plan from Analytics to Basic, Azure monitor treats any data that's older than 30 days as long-term retention data based on the total retention period set for the table. In other words, the total retention period of the table remains unchanged, unless you explicitly [modify the long-term retention period](../logs/data-retention-configure.md). 
+## Change the table plan
+
+Change your table plans to accommodate your data usage and analysis needs. Consider the [feature support of the table plan](data-platform-logs.md#table-feature-comparison) you switch to and the considerations listed here:
+
+| Original table plan | Table plan change | Considerations |
+|:------------------|:---------------|:----------------|
+| **Basic** or **Auxiliary / Lake** | **Analytics** | You get the full set of features and capabilities in Azure Monitor Logs but the cost increases. |
+| **Analytics** | **Basic** if the table supports those plans | - Extra billing for queries including [summary rule queries](summary-rules.md#summary-rule-pricing-model).<br>- **Summary rules** break if the rule uses resource query scope.<br>- Total retention period doesn't change, but data older than 30 days is treated as long-term retention. |
+| **Analytics** | **Auxiliary / Lake** if the table supports those plans | - **Alerts** stop working for that table.<br>- Extra billing for queries including [summary rule queries](summary-rules.md#summary-rule-pricing-model).<br>- **Summary rules** break if the rule uses resource query scope.<br> |
+
+<br>
 
 > [!NOTE]
-> * See [Tables that support the Basic table plan in Azure Monitor Logs](basic-logs-azure-tables.md).
->
-> * You can switch a table's plan once a week.
+> Table plan updates are limited to one switch per table per week.
 
-### [Portal](#tab/portal-1)
+The following examples show how to update a table's plan.
 
-Analytics is the default table plan of all tables you create in the portal. You can switch between the Analytics and Basic plans, as described in this section.
-
-To switch a table's plan in the Azure portal:
+# [Azure portal](#tab/portal)
 
 1. From the **Log Analytics workspaces** menu, select **Tables**.
 
@@ -53,127 +65,81 @@ To switch a table's plan in the Azure portal:
 
 1. Select the context menu for the table you want to configure and select **Manage table**.
 
-    :::image type="content" source="media/logs-table-plans/log-analytics-table-configuration.png" lightbox="media/logs-table-plans/log-analytics-table-configuration.png" alt-text="Screenshot that shows the Manage table button for one of the tables in a workspace.":::
+    :::image type="content" source="media/logs-table-plans/manage-common-security-log-table.png" lightbox="media/logs-table-plans/manage-common-security-log-table.png" alt-text="Screenshot that shows the Manage table button for one of the tables in a workspace.":::
 
-1. From the **Table plan** dropdown on the table configuration screen, select **Basic** or **Analytics**.
+1. From the **Table plan** dropdown on the table configuration screen, select **Analytics**, **Basic**, or **Auxiliary / Lake**.
 
-    The **Table plan** dropdown is enabled only for [tables that support Basic logs](basic-logs-azure-tables.md).
+    The **Table plan** dropdown shows the plans available for the selected table.
 
-    :::image type="content" source="media/data-retention-configure/log-analytics-configure-table-retention-basic.png" lightbox="media/data-retention-configure/log-analytics-configure-table-retention-basic.png" alt-text="Screenshot that shows the data retention settings on the table configuration screen.":::
+    :::image type="content" source="media/logs-table-plans/change-azure-table-plan-portal.png" lightbox="media/logs-table-plans/change-azure-table-plan-portal.png" alt-text="Screenshot that shows the table plan update options, including data retention settings for the table configuration screen.":::
 
 1. Select **Save**.
 
-### [API](#tab/api-1)
+# [Azure CLI](#tab/cli)
 
-To configure a table for Basic logs or Analytics logs, call the [Tables - Update API](/rest/api/loganalytics/tables/create-or-update):
+The following Azure CLI example uses the [`az monitor log-analytics workspace table update`](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-update) command. It updates the table plan by using the `--plan` parameter, set to `Analytics` or `Basic`.
 
-```http
-PATCH https://management.azure.com/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<workspaceName>/tables/<tableName>?api-version=2021-12-01-preview
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+tableName="<TableName>"
+
+# Update the table plan
+az monitor log-analytics workspace table update \
+  --resource-group "$resourceGroupName" \
+  --workspace-name "$workspaceName" \
+  --name "$tableName" \
+  --plan Analytics
 ```
 
-**Request body**
+# [Azure PowerShell](#tab/powershell)
 
-| Name            | Type   | Description                                                  |
-|-----------------|--------|--------------------------------------------------------------|
-| properties.plan | string | The table plan. Possible values are `Analytics` and `Basic`. |
-
-> [!IMPORTANT]
-> Use the bearer token for authentication. Learn more about [using bearer tokens](https://social.technet.microsoft.com/wiki/contents/articles/51140.azure-rest-management-api-the-quickest-way-to-get-your-bearer-token.aspx).
-
-#### Example
-
-This example configures the `ContainerLogV2` table for Basic logs.
-
-Container Insights uses `ContainerLog` by default. To switch to using `ContainerLogV2` for Container insights, [enable the ContainerLogV2 schema](../containers/container-insights-logging-v2.md) before you convert the table to Basic logs.
-
-**Sample request**
-
-```http
-PATCH https://management.azure.com/subscriptions/ContosoSID/resourcegroups/ContosoRG/providers/Microsoft.OperationalInsights/workspaces/ContosoWorkspace/tables/ContainerLogV2?api-version=2021-12-01-preview
-```
-
-* Use this request body to change to Basic logs:
-
-    ```http
-    {
-        "properties": {
-            "plan": "Basic"
-        }
-    }
-    ```
-
-* Use this request body to change to Analytics Logs:
-
-    ```http
-    {
-        "properties": {
-            "plan": "Analytics"
-        }
-    }
-    ```
-
-**Sample response**
-
-* This sample is the response for a table changed to Basic logs:
-    
-    Status code: 200
-    
-    ```http
-    {
-        "properties": {
-            "retentionInDays": 30,
-            "totalRetentionInDays": 30,
-            "archiveRetentionInDays": 22,
-            "plan": "Basic",
-            "lastPlanModifiedDate": "2022-01-01T14:34:04.37",
-            "schema": {...}        
-        },
-        "id": "subscriptions/ContosoSID/resourcegroups/ContosoRG/providers/Microsoft.OperationalInsights/workspaces/ContosoWorkspace",
-        "name": "ContainerLogV2"
-    }
-    ```
-
-### [CLI](#tab/cli-1)
-
-To configure a table for Basic logs or Analytics logs, run the [az monitor log-analytics workspace table update](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-update) command and set the `--plan` parameter to `Basic` or `Analytics`.
-
-#### Examples
-
-* To set Basic logs:
-
-    ```azurecli
-    az monitor log-analytics workspace table update --subscription ContosoSID --resource-group ContosoRG  --workspace-name ContosoWorkspace --name ContainerLogV2  --plan Basic
-    ```
-
-* To set Analytics Logs:
-
-    ```azurecli
-    az monitor log-analytics workspace table update --subscription ContosoSID --resource-group ContosoRG  --workspace-name ContosoWorkspace --name ContainerLogV2  --plan Analytics
-    ```
-
-### [PowerShell](#tab/azure-powershell)
-
-To configure a table's plan, use the [Update-AzOperationalInsightsTable](/powershell/module/az.operationalinsights/Update-AzOperationalInsightsTable) cmdlet:
+The following Azure PowerShell example uses the [`Update-AzOperationalInsightsTable`](/powershell/module/az.operationalinsights/update-azoperationalinsightstable) cmdlet. It updates the table plan by using the `Plan` parameter, set to `Analytics` or `Basic`.
 
 ```powershell
-Update-AzOperationalInsightsTable  -ResourceGroupName RG-NAME -WorkspaceName WORKSPACE-NAME -TableName TABLE-NAME -Plan Basic|Analytics
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$tableName = "<TableName>"
+
+# Update the table plan
+$updateAzOperationalInsightsTableParams = @{
+    ResourceGroupName = $resourceGroupName
+    WorkspaceName     = $workspaceName
+    TableName         = $tableName
+    Plan              = "Basic"
+}
+
+Update-AzOperationalInsightsTable @updateAzOperationalInsightsTableParams
 ```
 
-#### Examples
+# [REST](#tab/rest)
 
-* To set Basic logs:
+The following REST example uses the [`Tables - Update`](../fundamentals/azure-monitor-rest-api-index.md#logs-management) REST API operation. It sets the table `plan` to `Analytics`, `Basic`, or `Auxiliary`.
 
-    ```powershell
-    Update-AzOperationalInsightsTable  -ResourceGroupName ContosoRG -WorkspaceName ContosoWorkspace -TableName ContainerLogV2 -Plan Basic
-    ```
+```REST
+PATCH https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}/tables/{TableName}?api-version={ApiVersion}
+Authorization: Bearer {AccessToken}
+Content-Type: application/json
 
-* To set Analytics Logs:
-
-    ```powershell
-    Update-AzOperationalInsightsTable  -ResourceGroupName ContosoRG -WorkspaceName ContosoWorkspace -TableName ContainerLogV2 -Plan Analytics
-    ```
+{
+  "properties": {
+    "plan": "Auxiliary"
+  }
+}
+```
 
 ---
+
+### Data continuity for table plan changes
+ 
+Changing a table plan requires new access behavior to data ingested after the change. Data ingested before the change is preserved for its retention period. The change doesn't delete or move existing data. How you access the data ingested before the change depends on the table plan before the change.
+ 
+| Table plan change | Data access behavior |
+|----|----|
+| Analytics to Auxiliary | Data ingested during the Analytics plan before the table plan change is available in the interactive query experience. A single interactive query might get the following warning if it spans the date when Auxiliary / Lake data became available:<br><br>  *"message: Table '{TableName}' has Auxiliary / Lake data starting from {TimeDate}. Query spanning this date may return partial results. Please adjust your query time range to either before or after this date."* |
+| Auxiliary to Analytics | Data ingested under the Auxiliary plan before the table plan change isn't available in the interactive query experience. To access the data ingested before the change, run a [search job](search-jobs.md#run-a-search-job) or use the [`search` REST API](basic-logs-query.md#run-a-query-on-a-basic-or-auxiliary-table). Data ingested after the change is fully available for interactive queries. |
 
 ## Related content
 

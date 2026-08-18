@@ -2,7 +2,8 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 07/15/2026
+ms.date: 08/13/2026
+ai-usage: ai-assisted
 ---
 
 # What's new in Azure Monitor documentation
@@ -11,27 +12,49 @@ This article lists significant changes to Azure Monitor documentation.
 
 ## 2026
 
+### August 2026
+
+| Subservice | Article | Description |
+| --- | --- | --- |
+| Fundamentals | Azure Operations Center retirement | Azure Operations Center retired in August 2026. Use [Azure Monitor](overview.md) for monitoring and analysis capabilities. The [Azure Copilot Observability Agent](../aiops/observability-agent-overview.md) provides natural-language data exploration, guided investigations, Azure Monitor issues, and autonomous alert operations. |
+| Logs | [Table feature comparison](../logs/data-platform-logs.md#table-feature-comparison)<br>[Configure a table plan in a Log Analytics workspace](../logs/logs-table-plans.md) | **Auxiliary / Lake** table plans take the next step in capabilities to let teams keep more of their data without stretching the budget.<br>- Expanded **Auxiliary / Lake** support for Azure tables<br>- Switch between **Analytics** and **Auxiliary / Lake** plans<br>- **Auxiliary / Lake** available in sovereign clouds.<br>For more information, see the Observability blog post, [Azure Monitor Auxiliary Logs expands with Azure tables support, plan switching, and sovereign clouds](https://techcommunity.microsoft.com/blog/azureobservabilityblog/azure-monitor-auxiliary-logs-expands-with-azure-tables-support-plan-switching-an/4525206). |
+
 ### July 2026
 
 |Subservice | Article | Description |
 |---|---|---|
+|Agents|[Azure Diagnostics extension overview](../agents/diagnostics-extension-overview.md#migration-guidance)|The Azure Diagnostics extension for Windows (WAD) and Linux (LAD) was retired on March 31, 2026 and is no longer supported. Added migration guidance organized by data destination, covering Azure Monitor Agent for storage, [Log Analytics data export](../logs/logs-data-export.md) for Event Hubs, and OpenTelemetry metrics for guest OS performance counters and custom metrics.|
+|Application Insights|[Capture end-user feedback for GenAI agents](../app/opentelemetry-add-modify.md#capture-end-user-feedback-for-genai-agents)|New section covering how to send thumbs-up and thumbs-down feedback on agent responses to Application Insights. Emit the feedback as an OpenTelemetry log record with the `gen_ai.evaluation.*` attributes, then query it from the `customEvents` table.|
+|Containers|[Legacy authentication for Container Insights](../containers/container-insights-authentication.md)|Legacy authentication for Container Insights is retired, and clusters still running it after September 30, 2026 aren't supported. Migrate to managed identity authentication to retain support and to gain access to newer features such as syslog collection and high scale logs mode.|
+|Data Collection|[Manage data collection rule associations](../data-collection/data-collection-rule-associations.md#dcr-browse-experience)|The new data collection rule (DCR) browse and creation experiences are now the default in the Azure portal. Updated the DCR and virtual machine documentation to reflect the default experiences and provide access to the classic experiences.|
+|Fundamentals|[Mirror Azure Monitor data in Microsoft Fabric (preview)](../fundamentals/monitor-cross-domain-fabric.md)|Mirror Azure Monitor in Microsoft Fabric is now in preview. Expose Log Analytics tables to Fabric through OneLake shortcuts without copying data, then combine telemetry with business data in an Eventhouse or Lakehouse for cross-domain operational intelligence. For more information, see the [announcement on the Azure Observability Blog](https://techcommunity.microsoft.com/blog/AzureObservabilityBlog/share-azure-monitor-logs-to-microsoft-fabric-preview/4541199).|
+|Health Models|[Use the Azure CLI (preview)](../health-models/cli.md)|New article covering the `health-models` Azure CLI extension in preview, which builds, updates, and queries health models end to end. Also documents the 2026.7.1 portal release, which adds [data annotations](../health-models/analyze-health.md#data-annotations) on the health timeline, [dynamic thresholds](../health-models/signals.md) for signals, and [Azure Resource Health signals](../health-models/signals.md#azure-resource-health-signals).|
 |Logs|[Export job (preview)](../logs/export-job.md)|Export historical records from a Log Analytics workspace to Azure Blob Storage in Parquet format by using the new export job feature in preview. This on-demand feature is an alternative to data export rules for backup, analysis, and compliance scenarios. For more information, see the [announcement on the Azure Observability Blog](https://techcommunity.microsoft.com/blog/AzureObservabilityBlog/export-historical-data-from-log-analytics-workspace-with-export-job-preview/4532425).|
 |Logs|[Log Analytics overview](../logs/log-analytics-overview.md#left-sidebar)|Expanded the Log Analytics overview with query history documentation, covering how to access, rerun, and manage recent queries in the Log Analytics workspace query editor.|
+|Logs|[Configure a table plan in a Log Analytics workspace](../logs/logs-table-plans.md)|Merged the standalone Auxiliary plan article into the [custom table creation](../logs/create-custom-table.md#create-a-custom-table) and overview articles. Highlights new features bringing Auxiliary logs up to the standards of Basic and Analytics. Added data continuity guidance for table plan changes.|
 |Logs|[Log Analytics autosave](../logs/log-analytics-overview.md#autosave)|Log Analytics now automatically saves your session state, including query tabs, work mode, query scope, and time range, to your browser's local storage. Your work is restored when you reopen Logs for the same resource in the same browser, and saved state is retained for 30 days.|
+|Logs|[Azure Monitor Logs table feature support](../reference/tables-features.md)|New reference article listing every Azure Monitor Logs table and its support for the Basic plan, the Auxiliary / Lake plan, DCR workspace transformations, and the Logs Ingestion API. The same four features now appear in the **Table attributes** section of all 900+ individual table reference articles using standardized terminology, and the reference table of contents reflects the new grouping.|
 |Metrics|[Advanced platform metrics (preview)](../metrics/metrics-advanced-platform.md)|Advanced platform metrics are now in preview. Enable this paid tier of platform metrics on supported Azure resources to collect more granular metrics and analyze them with the same Azure Monitor tools and APIs used for standard platform metrics.|
+|Virtual Machines|[Send virtual machine client data to Event Hubs and Storage (preview)](../vm/send-event-hubs-storage.md)|This preview feature retires on July 31, 2026, after which existing configurations stop sending data and Microsoft no longer supports the capability. Added a query for finding affected rules and a table of alternatives, including custom tables on the [Auxiliary plan](../logs/create-custom-table.md#create-a-custom-table) in place of storage and [data export rules](../logs/logs-data-export.md) in place of direct upload to Event Hubs.|
+|Virtual Machines|[VM Insights Map and Dependency Agent retirement guidance](../vm/vminsights-maps-retirement.md)|The VM Insights Map feature and the Dependency Agent retire on June 30, 2028. Expanded the retirement guidance with [Azure Advisor retirement recommendations](../vm/vminsights-maps-retirement.md#azure-advisor-retirement-recommendations) and queries for finding affected virtual machines, and added [Migrate Dependency Agent policy and initiative assignments](../vm/dependency-agent-migrate-policy.md) for reviewing Azure Policy assignments that install or depend on the agent.|
 
 ### June 2026
 
 |Subservice | Article | Description |
 |---|---|---|
 |Virtual Machines|[Tutorial: Alert on virtual machine issues](../vm/tutorial-alerts.md)|New tutorial for configuring Azure Monitor alerts on virtual machine issues, covering metric, log, and activity log alert rule creation and management.|
+|Virtual Machines|[Metrics experience for virtual machines](../vm/metrics-opentelemetry-guest.md)|OpenTelemetry metrics-based monitoring for Azure virtual machines and Azure Arc-enabled servers reached general availability. The recommended experience collects guest operating system performance data in an Azure Monitor workspace and provides consistent cross-platform metrics that you can query by using PromQL.|
 |Agents|[Azure Copilot Observability Agent](../aiops/observability-agent-overview.md)|Expanded Observability Agent documentation with 12 new articles covering [autonomous operations](../aiops/observability-agent-autonomous-operations.md), [deep investigations](../aiops/observability-agent-deep-investigations.md), [context memory](../aiops/observability-agent-context-memory.md), custom instructions, resource provisioning, and transparency. Also renamed the AIOps overview to [AIOps and agentic operations](../aiops/aiops-and-agentic-operations.md).|
+|Agents|[Azure Monitor Agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md#windows-operating-systems)|Azure Monitor Agent now supports Windows 365 Cloud PCs through the Azure Monitor Agent client installer.|
+|Containers|[Ingest OTLP data into Azure Monitor by using OTel Collector](../containers/opentelemetry-protocol-ingestion.md)|Native OpenTelemetry Protocol (OTLP) ingestion into Azure Monitor by using OpenTelemetry Collector reached general availability. The updated guidance removes preview registration steps and reflects the current Azure portal experience.|
+|Containers|[Autoinstrument AKS apps with Azure Monitor Application Insights](../containers/kubernetes-codeless.md#view-application-performance-metrics-in-aks)|Application performance metrics in Azure Kubernetes Service reached general availability. View server response time, request volume, and failures directly in namespace, workload, and pod views, with links to full analysis in Application Insights.|
 |Data Collection|[Transformations in Azure Monitor](../data-collection/data-collection-transformations.md#multi-stage-transformations-preview)|Multi-stage transformations for data collection rules are in preview. Filter, parse, aggregate, and enrich logs at the agent or during ingestion using a pipeline of declarative processors. Read the [announcement on the Azure Observability Blog](https://techcommunity.microsoft.com/blog/azureobservabilityblog/is-94-of-your-syslog-just-noise-now-you-can-filter-it-out-before-ingestion-/4524600) for more details.|
 |Data Collection|[Create a metrics export rule](../data-collection/metrics-export-create.md)|Metrics export for Log Analytics workspaces reached general availability. Updated the create and [reference](../data-collection/metrics-export-reference.md) articles with expanded configuration details.|
 |Fundamentals|[Azure Monitor overview page](../fundamentals/overview-page.md)|New article introducing the Azure Monitor overview page, which surfaces health status, key signals, and recommended actions across monitored resources.|
 |Fundamentals|[Service Level Indicators](../fundamentals/service-level-indicators-create.md)|Service Level Indicators reached general availability.|
 |Health Models|[Configure health rollup](../health-models/rollup.md)|New how-to article for configuring health rollup in Azure Monitor health models, covering count, percentage, and impact-based aggregation strategies.|
 |Logs|[Protect tables in a Log Analytics workspace (preview)](../logs/protected-tables-configure.md)|New article for configuring protected tables, a preview feature that restricts write and delete access on sensitive tables at the table level. Also updated [Manage access to Log Analytics workspace](../logs/manage-access.md) with protected tables guidance.|
+|Alerts|[Create a simple log search alert](../alerts/alerts-create-simple-alert.md)|Simple log search alerts and [dynamic thresholds for log query results](../alerts/alerts-dynamic-thresholds.md#create-a-log-search-alert-rule-with-dynamic-threshold) reached general availability. Log search alert rules also support a 12-hour evaluation frequency.|
 |Alerts|[Dynamic thresholds for query-based metric alerts (preview)](../alerts/alerts-dynamic-thresholds.md#create-a-query-based-metric-alert-rule-with-dynamic-thresholds-preview)|Query-based metric alert rules now support dynamic thresholds in preview, applying machine learning to PromQL expressions over Prometheus and OpenTelemetry metrics in an Azure Monitor workspace to detect anomalous behavior without manually set thresholds.|
 |Platform|[Diagnostic settings FAQ](../platform/diagnostic-settings-faq.md)|Starting June 15, 2026, export billing for platform logs streamed through diagnostic settings expands to all remaining Azure resources, so log categories that were previously free to export might incur charges. Expanded the FAQ with guidance on which categories are billed, pricing calculator steps, and billing meters for each destination.|
 
@@ -88,9 +111,9 @@ This article lists significant changes to Azure Monitor documentation.
 |Logs|[Log Analytics workspace overview](../logs/log-analytics-workspace-overview.md)|Added a clarification note to help customers resolve a common workspace configuration question more quickly.|
 |Logs|[Log ingestion time in Azure Monitor](../logs/data-ingestion-time.md)|Updated ingestion latency guidance with refreshed measurements, tab-based comparisons, and links to related articles on diagnostic settings, resource logs, activity log, and metrics.|
 |Logs|[Best practices for Azure Monitor Logs](../logs/best-practices-logs.md)|Refreshed best practices and dedicated cluster guidance for query performance, cluster sizing, and cost management.|
-|Logs|[Tables feature support](../logs/tables-feature-support.md)|Added 89 more tables that support transformations and refreshed the supported tables list for the Logs Ingestion API.|
+|Logs|[Azure Monitor Logs table feature support](../reference/tables-features.md)|Added 89 more tables that support transformations and refreshed the supported tables list for the Logs Ingestion API.|
 |Logs|[Audit queries in Azure Monitor Logs](../logs/query-audit.md)|Documented support for obfuscating string literals in Log Analytics query audit logs.|
-|Logs|[Set up a table with the Auxiliary plan](../logs/create-custom-table-auxiliary.md)|Updated Auxiliary plan guidance to match the renamed portal experience and custom log creation terminology.|
+|Logs|[Set up a table with the Auxiliary plan](../logs/create-custom-table.md#create-a-custom-table)|Updated Auxiliary plan guidance to match the renamed portal experience and custom log creation terminology.|
 |Logs|[Customer-managed keys](../logs/customer-managed-keys.md)|Removed outdated CLI workaround guidance after the underlying issue was fixed.|
 |Platform|[Azure Monitor activity log](../platform/activity-log.md)|Consolidated Activity Log REST API guidance into the main article, added examples, and clarified event descriptions.|
 
@@ -170,7 +193,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Node.js samples](../app/opentelemetry-configuration.md?tabs=nodejs)| We published new OpenTelemetry Node.js samples across our portfolio based on the [authoritative parity source](/samples/azure/azure-sdk-for-js/monitor-opentelemetry-typescript).|
 |Data Collection|[DCR visualizer](../data-collection/data-collection-rule-view.md)| Published new article for viewing DCRs to deliver content for new DCR Visualizer.|
 |Fundamentals|[VM agents troubleshooting](best-practices-security.md#recommended-action)| Published self-service steps for identifying and remediating VM agents still outdated TLS.|
-|Logs|[New transforms tables](../logs/tables-feature-support.md)|New tables supported for transforms.|
+|Logs|[Azure Monitor Logs table feature support](../reference/tables-features.md)|New tables supported for transforms.|
 |Logs|[New regions](../logs/workspace-replication.md#supported-regions)|New regions supported for workspace replication.|
 
 ### September 2025
@@ -196,7 +219,7 @@ This article lists significant changes to Azure Monitor documentation.
 | Kubernetes | [Enable monitoring for AKS clusters](../containers/kubernetes-monitoring-enable.md) | Rewrite to improve clarity and reduce scope to AKS. |
 | Kubernetes | [Quickstart monitoring a Kubernetes cluster in Azure Monitor](../containers/kubernetes-monitoring-quickstart.md) | New article to walk  through basic enabling of monitoring. |
 | Kubernetes | [Kubernetes workbooks in Azure Monitor](../containers/kubernetes-workbooks.md) | Rewrite to emphasize latest Prometheus experience. |
-| Kubernetes | [Monitor Kubernetes clusters using Azure Monitor and cloud native tools](../containers/monitor-kubernetes.md) | Updated for Application insights updates and Azure Monitor dashboards with Grafana. Scope reduced to compliment rewritten overview. |
+| Kubernetes | [Monitor Kubernetes clusters using Azure Monitor and cloud native tools](../containers/monitor-kubernetes.md) | Updated for Application Insights updates and Azure Monitor dashboards with Grafana. Scope reduced to compliment rewritten overview. |
 | Metrics | [Connect Grafana to Azure Monitor managed service for Prometheus](../metrics/prometheus-grafana.md) | Updated for Azure Monitor dashboards with Grafana.  |
 | Metrics | [Azure Monitor managed service for Prometheus technical details](../metrics/prometheus-metrics-details.md) | New article to consolidate technical details related to Prometheus metrics. |
 | Metrics | [Overview of Azure Monitor with Prometheus](../metrics/prometheus-metrics-overview.md) | Rewrite to improve clarity and remove technical details moved to other article. |
@@ -294,7 +317,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Essentials|[Azure Monitor and Prometheus](../metrics/prometheus-metrics-overview.md)|Managed Prometheus for Arc-enabled clusters now GA.|
 |General|[Azure Monitor enterprise monitoring architecture](../enterprise-monitoring-architecture.md)|New article with sample enterprise architecture for Azure Monitor.|
 |Logs|[Migrate from using batch and beta queries to the standard Log Analytics query API](../logs/api/migrate-batch-and-beta.md)|Announcement of deprecation for Beta and Batch APIs|
-|Logs|[Set up a table with the Auxiliary plan in your Log Analytics workspace](../logs/create-custom-table-auxiliary.md)|Auxiliary logs now GA|
+|Logs|[Set up a table with the Auxiliary plan in your Log Analytics workspace](../logs/create-custom-table.md#create-a-custom-table)|Auxiliary logs now GA.|
 |Logs|[Delete data from a Log Analytics workspace by using the Delete Data API](../logs/delete-log-data.md)|New Delete data API to make async requests to remove sensitive, personal or corrupt log entries from LA tables.|
 |Logs|[Tutorial: Use Log Analytics](../logs/log-analytics-tutorial.md)|Our tutorial page titles are now consistent, making it easier to find what you're looking for.|
 |Logs|[Enhance resilience by replicating your Log Analytics workspace across regions (Preview)](../logs/workspace-replication.md)|Log Analytics workspace replication now GA with additional regions added.|
@@ -378,7 +401,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Essentials|[Structure of a data collection rule in Azure Monitor](../data-collection/data-collection-rule-structure.md)|Updated DCR JSON structure|
 |General|[Best practices for monitoring at-scale with Azure Monitor](monitor-at-scale.md)|We've published a new article describing our at-scale monitoring solutions.|
 |General|[Migrate to the Change Analysis API powered by Azure Resource Graph](../change/change-analysis-migration.md)|Change Analysis (classic) migration and retirement announcement.|
-|Logs|[Set up a table with the Auxiliary plan in your Log Analytics workspace (Preview)](../logs/create-custom-table-auxiliary.md)|Added support for the Auxiliary table plan in West EU and West US 2 regions.|
+|Logs|[Set up a table with the Auxiliary plan in your Log Analytics workspace (Preview)](../logs/create-custom-table.md#create-a-custom-table)|Added support for the Auxiliary table plan in West EU and West US 2 regions.|
 |Logs|[Structure of transformation in Azure Monitor](../data-collection/data-collection-transformations-kql.md)|Added `parse` operator limitations and information about ingestion latency introduced by transformations.|
 |Logs|[Enhance resilience by replicating your Log Analytics workspace across regions (Preview)](../logs/workspace-replication.md)|Added information about how Azure Monitor protects in-transit data during a regional when you enable workspace replication.|
 |Logs|[Functions in Azure Monitor log queries](../logs/functions.md)|Added ARM template example of how to create a function in Azure Monitor Logs. |
@@ -464,7 +487,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Essentials|[Monitor and troubleshoot DCR data collection in Azure Monitor](../data-collection/data-collection-monitor.md)|Corrected an error in KQL using InputStreamId.|
 |General|[Analyze and visualize monitoring data](best-practices-analysis.md)|We've updated our visualization recommendations to better guide customers when to use Azure Managed Grafana and when to use Azure Workbooks.|
 |Logs|[Best practices for Azure Monitor Logs](../logs/best-practices-logs.md)|Updated overview of features that enhance resilience of your Log Analytics workspace, including a new video. |
-|Logs|[Set up a table with the Auxiliary plan in your Log Analytics workspace (Preview)](../logs/create-custom-table-auxiliary.md)|New article that explains how to set up a table with the Auxiliary plan. |
+|Logs|[Set up a table with the Auxiliary plan in your Log Analytics workspace (Preview)](../logs/create-custom-table.md#create-a-custom-table)|New article that explains how to set up a table with the Auxiliary plan. |
 |Logs|[Azure Monitor Logs overview](../logs/data-platform-logs.md)|Updated Azure Monitor Logs overview provides a high-level overview of data collection, management, retrieval, and consumption for a range of use cases.|
 |Logs|[Run search jobs in Azure Monitor](../logs/search-jobs.md)|New video that explains how to use search jobs in Azure Monitor Logs.|
 |Logs|[Aggregate data in a Log Analytics workspace by using summary rules (Preview)](../logs/summary-rules.md)|New video that explains how to use summary rules to optimize data in your Log Analytics workspace.|
@@ -654,7 +677,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Containers|[Container insights log schema](../containers/container-insights-logs-schema.md)|Combine Prometheus and Container insights|
 |Containers|[Enable monitoring for Kubernetes clusters](../containers/container-insights-enable-aks.md)|New article to consolidate onboarding process for all container configurations and for both Prometheus and Container insights.|
 |Containers|[Customize scraping of Prometheus metrics in Azure Monitor managed service for Prometheus](../containers/prometheus-metrics-scrape-configuration.md)|Azure Monitor Managed Prometheus Docs for pod annotation scraping through configmap.|
-|Essentials|[Custom metrics in Azure Monitor (preview)](../metrics/metrics-custom-overview.md)|Article refreshed an updated|
+|Essentials|[Custom metrics in Azure Monitor (preview)](../metrics/metrics-custom-overview.md)|Article refreshed and updated|
 |General|[Disable monitoring of your Kubernetes cluster](../containers/kubernetes-monitoring-disable.md)|New article to consolidate process for all container configurations and for both Prometheus and Container insights.|
 |Logs|[Best practices for Azure Monitor Logs](../logs/best-practices-logs.md)|Dedicated clusters are now available in all commitment tiers, with a minimum daily ingestion of 100 GB.|
 |Logs|[Enhance data and service resilience in Azure Monitor Logs with availability zones](../logs/availability-zones.md)|Availability zones are now supported in the Israel Central, Poland Central, and Italy North regions.|
@@ -761,7 +784,7 @@ Application-Insights|[Application Insights overview](../app/app-insights-overvie
 Containers|[Troubleshoot collection of Prometheus metrics in Azure Monitor](../containers/prometheus-metrics-troubleshoot.md)|Added the *Troubleshoot using PowerShell script* section.|
 Containers|[Monitor Kubernetes clusters using Azure services and cloud native tools](../containers/monitor-kubernetes.md)|Updated previous scenario for hybrid Kubernetes clusters and managed Prometheus.|
 Containers|[Monitor Azure Kubernetes Service (AKS)](/azure/aks/monitor-aks)|New article providing simplified introduction to monitoring AKS cluster.|
-Containers|[Container insights overview](../containers/kubernetes-monitoring-overview.md)|Rewritten for to include new features and managed services.|
+Containers|[Container insights overview](../containers/kubernetes-monitoring-overview.md)|Rewritten to include new features and managed services.|
 Essentials|[Send Prometheus metrics to Log Analytics workspace with Container insights](../containers/container-insights-prometheus-logs.md)|Updated to simplify article to only legacy method of sending Prometheus metrics to Log Analytics workspace.|
 Essentials|[Collect Prometheus metrics from an AKS cluster](../containers/kubernetes-monitoring-enable.md)|Updated to include additional onboarding methods.|
 Essentials|[Azure Monitor managed service for Prometheus rule groups](../metrics/prometheus-rule-groups.md)|Expanded "Limiting rules to a specific cluster"|
@@ -808,7 +831,7 @@ Application-Insights|[Enable a framework extension for Application Insights Java
 Autoscale|[Use autoscale actions to send email and webhook alert notifications in Azure Monitor](../autoscale/autoscale-webhook-email.md)|Article updated and refreshed|
 Containers|[Query logs from Container insights](../containers/container-insights-log-query.md#container-logs)|New section: Container logs, with sample queries|
 Containers|[Authentication for Container Insights](../containers/container-insights-authentication.md)|New article: Configure agent authentication for the Container Insights agent|
-Essentials|[Azure monitoring REST API walkthrough](../platform/rest-api-walkthrough.md)|Added multi resource request examples|
+Essentials|[Azure monitoring REST API walkthrough](../platform/rest-api-walkthrough.md)|Added multi-resource request examples|
 Essentials|[Azure Monitor managed service for Prometheus rule groups](../metrics/prometheus-rule-groups.md)| Added CLI & PowerShell reference and examples|
 Logs|[Set up resources required to send data to Azure Monitor Logs using the Logs Ingestion API](../logs/set-up-logs-ingestion-api-prerequisites.md)|New article. Run a PowerShell script to set up resources required to send data to Azure Monitor using the Logs Ingestion API.|
 Logs|[Migrate from the HTTP Data Collector API to the Log Ingestion API to send data to Azure Monitor Logs](../logs/custom-logs-migrate.md)|Updated guidance for migrating from the legacy Azure Monitor Data Collector API to the Log Ingestion API.|
@@ -1091,7 +1114,7 @@ Application-insights|[Using Azure Monitor Application Insights with Spring Boot]
 Application-insights|[Configuration options: Azure Monitor Application Insights for Java](../app/java-standalone-config.md)|Added new features on Capture Log4j Markers and Logback Markers as custom properties on the corresponding trace (log message) telemetry.|
 Application-insights|[Create custom KPI dashboards by using Application Insights](../app/overview-dashboard.md#create-custom-kpi-dashboards-using-application-insights)|Refreshed with new screenshots and instructions.|
 Application-insights|[Share Azure dashboards by using Azure role-based access control](/azure/azure-portal/azure-portal-dashboard-share-access)|Refreshed with new screenshots and instructions.|
-Application-insights|[Application monitoring for Azure App Service and ASP.NET](../app/azure-web-apps-net.md)|Added important notes about System.IO.FileNotFoundException after an 2.8.44 autoinstrumentation upgrade.|
+Application-insights|[Application monitoring for Azure App Service and ASP.NET](../app/azure-web-apps-net.md)|Added important notes about System.IO.FileNotFoundException after a 2.8.44 autoinstrumentation upgrade.|
 Application-insights|[Geolocation and IP address handling](../app/ip-collection.md)| Updated geolocation lookup information.|
 Containers|[Metric alert rules in Container insights (preview)](../containers/container-insights-metric-alerts.md)|Updated to include Container insights metric alerts.|
 Containers|[Custom metrics collected by Container insights](/previous-versions/azure/azure-monitor/containers/container-insights-custom-metrics)|New article.|
@@ -1423,7 +1446,7 @@ All references to unsupported versions of .NET and .NET CORE are scrubbed from A
 
 | Article | Description |
 |:---|:---|
-| [Azure Monitor customer-managed key](../logs/customer-managed-keys.md) | Updated limitations and constraint. |
+| [Azure Monitor customer-managed key](../logs/customer-managed-keys.md) | Updated limitations and constraints. |
 | [Design a Log Analytics workspace architecture](../logs/workspace-design.md) | Rewritten to better describe decision criteria and include Microsoft Sentinel considerations. |
 | [Manage access to Log Analytics workspaces](../logs/manage-access.md) | Consolidated and rewrote all content on configuring workspace access. |
 | [Restore logs in Azure Monitor (preview)](../logs/restore.md) | Documented new Log Analytics table management configuration UI, which lets you configure a table's log plan and archive and retention policies. |

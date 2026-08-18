@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Network/expressRouteCircuits
 description: Reference for Microsoft.Network/expressRouteCircuits metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/13/2026
+ms.date: 08/14/2026
 ms.custom: Microsoft.Network/expressRouteCircuits, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -22,7 +22,7 @@ The following table lists the metrics available for the Microsoft.Network/expres
 - **Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
 - **Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
 - **Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
-- **DS Export** -S Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+- **DS Export** - Shows whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
 
 For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
 
@@ -41,14 +41,16 @@ For a list of supported logs, see [Supported log categories - Microsoft.Network/
 ### Category: Circuit Qos
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
+|**MulticloudInterconnectDroppedInBitsPerSecond**<br><br>Ingress bits of data dropped per second |`PerDeviceQosDropBitsInPerSecond` | No | BitsPerSecond |Average |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |Yes|
+|**MulticloudInterconnectDroppedOutBitsPerSecond**<br><br>Egress bits of data dropped per second |`PerDeviceQosDropBitsOutPerSecond` | No | BitsPerSecond |Average |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |Yes|
 |**DroppedInBitsPerSecond**<br><br>Ingress bits of data dropped per second |`QosDropBitsInPerSecond` | No | BitsPerSecond |Average |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |Yes|
 |**DroppedOutBitsPerSecond**<br><br>Egress bits of data dropped per second |`QosDropBitsOutPerSecond` | No | BitsPerSecond |Average |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |Yes|
 
 ### Category: Circuit Traffic
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**BitsInPerSecond**<br><br>Bits ingressing Azure per second |`BitsInPerSecond` | No | BitsPerSecond |Average |`PeeringType`, `DeviceRole`|PT1M |Yes|
-|**BitsOutPerSecond**<br><br>Bits egressing Azure per second |`BitsOutPerSecond` | No | BitsPerSecond |Average |`PeeringType`, `DeviceRole`|PT1M |Yes|
+|**BitsInPerSecond**<br><br>Bits ingressing Azure per second |`BitsInPerSecond` | No | BitsPerSecond |Total (Sum), Average, Minimum, Maximum |`PeeringType`, `DeviceRole`|PT1M |Yes|
+|**BitsOutPerSecond**<br><br>Bits egressing Azure per second |`BitsOutPerSecond` | No | BitsPerSecond |Total (Sum), Average, Minimum, Maximum |`PeeringType`, `DeviceRole`|PT1M |Yes|
 |**EgressBandwidthUtilization**<br><br>Egress Link Bandwidth percentage utilization |`EgressBandwidthUtilization` | No | Percent |Maximum |`PeeringType`, `DeviceRole`|PT1M |Yes|
 |**IngressBandwidthUtilization**<br><br>Ingress Link Bandwidth percentage utilization |`IngressBandwidthUtilization` | No | Percent |Maximum |`PeeringType`, `DeviceRole`|PT1M |Yes|
 
@@ -60,8 +62,8 @@ For a list of supported logs, see [Supported log categories - Microsoft.Network/
 ### Category: GlobalReach Traffic
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**GlobalReachBitsInPerSecond**<br><br>Bits ingressing Azure per second |`GlobalReachBitsInPerSecond` | No | BitsPerSecond |Average |`PeeredCircuitSKey`|PT1M |No|
-|**GlobalReachBitsOutPerSecond**<br><br>Bits egressing Azure per second |`GlobalReachBitsOutPerSecond` | No | BitsPerSecond |Average |`PeeredCircuitSKey`|PT1M |No|
+|**GlobalReachBitsInPerSecond**<br><br>Bits ingressing Azure per second |`GlobalReachBitsInPerSecond` | No | BitsPerSecond |Total (Sum), Average, Minimum, Maximum |`PeeredCircuitSKey`|PT1M |No|
+|**GlobalReachBitsOutPerSecond**<br><br>Bits egressing Azure per second |`GlobalReachBitsOutPerSecond` | No | BitsPerSecond |Total (Sum), Average, Minimum, Maximum |`PeeredCircuitSKey`|PT1M |No|
 
 ## Next steps
 

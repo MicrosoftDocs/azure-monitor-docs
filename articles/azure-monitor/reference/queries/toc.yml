@@ -101,8 +101,6 @@ items:
   href: ADFSSignInLogs.md
 - name: ADFTriggerRun
   href: ADFTriggerRun.md
-- name: ADGSyslogEvent
-  href: ADGSyslogEvent.md
 - name: ADTDataHistoryOperation
   href: ADTDataHistoryOperation.md
 - name: ADTDigitalTwinsOperation
@@ -419,6 +417,8 @@ items:
   href: DevCenterDiagnosticLogs.md
 - name: DevCenterResourceOperationLogs
   href: DevCenterResourceOperationLogs.md
+- name: DevOpsOperationsAudit
+  href: DevOpsOperationsAudit.md
 - name: DeviceCalendar
   href: DeviceCalendar.md
 - name: DeviceCleanup
@@ -611,6 +611,8 @@ items:
   href: PurviewSecurityLogs.md
 - name: QualysKnowledgeBase
   href: QualysKnowledgeBase.md
+- name: QuantumProviderAccountDeviceOperationLogs
+  href: QuantumProviderAccountDeviceOperationLogs.md
 - name: REDConnectionEvents
   href: REDConnectionEvents.md
 - name: Rapid7InsightVMCloudAssets

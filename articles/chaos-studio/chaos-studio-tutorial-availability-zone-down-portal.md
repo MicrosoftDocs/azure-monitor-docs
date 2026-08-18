@@ -10,6 +10,8 @@ ms.custom: template-how-to
 
 # Use a chaos experiment template to take down Virtual Machine Scale Set availability zones with autoscale disabled
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 You can use a chaos experiment to verify that your application is resilient to failures by causing those failures in a controlled environment. In this article, you take down an availability zone (with autoscale disabled) of a Virtual Machine Scale Sets instance using a pre-populated experiment template and Azure Chaos Studio.
 
 ## Prerequisites

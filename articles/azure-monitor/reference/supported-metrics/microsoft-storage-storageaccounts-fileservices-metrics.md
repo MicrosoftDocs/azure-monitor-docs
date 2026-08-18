@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Storage/storageAccounts/fileServices
 description: Reference for Microsoft.Storage/storageAccounts/fileServices metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/13/2026
+ms.date: 07/31/2026
 ms.custom: Microsoft.Storage/storageAccounts/fileServices, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -22,7 +22,7 @@ The following table lists the metrics available for the Microsoft.Storage/storag
 - **Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
 - **Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
 - **Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
-- **DS Export** -S Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+- **DS Export** - Shows whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
 
 For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
 
@@ -35,14 +35,14 @@ For a list of supported logs, see [Supported log categories - Microsoft.Storage/
 ### Category: Capacity
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**File Capacity**<br><br>The amount of File storage used by the storage account. |`FileCapacity` | No | Bytes |Average |`FileShare`, `Tier`|PT1H |No|
-|**File Count**<br><br>The number of files in the storage account. |`FileCount` | No | Count |Average |`FileShare`, `Tier`|PT1H |No|
-|**File Share Capacity Quota**<br><br>The upper limit on the amount of storage that can be used by Azure Files Service in bytes. |`FileShareCapacityQuota` | No | Bytes |Average |`FileShare`|PT1H |No|
-|**File Share Count**<br><br>The number of file shares in the storage account. |`FileShareCount` | No | Count |Average |\<none\>|PT1H |No|
-|**File Share Provisioned Bandwidth MiB/s**<br><br>The baseline provisioned bandwidth (throughput) in MiB/s for the file share. |`FileShareProvisionedBandwidthMiBps` | No | CountPerSecond |Average |`FileShare`|PT1H |No|
-|**File Share Provisioned IOPS**<br><br>The baseline provisioned IOPS (not including burst) for the file share. |`FileShareProvisionedIOPS` | No | CountPerSecond |Average |`FileShare`|PT1H |No|
-|**File Share Snapshot Count**<br><br>The number of snapshots present on the share in storage account's Files Service. |`FileShareSnapshotCount` | No | Count |Average |`FileShare`|PT1H |No|
-|**File Share Snapshot Size**<br><br>The amount of storage used by the snapshots in storage account's File service in bytes. |`FileShareSnapshotSize` | No | Bytes |Average |`FileShare`|PT1H |No|
+|**File Capacity**<br><br>The amount of File storage used by the storage account. |`FileCapacity` | No | Bytes |Average |`FileShare`, `Tier`|PT1H, PT6H, PT12H, P1D |No|
+|**File Count**<br><br>The number of files in the storage account. |`FileCount` | No | Count |Average |`FileShare`, `Tier`|PT1H, PT6H, PT12H, P1D |No|
+|**File Share Capacity Quota**<br><br>The upper limit on the amount of storage that can be used by Azure Files Service in bytes. |`FileShareCapacityQuota` | No | Bytes |Average |`FileShare`|PT1H, PT6H, PT12H, P1D |No|
+|**File Share Count**<br><br>The number of file shares in the storage account. |`FileShareCount` | No | Count |Average |\<none\>|PT1H, PT6H, PT12H, P1D |No|
+|**File Share Provisioned Bandwidth MiB/s**<br><br>The baseline provisioned bandwidth (throughput) in MiB/s for the file share. |`FileShareProvisionedBandwidthMiBps` | No | CountPerSecond |Average |`FileShare`|PT1H, PT6H, PT12H, P1D |No|
+|**File Share Provisioned IOPS**<br><br>The baseline provisioned IOPS (not including burst) for the file share. |`FileShareProvisionedIOPS` | No | CountPerSecond |Average |`FileShare`|PT1H, PT6H, PT12H, P1D |No|
+|**File Share Snapshot Count**<br><br>The number of snapshots present on the share in storage account's Files Service. |`FileShareSnapshotCount` | No | Count |Average |`FileShare`|PT1H, PT6H, PT12H, P1D |No|
+|**File Share Snapshot Size**<br><br>The amount of storage used by the snapshots in storage account's File service in bytes. |`FileShareSnapshotSize` | No | Bytes |Average |`FileShare`|PT1H, PT6H, PT12H, P1D |No|
 
 ### Category: SLI
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|

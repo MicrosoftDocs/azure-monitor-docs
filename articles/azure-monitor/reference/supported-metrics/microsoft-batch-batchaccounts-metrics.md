@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Batch/batchaccounts
 description: Reference for Microsoft.Batch/batchaccounts metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/13/2026
+ms.date: 07/31/2026
 ms.custom: Microsoft.Batch/batchaccounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -22,7 +22,7 @@ The following table lists the metrics available for the Microsoft.Batch/batchacc
 - **Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
 - **Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
 - **Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
-- **DS Export** -S Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+- **DS Export** - Shows whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
 
 For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
 
@@ -41,28 +41,28 @@ For a list of supported logs, see [Supported log categories - Microsoft.Batch/ba
 ### Category: Resource Allocation
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Dedicated Core Count**<br><br>Total number of dedicated cores in the batch account |`CoreCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Creating Node Count**<br><br>Number of nodes being created |`CreatingNodeCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Idle Node Count**<br><br>Number of idle nodes |`IdleNodeCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Leaving Pool Node Count**<br><br>Number of nodes leaving the Pool |`LeavingPoolNodeCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**LowPriority Core Count**<br><br>Total number of low-priority cores in the batch account |`LowPriorityCoreCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Offline Node Count**<br><br>Number of offline nodes |`OfflineNodeCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
+|**Dedicated Core Count**<br><br>Total number of dedicated cores in the batch account |`CoreCount` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Creating Node Count**<br><br>Number of nodes being created |`CreatingNodeCount` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Idle Node Count**<br><br>Number of idle nodes |`IdleNodeCount` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Leaving Pool Node Count**<br><br>Number of nodes leaving the Pool |`LeavingPoolNodeCount` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**LowPriority Core Count**<br><br>Total number of low-priority cores in the batch account |`LowPriorityCoreCount` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Offline Node Count**<br><br>Number of offline nodes |`OfflineNodeCount` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
 |**Pool Create Events**<br><br>Total number of pools that have been created |`PoolCreateEvent` | No | Count |Total (Sum) |`poolId`|PT1M |Yes|
 |**Pool Delete Complete Events**<br><br>Total number of pool deletes that have completed |`PoolDeleteCompleteEvent` | No | Count |Total (Sum) |`poolId`|PT1M |Yes|
 |**Pool Delete Start Events**<br><br>Total number of pool deletes that have started |`PoolDeleteStartEvent` | No | Count |Total (Sum) |`poolId`|PT1M |Yes|
 |**Pool Resize Complete Events**<br><br>Total number of pool resizes that have completed |`PoolResizeCompleteEvent` | No | Count |Total (Sum) |`poolId`|PT1M |Yes|
 |**Pool Resize Start Events**<br><br>Total number of pool resizes that have started |`PoolResizeStartEvent` | No | Count |Total (Sum) |`poolId`|PT1M |Yes|
-|**Preempted Node Count**<br><br>Number of preempted nodes |`PreemptedNodeCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Rebooting Node Count**<br><br>Number of rebooting nodes |`RebootingNodeCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Reimaging Node Count**<br><br>Number of reimaging nodes |`ReimagingNodeCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Running Node Count**<br><br>Number of running nodes |`RunningNodeCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Starting Node Count**<br><br>Number of nodes starting |`StartingNodeCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Start Task Failed Node Count**<br><br>Number of nodes where the Start Task has failed |`StartTaskFailedNodeCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Low-Priority Node Count**<br><br>Total number of low-priority nodes in the batch account |`TotalLowPriorityNodeCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Dedicated Node Count**<br><br>Total number of dedicated nodes in the batch account |`TotalNodeCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Unknown State Node Count**<br><br>Number of unknown state nodes |`UnknownStateNodeCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Unusable Node Count**<br><br>Number of unusable nodes |`UnusableNodeCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
-|**Waiting For Start Task Node Count**<br><br>Number of nodes waiting for the Start Task to complete |`WaitingForStartTaskNodeCount` | No | Count |Total (Sum) |\<none\>|PT1M |No|
+|**Preempted Node Count**<br><br>Number of preempted nodes |`PreemptedNodeCount` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Rebooting Node Count**<br><br>Number of rebooting nodes |`RebootingNodeCount` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Reimaging Node Count**<br><br>Number of reimaging nodes |`ReimagingNodeCount` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Running Node Count**<br><br>Number of running nodes |`RunningNodeCount` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Starting Node Count**<br><br>Number of nodes starting |`StartingNodeCount` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Start Task Failed Node Count**<br><br>Number of nodes where the Start Task has failed |`StartTaskFailedNodeCount` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Low-Priority Node Count**<br><br>Total number of low-priority nodes in the batch account |`TotalLowPriorityNodeCount` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Dedicated Node Count**<br><br>Total number of dedicated nodes in the batch account |`TotalNodeCount` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Unknown State Node Count**<br><br>Number of unknown state nodes |`UnknownStateNodeCount` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Unusable Node Count**<br><br>Number of unusable nodes |`UnusableNodeCount` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**Waiting For Start Task Node Count**<br><br>Number of nodes waiting for the Start Task to complete |`WaitingForStartTaskNodeCount` | No | Count |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
 
 ### Category: Scheduling
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/10/2026
+ms.date: 08/11/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Maps
@@ -12,22 +12,22 @@ ms.custom: HighAvailability Azure Maps
   
 ## Azure Maps  
   
-<!--32c9c955-d054-4648-b6f8-a02ff805efe6_begin-->
+<!--6801eb05-04b6-4b81-ae58-c16e764dcfc2_begin-->
 
-#### Azure Maps Traffic APIs version 1.0 is being retired  
+#### Azure Maps Route APIs version 1.0 is being retired  
   
-Azure Maps Traffic APIs version 1.0 isn't supported and API calls fail. Transition to Azure Maps Traffic Incident API version 2025-01-01, Azure Maps Get Map Tile API version 2024-04-01, or both.  
+Azure Maps Route APIs version 1.0 isn't supported and API requests fail.  
   
 **Potential benefits**: Avoid potential disruptions  
 
 **Impact:** Medium
   
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485810)  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485819)  
 
 ResourceType: microsoft.maps/accounts  
-Recommendation ID: 32c9c955-d054-4648-b6f8-a02ff805efe6  
-Subcategory: ServiceUpgradeAndRetirement
+Recommendation ID: 6801eb05-04b6-4b81-ae58-c16e764dcfc2  
+Subcategory: undefined
 
-<!--32c9c955-d054-4648-b6f8-a02ff805efe6_end-->
+<!--6801eb05-04b6-4b81-ae58-c16e764dcfc2_end-->
 
 <!--articleBody-->

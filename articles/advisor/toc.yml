@@ -116,10 +116,6 @@
     href: ./advisor-workbook-reliability.md
   - name: Service Retirement workbook
     href: ./advisor-workbook-service-retirement.md
-- name: Samples
-  items:
-  - name: Azure Resource Graph queries
-    href: ./resource-graph-samples.md
 - name: Reference
   items:
   - name: Security baseline

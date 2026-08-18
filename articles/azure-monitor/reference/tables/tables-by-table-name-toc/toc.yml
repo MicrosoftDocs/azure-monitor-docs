@@ -128,8 +128,6 @@
   href: ../adfssispackageexecutioncomponentphases.md
 - name: ADFSSISPackageExecutionDataStatistics
   href: ../adfssispackageexecutiondatastatistics.md
-- name: ADGSyslogEvent
-  href: ../adgsyslogevent.md
 - name: ADTDataHistoryOperation
   href: ../adtdatahistoryoperation.md
 - name: ADTDigitalTwinsOperation
@@ -202,6 +200,8 @@
   href: ../agrifoodsensormanagementlogs.md
 - name: AgriFoodWeatherLogs
   href: ../agrifoodweatherlogs.md
+- name: AGSGrafanaAlertAuthFailure
+  href: ../agsgrafanaalertauthfailure.md
 - name: AGSGrafanaLoginEvents
   href: ../agsgrafanaloginevents.md
 - name: AGSGrafanaUsageInsightsEvents
@@ -836,6 +836,8 @@
   href: ../devicetvmsoftwarevulnerabilities.md
 - name: DeviceTvmSoftwareVulnerabilitiesKB
   href: ../devicetvmsoftwarevulnerabilitieskb.md
+- name: DevOpsOperationsAudit
+  href: ../devopsoperationsaudit.md
 - name: DiscoveryBookshelfAuditLogs
   href: ../discoverybookshelfauditlogs.md
 - name: DiscoverySupercomputerAuditLogs
@@ -848,6 +850,8 @@
   href: ../dnsauditevents.md
 - name: DNSQueryLogs
   href: ../dnsquerylogs.md
+- name: DragonCopilot
+  href: ../dragoncopilot.md
 - name: DSMAzureBlobStorageLogs
   href: ../dsmazureblobstoragelogs.md
 - name: DSMDataClassificationLogs
@@ -1274,6 +1278,8 @@
   href: ../purviewsecuritylogs.md
 - name: QualysKnowledgeBase
   href: ../qualysknowledgebase.md
+- name: QuantumProviderAccountDeviceOperationLogs
+  href: ../quantumprovideraccountdeviceoperationlogs.md
 - name: QuantumProviderAccountJobAuditLogs
   href: ../quantumprovideraccountjobauditlogs.md
 - name: QuantumProviderAccountQueueAuditLogs
@@ -1482,6 +1488,14 @@
   href: ../webpubsubmessaging.md
 - name: Windows365AuditLogs
   href: ../windows365auditlogs.md
+- name: Windows365CheckpointLogs
+  href: ../windows365checkpointlogs.md
+- name: Windows365ConnectionErrorLogs
+  href: ../windows365connectionerrorlogs.md
+- name: Windows365ConnectionLogs
+  href: ../windows365connectionlogs.md
+- name: Windows365NetworkLogs
+  href: ../windows365networklogs.md
 - name: WindowsEvent
   href: ../windowsevent.md
 - name: WireData

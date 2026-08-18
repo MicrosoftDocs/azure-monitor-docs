@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/23/2026
+ms.date: 07/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability API Management
@@ -156,5 +156,23 @@ Recommendation ID: 18d79d0b-6a10-49f7-a0e4-f6b3b6f9c9b1
 Subcategory: undefined
 
 <!--18d79d0b-6a10-49f7-a0e4-f6b3b6f9c9b1_end-->
+
+<!--fd3ba2f4-753d-4941-8d84-86c5c71e2817_begin-->
+
+#### TestingAutomated  
+  
+Testing Log  
+  
+**Potential benefits**: Testing automated  
+
+**Impact:** Low
+  
+  
+
+ResourceType: microsoft.apimanagement/service  
+Recommendation ID: fd3ba2f4-753d-4941-8d84-86c5c71e2817  
+Subcategory: undefined
+
+<!--fd3ba2f4-753d-4941-8d84-86c5c71e2817_end-->
 
 <!--articleBody-->

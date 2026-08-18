@@ -172,6 +172,8 @@
   href: ../microsoft-healthcareinterop-workspaces.md
 - name: microsoft.healthdataaiservices/deidservices
   href: ../microsoft-healthdataaiservices-deidservices.md
+- name: microsoft.horizondb/clusters
+  href: ../microsoft-horizondb-clusters.md
 - name: microsoft.hybridcontainerservice/provisionedclusters
   href: ../microsoft-hybridcontainerservice-provisionedclusters.md
 - name: microsoft.insights/autoscalesettings

@@ -12,26 +12,26 @@ ms.reviewer: shseth, nmangum
 
 # Azure Monitor Agent overview
 
-The Azure Monitor Agent collects monitoring data from the guest operating system of Azure and hybrid virtual machines (VMs). It delivers the data to Azure Monitor for use by features, insights, and other services, such as [Microsoft Sentinel](/azure/sentinel/overview) and [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction). This article provides an overview of the capabilities and supported use cases for the Azure Monitor Agent.
+The Azure Monitor Agent collects monitoring data from the guest operating system of Azure and hybrid virtual machines (VMs). It delivers the data to Azure Monitor for use by features, insights, and other services, such as [Microsoft Sentinel](/azure/sentinel/overview) and [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction). This article covers the Azure Monitor Agent's capabilities and supported use cases.
 
-For a short introduction to the Azure Monitor Agent, including a demo of how to deploy the agent in the Azure portal, see the video [ITOps Talk: Azure Monitor Agent](https://www.youtube.com/watch?v=f8bIrFU8tCs).
+For a short introduction to the Azure Monitor Agent, including a demo of deploying the agent in the Azure portal, see the video [ITOps Talk: Azure Monitor Agent](https://www.youtube.com/watch?v=f8bIrFU8tCs).
 
 > [!NOTE]
 > The Azure Monitor Agent is the supported agent for collecting guest OS data in Azure Monitor. If you're currently using the [legacy Log Analytics agent](./log-analytics-agent.md), see [Migrate to the Azure Monitor Agent](./azure-monitor-agent-migration.md) for guidance.
 
 ## Installation
 
-The Azure Monitor Agent is one method of [data collection for Azure Monitor](../data-sources.md). It's installed on VMs running in Azure, in other clouds, or on-premises, where it has access to local logs and performance data. Without the agent, you can collect data only from the host machine because you would have no access to the client operating system and to running processes.
+The Azure Monitor Agent is one method of [data collection for Azure Monitor](../data-sources.md). You install it on VMs running in Azure, in other clouds, or on-premises, where it has access to local logs and performance data. Without the agent, you can collect data only from the host machine because you have no access to the client operating system and running processes.
 
-You can install the agent on a single machine or at scale by using various methods. These methods include a VM extension, Azure Policy, or enabling features like VM insights. For detailed installation options and instructions, see [Install and manage the Azure Monitor Agent](./azure-monitor-agent-manage.md).
+You can install the agent on a single machine or at scale using various methods, including a VM extension, Azure Policy, or enabling features like VM insights. For detailed installation options and instructions, see [Install and manage the Azure Monitor Agent](./azure-monitor-agent-manage.md).
 
 On Linux, the agent creates local user accounts to run its services. For the full list of accounts and their purpose, see [Linux user accounts created during installation](./azure-monitor-agent-manage.md#linux-user-accounts-created-during-installation).
 
 ## Data collection
 
-The Azure Monitor Agent collects data according to [data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) that are associated with the agent. DCRs define what data is collected, how it gets processed, and where it gets sent.
+The Azure Monitor Agent collects data according to [data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) associated with the agent. DCRs define what data is collected, how it gets processed, and where it gets sent.
 
-When the agent is installed, it retrieves and applies any DCRs that are associated with it and periodically checks for updates. It enables centralized and consistent configuration of data collection across multiple agents and environments.
+When you install the agent, it retrieves and applies any associated DCRs and periodically checks for updates. It enables centralized and consistent configuration of data collection across multiple agents and environments.
 
 For a full conceptual and architectural description of data collection rules, associations, transformations, and destinations, see [Data collection rules (DCRs) in Azure Monitor](../essentials/data-collection-rule-overview.md). For guidance on organizing DCRs across environments and scenarios, see [Best practices for DCR creation and management in Azure Monitor](../essentials/data-collection-rule-best-practices.md).
 
@@ -39,7 +39,7 @@ For a full conceptual and architectural description of data collection rules, as
 
 ## Cost
 
-There's no cost to use the Azure Monitor Agent, but you might incur charges for the data that gets ingested and stored. For information on Log Analytics data collection and retention and for customer metrics, see [Azure Monitor logs cost calculations and options](../logs/cost-logs.md) and [Analyze usage in a Log Analytics workspace](../logs/analyze-usage.md).
+There's no cost to use the Azure Monitor Agent, but you might incur charges for data ingestion and storage. For information on Log Analytics data collection and retention and for customer metrics, see [Azure Monitor logs cost calculations and options](../logs/cost-logs.md) and [Analyze usage in a Log Analytics workspace](../logs/analyze-usage.md).
 
 ## Supported regions
 
@@ -129,7 +129,7 @@ The following tables compare Azure Monitor Agent and legacy agent capabilities o
 
 ## Supported data sources
 
-For a list of data sources that the Azure Monitor Agent can collect and to learn how to configure them, see [Collect data with the Azure Monitor Agent](../vm/data-collection.md).
+For a list of data sources that the Azure Monitor Agent can collect and instructions on how to configure them, see [Collect data with the Azure Monitor Agent](../vm/data-collection.md).
 
 ## Related content
 

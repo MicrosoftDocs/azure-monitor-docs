@@ -11,6 +11,8 @@ ms.custom:
 
 # Verify Chaos agent status
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 After installing the Chaos Agent on a virtual machine, verify that it's running correctly. This guide walks you through checking the agent's status in the Azure portal, understanding possible states, and troubleshooting potential issues.
 
 ## Check Chaos agent status in the Azure portal

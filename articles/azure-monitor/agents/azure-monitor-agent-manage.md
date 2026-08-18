@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 # Install and manage the Azure Monitor Agent
 
-This article describes the different methods you can use to install, uninstall, update, and configure the [Azure Monitor Agent](azure-monitor-agent-overview.md) on Azure virtual machines, virtual machine scale sets, and Azure Arc-enabled servers.
+This article describes methods to install, uninstall, update, and configure the [Azure Monitor Agent](azure-monitor-agent-overview.md) on Azure virtual machines, virtual machine scale sets, and Azure Arc-enabled servers.
 
 ## Prerequisites
 
@@ -20,6 +20,7 @@ For prerequisites and other requirements for using the Azure Monitor Agent, see 
 * [Azure Monitor Agent supported operating systems and environments](./azure-monitor-agent-supported-operating-systems.md)
 * [Azure Monitor Agent requirements](./azure-monitor-agent-requirements.md)
 * [Azure Monitor Agent network configuration](./azure-monitor-agent-network-configuration.md)
+* [Azure Monitor Agent extension versions](./azure-monitor-agent-extension-versions.md)
 
 > [!IMPORTANT]
 > If the agent connects to the Log Analytics workspace by using Azure private link, see [Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor](../fundamentals/private-link-vm-kubernetes.md).
@@ -31,16 +32,16 @@ For prerequisites and other requirements for using the Azure Monitor Agent, see 
 
 The following table lists the options for installing the Azure Monitor Agent on Azure VMs and Azure Arc-enabled servers.
 
-For any machine that isn't in Azure, you must install the [Azure Arc agent](/azure/azure-arc/servers/deployment-options) on the machine before you can install the Azure Monitor Agent.
+For any machine that isn't in Azure, you must install the [Azure Arc agent](/azure/azure-arc/servers/deployment-options) on the machine before installing the Azure Monitor Agent.
 
 | Installation method | Description |
 |:---|:---|
-| Virtual machine (VM) extension | Use any of the methods described in this article to install the agent via the Azure extension framework. This method doesn't create a data collection rule (DCR), so you must create at least one DCR and associate it with the agent before data collection begins. |
-| [Create a DCR](../vm/data-collection.md) | When you create a DCR in the Azure portal, the Azure Monitor Agent is installed on any machine that's added as a resource for the DCR. The agent immediately begins to collect data as defined in the DCR.
+| Virtual machine (VM) extension | Use any method in this article to install the agent via the Azure extension framework. This method doesn't create a data collection rule (DCR), so you must create at least one DCR and associate it with the agent before data collection begins. |
+| [Create a DCR](../vm/data-collection.md) | When you create a DCR in the Azure portal, the Azure Monitor Agent installs on any machine added as a resource for the DCR. The agent immediately begins collecting data as defined in the DCR.
 | [VM insights](../vm/vminsights-enable-overview.md) | When you enable VM insights on a machine, the Azure Monitor Agent is installed and a DCR is created to collect a predefined set of data. You shouldn't modify this DCR, but you can create more DCRs to collect more data. |
 | [Container insights](../containers/kubernetes-monitoring-enable.md) | When you enable collection of Prometheus metrics or container logs on a Kubernetes cluster, a containerized version of the Azure Monitor Agent is installed in the cluster and a DCR is created to immediately begin collecting data. You can modify the DCR by using the guidance in [Configure data collection and cost optimization in Container insights by using DCRs](../containers/container-insights-data-collection-dcr.md).
 | [Client installer](./azure-monitor-agent-windows-client.md) | Install the agent by using a Windows MSI installer for Windows 11 and Windows 10 clients. |
-| [Azure Policy](./azure-monitor-agent-policy.md) | Use Azure Policy to automatically install the agent on Azure virtual machines and Azure Arc-enabled servers, and to automatically associate them with required DCRs. |
+| [Azure Policy](./azure-monitor-agent-policy.md) | Use Azure Policy to automatically install the agent on Azure virtual machines and Azure Arc-enabled servers, and to associate them with required DCRs. |
 
 > [!NOTE]
 >
@@ -62,7 +63,7 @@ The following table summarizes which methods are available for each Azure Monito
 
 ### [Azure portal](#tab/azure-portal)
 
-The recommended way to install the Azure Monitor Agent through the Azure portal is to [create a data collection rule (DCR)](../vm/data-collection.md). The Azure Monitor Agent is installed automatically if necessary, and an association is created between the DCR and each machine you select.
+The recommended way to install the Azure Monitor Agent through the Azure portal is to [create a data collection rule (DCR)](../vm/data-collection.md). The Azure Monitor Agent installs automatically if necessary, and an association is created between the DCR and each machine you select.
 
 For the step-by-step portal walkthrough, including how to set the platform type, add resources, and configure data sources, see [Create data collection rule (DCR)](../vm/data-collection.md#create-data-collection-rule-dcr).
 
@@ -574,7 +575,7 @@ Not applicable.
 
 ## Configure agent settings (preview)
 
-Use the AgentSettings data collection rule (DCR) to configure Azure Monitor Agent parameters, such as the local cache disk quota, to match your monitoring needs. For the supported parameters and the steps to create and associate an AgentSettings DCR, see [Configure agents with Azure Monitor Agent settings](agent-settings.md).
+Use the AgentSettings data collection rule (DCR) to configure Azure Monitor Agent parameters, such as the local cache disk quota, to match your monitoring needs. For supported parameters and steps to create and associate an AgentSettings DCR, see [Configure agents with Azure Monitor Agent settings](agent-settings.md).
 
 ## Related content
 

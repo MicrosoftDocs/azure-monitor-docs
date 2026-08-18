@@ -14,7 +14,7 @@ Application Insights now supports [Microsoft Entra authentication](/entra/identi
 
 Using various authentication systems can be cumbersome and risky because it's difficult to manage credentials at scale. You can now choose to [opt out of local authentication](#disable-local-authentication) to ensure only telemetry exclusively authenticated by using [managed identities](/azure/active-directory/managed-identities-azure-resources/overview) and [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis) is ingested in your resource.
 
-This feature enhances the security and reliability of the telemetry used to make critical operational ([alerting](../alerts/alerts-overview.md#what-are-azure-monitor-alerts) and [autoscaling](../autoscale/autoscale-overview.md#overview-of-autoscale-in-azure)) and business decisions.
+This feature enhances the security and reliability of the telemetry used to make critical operational ([alerting](../alerts/alerts-overview.md#what-are-azure-monitor-alerts) and [autoscaling](../autoscale/autoscale-overview.md#overview-of-autoscale-in-azure-monitor)) and business decisions.
 
 ## Prerequisites
 

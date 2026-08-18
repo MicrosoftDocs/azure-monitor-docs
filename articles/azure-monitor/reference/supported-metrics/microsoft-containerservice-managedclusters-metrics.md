@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.ContainerService/managedClusters
 description: Reference for Microsoft.ContainerService/managedClusters metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/13/2026
+ms.date: 08/14/2026
 ms.custom: Microsoft.ContainerService/managedClusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -22,7 +22,7 @@ The following table lists the metrics available for the Microsoft.ContainerServi
 - **Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
 - **Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
 - **Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
-- **DS Export** -S Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+- **DS Export** - Shows whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
 
 For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
 
@@ -42,6 +42,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Containe
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**Inflight Requests**<br><br>Maximum number of currently used inflight requests on the apiserver per request kind in the last second |`apiserver_current_inflight_requests` | No | Count |Total (Sum), Average |`requestKind`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
+|**API Request Concurrency**<br><br>Current number of API Priority and Fairness execution seats being used by the API server. |`apiserver_flowcontrol_executing_seats` | No | Count |Total (Sum), Average |`priority_level`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
 
 ### Category: Cluster Autoscaler (PREVIEW)
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
@@ -54,9 +55,9 @@ For a list of supported logs, see [Supported log categories - Microsoft.Containe
 ### Category: ETCD
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**ETCD CPU Usage Percentage**<br><br>Maximum CPU percentage (based off current limit) used by ETCD pod across instances |`etcd_cpu_usage_percentage` | No | Percent |Maximum, Average |\<none\>|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |Yes|
-|**ETCD Database Usage Percentage**<br><br>Maximum utilization of the ETCD database across instances |`etcd_database_usage_percentage` | No | Percent |Maximum, Average |\<none\>|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |Yes|
-|**ETCD Memory Usage Percentage**<br><br>Maximum memory percentage (based off current limit) used by ETCD pod across instances |`etcd_memory_usage_percentage` | No | Percent |Maximum, Average |\<none\>|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |Yes|
+|**ETCD CPU Usage Percentage**<br><br>Maximum CPU percentage (based off current limit) used by ETCD pod across instances |`etcd_cpu_usage_percentage` | No | Percent |Maximum, Average |`partition`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |Yes|
+|**ETCD Database Usage Percentage**<br><br>Maximum utilization of the ETCD database across instances |`etcd_database_usage_percentage` | No | Percent |Maximum, Average |`partition`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |Yes|
+|**ETCD Memory Usage Percentage**<br><br>Maximum memory percentage (based off current limit) used by ETCD pod across instances |`etcd_memory_usage_percentage` | No | Percent |Maximum, Average |`partition`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |Yes|
 
 ### Category: Nodes
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
@@ -84,6 +85,11 @@ For a list of supported logs, see [Supported log categories - Microsoft.Containe
 |---|---|---|---|---|---|---|---|
 |**Number of pods by phase**<br><br>Number of pods by phase |`kube_pod_status_phase` | No | Count |Total (Sum), Average |`phase`, `namespace`, `pod`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
 |**Number of pods in Ready state**<br><br>Number of pods in Ready state |`kube_pod_status_ready` | No | Count |Total (Sum), Average |`namespace`, `pod`, `condition`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
+
+### Category: Scheduler (PREVIEW)
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Pod Scheduling Rate**<br><br>Number of scheduler attempts over time, including outcome breakdowns such as scheduled and unschedulable. |`scheduler_schedule_attempts_rate` | No | CountPerSecond |Average |`result`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
 
 ## Next steps
 

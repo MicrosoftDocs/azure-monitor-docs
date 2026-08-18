@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 
 # Azure Chaos Studio version compatibility
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 This page lists tested version combinations for components that Chaos Studio integrates with.
 
 ## Chaos Mesh compatibility

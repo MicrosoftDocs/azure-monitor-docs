@@ -3,7 +3,7 @@ title: Move a Log Analytics workspace in Azure Monitor
 description: Learn how to move your Log Analytics workspace to another subscription or resource group.
 ms.topic: how-to
 ms.reviewer: yossiy
-ms.date: 06/30/2026
+ms.date: 07/25/2026
 ms.custom: devx-track-azurepowershell
 ai-usage: ai-assisted
 
@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 # Move a Log Analytics workspace to a different subscription or resource group
 
 This article explains how to move a Log Analytics workspace to another resource group or subscription in the same region. Moving a Log Analytics workspace in the same region does not affect your log data or data retention settings.
+
+To move a workspace to a *different* region instead, see [Relocate a Log Analytics workspace to another region](/azure/azure-resource-manager/management/relocation/relocation-log-analytics). A cross-region move requires creating a new workspace because workspace data doesn't move across regions. To move to a region that supports availability zones, see [Migrate Log Analytics to availability zone support](/azure/reliability/migrate-monitor-log-analytics).
 
 > [!TIP] 
 > To learn more about how to move Azure resources through the Azure portal, PowerShell, the Azure CLI, or the REST API, see [Move resources to a new resource group or subscription](/azure/azure-resource-manager/management/move-resource-group-and-subscription).
@@ -250,5 +252,7 @@ Move-AzResource -ResourceId "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e
 > [!IMPORTANT]
 > After the move operation, removed solutions and the Automation account link should be reconfigured to bring the workspace back to its previous state.
 
-## Next steps
-For a list of which resources support the move operation, see [Move operation support for resources](/azure/azure-resource-manager/management/move-support-resources).
+## Related content
+
+- [Move operation support for resources](/azure/azure-resource-manager/management/move-support-resources) lists which resources support the move operation.
+- [Relocate a Log Analytics workspace to another region](/azure/azure-resource-manager/management/relocation/relocation-log-analytics) covers cross-region moves, where data doesn't move automatically.

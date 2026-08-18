@@ -3,7 +3,8 @@ title: Manage personal data in Azure Monitor Logs
 description: This article describes how to manage personal data stored in Azure Monitor Log Analytics and the methods to identify and remove it.
 ms.topic: concept-article
 ms.reviewer: meirm
-ms.date: 11/11/2024
+ms.date: 08/07/2026
+ai-usage: ai-assisted
 # Customer intent: As an Azure Monitor admin user, I want to understand how to manage personal data in logs that Azure Monitor collects.
 
 ---
@@ -18,11 +19,11 @@ Azure Monitor Logs is a data store where personal data is likely to be found. Th
 
 While it's up to you and your company to define a strategy for handling personal data, here are a few approaches, listed from most to least preferable from a technical point of view:
 
-- Filter out, obfuscate, anonymize, or adjust collected data to exclude it from being considered "personal" using [data collection transformations](../essentials/data-collection-transformations.md). This is _by far_ the preferred approach, which saves you the need to create a costly and impactful data handling strategy.
-- Normalize the data to reduce negative affects on the data platform and performance. For example, instead of logging an explicit User ID, create a lookup to correlate the username and their details to an internal ID that can then be logged elsewhere. That way, if a user asks you to delete their personal information, you can delete only the row in the lookup table that corresponds to the user. 
-- If you need to collect personal data: 
+- Filter out, obfuscate, anonymize, or adjust collected data to exclude it from being considered "personal" by using [data collection transformations](../data-collection/data-collection-transformations.md). This approach is _by far_ the best option and saves you the need to create a costly and impactful data handling strategy.
+- Normalize the data to reduce negative effects on the data platform and performance. For example, instead of logging an explicit user ID, create a lookup to correlate the username and their details to an internal ID that you can log elsewhere. If a user asks you to delete their personal information, you can delete only the row in the lookup table that corresponds to the user.
+- If you need to collect personal data:
     - Use the [Delete Data API](delete-log-data.md) or [Purge API](/rest/api/loganalytics/workspacepurge/purge) and the [Query API](/rest/api/loganalytics/dataaccess/query) to export and delete any personal data associated with a user.
-    - Use [summary rules](summary-rules.md) to remove or obfuscate personal data in a new table that can be shared more widely, and limit access to the table with the personal data by [managing table-level read access](manage-table-access.md). 
+    - Use [summary rules](summary-rules.md) to remove or obfuscate personal data in a new table that you can share more widely. Limit access to the table with the personal data by [managing table-level read access](manage-table-access.md).
 
 ## Where to look for personal data in Azure Monitor Logs
 
@@ -32,39 +33,36 @@ Azure Monitor Logs prescribes a schema to your data, but allows you to override 
 > Some of the queries in this article use `search *` to query all tables in a workspace. In general, we highly recommend you avoid using `search *`, which creates a highly inefficient query, whenever possible. Instead, query a specific table.
 
 * **IP addresses**: Log Analytics collects various IP information in multiple tables. For example, the following query shows all tables that collected IPv4 addresses in the last 24 hours:
-    ```
-    search * 
-    | where * matches regex @'\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}\b' //RegEx originally provided on https://stackoverflow.com/questions/5284147/validating-ipv4-addresses-with-regexp
+    ```kusto
+    search *
+    | where * matches regex @'\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}\b' // Match IPv4 addresses
     | summarize count() by $table
     ```
-    
+
 * **User IDs**: You can find user usernames and user IDs in various solutions and tables. Look for a particular username or user ID across your entire dataset using the search command:
-    ```
+    ```kusto
     search "<username or user ID>"
     ```
-    
+
   Remember to look not only for human-readable usernames but also for GUIDs that can be traced back to a particular user.
-* **Device IDs**: Like user IDs, device IDs are sometimes considered personal data. Use the approach described for user IDs to identify tables that hold personal data. 
+* **Device IDs**: Like user IDs, device IDs are sometimes considered personal data. Use the approach described for user IDs to identify tables that hold personal data.
 * **Custom data**: Azure Monitor Logs lets you collect custom data through custom logs, custom fields, the [Logs Ingestion API](../logs/logs-ingestion-api-overview.md), and as part of system event logs. Check all custom data for personal data.
 * **Solution-captured data**: Because the solution mechanism is open-ended, we recommend reviewing all tables generated by solutions to ensure compliance.
 
 ## Export, delete, or purge personal data
 
-We __strongly__ recommend you restructure your data collection policy to stop collecting, filter out, obfuscate or anonymize personal data, or otherwise modify such data until it's no longer considered personal using [data collection transformations](../essentials/data-collection-transformations.md). In handling personal, data you incur costs in defining and automating a strategy, building an interface through which your customers interact with their data, and ongoing maintenance. It's also computationally costly for Log Analytics and Application Insights, and a large volume of concurrent Query, Delete Data, or Purge API calls can negatively affect all other interactions with Log Analytics functionality. However, if you have to collect personal data, follow the guidelines in this section.
+Before you collect personal data, review the [Strategy for personal data handling](#strategy-for-personal-data-handling) section. Filtering out, obfuscating, or anonymizing data by using data collection transformations is the preferred approach and avoids the costs described here. In handling personal data, you incur costs in defining and automating a strategy, building an interface through which your customers interact with their data, and ongoing maintenance. It's also computationally costly for Log Analytics and Application Insights, and a large volume of concurrent Query, Delete Data, or Purge API calls can negatively affect all other interactions with Log Analytics functionality. However, if you have to collect personal data, follow the guidelines in this section.
 
 > [!NOTE]
 > Deleting or purging data doesn't affect billing. To control data retention costs, configure [data retention settings](data-retention-configure.md).
 
-### View and export
+### View and export personal data
 
-Use the [Log Analytics query API](/rest/api/loganalytics/dataaccess/query) to send for view and export data requests. 
-
-> [!NOTE]
-> You can't use the Log Analytics query API on tables that have the [Basic and Auxiliary table plans](data-platform-logs.md#table-plans). Instead, use the [Search API](basic-logs-query.md#run-a-query-on-a-basic-or-auxiliary-table).
+Use the [Log Analytics query API](/rest/api/loganalytics/dataaccess/query) to send view and export data requests. The Log Analytics query API doesn't support tables that have the [Basic and Auxiliary table plans](data-platform-logs.md#table-plans). For those tables, use the [Search API](basic-logs-query.md#run-a-query-on-a-basic-or-auxiliary-table) instead.
 
 You need to implement the logic for converting the data to an appropriate format for delivery to your users. [Azure Functions](https://azure.microsoft.com/services/functions/) is a great place to host such logic.
 
-### Delete
+### Delete personal data
 
 The [Azure Monitor Logs Delete Data API](delete-log-data.md) lets you make asynchronous requests to remove data for a specific table in your Log Analytics workspace. Use the Delete Data operation sparingly to avoid potential risks, performance impact, and the potential to skew all-up aggregations, measurements, and other aspects of your Log Analytics data. See the [Strategy for personal data handling](#strategy-for-personal-data-handling) section for alternative approaches to handling personal data.
 
@@ -73,14 +71,14 @@ If you need to comply with General Data Protection Regulation (GDPR) requirement
 > [!WARNING]
 > Delete and purge operations are destructive and non-reversible! Use extreme caution in their execution.
 
-### Purge
+### Purge personal data
 
 Azure Monitor's [Purge API](/rest/api/loganalytics/workspacepurge/purge) lets you purge personal data, as required by GDPR. The Purge API is less performant than the [Delete Data API](delete-log-data.md). Azure Monitor recommends using the Delete Data API and only authorizes purge requests required for GDPR compliance.
 
-To manage system resources, we limit purge requests to 50 requests an hour. Batch the execution of purge requests by sending a single command whose predicate includes all user identities that require purging. Use the [in operator](/azure/kusto/query/inoperator) to specify multiple identities. Run the query before executing the purge request to verify the expected results.
+To manage system resources, the service limits purge requests to 50 requests an hour. Batch the execution of purge requests by sending a single command whose predicate includes all user identities that require purging. Use the [in operator](/kusto/query/in-operator) to specify multiple identities. Run the query before executing the purge request to verify the expected results.
 
 > [!IMPORTANT]
->  While most purge operations complete much quicker, **the formal SLA for the completion of purge operations is set at 30 days** due to their heavy impact on the data platform. This SLA meets GDPR requirements. It's an automated process, so there's no way to expedite the operation. 
+>  While most purge operations complete much quicker, **the formal SLA for the completion of purge operations is set at 30 days** due to their heavy impact on the data platform. This SLA meets GDPR requirements. It's an automated process, so there's no way to expedite the operation.
 
 #### Permissions required
 
@@ -91,17 +89,13 @@ To manage system resources, we limit purge requests to 50 requests an hour. Batc
 
 #### Purge log data
 
-* The [Workspace Purge POST API](/rest/api/loganalytics/workspacepurge/purge) takes an object specifying parameters of data to delete and returns a reference GUID. 
-* The [Get Purge Status POST API](/rest/api/loganalytics/workspace-purge/get-purge-status) returns an 'x-ms-status-location' header that includes a URL you can call to determine the status of your purge operation. For example:
-
-    ```
-    x-ms-status-location: https://management.azure.com/subscriptions/[SubscriptionId]/resourceGroups/[ResourceGroupName]/providers/Microsoft.OperationalInsights/workspaces/[WorkspaceName]/operations/purge-[PurgeOperationId]?api-version=2015-03-20
-    ```
+* The [Workspace Purge POST API](/rest/api/loganalytics/workspacepurge/purge) accepts a table name and filters that identify the data to purge. It returns a `202 Accepted` response. The `x-ms-status-location` response header contains the URL for checking the operation status.
+* Send a `GET` request to the URL in the `x-ms-status-location` header. The [Get Purge Status API](/rest/api/loganalytics/workspace-purge/get-purge-status) returns the status of the purge operation.
 
 > [!NOTE]
 > You can't purge data from tables that have the [Basic and Auxiliary table plans](data-platform-logs.md#table-plans). When you onboard a workspace to Microsoft Sentinel data lake, purging data from an Analytics table doesn't purge the data that's mirrored to the data lake. For more information, see [Set up connectors for Microsoft Sentinel data lake](/azure/sentinel/datalake/sentinel-lake-connectors).
 
 
 ## Next steps
-- Learn more about [security in Azure Monitor](../best-practices-security.md).
+- Learn more about [security in Azure Monitor](../fundamentals/best-practices-security.md).
 - Learn more about [how Application Insights collects, processes, and secures data](/previous-versions/azure/azure-monitor/app/data-retention-privacy).

@@ -2,8 +2,9 @@
 title: Migrate from Azure Monitor SCOM Managed Instance to Azure Monitor Data Collection Rules
 description: This article explains how to migrate from Azure Monitor SCOM Managed Instance to Azure Monitor Data Collection Rules.
 ms.topic: how-to
-author: aakashbsrj
-ms.author: aakashb
+author: austinmccollum
+ms.author: austinmc
+ms.reviewer: aakashb
 ms.date: 09/30/2025
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance

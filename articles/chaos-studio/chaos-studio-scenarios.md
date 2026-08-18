@@ -3,7 +3,7 @@ title: Scenarios in Azure Chaos Studio
 description: Reference for all available Scenarios in Azure Chaos Studio Workspaces. Each Scenario simulates a real outage pattern using composed Actions.
 author: nikhilkaul-msft
 ms.topic: reference
-ms.date: 07/17/2026
+ms.date: 07/23/2026
 ai-usage: ai-assisted
 ---
 
@@ -187,13 +187,54 @@ Hibernates standalone virtual machines to simulate sudden compute loss, then res
 Applies sustained CPU stress inside target virtual machines to validate application behavior under CPU contention. You set the pressure level (percentage) and duration.
 
 > [!NOTE]
-> CPU Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. It supports standalone virtual machines only; virtual machine scale sets aren't supported. Each target VM must be a Windows or Linux VM with a managed identity. Chaos Studio installs the agent extension automatically during the run and removes it afterward.
+> CPU Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Chaos Studio installs the agent extension automatically during the run and removes it afterward. For target VM and operating system requirements, see [Agent-based Scenario requirements](#agent-based-scenario-requirements).
 
 | Property | Value |
 |---|---|
 | Actions | CPU Pressure (agent-based) |
 | Target resources | Virtual Machines (standalone only) |
 | Outage category | Resource pressure |
+
+#### Physical Memory Pressure
+
+Consumes physical memory inside target virtual machines to validate application behavior under memory contention. You set the pressure level (percentage) and duration.
+
+> [!NOTE]
+> Physical Memory Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Chaos Studio installs the agent extension automatically during the run and removes it afterward. For target VM and operating system requirements, see [Agent-based Scenario requirements](#agent-based-scenario-requirements).
+
+| Property | Value |
+|---|---|
+| Actions | Physical Memory Pressure (agent-based) |
+| Target resources | Virtual Machines (standalone only) |
+| Outage category | Resource pressure |
+
+## Agent-based Scenario requirements
+
+Most Scenarios use service-direct actions that operate on resources through Azure management APIs. Agent-based Scenarios, such as CPU Pressure and Physical Memory Pressure, instead run the fault inside the target virtual machine through the Chaos Studio agent. Chaos Studio installs the agent extension automatically when the run starts and removes it when the run ends, so you don't install or manage the agent yourself.
+
+Each target virtual machine must meet the following requirements:
+
+- It's a standalone virtual machine. Virtual machine scale sets aren't supported yet.
+- It has a managed identity.
+- It runs a supported operating system.
+- It can reach the Chaos Studio service over public outbound connectivity. VMs restricted to private networking aren't supported.
+
+If a Scenario run fails at the agent installation step, a network configuration is usually blocking the agent's connection. See [Problems connecting the Chaos agent to Chaos Studio](troubleshoot-workspaces-scenarios.md#problems-connecting-the-chaos-agent-to-chaos-studio).
+
+In the Azure portal, agent-based Scenarios don't appear in the recommended Scenarios list. Find and run them from **My scenarios**.
+
+### Supported operating systems
+
+Agent-based Scenarios support both Windows and Linux virtual machines. VM sizes that use Arm-based processors aren't supported yet. On Linux, fault actions are validated on the following distributions:
+
+| Distribution | Supported versions |
+|---|---|
+| Ubuntu | 22.04 and later |
+| Debian | 11 and later |
+| Red Hat Enterprise Linux | 8.6 and later |
+| Oracle Linux | 8.4 and later |
+
+Other distributions or versions might work, but they aren't validated and Chaos Studio can't guarantee behavior on them.
 
 ## Create a custom Scenario
 
@@ -286,6 +327,8 @@ Action IDs are URNs of the form `urn:csci:microsoft:{service}:{action}/{version}
 Chaos Studio matches Scenarios to resources based on the Workspace scope. A Scenario appears in your library if your scope contains the resource types that the Scenario's Actions affect. For Scenarios that compose multiple Actions across resource types (for example, the Compute Zone Down + PostgreSQL Failover Scenario), all required resource types must be present in the scope.
 
 If you deploy new resources within the Workspace scope, they're discovered automatically, and new Scenarios might appear in your library.
+
+The Scenario catalog also expands regularly during the public preview. When new Scenario templates ship, they appear in your library automatically if they apply to resource types in your scope; no action is needed on your part. To request a Scenario or fault, [file a feature request](https://github.com/microsoft/chaos-studio/issues).
 
 ## Resource exclusions
 

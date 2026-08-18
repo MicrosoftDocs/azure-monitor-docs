@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/14/2026
+ms.date: 08/11/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Key Vault
@@ -12,22 +12,22 @@ ms.custom: HighAvailability Key Vault
   
 ## Key Vault  
   
-<!--7ff06874-39e9-41be-9552-fa1ae2a83c88_begin-->
+<!--5585b5f0-f6b2-4800-947f-565563babfa7_begin-->
 
-#### Azure Key Vault API versions prior to 2026-02-01 are being retired  
+#### Verify readiness for migration to RBAC  
   
-Transition to API version 2026-02-01. Azure role-based access control (RBAC) will be the default access control model for all newly created vaults. Existing key vaults will continue using their current access control model.  
+This recommendation is to verify the RBAC roles created are exhaustive of the permissions required before the access model is shifted off of access policies to RBAC. It will help prevent access disruptions and enables a smooth transition to RBAC-based access control.  
   
-**Potential benefits**: Avoid potential disruptions  
+**Potential benefits**: Prevent access disruption and enable smooth RBAC transition  
 
 **Impact:** High
   
-For more information, see [Prepare for Key Vault API version 2026-02-01 and later - Azure RBAC as default](/azure/key-vault/general/access-control-default?tabs=azure-cli)  
+For more information, see [Sign in to your account](https://review.learn.microsoft.com/azure/key-vault/general/whats-new?branch=main&branchFallbackFrom=pr-en-us-2634)  
 
 ResourceType: microsoft.keyvault/vaults  
-Recommendation ID: 7ff06874-39e9-41be-9552-fa1ae2a83c88  
+Recommendation ID: 5585b5f0-f6b2-4800-947f-565563babfa7  
 Subcategory: undefined
 
-<!--7ff06874-39e9-41be-9552-fa1ae2a83c88_end-->
+<!--5585b5f0-f6b2-4800-947f-565563babfa7_end-->
 
 <!--articleBody-->

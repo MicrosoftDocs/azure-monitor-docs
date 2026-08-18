@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/23/2026
+ms.date: 07/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -634,5 +634,167 @@ Recommendation ID: 18745007-438b-4c68-bfa3-b6576d85a831
 Subcategory: undefined
 
 <!--18745007-438b-4c68-bfa3-b6576d85a831_end-->
+
+<!--4b1c740d-0f23-4bbe-9667-c2ea07dcb1fc_begin-->
+
+#### Upcoming policy updates impact Azure App Service managed certificates starting 28 July 2025  
+  
+While the majority of certificates won't be impacted, you'll no longer be able to create or renew certificates starting 28 July 2025 if your app is only accessible privately via IP restrictions, private endpoints, or any other method that restricts public access. Public accessibility will be require  
+  
+**Potential benefits**: Create/renew certificates in apps without public access.  
+
+**Impact:** High
+  
+For more information, see [Install a TLS/SSL Certificate for Your App - Azure App Service](/azure/app-service/configure-ssl-certificate?tabs=apex%2Crbac%2Cazure-cli)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 4b1c740d-0f23-4bbe-9667-c2ea07dcb1fc  
+Subcategory: undefined
+
+<!--4b1c740d-0f23-4bbe-9667-c2ea07dcb1fc_end-->
+
+<!--18a53688-f77d-4a23-968a-fce016ed5baa_begin-->
+
+#### Migrate to TLS 1.2 or later for App service  
+  
+App Service will no longer accept connections using TLS 1.0 or TLS 1.1. Any client, application, or service that continues to use these legacy TLS versions will be unable to connect to these services. Migrate to TLS 1.2 or later.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=557852)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 18a53688-f77d-4a23-968a-fce016ed5baa  
+Subcategory: undefined
+
+<!--18a53688-f77d-4a23-968a-fce016ed5baa_end-->
+
+<!--ce9d9c08-4b02-4691-9b3d-155c8de1d29b_begin-->
+
+#### Migrate to TLS 1.2 or later for Functions  
+  
+Functions will no longer accept connections using TLS 1.0 or TLS 1.1. Any client, application, or service that continues to use these legacy TLS versions will be unable to connect to these services. Migrate to TLS 1.2 or later.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=557852)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: ce9d9c08-4b02-4691-9b3d-155c8de1d29b  
+Subcategory: undefined
+
+<!--ce9d9c08-4b02-4691-9b3d-155c8de1d29b_end-->
+
+<!--11dd2790-641c-4ddd-a735-d96cfc93c0bd_begin-->
+
+#### Migrate to TLS 1.2 or later for Logic Apps  
+  
+Logic Apps will no longer accept connections using TLS 1.0 or TLS 1.1. Any client, application, or service that continues to use these legacy TLS versions will be unable to connect to these services. Migrate to TLS 1.2 or later.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=557852)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 11dd2790-641c-4ddd-a735-d96cfc93c0bd  
+Subcategory: undefined
+
+<!--11dd2790-641c-4ddd-a735-d96cfc93c0bd_end-->
+
+<!--dcf3c6e4-27b3-44d4-9b70-bb9e18a7184a_begin-->
+
+#### Community support for Node 20 LTS is ending, so the platform is retiring support on App Service  
+  
+Extended support for Node 20 LTS is ending. The apps hosted on App Service continue to run; but security updates are no longer available and the platform no longer provides customer service for Node 20 LTS.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485072)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: dcf3c6e4-27b3-44d4-9b70-bb9e18a7184a  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--dcf3c6e4-27b3-44d4-9b70-bb9e18a7184a_end-->
+
+<!--2350ea91-8dc1-4f7b-b85f-84990e9bfb5a_begin-->
+
+#### Upgrade Python 3.9 app to newer version  
+  
+Extended support for Python 3.9 is ending. Apps hosted on App Service continue to run. Future security updates are no longer available. The platform no longer provides customer service for Python 3.9.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=python-39-app-svc)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 2350ea91-8dc1-4f7b-b85f-84990e9bfb5a  
+Subcategory: undefined
+
+<!--2350ea91-8dc1-4f7b-b85f-84990e9bfb5a_end-->
+
+<!--060218a1-bf04-43a9-a967-2a507b69904b_begin-->
+
+#### Extended support for Node 18 LTS is ending  
+  
+Extended support for Node 18 LTS is ending. Apps hosted on App Service continue to run. Future security updates are no longer available. The platform no longer provides customer service for Node 18 LTS.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=action-required-upgrade-your-app-service-apps-to-node-20-lts-by-30-april-2025)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 060218a1-bf04-43a9-a967-2a507b69904b  
+Subcategory: undefined
+
+<!--060218a1-bf04-43a9-a967-2a507b69904b_end-->
+
+<!--751b9e95-b060-4e9b-be74-70675ded2d87_begin-->
+
+#### Migrate to current Nutanix SKU from AN36  
+  
+Nutanix AN36 SKU on Azure is being retired  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=562814)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 751b9e95-b060-4e9b-be74-70675ded2d87  
+Subcategory: undefined
+
+<!--751b9e95-b060-4e9b-be74-70675ded2d87_end-->
+
+<!--a6e1e07d-3c4f-4d91-bf36-f3ee274f65a5_begin-->
+
+#### Migrate to Node.js 24  
+  
+Azure Function apps will continue to operate, but security patches and updates will no longer be provided and customer support for Node.js 22 will be discontinued. Running function apps on unsupported runtime or language version, may lead to issues and degraded performance. Upgrade to Node.js 24  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Update Language Versions in Azure Functions](/azure/azure-functions/update-language-versions?tabs=azure-portal%2Cwindows&pivots=programming-language-javascript)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: a6e1e07d-3c4f-4d91-bf36-f3ee274f65a5  
+Subcategory: undefined
+
+<!--a6e1e07d-3c4f-4d91-bf36-f3ee274f65a5_end-->
 
 <!--articleBody-->

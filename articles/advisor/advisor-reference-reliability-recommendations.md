@@ -4,7 +4,7 @@ description: Full list of available reliability recommendations in Advisor.
 author: kanika1894
 ms.author: kapasrij
 ms.topic: article
-ms.date: 05/26/2026
+ms.date: 08/11/2026
 ---
 
 # Reliability recommendations
@@ -40,7 +40,11 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-arc-enabled-servers.md](./includes/HighAvailability-azure-arc-enabled-servers.md)]
 
+[!INCLUDE [HighAvailability-azure-blueprints.md](./includes/HighAvailability-azure-blueprints.md)]
+
 [!INCLUDE [HighAvailability-azure-cache-for-redis.md](./includes/HighAvailability-azure-cache-for-redis.md)]
+
+[!INCLUDE [HighAvailability-azure-communication-services.md](./includes/HighAvailability-azure-communication-services.md)]
 
 [!INCLUDE [HighAvailability-azure-container-apps.md](./includes/HighAvailability-azure-container-apps.md)]
 
@@ -116,7 +120,11 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-key-vault.md](./includes/HighAvailability-key-vault.md)]
 
+[!INCLUDE [HighAvailability-management-groups.md](./includes/HighAvailability-management-groups.md)]
+
 [!INCLUDE [HighAvailability-media-services.md](./includes/HighAvailability-media-services.md)]
+
+[!INCLUDE [HighAvailability-microsoft.baremetalinfrastructure.md](./includes/HighAvailability-microsoft-baremetalinfrastructure.md)]
 
 [!INCLUDE [HighAvailability-microsoft.bingsearch.md](./includes/HighAvailability-microsoft-bingsearch.md)]
 

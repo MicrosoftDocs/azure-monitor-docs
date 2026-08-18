@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.DocumentDB/garnetClusters
 description: Reference for Microsoft.DocumentDB/garnetClusters metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/13/2026
+ms.date: 07/31/2026
 ms.custom: Microsoft.DocumentDB/garnetClusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -22,7 +22,7 @@ The following table lists the metrics available for the Microsoft.DocumentDB/gar
 - **Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
 - **Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
 - **Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
-- **DS Export** -S Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+- **DS Export** - Shows whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
 
 For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
 
@@ -56,10 +56,10 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**CPU usage active**<br><br>CPU usage (active). |`cpu` | No | Percent |Average |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`, `CPU`|PT1M |Yes|
-|**network received bytes**<br><br>Cumulative network received bytes. |`ethtool_rx_bytes` | No | Bytes |Average, Minimum, Maximum, Count |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |No|
-|**network received packets**<br><br>Cumulative network received packets. |`ethtool_rx_packets` | No | Count |Average, Minimum, Maximum, Count |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |No|
-|**network transmitted bytes**<br><br>Cumulative network transmitted bytes. |`ethtool_tx_bytes` | No | Bytes |Average, Minimum, Maximum, Count |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |No|
-|**network transmitted packets**<br><br>Cumulative network transmitted packets. |`ethtool_tx_packets` | No | Count |Average, Minimum, Maximum, Count |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |No|
+|**network received bytes**<br><br>Cumulative network received bytes. |`ethtool_rx_bytes` | No | Bytes |Average, Minimum, Maximum |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |No|
+|**network received packets**<br><br>Cumulative network received packets. |`ethtool_rx_packets` | No | Count |Average, Minimum, Maximum |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |No|
+|**network transmitted bytes**<br><br>Cumulative network transmitted bytes. |`ethtool_tx_bytes` | No | Bytes |Average, Minimum, Maximum |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |No|
+|**network transmitted packets**<br><br>Cumulative network transmitted packets. |`ethtool_tx_packets` | No | Count |Average, Minimum, Maximum |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |No|
 |**memory utilization**<br><br>Memory utilization rate. |`percent_mem` | No | Percent |Average |`ClusterResourceName`, `DataCenterResourceName`, `Address`|PT1M |Yes|
 |**average CPU usage active**<br><br>Average CPU usage (active) across all the CPUs. |`total_cpu` | No | Percent |Average |`ClusterResourceName`, `DataCenterResourceName`, `Address`, `Kind`|PT1M |Yes|
 

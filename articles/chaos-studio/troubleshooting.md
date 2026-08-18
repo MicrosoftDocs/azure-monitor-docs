@@ -10,6 +10,8 @@ ms.custom: template-troubleshooting
 
 # Troubleshoot issues with Azure Chaos Studio
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 As you use Azure Chaos Studio, you might occasionally encounter some problems. This article explains common problems and troubleshooting steps.
 
 > [!TIP]

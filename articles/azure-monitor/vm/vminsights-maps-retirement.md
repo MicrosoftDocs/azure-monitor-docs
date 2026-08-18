@@ -4,6 +4,7 @@ description: This article provides guidance to customers about the retirement of
 ms.topic: concept-article
 ms.custom: linux-related-content
 ms.date: 07/02/2026
+ai-usage: ai-assisted
 ---
 
 # VM Insights Map and Dependency Agent retirement guidance
@@ -21,7 +22,7 @@ Specifically, customers won't be able to:
 - Send new data to Azure Monitor Log Analytics using the Dependency Agent.
 - Query the Service Map API   
 
-Customers will still have access to existing VM Insights Map data ingested by Dependency Agent in the associated tables (`VMComputer`, `VMProcess`, `VMConnection`, `VMBoundPort`). This data is retained as per the settings in the customers’ Log Analytics workspace.  
+Existing VM Insights Map data ingested by the Dependency Agent remains available in the associated tables (`VMComputer`, `VMProcess`, `VMConnection`, `VMBoundPort`). Your Log Analytics workspace settings determine data retention.  
 
 As part of the retirement process, 
 
@@ -32,9 +33,21 @@ As part of the retirement process,
  
 ## Recommended action  
 
-Customers are recommended to offboard from the VM Insights Map feature. If you want to continue collecting data about processes running on virtual machines and external process dependencies, we recommend considering a replacement solution from the Azure Marketplace. If applicable, customers can consider [using the Azure Monitor Agent for inventory tracking](/azure/automation/change-tracking/manage-change-tracking-monitoring-agent).  
+Offboard from the VM Insights Map feature. If you want to continue collecting data about processes running on virtual machines and external process dependencies, consider a replacement solution from the Azure Marketplace. If applicable, consider [using the Azure Monitor Agent for inventory tracking](/azure/automation/change-tracking/manage-change-tracking-monitoring-agent). If you deployed the Dependency Agent to your VMs through an Azure Policy initiative assignment, see [Migrate Dependency Agent policy and initiative assignments](dependency-agent-migrate-policy.md) for how to identify and update those assignments.
 
 ## Finding VMs currently using VM Insights map 
+
+### Azure Advisor retirement recommendations
+
+Azure Advisor shows a retirement recommendation, **Migrate from Dependency Agent and VM Insights Map**, for resources with Dependency Agent installed.
+
+To find it, in the Azure portal go to **Advisor** > **Recommendations** > **Reliability**, add a filter with **Recommendation Type** set to **Migrate from Dependency Agent and VM Insights Map**, and select **Apply**.
+
+Check the Advisor dashboard for this recommendation on the following resource types:
+
+- Virtual Machines
+- Virtual Machine Scale Sets
+- Azure Arc Machines
 
 ### Query for finding VMs
 
@@ -63,11 +76,74 @@ Resources
 ```
 To run the query, use the [Resource Graph Explorer](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade). The query runs in the existing Azure portal scope. For more information on how to set scope and run Azure Resource Graph queries in the portal, see [Quickstart: Run Resource Graph query using Azure portal](/azure/governance/resource-graph/first-query-portal).
 
+### Find Dependency Agent installations using Log Analytics
+
+Run the following query in your Log Analytics workspace to identify Dependency Agent installations.
+
+```kusto
+VMComputer
+| where TimeGenerated >= ago(7d)
+| extend IsVMSS = isnotempty(AzureVmScaleSetResourceId)
+| extend
+    ResourceId = tolower(iff(IsVMSS, AzureVmScaleSetResourceId,
+                  _ResourceId))
+| extend _Key = iff(isnotempty(ResourceId), ResourceId, AgentId),
+                   Name = tolower(iff(IsVMSS, AzureVmScaleSetName, DisplayName)),
+    SubscriptionId = tolower(AzureSubscriptionId)
+| summarize arg_max(TimeGenerated, *) by _Key, SubscriptionId
+| project-rename MostRecentData = TimeGenerated
+| project
+    SubscriptionId,
+    Name,
+    OperatingSystem = OperatingSystemFamily,
+    DependencyAgentVersion,
+    MostRecentData,
+    ResourceGroup = extract(@"/resourcegroups/([^/]*)", 1, ResourceId),
+    Type = case(
+        ResourceId contains "microsoft.compute/virtualmachines/", "VM",
+        ResourceId contains "microsoft.compute/virtualmachinescalesets/", "VMSS",
+        ResourceId contains "microsoft.hybridcompute/machines/", "ARC",
+        "Other"
+    ),
+    Notes = iff(
+        OperatingSystemFamily == "linux" or
+        parse_version(DependencyAgentVersion) >= parse_version("9.10.10"),
+        "",
+        "Caution"
+    ),
+    ResourceLink = iff(
+        ResourceId startswith "/subscriptions/",
+        strcat("https://portal.azure.com/#resource", ResourceId),
+        ""
+    )
+| sort by
+    SubscriptionId asc,
+    ResourceGroup asc,
+    Name asc,
+    Type asc
+```
+
+The `Type` column classifies each system as follows:
+
+| Type | Description |
+|---|---|
+| VM | Azure Virtual Machine |
+| VMSS | Azure Virtual Machine Scale Set |
+| ARC | Azure Arc connected machine |
+| Other | Couldn't be classified as VM, VMSS, or ARC. Might include standalone installations that aren't connected to an Azure resource. `ResourceId` and `ResourceLink` are empty for these. |
+
+For Azure connected resources (VM, VMSS, ARC), right-click a cell in the `ResourceLink` column and select **Go to link** to go directly to the resource in the Azure portal. The `ResourceLink` column is empty for installations that aren't connected to an Azure resource (`Type` = `Other`). If the `Notes` column shows `Caution` for a system, that machine is running an older version of Dependency Agent that might cause a system crash during uninstallation. Proceed carefully with those systems.
+
 ## Disabling the VM Insights Map experience
 
 ### Removing Dependency Agent from a single VM 
 
 For steps to uninstall, see [Uninstall the Dependency Agent](vminsights-dependency-agent-uninstall.md).
+
+For manual uninstallation instructions:
+
+- [Manually uninstall Dependency Agent on Windows](vminsights-dependency-agent.md#manually-uninstall-dependency-agent-on-windows)
+- [Manually uninstall Dependency Agent on Linux](vminsights-dependency-agent.md#manually-uninstall-dependency-agent-on-linux)
 
 ## Key dates 
 
@@ -76,3 +152,31 @@ For steps to uninstall, see [Uninstall the Dependency Agent](vminsights-dependen
 | 30 June 2025  | Retirement announcement |
 | 30 September 2025  | Customers restricted from onboarding new VMs using the Azure portal  |
 | 30 June 2028 | Product retired. Documentation archived and all experiences removed.  | 
+
+## Frequently asked questions
+
+**Does this retirement affect VM Insights performance monitoring?**
+
+No. VM Insights performance monitoring uses Azure Monitor Agent and isn't affected by this retirement.
+
+**Will my existing data in `VMComputer`, `VMProcess`, `VMConnection`, and `VMBoundPort` be deleted?**
+
+No. Your Log Analytics workspace retains already ingested data according to its retention settings.
+
+**The Dependency Agent was deployed to my VMs through a policy assignment that I don't manage. What should I do?**
+
+Contact your Azure administrator to remove the policy or initiative assignment that deploys the Dependency Agent. See [Migrate Dependency Agent policy and initiative assignments](dependency-agent-migrate-policy.md).
+
+**Do I need to act before 30 June 2028?**
+
+Don't install the Dependency Agent on new systems. Existing installations reach end of support on 30 June 2028, and data ingestion is disabled sometime after that date. Offboard as soon as possible.
+
+## Support
+
+For assistance with offboarding and migration, use the following resources:
+
+- [Microsoft Q&A](https://aka.ms/azmon-qna) - post questions tagged with `azure-monitor`.
+- [Azure support plans](https://azure.microsoft.com/support/create-ticket) - open a support ticket for migration assistance.
+- Azure Advisor - check your Advisor dashboard for personalized retirement recommendations and affected resource lists.
+
+Support for Dependency Agent issues is available until 30 June 2028. After that date, Microsoft provides no further support for the Dependency Agent.

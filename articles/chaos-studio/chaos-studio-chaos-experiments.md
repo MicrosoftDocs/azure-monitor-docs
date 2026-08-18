@@ -10,6 +10,8 @@ ms.custom: template-concept
 
 # Chaos experiments
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 In Azure Chaos Studio, you create and run chaos experiments. A chaos experiment is an Azure resource that describes the faults that should be run and the resources those faults should be run against.
 
 > [!NOTE]

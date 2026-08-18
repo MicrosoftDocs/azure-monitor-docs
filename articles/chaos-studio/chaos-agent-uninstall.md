@@ -11,6 +11,8 @@ ms.custom:
 
 # Uninstalling the Chaos Agent
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 This article describes how to remove the Chaos Agent from your virtual machine (VM) or virtual machine scale set.
 
 ---

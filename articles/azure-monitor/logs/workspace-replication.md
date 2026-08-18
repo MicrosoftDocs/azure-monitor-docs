@@ -13,7 +13,7 @@ ms.custom: references_regions
 
 Replicating your Log Analytics workspace across regions enhances resilience by letting you switch over to the replicated workspace and continue operations if there's a regional failure. This article explains how Log Analytics workspace replication works, how to replicate your workspace, how to switch over and back, and how to decide when to switch between your replicated workspaces. 
 
-Workspace replication is a paid, configurable feature that protects against region-wide incidents that compliments [availability zones](availability-zones.md), the transparent in-region protection against datacenter failures. For a comprehensive overview of all resiliency options, see [Reliability in Azure Monitor Logs](/azure/reliability/reliability-monitor-logs).
+Workspace replication is a paid, configurable feature that protects against region-wide incidents. It complements [availability zones](availability-zones.md), the transparent in-region protection against datacenter failures. For a comprehensive overview of all resiliency options, see [Reliability in Azure Monitor Logs](/azure/reliability/reliability-monitor-logs).
 
 Here's a video that provides a quick overview of how Log Analytics workspace replication works:
 
@@ -57,7 +57,7 @@ If you write your own client to send log data to your Log Analytics workspace, e
 ## Deployment considerations
 
 > [!NOTE]
-> Workspace replication currently doesn't support replication of [Auxiliary tables](./create-custom-table-auxiliary.md), and shouldn't be enabled on workspaces that include Auxiliary tables. Auxiliary tables aren't replicated, and therefore aren't protected against data loss in the event of a regional failure and aren't available when you switch over to your secondary workspace.
+> Workspace replication currently doesn't support replication of [Auxiliary tables](data-platform-logs.md#table-plans). Don't enable it on workspaces that include Auxiliary tables. Auxiliary tables aren't replicated, and therefore aren't protected against data loss in the event of a regional failure and aren't available when you switch over to your secondary workspace.
 
 * Workspace management operations can't be initiated during switchover, including:
     * Change of workspace retention, pricing tier, daily cap, and so on
@@ -69,7 +69,7 @@ If you write your own client to send log data to your Log Analytics workspace, e
 > [!IMPORTANT]
 > [Log search alert rules](../alerts/alerts-types.md#log-alerts) continue to work when you switch between regions unless the Alerts service in the active region isn't working properly or the alert rules aren't available. This can happen, for example, if the region in which the alert rules were created is entirely down. Replication of alert rules across regions isn't done automatically as part of workspace replication, but can be done by the user (for example by exporting from the primary region and importing to the secondary).
 
-* The [purge operation](personal-data-mgmt.md#delete), which deletes records from a workspace, removes the relevant records from both the primary and the secondary workspaces. If one of the workspace instances isn't available, the purge operation fails.
+* The [purge operation](personal-data-mgmt.md#purge-personal-data), which deletes records from a workspace, removes the relevant records from both the primary and the secondary workspaces. If one of the workspace instances isn't available, the purge operation fails.
 
 * A replicated workspace can't be deleted. To properly delete a workspace, first disable replication.
 
@@ -139,7 +139,7 @@ When you enable workspace replication, you're charged for the replication of all
 
 You enable and disable workspace replication by using a REST command. The command triggers a long running operation, which means that it can take a few minutes for the new settings to apply. After you enable replication, it can take up to one hour for all tables (data types) to begin replicating, and some data types might start replicating before others. Changes you make to table schemas after you enable workspace replication - for example, new custom log tables or custom fields you create, or diagnostic logs set up for new resource types - can take up to one hour to start replicating.
 
-### Using a dedicated cluster?
+### Using a dedicated cluster
 
 If your workspace is linked to a dedicated cluster, you must first enable replication on the cluster, and only then on the workspace. This operation creates a second cluster on your secondary region (no extra charge beyond replication charges), in order to allow your workspace to keep using a dedicated cluster even if you fail over. This also means features like cluster managed keys (CMK) continue to work (with the same key) during failover.
 Once cross-region replication is enabled, proceed to enable replication for one or more of the workspaces linked to this cluster.
@@ -229,7 +229,7 @@ Where:
 * `<resourcegroup_name>`: The resource group that contains your Log Analytics cluster resource
 * `<cluster_name>`: The name of your Log Analytics cluster
  
-Use the command verify that the cluster provisioning state changes from `Updating` to `Succeeded`, and the secondary region is set as expected.
+Use the command to verify that the cluster provisioning state changes from `Updating` to `Succeeded`, and the secondary region is set as expected.
 
 > [!NOTE]
 > When you enable cluster replication, a new cluster is being provisioned on the secondary location. This process can take 1-2 hours.
@@ -368,7 +368,7 @@ To replicate data you collect using data collection rules, associate your data c
     * East US, East US 2, and South Central US can't replicate to one another.
 * Where is the primary workspace located and where is the secondary? Both locations must be in the same region group. For example, workspaces located in US regions can't have a replication (secondary region) in Europe, and vice versa. For the list of region groups, see [Supported regions](#supported-regions).
 * Do you have the [required permissions](#permissions-required)?
-* Did you allow enough time for replication operation to complete? replication is a long running operation. Monitor the state of the operation as explained in [Check workspace provisioning state](#check-workspace-provisioning-state).
+* Did you allow enough time for replication operation to complete? Replication is a long running operation. Monitor the state of the operation as explained in [Check workspace provisioning state](#check-workspace-provisioning-state).
 * Did you try to re-enable replication in order to change the workspace secondary location? To change the location of your secondary workspace, you must first [disable workspace replication](#disable-workspace-replication), allow the operation to complete and only then enable replication to another secondary location.
 
 ### What to check if workspace replication is set but logs aren't replicated?

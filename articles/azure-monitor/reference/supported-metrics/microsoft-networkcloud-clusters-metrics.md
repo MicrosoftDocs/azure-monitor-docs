@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.NetworkCloud/clusters
 description: Reference for Microsoft.NetworkCloud/clusters metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/13/2026
+ms.date: 07/31/2026
 ms.custom: Microsoft.NetworkCloud/clusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -22,7 +22,7 @@ The following table lists the metrics available for the Microsoft.NetworkCloud/c
 - **Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
 - **Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
 - **Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
-- **DS Export** -S Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+- **DS Export** - Shows whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
 
 For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
 
@@ -74,7 +74,6 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 |**Container Memory Fail Count**<br><br>Number of times a container's memory usage limit is hit. In the absence of data, this metric will default to 0. |`ContainerMemoryFailcnt` | No | Count |Average |`Container`, `Host`, `Namespace`, `Pod`|PT1M |No|
 |**Container Memory Usage Bytes**<br><br>Current memory usage, including all memory regardless of when it was accessed. In the absence of data, this metric will default to 0. |`ContainerMemoryUsageBytes` | No | Bytes |Average |`Container`, `Host`, `Namespace`, `Pod`|PT1M |No|
 |**Container Scrape Error**<br><br>Indicates whether there was an error while getting container metrics. |`ContainerScrapeError` | No | Unspecified |Average |`Host`|PT1M |No|
-|**Container Tasks State (Deprecated)**<br><br>Number of tasks or processes in a given state (sleeping, running, stopped, uninterruptible, or waiting) in a container. |`ContainerTasksState` | No | Count |Average |`Container`, `Host`, `Namespace`, `Pod`, `State`|PT1M |No|
 
 ### Category: Controller
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
@@ -133,10 +132,14 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 ### Category: Kubelet
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Kubelet Running Containers**<br><br>Number of containers currently running. |`KubeletRunningContainers` | No | Count |Average |`Container State`, `Host`|PT1M |No|
-|**Kubelet Running Pods**<br><br>Number of pods running on the node. |`KubeletRunningPods` | No | Count |Average |`Host`|PT1M |No|
-|**Kubelet Runtime Operations Errors Total**<br><br>Cumulative number of runtime operation errors by operation type. |`KubeletRuntimeOperationsErrorsTotal` | No | Count |Average |`Host`, `Operation Type`|PT1M |No|
-|**Kubelet Started Pods Errors Total**<br><br>Cumulative number of errors when starting pods. |`KubeletStartedPodsErrorsTotal` | No | Count |Average |`Host`|PT1M |No|
+|**Kubelet Running Containers (Deprecated)**<br><br>Number of containers currently running. |`KubeletRunningContainers` | No | Count |Average |`Container State`, `Host`|PT1M |No|
+|**Kubelet Running Containers**<br><br>Number of containers currently running. |`KubeletRunningContainers2` | No | Count |Average |`Container State`, `Host`, `MachineRole`|PT1M |No|
+|**Kubelet Running Pods (Deprecated)**<br><br>Number of pods running on the node. |`KubeletRunningPods` | No | Count |Average |`Host`|PT1M |No|
+|**Kubelet Running Pods**<br><br>Number of pods running on the node. |`KubeletRunningPods2` | No | Count |Average |`Host`, `MachineRole`|PT1M |No|
+|**Kubelet Runtime Operations Errors Total (Deprecated)**<br><br>Cumulative number of runtime operation errors by operation type. |`KubeletRuntimeOperationsErrorsTotal` | No | Count |Average |`Host`, `Operation Type`|PT1M |No|
+|**Kubelet Runtime Operations Errors Total**<br><br>Cumulative number of runtime operation errors by operation type. |`KubeletRuntimeOperationsErrorsTotal2` | No | Count |Average |`Host`, `Operation Type`, `MachineRole`|PT1M |No|
+|**Kubelet Started Pods Errors Total (Deprecated)**<br><br>Cumulative number of errors when starting pods. |`KubeletStartedPodsErrorsTotal` | No | Count |Average |`Host`|PT1M |No|
+|**Kubelet Started Pods Errors Total**<br><br>Cumulative number of errors when starting pods. |`KubeletStartedPodsErrorsTotal2` | No | Count |Average |`Host`, `MachineRole`|PT1M |No|
 
 ### Category: Network Cloud
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
@@ -146,7 +149,6 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 ### Category: Nexus Cluster
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Cluster Heartbeat Connection Status (Deprecated)**<br><br>Indicates whether the Cluster is having issues communicating with the Cluster Manager. The value of the metric is 0 when the connection is healthy and 1 when it is unhealthy. |`NexusClusterHeartbeatConnectionStatus` | No | Count |Average |`Reason`|PT1M |No|
 |**Cluster Machine Group Upgrade**<br><br>Tracks Cluster Machine Group Upgrades performed. The value of the metric is 0 when the result is successful and 1 for all other results. |`NexusClusterMachineGroupUpgrade` | No | Count |Average |`Machine Group`, `Result`, `Upgraded From Version`, `Upgraded To Version`|PT1M |No|
 
 ### Category: Node

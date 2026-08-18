@@ -10,6 +10,8 @@ ms.custom: template-concept
 
 # Faults and actions in Azure Chaos Studio
 
+[!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
 In Azure Chaos Studio, every activity that happens as part of an experiment is called an *action*. The most common type of action is a *fault*. This article describes actions and faults and the properties of each.
 
 ## Experiment actions

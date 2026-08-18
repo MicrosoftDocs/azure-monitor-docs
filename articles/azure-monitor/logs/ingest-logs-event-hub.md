@@ -3,7 +3,7 @@ title: Ingest events from Azure Event Hubs into Azure Monitor Logs (Preview)
 description: Ingest logs from Event Hubs into Azure Monitor Logs 
 ms.reviewer: ilanawaitser
 ms.topic: tutorial 
-ms.date: 05/05/2026
+ms.date: 08/11/2026
 ms.custom: references_regions 
 
 # Customer intent: As a DevOps engineer, I want to ingest data from an event hub into a Log Analytics workspace so that I can monitor logs that I send to Azure Event Hubs.
@@ -34,6 +34,9 @@ To send events from Azure Event Hubs to Azure Monitor Logs, you need these resou
 * Your Log Analytics workspace needs to be [linked to a dedicated cluster](logs-dedicated-clusters.md#link-a-workspace-to-a-cluster) or to have a [commitment tier](cost-logs.md#commitment-tiers).
 * [Event Hubs namespace](/azure/event-hubs/event-hubs-features#namespace) that permits public network access. If public network access is disabled, ensure that "Allow trusted Microsoft services to bypass this firewall" is set to "Yes."
 * [Event hub](/azure/event-hubs/event-hubs-create) with events. You can send events to your event hub by following the steps in [Send and receive events in Azure Event Hubs tutorials](/azure/event-hubs/event-hubs-create#next-steps) or by [configuring the diagnostic settings of Azure resources](../platform/diagnostic-settings.md#create-a-diagnostic-setting).
+
+<a id="availability-constraints"></a>
+Availability of this feature depends on capacity in the target region. Even in supported regions, Azure capacity constraints can prevent data flow from starting after configuration is completed. If you encounter this issue, see [Alternative solutions](#alternative-solutions). This limitation affects only the initial setup. Once data flow starts successfully, ingestion continues normally.
 
 ## Supported regions
 
@@ -73,7 +76,7 @@ You need your subscription ID, resource group name, workspace name, workspace re
 
 ## Create a destination table in your Log Analytics workspace
 
-Before you can ingest data, you need to set up a destination table. You can ingest data into custom tables and [supported Azure tables](logs-ingestion-api-overview.md#supported-tables).
+Before you can ingest data, you need to set up a destination table. Ingest data into custom tables or [Azure tables that support the Logs ingestion API](../reference/tables-features.md).
 
 To create a custom table into which to ingest events, in the Azure portal:
 
@@ -131,18 +134,15 @@ To create a custom table into which to ingest events, in the Azure portal:
 
 To collect data with a data collection rule, you need an endpoint. This tutorial step walks through the creation of a data collection endpoint (DCE). An optional approach not covered here is to use a [DCR ingestion endpoint](../data-collection/data-collection-endpoint-overview.md#logs-ingestion-api). 
 
-1. [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview.md#create-a-data-collection-endpoint). 
-
-    > [!IMPORTANT]
-    > Create the data collection endpoint in the same region as your Log Analytics workspace.
+1. [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview.md#create-a-data-collection-endpoint) in the same region as your Log Analytics workspace.
 
 1. From the data collection endpoint's Overview screen, select **JSON View**.
 
-    :::image type="content" source="media/ingest-logs-event-hub/data-collection-endpoint-details.png" lightbox="media/ingest-logs-event-hub/data-collection-rule-details.png" alt-text="Screenshot that shows the data collection endpoint Overview screen.":::
+    :::image type="content" source="media/ingest-logs-event-hub/data-collection-endpoint-details.png" lightbox="media/ingest-logs-event-hub/data-collection-endpoint-details.png" alt-text="Screenshot that shows the data collection endpoint Overview screen.":::
 
 1. Copy the **Resource ID** for the data collection rule. You use this information in the next step.
 
-    :::image type="content" source="media/ingest-logs-event-hub/data-collection-rule-json-view.png" lightbox="media/ingest-logs-event-hub/data-collection-rule-json-view.png" alt-text="Screenshot that shows the data collection endpoint JSON view.":::
+    :::image type="content" source="media/ingest-logs-event-hub/data-collection-endpoint-json-view.png" lightbox="media/ingest-logs-event-hub/data-collection-endpoint-json-view.png" alt-text="Screenshot that shows the data collection endpoint JSON view.":::
     
 ## Create a data collection rule
 
@@ -152,15 +152,15 @@ To create a data collection rule in the Azure portal:
 
 1. In the portal's search box, type in *template* and then select **Deploy a custom template**.
 
-    :::image type="content" source="media/tutorial-workspace-transformations-api/deploy-custom-template.png" lightbox="media/tutorial-workspace-transformations-api/deploy-custom-template.png" alt-text="Screenshot to deploy custom template.":::
+    :::image type="content" source="media/ingest-logs-event-hub/deploy-custom-template.png" lightbox="media/ingest-logs-event-hub/deploy-custom-template.png" alt-text="Screenshot to deploy custom template.":::
 
 1. Select **Build your own template in the editor**.
 
-    :::image type="content" source="media/tutorial-workspace-transformations-api/build-custom-template.png" lightbox="media/tutorial-workspace-transformations-api/build-custom-template.png" alt-text="Screenshot to build template in the editor.":::
+    :::image type="content" source="media/ingest-logs-event-hub/build-custom-template.png" lightbox="media/ingest-logs-event-hub/build-custom-template.png" alt-text="Screenshot to build template in the editor.":::
 
 1. Paste the following Resource Manager template into the editor and select **Save**.
 
-    :::image type="content" source="media/tutorial-workspace-transformations-api/edit-template.png" lightbox="media/tutorial-workspace-transformations-api/edit-template.png" alt-text="Screenshot to edit Resource Manager template.":::
+    :::image type="content" source="media/ingest-logs-event-hub/edit-template.png" lightbox="media/ingest-logs-event-hub/edit-template.png" alt-text="Screenshot to edit Resource Manager template.":::
 
     Notice the following details in the [data collection rule](#dcr-template):
 
@@ -229,7 +229,7 @@ To create a data collection rule in the Azure portal:
                 "apiVersion": "2022-06-01",
                 "identity": {
                     "type": "systemAssigned"
-                    },
+                },
                 "properties": {
                     "dataCollectionEndpointId": "[parameters('endpointResourceId')]",
                     "streamDeclarations": {
@@ -253,12 +253,12 @@ To create a data collection rule in the Azure portal:
                     "dataSources": {
                         "dataImports": {
                             "eventHub": {
-                                    "consumerGroup": "[parameters('consumerGroup')]",
-                                    "stream": "Custom-MyEventHubStream",
-                                    "name": "myEventHubDataSource1"
+                                "consumerGroup": "[parameters('consumerGroup')]",
+                                "stream": "Custom-MyEventHubStream",
+                                "name": "myEventHubDataSource1"
                             }
                         }
-                   },
+                    },
                     "destinations": {
                         "logAnalytics": [
                             {
@@ -334,7 +334,7 @@ To find the `<identity_resource_Id>` value, navigate to your user-assigned manag
 
 ### Ingest log data into an Azure table (optional)
 
-To ingest data into a [supported Azure table](logs-ingestion-api-overview.md#supported-tables): 
+To ingest data into an [Azure table that supports the Logs Ingestion API](../reference/tables-features.md):
 
 1. In the data collection rule, change `outputStream`: 
 
@@ -446,7 +446,7 @@ To check your destination table for ingested events:
 
     You should see events from your event hub.
 
-:::image type="content" source="media/ingest-logs-event-hub/log-analytics-query-results-with-events.png" lightbox="media/ingest-logs-event-hub/log-analytics-query-results-with-events.png" alt-text="Screenshot showing the results of a simple query on a custom table. The results consist of events ingested from an event hub.":::
+    :::image type="content" source="media/ingest-logs-event-hub/log-analytics-query-results-with-events.png" lightbox="media/ingest-logs-event-hub/log-analytics-query-results-with-events.png" alt-text="Screenshot showing the results of a simple query on a custom table. The results consist of events ingested from an event hub.":::
 
 ## Clean up resources
 
@@ -461,14 +461,28 @@ Evaluate whether you still need these resources. Delete the resources you don't 
 
 To stop ingesting data from the event hub, [delete all data collection rule associations](/rest/api/monitor/data-collection-rule-associations/delete) related to the event hub, or [delete the data collection rules](/rest/api/monitor/data-collection-rules/delete) themselves. These actions also reset event hub [checkpointing](/azure/event-hubs/event-hubs-features#checkpointing). 
 
-## Known issues and limitations
+## Considerations
 
 * If you transfer a subscription between Microsoft Entra directories, you need to follow the steps described in [Known issues with managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/known-issues#transferring-a-subscription-between-azure-ad-directories) to continue ingesting data.
-* You can ingest messages of up to 64 KB from Event Hubs to Azure Monitor Logs.
+* Azure Monitor Logs accepts messages ingested from Event Hubs up to a maximum size of 64 KB.
 
-## Next steps
+## Alternative solutions
 
-Learn more about to:
+If you can't set up ingestion from Event Hubs because of [capacity constraints in the target region](#availability-constraints), consider one of the following alternatives:
+
+1. Deploy in a different Azure region where capacity is available, if your architecture and compliance requirements allow it.
+
+1. Use alternative Azure Monitor ingestion methods where applicable:
+
+   - [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) collects telemetry from the guest operating system of Azure and hybrid virtual machines (VMs).
+   - [Azure Monitor pipeline](../data-collection/pipeline-overview.md) collects telemetry from on-premises, edge, and multicloud environments.
+   - [Logs Ingestion API](logs-ingestion-api-overview.md) sends data from any application that can make a REST API call.
+
+1. [Use Azure Logic Apps to pull events from Event Hubs](/azure/connectors/connectors-create-api-azure-event-hubs) and stream to a Log Analytics workspace by using the [Logs Ingestion API](logs-ingestion-api-overview.md).
+
+1. [Stream events from an event hub to a Log Analytics workspace by using the Logstash output plugin](/azure/sentinel/connect-logstash-data-connection-rules).
+
+## Related content
 
 * [Create a custom table](create-custom-table.md#create-a-custom-table).
 * [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview.md#create-a-data-collection-endpoint).

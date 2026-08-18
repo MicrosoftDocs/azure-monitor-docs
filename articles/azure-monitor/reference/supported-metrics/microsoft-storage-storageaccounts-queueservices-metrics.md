@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Storage/storageAccounts/queueServices
 description: Reference for Microsoft.Storage/storageAccounts/queueServices metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/13/2026
+ms.date: 07/31/2026
 ms.custom: Microsoft.Storage/storageAccounts/queueServices, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -22,7 +22,7 @@ The following table lists the metrics available for the Microsoft.Storage/storag
 - **Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
 - **Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
 - **Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
-- **DS Export** -S Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+- **DS Export** - Shows whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
 
 For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
 
@@ -35,9 +35,9 @@ For a list of supported logs, see [Supported log categories - Microsoft.Storage/
 ### Category: Capacity
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Queue Capacity**<br><br>The amount of Queue storage used by the storage account. |`QueueCapacity` | No | Bytes |Average |\<none\>|PT1H |Yes|
-|**Queue Count**<br><br>The number of queues in the storage account. |`QueueCount` | No | Count |Average |\<none\>|PT1H |Yes|
-|**Queue Message Count**<br><br>The number of unexpired queue messages in the storage account. |`QueueMessageCount` | No | Count |Average |\<none\>|PT1H |Yes|
+|**Queue Capacity**<br><br>The amount of Queue storage used by the storage account. |`QueueCapacity` | No | Bytes |Average |\<none\>|PT1H, PT6H, PT12H, P1D |Yes|
+|**Queue Count**<br><br>The number of queues in the storage account. |`QueueCount` | No | Count |Average |\<none\>|PT1H, PT6H, PT12H, P1D |Yes|
+|**Queue Message Count**<br><br>The number of unexpired queue messages in the storage account. |`QueueMessageCount` | No | Count |Average |\<none\>|PT1H, PT6H, PT12H, P1D |Yes|
 
 ### Category: Transaction
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|

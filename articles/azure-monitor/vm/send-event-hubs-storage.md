@@ -2,7 +2,7 @@
 title: Send data to Event Hubs and Storage (Preview)
 description: This article describes how to use Azure Monitor Agent to upload data to Azure Storage and Event Hubs.
 ms.topic: how-to
-ms.date: 04/27/2026
+ms.date: 07/25/2026
 ms.reviewer: shseth
 ROBOTS: NOINDEX
 ---
@@ -13,7 +13,7 @@ ROBOTS: NOINDEX
 
 > [!IMPORTANT]
 > ## Feature Retirement
-> You can no longer create **new** data collection rules using this feature, starting from Feb, 2026. **This preview feature will be retired on July 31, 2026**. After this date, existing configurations using this capability will stop sending data and Microsoft will no longer support the same.
+> Starting February 2026, you can no longer create **new** data collection rules by using this feature. **This preview feature will be retired on July 31, 2026**. After this date, existing configurations that use this capability stop sending data and Microsoft no longer supports the same.
 >
 > To ensure continued support, you will need to update to alternatives below to continue using AMA or other Azure solutions that provide a more reliable, scalable and performant solution to send data to respective destinations.
 >
@@ -49,8 +49,8 @@ ROBOTS: NOINDEX
 > ## Update to alternatives
 > | Destination | Alternatives |   
 > |-------------|----------------------------------------------------------------------|
-> | Azure Storage blobs | If you're using AMA to send data to storage for longer term storage and/or lower costs, update existing AMA configurations to send data to custom tables with low-cost [Auxiliary plan](../logs/create-custom-table-auxiliary.md) for cost-effective logging and added benefits of Log Analytics. | 
-> | Azure Event Hubs | If you're using AMA to send data to Event Hubs, update existing AMA configuration to send data to Azure Monitor Logs and leverage the [data export capability](../logs/logs-data-export.md) to send to Event Hub(s). There is no replacement available for AMA directly uploading to Event Hubs. | 
+> | Azure Storage blobs | If you're using AMA to send data to storage for longer term storage and lower costs, update existing AMA configurations to send data to custom tables with low-cost [Auxiliary plan](../logs/create-custom-table.md#create-a-custom-table) for cost-effective logging and added benefits of Log Analytics. | 
+> | Azure Event Hubs | If you're using AMA to send data to Event Hubs, update existing AMA configuration to send data to Azure Monitor Logs and leverage the [data export capability](../logs/logs-data-export.md) to send to Event Hubs. There's no replacement available for AMA directly uploading to Event Hubs. |
 
 
 ## Supported data types
@@ -59,15 +59,15 @@ The data types in the following table are supported by this feature. Each has a 
 
 | Data source | Operating Systems | Supported destinations |
 |:---|:---|:---|
-| [Windows Event Logs](./data-collection-windows-events.md) | Windows | Eventhub<br>Storage |
-| [Syslog](./data-collection-syslog.md) | Linux | Eventhub<br>Storage |
-| [Performance counters](./data-collection-performance.md) | Windows<br>Linux | Eventhub<br>Storage |
+| [Windows Event Logs](./data-collection-windows-events.md) | Windows | Event Hubs<br>Storage |
+| [Syslog](./data-collection-syslog.md) | Linux | Event Hubs<br>Storage |
+| [Performance counters](./data-collection-performance.md) | Windows<br>Linux | Event Hubs<br>Storage |
 | [IIS logs](./data-collection-iis.md) |  Windows<br>Linux | Storage Blob |
-| [Text logs](./data-collection-log-text.md) |  Windows<br>Linux | Eventhub (Linux Only) </br>Storage Blob |
+| [Text logs](./data-collection-log-text.md) |  Windows<br>Linux | Event Hubs (Linux Only) </br>Storage Blob |
 
 The following logs are not supported:
 
-- ETW Logs. This is planned for later release.
+- ETW Logs.
 - Windows Crash Dumps. The Azure Monitor Agent is meant for telemetry logs and not large file types.
 - Application Logs. These are collected by Application insights, which doesn't use DCRs.
 - .NET event source logs
@@ -300,7 +300,7 @@ There's not currently a UI experience for creating a data collection rule (DCR) 
     "contentVersion": "1.0.0.0", 
     "parameters": { 
         "location": { 
-        "type": "String", 
+        "type": "string", 
         "defaultValue": "[resourceGroup().location]", 
         "metadata": { 
             "description": "Location for all resources." 

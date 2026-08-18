@@ -7,7 +7,7 @@ metadata:
   title: Azure Chaos Studio documentation
   description: Learn how to use Azure Chaos Studio Workspaces and Scenarios to validate the resilience of your Azure applications against real outage patterns.
   ms.topic: landing-page
-  ms.date: 06/10/2026
+  ms.date: 07/20/2026
 
 landingContent:
   - title: About Azure Chaos Studio
@@ -53,40 +53,6 @@ landingContent:
           - text: Targets and capabilities
             url: chaos-studio-targets-capabilities.md
 
-  - title: How-to guides
-    linkLists:
-      - linkListType: how-to-guide
-        links:
-          - text: Service-direct fault (portal)
-            url: chaos-studio-tutorial-service-direct-portal.md
-          - text: Agent-based fault (portal)
-            url: chaos-studio-tutorial-agent-based-portal.md
-          - text: AKS Chaos Mesh fault (portal)
-            url: chaos-studio-tutorial-aks-portal.md
-          - text: Dynamic targeting (portal)
-            url: chaos-studio-tutorial-dynamic-target-portal.md
-          - text: Entra ID outage template
-            url: chaos-studio-tutorial-aad-outage-portal.md
-          - text: DNS outage (NSG)
-            url: chaos-studio-tutorial-dns-outage.md
-
-  - title: Chaos Studio agent
-    linkLists:
-      - linkListType: overview
-        links:
-          - text: Agent overview
-            url: chaos-agent-overview.md
-          - text: Agent concepts
-            url: chaos-agent-concepts.md
-          - text: Supported operating systems
-            url: chaos-agent-os-support.md
-          - text: Install agent (portal)
-            url: chaos-studio-tutorial-agent-based-portal.md
-          - text: Verify agent status
-            url: chaos-agent-verify-status.md
-          - text: Troubleshoot the agent
-            url: chaos-agent-troubleshooting.md
-
   - title: Reference
     linkLists:
       - linkListType: reference
@@ -108,5 +74,5 @@ landingContent:
         links:
           - text: Troubleshoot common issues
             url: troubleshooting.md
-          - text: Agent known issues
+          - text: Agent known issues (classic)
             url: chaos-agent-known-issues.md
