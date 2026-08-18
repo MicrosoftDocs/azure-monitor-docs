@@ -288,10 +288,10 @@ The following metrics are collected by default from each default target. All oth
 - `go_goroutines`
 
 #### networkobservabilityHubble
-- See [Container Network Observability metrics](/azure/aks/advanced-network-observability-concepts#metrics).
+- See [container network metrics](/azure/aks/container-network-observability-metrics#metrics-reference).
 
 #### networkobservabilityCilium
-- See [Container Network Observability metrics](/azure/aks/advanced-network-observability-concepts#metrics).
+- See [container network metrics](/azure/aks/container-network-observability-metrics#metrics-reference).
 
 #### controlplane-apiserver
 
