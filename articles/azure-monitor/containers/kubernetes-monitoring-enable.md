@@ -144,7 +144,9 @@ az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --reso
 az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --resource-group <cluster-resource-group> --ksm-metric-labels-allow-list "namespaces=[k8s-label-1,k8s-label-n]" --ksm-metric-annotations-allow-list "pods=[k8s-annotation-1,k8s-annotation-n]"
 
 ### Enable AKS control plane metrics
-az aks create/update --enable-azure-monitor-metrics --enable-control-plane-metrics --name <cluster-name> --resource-group <cluster-resource-group>
+az aks create --enable-azure-monitor-metrics --enable-control-plane-metrics --name <cluster-name> --resource-group <cluster-resource-group>
+
+az aks update --enable-control-plane-metrics --name <cluster-name> --resource-group <cluster-resource-group>
 ```
 
 ### Optional parameters
@@ -154,7 +156,7 @@ The example commands allow the following optional parameters. The parameter name
 | Parameter | Name and description |
 | --------- | -------------------- |
 | Annotation keys | `--ksm-metric-annotations-allow-list`<br><br>Comma-separated list of Kubernetes annotations keys used in the resource's `kube_resource_annotations` metric. For example, kube_pod_annotations is the annotations metric for the pods resource. By default, this metric contains only name and namespace labels. To include more annotations, provide a list of resource names in their plural form and Kubernetes annotation keys that you want to allow for them. A single `*` can be provided for each resource to allow any annotations, but this has severe performance implications. For example, `pods=[kubernetes.io/team,...],namespaces=[kubernetes.io/team],...`. |
-| Control plane metrics | `--enable-control-plane-metrics`<br><br>Enables collection of AKS control plane metrics through managed Prometheus. This option requires `--enable-azure-monitor-metrics`. AKS collects API server and etcd metrics by default. For other targets and configuration options, see [Monitor Azure Kubernetes Service control plane metrics](/azure/aks/control-plane-metrics-monitor). |
+| Control plane metrics | `--enable-control-plane-metrics`<br><br>Enables collection of AKS control plane metrics through managed Prometheus. Managed Prometheus must already be enabled, or you must include `--enable-azure-monitor-metrics` in the same command. AKS collects API server and etcd metrics by default. For other targets and configuration options, see [Monitor Azure Kubernetes Service control plane metrics](/azure/aks/control-plane-metrics-monitor). |
 | Label keys | `--ksm-metric-labels-allow-list`<br><br>Comma-separated list of more Kubernetes label keys that is used in the resource's kube_resource_labels metric kube_resource_labels metric. For example, kube_pod_labels is the labels metric for the pods resource. By default this metric contains only name and namespace labels. To include more labels, provide a list of resource names in their plural form and Kubernetes label keys that you want to allow for them A single `*` can be provided for each resource to allow any labels, but i this has severe performance implications. For example, `pods=[app],namespaces=[k8s-label-1,k8s-label-n,...],...`. |
 | Recording rules | `--enable-windows-recording-rules`<br><br>Lets you enable the recording rule groups required for proper functioning of the Windows dashboards. |
 
