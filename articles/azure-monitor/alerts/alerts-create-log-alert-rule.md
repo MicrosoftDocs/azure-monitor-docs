@@ -151,6 +151,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     > * The query contains the `ingestion_time()` function.
     > * The query uses the `adx` pattern.
     > * The query calls a function that calls other tables.
+    > * The table referenced in the query contains no data. Data must be ingested into the table before one-minute frequency can be selected.
 
     [Sample log search alert queries](./alerts-log-alert-query-samples.md) are available for Azure Data Explorer and Resource Graph.
 
