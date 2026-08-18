@@ -2,7 +2,7 @@
 title: Troubleshoot log alerts in Azure Monitor | Microsoft Docs
 description: Common issues, errors, and resolutions for log alert rules in Azure.
 ms.topic: troubleshooting-general
-ms.date: 04/24/2026
+ms.date: 08/18/2026
 ms.custom: references_regions
 ---
 
@@ -155,12 +155,50 @@ See the following sections for specific error messages and their resolutions.
 
 ### The query couldn't be validated since you need permission for the logs
 
-If you receive this error message when creating or editing your alert rule query, make sure you have permissions to read the target resource logs.
+If you receive this error message when creating or editing your alert rule query, ensure you have
+permissions to read the target resource logs. Depending on the client, this failure can also surface as
+an HTTP `403 Forbidden` response, or as an `AuthorizationRequiredError` with a message similar to:
+`Register resource provider Microsoft.Insights in tenant '<tenantId>' to enable this query`.
 
-- Permissions required to read logs in workspace-context access mode: `Microsoft.OperationalInsights/workspaces/query/read`. 
+Creating a log search alert rule requires the rule query to run successfully against the target scope at
+creation time. Azure Resource Manager only validates read access to the resource
+(`Microsoft.OperationalInsights/workspaces/read`), but the Log Analytics data plane additionally
+validates query permission (`Microsoft.OperationalInsights/workspaces/query/read`). An identity that has
+permission to create the alert rule but can't query the scope fails rule creation.
+
+- Permissions required to read logs in workspace-context access mode: `Microsoft.OperationalInsights/workspaces/query/read`.
 - Permissions required to read logs in resource-context access mode (including workspace-based Application Insights resource): `Microsoft.Insights/logs/tableName/read`.
 
 See [Manage access to Log Analytics workspaces](../logs/manage-access.md) to learn more about permissions.
+
+### AuthorizationRequiredError for cross-tenant scopes and Azure Lighthouse
+
+If you manage customer resources across tenants through [Azure Lighthouse](/azure/lighthouse/overview) or
+delegated administration, alert rule creation can fail with `AuthorizationRequiredError` even when the
+delegated role assignment is correct. The Log Analytics data plane requires the Microsoft.Insights
+resource providers to be registered in the managing tenant.
+
+[Register](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider)
+the Microsoft.Insights resource providers on a subscription in the managing tenant. If the managing tenant
+doesn't have an existing Azure subscription, create the required Microsoft service principals manually.
+Each command assigns the Contributor role to a different Microsoft application. The application IDs are
+fixed Microsoft values. Don't replace them:
+
+```powershell
+$ManagingTenantId = "your-managing-Microsoft-Entra-tenant-id"
+
+# Authenticate as a user with admin rights on the managing tenant
+Connect-AzAccount -Tenant $ManagingTenantId
+
+# Azure Lighthouse monitoring appID 1
+New-AzADServicePrincipal -ApplicationId 1215fb39-1d15-4c05-b2e3-d519ac3feab4 -Role Contributor
+
+# Azure Lighthouse monitoring appID 2
+New-AzADServicePrincipal -ApplicationId 6da94f3c-0d67-4092-a408-bb5d1cb08d2d -Role Contributor
+
+# Log Analytics API
+New-AzADServicePrincipal -ApplicationId ca7f3f0b-7d91-482c-8e09-c5d840d0eac5 -Role Contributor
+```
 
 ### One-minute frequency isn't supported for this query
 

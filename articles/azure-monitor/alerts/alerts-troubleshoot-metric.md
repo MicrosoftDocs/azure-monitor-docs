@@ -57,6 +57,10 @@ If you believe a metric alert should have fired but it didn't, and it isn't list
 
     * When the metric is emitted after a period longer than 24 hours in which it wasn't emitted for metric alert rule that monitors a metric that isn't emitted continuously (sparse metric).
 
+1. **Check whether the metric emits a transient value when the resource starts.** 
+
+    Some metrics emit an initial zero or unrepresentative value immediately after a resource starts, before the underlying resource fully initializes. An alert rule with a short aggregation granularity can evaluate that value and fire. Increase the **Aggregation granularity (Period)** so the transient sample is averaged out, or use an alert processing rule to suppress alerts during known start windows.
+
 ## The metric alert isn't triggered every time the condition is met
 
 Metric alerts are stateful by default, so other alerts aren't fired if there's already a fired alert on a specific time series. To make a specific metric alert rule stateless and get alerted on every evaluation in which the alert condition is met, use one of these options:
