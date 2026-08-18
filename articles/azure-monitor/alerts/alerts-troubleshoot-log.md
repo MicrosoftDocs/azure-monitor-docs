@@ -169,7 +169,7 @@ permission to create the alert rule but can't query the scope fails rule creatio
 - Permissions required to read logs in workspace-context access mode: `Microsoft.OperationalInsights/workspaces/query/read`.
 - Permissions required to read logs in resource-context access mode (including workspace-based Application Insights resource): `Microsoft.Insights/logs/tableName/read`.
 
-See [Manage access to Log Analytics workspaces](../logs/manage-access) to learn more about permissions.
+See [Manage access to Log Analytics workspaces](../logs/manage-access.md) to learn more about permissions.
 
 ### AuthorizationRequiredError for cross-tenant scopes and Azure Lighthouse
 
