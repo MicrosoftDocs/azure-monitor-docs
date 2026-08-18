@@ -3,7 +3,7 @@ title: Limitations and known issues in Chaos Studio workspaces (preview)
 description: Understand the current limitations and known issues in the Azure Chaos Studio workspaces and scenarios public preview, and which capabilities require the classic experiments model.
 author: nikhilkaul-msft
 ms.topic: troubleshooting-known-issue
-ms.date: 07/30/2026
+ms.date: 08/17/2026
 ai-usage: ai-assisted
 ---
 
@@ -27,7 +27,7 @@ This article lists the current limitations of the Azure Chaos Studio [workspaces
 
 - **No customer-managed keys.** Workspaces don't support customer-managed keys. To encrypt experiment data with your own keys, use [customer-managed keys with classic experiments](chaos-studio-configure-customer-managed-keys.md).
 
-- **Automation and SDK coverage.** You can manage workspaces and scenarios with the Azure portal, the [`az chaos` Azure CLI extension](chaos-studio-manage-cli.md), [Bicep and ARM templates](/azure/templates/microsoft.chaos/workspaces/scenarios), the [REST API](/rest/api/chaosstudio/), and the [.NET SDK (preview)](/dotnet/api/overview/azure/resourcemanager.chaos-readme?view=azure-dotnet-preview&preserve-view=true). PowerShell and Terraform don't support workspaces. The current Python and JavaScript SDK versions cover the classic experiments model only, and there's no Java SDK.
+- **Automation and SDK coverage.** You can manage workspaces and scenarios with the Azure portal, the [`az chaos` Azure CLI extension](chaos-studio-manage-cli.md), [Bicep and ARM templates](/azure/templates/microsoft.chaos/workspaces/scenarios), the [REST API](/rest/api/chaosstudio/), and the [.NET SDK (preview)](/dotnet/api/overview/azure/resourcemanager.chaos-readme?view=azure-dotnet-preview&preserve-view=true). PowerShell doesn't support workspaces, and the HashiCorp AzureRM provider doesn't expose native resources for workspaces or scenarios. Terraform users can deploy and manage these ARM resources with the Azure AzAPI provider: [workspaces](/azure/templates/microsoft.chaos/workspaces?tabs=terraform), [scenarios](/azure/templates/microsoft.chaos/workspaces/scenarios?tabs=terraform), and [scenario configurations](/azure/templates/microsoft.chaos/workspaces/scenarios/configurations?tabs=terraform). The current Python and JavaScript SDK versions cover the classic experiments model only, and there's no Java SDK.
 
 - **Per-scenario constraints.** Some scenarios have their own requirements, such as Windows-only support for the Cache Stampede with Process Crash scenario. See the notes on each scenario in [Scenarios in Azure Chaos Studio](chaos-studio-scenarios.md).
 
