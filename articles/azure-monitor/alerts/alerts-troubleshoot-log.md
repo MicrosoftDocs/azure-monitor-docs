@@ -155,7 +155,7 @@ See the following sections for specific error messages and their resolutions.
 
 ### The query couldn't be validated since you need permission for the logs
 
-If you receive this error message when creating or editing your alert rule query, make sure you have
+If you receive this error message when creating or editing your alert rule query, ensure you have
 permissions to read the target resource logs. Depending on the client, this failure can also surface as
 an HTTP `403 Forbidden` response, or as an `AuthorizationRequiredError` with a message similar to:
 `Register resource provider Microsoft.Insights in tenant '<tenantId>' to enable this query`.
