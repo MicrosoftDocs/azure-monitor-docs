@@ -127,7 +127,7 @@ The table below describes the parameters used in the `New-AzAutoscaleScaleRuleOb
 |`MetricTriggerDividePerInstance`| When set to `true` divides the trigger metric by the total number of instances. For example, If message count is 300 and there are 5 instances running, the calculated metric value is 60 messages per instance. This property isn't applicable for all metrics.
 | `ScaleActionDirection`| Specify scaling in or out. Valid values are `Increase` and `Decrease`.
 |`ScaleActionType` |Scale by a specific number of instances, scale to a specific instance count, or scale by percentage of the current instance count. Valid values include `ChangeCount`, `ExactCount`, and `PercentChangeCount`.
-|`ScaleActionCooldown`| The minimum amount of time after a scale operation that must pass before this rule is eligible to initiate another scale action. Autoscale checks each rule's cooldown independently. The cooldown allows the metrics to stabilize and avoids [flapping](./autoscale-flapping.md).
+|`ScaleActionCooldown`| The minimum amount of time after a scale operation that must pass before this rule is eligible to initiate another scale action. Autoscale checks each rule's cooldown independently. The cooldown allows the metrics to stabilize and avoids [flapping](./autoscale-flapping.md).|
 
 
 ### Create a default autoscale profile and associate the rules

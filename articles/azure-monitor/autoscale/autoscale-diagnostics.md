@@ -69,7 +69,7 @@ Logged when autoscale first looks at an autoscale profile:
 
 ### Profile cool-down evaluation
 
-Logged when autoscale evaluates whether to skip a candidate rule because its cool-down period hasn't elapsed:
+Logged when autoscale evaluates whether to skip a candidate rule that's still in its cool-down period:
 
 ```JSON
 {
@@ -90,7 +90,7 @@ Logged when autoscale evaluates whether to skip a candidate rule because its coo
 }
 ```
 
-The `lastScaleActionTime` value identifies the most recent scale action. The `cooldown` value is the cool-down period configured on the candidate rule. When `skipRuleEvaluationForCooldown` is `true`, autoscale skips that rule because its cool-down period hasn't elapsed since `lastScaleActionTime`. For more information, see the [How does autoscale evaluate cooldown?](autoscale-understanding-settings.md#how-does-autoscale-evaluate-cooldown) section.
+The `lastScaleActionTime` value identifies the most recent scale action. The `cooldown` value is the cool-down period configured on the candidate rule. When `skipRuleEvaluationForCooldown` is `true`, autoscale skips that rule because the evaluation occurs before the end of its cool-down period. For more information, see the [How does autoscale evaluate cooldown?](autoscale-understanding-settings.md#how-does-autoscale-evaluate-cooldown) section.
 
 ### Rule evaluation
 
