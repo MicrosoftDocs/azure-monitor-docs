@@ -3,7 +3,7 @@ title: Scenarios in Azure Chaos Studio
 description: Reference for all available Scenarios in Azure Chaos Studio Workspaces. Each Scenario simulates a real outage pattern using composed Actions.
 author: nikhilkaul-msft
 ms.topic: reference
-ms.date: 07/23/2026
+ms.date: 08/19/2026
 ai-usage: ai-assisted
 ---
 
@@ -170,17 +170,7 @@ Simulates a correlated outage of upstream dependencies across identity, messagin
 
 ### Compute and resource-pressure Scenarios
 
-These Scenarios simulate the loss of compute capacity or resource exhaustion on virtual machines.
-
-#### VM Hibernate
-
-Hibernates standalone virtual machines to simulate sudden compute loss, then restores them automatically when the run ends or is canceled. Use it to test how your application tolerates VMs disappearing and returning.
-
-| Property | Value |
-|---|---|
-| Actions | Virtual Machine Hibernate |
-| Target resources | Virtual Machines |
-| Outage category | Compute |
+These Scenarios simulate resource exhaustion on virtual machines.
 
 #### CPU Pressure
 
