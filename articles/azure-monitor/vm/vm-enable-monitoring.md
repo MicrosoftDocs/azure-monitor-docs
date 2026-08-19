@@ -32,7 +32,7 @@ For a list of supported operating systems, see [Azure Monitor agent supported op
 - **Log Analytics workspace** if you enable logs-based metrics or collect logs. Logs-based metrics are the classic experience and are typically used for compatibility with existing implementations. See [Create a Log Analytics workspace](../logs/quick-create-workspace.md).
 - **Permissions** to create data collection rules (DCRs) and associate them with VMs. See [Data collection rule permissions](../data-collection/data-collection-rule-create-edit.md#permissions).
 - **Managed identity for query-based metric alerts** if you create alert rules on OpenTelemetry metrics in Azure Monitor workspace. Use a user-assigned managed identity and grant required permissions as described in [Query-based metric alerts overview (preview)](../alerts/alerts-query-based-metric-alerts-overview.md).
-- **Azure Connected Machine agent** if you're monitoring virtual machines hosted outside of Azure. You must first install the Connected Machine agent so that the machine can be managed through Azure Arc-enabled servers before installing the Azure Monitor agent and enabling monitoring. See [Connect a machine to Arc-enabled servers](/azure/azure-arc/servers/quick-enable-hybrid-vm).
+- **Azure Connected Machine agent** if you're monitoring virtual machines hosted outside of Azure. You must first install the Connected Machine agent so that the machine can be managed through Azure Arc-enabled servers before installing the Azure Monitor agent and enabling monitoring. See [Connect a machine to Azure Arc-enabled servers](/azure/azure-arc/servers/quick-enable-hybrid-vm).
 
 
 ## Overview
