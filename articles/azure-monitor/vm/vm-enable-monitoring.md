@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 ms.topic: how-to
 ms.reviewer: xpathak
 ms.date: 07/31/2026
-ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, devx-track-arm-template, devx-track-bicep
+ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, devx-track-arm-template, devx-track-bicep, cbo-v1.4
 
 ---
 
@@ -52,6 +52,8 @@ To enable full monitoring by collecting data from the guest operating system and
 > Monitoring is included in Essential machine management which automatically enables multiple management features for your virtual machines. See [Essential machine management](/azure/azure-arc/servers/essential-machine-management/enrollment?toc=/azure/virtual-machines/toc.json).
 >
 > To enable monitoring at scale using Azure Policy, see [Enable VM insights using Azure Policy](vminsights-enable-policy.md).
+>
+> To onboard a virtual machine with a single ARM or Bicep deployment, see [Deploy a complete onboarding template](#deploy-a-complete-onboarding-template).
 
 
 ## Install Azure Monitor agent
@@ -254,6 +256,88 @@ New-AzDataCollectionRuleAssociation `
   -AssociationName "dcr-association" `
   -ResourceUri "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.HybridCompute/machines/<vm-name>" `
   -DataCollectionRuleId "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/microsoft.insights/datacollectionrules/<dcr-name>"
+```
+
+---
+
+## Deploy a complete onboarding template
+
+The Azure Monitor Community repository hosts ARM and Bicep templates that complete all three onboarding steps in a single deployment. Each template enables a managed identity on the virtual machine, creates or reuses an Azure Monitor workspace and a DCR, associates the DCR, installs the agent, and optionally creates recommended alert rules.
+
+Download the templates and parameter files from [VM Insights onboarding templates](https://github.com/microsoft/AzureMonitorCommunity/tree/master/Scenarios/How%20to%20onboard%20VMs%20to%20VM%20Insights%20V2) in the Azure Monitor Community repository. The repository readme documents every parameter and the six deployment scenarios the parameter files cover.
+
+These templates onboard individual Azure virtual machines. For virtual machine scale sets and Arc-enabled servers, follow the command line steps described earlier in this article. The deployment updates the managed identity configuration of an existing virtual machine, so review the identity parameters before deploying to a machine that already uses user-assigned identities.
+
+# [Azure CLI](#tab/cli)
+
+The following Azure CLI examples use the [`az deployment sub create`](/cli/azure/deployment/sub#az-deployment-sub-create) and [`az deployment group create`](/cli/azure/deployment/group#az-deployment-group-create) commands.
+
+**Bicep**
+
+The Bicep template sets `targetScope` to `subscription` because its modules deploy into different resource groups. The `.bicepparam` file resolves the template through its `using` statement, so the command doesn't need a `--template-file` argument.
+
+```bash
+# Set variables
+azureRegion="<AzureRegion>"
+bicepParameterFile="<PathToBicepParameterFile>"
+
+# Deploy the Bicep template
+az deployment sub create \
+  --location "$azureRegion" \
+  --parameters "$bicepParameterFile"
+```
+
+**ARM template**
+
+```bash
+# Set variables
+resourceGroupName="<VmResourceGroupName>"
+templateFile="<PathToTemplateFile>"
+parameterFile="<PathToParameterFile>"
+
+# Deploy the ARM template
+az deployment group create \
+  --resource-group "$resourceGroupName" \
+  --template-file "$templateFile" \
+  --parameters "@$parameterFile"
+```
+
+# [Azure PowerShell](#tab/powershell)
+
+The following Azure PowerShell examples use the [`New-AzSubscriptionDeployment`](/powershell/module/az.resources/new-azsubscriptiondeployment) and [`New-AzResourceGroupDeployment`](/powershell/module/az.resources/new-azresourcegroupdeployment) cmdlets.
+
+**Bicep**
+
+```powershell
+# Set variables
+$azureRegion = "<AzureRegion>"
+$templateFile = "<PathToBicepFile>"
+$parameterFile = "<PathToBicepParameterFile>"
+
+# Deploy the Bicep template
+$bicepDeployment = @{
+    Location              = $azureRegion
+    TemplateFile          = $templateFile
+    TemplateParameterFile = $parameterFile
+}
+New-AzSubscriptionDeployment @bicepDeployment
+```
+
+**ARM template**
+
+```powershell
+# Set variables
+$resourceGroupName = "<VmResourceGroupName>"
+$templateFile = "<PathToTemplateFile>"
+$parameterFile = "<PathToParameterFile>"
+
+# Deploy the ARM template
+$armDeployment = @{
+    ResourceGroupName     = $resourceGroupName
+    TemplateFile          = $templateFile
+    TemplateParameterFile = $parameterFile
+}
+New-AzResourceGroupDeployment @armDeployment
 ```
 
 ---
