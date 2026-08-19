@@ -1,6 +1,6 @@
 ---
-title: Assign Code Optimizations insights work items to GitHub Copilot (preview)
-description: Learn how to assign a work item from the Code Optimizations portal interface to the GitHub Copilot coding agent.
+title: Assign Code Optimizations insights to GitHub Copilot
+description: Learn how to assign Code Optimizations work items from the Azure portal to the GitHub Copilot coding agent to get code-level performance fixes faster.
 ms.topic: how-to
 ms.service: azure-monitor
 ms.subservice: optimization-insights
@@ -11,7 +11,7 @@ ms.reviewer: hannahhunter
 #customer intent: As an application developer using Code Optimizations, I want to use GitHub Copilot to create and assign work items.
 ---
 
-# Assign Code Optimizations insights work items to GitHub Copilot (preview)
+# Assign Code Optimizations insights work items to GitHub Copilot
 
 Get code-level suggestions based on Code Optimizations recommendations with [the GitHub Copilot coding agent](https://aka.ms/codeoptimizations/GitHubCopilot-coding-agent). In this article, you learn how to:
 
@@ -21,9 +21,8 @@ Get code-level suggestions based on Code Optimizations recommendations with [the
 > - Iterate with GitHub Copilot through pull request reviews.
 
 > [!NOTE]
-> Using the GitHub Copilot coding agent requires transferring your data to other countries in which Microsoft operates, including the United States. By using this functionality, you agree to the transfer of your data outside your country. [Read the
-Microsoft Privacy Statement.](https://go.microsoft.com/fwlink/?LinkId=521839)
- 
+> Using the GitHub Copilot coding agent requires transferring your data to other countries and regions in which Microsoft operates, including the United States. By using this functionality, you agree to the transfer of your data outside your country or region. [Read the Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839).
+
 ## Prerequisites
 - Enable the [GitHub Copilot coding agent in your repository](https://aka.ms/codeoptimizations/GitHubCopilot-coding-agent)
 - Enable the following services for your .NET application:
@@ -53,9 +52,9 @@ Microsoft Privacy Statement.](https://go.microsoft.com/fwlink/?LinkId=521839)
 
 1. In the **Create Work Item** pane, from **Work Item Service**, select **GitHub**.
 
-1. From the **Project** menu, select the GitHub repo with GitHub Copilot coding agent (Preview) enabled. 
+1. From the **Project** menu, select the GitHub repository with GitHub Copilot coding agent enabled.
 
-1. Turn on the **Assign to GitHub Copilot (Preview)** option.
+1. Turn on the **Assign to GitHub Copilot** option.
 
    :::image type="content" source="./media/code-optimizations-github-copilot/assign-to-github-copilot-toggle-on.png" alt-text="Screenshot of the checked Assign to GitHub Copilot option.":::
 
@@ -65,10 +64,10 @@ Microsoft Privacy Statement.](https://go.microsoft.com/fwlink/?LinkId=521839)
 
 ## Track the pull request opened by GitHub Copilot
 
-After the issue is created in GitHub, GitHub Copilot:
+After you create the issue in GitHub, GitHub Copilot:
 
 1. Responds to the issue with the eyes emoji (👀).  
-1. Opens a pull request as assignee.  
+1. Opens a pull request as the assignee.  
  
 The GitHub issue includes special instructions for the Copilot coding agent to fix and validate your specific performance issue.
 
@@ -77,9 +76,9 @@ The GitHub issue includes special instructions for the Copilot coding agent to f
 
 This process takes a couple minutes to finish. When the process finishes, the Copilot agent updates the pull request details and the title. 
 
-To review Copilot's changes, you can:
+To review Copilot's changes:
 
-- Ask Copilot to make changes using pull request comments.
+- Ask Copilot to make changes by using pull request comments.
 - Check out Copilot's branch and commit changes yourself.
 
 ## Next step

@@ -36,7 +36,7 @@ BYOS is **optional** but recommended when you want to:
 - Meet specific compliance or security requirements
 
 > [!NOTE]
-> Currently, BYOS isn't supported for [storing Code Optimizations trace data in Application Insights.](../optimization-insights/code-optimizations-profiler-overview.md#code-optimizations-1)
+> Currently, BYOS isn't supported for [storing Code Optimizations trace data in Application Insights.](../optimization-insights/code-optimizations-profiler-overview.md#code-optimizations)
 
 In this guide, you learn how to:
 > [!div class="checklist"]

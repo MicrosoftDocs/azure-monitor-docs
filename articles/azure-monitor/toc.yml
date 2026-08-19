@@ -211,6 +211,8 @@ items:
           - name: View .NET Profiler data
             displayName: profiling, debugging, code performance, perf
             href: profiler/profiler-data.md
+        - name: Assign insights to GitHub Copilot
+          href: optimization-insights/code-optimizations-github-copilot.md
         - name: Troubleshooting
           items:
           - name: Code Optimizations
