@@ -2,7 +2,7 @@
 title: Configure autoscale using PowerShell
 description: Configure autoscale for a Virtual Machine Scale Set using PowerShell
 ms.topic: how-to
-ms.date: 11/01/2024
+ms.date: 08/19/2026
 ms.custom: devx-track-azurepowershell
 ms.reviewer: akkumari
 
@@ -127,7 +127,7 @@ The table below describes the parameters used in the `New-AzAutoscaleScaleRuleOb
 |`MetricTriggerDividePerInstance`| When set to `true` divides the trigger metric by the total number of instances. For example, If message count is 300 and there are 5 instances running, the calculated metric value is 60 messages per instance. This property isn't applicable for all metrics.
 | `ScaleActionDirection`| Specify scaling in or out. Valid values are `Increase` and `Decrease`.
 |`ScaleActionType` |Scale by a specific number of instances, scale to a specific instance count, or scale by percentage of the current instance count. Valid values include `ChangeCount`, `ExactCount`, and `PercentChangeCount`.
-|`ScaleActionCooldown`| The minimum amount of time to wait between scale operations. This is to allow the metrics to stabilize and avoids [flapping](./autoscale-flapping.md). For example, if `ScaleActionCooldown` is 10 minutes and a scale operation just occurred, Autoscale won't attempt to scale again for 10 minutes.
+|`ScaleActionCooldown`| The minimum amount of time after a scale operation that must pass before this rule is eligible to initiate another scale action. Autoscale checks each rule's cooldown independently. The cooldown allows the metrics to stabilize and avoids [flapping](./autoscale-flapping.md).
 
 
 ### Create a default autoscale profile and associate the rules
