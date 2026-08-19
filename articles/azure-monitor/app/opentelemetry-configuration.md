@@ -2,7 +2,7 @@
 title: Configuring OpenTelemetry in Application Insights
 description: Learn how to configure OpenTelemetry (OTel) settings in Application Insights for .NET, Java, Node.js, and Python applications, including connection strings and sampling options.
 ms.topic: how-to
-ms.date: 04/08/2026
+ms.date: 06/19/2026
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom:
@@ -129,7 +129,7 @@ Use one of the following three ways to configure the connection string:
     }
     ```
 
-    You can also set the connection string by specifying a file to load it from. *The file should contain only the connection string and nothing else.* If you specify a relative path, it resolves relative to the directory where `applicationinsights-agent-3.7.8.jar` is located.
+    You can also set the connection string by specifying a file to load it from. *The file should contain only the connection string and nothing else.* If you specify a relative path, it resolves relative to the directory where `applicationinsights-agent-3.7.9.jar` is located.
 
     ```json
     {
@@ -145,7 +145,7 @@ Use one of the following three ways to configure the connection string:
 * Add `applicationinsights.connection.string` as a system property.
 
     ```console
-    java -javaagent:/path/to/applicationinsights-agent-3.7.8.jar \
+    java -javaagent:/path/to/applicationinsights-agent-3.7.9.jar \
          -Dapplicationinsights.connection.string="<YOUR-CONNECTION-STRING>" \
          -jar myapp.jar
     ```
@@ -339,7 +339,7 @@ Use one of the following three ways to configure the cloud role name and cloud r
 * Add `applicationinsights.role.name` and `applicationinsights.role.instance` as system properties.
 
     ```console
-    java -javaagent:/path/to/applicationinsights-agent-3.7.8.jar \
+    java -javaagent:/path/to/applicationinsights-agent-3.7.9.jar \
          -Dapplicationinsights.role.name="my-cloud-role-name" \
          -Dapplicationinsights.role.instance="my-cloud-role-instance" \
          -jar myapp.jar
