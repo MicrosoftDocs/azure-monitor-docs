@@ -1,5 +1,15 @@
 {
  "redirections": [
+   {
+    "source_path": "articles/azure-monitor/logs/basic-logs-azure-tables.md",
+    "redirect_url": "/azure/azure-monitor/reference/tables-features",
+    "redirect_document_id": false
+   },
+   {
+    "source_path": "articles/azure-monitor/logs/tables-feature-support.md",
+    "redirect_url": "/azure/azure-monitor/reference/tables-features",
+    "redirect_document_id": true
+   },
     {
    "source_path": "articles/azure-monitor/reference/tables/microsoft-aad_domainservices.md",
    "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-aad-domainservices",

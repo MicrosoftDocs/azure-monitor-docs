@@ -87,6 +87,7 @@ These Azure Monitor APIs retrieve resource metric definitions, values, and manag
 | Operation groups | Description |
 |------------------|-------------|
 | <a name="op-monitor-azure-monitor-workspaces"></a>[Azure Monitor Workspaces](/rest/api/monitor/azure-monitor-workspaces) | Manage an Azure Monitor workspace and retrieve the Azure Monitor workspaces within a resource group or subscription. |
+| <a name="op-monitor-azure-monitor-workspace-settings"></a>Azure Monitor Workspace subscription settings (preview) | Manage the default Azure Monitor workspace associated with a subscription, which [Azure Monitor issues](../aiops/issues-how-to.md) requires. Current API version: `2025-06-03-preview`. A REST reference page isn't published yet for this preview operation group. |
 | <a name="op-monitor-metric-definitions"></a>[Metric definitions](/rest/api/monitor/metric-definitions) | Lists the metric definitions available for the resource. That is, what [specific metrics](/azure/azure-monitor/reference/supported-metrics/metrics-index) can you collect. |
 | <a name="op-monitor-metric-namespaces"></a>[Metric namespaces](/rest/api/monitor/metric-namespaces) | Lists the metric namespaces. Most relevant when using [custom metrics](../essentials/metrics-custom-overview.md). |
 | <a name="op-monitor-metrics-batch"></a>[Metrics Batch](/rest/api/monitor/metrics-batch) | List the metric values for multiple resources. This requires the `https://<region>.metrics.monitor.azure.com` endpoint. |
