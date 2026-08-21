@@ -691,11 +691,17 @@ items:
       - name: Configure health rollup
         displayName: health models
         href: health-models/rollup.md
-    - name: Analyze
-      displayName: health models
-      href: health-models/analyze-health.md
-    - name: Monitor a health model
-      href: health-models/monitoring.md
+    - name: Operate
+      items:
+      - name: External health reports
+        displayName: health models, health report ingestion API, external signals
+        href: health-models/health-report-ingestion.md
+      - name: Analyze health
+        displayName: health models, data annotations
+        href: health-models/analyze-health.md
+      - name: Monitor a health model
+        displayName: health models
+        href: health-models/monitoring.md
     - name: FAQ
       displayName: health models, frequently asked questions
       href: health-models/health-models-faq.yml
