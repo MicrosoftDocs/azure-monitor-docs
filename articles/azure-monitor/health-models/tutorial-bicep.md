@@ -249,6 +249,8 @@ Deploy the file to your resource group. Pass in the storage account, Service Bus
 # [Azure CLI (Bash)](#tab/azure-cli-bash)
 
 ```azurecli
+export MSYS_NO_PATHCONV=1
+
 az deployment group create \
   --resource-group "<resource-group>" \
   --template-file health-model.bicep \
