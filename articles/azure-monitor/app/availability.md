@@ -217,30 +217,47 @@ You can use Log Analytics to view your availability results (`availabilityResult
 
 :::image type="content" source="media/availability/availability-results.png" alt-text="Screenshot showing availability results in Logs." lightbox="media/availability/availability-results.png":::
 
-## Migrate classic URL ping tests to standard tests
+# Migrate classic URL ping tests to standard tests
 
-The following steps walk you through the process of creating [standard tests](#types-of-availability-tests) that replicate the functionality of your [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability). It allows you to more easily start using the advanced features of standard tests using your previously created URL ping tests.
+URL ping tests retire on September 30, 2026. Use the following procedure to identify existing [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) and create [standard tests](#types-of-availability-tests) that replicate the functionality of your URL ping tests. It allows you to more easily start using the advanced features of standard tests using your previously created URL ping tests.
+
+Review each migrated test before enabling it. Standard tests support capabilities that aren't represented in URL ping tests, including custom headers, request bodies, and proactive TLS/SSL certificate checks. Some URL ping test validation rules might require manual conversion.
 
 > [!IMPORTANT]
-> - A cost is associated with running **[standard tests](#types-of-availability-tests)**. Once you create a standard test, you're charged for test executions. Refer to **[Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing)** before starting this process.
-> - You can discover all classic URL ping tests with [Azure Resource Graph Explorer](#discover-url-ping-tests).
+> - Standard tests incur charges when enabled. Review [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing) before enabling migrated tests.
+> - Creating a standard test doesn't modify or remove the existing URL ping test.
+> - Alert rules aren't migrated automatically. Keep the URL ping test and its alert rules enabled until you validate the standard test and complete the alert cutover.
 
 #### Prerequisites
 
 > [!div class="checklist"]
+> * Permission to read and create `Microsoft.Insights/webTests` resources
 > * [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability)
 > * [Azure PowerShell](/powershell/azure/get-started-azureps) access
 
 #### Discover URL ping tests
 
-Discover URL ping tests with the following query in [Azure Resource Graph Explorer](/azure/governance/resource-graph/first-query-portal).
+Run the following query in [Azure Resource Graph Explorer](/azure/governance/resource-graph/first-query-portal). The query returns URL ping tests from the subscriptions selected in Resource Graph Explorer.
 
 ```kusto
 resources
-| where subscriptionId == "<subscriptionId>"
-| where ['type'] == "microsoft.insights/webtests"
-| extend testKind = tostring(properties.Kind)
-| where testKind == "ping"
+| where ['type'] =~ "microsoft.insights/webtests"
+| where tostring(properties.Kind) =~ "ping"
+| extend
+    webTestResourceGroup = resourceGroup,
+    webTestName = name,
+    enabled = tobool(properties.Enabled),
+    locations = properties.Locations
+| mv-expand bagexpansion=array tags
+| extend tagName = tostring(tags[0])
+| where tagName startswith "hidden-link:"
+| extend appInsightsResourceId = substring(tagName, strlen("hidden-link:"))
+| where appInsightsResourceId contains "/providers/microsoft.insights/components/"
+| extend resourceIdParts = split(appInsightsResourceId, "/")
+| project subscriptionId, webTestResourceGroup, webTestName, enabled, locations,
+    appInsightsResourceGroup = tostring(resourceIdParts[4]),
+    appInsightsName = tostring(resourceIdParts[8]), appInsightsResourceId
+| order by subscriptionId, webTestResourceGroup, webTestName
 ```
 
 #### Begin migration
@@ -285,7 +302,7 @@ resources
 
     New-AzApplicationInsightsWebTest @dynamicParameters -ResourceGroupName $resourceGroup -Name $newStandardTestName `
     -Location $pingTest.Location -Kind 'standard' -Tag @{ "hidden-link:$componentId" = "Resource" } -TestName $newStandardTestName `
-    -RequestUrl $pingTestRequest.Url -RequestHttpVerb "GET" -GeoLocation $pingTest.PropertiesLocations -Frequency $pingTest.Frequency `
+    -RequestUrl $pingTestRequest.Url -RequestHttpVerb "GET" -GeoLocation $pingTest.Locations -Frequency $pingTest.Frequency `
     -Timeout $pingTest.Timeout -RetryEnabled:$pingTest.RetryEnabled -Enabled:$pingTest.Enabled `
     -RequestParseDependent:($pingTestRequest.ParseDependentRequests -eq [bool]::TrueString) -RuleSslCheck:$false;
     ```
