@@ -99,7 +99,7 @@ The following sample policy definition sets the retention for all blobs in the c
             "appendBlob"
           ],
           "prefixMatch": [
-            "insights-activity-logs/ResourceId=/SUBSCRIPTIONS/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
+            "insights-activity-logs/ResourceId=/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
           ]
         }
       }
@@ -149,7 +149,7 @@ The following template sets the retention for storage account `azmonstorageaccou
                                         "appendBlob"
                                     ],
                                     "prefixMatch": [
-                                        "insights-activity-logs/ResourceId=/SUBSCRIPTIONS/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
+                                        "insights-activity-logs/ResourceId=/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
                                     ]
                                 }
                             }

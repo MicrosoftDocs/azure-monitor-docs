@@ -161,7 +161,7 @@ When the autoscale notification is generated, the following metadata is included
         "resourceGroupName": "rg-001",
         "resourceName": "ScaleableAppServicePlan",
         "resourceType": "microsoft.web/serverfarms",
-        "resourceId": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/rg-001/providers/Microsoft.Web/serverfarms/ScaleableAppServicePlan",
+        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-001/providers/Microsoft.Web/serverfarms/ScaleableAppServicePlan",
         "portalLink": "https://portal.azure.com/#resource/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-001/providers/Microsoft.Web/serverfarms/ScaleableAppServicePlan",
         "resourceRegion": "West Central US",
         "oldCapacity": "1",
