@@ -200,9 +200,6 @@ items:
 - name: Microsoft.Devices/IotHubs
   href: microsoft-devices-iothubs-logs.md
   displayName: C2D Commands,C2D Twin Operations,Configurations,Connections,D2CTwinOperations,Device Identity Operations,Device Streams (Preview),Device Telemetry,Direct Methods,Distributed Tracing (Preview),File Upload Operations,Jobs Operations,Routes,Twin Queries
-- name: Microsoft.Devices/provisioningServices
-  href: microsoft-devices-provisioningservices-logs.md
-  displayName: Device Operations,Service Operations
 - name: Microsoft.DevOpsInfrastructure/pools
   href: microsoft-devopsinfrastructure-pools-logs.md
   displayName: Resource Provisioning Logs
@@ -436,7 +433,7 @@ items:
   displayName: Audit
 - name: MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES
   href: microsoft-openenergyplatform-energyservices-logs.md
-  displayName: ACZ API Logs,ACZ Worker Logs,Air Flow Task Logs,Audit Event,CRS Catalog Service Logs,CRS Conversion Service Logs,Dataset Service Logs,EDS DMS Logs,EDS Secret Logs,Elastic Operator Logs,Elasticsearch Logs,Entitlements Service Logs,File Service Logs,Indexer Service Logs,Legal Service Logs,Notification Service Logs,Partition Service Logs,PDSBackend Service Logs,PDSFrontend Service Logs,Register Service Logs,Reservoir DDMS Client Logs,Reservoir DDMS Server Logs,Rock and Fluid Samples DDMS Logs,Schema Service Logs,Search Extensions Service Logs,Search Service Logs,Seismic DDMS Logs,Storage Service Logs,Unit Service Logs,Wellbore Service Logs,WellDelivery Service Logs,Workflow Service Logs
+  displayName: ACZ API Logs,ACZ Worker Logs,Air Flow Task Logs,Audit Event,CRS Catalog Service Logs,CRS Conversion Service Logs,Dataset Service Logs,EDS DMS Logs,EDS Secret Logs,Elastic Operator Logs,Elasticsearch Logs,Entitlements Service Logs,File Service Logs,Indexer Service Logs,Legal Service Logs,Notification Service Logs,Partition Service Logs,PDSBackend Service Logs,PDSFrontend Service Logs,Register Service Logs,Reservoir DDMS Client Logs,Reservoir DDMS Server Logs,Rock and Fluid Samples DDMS Logs,Schema Service Logs,Search Extensions Service Logs,Search Service Logs,Seismic DDMS Logs,Storage Service Logs,Unit Service Logs,Wellbore Service Logs,Workflow Service Logs
 - name: Microsoft.OpenLogisticsPlatform/Workspaces
   href: microsoft-openlogisticsplatform-workspaces-logs.md
   displayName: Supply Chain Entity Operations,Supply Chain Event logs
@@ -446,6 +443,9 @@ items:
 - name: Microsoft.Orbital/geocatalogs
   href: microsoft-orbital-geocatalogs-logs.md
   displayName: Audit Logs,Ingestion Logs
+- name: Microsoft.Peering/peeringServices
+  href: microsoft-peering-peeringservices-logs.md
+  displayName: Operational Logs,Prefix Validation Logs
 - name: Microsoft.PlayFab/titles
   href: microsoft-playfab-titles-logs.md
   displayName: AuditLogs

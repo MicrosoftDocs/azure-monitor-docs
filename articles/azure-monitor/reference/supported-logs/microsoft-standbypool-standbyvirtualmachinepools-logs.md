@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.StandbyPool/standbyvirtualmachinepools
 description: Reference for Microsoft.StandbyPool/standbyvirtualmachinepools in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/14/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.StandbyPool/standbyvirtualmachinepools, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -16,8 +16,8 @@ The following table lists the types of logs available for the Microsoft.StandbyP
 
 |Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
 |---|---|---|---|---|---|
-|Standby virtual machine pool updates|Yes|[SVMPoolExecutionLog](/azure/azure-monitor/reference/tables/svmpoolexecutionlog)<p>Contains Execution Logs for a StandbyVirtualMachinePool, which can be used for audit and troubleshooting.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/svmpoolexecutionlog)|
-|Standby virtual machine pool settings updates|Yes|[SVMPoolRequestLog](/azure/azure-monitor/reference/tables/svmpoolrequestlog)<p>Contains Request Logs for a StandbyVirtualMachinePool, which can be used for audit and troubleshooting.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/svmpoolrequestlog)|
+|Execution|Yes|[SVMPoolExecutionLog](/azure/azure-monitor/reference/tables/svmpoolexecutionlog)<p>Contains Execution Logs for a StandbyVirtualMachinePool, which can be used for audit and troubleshooting.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/svmpoolexecutionlog)|
+|Request|Yes|[SVMPoolRequestLog](/azure/azure-monitor/reference/tables/svmpoolrequestlog)<p>Contains Request Logs for a StandbyVirtualMachinePool, which can be used for audit and troubleshooting.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/svmpoolrequestlog)|
 
 ## Next Steps
 

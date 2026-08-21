@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.DataShare/accounts
 description: Reference for Microsoft.DataShare/accounts in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/14/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.DataShare/accounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -18,10 +18,10 @@ For a list of supported metrics, see [Supported metrics - Microsoft.DataShare/ac
 
 |Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
 |---|---|---|---|---|---|
-|Received Share Snapshots|No|[MicrosoftDataShareReceivedSnapshotLog](/azure/azure-monitor/reference/tables/microsoftdatasharereceivedsnapshotlog)<p>Data Share consumer side synchronization logs.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/microsoftdatasharereceivedsnapshotlog)|
-|Sent Share Snapshots|No|[MicrosoftDataShareSentSnapshotLog](/azure/azure-monitor/reference/tables/microsoftdatasharesentsnapshotlog)<p>Data Share provider side synchronization logs.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/microsoftdatasharesentsnapshotlog)|
+|ReceivedShareSnapshots|No|[MicrosoftDataShareReceivedSnapshotLog](/azure/azure-monitor/reference/tables/microsoftdatasharereceivedsnapshotlog)<p>Data Share consumer side synchronization logs.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/microsoftdatasharereceivedsnapshotlog)|
+|SentShareSnapshots|No|[MicrosoftDataShareSentSnapshotLog](/azure/azure-monitor/reference/tables/microsoftdatasharesentsnapshotlog)<p>Data Share provider side synchronization logs.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/microsoftdatasharesentsnapshotlog)|
 |Shares|No|[MicrosoftDataShareShareLog](/azure/azure-monitor/reference/tables/microsoftdatasharesharelog)<p>Microsoft Data Share Share Log|No|No||
-|Share Subscriptions|No||No|No||
+|ShareSubscriptions|No||No|No||
 
 ## Next Steps
 

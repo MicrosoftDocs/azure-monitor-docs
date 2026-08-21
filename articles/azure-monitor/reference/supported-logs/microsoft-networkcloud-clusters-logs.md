@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.NetworkCloud/clusters
 description: Reference for Microsoft.NetworkCloud/clusters in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/14/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.NetworkCloud/clusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -18,11 +18,11 @@ For a list of supported metrics, see [Supported metrics - Microsoft.NetworkCloud
 
 |Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
 |---|---|---|---|---|---|
-|Kubernetes Logs|Yes|[NCCKubernetesLogs](/azure/azure-monitor/reference/tables/ncckuberneteslogs)<p>Containerized application logs from Nexus clusters to gain insight onto the container orchestration platform.|Yes|Yes||
-|IDRAC Container Logs|Yes|[NCCIDRACLogs](/azure/azure-monitor/reference/tables/nccidraclogs)<p>Logs from IDRAC containers of Nexus clusters to gain insight for any hardware failure.|Yes|No||
-|Kubernetes API Audit Logs|Yes|[NCCKubernetesAPIAuditLogs](/azure/azure-monitor/reference/tables/ncckubernetesapiauditlogs)<p>Kubernetes API audit logs from Nexus clusters to track all the requests made.|Yes|No|[Queries](/azure/azure-monitor/reference/queries/ncckubernetesapiauditlogs)|
-|Platform Operation Logs|Yes||No|No||
-|VM Orchestration Logs|Yes|[NCCVMOrchestrationLogs](/azure/azure-monitor/reference/tables/nccvmorchestrationlogs)<p>Logs from Virtual Machine Orchestrator of Nexus cluster to track seamless coordination and management of virtual machines.|Yes|Yes||
+|CustomerContainerLogs|Yes|[NCCKubernetesLogs](/azure/azure-monitor/reference/tables/ncckuberneteslogs)<p>Containerized application logs from Nexus clusters to gain insight onto the container orchestration platform.|Yes|Yes||
+|IdracContainerLogs|Yes|[NCCIDRACLogs](/azure/azure-monitor/reference/tables/nccidraclogs)<p>Logs from IDRAC containers of Nexus clusters to gain insight for any hardware failure.|Yes|No||
+|KubeAPIAudit|Yes|[NCCKubernetesAPIAuditLogs](/azure/azure-monitor/reference/tables/ncckubernetesapiauditlogs)<p>Kubernetes API audit logs from Nexus clusters to track all the requests made.|Yes|No|[Queries](/azure/azure-monitor/reference/queries/ncckubernetesapiauditlogs)|
+|PlatformOperations|Yes||No|No||
+|VMOrchestrationLogs|Yes|[NCCVMOrchestrationLogs](/azure/azure-monitor/reference/tables/nccvmorchestrationlogs)<p>Logs from Virtual Machine Orchestrator of Nexus cluster to track seamless coordination and management of virtual machines.|Yes|Yes||
 
 ## Next Steps
 

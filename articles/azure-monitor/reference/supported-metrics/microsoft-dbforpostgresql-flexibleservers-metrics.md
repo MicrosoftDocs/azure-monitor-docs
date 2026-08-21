@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.DBforPostgreSQL/flexibleServers
 description: Reference for Microsoft.DBforPostgreSQL/flexibleServers metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.DBforPostgreSQL/flexibleServers, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -94,7 +94,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.DBforPos
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**Max Logical Replication Lag**<br><br>Maximum lag across all logical replication slots |`logical_replication_delay_in_bytes` | No | Bytes |Maximum, Minimum, Average |`ServerName`|PT1M |Yes|
-|**Logical Replication Slot Sync Status (Preview)**<br><br>Displays status of logical replication slots in HA. |`logical_replication_slot_sync_status` | No | Count |Total (Sum), Maximum, Minimum |`ReplicationSlotName`, `LogicalServerName`|PT30M, PT1H, PT6H, PT12H, P1D |Yes|
+|**Logical Replication Slot Sync Status**<br><br>Displays status of logical replication slots in HA. |`logical_replication_slot_sync_status` | No | Count |Total (Sum), Maximum, Minimum |`ReplicationSlotName`, `LogicalServerName`|PT30M, PT1H, PT6H, PT12H, P1D |Yes|
 
 ### Category: PgBouncer metrics
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|

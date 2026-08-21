@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.DocumentDB/DatabaseAccounts
 description: Reference for Microsoft.DocumentDB/DatabaseAccounts metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 08/14/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.DocumentDB/DatabaseAccounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -59,7 +59,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Document
 |**Cassandra Table Updated**<br><br>Cassandra Table Updated |`CassandraTableUpdate` | No | Count |Count |`ResourceName`, `ChildResourceName`, `ApiKind`, `ApiKindResourceType`, `IsThroughputRequest`, `OperationType`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**ContinuousBackupMode Tier Update**<br><br>ContinuousBackupMode Tier Update |`ContinuousTierUpdate` | No | Count |Count |`ContinuousBackupTier`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Account Created**<br><br>Account Created |`CreateAccount` | No | Count |Count |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
-|**Data Usage**<br><br>Total data usage reported at 5 minutes granularity |`DataUsage` | No | Bytes |Total (Sum), Average, Maximum, Minimum |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**(deprecated) Data Usage**<br><br>Total data usage reported at 5 minutes granularity |`DataUsage` | No | Bytes |Total (Sum), Average, Maximum, Minimum |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**DedicatedGatewayAverageCPUUsage**<br><br>Average CPU usage across dedicated gateway instances |`DedicatedGatewayAverageCPUUsage` | No | Percent |Average |`Region`, `MetricType`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**DedicatedGatewayAverageMemoryUsage**<br><br>Average memory usage across dedicated gateway instances, which is used for both routing requests and caching data |`DedicatedGatewayAverageMemoryUsage` | No | Bytes |Average |`Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**DedicatedGatewayCPUUsage**<br><br>CPU usage across dedicated gateway instances |`DedicatedGatewayCPUUsage` | No | Percent |Average, Maximum, Minimum |`Region`, `ApplicationType`|PT1M |No|
@@ -68,7 +68,6 @@ For a list of supported logs, see [Supported log categories - Microsoft.Document
 |**DedicatedGatewayRequests**<br><br>Requests at the dedicated gateway |`DedicatedGatewayRequests` | No | Count |Count |`DatabaseName`, `CollectionName`, `CacheExercised`, `OperationName`, `Region`, `CacheHit`|PT1M |No|
 |**Account Deleted**<br><br>Account Deleted |`DeleteAccount` | No | Count |Count |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**(deprecated) Document Count**<br><br>Total document count reported at 5 minutes, 1 hour and 1 day granularity |`DocumentCount` | No | Count |Total (Sum), Average |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
-|**Document Count**<br><br>Total document count reported at 5 minutes, 1 hour and 1 day granularity |`DocumentCountV2` | No | Count |Total (Sum), Average |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Document Quota**<br><br>Total storage quota reported at 5 minutes granularity |`DocumentQuota` | No | Bytes |Total (Sum), Average |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Global Secondary Index Catchup Gap In Minutes**<br><br>Maximum time difference in minutes between data in source container and data propagated to global secondary index |`GlobalSecondaryIndexCatchupGapInMinutes` | No | Count |Maximum |`Region`, `TargetContainerName`, `BuildType`|PT1M |No|
 |**Global Secondary Index Propagation Latency In Seconds**<br><br>Average time difference in seconds between data in source container and data propagated to global secondary index |`GlobalSecondaryIndexPropagationLatencyInSeconds` | No | Count |Average |`Region`, `TargetContainerName`, `TargetContainerStatus`, `BuildType`|PT1M |No|
@@ -82,7 +81,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Document
 |**Gremlin Graph Updated**<br><br>Gremlin Graph Updated |`GremlinGraphUpdate` | No | Count |Count |`ResourceName`, `ChildResourceName`, `ApiKind`, `ApiKindResourceType`, `IsThroughputRequest`, `OperationType`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Gremlin Request Charges**<br><br>Request Units consumed for Gremlin requests made |`GremlinRequestCharges` | No | Count |Total (Sum), Average, Minimum, Maximum |`APIType`, `DatabaseName`, `CollectionName`, `Region`|PT1M |No|
 |**Gremlin Requests**<br><br>Number of Gremlin requests made |`GremlinRequests` | No | Count |Count |`APIType`, `DatabaseName`, `CollectionName`, `Region`, `ErrorCode`|PT1M |No|
-|**Index Usage**<br><br>Total index usage reported at 5 minutes granularity |`IndexUsage` | No | Bytes |Total (Sum), Average, Maximum, Minimum |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**(deprecated) Index Usage**<br><br>Total index usage reported at 5 minutes granularity |`IndexUsage` | No | Bytes |Total (Sum), Average, Maximum, Minimum |`CollectionName`, `DatabaseName`, `Region`, `IsLeakedPartition`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**IntegratedCacheEvictedEntriesSize**<br><br>Size of the entries evicted from the integrated cache |`IntegratedCacheEvictedEntriesSize` | No | Bytes |Average |`Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**IntegratedCacheItemExpirationCount**<br><br>Number of items evicted from the integrated cache due to TTL expiration |`IntegratedCacheItemExpirationCount` | No | Count |Average |`Region`, `CacheEntryType`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**IntegratedCacheItemHitRate**<br><br>Number of point reads that used the integrated cache divided by number of point reads routed through the dedicated gateway with eventual consistency |`IntegratedCacheItemHitRate` | No | Percent |Average |`Region`, `CacheEntryType`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
@@ -139,6 +138,13 @@ For a list of supported logs, see [Supported log categories - Microsoft.Document
 |**Account Network Settings Updated**<br><br>Account Network Settings Updated |`UpdateAccountNetworkSettings` | No | Count |Count |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Account Replication Settings Updated**<br><br>Account Replication Settings Updated |`UpdateAccountReplicationSettings` | No | Count |Count |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Account Diagnostic Settings Updated**<br><br>Account Diagnostic Settings Updated |`UpdateDiagnosticsSettings` | No | Count |Count |`DiagnosticSettingsName`, `ResourceGroupName`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
+
+### Category: SLI
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Data Usage**<br><br>Total data usage reported at 5 minutes granularity |`DataUsageV2` | No | Bytes |Total (Sum), Average, Maximum, Minimum |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**Document Count**<br><br>Total document count reported at 5 minutes, 1 hour and 1 day granularity |`DocumentCountV2` | No | Count |Total (Sum), Average |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**Index Usage**<br><br>Total index usage reported at 5 minutes granularity |`IndexUsageV2` | No | Bytes |Total (Sum), Average, Maximum, Minimum |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 
 ## Next steps
 

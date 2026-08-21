@@ -1226,6 +1226,8 @@
   href: ../oteltraces.md
 - name: OTelTracesAgent
   href: ../oteltracesagent.md
+- name: PaymentHsmHardwareOperationAuditLogs
+  href: ../paymenthsmhardwareoperationauditlogs.md
 - name: PerfInsightsFindings
   href: ../perfinsightsfindings.md
 - name: PerfInsightsImpactedResources

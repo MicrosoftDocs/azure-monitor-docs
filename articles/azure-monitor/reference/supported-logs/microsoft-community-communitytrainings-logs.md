@@ -2,7 +2,7 @@
 title: Supported log categories - microsoft.community/communityTrainings
 description: Reference for microsoft.community/communityTrainings in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/14/2026
+ms.date: 08/21/2026
 ms.custom: microsoft.community/communityTrainings, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -16,8 +16,8 @@ The following table lists the types of logs available for the microsoft.communit
 
 |Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
 |---|---|---|---|---|---|
-|Application Data Plane Exceptions and Errors|Yes||No|No||
-|Application Data Plane Logs|Yes||No|No||
+|DataPlaneException|Yes||No|No||
+|DataPlaneLog|Yes||No|No||
 
 ## Next Steps
 
