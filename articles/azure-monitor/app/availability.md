@@ -217,7 +217,7 @@ You can use Log Analytics to view your availability results (`availabilityResult
 
 :::image type="content" source="media/availability/availability-results.png" alt-text="Screenshot showing availability results in Logs." lightbox="media/availability/availability-results.png":::
 
-# Migrate classic URL ping tests to standard tests
+## Migrate classic URL ping tests to standard tests
 
 URL ping tests retire on September 30, 2026. Use the following procedure to identify existing [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) and create [standard tests](#types-of-availability-tests) that replicate the functionality of your URL ping tests. By using this process, you can more easily start using the advanced features of standard tests while using your previously created URL ping tests.
 
