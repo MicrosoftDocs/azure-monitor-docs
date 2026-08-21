@@ -2,7 +2,7 @@
 title: Autoscale diagnostics
 description: This article shows you how to configure diagnostics in autoscale.
 ms.topic: how-to
-ms.date: 07/27/2026
+ms.date: 08/19/2026
 ms.reviewer: akkumari
 ai-usage: ai-assisted
 
@@ -69,7 +69,7 @@ Logged when autoscale first looks at an autoscale profile:
 
 ### Profile cool-down evaluation
 
-Logged when autoscale evaluates if it shouldn't scale because of a cool-down period:
+Logged when autoscale evaluates whether to skip a candidate rule that's still in its cool-down period:
 
 ```JSON
 {
@@ -90,7 +90,7 @@ Logged when autoscale evaluates if it shouldn't scale because of a cool-down per
 }
 ```
 
-The `cooldown` and `lastScaleActionTime` values reflect the most recent scale action in either direction, not a separate cooldown timer for each direction. When `skipRuleEvaluationForCooldown` is `true`, autoscale skips the rule because the cooldown from that last scale action is still active. For more information, see the [How does autoscale evaluate cooldown?](autoscale-understanding-settings.md#how-does-autoscale-evaluate-cooldown) section.
+The `lastScaleActionTime` value identifies the most recent scale action. The `cooldown` value is the cool-down period configured on the candidate rule. When `skipRuleEvaluationForCooldown` is `true`, autoscale skips that rule because the evaluation occurs before the end of its cool-down period. For more information, see the [How does autoscale evaluate cooldown?](autoscale-understanding-settings.md#how-does-autoscale-evaluate-cooldown) section.
 
 ### Rule evaluation
 

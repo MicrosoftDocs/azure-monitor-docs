@@ -2,7 +2,7 @@
 title: Get started with autoscale in Azure
 description: "Learn how to scale your resource web app, cloud service, virtual machine, or Virtual Machine Scale Set in Azure."
 ms.topic: get-started
-ms.date: 08/07/2026
+ms.date: 08/19/2026
 ai-usage: ai-assisted
 ---
 # Get started with autoscale in Azure
@@ -163,7 +163,7 @@ Configure notifications to send when a scale event occurs. Send notifications to
 
 ### Cool-down period effects
 
-Autoscale uses a cool-down period. This period is the amount of time to wait after a scale operation before scaling again. The cool-down period allows the metrics to stabilize and avoids scaling more than once for the same condition. Cool-down applies to both scale-in and scale-out events. The default cool-down period is five minutes. For example, if you set the cool-down to 10 minutes and autoscale just scaled in, autoscale doesn't attempt to scale again for another 10 minutes in either direction. For more information, see [autoscale evaluation steps](autoscale-understanding-settings.md#autoscale-evaluation).
+Autoscale evaluates the cool-down period configured on each candidate rule. After a scale operation, a rule isn't eligible to initiate another scale action until its own cool-down period has elapsed. Another rule with a shorter cool-down period can become eligible sooner. The cool-down period allows the metrics to stabilize and avoids scaling more than once for the same condition. The default cool-down period is five minutes. For more information, see [how autoscale evaluates cooldown](autoscale-understanding-settings.md#how-does-autoscale-evaluate-cooldown).
 
 ### Flapping
 
