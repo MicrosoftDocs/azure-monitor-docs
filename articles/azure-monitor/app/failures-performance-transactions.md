@@ -453,7 +453,7 @@ Call the script and pass values for the parameters. The `-releaseProperties` par
 
 | Argument | Definition | Note |
 |----------|------------|------|
-| `aiResourceId` | Resource ID of the target Application Insights resource. | Example: `/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/MyRGName/providers/microsoft.insights/components/MyResourceName` |
+| `aiResourceId` | Resource ID of the target Application Insights resource. | Example: `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyRGName/providers/microsoft.insights/components/MyResourceName` |
 | `releaseName` | Name of the new release annotation. | |
 | `releaseProperties` | Custom metadata to attach to the annotation. | Optional |
 

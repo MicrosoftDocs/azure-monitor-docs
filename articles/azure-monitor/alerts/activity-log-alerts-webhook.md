@@ -87,7 +87,7 @@ The JSON payload contained in the POST operation differs based on the payload's 
                 "caller": "me@contoso.com",
                 "description": "",
                 "httpRequest": "{...}",
-                "resourceId": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/CONTOSO-TEST/providers/Microsoft.Insights/actionGroups/IncidentActions",
+                "resourceId": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/CONTOSO-TEST/providers/Microsoft.Insights/actionGroups/IncidentActions",
                 "resourceGroupName": "CONTOSO-TEST",
                 "resourceProviderName": "Microsoft.Insights",
                 "resourceType": "Microsoft.Insights/actionGroups"
@@ -302,7 +302,7 @@ For specific schema details on all other activity log alerts, see [Overview of t
 ## Next steps
 
 * [Learn more about the activity log](../essentials/platform-logs-overview.md).
-* [Execute Azure Automation scripts (Runbooks) on Azure alerts](https://go.microsoft.com/fwlink/?LinkId=627081).
+* [Execute Azure Automation scripts (runbooks) on Azure alerts](/azure/automation/automation-create-alert-triggered-runbook).
 * [Use a logic app to send an SMS via Twilio from an Azure alert](https://github.com/Azure/azure-quickstart-templates/tree/master/demos/alert-to-text-message-with-logic-app). This example is for metric alerts, but it can be modified to work with an activity log alert.
 * [Use a logic app to send a Slack message from an Azure alert](https://github.com/Azure/azure-quickstart-templates/tree/master/demos/alert-to-slack-with-logic-app). This example is for metric alerts, but it can be modified to work with an activity log alert.
 * [Use a logic app to send a message to an Azure queue from an Azure alert](https://github.com/Azure/azure-quickstart-templates/tree/master/demos/alert-to-queue-with-logic-app). This example is for metric alerts, but it can be modified to work with an activity log alert.
