@@ -2,7 +2,7 @@
 title: Understand autoscale settings in Azure Monitor
 description: This article explains autoscale settings, how they work, and how they apply to Azure Virtual Machine Scale Sets and other supported resources such as Azure App Service and Azure API Management.
 ms.topic: how-to
-ms.date: 08/07/2026
+ms.date: 08/19/2026
 ms.reviewer: akkumari
 ai-usage: ai-assisted
 ---
@@ -118,7 +118,7 @@ The following table describes the elements in the autoscale setting schema.
 | rule | scaleAction | Action |The action to take when the metricTrigger of the rule is triggered. |
 | scaleAction | direction | Operation |"Increase" to scale out, or "Decrease" to scale in.|
 | scaleAction | value |Instance count |How much to increase or decrease the capacity of the resource. |
-| scaleAction | cooldown | Cool down (minutes)|The amount of time to wait after a scale operation before scaling again. The cooldown period comes into effect after a scale-in or a scale-out event. For example, if **cooldown = "PT10M"**, autoscale doesn't attempt to scale again for another 10 minutes. The cooldown is to allow the metrics to stabilize after the addition or removal of instances. |
+| scaleAction | cooldown | Cool down (minutes)|The amount of time after a scale operation that must pass before this rule is eligible to initiate another scale action. Autoscale checks each rule's cooldown independently. For example, if **cooldown = "PT10M"**, this rule isn't eligible for 10 minutes after a scale operation. The cooldown allows the metrics to stabilize after the addition or removal of instances. |
 
 ## Autoscale profiles
 
@@ -254,7 +254,7 @@ The partial schema example here shows a recurring profile. It starts at 06:00 an
 
 ## Autoscale evaluation
 
-Autoscale settings can have multiple profiles. Each profile can have multiple rules. Each time the autoscale job runs, it begins by choosing the applicable profile for that time. Autoscale then evaluates the minimum and maximum values, any metric rules in the profile, and decides if a scale action is necessary. The autoscale job runs every 30 to 60 seconds, depending on the resource type. After a scale action occurs, the autoscale job waits for the cooldown period before it scales again. The cooldown period applies to both scale-out and scale-in actions.
+Autoscale settings can have multiple profiles. Each profile can have multiple rules. Each time the autoscale job runs, it begins by choosing the applicable profile for that time. Autoscale then evaluates the minimum and maximum values, any metric rules in the profile, and decides if a scale action is necessary. The autoscale job runs every 30 to 60 seconds, depending on the resource type. After a scale action occurs, autoscale uses the cooldown configured on each candidate rule to determine when that rule can initiate another scale action. Cooldown applies to both scale-out and scale-in rules.
 
 ### Which profile will autoscale use?
 
@@ -282,14 +282,18 @@ Each time autoscale calculates the result of a scale-in action, it evaluates whe
 
 ### How does autoscale evaluate cooldown?
 
-After any scale action, autoscale records the time of that action and waits for a cooldown period before it scales again in either direction. The cooldown that applies is the one on the rule that most recently fired, not a separate cooldown for each direction. A scale-out temporarily blocks the next scale action for the scale-out cooldown, and a scale-in temporarily blocks the next scale action for the scale-in cooldown.
+After any scale action, autoscale evaluates each candidate rule by using that rule's configured cooldown. A rule becomes eligible to initiate a scale action when its own cooldown has elapsed since the most recent scale action. Cooldown isn't applied globally based on the rule that performed the most recent scale action.
 
 Consider a profile with a scale-out cooldown of 60 minutes and a scale-in cooldown of 40 minutes:
 
-1. A CPU spike triggers a scale-out action at 10:00. The 60-minute scale-out cooldown applies, so no further scale action occurs until 11:00.
-1. CPU returns to normal and a scale-in action runs at 13:00. The 40-minute scale-in cooldown now applies, so no scale action occurs, in either direction, until 13:40.
-1. CPU spikes again at 13:20 and meets the scale-out rule's condition. Because the scale-in cooldown is still in effect, autoscale defers the scale-out.
-1. The scale-out action runs at 13:40, when the cooldown from the most recent scale action, the 13:00 scale-in, elapses.
+1. A CPU spike triggers a scale-out action at 10:00.
+1. The scale-out rule isn't eligible to initiate another action until 11:00 because its cooldown is 60 minutes.
+1. CPU returns to normal at 10:30 and meets the scale-in condition. Autoscale defers the action because the scale-in rule's 40-minute cooldown hasn't elapsed.
+1. At 10:40, the scale-in rule becomes eligible. If its condition remains true, the rule can initiate a scale-in action even though the scale-out rule's cooldown hasn't elapsed.
+
+Updating an autoscale setting resets the scale action timestamp and clears the cooldown state for all rules. The rules can become eligible during the next evaluation cycle. If the update changes the profile's minimum or maximum capacity and the current capacity is outside the new range, autoscale adjusts the capacity to the new boundary. This profile-boundary adjustment isn't a metric-triggered scale action and isn't subject to metric-rule cooldowns.
+
+If a settings update occurs while an asynchronous scale operation is still running, the target resource provider determines how to handle the concurrent operations.
 
 ## Next steps
 
