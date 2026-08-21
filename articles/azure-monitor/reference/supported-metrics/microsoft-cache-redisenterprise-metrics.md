@@ -33,7 +33,7 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**Cache Hits**<br><br>Rate of read operations accessing an existing key, in operations per second. |`cachehits` | No | Count |Average |\<none\>|PT1M |Yes|
-|**Cache Latency**<br><br>The average latency of requests on the node, in milliseconds. |`cacheLatency` | No | MilliSeconds |Average |`InstanceId`|PT1M |Yes|
+|**Cache Latency**<br><br>The average latency of requests on the node, in microseconds. |`cacheLatency` | No | MicroSeconds |Average |`InstanceId`|PT1M |Yes|
 |**Cache Misses**<br><br>Rate of read operations accessing a non-existing key, in operations per second. |`cachemisses` | No | Count |Average |\<none\>|PT1M |Yes|
 |**Cache Read**<br><br>The amount of data read from the cache in megabytes per second (MB/s). |`cacheRead` | No | BytesPerSecond |Maximum |`InstanceId`|PT1M |Yes|
 |**Cache Write**<br><br>The amount of data written to the cache in megabytes per second (MB/s). |`cacheWrite` | No | BytesPerSecond |Maximum |`InstanceId`|PT1M |Yes|
