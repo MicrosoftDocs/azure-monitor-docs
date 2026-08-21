@@ -47,7 +47,7 @@ The following JSON is an example of metrics data sent to an event hub:
         "minimum": 0.042,
         "maximum": 0.175,
         "average": 0.1085,
-        "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/RG-001/PROVIDERS/MICROSOFT.WEB/SITES/SCALEABLEWEBAPP1",
+        "resourceId": "/SUBSCRIPTIONS/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/RESOURCEGROUPS/RG-001/PROVIDERS/MICROSOFT.WEB/SITES/SCALEABLEWEBAPP1",
         "time": "2023-04-18T09:03:00.0000000Z",
         "metricName": "CpuTime",
         "timeGrain": "PT1M"
@@ -58,7 +58,7 @@ The following JSON is an example of metrics data sent to an event hub:
         "minimum": 0.053,
         "maximum": 0.231,
         "average": 0.142,
-        "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/RG-001/PROVIDERS/MICROSOFT.WEB/SITES/SCALEABLEWEBAPP1",
+        "resourceId": "/SUBSCRIPTIONS/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/RESOURCEGROUPS/RG-001/PROVIDERS/MICROSOFT.WEB/SITES/SCALEABLEWEBAPP1",
         "time": "2023-04-18T09:04:00.0000000Z",
         "metricName": "CpuTime",
         "timeGrain": "PT1M"
@@ -69,7 +69,7 @@ The following JSON is an example of metrics data sent to an event hub:
         "minimum": 1,
         "maximum": 1,
         "average": 1,
-        "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/RG-001/PROVIDERS/MICROSOFT.WEB/SITES/SCALEABLEWEBAPP1",
+        "resourceId": "/SUBSCRIPTIONS/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/RESOURCEGROUPS/RG-001/PROVIDERS/MICROSOFT.WEB/SITES/SCALEABLEWEBAPP1",
         "time": "2023-04-18T09:03:00.0000000Z",
         "metricName": "Requests",
         "timeGrain": "PT1M"
@@ -121,7 +121,7 @@ The following JSON is an example of log data sent to an event hub:
             "enablePurgeProtection": null
           }
         },
-        "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/RG-001/PROVIDERS/MICROSOFT.KEYVAULT/VAULTS/mykeyvault",
+        "resourceId": "/SUBSCRIPTIONS/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/RESOURCEGROUPS/RG-001/PROVIDERS/MICROSOFT.KEYVAULT/VAULTS/mykeyvault",
         "operationVersion": "2023-02-01",
         "resultSignature": "OK",
         "durationMs": "16"

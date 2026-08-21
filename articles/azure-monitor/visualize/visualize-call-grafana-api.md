@@ -98,7 +98,7 @@ Follow the example below to call Microsoft Entra ID and retrieve a token. Replac
 
 ```bash
 curl -X POST -H 'Content-Type: application/x-www-form-urlencoded' \
--d 'grant_type=client_credentials&client_id=<client-id>&client_secret=<client-secret>&resource=6f2d169c-08f3-4a4c-a982-bcaf2d038c45' \
+-d 'grant_type=client_credentials&client_id=<client-id>&client_secret=<client-secret>&resource=00001111-aaaa-2222-bbbb-3333cccc4444' \
 https://login.microsoftonline.com/<tenant-id>/oauth2/token
 ```
 
@@ -264,4 +264,3 @@ If you're not going to continue to use these resources, delete them with the fol
    1. Select your app.
    1. In the **Overview** tab, select **Delete**.
    1. Select **Delete**.
-
