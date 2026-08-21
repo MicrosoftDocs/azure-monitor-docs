@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Dashboard/grafana
 description: Reference for Microsoft.Dashboard/grafana metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.Dashboard/grafana, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -36,6 +36,8 @@ For a list of supported logs, see [Supported log categories - Microsoft.Dashboar
 |---|---|---|---|---|---|---|---|
 |**HttpRequestCount**<br><br>Number of HTTP requests to Azure Managed Grafana server |`HttpRequestCount` | No | Count |Count |\<none\>|PT1M |No|
 |**MemoryUsagePercentage**<br><br>Percentage of Azure Managed Grafana memory usage |`MemoryUsagePercentage` | No | Percent |Count, Average, Minimum, Maximum |`ContainerName`|PT1M |No|
+|**NetworkBytesReceived**<br><br>Total bytes received by Grafana over the network |`NetworkBytesReceived` | No | Bytes |Average, Minimum, Maximum, Total (Sum) |`ContainerName`|PT1M |No|
+|**NetworkBytesTransmitted**<br><br>Total bytes transmitted by Grafana over the network |`NetworkBytesTransmitted` | No | Bytes |Average, Minimum, Maximum, Total (Sum) |`ContainerName`|PT1M |No|
 
 ## Next steps
 

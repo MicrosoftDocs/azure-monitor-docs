@@ -264,4 +264,3 @@ If you're not going to continue to use these resources, delete them with the fol
    1. Select your app.
    1. In the **Overview** tab, select **Delete**.
    1. Select **Delete**.
-

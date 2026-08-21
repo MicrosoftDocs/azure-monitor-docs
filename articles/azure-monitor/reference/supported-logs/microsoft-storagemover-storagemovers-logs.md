@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.StorageMover/storageMovers
 description: Reference for Microsoft.StorageMover/storageMovers in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/14/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.StorageMover/storageMovers, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -18,8 +18,8 @@ For a list of supported metrics, see [Supported metrics - Microsoft.StorageMover
 
 |Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
 |---|---|---|---|---|---|
-|Copy logs - Failed|Yes|[StorageMoverCopyLogsFailed](/azure/azure-monitor/reference/tables/storagemovercopylogsfailed)<p>The result logs generated during the execution of Storage Mover job runs where the transfer result is 'Failed'. The logs include the details of the scanned items and their transfer result.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/storagemovercopylogsfailed)|
-|Job run logs|Yes|[StorageMoverJobRunLogs](/azure/azure-monitor/reference/tables/storagemoverjobrunlogs)<p>Logs associated with Storage Mover job runs.|Yes|Yes||
+|CopyLogsFailed|Yes|[StorageMoverCopyLogsFailed](/azure/azure-monitor/reference/tables/storagemovercopylogsfailed)<p>The result logs generated during the execution of Storage Mover job runs where the transfer result is 'Failed'. The logs include the details of the scanned items and their transfer result.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/storagemovercopylogsfailed)|
+|JobRunLogs|Yes|[StorageMoverJobRunLogs](/azure/azure-monitor/reference/tables/storagemoverjobrunlogs)<p>Logs associated with Storage Mover job runs.|Yes|Yes||
 
 ## Next Steps
 

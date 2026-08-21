@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Monitor/pipelineGroups
 description: Reference for Microsoft.Monitor/pipelineGroups metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.Monitor/pipelineGroups, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -32,13 +32,38 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 For a list of supported logs, see [Supported log categories - Microsoft.Monitor/pipelineGroups](../supported-logs/microsoft-monitor-pipelinegroups-logs.md)
 
 
+### Category: Export
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Logs failed to export(preview)**<br><br>The number of log records the exporter could not deliver after exhausting its own retries, if any. The same logs may be counted more than once if resubmitted by an upstream retry or buffering mechanism. A non-zero value indicates export issues but not necessarily data loss, as the pipeline may still retry successfully. |`exporter_send_failed_log_records` | No | Count |Total (Sum) |`instanceId`, `pipelineName`, `componentName`|PT1M |Yes|
-|**Logs exported(preview)**<br><br>Number of log records successfully sent by the exporter to the destination. |`exporter_sent_log_records` | No | Count |Total (Sum) |`instanceId`, `pipelineName`, `componentName`|PT1M |Yes|
-|**CPU utilization(preview)**<br><br>The percentage of CPU utilized by the pipeline group process, normalized across all cores. |`process_cpu_utilization` | No | Percent |Average, Minimum, Maximum |`instanceId`|PT1M |Yes|
-|**Memory used(preview)**<br><br>Total physical memory (resident set size) used by the pipeline group process. |`process_memory_usage` | No | Bytes |Average, Minimum, Maximum |`instanceId`|PT1M |Yes|
-|**Process uptime(preview)**<br><br>Uptime of the pipeline group process since last start. |`process_uptime` | No | Seconds |Maximum |`instanceId`|PT1M |Yes|
+|**Logs exported(preview)**<br><br>Number of log records successfully sent to the destination. |`exported_log_records` | No | Count |Total (Sum) |`signal`, `outcome`, `instanceId`, `pipelineName`, `componentName`|PT1M |No|
+|**Logs failed to export(preview)**<br><br>The number of log records the pipeline could not deliver after exhausting its own retries, if any. The same logs may be counted more than once if resubmitted by an upstream retry or buffering mechanism. A non-zero value indicates export issues but not necessarily data loss, as the pipeline may still retry successfully. |`log_records_failed_to_export` | No | Count |Total (Sum) |`signal`, `outcome`, `instanceId`, `pipelineName`, `componentName`|PT1M |No|
+|**Logs currently pending export(preview)**<br><br>Current number of log records queued or in flight for export. |`log_records_pending_export` | No | Count |Total (Sum), Minimum, Maximum |`instanceId`, `pipelineName`, `componentName`|PT1M |No|
+
+### Category: Ingestion
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Logs accepted(preview)**<br><br>Number of log records accepted into the pipeline. |`accepted_log_records` | No | Count |Total (Sum) |`signal`, `instanceId`, `componentName`|PT1M |No|
+|**Logs rejected(preview)**<br><br>Number of log records rejected by validation while entering the pipeline. |`rejected_log_records` | No | Count |Total (Sum) |`signal`, `instanceId`, `componentName`|PT1M |No|
+
+### Category: Persistent storage
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Logs dropped from persistent storage(preview)**<br><br>Number of log records dropped from persistent storage. |`log_records_dropped_from_storage` | No | Count |Total (Sum) |`signal`, `reason`, `instanceId`, `pipelineName`, `componentName`|PT1M |No|
+|**Persistent storage utilization(preview)**<br><br>Percentage of configured persistent storage currently in use. |`persistent_storage_utilization` | No | Percent |Average, Minimum, Maximum |`instanceId`, `pipelineName`, `componentName`|PT1M |No|
+
+### Category: Processing
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Logs processing duration(preview)**<br><br>Time spent processing log records in the configured processor. |`processing_duration` | No | Milliseconds |Average, Minimum, Maximum |`signal`, `instanceId`, `pipelineName`, `componentName`|PT1M |No|
+|**Logs entering processor(preview)**<br><br>Number of log records entering the configured processor. |`processor_input_log_records` | No | Count |Total (Sum) |`signal`, `instanceId`, `pipelineName`, `componentName`|PT1M |No|
+|**Logs leaving processor(preview)**<br><br>Number of log records leaving the configured processor. |`processor_output_log_records` | No | Count |Total (Sum) |`signal`, `instanceId`, `pipelineName`, `componentName`|PT1M |No|
+
+### Category: Runtime
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**CPU utilization**<br><br>The percentage of CPU utilized by the pipeline group process, normalized across all cores. |`process_cpu_utilization` | No | Percent |Average, Minimum, Maximum |`instanceId`|PT1M |Yes|
+|**Memory used**<br><br>Total physical memory (resident set size) used by the pipeline group process. |`process_memory_usage` | No | Bytes |Average, Minimum, Maximum |`instanceId`|PT1M |Yes|
+|**Process uptime**<br><br>Uptime of the pipeline group process since last start. |`process_uptime` | No | Seconds |Maximum |`instanceId`|PT1M |Yes|
 
 ## Next steps
 
