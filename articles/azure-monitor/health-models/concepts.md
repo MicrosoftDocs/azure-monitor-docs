@@ -7,7 +7,7 @@ ai-usage: ai-assisted
 ---
 
 # Azure Monitor health model concepts (preview)
-This article describes the concepts that you must understand to create and use [Azure Monitor health models](./overview.md). This article includes the components that make up a model, how those components are related, and how the health of each component is determined. For details on creating and configuring these components, see [Designer in Azure Monitor health models](./designer.md).
+This article describes the concepts that you must understand to create and use [Azure Monitor health models](./overview.md). This article includes the components that make up a model, how those components are related, and how the health of each component is determined. To define customer commitments before you choose components and signals, see [Health modeling with Azure Monitor health models](./health-modeling.md). For details on creating and configuring these components, see [Designer in Azure Monitor health models](./designer.md).
 
 
 ## Entities

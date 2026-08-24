@@ -660,6 +660,9 @@ items:
     - name: Concepts
       displayName: health models
       href: health-models/concepts.md
+    - name: Health modeling
+      displayName: health models, workload health, customer commitments
+      href: health-models/health-modeling.md
     - name: Create and configure
       items:
       - name: Create a health model
