@@ -243,8 +243,7 @@ resource healthModelDependsOnUserFlow 'Microsoft.CloudHealth/healthmodels/relati
 
 Deploy the file to your resource group. Pass in the storage account, Service Bus namespace, and managed identity resource IDs from the prerequisites.
 
-> [!NOTE]
-> Health models are available only in certain regions. The `location` parameter defaults to the resource group's region, so if your resource group is in an unsupported region, set `location` to a supported one. The health model can be in a different region from the resources it monitors. To see the current list of supported regions, check [Azure products by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/) or the error returned if you deploy to an unsupported region.
+Health models are available only in certain regions. The `location` parameter defaults to the resource group's region, so if your resource group is in an unsupported region, set `location` to a supported one. The health model can be in a different region from the resources it monitors. To see the current list of supported regions, check [Azure products by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/) or the error returned if you deploy to an unsupported region.
 
 # [Azure CLI (Bash)](#tab/azure-cli-bash)
 
@@ -279,8 +278,7 @@ The deployment takes less than a minute. When it finishes, the health model begi
 
 ## Verify the deployment
 
-> [!NOTE]
-> After deployment, the health model doesn't evaluate signals instantly. It typically takes a minute or two (occasionally longer) for the first evaluation cycle to run and populate values. During this window, every entity reports a health state of `Unknown`, and the metric signal shows no value yet. This behavior is expected. Wait a few minutes and recheck before you assume something is misconfigured.
+After deployment, the health model doesn't evaluate signals instantly. It typically takes a minute or two (occasionally longer) for the first evaluation cycle to run and populate values. During this window, every entity reports a health state of `Unknown`, and the metric signal shows no value yet. This behavior is expected. Wait a few minutes and recheck before you assume something is misconfigured.
 
 ### Check the health state with the Azure CLI
 
