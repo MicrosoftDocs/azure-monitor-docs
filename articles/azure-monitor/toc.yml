@@ -696,6 +696,9 @@ items:
       - name: External health reports
         displayName: health models, health report ingestion API, external signals
         href: health-models/health-report-ingestion.md
+      - name: Data annotations
+        displayName: health models, timeline, operational events
+        href: health-models/data-annotations.md
       - name: Analyze health
         displayName: health models, data annotations
         href: health-models/analyze-health.md
