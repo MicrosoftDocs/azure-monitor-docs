@@ -248,9 +248,10 @@ Deploy the file to your resource group. Pass in the storage account, Service Bus
 
 # [Azure CLI (Bash)](#tab/azure-cli-bash)
 
-```azurecli
-export MSYS_NO_PATHCONV=1
+> [!NOTE]
+> If you use Git Bash on Windows, run `export MSYS_NO_PATHCONV=1` before you deploy. This environment variable prevents Git Bash from converting Azure resource IDs to Windows file paths.
 
+```azurecli
 az deployment group create \
   --resource-group "<resource-group>" \
   --template-file health-model.bicep \
