@@ -39,7 +39,7 @@ Data annotations let you add contextual notes to the health timeline, so importa
 > [!NOTE]
 > Currently, you can't add data annotations in the Azure portal. Add them programmatically instead.
 
-To add a data annotation, use the [`az monitor health-models entity add-data-annotation`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-add-data-annotation) command.
+To add and retrieve annotations, see [Add data annotations to Azure Monitor health models](./data-annotations.md).
 
 
 ## Entity details

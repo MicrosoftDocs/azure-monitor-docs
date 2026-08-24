@@ -693,61 +693,9 @@ The metric scenario is complete. The next two optional sections show how to add 
 
 Use data annotations to attach point-in-time context to an entity. An annotation can represent a new application release, or mark the time of an outage or another event, so that you correlate it with the entity's health history.
 
+For the focused procedure to add, retrieve, and view annotations, see [Add data annotations to Azure Monitor health models](./data-annotations.md).
+
 Portal: [Review point-in-time entity health on the timeline](./analyze-health.md#timeline-view).
-
-# [Azure CLI bash](#tab/cli-bash)
-
-```bash
-az monitor health-models entity add-data-annotation -g "$resourceGroupName" \
-  --health-model-name "$modelName" --entity-name "WebApp" \
-  --annotation-details "{event:'new-client-release',version:'1.2.3'}" \
-  --description "Client version 1.2.3 has been released" \
-  --query "{timestamp:createdAt,description:description}" -o table
-```
-
-# [Azure CLI PowerShell](#tab/cli-powershell)
-
-```powershell
-az monitor health-models entity add-data-annotation -g "$env:resourceGroupName" `
-  --health-model-name "$env:modelName" --entity-name "WebApp" `
-  --annotation-details "{event:'new-client-release',version:'1.2.3'}" `
-  --description "Client version 1.2.3 has been released" `
-  --query "{timestamp:createdAt,description:description}" -o table
-```
-
----
-
-```output
-Timestamp                          Description
----------------------------------  ------------------------------
-2026-07-21T21:37:40.3534694+00:00  Client version 1.2.3 has been released
-```
-
-Retrieve the entity's annotations:
-
-# [Azure CLI bash](#tab/cli-bash)
-
-```bash
-az monitor health-models entity get-data-annotations -g "$resourceGroupName" \
-  --health-model-name "$modelName" --entity-name "WebApp" \
-  --query "annotations[].{timestamp:createdAt,description:description}" -o table
-```
-
-# [Azure CLI PowerShell](#tab/cli-powershell)
-
-```powershell
-az monitor health-models entity get-data-annotations -g "$env:resourceGroupName" `
-  --health-model-name "$env:modelName" --entity-name "WebApp" `
-  --query "annotations[].{timestamp:createdAt,description:description}" -o table
-```
-
----
-
-```output
-Timestamp                          Description
----------------------------------  ------------------------------
-2026-07-21T21:37:40.3534694+00:00  Client version 1.2.3 has been released
-```
 
 ## 13. Optional: Report external health
 

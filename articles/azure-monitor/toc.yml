@@ -660,6 +660,9 @@ items:
     - name: Concepts
       displayName: health models
       href: health-models/concepts.md
+    - name: Health modeling
+      displayName: health models, workload health, customer commitments
+      href: health-models/health-modeling.md
     - name: Create and configure
       items:
       - name: Create a health model
@@ -696,6 +699,9 @@ items:
       - name: External health reports
         displayName: health models, health report ingestion API, external signals
         href: health-models/health-report-ingestion.md
+      - name: Data annotations
+        displayName: health models, timeline, operational events
+        href: health-models/data-annotations.md
       - name: Analyze health
         displayName: health models, data annotations
         href: health-models/analyze-health.md
