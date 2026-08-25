@@ -2,7 +2,7 @@
 title: Azure Monitor Agent Network Configuration
 description: Learn how to define network settings and enable network isolation for the Azure Monitor Agent.
 ms.topic: how-to
-ms.date: 05/11/2026
+ms.date: 08/25/2026
 ms.custom: references_regions
 ms.reviewer: shseth, nmangum
 
@@ -28,14 +28,14 @@ The following table lists the endpoints that firewalls must allow for different 
 > For all endpoints, disable HTTPS inspection.
 
 | Endpoint | Purpose | Example |
-|:---------|:--------|:--------|
+| :------- | :------ | :------ |
 | `global.handler.control.monitor.azure.com` | Access the control service | Not applicable |
 | `global.prod.microsoftmetrics.com` | Access the metrics service | Not applicable |
 | `<virtual-machine-region-name>.handler.control.monitor.azure.com` | Fetch DCRs for a specific machine | `westus2.handler.control.monitor.azure.com` |
-|`<log-analytics-workspace-id>.ods.opinsights.azure.com` | Ingest log data | `1234a123-aa1a-123a-aaa1-a1a345aa6789.ods.opinsights.azure.com` |
+| `<log-analytics-workspace-id>.ods.opinsights.azure.com` | Ingest log data | `a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1.ods.opinsights.azure.com` |
 | `management.azure.com` | Needed only if you send time series data (metrics) to an Azure Monitor [custom metrics](../metrics/metrics-custom-overview.md) database | Not applicable |
 | `<virtual-machine-region-name>.monitoring.azure.com` | Needed only if you send time series data (metrics) to an Azure Monitor [custom metrics](../metrics/metrics-custom-overview.md) database | `westus2.monitoring.azure.com` |
-| `<data-collection-endpoint>.<virtual-machine-region-name>.ingest.monitor.azure.com` |Ingest log data | `275test-01li.eastus2euap-1.canary.ingest.monitor.azure.com` |
+| `<data-collection-endpoint>.<virtual-machine-region-name>.ingest.monitor.azure.com` | Ingest log data | `my-dce-5kyl.eastus-1.ingest.monitor.azure.com` |
 
 
 
