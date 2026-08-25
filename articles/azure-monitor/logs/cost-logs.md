@@ -55,7 +55,7 @@ For Auxiliary Logs, `_ItemId`, `_IsBillable`, and `_BilledSize` are excluded fro
 
 ### Excluded tables
 
-Some tables are free from data ingestion charges altogether, including, for example, [AzureActivity](/azure/azure-monitor/reference/tables/azureactivity), [Heartbeat](/azure/azure-monitor/reference/tables/heartbeat), [Usage](/azure/azure-monitor/reference/tables/usage), and [Operation](/azure/azure-monitor/reference/tables/operation). This information is always indicated by the [_IsBillable](log-standard-columns.md#_isbillable) column, which shows whether a record was excluded from billing for data ingestion and retention.
+Some tables are free from data ingestion charges altogether, including, for example, [AzureActivity](/azure/azure-monitor/reference/tables/azureactivity), [Heartbeat](/azure/azure-monitor/reference/tables/heartbeat), [Usage](/azure/azure-monitor/reference/tables/usage), and [Operation](/azure/azure-monitor/reference/tables/operation). The [_IsBillable](log-standard-columns.md#_isbillable-column) column always indicates this information. It shows whether a record is excluded from billing for data ingestion and retention.
 
 ### Charges for other solutions and services
 
