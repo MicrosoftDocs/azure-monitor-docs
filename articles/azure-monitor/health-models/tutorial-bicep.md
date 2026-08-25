@@ -248,7 +248,7 @@ Health models are available only in certain regions. The `location` parameter de
 # [Azure CLI (Bash)](#tab/azure-cli-bash)
 
 > [!NOTE]
-> If you use Git Bash on Windows, run `export MSYS_NO_PATHCONV=1` before you deploy. This environment variable prevents Git Bash from converting Azure resource IDs to Windows file paths.
+> If deployment validation fails because Git Bash on Windows converts Azure resource IDs to Windows file paths, run `export MSYS_NO_PATHCONV=1`, and then retry the deployment.
 
 ```azurecli
 az deployment group create \
