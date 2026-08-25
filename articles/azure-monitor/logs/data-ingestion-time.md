@@ -68,7 +68,7 @@ Azure data adds more time to become available at a data collection endpoint for 
 
 After the data reaches the data collection endpoint, it takes less than 10 seconds before you can query it.
 
-When Azure Monitor ingests log records (as the [_TimeReceived](log-standard-columns.md#_timereceived) property shows), it writes them to temporary storage. This step ensures tenant isolation and prevents data loss. This step usually adds 5 to 15 seconds.
+When Azure Monitor ingests log records (as the [_TimeReceived](log-standard-columns.md#_timereceived-column) property shows), it writes them to temporary storage. This step ensures tenant isolation and prevents data loss. This step usually adds 5 to 15 seconds.
 
 Some solutions use more complex algorithms to aggregate data and derive insights while data streams in. For example, Application Insights calculates application map data. Azure Network Performance Monitoring aggregates incoming data over three-minute intervals, which effectively adds three minutes of latency in this case.
 
@@ -86,8 +86,8 @@ Ingestion time might vary for different resources under different circumstances.
 
 | Step | Property or function | Comments |
 |:-----|:---------------------|:---------|
-| Record created at data source | [TimeGenerated](log-standard-columns.md#timegenerated) | The TimeGenerated value can't be more than two days before the received time or more than a day in the future. Otherwise, Azure Monitor Logs replaces the TimeGenerated value with the actual received time.<br>If the data source doesn't set this value, Azure Monitor Logs sets the value to the same time as _TimeReceived. |
-| Record received by the data collection endpoint | [_TimeReceived](log-standard-columns.md#_timereceived) | Don't use this field to filter large datasets. It's not optimized for mass processing. |
+| Record created at data source | [TimeGenerated](log-standard-columns.md#timegenerated-column) | The `TimeGenerated` value can't be more than two days before the received time or more than a day in the future. Otherwise, Azure Monitor Logs replaces the `TimeGenerated` value with the actual received time.<br>If the data source doesn't set this value, Azure Monitor Logs sets the value to the same time as `_TimeReceived`. |
+| Record received by the data collection endpoint | [_TimeReceived](log-standard-columns.md#_timereceived-column) | Don't use this field to filter large datasets. It's not optimized for mass processing. |
 | Record stored in workspace and available for queries | [ingestion_time()](/azure/kusto/query/ingestiontimefunction) | Use `ingestion_time()` if you need to filter only records that were ingested in a certain time window. In such cases, also add a `TimeGenerated` filter with a larger range. |
 
 ### Measure ingestion latency
