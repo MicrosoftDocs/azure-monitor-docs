@@ -343,7 +343,7 @@ items:
         - name: Overview
           displayName: OpenTelemetry
           href: vm/metrics-opentelemetry-guest.md
-        - name: Metrics-based experience (preview)
+        - name: Metrics-based experience
           items:
           - name: Customize
             displayName: OpenTelemetry, metrics, data collection rule, performance counters

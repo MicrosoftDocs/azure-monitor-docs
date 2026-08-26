@@ -4,7 +4,7 @@ description: Learn how to enable monitoring for virtual machines and virtual mac
 ai-usage: ai-assisted
 ms.topic: how-to
 ms.reviewer: xpathak
-ms.date: 07/31/2026
+ms.date: 08/25/2026
 ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, devx-track-arm-template, devx-track-bicep
 
 ---
@@ -91,7 +91,7 @@ The following table describes the most common DCR types used for VM monitoring. 
 Use the following DCR definitions to enable enhanced monitoring for a virtual machine. The only modification needed is to update the location and destination workspace in each definition to point to your Azure Monitor workspace for OpenTelemetry metrics or your Log Analytics workspace for logs-based metrics. 
 <br><br>
 <details>
-<summary>Metrics-based experience (preview)</summary>
+<summary>Metrics-based experience</summary>
 
 ```json
 {

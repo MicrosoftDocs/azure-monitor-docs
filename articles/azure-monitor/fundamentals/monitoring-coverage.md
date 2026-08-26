@@ -2,7 +2,7 @@
 title: Monitoring coverage in Azure Monitor (preview)
 description: Details on the monitoring coverage feature in Azure Monitor, which allows you to identify gaps in your monitoring posture and quickly enable data collection, alerting, and data flow validation at scale.
 ms.topic: concept-article
-ms.date: 05/29/2026
+ms.date: 08/25/2026
 ms.author: shseth
 ai-usage: ai-assisted
 ---
@@ -65,13 +65,13 @@ The **Configure monitoring** step includes:
 1. **Customize monitoring settings, if needed.** Select **Customize monitoring settings** to change the workspace, create a new workspace or DCR, or enable and disable the available collection options.
 1. **Review + Enable.** Confirm the selected resources and settings, then select **Enable**.
 
-The recommended VM insights settings can include preview OpenTelemetry metrics sent to an Azure Monitor workspace and classic log-based metrics sent to a Log Analytics workspace. The OpenTelemetry metrics configuration collects performance counters such as filesystem usage, disk usage, disk operation time, disk operations, memory usage, network I/O, CPU time, network dropped, network errors, and system uptime.
+The recommended VM insights settings can include OpenTelemetry metrics sent to an Azure Monitor workspace and classic log-based metrics sent to a Log Analytics workspace. The OpenTelemetry metrics configuration collects performance counters such as filesystem usage, disk usage, disk operation time, disk operations, memory usage, network I/O, CPU time, network dropped, network errors, and system uptime.
 
-:::image type="content" source="./media/monitoring-coverage/vm-insights-configure.png" lightbox="./media/monitoring-coverage/vm-insights-configure.png" alt-text="Screenshot of Configure monitoring for VM Insights with selected resources and recommended settings.":::
+:::image type="content" source="./media/monitoring-coverage/vm-insights-configure.png" lightbox="./media/monitoring-coverage/vm-insights-configure.png" alt-text="Screenshot of Configure monitoring for VM Insights with selected resources and recommended settings." border="true":::
 
-:::image type="content" source="./media/monitoring-coverage/vm-insights-customize.png" lightbox="./media/monitoring-coverage/vm-insights-customize.png" alt-text="Screenshot of customize VM Insights settings for OpenTelemetry metrics, log-based metrics, workspaces, and DCRs.":::
+:::image type="content" source="./media/monitoring-coverage/vm-insights-customize.png" lightbox="./media/monitoring-coverage/vm-insights-customize.png" alt-text="Screenshot of customize VM Insights settings for OpenTelemetry metrics, log-based metrics, workspaces, and DCRs." border="true":::
 
-:::image type="content" source="./media/monitoring-coverage/vm-insights-review.png" lightbox="./media/monitoring-coverage/vm-insights-review.png" alt-text="Screenshot of review and enable VM Insights settings before applying changes.":::
+:::image type="content" source="./media/monitoring-coverage/vm-insights-review.png" lightbox="./media/monitoring-coverage/vm-insights-review.png" alt-text="Screenshot of review and enable VM Insights settings before applying changes." border="true":::
 
 ### Enable recommended alert rules
 
