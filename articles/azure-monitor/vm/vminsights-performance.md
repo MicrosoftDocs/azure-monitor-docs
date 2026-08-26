@@ -3,7 +3,7 @@ title: Analyze the health and status of your virtual machine with Azure Monitor
 description: This article discusses the VM insights Performance feature that discovers application components on Windows and Linux systems and maps the communication between services.
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 07/01/2026
+ms.date: 08/25/2026
 ---
 
 # Analyze the health and status of your virtual machine with Azure Monitor
@@ -11,7 +11,7 @@ ms.date: 07/01/2026
 VM insights includes a set of performance charts that target several key performance indicators to help you determine how well a virtual machine is performing. The charts show resource utilization over a period of time. Use them to identify bottlenecks and anomalies. You can also switch to a perspective that lists each machine to view resource utilization based on the metric selected.
 
 > [!NOTE]
-> This article describes the logs-based experience for monitoring virtual machines in Azure Monitor. This experience isn't available for machines configured only for the metrics-based experience using OpenTelemetry metrics, which is currently in preview. For more information, see [Monitor Azure virtual machines with OpenTelemetry metrics (preview)](vminsights-opentelemetry.md).
+> This article describes the logs-based experience for monitoring virtual machines in Azure Monitor. This experience isn't available for machines configured only for the metrics-based experience using OpenTelemetry metrics. For more information, see [Metrics experience for virtual machines in Azure Monitor](metrics-opentelemetry-guest.md).
 
 VM insights monitors key operating system performance indicators related to processor, memory, network adapter, and disk utilization. Performance helps to:
 
