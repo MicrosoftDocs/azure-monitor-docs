@@ -32,10 +32,10 @@ ms.date: 08/27/2026
 | Agent | dynamic | The agentic property for sign in logs. Includes the agentType and the parentAppId when the type is AgenticInstance. |
 | AlternateSignInName | string | The identification that the user provided to sign in. It may be the userPrincipalName but it's also populated when a user signs in using other identifiers. |
 | AppDisplayName | string | The application name displayed in the Azure Portal. |
-| AppId | string | The application identifier in Azure Active Directory. |
+| AppId | string | The application identifier in Microsoft Entra ID. |
 | AppliedConditionalAccessPolicies | string |   |
 | AppliedEventListeners | dynamic | Detailed information about the listeners, such as Azure Logic Apps and Azure Functions, that were triggered by the corresponding events in the sign-in event. |
-| AppOwnerTenantId | string | The tenant identifier of the owenr of the application in Azure Active Directory. |
+| AppOwnerTenantId | string | The tenant identifier of the owenr of the application in Microsoft Entra ID. |
 | AuthenticationAppDeviceDetails | string | Details of the app and device state used during the most recent authentication step using an authentication app. |
 | AuthenticationAppPolicyEvaluationDetails | string | The details of the policies applied and enforced related to the authentication app during the latest signIn step. |
 | AuthenticationContextClassReferences | string | Contains a collection of values that represent the conditional access authentication contexts applied to the sign-in. |

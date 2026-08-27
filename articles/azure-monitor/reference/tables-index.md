@@ -129,12 +129,6 @@ microsoft.avs/privateClouds
 - [AVSNsxEdgeSyslog](./tables/avsnsxedgesyslog.md)
 - [AVSSyslog](./tables/avssyslog.md)
 
-### Azure Active Directory Logs
-
-microsoft.aadiam/tenants
-
-- [AADB2CRequestLogs](./tables/aadb2crequestlogs.md)
-
 ### Azure AD Domain Services
 
 Microsoft.AAD/domainServices
@@ -634,36 +628,6 @@ Microsoft.Quantum/workspaces
 
 - [AzureActivity](./tables/azureactivity.md)
 - [QuantumWorkspaceJobAuditLogs](./tables/quantumworkspacejobauditlogs.md)
-
-### Azure Sentinel
-
-microsoft.securityinsights
-
-- [SecurityAlert](./tables/securityalert.md)
-- [WindowsEvent](./tables/windowsevent.md)
-- [SecurityEvent](./tables/securityevent.md)
-- [DnsAuditEvents](./tables/dnsauditevents.md)
-- [AggregatedSecurityAlert](./tables/aggregatedsecurityalert.md)
-- [SentinelBehaviorInfo](./tables/sentinelbehaviorinfo.md)
-- [SentinelBehaviorEntities](./tables/sentinelbehaviorentities.md)
-- [CommonSecurityLog](./tables/commonsecuritylog.md)
-- [ASimWebSessionLogs](./tables/asimwebsessionlogs.md)
-- [PurviewDataSensitivityLogs](./tables/purviewdatasensitivitylogs.md)
-- [ASimAgentEventLogs](./tables/asimagenteventlogs.md)
-- [ASimAlertEventLogs](./tables/asimalerteventlogs.md)
-- [ASimDhcpEventLogs](./tables/asimdhcpeventlogs.md)
-- [ASimFileEventLogs](./tables/asimfileeventlogs.md)
-- [ASimUserManagementActivityLogs](./tables/asimusermanagementactivitylogs.md)
-- [ASimRegistryEventLogs](./tables/asimregistryeventlogs.md)
-- [ASimAssetEntityLogs](./tables/asimassetentitylogs.md)
-- [ASimAuditEventLogs](./tables/asimauditeventlogs.md)
-- [ASimAuthenticationEventLogs](./tables/asimauthenticationeventlogs.md)
-- [ASimDnsActivityLogs](./tables/asimdnsactivitylogs.md)
-- [ASimNetworkSessionLogs](./tables/asimnetworksessionlogs.md)
-- [ASimProcessEventLogs](./tables/asimprocesseventlogs.md)
-- [ThreatIntelObjects](./tables/threatintelobjects.md)
-- [ThreatIntelIndicators](./tables/threatintelindicators.md)
-- [ThreatIntelExportOperation](./tables/threatintelexportoperation.md)
 
 ### Azure Sphere
 
@@ -1369,6 +1333,12 @@ Microsoft.Discovery/workspaces
 - [AzureActivity](./tables/azureactivity.md)
 - [DiscoveryWorkspaceAuditLogs](./tables/discoveryworkspaceauditlogs.md)
 
+### Microsoft Entra ID Logs
+
+microsoft.aadiam/tenants
+
+- [AADB2CRequestLogs](./tables/aadb2crequestlogs.md)
+
 ### Microsoft Graph Logs
 
 Microsoft.Graph/tenants
@@ -1390,6 +1360,36 @@ Microsoft.AzurePlaywrightService/accounts
 
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
+
+### Microsoft Sentinel
+
+microsoft.securityinsights
+
+- [PurviewDataSensitivityLogs](./tables/purviewdatasensitivitylogs.md)
+- [SecurityAlert](./tables/securityalert.md)
+- [WindowsEvent](./tables/windowsevent.md)
+- [SecurityEvent](./tables/securityevent.md)
+- [DnsAuditEvents](./tables/dnsauditevents.md)
+- [AggregatedSecurityAlert](./tables/aggregatedsecurityalert.md)
+- [SentinelBehaviorInfo](./tables/sentinelbehaviorinfo.md)
+- [SentinelBehaviorEntities](./tables/sentinelbehaviorentities.md)
+- [ASimAgentEventLogs](./tables/asimagenteventlogs.md)
+- [ASimAlertEventLogs](./tables/asimalerteventlogs.md)
+- [ASimDhcpEventLogs](./tables/asimdhcpeventlogs.md)
+- [ASimFileEventLogs](./tables/asimfileeventlogs.md)
+- [ASimUserManagementActivityLogs](./tables/asimusermanagementactivitylogs.md)
+- [ASimRegistryEventLogs](./tables/asimregistryeventlogs.md)
+- [ASimAssetEntityLogs](./tables/asimassetentitylogs.md)
+- [ASimAuditEventLogs](./tables/asimauditeventlogs.md)
+- [ASimAuthenticationEventLogs](./tables/asimauthenticationeventlogs.md)
+- [CommonSecurityLog](./tables/commonsecuritylog.md)
+- [ASimDnsActivityLogs](./tables/asimdnsactivitylogs.md)
+- [ASimNetworkSessionLogs](./tables/asimnetworksessionlogs.md)
+- [ASimProcessEventLogs](./tables/asimprocesseventlogs.md)
+- [ThreatIntelObjects](./tables/threatintelobjects.md)
+- [ThreatIntelIndicators](./tables/threatintelindicators.md)
+- [ThreatIntelExportOperation](./tables/threatintelexportoperation.md)
+- [ASimWebSessionLogs](./tables/asimwebsessionlogs.md)
 
 ### Microsoft.AgFoodPlatform/farmBeats
 
