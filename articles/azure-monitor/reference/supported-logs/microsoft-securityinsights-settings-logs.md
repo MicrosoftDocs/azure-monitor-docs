@@ -2,7 +2,7 @@
 title: Supported log categories - microsoft.securityinsights/settings
 description: Reference for microsoft.securityinsights/settings in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 08/21/2026
+ms.date: 08/26/2026
 ms.custom: microsoft.securityinsights/settings, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -18,6 +18,7 @@ The following table lists the types of logs available for the microsoft.security
 |---|---|---|---|---|---|
 |Analytics|Yes||No|No||
 |Automation|Yes||No|No||
+|CustomDetections|Yes||No|No||
 |DataConnectors|Yes||No|No||
 
 ## Next Steps
