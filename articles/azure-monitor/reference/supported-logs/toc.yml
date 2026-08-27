@@ -499,7 +499,7 @@ items:
   displayName: AntimalwareScanResults
 - name: microsoft.securityinsights/settings
   href: microsoft-securityinsights-settings-logs.md
-  displayName: Analytics,Automation,Data Collection - Connectors
+  displayName: Analytics,Automation,Custom Detections,Data Collection - Connectors
 - name: Microsoft.ServiceBus/Namespaces
   href: microsoft-servicebus-namespaces-logs.md
   displayName: Application Metrics Logs(Unused),DataDR Logs,Diagnostic Error Logs,Operational Logs,Runtime Audit Logs,VNet/IP Filtering Connection Logs
@@ -556,7 +556,7 @@ items:
   displayName: HPC Cache operation event,HPC Cache upgrade event,HPC Cache warning
 - name: Microsoft.StorageMover/storageMovers
   href: microsoft-storagemover-storagemovers-logs.md
-  displayName: Copy logs - Failed,Job run logs
+  displayName: Audit Log,Copy logs - Failed,Job run logs
 - name: Microsoft.StreamAnalytics/streamingjobs
   href: microsoft-streamanalytics-streamingjobs-logs.md
   displayName: Authoring,Execution

@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Network/dnsResolvers
 description: Reference for Microsoft.Network/dnsResolvers metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/26/2026
 ms.custom: Microsoft.Network/dnsResolvers, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -34,7 +34,8 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |---|---|---|---|---|---|---|---|
 |**Inbound Endpoint Count**<br><br>This metric indicates the number of inbound endpoints created for a DNS Resolver. |`InboundEndpointCount` | No | Count |Average, Minimum, Maximum, Count |\<none\>|PT1H, PT6H, PT12H, P1D |No|
 |**Outbound Endpoint Count**<br><br>This metric indicates the number of outbound endpoints created for a DNS Resolver. |`OutboundEndpointCount` | No | Count |Average, Minimum, Maximum, Count |\<none\>|PT1H, PT6H, PT12H, P1D |No|
-|**Queries Per Second**<br><br>This metric indicates the queries per second for a DNS Resolver. (Can be aggregated per EndpointId) |`QPS` | No | Count |Average, Minimum, Maximum, Count, Total (Sum) |`EndpointId`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, PT24H |No|
+|**Queries Per Second [Deprecated]**<br><br>This metric indicates the queries per second for a DNS Resolver. (Can be aggregated per EndpointId) |`QPS` | No | Count |Average, Minimum, Maximum, Count, Total (Sum) |`EndpointId`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, PT24H |No|
+|**Queries Per Second**<br><br>This metric indicates the queries per second for a DNS Resolver. (Can be aggregated per EndpointArmResourceId) |`QPSMdm` | No | Count |Total (Sum) |`EndpointArmResourceId`|PT1M |No|
 
 ## Next steps
 

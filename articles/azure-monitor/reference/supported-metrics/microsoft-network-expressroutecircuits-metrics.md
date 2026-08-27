@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Network/expressRouteCircuits
 description: Reference for Microsoft.Network/expressRouteCircuits metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 08/14/2026
+ms.date: 08/26/2026
 ms.custom: Microsoft.Network/expressRouteCircuits, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -53,6 +53,8 @@ For a list of supported logs, see [Supported log categories - Microsoft.Network/
 |**BitsOutPerSecond**<br><br>Bits egressing Azure per second |`BitsOutPerSecond` | No | BitsPerSecond |Total (Sum), Average, Minimum, Maximum |`PeeringType`, `DeviceRole`|PT1M |Yes|
 |**EgressBandwidthUtilization**<br><br>Egress Link Bandwidth percentage utilization |`EgressBandwidthUtilization` | No | Percent |Maximum |`PeeringType`, `DeviceRole`|PT1M |Yes|
 |**IngressBandwidthUtilization**<br><br>Ingress Link Bandwidth percentage utilization |`IngressBandwidthUtilization` | No | Percent |Maximum |`PeeringType`, `DeviceRole`|PT1M |Yes|
+|**MulticloudInterconnectBitsInPerSecond**<br><br>Bits ingressing Azure per second |`MultiCloudBitsInPerSecond` | No | BitsPerSecond |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
+|**MulticloudInterconnectBitsOutPerSecond**<br><br>Bits egressing Azure per second |`MultiCloudBitsOutPerSecond` | No | BitsPerSecond |Total (Sum), Average, Minimum, Maximum |\<none\>|PT1M |No|
 
 ### Category: Fastpath
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
