@@ -31,7 +31,7 @@ Information about activities in various cloud apps and services covered by Micro
 | Column | Type | Description |
 |---|---|---|
 | AccountDisplayName | string | Name displayed in the address book entry for the account user. This is usually a combination of the given name, middle initial, and surname of the user. |
-| AccountId | string | An identifier for the account as found by Microsoft Cloud App Security. Could be Microsoft Entra ID ID, user principal name, or other identifiers |
+| AccountId | string | An identifier for the account as found by Microsoft Cloud App Security. Could be Microsoft Entra object ID, user principal name, or other identifiers |
 | AccountObjectId | string | Unique identifier for the account in Azure AD |
 | AccountType | string | Type of user account, indicating its general role and access levels, such as Regular, System, Admin, Application |
 | ActionType | string | Type of activity that triggered the event |
