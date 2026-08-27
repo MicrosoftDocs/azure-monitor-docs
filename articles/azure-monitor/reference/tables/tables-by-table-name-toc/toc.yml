@@ -1284,6 +1284,8 @@
   href: ../quantumprovideraccountdeviceoperationlogs.md
 - name: QuantumProviderAccountJobAuditLogs
   href: ../quantumprovideraccountjobauditlogs.md
+- name: QuantumProviderAccountMessageAuditLogs
+  href: ../quantumprovideraccountmessageauditlogs.md
 - name: QuantumProviderAccountQueueAuditLogs
   href: ../quantumprovideraccountqueueauditlogs.md
 - name: QuantumProviderAccountTargetAuditLogs
