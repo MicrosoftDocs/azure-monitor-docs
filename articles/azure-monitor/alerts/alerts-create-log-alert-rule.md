@@ -152,7 +152,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     > * The query contains the `ingestion_time()` function.
     > * The query uses the `adx` pattern.
     > * The query calls a function that calls other tables.
-    > * The query uses the `AzureDiagnostics` table and filters on a `Category` value that has an equivalent resource-specific table — for example, `AzureDiagnostics | where Category == "AZFWThreatIntel"`. Query the resource-specific table directly instead, such as `AZFWThreatIntel`. For more information, see [Azure diagnostics mode](../platform/resource-logs.md?tabs=log-analytics#azure-diagnostics-mode).
+    > * The query uses the `AzureDiagnostics` table and filters on a `Category` value that has an equivalent resource-specific table – for example, `AzureDiagnostics | where Category == "AZFWThreatIntel"`. Query the resource-specific table directly instead, such as `AZFWThreatIntel`. For more information, see [Azure diagnostics mode](../platform/resource-logs.md?tabs=log-analytics#azure-diagnostics-mode).
 
     [Sample log search alert queries](./alerts-log-alert-query-samples.md) are available for Azure Data Explorer and Resource Graph.
 
