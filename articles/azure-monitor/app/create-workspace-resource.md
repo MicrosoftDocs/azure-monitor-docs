@@ -2,12 +2,13 @@
 title: Create And Configure Application Insights Resources
 description: Learn how to create and configure Application Insights resources programmatically and in the Azure portal
 ms.topic: how-to
-ms.date: 07/06/2026
-ms.aisupport: ai-assisted
+ms.date: 08/27/2026
+ai-usage: ai-assisted
 ms.custom:
   - devx-track-azurepowershell, devx-track-azurecli
   - references_regions
   - sfi-ropc-nochange
+  - cbo-v1.5
 ---
 
 # Create and configure Application Insights resources
@@ -65,7 +66,7 @@ For more information, see [Manage Azure resources by using the REST API](/azure/
 
 You can deploy Bicep templates via the Azure CLI, Azure PowerShell, and in the Azure portal. Check the respective tabs for additional requirements.
 
-# [ARM (JSON)](#tab/arm)
+# [ARM template](#tab/arm)
 
 You can deploy ARM templates via the Azure CLI, Azure PowerShell, and in the Azure portal. Check the respective tabs for additional requirements.
 
@@ -160,11 +161,11 @@ New-AzApplicationInsights @newAzApplicationInsightsParams
 
 # [REST](#tab/rest)
 
-The following REST example uses the [Components - Create Or Update](/rest/api/application-insights/components/create-or-update) REST API operation.
+The following REST example uses the [Components](../fundamentals/azure-monitor-rest-api-index.md#op-appinsights-components) REST API operation.
 
 ```REST
-PUT https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.Insights/components/{ResourceName}?api-version=2020-02-02
-Authorization: Bearer {AccessToken}
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/components/{resourceName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
@@ -190,7 +191,7 @@ param workspaceName string = '<WorkspaceName>'
 
 var workspaceResourceId = '/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/${workspaceName}'
 
-resource applicationInsightsComponent 'Microsoft.Insights/components@2020-02-02' = {
+resource applicationInsightsComponent 'Microsoft.Insights/components@<ApiVersion>' = {
   name: resourceName
   location: azureRegion
   kind: 'web'
@@ -206,7 +207,7 @@ resource applicationInsightsComponent 'Microsoft.Insights/components@2020-02-02'
 >
 > Visit [publisher's GitHub repository](https://github.com/Azure/bicep/issues) for extension related questions.
 
-# [ARM (JSON)](#tab/arm)
+# [ARM template](#tab/arm)
 
 The following ARM (JSON) example uses the [Microsoft.Insights/components](/azure/templates/microsoft.insights/components?pivots=deployment-language-arm-template) resource type.
 
@@ -242,7 +243,7 @@ The following ARM (JSON) example uses the [Microsoft.Insights/components](/azure
   "resources": [
     {
       "type": "Microsoft.Insights/components",
-      "apiVersion": "2020-02-02",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('resourceName')]",
       "location": "[parameters('azureRegion')]",
       "kind": "web",
@@ -322,11 +323,11 @@ Look for the `ConnectionString` property in the output.
 
 # [REST](#tab/rest)
 
-The following REST example uses the [Components - Get](/rest/api/application-insights/components/get) REST API operation.
+The following REST example uses the [Components](../fundamentals/azure-monitor-rest-api-index.md#op-appinsights-components) REST API operation.
 
 ```REST
-GET https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.Insights/components/{ResourceName}?api-version=2020-02-02
-Authorization: Bearer {AccessToken}
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/components/{resourceName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 ```
 
 Look for the `properties.connectionString` field in the JSON response.
@@ -335,7 +336,7 @@ Look for the `properties.connectionString` field in the JSON response.
 
 Not applicable to Bicep templates.
 
-# [ARM (JSON)](#tab/arm)
+# [ARM template](#tab/arm)
 
 Not applicable to ARM templates.
 
@@ -433,11 +434,11 @@ Update-AzApplicationInsights @updateAzApplicationInsightsParams
 
 # [REST](#tab/rest)
 
-The following REST example uses the [Components - Create Or Update](/rest/api/application-insights/components/create-or-update) REST API operation.
+The following REST example uses the [Components](../fundamentals/azure-monitor-rest-api-index.md#op-appinsights-components) REST API operation.
 
 ```REST
-PUT https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.Insights/components/{ResourceName}?api-version=2020-02-02
-Authorization: Bearer {AccessToken}
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/components/{resourceName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
@@ -463,7 +464,7 @@ param workspaceName string = '<WorkspaceName>'
 
 var workspaceResourceId = '/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/${workspaceName}'
 
-resource applicationInsightsComponent 'Microsoft.Insights/components@2020-02-02' = {
+resource applicationInsightsComponent 'Microsoft.Insights/components@<ApiVersion>' = {
   name: resourceName
   location: azureRegion
   kind: 'web'
@@ -474,7 +475,7 @@ resource applicationInsightsComponent 'Microsoft.Insights/components@2020-02-02'
 }
 ```
 
-# [ARM (JSON)](#tab/arm)
+# [ARM template](#tab/arm)
 
 The following ARM (JSON) example uses the [Microsoft.Insights components](/azure/templates/microsoft.insights/components?pivots=deployment-language-arm-template) resource type.
 
@@ -510,7 +511,7 @@ The following ARM (JSON) example uses the [Microsoft.Insights components](/azure
   "resources": [
     {
       "type": "Microsoft.Insights/components",
-      "apiVersion": "2020-02-02",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('resourceName')]",
       "location": "[parameters('azureRegion')]",
       "kind": "web",
@@ -621,11 +622,11 @@ New-AzDiagnosticSetting @newAzDiagnosticSettingParams
 
 # [REST](#tab/rest)
 
-The following REST example uses the [Diagnostic Settings - Create Or Update](/rest/api/monitor/diagnostic-settings/create-or-update) REST API operation. It creates a diagnostic setting that sends logs and metrics from an Application Insights resource to a storage account.
+The following REST example uses the [Diagnostic settings](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-diagnostic-settings) REST API operation. It creates a diagnostic setting that sends logs and metrics from an Application Insights resource to a storage account.
 
 ```REST
-PUT https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.Insights/components/{ResourceName}/providers/Microsoft.Insights/diagnosticSettings/{DiagnosticSettingName}?api-version=2021-05-01-preview
-Authorization: Bearer {AccessToken}
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/components/{resourceName}/providers/Microsoft.Insights/diagnosticSettings/{diagnosticSettingName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
@@ -658,13 +659,13 @@ param resourceName string = '<ResourceName>'
 param storageAccountName string = '<StorageAccountName>'
 param diagnosticSettingName string = '<DiagnosticSettingName>'
 
-resource applicationInsightsComponent 'Microsoft.Insights/components@2020-02-02' existing = {
+resource applicationInsightsComponent 'Microsoft.Insights/components@<ApiVersion>' existing = {
   name: resourceName
 }
 
 var storageAccountId = '/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.Storage/storageAccounts/${storageAccountName}'
 
-resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
+resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@<ApiVersion>' = {
   name: diagnosticSettingName
   scope: applicationInsightsComponent
   properties: {
@@ -685,7 +686,7 @@ resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-pre
 }
 ```
 
-# [ARM (JSON)](#tab/arm)
+# [ARM template](#tab/arm)
 
 The following ARM template example uses the [Microsoft.Insights diagnosticSettings](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-template) resource type. It creates a diagnostic setting that sends logs and metrics from an Application Insights resource to a storage account.
 
@@ -721,7 +722,7 @@ The following ARM template example uses the [Microsoft.Insights diagnosticSettin
   "resources": [
     {
       "type": "Microsoft.Insights/components/providers/diagnosticSettings",
-      "apiVersion": "2021-05-01-preview",
+      "apiVersion": "<ApiVersion>",
       "name": "[format('{0}/Microsoft.Insights/{1}', parameters('resourceName'), parameters('diagnosticSettingName'))]",
       "properties": {
         "storageAccountId": "[variables('storageAccountId')]",
@@ -789,7 +790,7 @@ param workspaceName string = '<WorkspaceName>'
 param azureRegion string = '<AzureRegion>'
 param retentionInDays int = <RetentionInDays>
 
-resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2025-07-01' = {
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@<ApiVersion>' = {
   name: workspaceName
   location: azureRegion
   properties: {
@@ -798,7 +799,7 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2025-07
 }
 ```
 
-# [ARM (JSON)](#tab/arm)
+# [ARM template](#tab/arm)
 
 The following ARM (JSON) example uses the [Microsoft.OperationalInsights workspaces](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-arm-template) resource type. It sets the data retention period for the associated Log Analytics workspace.
 
@@ -823,7 +824,7 @@ The following ARM (JSON) example uses the [Microsoft.OperationalInsights workspa
   "resources": [
     {
       "type": "Microsoft.OperationalInsights/workspaces",
-      "apiVersion": "2025-07-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('workspaceName')]",
       "location": "[parameters('azureRegion')]",
       "properties": {
@@ -841,7 +842,7 @@ The following ARM (JSON) example uses the [Microsoft.OperationalInsights workspa
 | workspaceName | \<WorkspaceName\> | User input |
 | azureRegion | \<AzureRegion\> | User input |
 | retentionInDays | \<RetentionInDays\> | User input (numeric) |
-| apiVersion | 2020-08-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
+| apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 -->
 ### Set the daily cap
 
@@ -926,11 +927,11 @@ Set-AzOperationalInsightsWorkspace @setAzOperationalInsightsWorkspaceParams
 
 **Log Analytics:**
 
-The following REST example uses the [Workspaces - Update](/rest/api/loganalytics/workspaces/update) REST API operation.
+The following REST example uses the [Workspaces](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation.
 
 ```REST
-PATCH https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}?api-version=2025-07-01
-Authorization: Bearer {AccessToken}
+PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
@@ -956,7 +957,7 @@ param workspaceName string = '<WorkspaceName>'
 param azureRegion string = '<AzureRegion>'
 param dailyCapInGb int
 
-resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2025-07-01' = {
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@<ApiVersion>' = {
   name: workspaceName
   location: azureRegion
   properties: {
@@ -967,7 +968,7 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2025-07
 }
 ```
 
-# [ARM (JSON)](#tab/arm)
+# [ARM template](#tab/arm)
 
 > [!NOTE]
 > Currently, Azure doesn't provide a way to set the daily cap for Application Insights using an ARM template.
@@ -996,7 +997,7 @@ The following ARM (JSON) example uses the [Microsoft.OperationalInsights workspa
   "resources": [
     {
       "type": "Microsoft.OperationalInsights/workspaces",
-      "apiVersion": "2025-07-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('workspaceName')]",
       "location": "[parameters('azureRegion')]",
       "properties": {
@@ -1110,13 +1111,13 @@ Set-AzOperationalInsightsWorkspace @setAzOperationalInsightsWorkspaceParams
 
 # [REST](#tab/rest)
 
-The following REST examples use the [Pricing Plan - Update](/rest/api/loganalytics/workspaces/create-or-update#workspacesku) REST API operation.
+The following REST examples use the [Workspaces](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation. The pricing plan is stored in the `sku` property of the workspace itself.
 
 **Pay-as-you-go:**
 
 ```REST
-PUT https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}/pricingPlans/current?api-version=2017-10-01
-Authorization: Bearer {AccessToken}
+PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
@@ -1131,8 +1132,8 @@ Content-Type: application/json
 **Commitment tier:**
 
 ```REST
-PUT https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}/pricingPlans/current?api-version=2017-10-01
-Authorization: Bearer {AccessToken}
+PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
@@ -1155,7 +1156,7 @@ The following Bicep examples use the [Microsoft.OperationalInsights workspaces](
 param workspaceName string = '<WorkspaceName>'
 param azureRegion string = '<AzureRegion>'
 
-resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2025-07-01' = {
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@<ApiVersion>' = {
   name: workspaceName
   location: azureRegion
   properties: {
@@ -1173,7 +1174,7 @@ param workspaceName string = '<WorkspaceName>'
 param azureRegion string = '<AzureRegion>'
 param capacityReservationInGb int
 
-resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2025-07-01' = {
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@<ApiVersion>' = {
   name: workspaceName
   location: azureRegion
   properties: {
@@ -1185,7 +1186,7 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2025-07
 }
 ```
 
-# [ARM (JSON)](#tab/arm)
+# [ARM template](#tab/arm)
 
 The following ARM (JSON) examples use the [Microsoft.OperationalInsights workspaces](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-arm-template#workspacesku-1) resource type.
 
@@ -1208,7 +1209,7 @@ The following ARM (JSON) examples use the [Microsoft.OperationalInsights workspa
   "resources": [
     {
       "type": "Microsoft.OperationalInsights/workspaces",
-      "apiVersion": "2025-07-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('workspaceName')]",
       "location": "[parameters('azureRegion')]",
       "properties": {
@@ -1243,7 +1244,7 @@ The following ARM (JSON) examples use the [Microsoft.OperationalInsights workspa
   "resources": [
     {
       "type": "Microsoft.OperationalInsights/workspaces",
-      "apiVersion": "2025-07-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('workspaceName')]",
       "location": "[parameters('azureRegion')]",
       "properties": {
@@ -1266,7 +1267,7 @@ The following ARM (JSON) examples use the [Microsoft.OperationalInsights workspa
 | azureRegion | \<AzureRegion\> | User input |
 | workspaceName | \<WorkspaceName\> | User input |
 | capacityReservationInGb | \<CapacityReservationInGb\> | User input (numeric) |
-| apiVersion | • 2017-10-01 (REST)<br>• 2025-07-01 (Bicep & ARM) | • [REST Reference](/rest/api/loganalytics/workspaces/create-or-update#workspacesku)<br>• [Templates Reference](/azure/templates/microsoft.operationalinsights/workspaces) |
+| apiVersion | 2025-07-01 | • [REST Reference](/rest/api/loganalytics/workspaces/update)<br>• [Templates Reference](/azure/templates/microsoft.operationalinsights/workspaces) |
 -->
 ### Disable IP masking
 
@@ -1376,11 +1377,11 @@ New-AzApplicationInsightsWebTest @newAzApplicationInsightsWebTestParams
 
 # [REST](#tab/rest)
 
-The following REST example uses the [Web Tests - Create Or Update](/rest/api/application-insights/web-tests/create-or-update) REST API operation. It creates a standard availability test with default settings.
+The following REST example uses the [Web Tests](../fundamentals/azure-monitor-rest-api-index.md#op-appinsights-web-tests) REST API operation. It creates a standard availability test with default settings.
 
 ```REST
-PUT https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.Insights/webtests/{WebTestName}?api-version=2022-06-15
-Authorization: Bearer {AccessToken}
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/webtests/{webTestName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
@@ -1431,7 +1432,7 @@ param azureRegion string = '<AzureRegion>'
 param webTestName string = '<WebTestName>'
 param requestUrl string = '<RequestUrl>'
 
-resource webTest 'Microsoft.Insights/webtests@2022-06-15' = {
+resource webTest 'Microsoft.Insights/webtests@<ApiVersion>' = {
   name: webTestName
   location: azureRegion
   tags: {
@@ -1470,7 +1471,7 @@ resource webTest 'Microsoft.Insights/webtests@2022-06-15' = {
 
 For more information about creating availability tests using Bicep, see [Microsoft.Insights webtests](/azure/templates/microsoft.insights/webtests?pivots=deployment-language-bicep).
 
-# [ARM (JSON)](#tab/arm)
+# [ARM template](#tab/arm)
 
 The following ARM (JSON) example uses the [Microsoft.Insights webtests](/azure/templates/microsoft.insights/webtests?pivots=deployment-language-arm-template) resource type. It creates a standard availability test with default settings.
 
@@ -1507,7 +1508,7 @@ The following ARM (JSON) example uses the [Microsoft.Insights webtests](/azure/t
   "resources": [
     {
       "type": "Microsoft.Insights/webtests",
-      "apiVersion": "2022-06-15",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('webTestName')]",
       "location": "[parameters('azureRegion')]",
       "tags": {
@@ -1583,7 +1584,7 @@ For a list of various REST API call examples to create a metric alert, see the [
 
 To learn how to add a metric alert by using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#arm-template-procedure).
 
-# [ARM (JSON)](#tab/arm)
+# [ARM template](#tab/arm)
 
 To learn how to add a metric alert by using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#arm-template-procedure).
 
