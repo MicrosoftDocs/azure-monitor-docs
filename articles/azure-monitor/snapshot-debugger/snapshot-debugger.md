@@ -1,15 +1,15 @@
 ---
-title: Debug exceptions in .NET applications using Snapshot Debugger
-description: Learn how to use Snapshot Debugger to automatically collect snapshots and debug exceptions in .NET apps.
+title: Snapshot Debugger for .NET Exception Debugging
+description: Learn how to use Snapshot Debugger to automatically capture debug snapshots of source code and variables when exceptions occur in your live .NET apps.
 ms.reviewer: charles.weininger
 reviewer: cweining
 ms.topic: how-to
 ms.custom: devx-track-dotnet, devdivchpfy22, engagement
 ms.date: 03/10/2026
-#customer intent: As an application developer, I need to understand at a high level how Snapshot Debugger collects a snapshot when an exception occurs in a .NET application.
+#customer intent: As a developer, I need to understand at a high level how Snapshot Debugger collects a snapshot when an exception occurs in a .NET application.
 ---
 
-# Debug exceptions in .NET applications using Snapshot Debugger
+# Debug exceptions in .NET applications by using Snapshot Debugger
 
 When enabled, Snapshot Debugger automatically collects a debug snapshot of the source code and variables when an exception occurs in your live .NET application. The Snapshot Debugger in [Application Insights](../app/app-insights-overview.md):
 
@@ -28,7 +28,7 @@ Snapshot collection is available for:
 
 ### Environments
 
-The following environments are supported:
+Snapshot Debugger supports the following environments:
 
 - [Azure App Service](snapshot-debugger-app-service.md?toc=/azure/azure-monitor/toc.json)
 - [Azure Functions](snapshot-debugger-function-app.md?toc=/azure/azure-monitor/toc.json)
@@ -40,7 +40,7 @@ The following environments are supported:
 > [!NOTE]
 > Client applications, such as WPF, Windows Forms, or UWP, aren't supported.
 
-## Prerequisites for using Snapshot Debugger
+## Prerequisites for Snapshot Debugger
 
 ### Packages and configurations
 
@@ -49,90 +49,90 @@ The following environments are supported:
 
 ### Permissions
 
-- Verify you're added to the [Application Insights Snapshot Debugger](/azure/role-based-access-control/role-assignments-portal) role for the target **Application Insights Snapshot**.
+- Verify that you have the [Application Insights Snapshot Debugger](/azure/role-based-access-control/role-assignments-portal) role for the target **Application Insights Snapshot**.
 
 ## How Snapshot Debugger works
 
-The Snapshot Debugger is implemented as an [Application Insights telemetry processor](../app/configuration-with-applicationinsights-config.md#telemetry-processors-aspnet). When your application runs, the Snapshot Debugger telemetry processor is added to your application's system-generated logs pipeline. 
+The Snapshot Debugger works as an [Application Insights telemetry processor](../app/configuration-with-applicationinsights-config.md#telemetry-processors-aspnet). When your application runs, the Snapshot Debugger telemetry processor joins your application's system-generated logs pipeline. 
 
 > [!IMPORTANT]
-> Snapshots might contain personal data or other sensitive information in variable and parameter values. Snapshot data is stored in the same region as your Application Insights resource.
+> Snapshots might contain personal data or other sensitive information in variable and parameter values. Application Insights stores snapshot data in the same region as your resource.
 
 ### Snapshot Debugger process
 
 The Snapshot Debugger process starts and ends with the `TrackException` method. A process snapshot is a suspended clone of the running process. Your users experience little to no interruption. In a typical scenario:
 
-1. An exception is thrown in your application and reported to Application Insights by calling the [`TrackException`](../app/asp-net-exceptions.md#exceptions) method.
+1. Your application throws an exception and reports it to Application Insights by calling the [`TrackException`](../app/asp-net-exceptions.md#exceptions) method.
 
 1. The Snapshot Debugger monitors exceptions as they're thrown by subscribing to the [`AppDomain.CurrentDomain.FirstChanceException`](/dotnet/api/system.appdomain.firstchanceexception) event. 
 
-1. A counter is incremented for the problem ID. 
+1. The Snapshot Debugger increments a counter for the problem ID. 
 
-   When the counter reaches the `ThresholdForSnapshotting` value, the problem ID is added to a collection plan.
+   When the counter reaches the `ThresholdForSnapshotting` value, the Snapshot Debugger adds the problem ID to a collection plan.
     
    > [!NOTE]
-   > The `ThresholdForSnapshotting` default minimum value is 1. With this value, your app has to trigger the same exception *twice* before a snapshot is created.
+   > The `ThresholdForSnapshotting` default minimum value is 1. With this value, your app has to trigger the same exception *twice* before the Snapshot Debugger creates a snapshot.
 
-1. The exception event's problem ID is computed and compared against the problem IDs in the collection plan.
+1. The Snapshot Debugger computes the exception event's problem ID and compares it against the problem IDs in the collection plan.
 
-1. If there's a match between problem IDs, a *snapshot* of the running process is created. 
+1. If there's a match between problem IDs, the Snapshot Debugger creates a *snapshot* of the running process. 
 
-   The snapshot is assigned a unique identifier and the exception is stamped with that identifier. 
+   The Snapshot Debugger assigns the snapshot a unique identifier and stamps the exception with that identifier. 
    
    > [!NOTE]
-   > The snapshot creation rate is limited by the `SnapshotsPerTenMinutesLimit` setting. By default, the limit is one snapshot every 10 minutes.
+   > The `SnapshotsPerTenMinutesLimit` setting limits the snapshot creation rate. By default, the limit is one snapshot every 10 minutes.
    
-1. After the `FirstChanceException` handler returns, the thrown exception is processed as normal. 
+1. After the `FirstChanceException` handler returns, your application processes the thrown exception as normal. 
 
-1. The exception reaches the `TrackException` method again and is reported to Application Insights, along with the snapshot identifier.
+1. The exception reaches the `TrackException` method again, which reports it to Application Insights, along with the snapshot identifier.
 
 > [!NOTE]
-> Set `IsEnabledInDeveloperMode` to `true` if you want to generate snapshots while you debug in Visual Studio.
+> Set `IsEnabledInDeveloperMode` to `true` to generate snapshots while you debug in Visual Studio.
 
 ### Snapshot Uploader process
 
-While the Snapshot Debugger process continues to run and serve traffic to users with little interruption, the snapshot is handed off to the Snapshot Uploader process. In a typical scenario, the Snapshot Uploader:
+While the Snapshot Debugger process continues to run and serve traffic to users with little interruption, it hands off the snapshot to the Snapshot Uploader process. In a typical scenario, the Snapshot Uploader:
 
 1. Creates a minidump.
 
 1. Uploads the minidump to Application Insights, along with any relevant symbol (*.pdb*) files.
 
 > [!NOTE]
-> No more than 50 snapshots per day can be uploaded.
+> The Snapshot Uploader can upload no more than 50 snapshots per day.
 
 If you enabled the Snapshot Debugger but you aren't seeing snapshots, see the [Troubleshooting guide](snapshot-debugger-troubleshoot.md).
 
-## Upgrading Snapshot Debugger
+## Upgrade Snapshot Debugger
 
 Snapshot Debugger auto-upgrades by using the built-in, preinstalled Application Insights site extension. 
 
-Manually adding an Application Insights site extension to keep Snapshot Debugger up-to-date is deprecated.  
+Manually adding an Application Insights site extension to keep Snapshot Debugger up to date is deprecated.  
 
-## Overhead
+## Snapshot Debugger overhead
 
 The Snapshot Debugger is designed for use in production environments. The default settings include rate limits to minimize the impact on your applications. 
 
 However, you might experience small CPU, memory, and I/O overhead associated with the Snapshot Debugger, such as:
 
-- When an exception is thrown in your application
+- When your application throws an exception
 - If the exception handler decides to create a snapshot
 - When `TrackException` is called
 
-There's **no additional cost** for storing data captured by Snapshot Debugger.
+There's **no additional cost** for storing the data that the Snapshot Debugger captures.
 
 [See example scenarios in which you might experience Snapshot Debugger overhead.](./snapshot-debugger-troubleshoot.md#snapshot-debugger-overhead-scenarios)
 
 ## Code Optimizations
 
-If snapshots are being collected from your app, there might be related exception insights in the [Code Optimizations consolidated overview](../optimization-insights/view-code-optimizations.md#exceptions). 
+If Snapshot Debugger collects snapshots from your app, you might see related exception insights in the [Code Optimizations consolidated overview](../optimization-insights/view-code-optimizations.md#exceptions). 
 
-## Limitations
+## Snapshot Debugger limitations
 
-This section discusses limitations for the Snapshot Debugger.
+The Snapshot Debugger has the following limitations:
 
 - **Data retention**
 
-  Debug snapshots are stored for 15 days. The default data retention policy is set on a per-application basis. If you need to increase this value, you can request an increase by opening a support case in the Azure portal. For each Application Insights instance, a maximum number of 50 snapshots are allowed per day.
+  Debug snapshots are stored for 15 days. The default data retention policy is set on a per-application basis. To increase this value, open a support case in the Azure portal. Each Application Insights instance allows a maximum of 50 snapshots per day.
 
 - **Publish symbols**
 
@@ -154,11 +154,11 @@ This section discusses limitations for the Snapshot Debugger.
   - In the same folder of the main application `.dll` (typically, `wwwroot/bin`), or
   - Available on the current path.
 
-  For more information on the different symbol options that are available, see the [Visual Studio documentation](/visualstudio/ide/reference/advanced-build-settings-dialog-box-csharp). For best results, we recommend that you use *Full*, *Portable*, or *Embedded*.
+  For more information about the available symbol options, see the [Visual Studio documentation](/visualstudio/ide/reference/advanced-build-settings-dialog-box-csharp). For best results, use *Full*, *Portable*, or *Embedded*.
 
 - **Optimized builds**
 
-  In some cases, local variables can't be viewed in release builds because of optimizations applied by the JIT compiler.
+  In some cases, you can't view local variables in release builds because the JIT compiler applies optimizations.
 
   However, in App Service, the Snapshot Debugger can deoptimize throwing methods that are part of its collection plan.
 
