@@ -64,7 +64,7 @@ You can identify the managing resource by checking the **Managed By*- property i
 Remove a managed workspace only after it isn't connected to an Application Insights resource. You can't delete the managed Log Analytics workspace directly while it's protected by the managed resource group's deny assignment. Use one of the following options.
 
 > [!IMPORTANT]
-> AMPLS associations aren't removed automatically. Before deleting an Application Insights resource or its managed resource group, remove the managed Log Analytics workspace from all associated AMPLS instances. Otherwise, the Application Insights resource can be deleted while the managed resource group and workspace remain. If this occurs, remove the AMPLS associations and delete the managed resource group manually.
+> AMPLS associations aren't removed automatically. Before deleting an Application Insights resource or its managed resource group, remove the managed Log Analytics workspace from all associated AMPLS instances. Otherwise, the Application Insights resource can be deleted while the managed resource group and workspace remain. If this condition occurs, remove the AMPLS associations and delete the managed resource group manually.
 
 ### Option 1: Delete the Application Insights resource
 
