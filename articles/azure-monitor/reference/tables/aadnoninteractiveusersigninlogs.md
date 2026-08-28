@@ -11,7 +11,7 @@ ms.date: 08/27/2026
 
 # AADNonInteractiveUserSignInLogs
 
-Non-interactive Azure Active Directory sign-in logs from user.
+Non-interactive Microsoft Entra ID sign-in logs from user.
 
 ## Table attributes
 
@@ -34,9 +34,9 @@ Non-interactive Azure Active Directory sign-in logs from user.
 | Agent | string | Details of agentic sign-in. |
 | AlternateSignInName | string | Provides the on-premises UPN of the user sign-ing into Azure AD.e.g. Phone number sign-in. |
 | AppDisplayName | string | App name displayed in the Azure portal. |
-| AppId | string | Unique GUID representing the app ID in the Azure Active Directory. |
+| AppId | string | Unique GUID representing the app ID in the Microsoft Entra ID. |
 | AppliedEventListeners | dynamic | Detailed information about the applied event listeners or listeners that are triggered by the corresponding events in an authentication activity. It's called appliedEventListeners in ALP and MSGraph, but use Authentication Events to match name on UX. |
-| AppOwnerTenantId | string | The tenant identifier of the owenr of the application in Azure Active Directory. |
+| AppOwnerTenantId | string | The tenant identifier of the owenr of the application in Microsoft Entra ID. |
 | AuthenticationContextClassReferences | string | The authentication contexts of the sign-in. |
 | AuthenticationDetails | string | A record of each step of authentication undertaken in the sign-in. |
 | AuthenticationMethodsUsed | string | List of authentication methods used. |
