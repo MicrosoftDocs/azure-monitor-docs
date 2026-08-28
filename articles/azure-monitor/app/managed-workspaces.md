@@ -1,5 +1,4 @@
 ---
-
 title: Application Insights managed workspaces
 description: This article explains automatically created managed workspaces
 ms.topic: how-to
@@ -31,10 +30,18 @@ Managed workspaces have the following limitations:
 - Support only the Application Insights resource that created them. A managed workspace can't be used for diagnostic settings, custom logs, or another Application Insights instance.
 - Changes to workspace settings, such as quotas, are allowed, but the workspace can't be repurposed for other uses.
 - Tagging is supported only for newly created managed resource groups and managed workspaces. Existing managed resource groups and workspaces created before this change can't be tagged.
-- You can't delete the managed Log Analytics workspace directly while it's managed by Application Insights. Removal follows one of two paths:
+- You can't delete the managed Log Analytics workspace directly while it's managed by Application Insights. Before removing it, complete the following prerequisites:
 
-  - Delete the Application Insights resource. Azure deletes the managed resource group and the managed workspace automatically.
-  - Keep the Application Insights resource by connecting it to a different Log Analytics workspace, then delete the managed resource group that contains the managed workspace.
+  1. Remove the managed workspace from every Azure Monitor Private Link Scope (AMPLS) with which it's associated. AMPLS resource associations aren't removed automatically.
+  2. Remove any resource locks and resolve any Azure Policy restrictions that could block deletion of the managed resource group.
+
+  After completing these prerequisites, choose one of the following removal paths:
+
+  - Delete Application Insights and its managed workspace. Delete the Application Insights resource. Azure initiates deletion of the managed resource group and managed workspace. If the managed resource group remains, delete it manually.
+  - Keep Application Insights but remove its managed workspace. Connect the Application Insights resource to a different Log Analytics workspace, and then delete the managed resource group containing the original managed workspace.
+
+    In both cases, delete the managed resource group rather than attempting to delete the managed workspace directly. If you already deleted the Application Insights resource, you don't need to restore it before deleting the remaining managed resource group.
+
 - The managed resource group's deny assignment blocks configuration of [protected tables](../logs/protected-tables-configure.md) on the managed workspace. To protect sensitive Application Insights data, such as the `AppGenAIContent` table, set up protected tables on a workspace you own rather than a managed workspace.
 
 ## Identify managed workspaces
@@ -56,14 +63,26 @@ You can identify the managing resource by checking the **Managed By*- property i
 
 Remove a managed workspace only after it isn't connected to an Application Insights resource. You can't delete the managed Log Analytics workspace directly while it's protected by the managed resource group's deny assignment. Use one of the following options.
 
+> [!IMPORTANT]
+> AMPLS associations aren't removed automatically. Before deleting an Application Insights resource or its managed resource group, remove the managed Log Analytics workspace from all associated AMPLS instances. Otherwise, the Application Insights resource can be deleted while the managed resource group and workspace remain. If this condition occurs, remove the AMPLS associations and delete the managed resource group manually.
+
 ### Option 1: Delete the Application Insights resource
 
-Delete the Application Insights resource that owns the managed workspace. Azure deletes the managed resource group and the workspace automatically.
+1. Identify whether the managed Log Analytics workspace is associated with one or more Azure Monitor Private Link Scopes (AMPLS).
+2. Remove the workspace from every AMPLS resource association.
+3. Delete the Application Insights resource.
+
+Azure initiates deletion of the managed resource group and managed workspace. If another dependency, such as a resource lock or Azure Policy restriction, prevents deletion, the managed resource group might remain after the Application Insights resource is deleted.
+
+If the managed resource group remains, resolve the blocking dependency and delete the managed resource group manually. You don't need to restore the deleted Application Insights resource before deleting the managed resource group.
 
 ### Option 2: Keep the Application Insights resource
 
-1. **Reconnect the Application Insights resource to a different Log Analytics workspace.**
-2. **Delete the managed resource group*- that contains the managed workspace. Delete the managed resource group, not the workspace. Resource group deletion removes the managed workspace and the deny assignment.
+1. Reconnect the Application Insights resource to a different Log Analytics workspace.
+2. Remove the original managed workspace from every AMPLS resource association.
+3. Delete the managed resource group that contains the managed workspace.
+
+Delete the managed resource group, not the workspace directly. Resource group deletion removes the managed workspace and the managed resource group's deny assignment.
 
 > [!NOTE]
 > The managed workspace shows **Deny assignments** in the Azure portal. These deny assignments don't prevent deletion of the resource group that contains the managed workspace. Resource group deletion completes and removes the workspace.
