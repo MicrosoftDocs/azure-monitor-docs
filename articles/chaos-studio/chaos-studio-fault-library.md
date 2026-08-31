@@ -1,19 +1,20 @@
 ---
-title: Azure Chaos Studio fault and action library
-description: Understand the available actions you can use with Azure Chaos Studio, including any prerequisites and parameters.
+title: Fault and action library for Experiments (classic)
+description: Review faults and actions for Experiments (classic) in Azure Chaos Studio, including prerequisites, parameters, and supported target resources.
 services: chaos-studio
 author: rsgel
 ms.topic: how-to
-ms.date: 07/06/2025
+ms.date: 08/31/2026
 ms.reviewer: vikramraju
 ms.custom: linux-related-content
+ai-usage: ai-assisted
 ---
 
-# Azure Chaos Studio fault and action library
+# Fault and action library for Experiments (classic)
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 
-This article lists the faults you can use in Chaos Studio, organized by the applicable resource type. To understand which role assignments are recommended for each resource type, see [Supported resource types and role assignments for Azure Chaos Studio](./chaos-studio-fault-providers.md).
+This article lists the faults you can use with Experiments (classic), organized by the applicable resource type. To understand which role assignments are recommended for each resource type, see [Supported resource types and role assignments for Experiments (classic)](./chaos-studio-fault-providers.md).
 
 ## Agent-based faults
 

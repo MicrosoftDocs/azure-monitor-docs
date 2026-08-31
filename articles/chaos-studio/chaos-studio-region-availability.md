@@ -1,23 +1,23 @@
 ---
 title: Regional availability of Azure Chaos Studio
-description: Understand how Azure Chaos Studio makes chaos experiments and chaos targets available in Azure regions.
+description: Compare regional availability for Chaos Studio Workspaces and Experiments (classic), including Workspace deployment, experiments, and resource targeting.
 author: prasha-microsoft 
 ms.reviewer: prashabora
 ms.topic: concept-article
-ms.date: 07/15/2026
+ms.date: 08/31/2026
 ms.custom: template-concept, references_regions
 ai-usage: ai-assisted
 ---
 
 # Regional availability of Azure Chaos Studio
 
-This article describes the regional availability model for Azure Chaos Studio. It explains the difference between a region where experiments can be deployed and one where resources can be targeted. It also provides an overview of the Chaos Studio high-availability model.
+This article describes regional availability for the two Azure Chaos Studio resource models: Chaos Studio Workspaces and Experiments (classic). It explains where you can deploy Workspaces and experiments, and where Experiments (classic) can target resources.
 
-Chaos Studio is a regional Azure service, which means that the service is deployed and run within an Azure region. Chaos Studio has two regional components: the region where an experiment is deployed and the region where a resource is targeted.
+Chaos Studio is a regional Azure service. For Experiments (classic), the service has two regional components: the region where an experiment is deployed and the region where a resource is targeted.
 
 A chaos experiment can target a resource in a different region than the experiment. This process is called cross-region targeting. To enable chaos experimentation on targets in more regions, Chaos Studio has a set of regions in which you can do *resource targeting*. This set is a superset of the regions in which you can create and manage *experiments*. Below is the list of regions in which experiments and resource targeting are currently available.
  
-| Region | Chaos Studio (Experiments) | Resource Targeting |
+| Region | Experiments (classic) | Resource targeting |
 |--|--|--|
 | East US | Available | Available |
 | East US 2 | Available | Available |
@@ -43,9 +43,9 @@ A chaos experiment can target a resource in a different region than the experime
 | Brazil South | Available  | Available |
 | Australia East | Available  | Available |
  
-You can also view the list of regions where Chaos Studio is available, see [Products available by region](https://azure.microsoft.com/global-infrastructure/services/?products=chaos-studio).
+You can also view the list of regions where Chaos Studio is available in [Products available by region](https://azure.microsoft.com/global-infrastructure/services/?products=chaos-studio).
 
-## Regional availability of chaos experiments
+## Regional availability of Experiments (classic)
 A [chaos experiment](chaos-studio-chaos-experiments.md) is an Azure resource that describes the faults that should be run and the resources those faults should be run against. An experiment is deployed to a single region. The following information and operations stay in that region:
 
 * **Experiment definition**. The definition includes the hierarchy of steps, branches, and actions, the faults and parameters defined, and the resource IDs of target resources. Open-ended properties in the experiment resource JSON including the step name, branch name, and any fault parameters are stored in region and treated as system metadata.
@@ -54,7 +54,7 @@ A [chaos experiment](chaos-studio-chaos-experiments.md) is an Azure resource tha
 
 Any experiment data stored in Chaos Studio is deleted when an experiment is deleted.
 
-## Regional availability of chaos targets (resource targeting)
+## Regional availability of targets for Experiments (classic)
 A [chaos target](chaos-studio-targets-capabilities.md) enables Chaos Studio to interact with an Azure resource. Faults in a chaos experiment run against a chaos target, but the target resource can be in a different region than the experiment. A resource can only be onboarded as a chaos target if Chaos Studio resource targeting is available in that region.
 
 The list of regions where resource targeting is available is a superset of the regions where you can create experiments. A chaos target is deployed to the same region as the target resource. The following information and operations stay in that region:
@@ -67,7 +67,9 @@ Any target or capability metadata is deleted when a target is deleted.
 
 ## Regional availability of Chaos Studio Workspaces
 
-[Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) and Scenarios are in public preview. A Workspace is a logical resource: it can discover and run Scenarios against resources in any Azure region, regardless of where the Workspace itself is deployed. You don't need to create the Workspace in the same region as your target resources.
+[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
+
+A Workspace is a logical resource: it can discover and run Scenarios against resources in any Azure region, regardless of where the Workspace itself is deployed. You don't need to create the Workspace in the same region as your target resources.
 
 During public preview, you can create Chaos Studio Workspaces in the following regions:
 
@@ -85,10 +87,10 @@ No feature flag is required in these regions. Register the `Microsoft.Chaos` res
 
 For information on high availability with Chaos Studio, see [Reliability in Chaos Studio](/azure/reliability/reliability-chaos-studio).
 
-## Data Residency
+## Data residency
 Azure Chaos Studio doesn't store customer data outside the region the customer deploys the service instance in.
 
 ## Next steps
-Now that you understand the region availability model for Chaos Studio, you're ready to:
-- [Review the availability of Chaos Studio per region](https://azure.microsoft.com/global-infrastructure/services/?products=chaos-studio)
-- [Create and run your first experiment](chaos-studio-tutorial-service-direct-portal.md)
+- [Choose between Chaos Studio Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md).
+- [Create a Workspace and run your first Scenario](quickstart-create-workspace.md).
+- [Create and run an experiment with Experiments (classic)](chaos-studio-tutorial-service-direct-portal.md).

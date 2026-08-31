@@ -1,9 +1,9 @@
 ---
 title: Scenarios in Azure Chaos Studio
-description: Reference for all available Scenarios in Azure Chaos Studio Workspaces. Each Scenario simulates a real outage pattern using composed Actions.
+description: Review the Scenarios available in Chaos Studio Workspaces. Each Scenario simulates an outage pattern by using composed Actions.
 author: nikhilkaul-msft
 ms.topic: reference
-ms.date: 08/19/2026
+ms.date: 08/31/2026
 ai-usage: ai-assisted
 ---
 
@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 A Scenario is a preconfigured resilience test that simulates a specific outage pattern. Each Scenario composes one or more Actions into a sequence that mirrors how real failures cascade across Azure resources. When you create a [Workspace](chaos-studio-workspaces-overview.md), Chaos Studio discovers your resources and shows you which Scenarios apply to them.
 
-This page lists the Scenarios available in Azure Chaos Studio Workspaces. Chaos Studio ships a set of supported Scenario templates that cover the most common outage patterns. You can run these templates as-is, or use the [Scenario designer](#create-a-custom-scenario) to customize your own.
+This page lists the Scenarios available in Chaos Studio Workspaces. Chaos Studio ships a set of supported Scenario templates that cover common outage patterns. You can run these templates as-is, or use the [Scenario designer](#create-a-custom-scenario) to customize your own.
 
 [!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
@@ -310,7 +310,7 @@ resource customScenario 'Microsoft.Chaos/workspaces/scenarios@2026-05-01-preview
 }
 ```
 
-Action IDs are URNs of the form `urn:csci:microsoft:{service}:{action}/{version}`. For the full resource schema, including every Action and parameter property, see the [Microsoft.Chaos/workspaces/scenarios template reference](/azure/templates/microsoft.chaos/workspaces/scenarios). For the list of Actions you can compose, see the [Fault and action library](chaos-studio-fault-library.md).
+Action IDs are URNs of the form `urn:csci:microsoft:{service}:{action}/{version}`. For the full resource schema, including every Action and parameter property, see the [Microsoft.Chaos/workspaces/scenarios template reference](/azure/templates/microsoft.chaos/workspaces/scenarios). The [fault and action library for Experiments (classic)](chaos-studio-fault-library.md) describes the separate classic catalog; an entry in that catalog doesn't indicate that an Action is available in Chaos Studio Workspaces.
 
 ## What determines which Scenarios appear in your Workspace
 
@@ -330,4 +330,4 @@ When you configure a Scenario, you can exclude specific resources from the run. 
 
 - [Quickstart: Create a Workspace and run your first Scenario](quickstart-create-workspace.md)
 - [Scenario reports in Azure Chaos Studio](chaos-studio-scenario-reports.md)
-- [Fault and action library](chaos-studio-fault-library.md)
+- [Choose between Chaos Studio Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md)

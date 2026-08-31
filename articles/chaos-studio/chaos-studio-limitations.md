@@ -1,18 +1,19 @@
 ---
-title: Azure Chaos Studio limitations and known issues
-description: Understand current limitations and known issues when you use Azure Chaos Studio.
+title: Limitations for Experiments (classic)
+description: Review limitations and known issues for Experiments (classic) in Azure Chaos Studio, including resource, agent, and fault constraints.
 services: chaos-studio
 author: prasha-microsoft 
 ms.topic: overview
-ms.date: 08/05/2026
+ms.date: 08/31/2026
 ms.reviewer: carlsonr
+ai-usage: ai-assisted
 ---
 
-# Azure Chaos Studio limitations and known issues
+# Limitations and known issues for Experiments (classic)
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 
-The following are known limitations in Chaos Studio. 
+The following limitations and known issues apply to Experiments (classic).
 
 ## Limitations
 

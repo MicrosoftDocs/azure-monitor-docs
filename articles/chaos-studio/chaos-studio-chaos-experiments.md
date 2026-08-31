@@ -1,21 +1,19 @@
 ---
-title: Chaos experiments in Azure Chaos Studio
-description: Understand the concept of a chaos experiment in Azure Chaos Studio. What are the parts of a chaos experiment? How can you create a chaos experiment?
+title: Experiments (classic) in Azure Chaos Studio
+description: Understand Experiments (classic) in Azure Chaos Studio, including the parts of a chaos experiment and how experiments use faults, targets, and sequencing.
 author: prasha-microsoft
 ms.reviewer: prashabora
 ms.topic: concept-article
-ms.date: 10/01/2024
+ms.date: 08/31/2026
 ms.custom: template-concept
+ai-usage: ai-assisted
 ---
 
-# Chaos experiments
+# Experiments (classic) in Azure Chaos Studio
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 
-In Azure Chaos Studio, you create and run chaos experiments. A chaos experiment is an Azure resource that describes the faults that should be run and the resources those faults should be run against.
-
-> [!NOTE]
-> Experiments are the classic Chaos Studio model and remain fully supported. For new resilience testing, use [Workspaces and Scenarios](chaos-studio-workspaces-overview.md), which discover your resources and run preconfigured outage scenarios. To customize a test, use the [Scenario designer](chaos-studio-scenarios.md#create-a-custom-scenario).
+In Experiments (classic), you create and run chaos experiments. A chaos experiment is an Azure resource that describes the faults to run and the resources to target.
 
 An experiment is divided into two sections:
 
