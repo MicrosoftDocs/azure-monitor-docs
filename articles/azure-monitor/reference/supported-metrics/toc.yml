@@ -494,6 +494,8 @@
   href: oracle-database-dbsystems-metrics.md
 - name: Oracle.Database/exadbVmClusters
   href: oracle-database-exadbvmclusters-metrics.md
+- name: Oracle.Database/goldenGateDeployments
+  href: oracle-database-goldengatedeployments-metrics.md
 - name: Private.MessagingConnectors/connectors
   href: private-messagingconnectors-connectors-metrics.md
 - name: Wandisco.Fusion/migrators

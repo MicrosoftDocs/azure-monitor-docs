@@ -623,3 +623,6 @@ items:
 - name: Oracle.Database/exascaleDbStorageVaults
   href: oracle-database-exascaledbstoragevaults-logs.md
   displayName: Creation Events,Delete Events,Update Events
+- name: Oracle.Database/goldenGateDeployments
+  href: oracle-database-goldengatedeployments-logs.md
+  displayName: Backup Events,Creation Events,Critical Events,Delete Events,Information Events,Maintenance Events,Restore Events,Update Events
