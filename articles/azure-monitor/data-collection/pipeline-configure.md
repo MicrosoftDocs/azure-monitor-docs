@@ -144,7 +144,7 @@ panic: failed to apply resource: the server could not find the requested resourc
 
 **Cause:** The pipeline operator depends on the Azure Arc Certificate Manager extension, which provides the certificate infrastructure (`ClusterIssuer` resources). The operator can't start without it.
 
-**Solution:** Install the Certificate Manager extension first to start the pipeline operator successfully. For installation instructions, see [Install cert-manager for Arc-enabled Kubernetes](https://learn.microsoft.com/azure/azure-arc/kubernetes/cert-manager-overview).
+**Solution:** Install the Certificate Manager extension first to start the pipeline operator successfully. For installation instructions, see [Install cert-manager for Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/cert-manager-overview).
 
 Verify the Certificate Manager extension is installed:
 
