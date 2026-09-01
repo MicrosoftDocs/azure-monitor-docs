@@ -2,7 +2,7 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 07/31/2026
+ms.date: 09/01/2026
 ---
 
 # What's new in Azure Monitor documentation
@@ -10,6 +10,12 @@ ms.date: 07/31/2026
 This article lists significant changes to Azure Monitor documentation.
 
 ## 2026
+
+### August 2026
+
+|Subservice | Article | Description |
+|---|---|---|
+|Virtual Machines|[Run Performance Diagnostics reports on Azure virtual machines](../vm/performance-diagnostics-run.md#threshold-settings)|Custom threshold settings for continuous and on-demand diagnostics are generally available.|
 
 ### July 2026
 
