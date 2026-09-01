@@ -135,7 +135,7 @@ Container Network Logs requires a Customer Resource Definition (CRD) to be appli
 
 #### Change table plan
 
-Container Flow Logs are ingested to the `ContainerNetworLogs` table in Log Analytics. The table currently supports the Analytics and Basic table plans. To change the table plan for the `ContainerNetworkLogs`, see the [instructions here](/azure/azure-monitor/logs/logs-table-plans?tabs=portal-1#set-the-table-plan).
+Container Flow Logs ingest to the `ContainerNetworkLogs` table in Log Analytics. The table currently supports the Analytics and Basic table plans. To change the table plan for the `ContainerNetworkLogs`, see the [instructions here](/azure/azure-monitor/logs/logs-table-plans?tabs=portal-1#set-the-table-plan).
 
 #### Throttling  
 
