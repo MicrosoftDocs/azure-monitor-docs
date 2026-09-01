@@ -2,7 +2,7 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 08/13/2026
+ms.date: 09/01/2026
 ai-usage: ai-assisted
 ---
 
@@ -18,6 +18,7 @@ This article lists significant changes to Azure Monitor documentation.
 | --- | --- | --- |
 | Fundamentals | Azure Operations Center retirement | Azure Operations Center retired in August 2026. Use [Azure Monitor](overview.md) for monitoring and analysis capabilities. The [Azure Copilot Observability Agent](../aiops/observability-agent-overview.md) provides natural-language data exploration, guided investigations, Azure Monitor issues, and autonomous alert operations. |
 | Logs | [Table feature comparison](../logs/data-platform-logs.md#table-feature-comparison)<br>[Configure a table plan in a Log Analytics workspace](../logs/logs-table-plans.md) | **Auxiliary / Lake** table plans take the next step in capabilities to let teams keep more of their data without stretching the budget.<br>- Expanded **Auxiliary / Lake** support for Azure tables<br>- Switch between **Analytics** and **Auxiliary / Lake** plans<br>- **Auxiliary / Lake** available in sovereign clouds.<br>For more information, see the Observability blog post, [Azure Monitor Auxiliary Logs expands with Azure tables support, plan switching, and sovereign clouds](https://techcommunity.microsoft.com/blog/azureobservabilityblog/azure-monitor-auxiliary-logs-expands-with-azure-tables-support-plan-switching-an/4525206). |
+| Virtual Machines | [Run Performance Diagnostics reports on Azure virtual machines](../vm/performance-diagnostics-run.md#threshold-settings) | Custom threshold settings for continuous and on-demand diagnostics are generally available. |
 
 ### July 2026
 
