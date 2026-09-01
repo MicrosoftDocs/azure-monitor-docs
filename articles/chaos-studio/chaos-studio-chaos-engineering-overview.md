@@ -4,7 +4,7 @@ description: Understand the concepts of chaos engineering and fault injection th
 services: chaos-studio
 author: prasha-microsoft
 ms.topic: concept-article
-ms.date: 06/17/2026
+ms.date: 08/31/2026
 ms.reviewer: prashabora
 ai-usage: ai-assisted
 ---
@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 
 Chaos engineering is the practice of injecting controlled failures into a system to validate that it handles disruptions gracefully. Fault injection is the mechanism that makes this possible. It introduces errors like network latency, resource unavailability, or sudden load.
 
-Azure Chaos Studio applies these principles as a managed service. You can run preconfigured [Scenarios](chaos-studio-scenarios.md) through a [Workspace](chaos-studio-workspaces-overview.md), or build custom [experiments](chaos-studio-chaos-experiments.md) with fine-grained control over faults, targets, and sequencing.
+Azure Chaos Studio applies these principles as a managed service. [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) is the current resource model. A Workspace discovers your resources and recommends [Scenarios](chaos-studio-scenarios.md) that simulate relevant outage patterns. [Experiments (classic)](chaos-studio-chaos-experiments.md) is the legacy model for custom fault compositions that use targets and capabilities. To choose a model, see [Choose between Chaos Studio Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md).
 
 ## Why resilience testing matters
 
@@ -23,12 +23,14 @@ Resilience is a property of the whole system, not individual components. The onl
 
 ## How Chaos Studio applies chaos engineering
 
-Chaos Studio injects faults against Azure resources in a controlled, time-bounded manner. An experiment defines which faults to run, against which resources, in what order. Faults can run in parallel or sequentially. Many continuous faults are time-bounded and remove their temporary changes when the experiment ends. For example, the fault removes the NSG rules it added or restarts the resources it stopped. Verify the cleanup behavior for each fault you use by checking the [Fault and action library](chaos-studio-fault-library.md).
+Chaos Studio injects faults against Azure resources in a controlled, time-bounded manner. In Chaos Studio Workspaces, a Scenario defines the Actions, affected resource types, and sequence for an outage pattern. In Experiments (classic), an experiment defines which faults run against which targets and whether they run in parallel or sequentially.
 
-For a deeper look at experiment structure, see [Chaos experiments in Azure Chaos Studio](chaos-studio-chaos-experiments.md). For the list of available faults, see the [Fault and action library](chaos-studio-fault-library.md).
+Many continuous faults are time-bounded and remove their temporary changes when the experiment ends. For example, a fault removes the network security group rules it added or restarts the resources it stopped. For Experiments (classic), verify cleanup behavior in the [fault and action library](chaos-studio-fault-library.md).
 
 ## Next steps
 
 - [What is Azure Chaos Studio?](chaos-studio-overview.md)
+- [Chaos Studio Workspaces overview](chaos-studio-workspaces-overview.md)
+- [Choose between Chaos Studio Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md)
 - [Create a Workspace and run your first Scenario](quickstart-create-workspace.md)
-- [Faults and actions in Azure Chaos Studio](chaos-studio-faults-actions.md)
+- [Understand Experiments (classic)](chaos-studio-chaos-experiments.md)

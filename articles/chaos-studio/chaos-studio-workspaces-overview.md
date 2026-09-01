@@ -1,22 +1,22 @@
 ---
-title: What are Workspaces in Azure Chaos Studio?
-description: Learn about Workspaces, the resource that organizes resilience testing in Azure Chaos Studio. Workspaces discover your resources, recommend Scenarios, and generate reports.
+title: Chaos Studio Workspaces overview
+description: Learn how Chaos Studio Workspaces, the current resource model for resilience testing, discovers resources, recommends Scenarios, runs tests, and produces reports.
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 07/30/2026
+ms.date: 08/31/2026
 ms.custom: references_regions
 ai-usage: ai-assisted
 ---
 
-# Workspaces in Azure Chaos Studio
+# Chaos Studio Workspaces overview
 
-A Workspace is the top-level resource for resilience testing in Azure Chaos Studio. It connects to your Azure environment through a scope, discovers the resources you have deployed, and recommends Scenarios that simulate real outage patterns against those resources.
+Chaos Studio Workspaces is the current resource model for organizing resilience testing in Azure Chaos Studio. A Workspace connects to your Azure environment through a scope, discovers the resources you deployed, and recommends Scenarios that simulate relevant outage patterns. A Scenario run executes the Scenario's Actions against selected resources and produces a report of what happened.
 
 [!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
 Instead of assembling individual Actions and selecting resources manually, you start from a named Scenario that already contains the right Actions, resource discovery, and sequencing for a specific failure pattern. This approach gives you a faster path from "I need to test Zone Down resilience" to an actual test execution.
 
-## Why use Workspaces
+## Why use Chaos Studio Workspaces
 
 Outage simulation is most useful when it mirrors how failures happen. Real incidents don't affect one resource at a time. A zone failure takes down virtual machines, disrupts load balancers, and forces database failovers simultaneously. Workspaces address this pattern by starting from the outage pattern (the Scenario) rather than from individual Actions.
 
@@ -31,9 +31,9 @@ A Workspace has four main parts:
 **Scope** defines which Azure resources the Workspace can see. You set the scope to a subscription, a resource group, or a service group. Chaos Studio then discovers the resources within that scope and matches them to available Scenarios. If you add or remove resources later, the Workspace picks up the changes automatically.
 
 > [!NOTE]
-> Workspaces are logical resources that can operate on resources in any Azure region, regardless of where the Workspace itself is deployed. You don't need to create a Workspace in the same region as your target resources. This is a significant improvement over the classic model, where targets and capabilities had to be co-located with your resources.
+> Workspaces are logical resources that can operate on resources in any Azure region, regardless of where the Workspace itself is deployed. You don't need to create a Workspace in the same region as your target resources. In Experiments (classic), targets and capabilities must be co-located with your resources.
 
-**Identity** is the managed identity the workspace uses to execute actions against your resources. The identity serves as a security boundary: it ensures that only an authorized principal with the right Azure role-based access control (Azure RBAC) role assignments can run actions against specific resources. You control the blast radius by granting the identity roles on exactly the resources you want to test, and nothing more. You can use a system-assigned managed identity (created with the workspace) or a user-assigned managed identity (shared across workspaces). The portal prompts you to assign any missing roles after creation, or you can configure them manually.
+**Identity** is the managed identity the Workspace uses to execute Actions against your resources. The identity serves as a security boundary: it ensures that only an authorized principal with the right Azure role-based access control (Azure RBAC) role assignments can run Actions against specific resources. You control the blast radius by granting the identity roles on exactly the resources you want to test, and nothing more. You can use a system-assigned managed identity created with the Workspace or a user-assigned managed identity shared across Workspaces. The portal prompts you to assign any missing roles after creation, or you can configure them manually.
 
 **Scenario library** is the catalog of Scenarios available in your Workspace. Chaos Studio populates the library based on the resources discovered in your scope. Each Scenario describes the outage pattern it simulates, the Actions it composes, and the resources it affects. You configure a Scenario by selecting it from the library and providing any required parameters, such as which availability zone to take down.
 
@@ -83,18 +83,18 @@ You can view reports in the Azure portal, download them, and share them with sta
 
 For a detailed walkthrough of Scenario reports, see [Scenario reports in Azure Chaos Studio](chaos-studio-scenario-reports.md).
 
-## Relationship to experiments (classic)
+## Relationship to Experiments (classic)
 
-Workspaces and experiments are separate models. Workspaces use scenarios and actions. The classic model uses experiments, targets, and capabilities. If you have existing experiments, they continue to work exactly as before. You can also create new experiments directly when you need custom fault compositions that aren't covered by the scenario catalog.
+Chaos Studio Workspaces and Experiments (classic) are separate resource models. Workspaces use Scenarios that compose actions. The Experiments (classic) model uses experiments, targets, capabilities, and faults. Choose Experiments (classic) when you need a fault composition or capability that isn't available in the catalog of Scenarios.
 
-Starting from a workspace is the fastest way to get resilience coverage for the most common failure modes. For a side-by-side comparison and guidance on when to choose each model, see [Compare workspaces and experiments in Azure Chaos Studio](chaos-studio-workspaces-vs-experiments.md).
+For a side-by-side comparison and guidance on when to choose each model, see [Choose between Chaos Studio Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md).
 
 [!INCLUDE [chaos-studio-feedback](includes/chaos-studio-feedback.md)]
 
 ## Next steps
 
-- [Limitations and known issues in Chaos Studio workspaces](chaos-studio-workspaces-limitations.md)
-- [Quickstart: Create a Workspace and run your first Scenario](quickstart-create-workspace.md)
-- [Scenarios in Azure Chaos Studio](chaos-studio-scenarios.md)
-- [Permissions and identity in Chaos Studio Workspaces](chaos-studio-workspace-permissions.md)
-- [Chaos Studio AI plugin](https://github.com/microsoft/chaos-studio): create and run Scenarios from a conversational interface or autonomous agent
+- [Choose between Chaos Studio Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md).
+- [Create a Workspace and run your first Scenario](quickstart-create-workspace.md).
+- [Configure permissions and identity for Chaos Studio Workspaces](chaos-studio-workspace-permissions.md).
+- [Review the Scenarios available in Chaos Studio Workspaces](chaos-studio-scenarios.md).
+- [Understand Scenario reports](chaos-studio-scenario-reports.md).
