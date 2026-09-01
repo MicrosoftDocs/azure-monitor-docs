@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.DocumentDB/DatabaseAccounts
 description: Reference for Microsoft.DocumentDB/DatabaseAccounts metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 08/26/2026
+ms.date: 08/31/2026
 ms.custom: Microsoft.DocumentDB/DatabaseAccounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -145,7 +145,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Document
 |**Data Usage**<br><br>Total data usage reported at 5 minutes granularity |`DataUsageV2` | No | Bytes |Total (Sum), Average, Maximum, Minimum |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Document Count**<br><br>Total document count reported at 5 minutes, 1 hour and 1 day granularity |`DocumentCountV2` | No | Count |Total (Sum), Average |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Index Usage**<br><br>Total index usage reported at 5 minutes granularity |`IndexUsageV2` | No | Bytes |Total (Sum), Average, Maximum, Minimum |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
-|**Throttled Request Percentage**<br><br>Percentage of requests that were throttled because the provisioned throughput limit was exceeded (HTTP status code 429) |`ThrottledRequestPercentage` | No | Percent |Average |`DatabaseName`, `CollectionName`, `Region`, `OperationType`, `Status`, `CapacityType`, `PriorityLevel`, `ConnectionMode`|PT5M |No|
+|**Throttled Request Percentage**<br><br>Percentage of requests that were throttled because the provisioned throughput limit was exceeded (HTTP status code 429) |`ThrottledRequestPercentage` | No | Percent |Average |`DatabaseName`, `CollectionName`, `Region`, `OperationType`, `Status`, `CapacityType`, `PriorityLevel`, `ConnectionMode`|PT1M |No|
 
 ## Next steps
 
