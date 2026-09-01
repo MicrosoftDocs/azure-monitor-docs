@@ -39,8 +39,6 @@ You can get these recommendations on the **Operational Excellence** tab of the A
 
 [!INCLUDE [OperationalExcellence-azure-cache-for-redis.md](./includes/OperationalExcellence-azure-cache-for-redis.md)]
 
-[!INCLUDE [OperationalExcellence-azure-communication-services.md](./includes/OperationalExcellence-azure-communication-services.md)]
-
 [!INCLUDE [OperationalExcellence-azure-container-apps.md](./includes/OperationalExcellence-azure-container-apps.md)]
 
 [!INCLUDE [OperationalExcellence-azure-cosmos-db.md](./includes/OperationalExcellence-azure-cosmos-db.md)]
