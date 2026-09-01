@@ -2,7 +2,7 @@
 title: Azure Monitor Agent Supported Operating Systems
 description: Learn the operating systems that are supported by the Azure Monitor Agent.
 ms.topic: concept-article
-ms.date: 07/02/2026
+ms.date: 08/31/2026
 ms.custom: references_regions
 ms.reviewer: shseth, nmangum
 # Customer intent: As an IT manager, I want to understand the capabilities of the Azure Monitor Agent to determine whether I can use the agent to collect the data I need from the operating systems of my virtual machines.
@@ -45,8 +45,10 @@ Azure Monitor Agent supports the following Linux distributions, grouped by distr
 
 | Operating system | Support <sup>1</sup> |
 |:---|:---:|
+| AlmaLinux 10                                                | ✓<sup>2</sup> |
 | AlmaLinux 9                                                 | ✓ |
 | AlmaLinux 8                                                 | ✓<sup>2</sup> |
+| Oracle Linux 10                                             | ✓<sup>2</sup> |
 | Oracle Linux 9                                              | ✓ |
 | Oracle Linux 8                                              | ✓ |
 | Oracle Linux 7                                              | ✓ |
@@ -55,6 +57,7 @@ Azure Monitor Agent supports the following Linux distributions, grouped by distr
 | Red Hat Enterprise Linux Server 8.6+                        | ✓<sup>2</sup> |
 | Red Hat Enterprise Linux Server 8.0-8.5                     | ✓ |
 | Red Hat Enterprise Linux Server 7.9                         | ✓ |
+| Rocky Linux 10                                              | ✓<sup>2</sup> |
 | Rocky Linux 9                                               | ✓<sup>2</sup> |
 | Rocky Linux 8                                               | ✓<sup>2</sup> |
 
@@ -67,6 +70,7 @@ Azure Monitor Agent supports the following Linux distributions, grouped by distr
 | Debian 11                                                   | ✓<sup>2</sup> |
 | Debian 10                                                   | ✓ |
 | Debian 9                                                    | ✓ |
+| Ubuntu 26.04 LTS                                            | ✓<sup>2</sup> |
 | Ubuntu 24.04 LTS                                            | ✓<sup>2</sup> |
 | Ubuntu 22.04 LTS                                            | ✓<sup>2</sup> |
 | Ubuntu 20.04 LTS                                            | ✓<sup>2</sup> |
@@ -78,7 +82,9 @@ Azure Monitor Agent supports the following Linux distributions, grouped by distr
 | Operating system | Support <sup>1</sup> |
 |:---|:---:|
 | OpenSUSE 15                                                 | ✓ |
+| SUSE Linux Enterprise Server 16                             | ✓<sup>2</sup> |
 | SUSE Linux Enterprise Server 15 SP7                         | ✓<sup>2</sup> |
+| SUSE Linux Enterprise Server 12 SP5                         | ✓ |
 
 ### Amazon Linux
 
@@ -91,6 +97,7 @@ Azure Monitor Agent supports the following Linux distributions, grouped by distr
 
 | Operating system | Support <sup>1</sup> |
 |:---|:---:|
+| Azure Linux 4.0                                             | ✓<sup>2</sup> |
 | Azure Linux 3.0                                             | ✓<sup>2</sup> |
 | CBL-Mariner 2.0                                             | ✓<sup>2, 3</sup> |
 
