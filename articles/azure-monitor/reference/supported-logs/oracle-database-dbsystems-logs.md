@@ -2,7 +2,7 @@
 title: Supported log categories - Oracle.Database/dbSystems
 description: Reference for Oracle.Database/dbSystems in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/14/2026
+ms.date: 08/21/2026
 ms.custom: Oracle.Database/dbSystems, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -18,14 +18,14 @@ For a list of supported metrics, see [Supported metrics - Oracle.Database/dbSyst
 
 |Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
 |---|---|---|---|---|---|
-|Database Backup Events|Yes||No|No||
-|Creation Events|Yes||No|No||
-|Database Critical Events|Yes||No|No||
-|Delete and Terminate Events|Yes||No|No||
-|System Health Events|Yes||No|No||
-|Database Information Events|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||
-|Database Restore Events|Yes||No|No||
-|Update Events|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||
+|Backup|Yes||No|No||
+|Creation|Yes||No|No||
+|Critical|Yes||No|No||
+|Delete|Yes||No|No||
+|Health|Yes||No|No||
+|Information|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||
+|Restore|Yes||No|No||
+|Update|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||
 
 ## Next Steps
 

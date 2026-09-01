@@ -1,19 +1,19 @@
 ---
 title: Add or Delete Tables and Columns in Azure Monitor Logs
-description: Create a table with a custom schema to collect logs from any data source. 
+description: Create a table with a custom schema to collect logs from any data source.
+ms.topic: how-to
 ms.reviewer: adi.biran
-ms.custom: devx-track-azurepowershell, devx-track-azurecli, devx-track-arm-template, devx-track-bicep
-ms.topic: how-to 
-ms.date: 05/25/2026
+ms.custom: devx-track-azurepowershell, devx-track-azurecli, devx-track-arm-template, devx-track-bicep, cbo-v1.5
+ms.date: 08/27/2026
 ai-usage: ai-assisted
 # Customer intent: As a Log Analytics workspace administrator, I want to manage table schemas and be able to create a table with a custom schema to store logs from an Azure or non-Azure data source.
 ---
 
 # Add or delete tables and columns in Azure Monitor Logs
 
-This article explains how to create a custom table by using an example data collection rule (DCR) and how to manage table schemas with custom columns. 
+This article explains how to create a custom table by using an example data collection rule (DCR) and how to manage table schemas with custom columns.
 
-[Data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) control how Azure Monitor collects data. They let you filter and [transform](../data-collection/data-collection-transformations.md) log data before it reaches an [Azure or custom table](../logs/logs-table-overview.md#table-types). 
+[Data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) control how Azure Monitor collects data. They let you filter and [transform](../data-collection/data-collection-transformations.md) log data before it reaches an [Azure or custom table](../logs/logs-table-overview.md#table-types).
 
 Custom columns extend the schema of a table to accommodate changes in the data source or your organization's analysis requirements. When you update a table schema, update any DCRs that send data to that table.
 
@@ -42,7 +42,7 @@ Custom tables have a suffix of **_CL**; for example, *tablename_CL*. The Azure p
 > [!WARNING]
 > Azure uses table names for billing, so don't include sensitive information in the name.
 
-# [Portal](#tab/azure-portal)
+# [Portal](#tab/portal)
 
 To create a custom table by using the Azure portal:
 
@@ -54,7 +54,7 @@ To create a custom table by using the Azure portal:
 
 1. Under **Table plan**, select **Analytics** (default), **Basic**, or **Auxiliary / Lake**.
 
-1. Select an existing data collection rule from the **Data collection rule** dropdown, or select **Create a new data collection rule** and specify the **Subscription**, **Resource group**, and **Name** for the new data collection rule. 
+1. Select an existing data collection rule from the **Data collection rule** dropdown, or select **Create a new data collection rule** and specify the **Subscription**, **Resource group**, and **Name** for the new data collection rule.
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/create-custom-table-portal.png" lightbox="media/tutorial-logs-ingestion-portal/create-custom-table-portal.png" alt-text="Screenshot showing new data collection rule.":::
 
@@ -88,16 +88,17 @@ To create a custom table by using the Azure portal:
 
 # [Azure CLI](#tab/cli)
 
-1. Create the custom table. This example creates a custom table with the `Analytics` plan by using the `az monitor log-analytics workspace table create` command. Then it creates a DCR that defines how to collect data from your data source and send it to the custom table.
+The following Azure CLI examples use the [`az monitor log-analytics workspace table create`](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-create) and [`az monitor data-collection rule create`](/cli/azure/monitor/data-collection/rule) commands. The Auxiliary plan example uses [az rest](/cli/azure/reference-index#az-rest) to call the [Tables](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation.
 
-```azurecli
-subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-resourceGroupName="myResourceGroup"
-workspaceName="myWorkspace"
-tableName_CL="myTable_CL"
+1. Create the custom table. This example creates a custom table with the `Analytics` plan. Then it creates a DCR that defines how to collect data from your data source and send it to the custom table.
 
-az account set --subscription "$subscriptionId"
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+tableName_CL="<TableName>_CL"
 
+# Create the custom table
 az monitor log-analytics workspace table create \
   --resource-group "$resourceGroupName" \
   --workspace-name "$workspaceName" \
@@ -108,26 +109,31 @@ az monitor log-analytics workspace table create \
 
 To create a custom table with the `Auxiliary` plan, use the `az rest` command to send a `PUT` request to the Logs management REST API. The request body specifies the table schema and the table plan.
 
-```azurecli
-subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-resourceGroupName="myResourceGroup"
-workspaceName="myWorkspace"
-tableName_CL="myTable_CL"
-apiVersion="2025-07-01"
-providers="Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName_CL"
-resourceId="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/$providers"
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+tableName_CL="<TableName>_CL"
+apiVersion="<ApiVersion>"
 payloadFile="./my-table.json"
 
-az account set --subscription $subscriptionId
+# Get the subscription ID from the current Azure CLI context
+subscriptionId=$(az account show --query id --output tsv)
 
+# Build the request URL
+path="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+provider="Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName_CL"
+url="$path/providers/$provider"
+
+# Create the custom table
 az rest \
   --method put \
-  --uri "$resourceId?api-version=$apiVersion" \
+  --url "$url?api-version=$apiVersion" \
   --body @"$payloadFile"
 ```
 
 > [!NOTE]
-> This sample lists all the supported column data types except `guid`. GUIDs are stored and queried as `string` types even if the table column is defined as `guid`.
+> This sample lists all the supported column data types except `guid`. Log Analytics stores and queries GUIDs as `string` types even if you define the column as `guid`.
 <br>
 <details>
 <summary>Expand to view the my-table.json file.</summary>
@@ -136,7 +142,7 @@ az rest \
 {
   "properties": {
     "schema": {
-      "name": "myTable_CL",
+      "name": "<TableName>_CL",
       "columns": [
         {
           "name": "TimeGenerated",
@@ -182,15 +188,13 @@ az rest \
 
 2. Create a data collection rule that collects data from your data source and sends it to the custom table. This example uses the [az monitor data-collection rule](/cli/azure/monitor/data-collection/rule) command group to create a DCR that collects data from a Syslog source and sends it to the custom table you created in the previous step.
 
-    ```azurecli
-    subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-    resourceGroupName="myResourceGroup"
-    dataCollectionRuleName="myDataCollectionRule"
+    ```bash
+    resourceGroupName="<ResourceGroupName>"
+    dataCollectionRuleName="<DataCollectionRuleName>"
     ruleFile="./my-dcr.json"
-    
-    az account set --subscription "$subscriptionId"
+
     az extension add --name monitor-control-service
-    
+
     az monitor data-collection rule create \
       --resource-group "$resourceGroupName" \
       --name "$dataCollectionRuleName" \
@@ -205,15 +209,15 @@ az rest \
 
     ```json
     {
-      "location": "eastus",
+      "location": "<Location>",
       "kind": "Direct",
       "properties": {
         "streamDeclarations": {
-          "myTable": {
+          "Custom-<TableName>_CL": {
             "columns": [
               {
                 "name": "TimeGenerated",
-                "type": "dateTime"
+                "type": "datetime"
               },
               {
                 "name": "StringProperty",
@@ -237,7 +241,7 @@ az rest \
               },
               {
                 "name": "DateTimeProperty",
-                "type": "dateTime"
+                "type": "datetime"
               },
               {
                 "name": "DynamicProperty",
@@ -249,21 +253,21 @@ az rest \
         "destinations": {
           "logAnalytics": [
             {
-              "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.OperationalInsights/workspaces/myWorkspace",
-              "name": "myWorkspace"
+              "workspaceResourceId": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>",
+              "name": "<WorkspaceName>"
             }
           ]
         },
         "dataFlows": [
           {
             "streams": [
-              "myTable"
+              "Custom-<TableName>_CL"
             ],
             "transformKql": "source",
             "destinations": [
-              "myWorkspace"
+              "<WorkspaceName>"
             ],
-            "outputStream": "Custom-myTable_CL"
+            "outputStream": "Custom-<TableName>_CL"
           }
         ]
       }
@@ -272,139 +276,21 @@ az rest \
 
     </details>
 
-# [REST](#tab/rest)
+# [Azure PowerShell](#tab/powershell)
 
-1. Create the table. This example creates a custom table with `"plan": "Auxiliary"` in the request payload.
+The following Azure PowerShell examples use the [`New-AzOperationalInsightsTable`](/powershell/module/az.operationalinsights/new-azoperationalinsightstable) cmdlet. The Auxiliary plan example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [Tables](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation.
 
-> [!NOTE]
-> This sample lists all the supported column data types except `guid`. GUIDs are stored and queried as `string` types even if the table column is defined as `guid`.
+1. Create the table. This example creates a custom table with the `Analytics` plan.
 
-```REST
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName_CL}?api-version={apiVersion}
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{
-  "properties": {
-    "schema": {
-      "name": "{tableName_CL}",
-      "columns": [
-        {"name": "TimeGenerated",
-          "type": "dateTime"},
-        {"name": "StringProperty",
-          "type": "string"},
-        {"name": "IntProperty",
-          "type": "int"},
-        {"name": "LongProperty",
-          "type": "long"},
-        {"name": "RealProperty",
-          "type": "real"},
-        {"name": "BooleanProperty",
-          "type": "boolean"},
-        {"name": "DateTimeProperty",
-          "type": "dateTime"},
-        {"name": "DynamicProperty",
-          "type": "dynamic"}
-      ]
-    },
-    "totalRetentionInDays": 365,
-    "plan": "Auxiliary"
-  }
-}
-```
-
-2. [Create a data collection rule](tutorial-logs-ingestion-api.md#create-data-collection-rule). Here's a sample with `kind` set to `Direct`. This DCR type doesn't require a data collection endpoint (DCE) because it creates its own `logsIngestion` endpoint.
-
-    * `myWorkspace` is the name of your Log Analytics workspace.
-    * `myTable_CL` is the name of your table.
-    * `columns` includes the same columns you defined when you created the table.
-
-    ```REST
-    PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dataCollectionRuleName}?api-version={apiVersion}
-    Authorization: Bearer {token}
-    Content-Type: application/json
-
-    {
-      "location": "eastus",
-      "kind": "Direct",
-      "properties": {
-        "streamDeclarations": {
-          "myTable": {
-            "columns": [
-              {
-                "name": "TimeGenerated",
-                "type": "dateTime"
-              },
-              {
-                "name": "StringProperty",
-                "type": "string"
-              },
-              {
-                "name": "IntProperty",
-                "type": "int"
-              },
-              {
-                "name": "LongProperty",
-                "type": "long"
-              },
-              {
-                "name": "RealProperty",
-                "type": "real"
-              },
-              {
-                "name": "BooleanProperty",
-                "type": "boolean"
-              },
-              {
-                "name": "DateTimeProperty",
-                "type": "dateTime"
-              },
-              {
-                "name": "DynamicProperty",
-                "type": "dynamic"
-              }
-            ]
-          }
-        },
-        "destinations": {
-          "logAnalytics": [
-            {
-              "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.OperationalInsights/workspaces/myWorkspace",
-              "name": "myWorkspace"
-            }
-          ]
-        },
-        "dataFlows": [
-          {
-            "streams": [
-              "myTable"
-            ],
-            "transformKql": "source",
-            "destinations": [
-              "myWorkspace"
-            ],
-            "outputStream": "Custom-myTable_CL"
-          }
-        ]
-      }
-    }
-    ```
-
-
-# [PowerShell](#tab/powershell)
-
-1. Create the table by using the `New-AzOperationalInsightsTable` command or `Invoke-AzRestMethod`. This example uses the `New-AzOperationalInsightsTable` command to create a custom table with the `Analytics` plan.
-
-```azurepowershell
-$subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-$resourceGroupName = "myResourceGroup"
-$workspaceName = "myWorkspace"
-$tableName_CL = "myTable_CL"
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$tableName_CL = "<TableName>_CL"
 $payloadFile = ".\my-table.json"
 
-Set-AzContext -Subscription $subscriptionId
-
-$tableParams = @{
+# Define parameters for New-AzOperationalInsightsTable
+$newAzOperationalInsightsTableParams = @{
     ResourceGroupName = $resourceGroupName
     WorkspaceName = $workspaceName
     TableName = $tableName_CL
@@ -416,34 +302,40 @@ $tableParams = @{
     Column = @{'TimeGenerated'='DateTime'; 'RawData'='String'}
 }
 
-New-AzOperationalInsightsTable @tableParams
+New-AzOperationalInsightsTable @newAzOperationalInsightsTableParams
 ```
 
 To create a custom table with the `Auxiliary` plan, use the `Invoke-AzRestMethod` command to send a `PUT` request to the Logs management REST API. The request body specifies the table schema and the table plan.
 
-```azurepowershell
-$subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-$resourceGroupName = "myResourceGroup"
-$workspaceName = "myWorkspace"
-$tableName_CL = "myTable_CL"
-$apiVersion = "2025-07-01"
-$providers = "Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName_CL"
-$resourceId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/$providers"
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$tableName_CL = "<TableName>_CL"
+$apiVersion = "<ApiVersion>"
 $payloadFile = ".\my-table.json"
 
-Set-AzContext -Subscription $subscriptionId
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
 
-$restParams = @{
+# Build the request URL
+$path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$provider = "Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName_CL"
+$url = "$path/providers/$provider"
+
+# Define parameters for Invoke-AzRestMethod
+$invokeAzRestMethodParams = @{
     Method  = "PUT"
-    Path    = "$resourceId?api-version=$apiVersion"
+    Path    = "$url?api-version=$apiVersion"
     Payload = Get-Content -Raw -Path $payloadFile
 }
 
-Invoke-AzRestMethod @restParams
+# Create the custom table
+Invoke-AzRestMethod @invokeAzRestMethodParams
 ```
 
 > [!NOTE]
-> This sample lists all the supported column data types except `guid`. GUIDs are stored and queried as `string` types even if the table column is defined as `guid`.
+> This sample lists all the supported column data types except `guid`. Log Analytics stores and queries GUIDs as `string` types even if you define the column as `guid`.
 <br>
 <details>
 <summary>Expand to view the my-table.json file.</summary>
@@ -452,7 +344,7 @@ Invoke-AzRestMethod @restParams
 {
   "properties": {
     "schema": {
-      "name": "myTable_CL",
+      "name": "<TableName>_CL",
       "columns": [
         {
           "name": "TimeGenerated",
@@ -498,20 +390,18 @@ Invoke-AzRestMethod @restParams
 
 2. Create a data collection rule that collects data from your data source and sends it to the custom table. This PowerShell example uses the [New-AzDataCollectionRule](/powershell/module/az.monitor/new-azdatacollectionrule) cmdlet to create a DCR that collects data from a Syslog source and sends it to the custom table you created in the previous step.
 
-    ```azurepowershell
-    $subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-    $resourceGroupName = "myResourceGroup"
-    $dataCollectionRuleName = "myDataCollectionRule"
+    ```powershell
+    # Set variables
+    $resourceGroupName = "<ResourceGroupName>"
+    $dataCollectionRuleName = "<DataCollectionRuleName>"
     $jsonFilePath = ".\my-dcr.json"
-    
-    Select-AzSubscription -SubscriptionId $subscriptionId
-    
-    $dataCollectionRuleParams = @{
+
+    $newAzDataCollectionRuleParams = @{
         Name              = $dataCollectionRuleName
         ResourceGroupName = $resourceGroupName
         JsonFilePath      = $jsonFilePath
     }
-    
+
     New-AzDataCollectionRule @dataCollectionRuleParams
     ```
 
@@ -523,15 +413,15 @@ Invoke-AzRestMethod @restParams
 
     ```json
     {
-      "location": "eastus",
+      "location": "<Location>",
       "kind": "Direct",
       "properties": {
         "streamDeclarations": {
-          "myTable": {
+          "Custom-<TableName>_CL": {
             "columns": [
               {
                 "name": "TimeGenerated",
-                "type": "dateTime"
+                "type": "datetime"
               },
               {
                 "name": "StringProperty",
@@ -555,7 +445,7 @@ Invoke-AzRestMethod @restParams
               },
               {
                 "name": "DateTimeProperty",
-                "type": "dateTime"
+                "type": "datetime"
               },
               {
                 "name": "DynamicProperty",
@@ -567,21 +457,21 @@ Invoke-AzRestMethod @restParams
         "destinations": {
           "logAnalytics": [
             {
-              "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.OperationalInsights/workspaces/myWorkspace",
-              "name": "myWorkspace"
+              "workspaceResourceId": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>",
+              "name": "<WorkspaceName>"
             }
           ]
         },
         "dataFlows": [
           {
             "streams": [
-              "myTable"
+              "Custom-<TableName>_CL"
             ],
             "transformKql": "source",
             "destinations": [
-              "myWorkspace"
+              "<WorkspaceName>"
             ],
-            "outputStream": "Custom-myTable_CL"
+            "outputStream": "Custom-<TableName>_CL"
           }
         ]
       }
@@ -590,12 +480,289 @@ Invoke-AzRestMethod @restParams
 
     </details>
 
+# [REST](#tab/rest)
+
+The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) and [Data collection rules](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rules) REST API operations.
+
+1. Create the table. This example creates a custom table with `"plan": "Auxiliary"` in the request payload.
+
+> [!NOTE]
+> This sample lists all the supported column data types except `guid`. Log Analytics stores and queries GUIDs as `string` types even if you define the column as `guid`.
+
+```REST
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}_CL?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+Content-Type: application/json
+
+{
+  "properties": {
+    "schema": {
+      "name": "<TableName>_CL",
+      "columns": [
+        {"name": "TimeGenerated",
+          "type": "dateTime"},
+        {"name": "StringProperty",
+          "type": "string"},
+        {"name": "IntProperty",
+          "type": "int"},
+        {"name": "LongProperty",
+          "type": "long"},
+        {"name": "RealProperty",
+          "type": "real"},
+        {"name": "BooleanProperty",
+          "type": "boolean"},
+        {"name": "DateTimeProperty",
+          "type": "dateTime"},
+        {"name": "DynamicProperty",
+          "type": "dynamic"}
+      ]
+    },
+    "totalRetentionInDays": 365,
+    "plan": "Auxiliary"
+  }
+}
+```
+
+2. [Create a data collection rule](tutorial-logs-ingestion-api.md#create-data-collection-rule). Here's a sample with `kind` set to `Direct`. This DCR type doesn't require a data collection endpoint (DCE) because it creates its own `logsIngestion` endpoint.
+
+    * `<WorkspaceName>` is the name of your Log Analytics workspace.
+    * `<TableName>_CL` is the name of your table.
+    * `columns` includes the same columns you defined when you created the table.
+
+    ```REST
+    PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dataCollectionRuleName}?api-version={apiVersion}
+    Authorization: Bearer {accessToken}
+    Content-Type: application/json
+
+    {
+      "location": "<Location>",
+      "kind": "Direct",
+      "properties": {
+        "streamDeclarations": {
+          "Custom-<TableName>_CL": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "StringProperty",
+                "type": "string"
+              },
+              {
+                "name": "IntProperty",
+                "type": "int"
+              },
+              {
+                "name": "LongProperty",
+                "type": "long"
+              },
+              {
+                "name": "RealProperty",
+                "type": "real"
+              },
+              {
+                "name": "BooleanProperty",
+                "type": "boolean"
+              },
+              {
+                "name": "DateTimeProperty",
+                "type": "datetime"
+              },
+              {
+                "name": "DynamicProperty",
+                "type": "dynamic"
+              }
+            ]
+          }
+        },
+        "destinations": {
+          "logAnalytics": [
+            {
+              "workspaceResourceId": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>",
+              "name": "<WorkspaceName>"
+            }
+          ]
+        },
+        "dataFlows": [
+          {
+            "streams": [
+              "Custom-<TableName>_CL"
+            ],
+            "transformKql": "source",
+            "destinations": [
+              "<WorkspaceName>"
+            ],
+            "outputStream": "Custom-<TableName>_CL"
+          }
+        ]
+      }
+    }
+    ```
+
+
+# [Bicep](#tab/bicep)
+
+1. Create the table by using the following Bicep example. The example uses the [Microsoft.OperationalInsights workspaces/tables](/azure/templates/microsoft.operationalinsights/workspaces/tables?pivots=deployment-language-bicep) resource type to create an Auxiliary table with a custom schema.
+
+    The sample lists all supported column data types except `guid`. Log Analytics stores and queries GUIDs as `string` types even if you define the column as `guid`.
+
+```bicep
+param workspaceName string = '<WorkspaceName>'
+param tableName_CL string = '<TableName>_CL'
+
+resource workspace 'Microsoft.OperationalInsights/workspaces@<ApiVersion>' existing = {
+  name: workspaceName
+}
+
+resource table 'Microsoft.OperationalInsights/workspaces/tables@<ApiVersion>' = {
+  parent: workspace
+  name: tableName_CL
+  properties: {
+    schema: {
+      name: tableName_CL
+      columns: [
+        {
+          name: 'TimeGenerated'
+          type: 'dateTime'
+        }
+        {
+          name: 'StringProperty'
+          type: 'string'
+        }
+        {
+          name: 'IntProperty'
+          type: 'int'
+        }
+        {
+          name: 'LongProperty'
+          type: 'long'
+        }
+        {
+          name: 'RealProperty'
+          type: 'real'
+        }
+        {
+          name: 'BooleanProperty'
+          type: 'boolean'
+        }
+        {
+          name: 'DateTimeProperty'
+          type: 'dateTime'
+        }
+        {
+          name: 'DynamicProperty'
+          type: 'dynamic'
+        }
+      ]
+    }
+    totalRetentionInDays: 365
+    plan: 'Auxiliary'
+  }
+}
+```
+
+2. Create a DCR by using the following Bicep example, which uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-bicep) resource type.
+
+    ```bicep
+    @description('Specifies the name of the data collection rule to create.')
+    param dataCollectionRuleName string = '<DataCollectionRuleName>'
+
+    @description('Specifies the region in which to create the data collection rule. It must be the same region as the destination Log Analytics workspace.')
+    param location string = '<Location>'
+
+    @description('Specifies the ID of the subscription that contains the Log Analytics workspace.')
+    param subscriptionId string = '<SubscriptionId>'
+
+    @description('Specifies the name of the resource group that contains the Log Analytics workspace.')
+    param resourceGroupName string = '<ResourceGroupName>'
+
+    @description('Specifies the name of the Log Analytics workspace in which you created a custom table with the Auxiliary plan.')
+    param workspaceName string = '<WorkspaceName>'
+
+    var workspaceResourceId = resourceId(
+      subscriptionId,
+      resourceGroupName,
+      'Microsoft.OperationalInsights/workspaces',
+      workspaceName
+    )
+
+    resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@<ApiVersion>' = {
+      name: dataCollectionRuleName
+      location: location
+      kind: 'Direct'
+      properties: {
+        streamDeclarations: {
+          'Custom-<TableName>_CL': {
+            columns: [
+              {
+                name: 'TimeGenerated'
+                type: 'datetime'
+              }
+              {
+                name: 'StringProperty'
+                type: 'string'
+              }
+              {
+                name: 'IntProperty'
+                type: 'int'
+              }
+              {
+                name: 'LongProperty'
+                type: 'long'
+              }
+              {
+                name: 'RealProperty'
+                type: 'real'
+              }
+              {
+                name: 'BooleanProperty'
+                type: 'boolean'
+              }
+              {
+                name: 'DateTimeProperty'
+                type: 'datetime'
+              }
+              {
+                name: 'DynamicProperty'
+                type: 'dynamic'
+              }
+            ]
+          }
+        }
+        destinations: {
+          logAnalytics: [
+            {
+              workspaceResourceId: workspaceResourceId
+              name: workspaceName
+            }
+          ]
+        }
+        dataFlows: [
+          {
+            streams: [
+              'Custom-<TableName>_CL'
+            ]
+            transformKql: 'source'
+            destinations: [
+              workspaceName
+            ]
+            outputStream: 'Custom-<TableName>_CL'
+          }
+        ]
+      }
+    }
+
+    output dataCollectionRuleId string = dataCollectionRule.id
+    ```
+
+
 # [ARM template](#tab/arm)
 
 1. Create the table by using the following example Azure Resource Manager template (ARM template). This JSON example uses the [Microsoft.OperationalInsights workspaces/tables](/azure/templates/microsoft.operationalinsights/workspaces/tables?pivots=deployment-language-arm-template) resource type to create an **Auxiliary / Lake** table with a custom schema.
 
 > [!NOTE]
-> This sample lists all the supported column data types except `guid`. GUIDs are stored and queried as `string` types even if the table column is defined as `guid`.
+> This sample lists all the supported column data types except `guid`. Log Analytics stores and queries GUIDs as `string` types even if you define the column as `guid`.
 
 ```json
 {
@@ -604,17 +771,17 @@ Invoke-AzRestMethod @restParams
   "parameters": {
     "workspaceName": {
       "type": "string",
-      "defaultValue": "myWorkspace"
+      "defaultValue": "<WorkspaceName>"
     },
     "tableName_CL": {
       "type": "string",
-      "defaultValue": "myTable_CL"
+      "defaultValue": "<TableName>_CL"
     }
   },
   "resources": [
     {
       "type": "Microsoft.OperationalInsights/workspaces/tables",
-      "apiVersion": "2025-07-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[format('{0}/{1}', parameters('workspaceName'), parameters('tableName_CL'))]",
       "properties": {
         "schema": {
@@ -671,40 +838,57 @@ Invoke-AzRestMethod @restParams
       "parameters": {
         "dataCollectionRuleName": {
           "type": "string",
-          "defaultValue": "myDataCollectionRule",
+          "defaultValue": "<DataCollectionRuleName>",
           "metadata": {
             "description": "Specifies the name of the data collection rule to create."
           }
         },
         "location": {
           "type": "string",
-          "defaultValue": "eastus",
+          "defaultValue": "<Location>",
           "metadata": {
             "description": "Specifies the region in which to create the data collection rule. It must be the same region as the destination Log Analytics workspace."
           }
         },
-        "workspaceResourceId": {
+        "subscriptionId": {
           "type": "string",
-          "defaultValue": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.OperationalInsights/workspaces/myWorkspace",
+          "defaultValue": "<SubscriptionId>",
           "metadata": {
-            "description": "The Azure resource ID of the Log Analytics workspace in which you created a custom table with the Auxiliary plan."
+            "description": "Specifies the ID of the subscription that contains the Log Analytics workspace."
+          }
+        },
+        "resourceGroupName": {
+          "type": "string",
+          "defaultValue": "<ResourceGroupName>",
+          "metadata": {
+            "description": "Specifies the name of the resource group that contains the Log Analytics workspace."
+          }
+        },
+        "workspaceName": {
+          "type": "string",
+          "defaultValue": "<WorkspaceName>",
+          "metadata": {
+            "description": "Specifies the name of the Log Analytics workspace in which you created a custom table with the Auxiliary plan."
           }
         }
+      },
+      "variables": {
+        "workspaceResourceId": "[resourceId(parameters('subscriptionId'), parameters('resourceGroupName'), 'Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]"
       },
       "resources": [
         {
           "type": "Microsoft.Insights/dataCollectionRules",
           "name": "[parameters('dataCollectionRuleName')]",
           "location": "[parameters('location')]",
-          "apiVersion": "2025-07-01",
+          "apiVersion": "<ApiVersion>",
           "kind": "Direct",
           "properties": {
             "streamDeclarations": {
-              "myTable": {
+              "Custom-<TableName>_CL": {
                 "columns": [
                   {
                     "name": "TimeGenerated",
-                    "type": "dateTime"
+                    "type": "datetime"
                   },
                   {
                     "name": "StringProperty",
@@ -728,7 +912,7 @@ Invoke-AzRestMethod @restParams
                   },
                   {
                     "name": "DateTimeProperty",
-                    "type": "dateTime"
+                    "type": "datetime"
                   },
                   {
                     "name": "DynamicProperty",
@@ -740,21 +924,21 @@ Invoke-AzRestMethod @restParams
             "destinations": {
               "logAnalytics": [
                 {
-                  "workspaceResourceId": "[parameters('workspaceResourceId')]",
-                  "name": "myWorkspace"
+                  "workspaceResourceId": "[variables('workspaceResourceId')]",
+                  "name": "[parameters('workspaceName')]"
                 }
               ]
             },
             "dataFlows": [
               {
                 "streams": [
-                  "myTable"
+                  "Custom-<TableName>_CL"
                 ],
                 "transformKql": "source",
                 "destinations": [
-                  "myWorkspace"
+                  "[parameters('workspaceName')]"
                 ],
-                "outputStream": "Custom-myTable_CL"
+                "outputStream": "Custom-<TableName>_CL"
               }
             ]
           }
@@ -769,160 +953,7 @@ Invoke-AzRestMethod @restParams
     }
     ```
 
-# [Bicep](#tab/bicep)
-
-1. Create the table by using the following Bicep example. The example uses the [Microsoft.OperationalInsights workspaces/tables](/azure/templates/microsoft.operationalinsights/workspaces/tables?pivots=deployment-language-bicep) resource type to create an Auxiliary table with a custom schema.
-
-    The sample lists all supported column data types except `guid`. Log Analytics stores and queries GUIDs as `string` types even if you define the column as `guid`.
-
-```bicep
-param workspaceName string = 'myWorkspace'
-param tableName_CL string = 'myTable_CL'
-
-resource workspace 'Microsoft.OperationalInsights/workspaces@2025-07-01' existing = {
-  name: workspaceName
-}
-
-resource table 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
-  parent: workspace
-  name: tableName_CL
-  properties: {
-    schema: {
-      name: tableName_CL
-      columns: [
-        {
-          name: 'TimeGenerated'
-          type: 'dateTime'
-        }
-        {
-          name: 'StringProperty'
-          type: 'string'
-        }
-        {
-          name: 'IntProperty'
-          type: 'int'
-        }
-        {
-          name: 'LongProperty'
-          type: 'long'
-        }
-        {
-          name: 'RealProperty'
-          type: 'real'
-        }
-        {
-          name: 'BooleanProperty'
-          type: 'boolean'
-        }
-        {
-          name: 'DateTimeProperty'
-          type: 'dateTime'
-        }
-        {
-          name: 'DynamicProperty'
-          type: 'dynamic'
-        }
-      ]
-    }
-    totalRetentionInDays: 365
-    plan: 'Auxiliary'
-  }
-}
-```
-
-2. Create a DCR by using the following Bicep example, which uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-bicep) resource type.
-
-    ```bicep
-    @description('Specifies the name of the data collection rule to create.')
-    param dataCollectionRuleName string = 'myDataCollectionRule'
-    
-    @description('Specifies the region in which to create the data collection rule. It must be the same region as the destination Log Analytics workspace.')
-    param location string = 'eastus'
-    
-    @description('The Azure resource ID of the Log Analytics workspace in which you created a custom table with the Auxiliary plan.')
-    param workspaceResourceId string = '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.OperationalInsights/workspaces/myWorkspace'
-    
-    resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2025-07-01' = {
-      name: dataCollectionRuleName
-      location: location
-      kind: 'Direct'
-      properties: {
-        streamDeclarations: {
-          'myTable': {
-            columns: [
-              {
-                name: 'TimeGenerated'
-                type: 'dateTime'
-              }
-              {
-                name: 'StringProperty'
-                type: 'string'
-              }
-              {
-                name: 'IntProperty'
-                type: 'int'
-              }
-              {
-                name: 'LongProperty'
-                type: 'long'
-              }
-              {
-                name: 'RealProperty'
-                type: 'real'
-              }
-              {
-                name: 'BooleanProperty'
-                type: 'boolean'
-              }
-              {
-                name: 'DateTimeProperty'
-                type: 'dateTime'
-              }
-              {
-                name: 'DynamicProperty'
-                type: 'dynamic'
-              }
-            ]
-          }
-        }
-        destinations: {
-          logAnalytics: [
-            {
-              workspaceResourceId: workspaceResourceId
-              name: 'myWorkspace'
-            }
-          ]
-        }
-        dataFlows: [
-          {
-            streams: [
-              'myTable'
-            ]
-            transformKql: 'source'
-            destinations: [
-              'myWorkspace'
-            ]
-            outputStream: 'Custom-myTable_CL'
-          }
-        ]
-      }
-    }
-    
-    output dataCollectionRuleId string = dataCollectionRule.id
-    ```
-
-
 ---
-
-| Variable | Example value | Purpose |
-|----------|---------------|---------|
-| host | *management.azure.com* | Implicit Azure Resource Manager endpoint |
-| subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
-| resourceGroupName | myResourceGroup | User input |
-| workspaceName | myWorkspace | User input |
-| tableName_CL | myTable_CL | User input |
-| plan | Auxiliary | Valid values: `Analytics` (default), `Basic`, `Auxiliary`. See [table plans](data-platform-logs.md#table-plans). |
-| apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 
 ## Delete a table
 
@@ -930,7 +961,7 @@ You can't delete Azure tables. How Azure removes data when you delete any other 
 
 For more information, see [What happens to data when you delete a table in a Log Analytics workspace](../logs/data-retention-configure.md#what-happens-to-data-when-you-delete-a-table-in-a-log-analytics-workspace).
 
-# [Portal](#tab/azure-portal-1)
+# [Portal](#tab/portal-1)
 
 To delete a table from the Azure portal:
 
@@ -946,14 +977,15 @@ To delete a table from the Azure portal:
 
 # [Azure CLI](#tab/cli-1)
 
-```azurecli
-subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-resourceGroupName="myResourceGroup"
-workspaceName="myWorkspace"
-tableName_CL="myTable_CL"
+The following Azure CLI example uses the [`az monitor log-analytics workspace table delete`](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-delete) command.
 
-az account set --subscription "$subscriptionId"
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+tableName_CL="<TableName>_CL"
 
+# Delete the table
 az monitor log-analytics workspace table delete \
   --resource-group "$resourceGroupName" \
   --workspace-name "$workspaceName" \
@@ -961,56 +993,55 @@ az monitor log-analytics workspace table delete \
   --yes
 ```
 
-# [REST](#tab/rest-1)
+# [Azure PowerShell](#tab/powershell-1)
 
-```REST
-DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName_CL}?api-version={apiVersion}
-Authorization: Bearer {token}
-```
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [Tables](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation.
 
-# [PowerShell](#tab/powershell-1)
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$tableName_CL = "<TableName>_CL"
+$apiVersion = "<ApiVersion>"
 
-[!INCLUDE [Azure PowerShell using REST](../includes/powershell-using-rest.md)]
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
 
-```azurepowershell
-$subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-$resourceGroupName = "myResourceGroup"
-$workspaceName = "myWorkspace"
-$tableName_CL = "myTable_CL"
-$apiVersion = "2025-07-01"
-$providers = "Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName_CL"
-$resourceId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/$providers"
+# Build the request URL
+$path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$provider = "Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName_CL"
+$url = "$path/providers/$provider"
 
-Set-AzContext -Subscription $subscriptionId
-
-$restParams = @{
+# Define parameters for Invoke-AzRestMethod
+$invokeAzRestMethodParams = @{
     Method = "DELETE"
-    Path   = "$resourceId?api-version=$apiVersion"
+    Path   = "$url?api-version=$apiVersion"
 }
 
-Invoke-AzRestMethod @restParams
+# Delete the table
+Invoke-AzRestMethod @invokeAzRestMethodParams
+```
+
+# [REST](#tab/rest-1)
+
+The following REST example uses the [Tables](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation.
+
+```REST
+DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}_CL?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 ```
 
 ---
-
-| Variable | Example value | Purpose |
-|----------|---------------|---------|
-| host | *management.azure.com* | Implicit Azure Resource Manager endpoint |
-| subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
-| resourceGroupName | myResourceGroup | User input |
-| workspaceName | myWorkspace | User input |
-| tableName_CL | myTable_CL | User input |
-| apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 
 ## Add or delete a custom column
 
 Custom tables let you modify the schema by adding or deleting columns after you create the table. In Azure tables, you can only add and delete custom columns.
 
 > [!IMPORTANT]
-> Whenever you update a table schema, be sure to [update any data collection rules](../data-collection/data-collection-rule-overview.md) that send data to the table. The table schema you define in your data collection rule determines how Azure Monitor streams data to the destination table. Azure Monitor doesn't update data collection rules automatically when you make table schema changes. 
+> Whenever you update a table schema, be sure to [update any data collection rules](../data-collection/data-collection-rule-overview.md) that send data to the table. The table schema you define in your data collection rule determines how Azure Monitor streams data to the destination table. Azure Monitor doesn't update data collection rules automatically when you make table schema changes.
 
 Use these rules when defining column names for custom tables:
- 
+
 * Column names must start with a letter (A-Z or a-z).
 * After the first character, use only letters, digits, or underscores.
 * Don't use spaces, dots, dashes, or other punctuation in column names.
@@ -1023,7 +1054,7 @@ Use these rules when defining column names for custom tables:
 
 These schema rules are stricter than [general Kusto identifier rules](/kusto/query/schema-entities/entity-names). Kusto can reference unusual property names with quoting in queries, but the custom table schema accepts only letters, digits, and underscores for column names.
 
-# [Portal](#tab/azure-portal-1)
+# [Portal](#tab/portal-1)
 
 To add a custom column to a table in your Log Analytics workspace, or delete a column:
 
@@ -1034,7 +1065,7 @@ To add a custom column to a table in your Log Analytics workspace, or delete a c
     This action opens the **Schema Editor** screen.
 
 1. Scroll down to the **Custom Columns** section of the **Schema Editor** screen.
- 
+
     :::image type="content" source="media/create-custom-table/add-or-delete-column-azure-monitor-logs.png" lightbox="media/create-custom-table/add-or-delete-column-azure-monitor-logs.png" alt-text="Screenshot showing the Schema Editor screen with the Add a column and Delete buttons highlighted.":::
 
 1. To add a new column:
@@ -1047,16 +1078,17 @@ To add a custom column to a table in your Log Analytics workspace, or delete a c
 
 # [Azure CLI](#tab/cli-1)
 
+The following Azure CLI example uses the [`az monitor log-analytics workspace table update`](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-update) command.
+
 To add a custom column:
 
-```azurecli
-subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-resourceGroupName="myResourceGroup"
-workspaceName="myWorkspace"
-tableName="Heartbeat"
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+tableName="<TableName>"
 
-az account set --subscription "$subscriptionId"
-
+# Add the custom column
 az monitor log-analytics workspace table update \
   --resource-group "$resourceGroupName" \
   --workspace-name "$workspaceName" \
@@ -1066,56 +1098,37 @@ az monitor log-analytics workspace table update \
 
 To delete a custom column, use the REST API or PowerShell approach. The CLI `update` command adds columns but doesn't support column deletion.
 
-# [REST](#tab/rest-1)
+# [Azure PowerShell](#tab/powershell-1)
 
-To add a custom column, send a `PUT` request with the updated schema. Include the new column in the `columns` array. The request returns the updated table properties.
-
-To delete a custom column, send the same `PUT` request but omit the column from the `columns` array. To delete all custom columns, send an empty `columns` array.
-
-```REST
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}?api-version={apiVersion}
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{
-  "properties": {
-    "schema": {
-      "name": "{tableName}",
-      "columns": [
-        {"name": "{columnName}",
-          "type": "string",
-          "description": "Custom column description"}
-      ]
-    }
-  }
-}
-```
-
-# [PowerShell](#tab/powershell-1)
-
-[!INCLUDE [Azure PowerShell using REST](../includes/powershell-using-rest.md)]
+The following Azure PowerShell examples use [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [Tables](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation.
 
 **Add a custom column**
 
-```azurepowershell
-$subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-$resourceGroupName = "myResourceGroup"
-$workspaceName = "myWorkspace"
-$tableName = "Heartbeat"
-$apiVersion = "2025-07-01"
-$providers = "Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName"
-$resourceId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/$providers"
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$tableName = "<TableName>"
+$apiVersion = "<ApiVersion>"
 $payloadFile = ".\add-column.json"
 
-Set-AzContext -Subscription $subscriptionId
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
 
-$restParams = @{
+# Build the request URL
+$path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$provider = "Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName"
+$url = "$path/providers/$provider"
+
+# Define parameters for Invoke-AzRestMethod
+$invokeAzRestMethodParams = @{
     Method  = "PUT"
-    Path    = "$resourceId?api-version=$apiVersion"
+    Path    = "$url?api-version=$apiVersion"
     Payload = Get-Content -Raw -Path $payloadFile
 }
 
-Invoke-AzRestMethod @restParams
+# Add the custom column
+Invoke-AzRestMethod @invokeAzRestMethodParams
 ```
 
 <br>
@@ -1126,7 +1139,7 @@ Invoke-AzRestMethod @restParams
 {
   "properties": {
     "schema": {
-      "name": "Heartbeat",
+      "name": "<TableName>",
       "columns": [
         {
           "name": "Custom1_CF",
@@ -1155,7 +1168,7 @@ To delete a column and add another one, send a `PUT` request that includes only 
 {
   "properties": {
     "schema": {
-      "name": "Heartbeat",
+      "name": "<TableName>",
       "columns": [
         {
           "name": "Custom2_CF",
@@ -1182,7 +1195,7 @@ To delete all custom columns from a table, send a `PUT` request with an empty `c
 {
   "properties": {
     "schema": {
-      "name": "Heartbeat",
+      "name": "<TableName>",
       "columns": []
     }
   }
@@ -1191,17 +1204,34 @@ To delete all custom columns from a table, send a `PUT` request with an empty `c
 
 </details>
 
----
+# [REST](#tab/rest-1)
 
-| Variable | Example value | Purpose |
-|----------|---------------|---------|
-| host | *management.azure.com* | Implicit Azure Resource Manager endpoint |
-| subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
-| resourceGroupName | myResourceGroup | User input |
-| workspaceName | myWorkspace | User input |
-| tableName | Heartbeat | User input |
-| columnName | Custom1_CF | User input |
-| apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
+The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation.
+
+To add a custom column, send a `PUT` request with the updated schema. Include the new column in the `columns` array. The request returns the updated table properties.
+
+To delete a custom column, send the same `PUT` request but omit the column from the `columns` array. To delete all custom columns, send an empty `columns` array.
+
+```REST
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+Content-Type: application/json
+
+{
+  "properties": {
+    "schema": {
+      "name": "<TableName>",
+      "columns": [
+        {"name": "<ColumnName>",
+          "type": "string",
+          "description": "Custom column description"}
+      ]
+    }
+  }
+}
+```
+
+---
 
 ## Related content
 

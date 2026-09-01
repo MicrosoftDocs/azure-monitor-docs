@@ -3,7 +3,7 @@ title: Manage Chaos Studio Workspaces and Scenarios with the Azure CLI
 description: Install the Azure CLI extension for Azure Chaos Studio, bootstrap a Workspace, and configure, validate, and run a Scenario from the command line.
 author: nikhilkaul-msft
 ms.topic: how-to
-ms.date: 07/02/2026
+ms.date: 08/31/2026
 ms.custom: devx-track-azurecli
 ms.devlang: azurecli
 ai-usage: ai-assisted
@@ -13,13 +13,13 @@ ai-usage: ai-assisted
 
 The Azure CLI extension for Azure Chaos Studio (`az chaos`) helps you create a workspace, discover the resources in scope, and configure, validate, and run scenarios without leaving the command line. This article walks through the full workflow, from installing the extension to running your first scenario and cleaning up.
 
-The `az chaos` extension targets Chaos Studio Workspaces. To script classic chaos experiments instead, see [Create a chaos experiment that uses an agent-based fault with the Azure CLI](chaos-studio-tutorial-agent-based-cli.md).
+The `az chaos` extension targets Chaos Studio Workspaces. To script Experiments (classic) instead, see [Create a chaos experiment that uses an agent-based fault with the Azure CLI](chaos-studio-tutorial-agent-based-cli.md).
 
 ## Prerequisites
 
 - An Azure subscription. [!INCLUDE [quickstarts-free-trial-note](~/reusable-content/ce-skilling/azure/includes/quickstarts-free-trial-note.md)]
 - The Azure CLI. To install or upgrade it, see [How to install the Azure CLI](/cli/azure/install-azure-cli). You can also run these commands in [Azure Cloud Shell](https://shell.azure.com).
-- At least one deployed Azure resource that supports Chaos Studio Actions, such as a virtual machine, Azure Virtual Machine Scale Set, Azure SQL database, or PostgreSQL flexible server. For the full list, see [Supported resource types](chaos-studio-fault-providers.md).
+- At least one deployed Azure resource supported by a [Scenario in Chaos Studio Workspaces](chaos-studio-scenarios.md).
 - The **Microsoft.Chaos** resource provider registered in your subscription. To register it, run `az provider register --namespace Microsoft.Chaos`.
 - Permission to create resources and role assignments in the target scope. The bootstrap step grants the Workspace identity the **Reader** role on the scope, and permission fixing assigns the roles each scenario needs. You need the **Owner** or **User Access Administrator** role, or an equivalent custom role, to assign roles. If you want to manage role assignments yourself, use the `--skip-permissions` option.
 
@@ -215,7 +215,7 @@ If you scoped the Workspace to resources outside the deleted resource group, rem
 
 ## Related content
 
-- [What are Workspaces?](chaos-studio-workspaces-overview.md)
+- [Chaos Studio Workspaces overview](chaos-studio-workspaces-overview.md)
 - [Scenarios in Azure Chaos Studio](chaos-studio-scenarios.md)
 - [Scenario reports in Azure Chaos Studio](chaos-studio-scenario-reports.md)
 - [Quickstart: Create a Workspace and run your first Scenario](quickstart-create-workspace.md)

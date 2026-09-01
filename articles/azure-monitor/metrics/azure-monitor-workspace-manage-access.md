@@ -3,7 +3,8 @@ title: Manage access to Azure Monitor workspaces
 description: This article explains how you can manage access to data stored in an Azure Monitor workspace by using resource or workspace permissions.
 ms.topic: how-to
 ms.reviewer: TylerKight
-ms.date: 09/24/2025
+ms.date: 08/10/2026
+ai-usage: ai-assisted
 
 ---
 
@@ -76,15 +77,44 @@ The *access control mode* is a setting on each workspace that defines how permis
 
 ### Configure access control mode for a workspace
 
-## Resource Manager
+# [Azure portal](#tab/portal)
+
+1. In the Azure portal, open your Azure Monitor workspace.
+1. Under **Settings**, select **Properties**.
+1. Turn **Enable access using resource permissions** on to use resource or workspace permissions, or turn it off to require workspace permissions. Then select **Apply**.
+
+:::image type="content" source="media/azure-monitor-workspace-overview/azure-monitor-workspace-access-mode.png" lightbox="media/azure-monitor-workspace-overview/azure-monitor-workspace-access-mode.png" alt-text="Screenshot of Azure Monitor workspace Properties with resource permissions enabled." border="true":::
+
+# [Azure CLI](#tab/azure-cli)
+
+Run the following command to use resource or workspace permissions:
+
+```azurecli
+az resource update --resource-group "<RgName>" --name "<AmwName>" --resource-type "Microsoft.Monitor/accounts" --api-version "2025-10-03" --set properties.metrics.enableAccessUsingResourcePermissions=true
+```
+
+# [PowerShell](#tab/powershell)
+
+Run the following script to use resource or workspace permissions:
+
+```azurepowershell
+$ws = Get-AzResource -ResourceGroupName "<RgName>" -Name "<AmwName>" -ResourceType "Microsoft.Monitor/accounts" -ApiVersion "2025-10-03" -ExpandProperties
+
+if ($ws.Properties.metrics.enableAccessUsingResourcePermissions -eq $null) {
+    $ws.Properties.metrics | Add-Member enableAccessUsingResourcePermissions $true -Force
+} else {
+    $ws.Properties.metrics.enableAccessUsingResourcePermissions = $true
+}
+
+Set-AzResource -ResourceId $ws.ResourceId -Properties $ws.Properties -ApiVersion "2025-10-03" -Force
+```
+
+# [Resource Manager](#tab/arm)
 
 To configure the access mode in an Azure Resource Manager template, set the **enableAccessUsingResourcePermissions** feature flag on the workspace to one of the following values:
 
-* **false**: Set the workspace to *workspace-context* permissions. This setting is the default if the flag isn't set.
-* **true**: Set the workspace to *resource-context* permissions.
-
-    > [!NOTE]
-    > An ARM template is the only method currently supported to configure access control for an Azure Monitor workspace.
+* **false**: Require workspace permissions.
+* **true**: Use resource or workspace permissions.
 
 ---
 
@@ -100,7 +130,7 @@ Assign users to these roles to give them access at different scopes:
 * **Resource group**: Access to all workspaces in the resource group
 * **Resource**: Access to only the specified workspace
 
-Create assignments at the resource level (workspace) to assure accurate access control. Use [custom roles](/azure/role-based-access-control/custom-roles) to create roles with the specific permissions needed.
+Create assignments at the resource level (workspace) to ensure accurate access control. Use [custom roles](/azure/role-based-access-control/custom-roles) to create roles with the specific permissions needed.
 
 > [!NOTE]
 > To add and remove users to a user role, you must have `Microsoft.Authorization/*/Delete` and `Microsoft.Authorization/*/Write` permission.

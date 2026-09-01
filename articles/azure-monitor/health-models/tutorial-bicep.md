@@ -243,14 +243,16 @@ resource healthModelDependsOnUserFlow 'Microsoft.CloudHealth/healthmodels/relati
 
 Deploy the file to your resource group. Pass in the storage account, Service Bus namespace, and managed identity resource IDs from the prerequisites.
 
-> [!NOTE]
-> Health models are available only in certain regions. The `location` parameter defaults to the resource group's region, so if your resource group is in an unsupported region, set `location` to a supported one. The health model can be in a different region from the resources it monitors. To see the current list of supported regions, check [Azure products by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/) or the error returned if you deploy to an unsupported region.
+Health models are available only in certain regions. The `location` parameter defaults to the resource group's region, so if your resource group is in an unsupported region, set `location` to a supported one. The health model can be in a different region from the resources it monitors. To see the current list of supported regions, check [Azure products by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/) or the error returned if you deploy to an unsupported region.
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI (Bash)](#tab/azure-cli-bash)
+
+> [!NOTE]
+> If deployment validation fails because Git Bash on Windows converts Azure resource IDs to Windows file paths, run `export MSYS_NO_PATHCONV=1`, and then retry the deployment.
 
 ```azurecli
 az deployment group create \
-  --resource-group <resource-group> \
+  --resource-group "<resource-group>" \
   --template-file health-model.bicep \
   --parameters \
       storageAccountId='<storage-account-resource-id>' \
@@ -258,15 +260,16 @@ az deployment group create \
       managedIdentityId='<managed-identity-resource-id>'
 ```
 
-# [PowerShell](#tab/powershell)
+# [Azure CLI (PowerShell)](#tab/azure-cli-powershell)
 
 ```azurepowershell
-New-AzResourceGroupDeployment `
-  -ResourceGroupName '<resource-group>' `
-  -TemplateFile 'health-model.bicep' `
-  -storageAccountId '<storage-account-resource-id>' `
-  -serviceBusNamespaceId '<service-bus-namespace-resource-id>' `
-  -managedIdentityId '<managed-identity-resource-id>'
+az deployment group create `
+  --resource-group "<resource-group>" `
+  --template-file health-model.bicep `
+  --parameters `
+      storageAccountId='<storage-account-resource-id>' `
+      serviceBusNamespaceId='<service-bus-namespace-resource-id>' `
+      managedIdentityId='<managed-identity-resource-id>'
 ```
 
 ---
@@ -275,18 +278,33 @@ The deployment takes less than a minute. When it finishes, the health model begi
 
 ## Verify the deployment
 
-> [!NOTE]
-> After deployment, the health model doesn't evaluate signals instantly. It typically takes a minute or two (occasionally longer) for the first evaluation cycle to run and populate values. During this window, every entity reports a health state of `Unknown`, and the metric signal shows no value yet. This behavior is expected. Wait a few minutes and recheck before you assume something is misconfigured.
+After deployment, the health model doesn't evaluate signals instantly. It typically takes a minute or two (occasionally longer) for the first evaluation cycle to run and populate values. During this window, every entity reports a health state of `Unknown`, and the metric signal shows no value yet. This behavior is expected. Wait a few minutes and recheck before you assume something is misconfigured.
 
 ### Check the health state with the Azure CLI
 
 Read the application entity and inspect its `healthState`:
 
+# [Azure CLI (Bash)](#tab/azure-cli-bash)
+
 ```azurecli
-az rest --method get \
-  --url "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CloudHealth/healthmodels/contoso-app-health/entities/user-info-service?api-version=2026-05-01-preview" \
+az monitor health-models entity show \
+  --resource-group "<resource-group>" \
+  --health-model-name contoso-app-health \
+  --entity-name user-info-service \
   --query "properties.healthState"
 ```
+
+# [Azure CLI (PowerShell)](#tab/azure-cli-powershell)
+
+```azurepowershell
+az monitor health-models entity show `
+  --resource-group "<resource-group>" `
+  --health-model-name contoso-app-health `
+  --entity-name user-info-service `
+  --query "properties.healthState"
+```
+
+---
 
 You can inspect any other entity the same way by replacing `user-info-service` with `update-user-info`, `app-storage`, or `app-servicebus`. On healthy resources, all four entities report `Healthy` after the first evaluation completes, and the `update-user-info` user flow reflects the worst state anywhere beneath it.
 
@@ -302,24 +320,24 @@ You can inspect any other entity the same way by replacing `user-info-service` w
 
 When you no longer need the health model, delete it. Deleting the health model also removes its entities, signals, and relationships. It doesn't delete the real Azure resources.
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI (Bash)](#tab/azure-cli-bash)
 
 ```azurecli
 az resource delete \
-  --resource-group <resource-group> \
+  --resource-group "<resource-group>" \
   --name contoso-app-health \
   --resource-type Microsoft.CloudHealth/healthmodels \
   --api-version 2026-05-01-preview
 ```
 
-# [PowerShell](#tab/powershell)
+# [Azure CLI (PowerShell)](#tab/azure-cli-powershell)
 
 ```azurepowershell
-Remove-AzResource `
-  -ResourceGroupName '<resource-group>' `
-  -ResourceType 'Microsoft.CloudHealth/healthmodels' `
-  -Name 'contoso-app-health' `
-  -ApiVersion '2026-05-01-preview'
+az resource delete `
+  --resource-group "<resource-group>" `
+  --name contoso-app-health `
+  --resource-type Microsoft.CloudHealth/healthmodels `
+  --api-version 2026-05-01-preview
 ```
 
 ---

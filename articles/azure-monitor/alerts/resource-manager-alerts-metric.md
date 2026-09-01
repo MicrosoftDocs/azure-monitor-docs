@@ -3,8 +3,8 @@ title: Resource Manager template samples for metric alerts
 description: This article provides sample Resource Manager templates used to create metric alerts in Azure Monitor.
 ms.topic: sample
 ms.reviewer: harelbr
-ms.date: 04/24/2026
-ms.custom: references_regions
+ms.date: 08/27/2026
+ms.custom: references_regions, cbo-v1.5
 ---
 
 # Resource Manager template samples for metric alert rules in Azure Monitor
@@ -20,7 +20,7 @@ See the schema and properties for an alert rule at [Create Or Update Metric Aler
 
 ## Template references
 
-* [Microsoft.Insights metricAlerts](/azure/templates/microsoft.insights/2018-03-01/metricalerts)
+* [Microsoft.Insights metricAlerts](/azure/templates/microsoft.insights/metricalerts)
 
 ## Single criteria, static threshold
 
@@ -109,7 +109,7 @@ param evaluationFrequency string = 'PT1M'
 @description('The ID of the action group that is triggered when the alert is activated or deactivated')
 param actionGroupId string = ''
 
-resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
+resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
   name: alertName
   location: 'global'
   properties: {
@@ -144,7 +144,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
 }
 ```
 
-# [JSON](#tab/json)
+# [ARM template](#tab/arm)
 
 ```json
 {
@@ -278,7 +278,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
   "resources": [
     {
       "type": "Microsoft.Insights/metricAlerts",
-      "apiVersion": "2018-03-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('alertName')]",
       "location": "global",
       "properties": {
@@ -452,7 +452,7 @@ param evaluationFrequency string = 'PT5M'
 @description('The ID of the action group that is triggered when the alert is activated or deactivated')
 param actionGroupId string = ''
 
-resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
+resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
   name: alertName
   location: 'global'
   properties: {
@@ -493,7 +493,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
 
 ```
 
-# [JSON](#tab/json)
+# [ARM template](#tab/arm)
 
 ```json
 {
@@ -646,7 +646,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
   "resources": [
     {
       "type": "Microsoft.Insights/metricAlerts",
-      "apiVersion": "2018-03-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('alertName')]",
       "location": "global",
       "properties": {
@@ -816,7 +816,7 @@ var criterion1_var = array(criterion1)
 var criterion2_var = array(criterion2)
 var criteria = concat(criterion1_var, criterion2_var)
 
-resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
+resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
   name: alertName
   location: 'global'
   properties: {
@@ -841,7 +841,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
 }
 ```
 
-# [JSON](#tab/json)
+# [ARM template](#tab/arm)
 
 ```json
 {
@@ -949,7 +949,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
   "resources": [
     {
       "type": "Microsoft.Insights/metricAlerts",
-      "apiVersion": "2018-03-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('alertName')]",
       "location": "global",
       "properties": {
@@ -1002,6 +1002,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
     },
     "criterion1": {
       "value": {
+        "criterionType": "StaticThresholdCriterion",
         "name": "1st criterion",
         "metricName": "Transactions",
         "dimensions": [
@@ -1023,6 +1024,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
     },
     "criterion2": {
       "value": {
+        "criterionType": "StaticThresholdCriterion",
         "name": "2nd criterion",
         "metricName": "SuccessE2ELatency",
         "dimensions": [
@@ -1050,7 +1052,7 @@ A single alert rule can monitor multiple metric time series at a time, which res
 
 In this sample, the alert rule monitors the dimensions value combinations of the **ResponseType** and **ApiName** dimensions for the **Transactions** metric:
 
-1. **ResponsType** - The use of the "\*" wildcard means that for each value of the **ResponseType** dimension, including future values, a different time series is monitored individually.
+1. **ResponseType** - The use of the "\*" wildcard means that for each value of the **ResponseType** dimension, including future values, a different time series is monitored individually.
 2. **ApiName** - A different time series is monitored only for the **GetBlob** and **PutBlob** dimension values.
 
 For example, a few of the potential time series that are monitored by this alert rule are:
@@ -1119,7 +1121,7 @@ param actionGroupId string = ''
 
 var criteria = array(criterion)
 
-resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
+resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
   name: alertName
   location: 'global'
   properties: {
@@ -1144,7 +1146,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
 }
 ```
 
-# [JSON](#tab/json)
+# [ARM template](#tab/arm)
 
 ```json
 {
@@ -1244,7 +1246,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
   "resources": [
     {
       "type": "Microsoft.Insights/metricAlerts",
-      "apiVersion": "2018-03-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('alertName')]",
       "location": "global",
       "properties": {
@@ -1297,6 +1299,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
     },
     "criterion": {
       "value": {
+        "criterionType": "StaticThresholdCriterion",
         "name": "Criterion",
         "metricName": "Transactions",
         "dimensions": [
@@ -1334,7 +1337,7 @@ A single dynamic thresholds alert rule can create tailored thresholds for hundre
 
 In this sample, the alert rule monitors the dimensions value combinations of the **ResponseType** and **ApiName** dimensions for the **Transactions** metric:
 
-1. **ResponsType** - For each value of the **ResponseType** dimension, including future values, a different time series is monitored individually.
+1. **ResponseType** - For each value of the **ResponseType** dimension, including future values, a different time series is monitored individually.
 2. **ApiName** - A different time series is monitored only for the **GetBlob** and **PutBlob** dimension values.
 
 For example, a few of the potential time series that are monitored by this alert rule are:
@@ -1401,7 +1404,7 @@ param actionGroupId string = ''
 
 var criteria = array(criterion)
 
-resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
+resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
   name: alertName
   location: 'global'
   properties: {
@@ -1426,7 +1429,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
 }
 ```
 
-# [JSON](#tab/json)
+# [ARM template](#tab/arm)
 
 ```json
 {
@@ -1521,7 +1524,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
   "resources": [
     {
       "type": "Microsoft.Insights/metricAlerts",
-      "apiVersion": "2018-03-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('alertName')]",
       "location": "global",
       "properties": {
@@ -1592,8 +1595,8 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
         "operator": "GreaterOrLessThan",
         "alertSensitivity": "Medium",
         "failingPeriods": {
-          "numberOfEvaluationPeriods": "4",
-          "minFailingPeriodsToAlert": "3"
+          "numberOfEvaluationPeriods": 4,
+          "minFailingPeriodsToAlert": 3
         },
         "timeAggregation": "Total"
       }
@@ -1700,7 +1703,7 @@ param evaluationFrequency string = 'PT1M'
 @description('The ID of the action group that is triggered when the alert is activated or deactivated')
 param actionGroupId string = ''
 
-resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
+resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
   name: alertName
   location: 'global'
   properties: {
@@ -1736,7 +1739,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
 }
 ```
 
-# [JSON](#tab/json)
+# [ARM template](#tab/arm)
 
 ```json
 {
@@ -1877,7 +1880,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
   "resources": [
     {
       "type": "Microsoft.Insights/metricAlerts",
-      "apiVersion": "2018-03-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('alertName')]",
       "location": "global",
       "properties": {
@@ -1986,7 +1989,7 @@ This section will describe Azure Resource Manager templates for three scenarios 
 
 This template will create a static threshold metric alert rule that monitors Percentage CPU for all virtual machines (in one Azure region) in one or more resource groups.
 
-Save the json below as all-vms-in-resource-group-static.json for the purpose of this walk-through.
+Save the following JSON as `all-vms-in-resource-group-static.json` for the purpose of this walkthrough.
 
 ### Template file
 
@@ -2087,7 +2090,7 @@ param metricName string
 param operator string = 'GreaterThan'
 
 @description('The threshold value at which the alert is activated.')
-param threshold string = '0'
+param threshold int = 0
 
 @description('How the data that is collected should be combined over time.')
 @allowed([
@@ -2125,7 +2128,7 @@ param evaluationFrequency string = 'PT1M'
 @description('The ID of the action group that is triggered when the alert is activated or deactivated')
 param actionGroupId string = ''
 
-resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
+resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
   name: alertName
   location: 'global'
   properties: {
@@ -2160,7 +2163,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
 }
 ```
 
-# [JSON](#tab/json)
+# [ARM template](#tab/arm)
 
 ```json
 {
@@ -2354,7 +2357,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
   "resources": [
     {
       "type": "Microsoft.Insights/metricAlerts",
-      "apiVersion": "2018-03-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('alertName')]",
       "location": "global",
       "properties": {
@@ -2589,7 +2592,7 @@ param evaluationFrequency string = 'PT5M'
 @description('The ID of the action group that is triggered when the alert is activated or deactivated')
 param actionGroupId string = ''
 
-resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
+resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
   name: alertName
   location: 'global'
   properties: {
@@ -2628,7 +2631,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
 }
 ```
 
-# [JSON](#tab/json)
+# [ARM template](#tab/arm)
 
 ```json
 {
@@ -2835,7 +2838,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
   "resources": [
     {
       "type": "Microsoft.Insights/metricAlerts",
-      "apiVersion": "2018-03-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('alertName')]",
       "location": "global",
       "properties": {
@@ -3037,7 +3040,7 @@ param metricName string
 param operator string = 'GreaterThan'
 
 @description('The threshold value at which the alert is activated.')
-param threshold string = '0'
+param threshold int = 0
 
 @description('How the data that is collected should be combined over time.')
 @allowed([
@@ -3076,7 +3079,7 @@ param evaluationFrequency string = 'PT1M'
 @description('The ID of the action group that is triggered when the alert is activated or deactivated')
 param actionGroupId string = ''
 
-resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
+resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
   name: alertName
   location: 'global'
   properties: {
@@ -3113,7 +3116,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
 }
 ```
 
-# [JSON](#tab/json)
+# [ARM template](#tab/arm)
 
 ```json
 {
@@ -3308,7 +3311,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
   "resources": [
     {
       "type": "Microsoft.Insights/metricAlerts",
-      "apiVersion": "2018-03-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('alertName')]",
       "location": "global",
       "properties": {
@@ -3542,7 +3545,7 @@ param evaluationFrequency string = 'PT5M'
 @description('The ID of the action group that is triggered when the alert is activated or deactivated')
 param actionGroupId string = ''
 
-resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
+resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
   name: alertName
   location: 'global'
   properties: {
@@ -3583,7 +3586,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
 }
 ```
 
-# [JSON](#tab/json)
+# [ARM template](#tab/arm)
 
 ```json
 {
@@ -3790,7 +3793,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
   "resources": [
     {
       "type": "Microsoft.Insights/metricAlerts",
-      "apiVersion": "2018-03-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('alertName')]",
       "location": "global",
       "properties": {
@@ -3991,7 +3994,7 @@ param metricName string
 param operator string = 'GreaterThan'
 
 @description('The threshold value at which the alert is activated.')
-param threshold string = '0'
+param threshold int = 0
 
 @description('How the data that is collected should be combined over time.')
 @allowed([
@@ -4030,7 +4033,7 @@ param evaluationFrequency string = 'PT1M'
 @description('The ID of the action group that is triggered when the alert is activated or deactivated')
 param actionGroupId string = ''
 
-resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
+resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
   name: alertName
   location: 'global'
   properties: {
@@ -4065,7 +4068,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
 }
 ```
 
-# [JSON](#tab/json)
+# [ARM template](#tab/arm)
 
 ```json
 {
@@ -4260,7 +4263,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
   "resources": [
     {
       "type": "Microsoft.Insights/metricAlerts",
-      "apiVersion": "2018-03-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('alertName')]",
       "location": "global",
       "properties": {
@@ -4495,7 +4498,7 @@ param evaluationFrequency string = 'PT5M'
 @description('The ID of the action group that is triggered when the alert is activated or deactivated')
 param actionGroupId string = ''
 
-resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
+resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
   name: alertName
   location: 'global'
   properties: {
@@ -4534,7 +4537,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
 }
 ```
 
-# [JSON](#tab/json)
+# [ARM template](#tab/arm)
 
 ```json
 {
@@ -4741,7 +4744,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
   "resources": [
     {
       "type": "Microsoft.Insights/metricAlerts",
-      "apiVersion": "2018-03-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('alertName')]",
       "location": "global",
       "properties": {
@@ -4861,7 +4864,7 @@ param location string
 var pingTestName = 'PingTest-${toLower(appName)}'
 var pingAlertRuleName = 'PingAlert-${toLower(appName)}-${subscription().subscriptionId}'
 
-resource pingTest 'Microsoft.Insights/webtests@2020-10-05-preview' = {
+resource pingTest 'Microsoft.Insights/webtests@<WebTestApiVersion>' = {
   name: pingTestName
   location: location
   tags: {
@@ -4893,7 +4896,7 @@ resource pingTest 'Microsoft.Insights/webtests@2020-10-05-preview' = {
   }
 }
 
-resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
+resource metricAlert 'Microsoft.Insights/metricAlerts@<MetricAlertApiVersion>' = {
   name: pingAlertRuleName
   location: 'global'
   tags: {
@@ -4925,30 +4928,36 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
 }
 ```
 
-# [JSON](#tab/json)
+# [ARM template](#tab/arm)
 
 ```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "metadata": {
-    "parameters": {
-      "appName": {
-        "type": "string"
-      },
-      "pingURL": {
-        "type": "string"
-      },
-      "pingText": {
-        "type": "string",
-        "defaultValue": ""
-      },
-      "actionGroupId": {
-        "type": "string"
-      },
-      "location": {
-        "type": "string"
-      }
+  "parameters": {
+    "webTestApiVersion": {
+      "type": "string",
+      "defaultValue": "<WebTestApiVersion>"
+    },
+    "metricAlertApiVersion": {
+      "type": "string",
+      "defaultValue": "<MetricAlertApiVersion>"
+    },
+    "appName": {
+      "type": "string"
+    },
+    "pingURL": {
+      "type": "string"
+    },
+    "pingText": {
+      "type": "string",
+      "defaultValue": ""
+    },
+    "actionGroupId": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
     }
   },
   "variables": {
@@ -4958,7 +4967,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
   "resources": [
     {
       "type": "Microsoft.Insights/webtests",
-      "apiVersion": "2020-10-05-preview",
+      "apiVersion": "[parameters('webTestApiVersion')]",
       "name": "[variables('pingTestName')]",
       "location": "[parameters('location')]",
       "tags": {
@@ -4991,7 +5000,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
     },
     {
       "type": "Microsoft.Insights/metricAlerts",
-      "apiVersion": "2018-03-01",
+      "apiVersion": "[parameters('metricAlertApiVersion')]",
       "name": "[variables('pingAlertRuleName')]",
       "location": "global",
       "tags": {

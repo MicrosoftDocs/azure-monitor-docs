@@ -1,36 +1,36 @@
 ---
-title: Profile Azure containers with Application Insights Profiler for .NET
-description: Learn how to enable the Application Insights Profiler for your ASP.NET Core application running in Azure containers.
+title: Profile .NET apps in containers
+description: Learn how to enable the Application Insights Profiler for .NET on your ASP.NET Core apps running in Azure containers, then view and analyze Profiler traces.
 ms.topic: how-to
 ms.date: 03/12/2026
 ms.reviewer: charles.weininger
+ai-usage: ai-assisted
 # Customer Intent: As a .NET developer, I'd like to learn how to enable the Profiler on my ASP.NET Core application running in my container.
 ---
 
 # Enable the .NET Profiler on Azure containers
 
-You can enable the Application Insights Profiler for .NET on applications that run in your container almost without code. To enable the .NET Profiler on your container instance, you need to:
+Application Insights Profiler for .NET captures performance traces from your running ASP.NET Core application to show which code paths slow it down under load. When your app runs in a container, you can enable the Profiler with minimal code changes to find and fix these performance bottlenecks in production.
 
-- Add the reference to the `Microsoft.ApplicationInsights.Profiler.AspNetCore` NuGet package.
-- Update the code to enable the Profiler for .NET.
-- Set up the Application Insights connection string.
+This article shows you how to add the Profiler to a containerized ASP.NET Core app, connect it to your Application Insights resource, and view the traces the Profiler collects.
 
-In this article, you learn about the various ways that you can:
+In this article, you:
+
 > [!div class="checklist"]
-> - Install the NuGet package in the project.
-> - Set the environment variable.
-> - Learn security considerations around production deployment, like protecting your Application Insights connection string.
+> - Install the NuGet package and enable the Profiler in your project.
+> - Set the Application Insights connection string in your app settings.
+> - Build and run the container, then view the .NET Profiler traces.
 
 ## Prerequisites
 
-- [An Application Insights resource](/previous-versions/azure/azure-monitor/app/create-new-resource). Make note of the connection string.
+- [An Application Insights resource](/previous-versions/azure/azure-monitor/app/create-new-resource). Note the connection string.
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) to build Docker images.
 - [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0) installed.
 
-## Set up the environment
+## Set up the sample project and enable the .NET Profiler
 
 1. Clone and use the following [sample project](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/tree/main/examples/EnableServiceProfilerForContainerAppNet6):
-      
+
    ```bash
    git clone https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore.git
    ```
@@ -43,13 +43,13 @@ In this article, you learn about the various ways that you can:
    cd examples/EnableServiceProfilerForContainerAppNet6
    ```
 
-1. This example is a barebones project created by calling the following CLI command:
+1. Run the following CLI command to create this barebones example project:
 
-   ```powershell
+   ```console
    dotnet new mvc -n EnableServiceProfilerForContainerApp
    ```
 
-   There's a delay in the `Controllers/WeatherForecastController.cs` file to simulate the bottleneck.
+   The `Controllers/WeatherForecastController.cs` file includes a delay to simulate the bottleneck.
 
    ```csharp
    [HttpGet(Name = "GetWeatherForecast")]
@@ -75,9 +75,9 @@ In this article, you learn about the various ways that you can:
 1. Enable Application Insights and the .NET Profiler.
 
    ### [ASP.NET Core 6 and later](#tab/net-core-new)
-   
+
    Add `builder.Services.AddApplicationInsightsTelemetry()` and `builder.Services.AddServiceProfiler()` after the `WebApplication.CreateBuilder()` method in `Program.cs`:
-   
+
    ```csharp
    var builder = WebApplication.CreateBuilder(args);
 
@@ -86,12 +86,12 @@ In this article, you learn about the various ways that you can:
    builder.Services.AddControllersWithViews();
 
    var app = builder.Build();
-   ```   
+   ```
 
    For custom settings, see [Customize Application Insights Profiler](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/Configurations.md).
 
    ### [ASP.NET Core 5 and earlier](#tab/net-core-old)
-   
+
    Add `services.AddApplicationInsightsTelemetry()` and `services.AddServiceProfiler()` to the `ConfigureServices()` method in `Startup.cs`:
 
    ```csharp
@@ -104,10 +104,10 @@ In this article, you learn about the various ways that you can:
    ```
 
    For custom settings, see [Customize Application Insights Profiler](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/Configurations.md).
-   
+
    ---
 
-## Pull the latest ASP.NET Core build/runtime images
+## Pull the latest ASP.NET Core 6.0 build and runtime images
 
 1. Go to the .NET Core 6.0 example directory:
 
@@ -117,17 +117,17 @@ In this article, you learn about the various ways that you can:
 
 1. Pull the latest ASP.NET Core images:
 
-   ```shell
+   ```bash
    docker pull mcr.microsoft.com/dotnet/sdk:6.0
    docker pull mcr.microsoft.com/dotnet/aspnet:6.0
    ```
 
 > [!TIP]
-> Find the official images for the Docker [SDK](https://hub.docker.com/_/microsoft-dotnet-sdk) and [runtime](https://hub.docker.com/_/microsoft-dotnet-aspnet).
+> Find the official Docker images for the [.NET SDK](https://hub.docker.com/_/microsoft-dotnet-sdk) and [ASP.NET Core runtime](https://hub.docker.com/_/microsoft-dotnet-aspnet).
 
-## Add your Application Insights key
+## Add your Application Insights connection string
 
-1. In the [Azure portal](https://portal.azure.com), open your Application Insights resource. In the **Overview** page, take note of your Application Insights connection string.
+1. In the [Azure portal](https://portal.azure.com), open your Application Insights resource. In the **Overview** page, note your Application Insights connection string.
 
    :::image type="content" source="./media/profiler-containerinstances/application-insights-key.png" alt-text="Screenshot that shows finding the connection string in the Azure portal." lightbox="./media/profiler-containerinstances/application-insights-key.png":::
 
@@ -137,7 +137,7 @@ In this article, you learn about the various ways that you can:
    {
        "ApplicationInsights":
        {
-           "InstrumentationKey": "Your connection string"
+           "ConnectionString": "Your connection string"
        }
    }
    ```
@@ -158,27 +158,27 @@ In this article, you learn about the various ways that you can:
    docker run -d -p 8080:80 --name testapp profilerapp
    ```
 
-## View the container via your browser
+## View the container in your browser
 
-To hit the endpoint, you have two options:
+To reach the sample app's `weatherforecast` endpoint, you have two options:
 
 - Visit `http://localhost:8080/weatherforecast` in your browser.
-- Use curl:
-   
-  ```terraform
+- Use `curl`:
+
+  ```bash
   curl http://localhost:8080/weatherforecast
   ```
 
-## Inspect the logs
+## Inspect the container logs for a profiling session
 
-Optionally, inspect the local log to see if a session of profiling finished:
+Optionally, inspect the local log to see if a .NET Profiler session finished:
 
 ```bash
 docker logs testapp
 ```
 
 In the local logs, note the following events:
-   
+
 ```output
 Starting application insights profiler with connection string: your-connection string # Double check the connection string
 Service Profiler session started.               # Profiler started.
@@ -186,15 +186,15 @@ Finished calling trace uploader. Exit code: 0   # Uploader is called with exit c
 Service Profiler session finished.              # A profiling session is completed.
 ```
 
-## Troubleshooting
+## Troubleshoot missing .NET Profiler traces
 
-If you're unable to find traces from your app, consider following the steps in this [troubleshooting guide](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/docs/Troubleshoot.md).
+If you can't find traces from your app, consider following the steps in this [troubleshooting guide](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/docs/Troubleshoot.md).
 
 ## View the .NET Profiler traces
 
-1. Wait for 2 to 5 minutes so that the events can be aggregated to Application Insights.
+1. Wait for two to five minutes so that Application Insights can aggregate the events.
 1. In the Azure portal, open your Application Insights resource. From the left menu, select **Investigate** > **Performance**.
-1. After the trace process is finished, the **Profiler Traces** button appears.
+1. After the trace process finishes, the **Profiler Traces** button appears.
 
    :::image type="content" source="./media/profiler-containerinstances/profiler-traces.png" alt-text="Screenshot that shows the .NET Profiler traces button in the Performance pane." lightbox="./media/profiler-containerinstances/profiler-traces.png":::
 

@@ -2,7 +2,8 @@
 title: Audit queries in Azure Monitor log queries
 description: Details of log query audit logs which provide telemetry about log queries run in Azure Monitor.
 ms.topic: concept-article
-ms.date: 12/08/2024
+ms.date: 08/24/2026
+ai-usage: ai-assisted
 
 ---
 
@@ -13,7 +14,7 @@ Log query audit logs provide telemetry about log queries run in Azure Monitor. T
 ## Configure query auditing
 Query auditing is enabled with a [diagnostic setting](../essentials/diagnostic-settings.md) on the Log Analytics workspace. This allows you to send audit data to the current workspace or any other workspace in your subscription, to Azure Event Hubs to send outside of Azure, or to Azure Storage for archiving. 
 
-### Azure portal
+### Configure auditing in the Azure portal
 Access the diagnostic setting for a Log Analytics workspace in the Azure portal in either of the following locations:
 
 - From the **Azure Monitor** menu, select **Diagnostic settings**, and then locate and select the workspace.
@@ -25,8 +26,8 @@ Access the diagnostic setting for a Log Analytics workspace in the Azure portal 
 
     :::image type="content" source="media/query-audit/diagnostic-setting-workspace.png" lightbox="media/query-audit/diagnostic-setting-workspace.png" alt-text="Screenshot of diagnostic settings Log Analytics workspace."::: 
 
-### Resource Manager template
-You can get an example Resource Manager template from [Diagnostic setting for Log Analytics workspace](../essentials/resource-manager-diagnostic-settings.md#diagnostic-setting-for-a-log-analytics-workspace).
+### Configure auditing by using a Resource Manager template
+Get an example Resource Manager template from [Diagnostic setting for Log Analytics workspace](../essentials/resource-manager-diagnostic-settings.md#diagnostic-setting-for-a-log-analytics-workspace).
 
 ## Audit data
 An audit record is created each time a query is run. If you send the data to a Log Analytics workspace, it's stored in a table called *LAQueryLogs*. The following table describes the properties in each record of the audit data.
@@ -37,14 +38,14 @@ An audit record is created each time a query is run. If you send the data to a L
 | CorrelationId         | Unique ID to identify the query. Can be used in troubleshooting scenarios when contacting Microsoft for assistance. |
 | AADObjectId           | Microsoft Entra ID of the user account that started the query.  |
 | AADTenantId           | ID of the tenant of the user account that started the query.  |
-| AADEmail              | Email of the tenant of the user account that started the query.  |
+| AADEmail              | Email of the user account that started the query.  |
 | AADClientId           | ID and resolved name of the application used to start the query. |
-| RequestClientApp      | Resolved name of the application used to start the query. For more information, see [request client app.](#request-client-app).|
-| QueryTimeRangeStart   | Start of the time range selected for the query. This may not be populated in certain scenarios such as when the query is started from Log Analytics, and time range is specified inside the query rather than the time picker. |
-| QueryTimeRangeEnd     | End of the time range selected for the query. This may not be populated in certain scenarios such as when the query is started from Log Analytics, and time range is specified inside the query rather than the time picker.  |
+| RequestClientApp      | Resolved name of the application used to start the query. For more information, see [request client app](#request-client-app).|
+| QueryTimeRangeStart   | Start of the time range selected for the query. This property might not be populated in certain scenarios such as when you start the query from Log Analytics, and specify the time range inside the query rather than using the time picker. |
+| QueryTimeRangeEnd     | End of the time range selected for the query. This property might not be populated in certain scenarios such as when you start the query from Log Analytics, and specify the time range inside the query rather than using the time picker.  |
 | QueryText             | Text of the query that was run. |
 | RequestTarget         | API URL was used to submit the query.  |
-| RequestContext        | List of resources that the query was requested to run against. Contains up to three string arrays: workspaces, applications, and resources. Subscription or resource group-targeted queries will show as *resources*. Includes the target implied by RequestTarget.<br>The resource ID for each resource will be included if it can be resolved. It may not be able to resolved if an error is returned in accessing the resource. In this case, the specific text from the query will be used.<br>If the query uses an ambiguous name, such as a workspace name existing in multiple subscriptions, this ambiguous name will be used. |
+| RequestContext        | List of resources that the query was requested to run against. Contains up to three string arrays: workspaces, applications, and resources. Subscription or resource group-targeted queries show as *resources*. Includes the target implied by RequestTarget.<br>The resource ID for each resource is included if it can be resolved. It might not resolve if an error occurs when accessing the resource. In this case, the specific text from the query is used.<br>If the query uses an ambiguous name, such as a workspace name existing in multiple subscriptions, this ambiguous name is used. |
 | RequestContextFilters | Set of filters specified as part of the query invocation. Includes up to three possible string arrays:<br>- ResourceTypes - type of resource to limit the scope of the query<br>- Workspaces - list of workspaces to limit the query to<br>- WorkspaceRegions - list of workspace regions to limit the query |
 | ResponseCode          | HTTP response code returned when the query was submitted. |
 | ResponseDurationMs    | Time for the response to be returned.  |
@@ -63,36 +64,36 @@ An audit record is created each time a query is run. If you send the data to a L
 |AppAnalytics|Experiences of Log Analytics in the Azure portal (such as the **Logs** blade).|
 |AppInsightsPortalExtension|[Workbooks](../visualize/workbooks-data-sources.md#logs-analytics-tables-application-insights) or [Application insights](../app/app-insights-overview.md).|
 |ASC_Portal|Microsoft Defender for Cloud.|
-|ASI_Portal|Sentinel.|
-|AzureAutomation|[Azure Automation.](/azure/automation/overview)|
+|ASI_Portal|Microsoft Sentinel.|
+|AzureAutomation|[Azure Automation](/azure/automation/overview).|
 |AzureMonitorLogsConnector|[Azure Monitor Logs Connector](/azure/connectors/connectors-azure-monitor-logs).|
-|csharpsdk|[Log Analytics Query API.](../logs/api/overview.md)|
-|Draft-Monitor|[Log search alert creation in the Azure portal.](../alerts/alerts-create-new-alert-rule.md?tabs=log)|
-|Grafana|[Grafana connector.](../visualize/visualize-grafana-overview.md)|
+|csharpsdk|[Log Analytics Query API](../logs/api/overview.md).|
+|Draft-Monitor|[Log search alert creation in the Azure portal](../alerts/alerts-create-new-alert-rule.md?tabs=log).|
+|Grafana|[Grafana connector](../visualize/visualize-grafana-overview.md).|
 |IbizaExtension|Experiences of Log Analytics in the Azure portal.|
-|infraInsights/container|[Container insights.](../containers/kubernetes-monitoring-overview.md)|
-|infraInsights/vm|[VM insights.](../vm/vminsights-overview.md)|
+|infraInsights/container|[Container insights](../containers/kubernetes-monitoring-overview.md).|
+|infraInsights/vm|[VM insights](../vm/vminsights-overview.md).|
 |LogAnalyticsExtension|[Azure Dashboard](/azure/azure-portal/azure-portal-dashboards).|
-|LogAnalyticsPSClient|[Log Analytics Query API.](../logs/api/overview.md)|
-|OmsAnalyticsPBI|Log Analytics integration with [Power BI.](../logs/log-powerbi.md)|
-|PowerBIConnector|Log Analytics integration with [Power BI.](../logs/log-powerbi.md)|
-|Sentinel-Investigation-Queries|Sentinel.|
-|Sentinel-DataCollectionAggregator|Sentinel.|
-|Sentinel-analyticsManagement-customerQuery|Sentinel.|
-|Unknown|[Log Analytics Query API.](../logs/api/overview.md)|
-|UpdateManagement|[Update Management.](/azure/automation/update-management/overview)|
+|LogAnalyticsPSClient|[Log Analytics Query API](../logs/api/overview.md).|
+|OmsAnalyticsPBI|Log Analytics integration with [Power BI](../logs/log-powerbi.md).|
+|PowerBIConnector|Log Analytics integration with [Power BI](../logs/log-powerbi.md).|
+|Sentinel-Investigation-Queries|Microsoft Sentinel.|
+|Sentinel-DataCollectionAggregator|Microsoft Sentinel.|
+|Sentinel-analyticsManagement-customerQuery|Microsoft Sentinel.|
+|Unknown|[Log Analytics Query API](../logs/api/overview.md).|
+|UpdateManagement|[Update Management](/azure/automation/update-management/overview).|
 |M365D_AdvancedHunting| Advanced hunting in Microsoft Defender|
 
 
-## Considerations
+## Query audit logging considerations
 
 - The system logs queries only when you execute them in a user context. It doesn't log any service-to-service queries within Azure. This exclusion covers two main sets of queries: billing calculations and automated alert executions. For alerts, the system doesn't log alert queries triggered on a schedule. The initial execution of the alert in the alert creation screen runs in a user context though and is available for audit purposes.
 - Performance statistics aren't available for queries that come from the Azure Data Explorer proxy. All other data for these queries is still populated.
 - The system supports the *h* hint on strings that [obfuscates string literals](/azure/data-explorer/kusto/query/scalar-data-types/string#obfuscated-string-literals) (it didn't previously).
 - For queries that include data from multiple workspaces, the system captures the query only in those workspaces to which you have access.
 
-## Costs  
-There's no cost for Azure Diagnostic Extension, but you may incur charges for the data ingested. Check [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) for the destination where you're collecting data.
+## Query audit data ingestion costs
+There's no cost for enabling query auditing, but you might incur charges for the data ingested. Check [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) for the destination where you're collecting data.
 
 ## Next steps
 

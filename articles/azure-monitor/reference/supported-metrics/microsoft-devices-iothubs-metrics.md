@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Devices/IotHubs
 description: Reference for Microsoft.Devices/IotHubs metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.Devices/IotHubs, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -99,6 +99,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Devices/
 |**Routing Delivery Message Size in Bytes (preview)**<br><br>The total size in bytes of messages delivered by IoT hub to an endpoint. You can use the EndpointName and EndpointType dimensions to view the size of the messages in bytes delivered to your different endpoints. The metric value increases for every message delivered, including if the message is delivered to multiple endpoints or if the message is delivered to the same endpoint multiple times. |`RoutingDataSizeInBytesDelivered` | No | Bytes |Average, Minimum, Maximum, Total (Sum) |`EndpointType`, `EndpointName`, `RoutingSource`|PT1M |Yes|
 |**Routing Deliveries (preview)**<br><br>The number of times IoT Hub attempted to deliver messages to all endpoints using routing. To see the number of successful or failed attempts, use the Result dimension. To see the reason of failure, like invalid, dropped, or orphaned, use the FailureReasonCategory dimension. You can also use the EndpointName and EndpointType dimensions to understand how many messages were delivered to your different endpoints. The metric value increases by one for each delivery attempt, including if the message is delivered to multiple endpoints or if the message is delivered to the same endpoint multiple times. |`RoutingDeliveries` | No | Count |Average, Minimum, Maximum, Total (Sum) |`EndpointType`, `EndpointName`, `FailureReasonCategory`, `Result`, `RoutingSource`|PT1M |Yes|
 |**Routing Delivery Latency (preview)**<br><br>The average latency (milliseconds) between message ingress to IoT Hub and telemetry message ingress into an endpoint. You can use the EndpointName and EndpointType dimensions to understand the latency to your different endpoints. |`RoutingDeliveryLatency` | No | MilliSeconds |Average, Minimum, Maximum |`EndpointType`, `EndpointName`, `RoutingSource`|PT1M |Yes|
+|**Number of throttled requests**<br><br>Number of throttled requests by throttle types |`throttledRequests` | No | Count |Average, Minimum, Maximum, Total (Sum) |`ThrottleType`|PT1M |Yes|
 |**Total devices**<br><br>Number of devices registered to your IoT hub |`totalDeviceCount` | No | Count |Average, Maximum, Minimum |\<none\>|PT1M |No|
 |**Failed twin queries**<br><br>The count of all failed twin queries. |`twinQueries.failure` | No | Count |Average, Minimum, Maximum, Total (Sum) |\<none\>|PT1M |Yes|
 |**Twin queries result size**<br><br>The average, min, and max of the result size of all successful twin queries. |`twinQueries.resultSize` | No | Bytes |Average, Minimum, Maximum, Total (Sum) |\<none\>|PT1M |Yes|

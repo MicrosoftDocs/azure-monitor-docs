@@ -1,15 +1,15 @@
 ---
-title: Compare workspaces and experiments in Azure Chaos Studio
-description: Understand the differences between Chaos Studio workspaces and the classic experiment model, the main advantages of workspaces, and when to choose each model.
+title: Choose between Chaos Studio Workspaces and Experiments (classic)
+description: Compare Chaos Studio Workspaces and Experiments (classic), choose the resource model that fits your resilience test, and evaluate an adoption path.
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 08/05/2026
+ms.date: 08/31/2026
 ai-usage: ai-assisted
 ---
 
-# Compare workspaces and experiments in Azure Chaos Studio
+# Choose between Chaos Studio Workspaces and Experiments (classic)
 
-Azure Chaos Studio offers two models for running resilience tests: [workspaces](chaos-studio-workspaces-overview.md), which run scenarios against automatically discovered resources, and the classic model, which runs [experiments](chaos-studio-chaos-experiments.md) against targets you enable individually. This article compares the two models, explains the main advantages of workspaces, and helps you decide which model fits your situation. The classic experiment model is generally available; workspaces are in public preview.
+Azure Chaos Studio offers two resource models for resilience testing. [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) is the current model. It discovers resources within a scope and runs Scenarios against them. [Experiments (classic)](chaos-studio-chaos-experiments.md) is the legacy model. It runs experiments against targets that you enable individually. Use this comparison to choose a model for each resilience test and to evaluate where Workspaces fit your existing testing strategy. The Experiments (classic) model is generally available, and Chaos Studio Workspaces is in public preview.
 
 [!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
@@ -17,61 +17,72 @@ Azure Chaos Studio offers two models for running resilience tests: [workspaces](
 
 Both models inject real faults against your Azure resources, but they differ in how you get from "I want to test this failure" to a running test.
 
-| Aspect | Workspaces (preview) | Experiments (classic) |
+| Aspect | Chaos Studio Workspaces (preview) | Experiments (classic) |
 |---|---|---|
-| Servicing state | Active development. New Chaos Studio features ship in the workspaces model. | Legacy model. There's no further feature development, and only critical fixes, such as security updates, are considered for backport. |
-| Onboarding | Set a scope (subscription, resource group, or service group). The workspace discovers supported resources automatically. | Enable a target and capabilities on each resource before it can be used in an experiment. |
-| Test definition | Start from a scenario template that already composes the right actions and sequencing for an outage pattern, or customize one in the scenario designer. | Assemble faults, steps, and branches manually, and select target resources for each fault. |
-| Finding what to test | The scenario library shows which scenarios apply to the resources discovered in your scope. | You choose faults from the fault library and check resource requirements yourself. |
-| Identity and permissions | One managed identity per workspace, with roles assigned once and shared by all scenarios. The portal offers to fix missing role assignments. | Each experiment has its own managed identity and role assignments. |
-| Permission validation | The workspace validates the permissions required for a run before it starts. | Missing permissions typically surface as failures at run time. |
-| Regions | A workspace is a logical resource that can act on resources in any Azure region, in any of the [supported workspace regions](chaos-studio-region-availability.md#regional-availability-of-chaos-studio-workspaces). | Experiments deploy to [specific regions](chaos-studio-region-availability.md), and targets must be in a resource-targeting region. |
-| Reporting | Each run produces a downloadable [scenario report](chaos-studio-scenario-reports.md) with run details, an action summary, a timeline, and an execution flow diagram. | Experiment history shows execution details and error information per run. |
-| Fault coverage | A curated set of [scenario templates](chaos-studio-scenarios.md) plus custom scenarios authored in the designer or as `Microsoft.Chaos/workspaces/scenarios` resources. | The full [fault library](chaos-studio-fault-library.md), including agent-based faults, AKS Chaos Mesh faults, and dynamic targeting. |
+| Servicing state | Active development. New Chaos Studio features ship in the Workspaces model. | Legacy model. There's no further feature development, and only critical fixes, such as security updates, are considered for backport. |
+| Onboarding | Set a scope (subscription, resource group, or service group). The Workspace discovers supported resources automatically. | Enable a target and capabilities on each resource before it can be used in an experiment. |
+| Test definition | Start from a Scenario template that already composes the Actions and sequencing for an outage pattern, or customize one in the Scenario designer. | Assemble faults, steps, and branches manually, and select target resources for each fault. |
+| Finding what to test | The Scenario library shows which Scenarios apply to the resources discovered in your scope. | Choose faults from the [fault library for Experiments (classic)](chaos-studio-fault-library.md) and check resource requirements. |
+| Identity and permissions | Configure managed identity at the Workspace level: system-assigned, user-assigned, or both, with role assignments shared by its Scenarios. The portal offers to fix missing role assignments. | Use a managed identity and role assignments for each experiment. |
+| Permission validation | The Workspace validates the permissions required for a run before it starts. | Missing permissions typically surface as failures at run time. |
+| Regions | A Workspace is a logical resource that can act on resources in any Azure region from any of the [supported Workspace regions](chaos-studio-region-availability.md#regional-availability-of-chaos-studio-workspaces). | Experiments deploy to [specific regions](chaos-studio-region-availability.md#regional-availability-of-experiments-classic), and targets must be in a resource-targeting region. |
+| Reporting | Each run produces a downloadable [Scenario report](chaos-studio-scenario-reports.md) with run details, an Action summary, a timeline, and an execution flow diagram. | Experiment history shows execution details and error information per run. |
+| Supported tests | Use the curated [Scenario catalog](chaos-studio-scenarios.md) or customize a Scenario in the designer or as a `Microsoft.Chaos/workspaces/scenarios` resource. | Use the classic fault catalog, including agent-based faults, AKS Chaos Mesh faults, and dynamic targeting. |
 
-## Main advantages of workspaces
+## Main advantages of Chaos Studio Workspaces
 
-**Faster onboarding.** A workspace removes the largest source of setup friction in the classic model: per-resource target and capability enablement. You set a scope once, and discovery finds the supported resources in it. If you add or remove resources later, the workspace picks up the changes automatically.
+**Faster onboarding.** A Workspace removes the largest source of setup friction in Experiments (classic): per-resource target and capability enablement. You set a scope once, and discovery finds the supported resources in it. If you add or remove resources later, the Workspace picks up the changes automatically.
 
-**Built-in recommendations.** The scenario library is populated from the resources discovered in your scope, so you start from outage patterns that actually apply to your environment instead of assembling faults and hoping the composition is realistic. Real incidents rarely affect one resource at a time; scenarios such as Compute Zone Down compose the simultaneous disruptions for you.
+**Built-in recommendations.** The Scenario library is populated from the resources discovered in your scope, so you start from outage patterns that apply to your environment instead of assembling faults manually. Scenarios such as Compute Zone Down compose related disruptions for you.
 
-**Use any region.** Workspaces are logical resources: the workspace region doesn't need to match your target resources, and one workspace can act on resources in any Azure region. In the classic model, targets and capabilities must be co-located with your resources, and experiments can only be created in certain regions.
+**Use any region.** Workspaces are logical resources: the Workspace region doesn't need to match your target resources, and one Workspace can act on resources in any Azure region. In Experiments (classic), targets and capabilities must be co-located with your resources, and experiments can only be created in certain regions.
 
-**Simpler, safer permissions.** The workspace's managed identity is a single blast-radius control shared by every scenario, with a two-layer authorization model: the person triggering the run needs permission on the workspace, and the workspace identity needs roles on the target resources. When validation finds missing permissions, the portal offers to fix the role assignments for you. In the classic model, you manage an identity and role assignments per experiment.
+**Simpler, safer permissions.** The Workspace's managed identity is a single blast-radius control shared by every Scenario, with a two-layer authorization model: the person triggering the run needs permission on the Workspace, and the Workspace identity needs roles on the target resources. When validation finds missing permissions, the portal offers to fix the role assignments for you. In Experiments (classic), you manage an identity and role assignments for each experiment.
 
-**Validation before disruption.** A workspace validates that the identity has the permissions a run requires before the run starts, so permission gaps surface up front instead of as failed actions mid-test.
+**Validation before disruption.** A Workspace validates that the identity has the permissions a run requires before the run starts, so permission gaps surface before Actions run.
 
-**Evidence you can hand to auditors.** Every run generates a structured scenario report - run details, per-action statuses and durations, resources affected, timeline, and execution flow - that you can download and use for compliance reviews, post-incident retrospectives, or resilience maturity assessments.
+**Evidence you can share.** Every run generates a structured Scenario report with run details, Action statuses and durations, affected resources, a timeline, and an execution flow. You can download the report for compliance reviews, post-incident retrospectives, or resilience maturity assessments.
 
-**Better performance.** The workspaces platform reduces the latency between starting a run and the faults taking effect compared to the classic experiment infrastructure, so runs start faster and results are easier to correlate with your monitoring.
+## When to choose Chaos Studio Workspaces
 
-## When to choose workspaces
-
-Choose workspaces when:
+Choose Workspaces when:
 
 - You're new to Chaos Studio and want the fastest path from nothing to a meaningful resilience test.
-- The outage pattern you need is covered by the [scenario catalog](chaos-studio-scenarios.md) (zone failures, DNS and identity outages, database failovers, cache stampedes, messaging disruption) or is close enough to customize in the designer.
+- The outage pattern you need is covered by the [Scenario catalog](chaos-studio-scenarios.md) or is close enough to customize in the designer.
 - You need to test resources across multiple regions or subscriptions from one place.
 - You need structured, shareable evidence of testing for compliance or operational-resilience frameworks.
-- Multiple teams or applications need separate testing boundaries. You can create a workspace per application, environment, team, or compliance boundary.
+- Multiple teams or applications need separate testing boundaries. You can create a Workspace for each application, environment, team, or compliance boundary.
 
-## When to choose the classic model
+## When to choose Experiments (classic)
 
-Choose experiments when:
+Choose Experiments (classic) when:
 
 - You need a fault that the scenario catalog doesn't yet cover, such as specific agent-based faults or [AKS Chaos Mesh faults](chaos-studio-tutorial-aks-portal.md) for in-cluster fault injection.
 - You rely on classic-only capabilities such as [dynamic targeting](chaos-studio-tutorial-dynamic-target-portal.md) or [scheduled experiment runs](tutorial-schedule.md).
-- You require a generally available service. Workspaces are in public preview and aren't recommended for production workloads yet.
+- You require a generally available resource model. Chaos Studio Workspaces is in public preview and isn't recommended for production workloads.
 
-If you choose the classic model, keep its servicing state in mind: it's a legacy model with no further feature development, and only critical fixes, such as security updates, are considered for backport.
+If you choose Experiments (classic), keep its servicing state in mind: it's a legacy model with no further feature development, and only critical fixes, such as security updates, are considered for backport.
 
-## Using both models together
+## Evaluate a move from Experiments (classic)
 
-Workspaces and experiments are separate models, and they coexist. Existing experiments continue to work exactly as before, with their own identities and permissions. Adopting workspaces doesn't affect them. A practical approach is to use workspaces for the common outage patterns the scenario catalog covers, and keep experiments for custom fault compositions the catalog doesn't cover yet.
+Treat adoption as a model-selection decision for each resilience test. Don't assume that a Scenario and an existing experiment have equivalent coverage.
+
+1. Check the [Scenario catalog](chaos-studio-scenarios.md) for the outage pattern and resources you need to test.
+1. Review [Workspaces limitations](chaos-studio-workspaces-limitations.md) for any required fault or capability that isn't available.
+1. Review the [Workspaces permission model](chaos-studio-workspace-permissions.md) and the roles required by the Scenario.
+1. Use the [Workspaces quickstart](quickstart-create-workspace.md) to validate the selected Scenario and its report in a safe environment.
+1. Choose Experiments (classic) for a testing requirement that depends on a classic-only fault or capability.
+
+This decision path evaluates model fit. It doesn't define a resource-conversion procedure.
+
+## Use both models
+
+Your model choice can differ by resilience test. Use Chaos Studio Workspaces where the Scenario catalog covers the outage pattern, and use Experiments (classic) where you need a classic-only fault composition or capability.
 
 ## Next steps
 
-- [What are workspaces in Azure Chaos Studio?](chaos-studio-workspaces-overview.md)
-- [Limitations and known issues in Chaos Studio workspaces](chaos-studio-workspaces-limitations.md)
-- [Quickstart: Create a workspace and run your first scenario](quickstart-create-workspace.md)
-- [Scenarios in Azure Chaos Studio](chaos-studio-scenarios.md)
+- [Chaos Studio Workspaces overview](chaos-studio-workspaces-overview.md).
+- [Create a Workspace and run your first Scenario](quickstart-create-workspace.md).
+- [Configure permissions and identity for Chaos Studio Workspaces](chaos-studio-workspace-permissions.md).
+- [Review the Scenarios available in Chaos Studio Workspaces](chaos-studio-scenarios.md).
+- [Understand Experiments (classic)](chaos-studio-chaos-experiments.md).

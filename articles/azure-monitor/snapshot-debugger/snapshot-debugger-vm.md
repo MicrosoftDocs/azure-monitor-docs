@@ -1,6 +1,6 @@
 ---
-title: Enable Snapshot Debugger for .NET apps in Azure Service Fabric, Cloud Services, and Virtual Machines | Microsoft Docs
-description: Enable Snapshot Debugger for .NET apps in Azure Service Fabric, Azure Cloud Services, and Azure Virtual Machines.
+title: Snapshot Debugger for .NET apps
+description: Enable Snapshot Debugger to capture and diagnose exceptions in your .NET apps running in Azure Service Fabric, Cloud Services, and Virtual Machines.
 ms.reviewer: charles.weininger
 reviewer: cweining
 ms.topic: how-to
@@ -11,6 +11,8 @@ ms.custom: devdivchpfy22, devx-track-dotnet
 
 # Enable Snapshot Debugger for .NET apps in Azure Service Fabric, Cloud Services, and Virtual Machines
 
+This article shows you how to enable Snapshot Debugger for .NET apps that run in Azure Service Fabric, Azure Cloud Services, Azure Virtual Machines, or on-premises machines.
+
 If your ASP.NET or ASP.NET Core application runs in Azure App Service and requires a customized Snapshot Debugger configuration, or a preview version of .NET Core, start with [Enable Snapshot Debugger for .NET apps in Azure App Service](snapshot-debugger-app-service.md).
 
 If your application runs in Azure Service Fabric, Azure Cloud Services, Azure Virtual Machines, or on-premises machines, you can skip enabling Snapshot Debugger on App Service and follow the guidance in this article.
@@ -18,17 +20,17 @@ If your application runs in Azure Service Fabric, Azure Cloud Services, Azure Vi
 ## Prerequisites
 
 - [Enable Application Insights in your .NET resource](../app/asp-net.md).
-- Include the [Microsoft.ApplicationInsights.SnapshotCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.SnapshotCollector) NuGet package version 1.4.2 or above in your app.
-- Understand that snapshots might take 10 to 15 minutes to be sent to the Application Insights instance after an exception has been triggered.
+- Include the [Microsoft.ApplicationInsights.SnapshotCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.SnapshotCollector) NuGet package version 1.4.2 or later in your app.
+- Understand that snapshots might take 10 to 15 minutes to reach the Application Insights instance after an exception occurs.
 
 ## Configure snapshot collection for ASP.NET applications
 
-When you add the [Microsoft.ApplicationInsights.SnapshotCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.SnapshotCollector) NuGet package to your application, the `SnapshotCollectorTelemetryProcessor` is added automatically to the `TelemetryProcessors` section of [`ApplicationInsights.config`](../app/configuration-with-applicationinsights-config.md).
+When you add the [Microsoft.ApplicationInsights.SnapshotCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.SnapshotCollector) NuGet package to your application, it automatically adds the `SnapshotCollectorTelemetryProcessor` to the `TelemetryProcessors` section of [`ApplicationInsights.config`](../app/configuration-with-applicationinsights-config.md).
 
-If you don't see `SnapshotCollectorTelemetryProcessor` in `ApplicationInsights.config`, or if you want to customize the Snapshot Debugger configuration, you can edit it manually. 
+If you don't see `SnapshotCollectorTelemetryProcessor` in `ApplicationInsights.config`, or if you want to customize the Snapshot Debugger configuration, edit it manually.
 
 > [!NOTE]
-> Any manual configuration might get overwritten when you upgrade to a newer version of the [Microsoft.ApplicationInsights.SnapshotCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.SnapshotCollector) NuGet package.
+> Upgrading to a newer version of the [Microsoft.ApplicationInsights.SnapshotCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.SnapshotCollector) NuGet package might overwrite any manual configuration.
 
 Snapshot Collector's default configuration looks similar to the following example:
 
@@ -68,7 +70,7 @@ Snapshots are collected _only_ on exceptions reported to Application Insights. I
 
 ## Configure snapshot collection for ASP.NET Core applications or Worker Services
 
-### Prerequisites
+### Prerequisites for ASP.NET Core
 
 Your application should already reference one of the following Application Insights NuGet packages:
 
@@ -81,7 +83,7 @@ Add the [`Microsoft.ApplicationInsights.SnapshotCollector`](https://www.nuget.or
 
 ### Update the services collection
 
-In your application's startup code, where services are configured, add a call to the `AddSnapshotCollector` extension method. We suggest adding this line immediately after the call to `AddApplicationInsightsTelemetry`. For example:
+In your application's startup code, where you configure services, add a call to the `AddSnapshotCollector` extension method. Add this line immediately after the call to `AddApplicationInsightsTelemetry`. For example:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -93,7 +95,7 @@ builder.Services.AddSnapshotCollector();
 
 ### Customize the Snapshot Collector
 
-For most scenarios, Snapshot Collector's default settings are sufficient. However, you can customize the settings by adding the following code before the call to `AddSnapshotCollector()`:
+For most scenarios, Snapshot Collector's default settings are sufficient. However, to customize the settings, add the following code before the call to `AddSnapshotCollector()`:
 
 ```csharp
 using Microsoft.ApplicationInsights.SnapshotCollector;
@@ -131,7 +133,7 @@ builder.Services.AddSnapshotCollector(config => config.IsEnabledInDeveloperMode 
 
 ## Configure snapshot collection for other .NET applications
 
-Snapshots are collected only on exceptions that are reported to Application Insights.
+The Snapshot Debugger collects snapshots only for exceptions that you report to Application Insights.
 
 For ASP.NET and ASP.NET Core applications, the Application Insights SDK automatically reports unhandled exceptions that escape a controller method or endpoint route handler.
 
@@ -202,7 +204,7 @@ internal class LoggerExample
 }
 ```
 
-By default, the Application Insights Logger (`ApplicationInsightsLoggerProvider`) forwards exceptions to the Snapshot Debugger by using `TelemetryClient.TrackException`. This behavior is controlled through the `TrackExceptionsAsExceptionTelemetry` property on the `ApplicationInsightsLoggerOptions` class. 
+By default, the Application Insights Logger (`ApplicationInsightsLoggerProvider`) forwards exceptions to the Snapshot Debugger by using `TelemetryClient.TrackException`. The `TrackExceptionsAsExceptionTelemetry` property on the `ApplicationInsightsLoggerOptions` class controls this behavior. 
 
 If you set `TrackExceptionsAsExceptionTelemetry` to `false` when you configure the Application Insights Logger, the preceding example won't trigger the Snapshot Debugger. In this case, modify your code to call `TrackException` manually.
 

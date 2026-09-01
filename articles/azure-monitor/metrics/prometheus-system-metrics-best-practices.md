@@ -254,4 +254,4 @@ The following table highlights key syntax differences when migrating from KQL to
 
 - [PromQL best practices for OpenTelemetry metrics](prometheus-opentelemetry-best-practices.md)
 - [Azure Monitor Agent data collection configuration](../data-collection/data-collection-rule-overview.md)
-- [VM insights OpenTelemetry metrics](../vm/vminsights-opentelemetry.md)
+- [Metrics experience for virtual machines in Azure Monitor](../vm/metrics-opentelemetry-guest.md)

@@ -6,11 +6,11 @@
       href: chaos-studio-overview.md
     - name: Chaos engineering overview
       href: chaos-studio-chaos-engineering-overview.md
-    - name: Compare workspaces and experiments
+    - name: Choose between Workspaces and Experiments (classic)
       href: chaos-studio-workspaces-vs-experiments.md
 - name: Chaos Studio Workspaces
   items:
-    - name: What are Workspaces?
+    - name: Chaos Studio Workspaces overview
       href: chaos-studio-workspaces-overview.md
     - name: "Quickstart: Create a Workspace and run a Scenario"
       href: quickstart-create-workspace.md
@@ -38,7 +38,7 @@
       href: https://portal.azure.com/#view/Microsoft_Azure_Chaos/ChaosStudio.MenuView/~/workspaces
     - name: Chaos Studio AI plugin
       href: https://github.com/microsoft/chaos-studio
-- name: Chaos Studio Classic (legacy)
+- name: Experiments (classic)
   items:
     - name: Experiments
       items:

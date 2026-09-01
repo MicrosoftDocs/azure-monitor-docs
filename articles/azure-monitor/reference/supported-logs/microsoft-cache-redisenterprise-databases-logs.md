@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.Cache/redisEnterprise/databases
 description: Reference for Microsoft.Cache/redisEnterprise/databases in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/14/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.Cache/redisEnterprise/databases, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -16,7 +16,7 @@ The following table lists the types of logs available for the Microsoft.Cache/re
 
 |Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
 |---|---|---|---|---|---|
-|Connection events (New Connection/Authentication/Disconnection)|Yes|[REDConnectionEvents](/azure/azure-monitor/reference/tables/redconnectionevents)<p>Logs the connection events when client connects to redis enterprise database.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/redconnectionevents)|
+|ConnectionEvents|Yes|[REDConnectionEvents](/azure/azure-monitor/reference/tables/redconnectionevents)<p>Logs the connection events when client connects to redis enterprise database.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/redconnectionevents)|
 
 ## Next Steps
 

@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.Orbital/geocatalogs
 description: Reference for Microsoft.Orbital/geocatalogs in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/14/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.Orbital/geocatalogs, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -18,8 +18,8 @@ For a list of supported metrics, see [Supported metrics - Microsoft.Orbital/geoc
 
 |Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
 |---|---|---|---|---|---|
-|Audit Logs|Yes||No|No||
-|Ingestion Logs|Yes|[MPCIngestionLogs](/azure/azure-monitor/reference/tables/mpcingestionlogs)<p>Ingestion logs for Microsoft Planetary Computer Pro.|Yes|Yes||
+|Audit|Yes||No|No||
+|Ingestion|Yes|[MPCIngestionLogs](/azure/azure-monitor/reference/tables/mpcingestionlogs)<p>Ingestion logs for Microsoft Planetary Computer Pro.|Yes|Yes||
 
 ## Next Steps
 

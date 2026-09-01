@@ -1226,6 +1226,8 @@
   href: ../oteltraces.md
 - name: OTelTracesAgent
   href: ../oteltracesagent.md
+- name: PaymentHsmHardwareOperationAuditLogs
+  href: ../paymenthsmhardwareoperationauditlogs.md
 - name: PerfInsightsFindings
   href: ../perfinsightsfindings.md
 - name: PerfInsightsImpactedResources
@@ -1282,6 +1284,8 @@
   href: ../quantumprovideraccountdeviceoperationlogs.md
 - name: QuantumProviderAccountJobAuditLogs
   href: ../quantumprovideraccountjobauditlogs.md
+- name: QuantumProviderAccountMessageAuditLogs
+  href: ../quantumprovideraccountmessageauditlogs.md
 - name: QuantumProviderAccountQueueAuditLogs
   href: ../quantumprovideraccountqueueauditlogs.md
 - name: QuantumProviderAccountTargetAuditLogs

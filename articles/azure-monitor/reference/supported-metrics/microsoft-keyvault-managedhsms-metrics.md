@@ -2,7 +2,7 @@
 title: Supported metrics - microsoft.keyvault/managedhsms
 description: Reference for microsoft.keyvault/managedhsms metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/21/2026
 ms.custom: microsoft.keyvault/managedhsms, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -35,6 +35,7 @@ For a list of supported logs, see [Supported log categories - microsoft.keyvault
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**Overall Service Availability**<br><br>Service requests availability |`Availability` | No | Percent |Average |`ActivityType`, `ActivityName`, `StatusCode`, `StatusCodeClass`|PT1M |No|
+|**EKM Proxy Availability**<br><br>Availability of the connection between Managed HSM and the configured EKM Proxy server. Each probe reports 100 on success and 0 on failure, so the average over a period is the percentage of successful probes. Probes run every 15 minutes; no data is emitted when EKM is not configured. |`EkmProxyAvailability` | No | Percent |Average, Minimum, Maximum, Count |`ActivityType`, `ActivityName`, `ResultType`, `StatusCode`, `StatusCodeClass`, `Target`, `FailureReason`|PT1M |Yes|
 |**Total Service Api Hits**<br><br>Number of total service api hits |`ServiceApiHit` | No | Count |Count |`ActivityType`, `ActivityName`|PT1M |Yes|
 |**Overall Service Api Latency**<br><br>Overall latency of service api requests |`ServiceApiLatency` | No | Milliseconds |Average |`ActivityType`, `ActivityName`, `StatusCode`, `StatusCodeClass`|PT1M |No|
 

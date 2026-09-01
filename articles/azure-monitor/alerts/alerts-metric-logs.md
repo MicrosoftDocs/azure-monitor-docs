@@ -3,8 +3,8 @@ title: Create metric alerts in Azure Monitor Logs
 description: Get information about creating near-real time metric alerts on popular Log Analytics data.
 ms.topic: how-to
 ms.reviewer: harelbr
-ms.date: 04/24/2026
-ms.custom: references_regions
+ms.date: 08/27/2026
+ms.custom: references_regions, cbo-v1.5
 ---
 
 # Create a metric alert in Azure Monitor Logs
@@ -85,6 +85,20 @@ In the following sample template, creation of a metric alert for a static thresh
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "metricAlertApiVersion": {
+            "type": "string",
+            "defaultValue": "<MetricAlertApiVersion>",
+            "metadata": {
+                "description": "API version for the metric alert rule."
+            }
+        },
+        "scheduledQueryRuleApiVersion": {
+            "type": "string",
+            "defaultValue": "<ScheduledQueryRuleApiVersion>",
+            "metadata": {
+                "description": "API version for the scheduled query rule that converts the log to a metric."
+            }
+        },
         "convertRuleDescription": {
             "type": "string",
             "minLength": 1,
@@ -178,8 +192,8 @@ In the following sample template, creation of a metric alert for a static thresh
             }
         },
         "threshold": {
-            "type": "string",
-            "defaultValue": "0",
+            "type": "int",
+            "defaultValue": 0,
             "metadata": {
                 "description": "The threshold value at which the alert is activated."
             }
@@ -228,7 +242,7 @@ In the following sample template, creation of a metric alert for a static thresh
         {
             "name": "[parameters('alertName')]",
             "type": "Microsoft.Insights/scheduledQueryRules",
-            "apiVersion": "2018-04-16",
+            "apiVersion": "[parameters('scheduledQueryRuleApiVersion')]",
             "location": "[parameters('convertRuleRegion')]",
             "properties": {
                 "description": "[parameters('convertRuleDescription')]",
@@ -250,7 +264,7 @@ In the following sample template, creation of a metric alert for a static thresh
             "name": "[parameters('alertName')]",
             "type": "Microsoft.Insights/metricAlerts",
             "location": "global",
-            "apiVersion": "2018-03-01",
+            "apiVersion": "[parameters('metricAlertApiVersion')]",
             "tags": {},
             "dependsOn":["[resourceId('Microsoft.Insights/scheduledQueryRules',parameters('alertName'))]"],
             "properties": {
@@ -264,6 +278,7 @@ In the following sample template, creation of a metric alert for a static thresh
                     "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria",
                     "allOf": [
                         {
+                            "criterionType": "StaticThresholdCriterion",
                             "name" : "1st criterion",
                             "metricName": "[parameters('metricName')]",
                             "dimensions":[],
@@ -288,7 +303,7 @@ If you save the preceding JSON as *metricfromLogsAlertStatic.json*, you can coup
 
 ```json
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "convertRuleDescription": {
@@ -325,7 +340,7 @@ If you save the preceding JSON as *metricfromLogsAlertStatic.json*, you can coup
             "value": "GreaterThan"
         },
         "threshold":{
-            "value": "1"
+            "value": 1
         },
         "timeAggregation":{
             "value": "Average"
@@ -347,7 +362,7 @@ New-AzResourceGroupDeployment -ResourceGroupName "myRG" -TemplateFile metricfrom
 
 Or, you can deploy the Resource Manager template by using the Azure CLI:
 
-```azurecli
+```bash
 az deployment group create --resource-group myRG --template-file metricfromLogsAlertStatic.json --parameters @metricfromLogsAlertStatic.parameters.json
 ```
 
@@ -360,6 +375,20 @@ In the following sample template, creation of a metric alert for dynamic thresho
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "metricAlertApiVersion": {
+            "type": "string",
+            "defaultValue": "<MetricAlertApiVersion>",
+            "metadata": {
+                "description": "API version for the metric alert rule."
+            }
+        },
+        "scheduledQueryRuleApiVersion": {
+            "type": "string",
+            "defaultValue": "<ScheduledQueryRuleApiVersion>",
+            "metadata": {
+                "description": "API version for the scheduled query rule that converts the log to a metric."
+            }
+        },
         "convertRuleDescription": {
             "type": "string",
             "minLength": 1,
@@ -462,15 +491,15 @@ In the following sample template, creation of a metric alert for dynamic thresho
             }
         },
         "numberOfEvaluationPeriods": {
-            "type": "string",
-            "defaultValue": "4",
+            "type": "int",
+            "defaultValue": 4,
             "metadata": {
                 "description": "The number of periods to check in the alert evaluation."
             }
         },
         "minFailingPeriodsToAlert": {
-            "type": "string",
-            "defaultValue": "3",
+            "type": "int",
+            "defaultValue": 3,
             "metadata": {
                 "description": "The number of unhealthy periods to alert on (must be lower or equal to numberOfEvaluationPeriods)."
             }
@@ -519,7 +548,7 @@ In the following sample template, creation of a metric alert for dynamic thresho
         {
             "name": "[parameters('alertName')]",
             "type": "Microsoft.Insights/scheduledQueryRules",
-            "apiVersion": "2018-04-16",
+            "apiVersion": "[parameters('scheduledQueryRuleApiVersion')]",
             "location": "[parameters('convertRuleRegion')]",
             "properties": {
                 "description": "[parameters('convertRuleDescription')]",
@@ -541,7 +570,7 @@ In the following sample template, creation of a metric alert for dynamic thresho
             "name": "[parameters('alertName')]",
             "type": "Microsoft.Insights/metricAlerts",
             "location": "global",
-            "apiVersion": "2018-03-01",
+            "apiVersion": "[parameters('metricAlertApiVersion')]",
             "tags": {},
             "dependsOn":["[resourceId('Microsoft.Insights/scheduledQueryRules',parameters('alertName'))]"],
             "properties": {
@@ -584,7 +613,7 @@ If you save the preceding JSON as *metricfromLogsAlertDynamic.json*, you can cou
 
 ```json
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "convertRuleDescription": {
@@ -624,10 +653,10 @@ If you save the preceding JSON as *metricfromLogsAlertDynamic.json*, you can cou
               "value": "Medium"
           },
           "numberOfEvaluationPeriods": {
-              "value": "4"
+              "value": 4
           },
           "minFailingPeriodsToAlert": {
-              "value": "3"
+              "value": 3
           },
         "timeAggregation":{
             "value": "Average"
@@ -649,7 +678,7 @@ New-AzResourceGroupDeployment -ResourceGroupName "myRG" -TemplateFile metricfrom
 
 Or, you can deploy the Resource Manager template by using the Azure CLI:
 
-```azurecli
+```bash
 az deployment group create --resource-group myRG --template-file metricfromLogsAlertDynamic.json --parameters @metricfromLogsAlertDynamic.parameters.json
 ```
 

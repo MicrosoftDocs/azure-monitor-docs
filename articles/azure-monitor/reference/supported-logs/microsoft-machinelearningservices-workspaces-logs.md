@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.MachineLearningServices/workspaces
 description: Reference for Microsoft.MachineLearningServices/workspaces in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/14/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.MachineLearningServices/workspaces, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -37,7 +37,7 @@ For a list of supported metrics, see [Supported metrics - Microsoft.MachineLearn
 |EnvironmentReadEvent|Yes|[AmlEnvironmentEvent](/azure/azure-monitor/reference/tables/amlenvironmentevent)<p>Events when ML environments are accessed (read, created, or deleted).|No|Yes|[Queries](/azure/azure-monitor/reference/queries/amlenvironmentevent)|
 |InferencingOperationACI|Yes|[AmlInferencingEvent](/azure/azure-monitor/reference/tables/amlinferencingevent)<p>Events for inference or related operation on AKS or ACI compute type.|No|Yes||
 |InferencingOperationAKS|Yes|[AmlInferencingEvent](/azure/azure-monitor/reference/tables/amlinferencingevent)<p>Events for inference or related operation on AKS or ACI compute type.|No|Yes||
-|Managed Network Events|Yes||No|No||
+|ManagedNetworkEvent|Yes||No|No||
 |ModelsActionEvent|Yes|[AmlModelsEvent](/azure/azure-monitor/reference/tables/amlmodelsevent)<p>Events when ML model is accessed (read, created, or deleted). Incudes events when packaging of models and assets happen into a ready-to-build packages.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/amlmodelsevent)|
 |ModelsChangeEvent|Yes|[AmlModelsEvent](/azure/azure-monitor/reference/tables/amlmodelsevent)<p>Events when ML model is accessed (read, created, or deleted). Incudes events when packaging of models and assets happen into a ready-to-build packages.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/amlmodelsevent)|
 |ModelsReadEvent|Yes|[AmlModelsEvent](/azure/azure-monitor/reference/tables/amlmodelsevent)<p>Events when ML model is accessed (read, created, or deleted). Incudes events when packaging of models and assets happen into a ready-to-build packages.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/amlmodelsevent)|

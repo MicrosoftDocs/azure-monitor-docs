@@ -2,7 +2,7 @@
 title: Run Performance Diagnostics Reports on Azure Virtual Machines
 description: Install performance diagnostics to identify and troubleshoot performance issues on your Azure virtual machine (VM).
 ms.topic: troubleshooting
-ms.date: 04/03/2026
+ms.date: 09/01/2026
 
 # Customer intent: As a VM administrator or a DevOps engineer, I want to analyze and troubleshoot performance issues on my Azure virtual machine so that I can resolve these issues myself or share performance diagnostics information with Microsoft Support.
 ---
@@ -117,7 +117,7 @@ Each option is described in the following table.
 | **Run on-demand diagnostics** | Runs an on-demand report when the installation is complete. You can choose to run any of these reports later. See the list of reports and their description at [On-demand diagnostics](./performance-diagnostics.md#on-demand-diagnostics). |
 | **Storage account** | Specify a storage account if you want to use a single account for multiple VMs. Otherwise the default diagnostics storage account or creates a new storage account. See [view and manage storage account and stored data](performance-diagnostics-run.md#view-and-manage-storage-account). |
 |[Authentication method](#authentication-methods)| Authentication method to use as described in [Authentication methods](#authentication-methods). |
-| [Threshold settings (Preview)](#threshold-settings-preview) | Specify optional user-defined threshold values that override the default thresholds used by performance diagnostics to generate insights based on workload-specific resource usage patterns. |
+| [Threshold settings](#threshold-settings) | Specify optional user-defined threshold values that override the default thresholds used by performance diagnostics to generate insights based on workload-specific resource usage patterns. |
 
 
 A notification is displayed as performance diagnostics starts to install, and you receive a second notification when it completes. This process typically takes about a minute. If you selected the **Run on-demand diagnostics** option, the selected performance analysis scenario runs for the specified duration.
@@ -469,7 +469,7 @@ To view or change the storage account for performance diagnostics, select **View
 <!-- TODO: Replace with updated screenshot from Pooja -->
 :::image type="content" source="media/performance-diagnostics-run/change-storage-settings.png" alt-text="Screenshot of the performance diagnostics settings screen on which you can change storage accounts." lightbox="media/performance-diagnostics-run/change-storage-settings.png":::
 
-## Threshold settings (Preview)
+## Threshold settings
 
 Performance diagnostics monitors CPU, memory, and disk usage to generate insights into virtual machine (VM) performance. It generates insights when observed resource utilization exceeds or falls below threshold values during continuous or on-demand diagnostics runs.
 
@@ -503,7 +503,7 @@ Configure threshold values for the following resource signals for both continuou
 ---
 
 
-Select **View or edit diagnostic settings** under **Threshold settings (Preview)** when you do the following tasks:
+Select **View or edit diagnostic settings** under **Threshold settings** when you do the following tasks:
 - **Enable performance diagnostics**
 - **Run on-demand diagnostics**
 - **Enable continuous diagnostics**

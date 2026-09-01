@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.MachineLearningServices/registries
 description: Reference for Microsoft.MachineLearningServices/registries in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/14/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.MachineLearningServices/registries, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -16,8 +16,8 @@ The following table lists the types of logs available for the Microsoft.MachineL
 
 |Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
 |---|---|---|---|---|---|
-|Registry Asset Read Event|Yes|[AmlRegistryReadEventsLog](/azure/azure-monitor/reference/tables/amlregistryreadeventslog)<p>Azure ML Registry Read events log. It keeps records of Read operations with registries data access (data plane), including user identity, asset name and version for each access event.|No|Yes||
-|Registry Asset Write Event|Yes|[AmlRegistryWriteEventsLog](/azure/azure-monitor/reference/tables/amlregistrywriteeventslog)<p>Azure ML Registry Write events log. It keeps records of Write operations with registries data access (data plane), including user identity, asset name and version for each access event.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/amlregistrywriteeventslog)|
+|RegistryAssetReadEvent|Yes|[AmlRegistryReadEventsLog](/azure/azure-monitor/reference/tables/amlregistryreadeventslog)<p>Azure ML Registry Read events log. It keeps records of Read operations with registries data access (data plane), including user identity, asset name and version for each access event.|No|Yes||
+|RegistryAssetWriteEvent|Yes|[AmlRegistryWriteEventsLog](/azure/azure-monitor/reference/tables/amlregistrywriteeventslog)<p>Azure ML Registry Write events log. It keeps records of Write operations with registries data access (data plane), including user identity, asset name and version for each access event.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/amlregistrywriteeventslog)|
 
 ## Next Steps
 

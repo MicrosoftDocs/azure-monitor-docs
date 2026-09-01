@@ -1,42 +1,48 @@
 ### YamlMime:Landing
 
 title: Azure Chaos Studio documentation
-summary: Azure Chaos Studio is a managed resilience testing service for Azure. Create a Workspace to discover your resources, run Scenarios that simulate real outage patterns, and get Scenario reports you can use for compliance, retrospectives, and stakeholder communication. You can also build custom chaos experiments for targeted fault injection.
+summary: Chaos Studio Workspaces is the current resource model for organizing resilience testing and is in public preview. Use a Workspace to discover resources, run Scenarios, and review reports. Use Experiments (classic) when you need a generally available resource model or a classic-only fault or capability.
 
 metadata:
   title: Azure Chaos Studio documentation
-  description: Learn how to use Azure Chaos Studio Workspaces and Scenarios to validate the resilience of your Azure applications against real outage patterns.
+  description: Learn how to use Chaos Studio Workspaces and Scenarios in public preview, or choose Experiments (classic) when you need a generally available resource model.
   ms.topic: landing-page
-  ms.date: 07/20/2026
+  ms.date: 08/31/2026
 
 landingContent:
-  - title: About Azure Chaos Studio
+  - title: Chaos Studio Workspaces (preview)
     linkLists:
       - linkListType: overview
         links:
+          - text: Understand Chaos Studio Workspaces
+            url: chaos-studio-workspaces-overview.md
           - text: What is Azure Chaos Studio?
             url: chaos-studio-overview.md
-          - text: Workspaces
-            url: chaos-studio-workspaces-overview.md
+      - linkListType: concept
+        links:
+          - text: Choose between Workspaces and Experiments (classic)
+            url: chaos-studio-workspaces-vs-experiments.md
+      - linkListType: quickstart
+        links:
+          - text: Start with a Workspace and Scenario
+            url: quickstart-create-workspace.md
+
+  - title: Use Chaos Studio Workspaces (preview)
+    linkLists:
+      - linkListType: concept
+        links:
           - text: Scenarios
             url: chaos-studio-scenarios.md
           - text: Scenario reports
             url: chaos-studio-scenario-reports.md
-
-  - title: Get started with Workspaces
-    linkLists:
-      - linkListType: quickstart
-        links:
-          - text: Create a Workspace and run a Scenario
-            url: quickstart-create-workspace.md
-          - text: "Tutorial: PostgreSQL zone-down failover"
-            url: chaos-studio-tutorial-postgresql-failover.md
-      - linkListType: concept
-        links:
           - text: Workspace permissions and identity
             url: chaos-studio-workspace-permissions.md
           - text: Regional availability
             url: chaos-studio-region-availability.md
+      - linkListType: tutorial
+        links:
+          - text: "Tutorial: PostgreSQL zone-down failover"
+            url: chaos-studio-tutorial-postgresql-failover.md
 
   - title: Experiments (classic)
     linkLists:
@@ -46,6 +52,8 @@ landingContent:
             url: chaos-studio-quickstart-azure-portal.md
       - linkListType: concept
         links:
+          - text: Use Experiments (classic) when general availability is required
+            url: chaos-studio-workspaces-vs-experiments.md
           - text: Chaos experiments
             url: chaos-studio-chaos-experiments.md
           - text: Faults and actions
@@ -53,18 +61,23 @@ landingContent:
           - text: Targets and capabilities
             url: chaos-studio-targets-capabilities.md
 
+  - title: Experiments (classic) reference
+    linkLists:
+      - linkListType: reference
+        links:
+          - text: Fault and action library (classic)
+            url: chaos-studio-fault-library.md
+          - text: Supported resource types (classic)
+            url: chaos-studio-fault-providers.md
+          - text: Service limits (classic)
+            url: chaos-studio-service-limits.md
+          - text: Limitations and known issues (classic)
+            url: chaos-studio-limitations.md
+
   - title: Reference
     linkLists:
       - linkListType: reference
         links:
-          - text: Fault library
-            url: chaos-studio-fault-library.md
-          - text: Supported resource types
-            url: chaos-studio-fault-providers.md
-          - text: Service limits
-            url: chaos-studio-service-limits.md
-          - text: Limitations and known issues
-            url: chaos-studio-limitations.md
           - text: REST API
             url: /rest/api/chaosstudio/
 
@@ -72,7 +85,9 @@ landingContent:
     linkLists:
       - linkListType: how-to-guide
         links:
-          - text: Troubleshoot common issues
+          - text: Troubleshoot Workspaces and Scenarios
+            url: troubleshoot-workspaces-scenarios.md
+          - text: Troubleshoot Experiments (classic)
             url: troubleshooting.md
           - text: Agent known issues (classic)
             url: chaos-agent-known-issues.md

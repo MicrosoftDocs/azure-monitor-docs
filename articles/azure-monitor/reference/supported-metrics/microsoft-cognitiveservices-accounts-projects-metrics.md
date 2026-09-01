@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.CognitiveServices/accounts/projects
 description: Reference for Microsoft.CognitiveServices/accounts/projects metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/26/2026
 ms.custom: Microsoft.CognitiveServices/accounts/projects, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -46,6 +46,12 @@ For a list of supported logs, see [Supported log categories - Microsoft.Cognitiv
 |**Agent Threads (Preview)**<br><br>Number of events for AI Agent threads in this project. |`AgentThreads` | No | Count |Count, Total (Sum), Average, Maximum, Minimum |`EventType`|PT1M |No|
 |**Agent Tool Calls (Preview)**<br><br>Number of tool calls made by AI Agents in this project. |`AgentToolCalls` | No | Count |Count, Total (Sum), Average, Maximum, Minimum |`AgentId`, `ModelName`, `ToolName`|PT1M |No|
 |**Agent Usage Indexed Files (Preview)**<br><br>Number of files indexed for AI Agent usage like retrieval in this project. |`AgentUsageIndexedFiles` | No | Count |Count, Total (Sum), Average, Maximum, Minimum |`ErrorCode`, `Status`, `VectorStoreId`|PT1M |No|
+|**Toolbox Call Tool Calls (Preview)**<br><br>Number of toolbox call_tool call events in this project. |`ToolboxCallToolCalls` | No | Count |Total (Sum) |`ToolboxName`, `ToolboxVersion`, `Status`|PT1M |No|
+|**Toolbox Tools Deferred (Preview)**<br><br>Number of tools deferred by Tool Search in toolbox tools/list responses in this project. |`ToolboxToolsDeferred` | No | Count |Total (Sum), Average, Maximum, Minimum |`ToolboxName`, `ToolboxVersion`|PT1M |No|
+|**Toolbox Tool Search Calls (Preview)**<br><br>Number of toolbox tool_search call events in this project. |`ToolboxToolSearchCalls` | No | Count |Total (Sum) |`ToolboxName`, `ToolboxVersion`, `Status`|PT1M |No|
+|**Toolbox Tool Search Enabled (Preview)**<br><br>Number of Tool Search-enabled toolbox version creation events in this project. |`ToolboxToolSearchEnabled` | No | Count |Total (Sum) |`ToolboxName`, `ToolboxVersion`|PT1M |No|
+|**Toolbox Tool Search Results (Preview)**<br><br>Number of tools returned by successful toolbox tool_search calls in this project. |`ToolboxToolSearchResults` | No | Count |Total (Sum), Average, Maximum, Minimum |`ToolboxName`, `ToolboxVersion`|PT1M |No|
+|**Toolbox Tools Visible (Preview)**<br><br>Number of tools visible to the model in toolbox tools/list responses in this project. |`ToolboxToolsVisible` | No | Count |Total (Sum), Average, Maximum, Minimum |`ToolboxName`, `ToolboxVersion`|PT1M |No|
 
 ### Category: Resource
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|

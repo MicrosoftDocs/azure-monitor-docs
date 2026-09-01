@@ -1,11 +1,12 @@
 ---
-title: Use Azure Monitor issues
+title: Use Azure Monitor Issues
 description: Get started with Azure Monitor issues. Learn how to create, view, configure, and interact with issues that track operational problems in Azure Monitor.
 ms.topic: how-to
+ms.custom: cbo-v1.4
 ms.service: azure-monitor
 ms.collection: ce-skilling-ai-copilot
 ms.reviewer: enauerman, yalavi, ronitauber
-ms.date: 06/23/2026
+ms.date: 08/18/2026
 ai-usage: ai-assisted
 # Customer intent: As an Azure Monitor user, I want to create, view, and continue working with Azure Monitor issues so I can manage operational problems consistently from a shared investigation record.
 ---
@@ -23,51 +24,225 @@ Issues help teams manage and resolve operational problems by preserving investig
 - Ensure the subscription containing the investigated resource is associated with an Azure Monitor Workspace (AMW).
 - Ensure you have either the *Contributor*, *Monitoring Contributor*, or *Issue Contributor* role on the AMW you're investigating. For more information about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
-### Associate an AMW in the Azure portal
+### Associate an AMW with a subscription
 
 > [!NOTE]
 > You need to perform this setup once for each subscription you want to investigate. A user with the Contributor role on the subscription should perform this setup.
 
-To create issues and run Observability Agent investigations, associate a subscription with an Azure Monitor Workspace:
+To create issues and run Observability Agent investigations, associate a subscription with an Azure Monitor Workspace. Create, update, view, and delete the association by using the following operations.
+
+#### Create or update an association
+
+# [Portal](#tab/portal)
 
 1. If the alert's target resource subscription isn't already linked to an AMW, you see a message indicating that an Azure Monitor Workspace is required. The **Select an Azure Monitor workspace** screen appears.
 1. Select an existing Azure Monitor Workspace or create a new one as needed.
 1. After you confirm your selection, the **Issue** page reloads. The Observability Agent automatically starts an investigation.
 
-### Associate an AMW through REST API
+# [Azure CLI](#tab/cli)
 
-You can create, update, view, and delete an AMW association to a subscription by using the following REST API commands.
+The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to call the [Azure Monitor Workspace subscription settings](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-azure-monitor-workspace-settings) REST API operation. It associates a workspace with the subscription by using the `defaultAzureMonitorWorkspace` property.
 
-#### Create or update an association
+```bash
+# Set variables
+azureMonitorWorkspaceResourceId="<AzureMonitorWorkspaceResourceId>"
+apiVersion="<ApiVersion>"
 
-```http
-PUT https://management.azure.com/subscriptions/<subscription_id>/providers/microsoft.monitor/settings/default?api-version=2025-06-03-preview
-Host: management.azure.com
+# Get the subscription ID from the current Azure CLI context
+subscriptionId=$(az account show --query id --output tsv)
+
+# Build request URL
+apiEndpoint="https://management.azure.com"
+path="/subscriptions/$subscriptionId"
+provider="providers/Microsoft.Monitor/settings/default"
+url="$apiEndpoint$path/$provider"
+
+# Build the request body as JSON
+body=$(jq -n --arg amwId "$azureMonitorWorkspaceResourceId" '{
+  properties: {
+    defaultAzureMonitorWorkspace: $amwId
+  }
+}')
+
+# Create or update the association
+az rest --method put --url "$url?api-version=$apiVersion" --body "$body"
+```
+
+# [Azure PowerShell](#tab/powershell)
+
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [Azure Monitor Workspace subscription settings](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-azure-monitor-workspace-settings) REST API operation. It associates a workspace with the subscription by using the `defaultAzureMonitorWorkspace` property.
+
+```powershell
+# Set variables
+$azureMonitorWorkspaceResourceId = "<AzureMonitorWorkspaceResourceId>"
+$apiVersion = "<ApiVersion>"
+
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
+
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$path = "/subscriptions/$subscriptionId"
+$provider = "providers/Microsoft.Monitor/settings/default"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/$provider$queryString"
+
+# Build request body
+$body = @{
+    properties = @{
+        defaultAzureMonitorWorkspace = $azureMonitorWorkspaceResourceId
+    }
+} | ConvertTo-Json -Depth 3
+
+# Send request
+$invokeAzRestMethodParams = @{
+    Method  = "PUT"
+    Uri     = $url
+    Payload = $body
+}
+
+Invoke-AzRestMethod @invokeAzRestMethodParams
+```
+
+# [REST](#tab/rest)
+
+The following REST example uses the [Azure Monitor Workspace subscription settings](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-azure-monitor-workspace-settings) REST API operation. It associates a workspace with the subscription by using the `defaultAzureMonitorWorkspace` property.
+
+```REST
+PUT https://management.azure.com/subscriptions/{SubscriptionId}/providers/Microsoft.Monitor/settings/default?api-version={apiVersion}
+Authorization: Bearer {AccessToken}
 Content-Type: application/json
-Authorization: Bearer <bearerToken>
 
 {
   "properties": {
-    "defaultAzureMonitorWorkspace": "<amw_id>"
+    "defaultAzureMonitorWorkspace": "<AzureMonitorWorkspaceResourceId>"
   }
 }
 ```
 
+---
+
 #### View an association
 
-```http
-GET https://management.azure.com/subscriptions/<subscription_id>/providers/microsoft.monitor/settings/default?api-version=2025-06-03-preview
-Host: management.azure.com
-Authorization: Bearer <bearerToken>
+# [Azure CLI](#tab/cli-2)
+
+The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to call the [Azure Monitor Workspace subscription settings](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-azure-monitor-workspace-settings) REST API operation. It returns the workspace currently associated with the subscription.
+
+```bash
+# Set variables
+apiVersion="<ApiVersion>"
+
+# Get the subscription ID from the current Azure CLI context
+subscriptionId=$(az account show --query id --output tsv)
+
+# Build request URL
+apiEndpoint="https://management.azure.com"
+path="/subscriptions/$subscriptionId"
+provider="providers/Microsoft.Monitor/settings/default"
+url="$apiEndpoint$path/$provider"
+
+# View the association
+az rest --method get --url "$url?api-version=$apiVersion"
 ```
+
+# [Azure PowerShell](#tab/powershell-2)
+
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [Azure Monitor Workspace subscription settings](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-azure-monitor-workspace-settings) REST API operation. It returns the workspace currently associated with the subscription.
+
+```powershell
+# Set variables
+$apiVersion = "<ApiVersion>"
+
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
+
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$path = "/subscriptions/$subscriptionId"
+$provider = "providers/Microsoft.Monitor/settings/default"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/$provider$queryString"
+
+# Send request
+$invokeAzRestMethodParams = @{
+    Method = "GET"
+    Uri    = $url
+}
+
+Invoke-AzRestMethod @invokeAzRestMethodParams
+```
+
+# [REST](#tab/rest-2)
+
+The following REST example uses the [Azure Monitor Workspace subscription settings](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-azure-monitor-workspace-settings) REST API operation. It returns the workspace currently associated with the subscription.
+
+```REST
+GET https://management.azure.com/subscriptions/{SubscriptionId}/providers/Microsoft.Monitor/settings/default?api-version={apiVersion}
+Authorization: Bearer {AccessToken}
+```
+
+---
 
 #### Delete an association
 
-```http
-DELETE https://management.azure.com/subscriptions/<subscription_id>/providers/microsoft.monitor/settings/default?api-version=2025-06-03-preview
-Host: management.azure.com
-Authorization: Bearer <bearerToken>
+# [Azure CLI](#tab/cli-2)
+
+The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to call the [Azure Monitor Workspace subscription settings](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-azure-monitor-workspace-settings) REST API operation. It removes the workspace association from the subscription.
+
+```bash
+# Set variables
+apiVersion="<ApiVersion>"
+
+# Get the subscription ID from the current Azure CLI context
+subscriptionId=$(az account show --query id --output tsv)
+
+# Build request URL
+apiEndpoint="https://management.azure.com"
+path="/subscriptions/$subscriptionId"
+provider="providers/Microsoft.Monitor/settings/default"
+url="$apiEndpoint$path/$provider"
+
+# Delete the association
+az rest --method delete --url "$url?api-version=$apiVersion"
 ```
+
+# [Azure PowerShell](#tab/powershell-2)
+
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [Azure Monitor Workspace subscription settings](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-azure-monitor-workspace-settings) REST API operation. It removes the workspace association from the subscription.
+
+```powershell
+# Set variables
+$apiVersion = "<ApiVersion>"
+
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
+
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$path = "/subscriptions/$subscriptionId"
+$provider = "providers/Microsoft.Monitor/settings/default"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/$provider$queryString"
+
+# Send request
+$invokeAzRestMethodParams = @{
+    Method = "DELETE"
+    Uri    = $url
+}
+
+Invoke-AzRestMethod @invokeAzRestMethodParams
+```
+
+# [REST](#tab/rest-2)
+
+The following REST example uses the [Azure Monitor Workspace subscription settings](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-azure-monitor-workspace-settings) REST API operation. It removes the workspace association from the subscription.
+
+```REST
+DELETE https://management.azure.com/subscriptions/{SubscriptionId}/providers/Microsoft.Monitor/settings/default?api-version={apiVersion}
+Authorization: Bearer {AccessToken}
+```
+
+---
 
 ## Create an issue from an investigation
 
@@ -88,9 +263,9 @@ In the **Create issue** box:
 
 :::image type="content" source="media/issues-how-to/create-issue-box.png" alt-text="Screenshot of the Create issue box with Issue name, severity, impact time, and Azure Monitor workspace fields." lightbox="media/issues-how-to/create-issue-box.png":::
 
-After you create the issue, it appears on the **Issues** page. From there, you can open the issue details page to update issue parameters, interact with the Azure Copilot Observability Agent, and share a link to the issue, as described in the following sections.
+After you create the issue, it appears on the **Issues** page. From there, open the issue details page to update issue parameters, interact with the Azure Copilot Observability Agent, and share a link to the issue, as described in the following sections.
 
-You can also access issues directly from an Azure Monitor Workspace, which shows the issues stored in that specific workspace.
+Issues are also available directly from an Azure Monitor Workspace, which shows the issues stored in that specific workspace.
 
 ## Review an autonomously created issue
 
@@ -106,7 +281,7 @@ On the **Issues** page, autonomously created and user-created issues appear toge
 
 :::image type="content" source="media/issues-how-to/all-issues-list.png" alt-text="Screenshot of the Azure Monitor Issues page listing a mix of autonomously created and user-created issues, each with name, impact time, severity, and status columns." lightbox="media/issues-how-to/all-issues-list.png":::
 
-You can identify an autonomously created issue by two consistent markers: the title is prefixed with `[<AppName>]`, and the **Background** section opens with `Observability Agent created this issue for <AppName> because`.
+Two consistent markers identify an autonomously created issue: the title is prefixed with `[<AppName>]`, and the **Background** section opens with `Observability Agent created this issue for <AppName> because`.
 
 ## Change the parameters of an issue
 
@@ -134,7 +309,7 @@ Select **Copy link** to share a link to the issue. The link to the issue is copi
 
 ## View the issue Background area
 
-The issue **Background** area provides a summary of the alert and telemetry that triggered the issue, generated by the Azure Copilot Observability Agent. You can expand or collapse it from the issue's **Overview** tab.
+The issue **Background** area provides a summary of the alert and telemetry that triggered the issue, generated by the Azure Copilot Observability Agent. Expand or collapse it from the issue's **Overview** tab.
 
 The Background area includes a narrative summary and a relevant visualization for the issue.
 
@@ -142,7 +317,7 @@ The Background area includes a narrative summary and a relevant visualization fo
 
 An issue can include one or more investigations. The **Investigation** area is where the original investigation context carries forward into the ongoing response workflow. It contains the Azure Copilot Observability Agent, which presents the investigation associated with the issue. The agent highlights what was observed, the suspected cause, and suggested next steps related to the issue.
 
-You can continue interacting with the Observability Agent from this area to further explore the problem. For more information about the Observability Agent, see [Azure Copilot Observability Agent overview](observability-agent-overview.md).
+Continue interacting with the Observability Agent from this area to further explore the problem. For more information about the Observability Agent, see [Azure Copilot Observability Agent overview](observability-agent-overview.md).
 
 :::image type="content" source="media/issues-how-to/investigation-results-follow-up.png" alt-text="Screenshot of Azure Monitor issue showing the Background and Investigation areas." lightbox="media/issues-how-to/investigation-results-follow-up.png":::
 

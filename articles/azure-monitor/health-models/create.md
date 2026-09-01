@@ -8,7 +8,7 @@ ai-usage: ai-assisted
 
 # Create a new Azure Monitor health model (preview)
 
-[Azure Monitor health models](./overview.md) allow you to define and track the health of your Azure workloads and the resources they depend on. This article describes how to create a health model in the Azure portal.
+[Azure Monitor health models](./overview.md) help you define and track the health of your Azure workloads and the resources they depend on. Before you create a model, define the customer commitments and workload outcomes that it represents. For guidance, see [Health modeling with Azure Monitor health models](./health-modeling.md). This article describes how to create a health model in the Azure portal.
 
 ## Prerequisites
 Before you create a health model, make sure you have:

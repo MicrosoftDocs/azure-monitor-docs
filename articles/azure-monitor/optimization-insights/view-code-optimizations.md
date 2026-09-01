@@ -1,6 +1,6 @@
 ---
-title: View Code Optimizations Results
-description: Learn how to access the results provided by Azure Monitor's Code Optimizations feature.
+title: Access and Interpret Code Optimizations Results
+description: Access, filter, and interpret Code Optimizations results in Azure Monitor to find performance bottlenecks and get AI-generated fixes for your app code.
 ms.topic: how-to
 ms.service: azure-monitor
 ms.subservice: optimization-insights
@@ -17,10 +17,10 @@ After you set up and configure Code Optimizations on your app, you can access an
 
 ## Access Code Optimizations
 
-You can access Code Optimizations through two entry points:
+Access Code Optimizations through two entry points:
 
-- [The Code Optimizations consolidated overview page.](#via-the-code-optimizations-consolidated-overview-page-preview)
-- [The individual Application Insights resources.](#via-individual-application-insights-resources)
+- [The Code Optimizations consolidated overview page](#via-the-code-optimizations-consolidated-overview-page-preview).
+- [The individual Application Insights resources](#via-individual-application-insights-resources).
 
 <a name="via-the-code-optimizations-consolidated-overview-page-preview"></a>
 
@@ -35,9 +35,9 @@ You can filter the consolidated results by searching for a filter field or setti
 | Filter               | Description           | Default       |
 |----------------------|-----------------------|---------------|
 | Time Range           | Select the time range from which you want to view Code Optimizations results.   | Last 24 Hours |
-| Role                 | The role name assigned to the reporting services machine or workload. Can be updated through the Application Insights configuration. | All Roles     |
+| Role                 | The role name assigned to the reporting services machine or workload. Update it through the Application Insights configuration. | All Roles     |
 | Subscription         | The subscription that the insight belongs to. You can select more than one.  | N/A           |
-| Application Insights | The Application Insights resource with which your application is associated. You can select more than one.  | N/A           |
+| Application Insights | The Application Insights resource associated with your application. Select more than one.  | N/A           |
 | Insight Type         | The type of issue, such as CPU, memory, blocking, and exceptions.     | All Types     |
 
 You can then sort the columns in the insights results based on your desired view, including by:
@@ -49,42 +49,42 @@ You can then sort the columns in the insights results based on your desired view
 
 ### Individual Application Insights resources
 
-You can access Code Optimizations specific to individual Application Insights resources from that resource's left menu. Select **Investigate** > **Performance** and select the **Code Optimizations** button from the top menu.
+Access Code Optimizations specific to individual Application Insights resources from that resource's left menu. Select **Investigate** > **Performance** and select the **Code Optimizations** button from the top menu.
 
 :::image type="content" source="media/code-optimizations/code-optimizations-performance-blade.png" alt-text="Screenshot of Code Optimizations located in the Performance page." lightbox="media/code-optimizations/code-optimizations-performance-blade.png":::
 
-You can filter the consolidated results by searching for a filter field or setting the following filters:
+Filter the results for the individual resource by searching for a filter field or setting the following filters:
 
 | Filter       | Description                   | Default       |
 |--------------|-------------------------------|---------------|
 | Time Range   | Select the time range from which you want to view Code Optimizations results. | Last 24 Hours |
-| Role         | The role name assigned to the reporting services machine or workload. Can be updated through the Application Insights configuration. | All Roles     |
+| Role         | The role name assigned to the reporting services machine or workload. You can update it through the Application Insights configuration. | All Roles     |
 | Insight Type | The type of issue, such as CPU, memory, blocking, and exceptions. | All Types     |
 
-You can then sort the columns in the insights results based on your desired view, including by:
+Then sort the columns in the insights results based on your desired view, including by:
 
 - Performance issue
 - The number of profiles that contained that issue
 - The full name of the parent method
 
-## Interpret estimated Memory and CPU peak usage percentages
+## Interpret estimated memory and CPU peak usage percentages
 
-The estimated CPU and Memory are determined based on the amount of activity in your application. In addition to the Memory and CPU percentages, Code Optimizations also includes:
+Code Optimizations determines the estimated CPU and memory based on the amount of activity in your application. In addition to the memory and CPU percentages, Code Optimizations includes:
 
 - The actual allocation sizes (in bytes)
-- A breakdown of the allocated types made within the call
+- A breakdown of the allocated types within the call
 
 ### Memory
 
-For Memory, the number is a percentage of all allocations made in the trace. For example, if an issue takes 24% memory, you spent 24% of your allocations in that call.
+For memory, the number is a percentage of all allocations in the trace. For example, if an issue takes 24% memory, you spend 24% of your allocations in that call.
 
 ### CPU
 
-For CPU, the percentage is based on the number of CPUs in your machine (four core, eight core, etc.) and the trace time. For example, suppose your trace is 10 seconds long and you have 4 CPUs: you have a total of 40 seconds of CPU time. If the insight says the line of code is using 5% of the CPU, it's using 5% of 40 seconds, or 2 seconds.
+For CPU, the percentage is based on the number of CPUs in your machine (for example, four-core or eight-core) and the trace time. For example, suppose your trace is 10 seconds long and you have four CPUs: you have a total of 40 seconds of CPU time. If the insight says the line of code is using 5% of the CPU, it's using 5% of 40 seconds, or 2 seconds.
 
 ## Blocking
 
-Shows where threads spent time waiting for resources such as I/O operations, locks, or sleeps. Blocking time is reported in seconds and aggregated across all threads and cores, so totals can exceed the capture duration, following the same aggregation rule as CPU metrics.
+Blocking insights show where threads spend time waiting for resources such as I/O operations, locks, or sleeps. Code Optimizations reports blocking time in seconds and aggregates it across all threads and cores, so totals can exceed the capture duration, just as they do for CPU metrics.
 
 Use this metric to identify latency bottlenecks, such as:
 
@@ -92,13 +92,13 @@ Use this metric to identify latency bottlenecks, such as:
 - Synchronous I/O operations
 - Blocking calls on asynchronous operations
 
-## Exceptions 
+## Exceptions
 
-Exception insights are extracted from the snapshots collected by the Snapshot Debugger. If Snapshot Debugger is enabled in your app, and snapshots are being collected, they're automatically processed for insight extraction in Code Optimizations.
+Code Optimizations extracts exception insights from the snapshots that the Snapshot Debugger collects. If you enable Snapshot Debugger in your app and it collects snapshots, Code Optimizations automatically processes them for insight extraction.
 
 ## View insights
 
-After sorting and filtering the Code Optimizations results, you can select each insight to view the following details in a pane:
+After sorting and filtering the Code Optimizations results, select each insight to view the following details in a pane:
 
 - Detailed description of the performance bug insight.
 - The full call stack.
@@ -131,7 +131,7 @@ In the insights details pane, under the **Call Stack** heading, you can:
 
 ### Timeline
 
-In the details pane, under **Timeline**, you can also view a graph depicting the timeline of a specific performance issue's impact and threshold. The results vary depending on the filters you set. For example, a Memory "Inefficient `String.SubString()`" performance issue's insights seen over the last 24 hours might look like:
+In the details pane, under **Timeline**, you can view a graph that shows the timeline of a specific performance issue's impact and threshold. The results vary depending on the filters you set. For example, the insights for a memory "Inefficient `String.SubString()`" performance issue from the last 24 hours might look like:
 
 :::image type="content" source="media/code-optimizations/code-optimizations-trend-impact.png" alt-text="Screenshot of the CPU trend impact over the course of seven days.":::
 

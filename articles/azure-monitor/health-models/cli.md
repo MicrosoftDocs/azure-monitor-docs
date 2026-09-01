@@ -14,7 +14,7 @@ ms.custom:
 Use the `health-models` Azure CLI extension (preview) to build, update, and query your health models.
 
 > [!IMPORTANT]
-> The `health-models` Azure CLI extension is in preview and might change. Microsoft provides limited support for this feature. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+> The `health-models` Azure CLI extension is in preview and might change. Microsoft provides limited support for this feature. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in preview or otherwise not yet released into general availability.
 
 In this article, you learn how to use the Azure Health Models CLI extension to [create](./create.md), configure, and query a health model. Run the commands in sequence. Delete the resources when you finish to avoid extra costs.
 
@@ -693,65 +693,15 @@ The metric scenario is complete. The next two optional sections show how to add 
 
 Use data annotations to attach point-in-time context to an entity. An annotation can represent a new application release, or mark the time of an outage or another event, so that you correlate it with the entity's health history.
 
+For the focused procedure to add, retrieve, and view annotations, see [Add data annotations to Azure Monitor health models](./data-annotations.md).
+
 Portal: [Review point-in-time entity health on the timeline](./analyze-health.md#timeline-view).
-
-# [Azure CLI bash](#tab/cli-bash)
-
-```bash
-az monitor health-models entity add-data-annotation -g "$resourceGroupName" \
-  --health-model-name "$modelName" --entity-name "WebApp" \
-  --annotation-details "{event:'new-client-release',version:'1.2.3'}" \
-  --description "Client version 1.2.3 has been released" \
-  --query "{timestamp:createdAt,description:description}" -o table
-```
-
-# [Azure CLI PowerShell](#tab/cli-powershell)
-
-```powershell
-az monitor health-models entity add-data-annotation -g "$env:resourceGroupName" `
-  --health-model-name "$env:modelName" --entity-name "WebApp" `
-  --annotation-details "{event:'new-client-release',version:'1.2.3'}" `
-  --description "Client version 1.2.3 has been released" `
-  --query "{timestamp:createdAt,description:description}" -o table
-```
-
----
-
-```output
-Timestamp                          Description
----------------------------------  ------------------------------
-2026-07-21T21:37:40.3534694+00:00  Client version 1.2.3 has been released
-```
-
-Retrieve the entity's annotations:
-
-# [Azure CLI bash](#tab/cli-bash)
-
-```bash
-az monitor health-models entity get-data-annotations -g "$resourceGroupName" \
-  --health-model-name "$modelName" --entity-name "WebApp" \
-  --query "annotations[].{timestamp:createdAt,description:description}" -o table
-```
-
-# [Azure CLI PowerShell](#tab/cli-powershell)
-
-```powershell
-az monitor health-models entity get-data-annotations -g "$env:resourceGroupName" `
-  --health-model-name "$env:modelName" --entity-name "WebApp" `
-  --query "annotations[].{timestamp:createdAt,description:description}" -o table
-```
-
----
-
-```output
-Timestamp                          Description
----------------------------------  ------------------------------
-2026-07-21T21:37:40.3534694+00:00  Client version 1.2.3 has been released
-```
 
 ## 13. Optional: Report external health
 
 Use `ingest-health-report` to report a health state from your system. The external report is independent of the App Service metric signal. Choose any value for `--signal-name`. If the name doesn't match a signal, the model adds an `External` signal to the entity:
+
+For a focused procedure that covers request fields, report expiration, and refresh behavior, see [Submit data for externally evaluated signals](./health-report-ingestion.md).
 
 Portal: [Inspect the reported external signal in entity details](./analyze-health.md#entity-details).
 

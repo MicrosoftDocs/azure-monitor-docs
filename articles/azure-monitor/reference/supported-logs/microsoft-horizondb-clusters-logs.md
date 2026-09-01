@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.HorizonDB/clusters
 description: Reference for Microsoft.HorizonDB/clusters in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 08/14/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.HorizonDB/clusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -18,13 +18,13 @@ For a list of supported metrics, see [Supported metrics - Microsoft.HorizonDB/cl
 
 |Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
 |---|---|---|---|---|---|
-|HorizonDB autovacuum statistics|Yes||No|No||
-|HorizonDB sessions|Yes||No|No||
-|HorizonDB query store query text|Yes||No|No||
-|HorizonDB query store runtime statistics|Yes||No|No||
-|HorizonDB query store waits statistics|Yes||No|No||
-|HorizonDB server logs|Yes||No|No||
-|HorizonDB transactions statistics|Yes||No|No||
+|HorizonDBAutovacuumStats|Yes||No|No||
+|HorizonDBPgStatActivitySessions|Yes||No|No||
+|HorizonDBQueryStoreQueryText|Yes||No|No||
+|HorizonDBQueryStoreRuntimeStats|Yes||No|No||
+|HorizonDBQueryStoreWaitsStats|Yes||No|No||
+|HorizonDBServerLogs|Yes||No|No||
+|HorizonDBTransactionsStats|Yes||No|No||
 
 ## Next Steps
 

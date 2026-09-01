@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.StorageCache/caches
 description: Reference for Microsoft.StorageCache/caches in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/14/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.StorageCache/caches, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -18,9 +18,9 @@ For a list of supported metrics, see [Supported metrics - Microsoft.StorageCache
 
 |Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
 |---|---|---|---|---|---|
-|HPC Cache operation event|Yes|[StorageCacheOperationEvents](/azure/azure-monitor/reference/tables/storagecacheoperationevents)<p>Logs for Azure HPC Cache API requests.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/storagecacheoperationevents)|
-|HPC Cache upgrade event|Yes||No|No||
-|HPC Cache warning|Yes|[StorageCacheWarningEvents](/azure/azure-monitor/reference/tables/storagecachewarningevents)<p>Logs for Azure HPC Cache warning events.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/storagecachewarningevents)|
+|AscCacheOperationEvent|Yes|[StorageCacheOperationEvents](/azure/azure-monitor/reference/tables/storagecacheoperationevents)<p>Logs for Azure HPC Cache API requests.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/storagecacheoperationevents)|
+|AscUpgradeEvent|Yes||No|No||
+|AscWarningEvent|Yes|[StorageCacheWarningEvents](/azure/azure-monitor/reference/tables/storagecachewarningevents)<p>Logs for Azure HPC Cache warning events.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/storagecachewarningevents)|
 
 ## Next Steps
 

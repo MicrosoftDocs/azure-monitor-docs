@@ -117,8 +117,8 @@ For more example queries, see [Queries for the Usage table](../reference/queries
 
 Use [log queries](log-query-overview.md) in [Log Analytics](log-analytics-overview.md) if you need deeper analysis into your collected data. Each table in a Log Analytics workspace has the following standard columns that can help you analyze billable data:
 
-* [_IsBillable](log-standard-columns.md#_isbillable) identifies records that incur an ingestion charge. Use this column to filter out non-billable data.
-* [_BilledSize](log-standard-columns.md#_billedsize) provides the size in bytes of the record.
+* [_IsBillable](log-standard-columns.md#_isbillable-column) identifies records that incur an ingestion charge. Use this column to filter out non-billable data.
+* [_BilledSize](log-standard-columns.md#_billedsize-column) provides the size in bytes of the record.
 
 ### Billable data volume for specific events
 
@@ -136,7 +136,7 @@ For more example queries, see [Queries for the Event table](../reference/queries
 
 ### Data volume by Azure resource, resource group, or subscription
 
-You can analyze the amount of billable data collected from a particular resource or set of resources. These queries use the [_ResourceId](./log-standard-columns.md#_resourceid) and [_SubscriptionId](./log-standard-columns.md#_subscriptionid) columns for data from resources hosted in Azure.
+You can analyze the amount of billable data collected from a particular resource or set of resources. These queries use the [_ResourceId](./log-standard-columns.md#_resourceid-column) and [_SubscriptionId](./log-standard-columns.md#_subscriptionid-column) columns for data from resources hosted in Azure.
 
 > [!WARNING]
 > Use [find](/azure/data-explorer/kusto/query/findoperator?pivots=azuremonitor) queries sparingly because scans across data types are [resource intensive](./query-optimization.md#query-details-pane) to execute. If you don't need results per subscription, resource group, or resource name, use the [Usage](/azure/azure-monitor/reference/tables/usage) table queries in [Query billable data volume from the Usage table](#query-billable-data-volume-from-the-usage-table).
@@ -401,9 +401,9 @@ find where TimeGenerated >= startofday(ago(7d)) and TimeGenerated < startofday(n
 
 If you see high data ingestion reported by using `Usage` records, but you don't see the same results when you sum `_BilledSize` directly on the data type, late-arriving data might be the cause. This situation occurs when data is ingested with old timestamps.
 
-For example, an agent might have a connectivity issue and send accumulated data when it reconnects. Or a host might have an incorrect time. Either example can result in an apparent discrepancy between the ingested data reported by the [Usage](/azure/azure-monitor/reference/tables/usage) data type and a query summing [_BilledSize](./log-standard-columns.md#_billedsize) over the raw data for a particular day specified by **TimeGenerated**, the timestamp when the event was generated.
+For example, an agent might have a connectivity issue and send accumulated data when it reconnects. Or a host might have an incorrect time. Either example can result in an apparent discrepancy between the ingested data reported by the [Usage](/azure/azure-monitor/reference/tables/usage) data type and a query summing [_BilledSize](./log-standard-columns.md#_billedsize-column) over the raw data for a particular day specified by **TimeGenerated**, the timestamp when the event was generated.
 
-To diagnose late-arriving data problems, use the [_TimeReceived](./log-standard-columns.md#_timereceived) column and the [TimeGenerated](./log-standard-columns.md#timegenerated) column. The `_TimeReceived` property is the time when Azure Monitor receives the record.
+To diagnose late-arriving data problems, use the [_TimeReceived](./log-standard-columns.md#_timereceived-column) column and the [TimeGenerated](./log-standard-columns.md#timegenerated-column) column. The `_TimeReceived` property is the time when Azure Monitor receives the record.
 
 The following example responds to high ingested data volumes of [W3CIISLog](/azure/azure-monitor/reference/tables/w3ciislog) data on May 2, 2021, to identify the timestamps on this ingested data. The `where TimeGenerated > datetime(1970-01-01)` statement is included to provide the clue to the Log Analytics user interface to look over all data.
 

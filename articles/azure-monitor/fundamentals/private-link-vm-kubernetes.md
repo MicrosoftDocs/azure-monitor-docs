@@ -2,7 +2,7 @@
 title: Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor
 description: Learn how to enable private link on an Azure Kubernetes Service (AKS) cluster.
 ms.topic: how-to
-ms.date: 08/25/2025
+ms.date: 08/25/2026
 ms.custom: devx-track-azurecli
 ms.reviewer: aul
 ---
@@ -17,7 +17,7 @@ This article describes how to configure monitoring of your virtual machines (VMs
 
 - Enable monitoring of your VM or cluster using relevant guidance.
     - Enable monitoring of your Kubernetes cluster using the guidance in [Enable Prometheus metrics and container logging](../containers/kubernetes-monitoring-enable.md).
-    - Enable monitoring of your VM using the guidance in [Enable VM Insights](../vm/vminsights-enable.md) or [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md).
+    - Enable monitoring of your VM by using the guidance in [Enable VM monitoring in Azure Monitor](../vm/vm-enable-monitoring.md) or [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md).
 - Create an AMPLS and connect it to your VNet using the process described in [Configure private link for Azure Monitor](./private-link-configure.md).
 
 
@@ -31,7 +31,7 @@ The Azure Monitor agent running on the VM or cluster needs to have connectivity 
 - Query data from Azure Monitor workspace and Log Analytics workspace.
 
 > [!NOTE]
-> VMs only send metrics to an Azure Monitor workspace if they've been migrated to OpenTelemetry metrics as described in [Migrate to VM insights OpenTelemetry (preview)](../vm/vminsights-opentelemetry.md). If not, they store metrics in Log Analytics workspaces. The same guidance in this article applies to a VM that hasn't been migrated to OpenTelemetry metrics, but only the Log Analytics workspace needs to be configured.
+> Metrics-based OpenTelemetry collection for virtual machines doesn't currently support private link. The guidance in this article applies to logs stored in Log Analytics workspaces. For current metrics-based collection limitations, see [Metrics experience for virtual machines in Azure Monitor](../vm/metrics-opentelemetry-guest.md#limitations-of-metrics-based-collection).
 
 [Data collection endpoints (DCEs)](../data-collection/data-collection-endpoint-overview.md) are used for different functions when using private link with Azure Monitor as described in [AMPLS resources](./private-link-security.md#ampls-resources). You will use a combination of existing DCEs and new DCEs that you create depending on your requirements.
 

@@ -2,7 +2,7 @@
 title: Supported log categories - Oracle.Database/cloudExadataInfrastructures
 description: Reference for Oracle.Database/cloudExadataInfrastructures in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/14/2026
+ms.date: 08/21/2026
 ms.custom: Oracle.Database/cloudExadataInfrastructures, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -16,12 +16,12 @@ The following table lists the types of logs available for the Oracle.Database/cl
 
 |Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
 |---|---|---|---|---|---|
-|Creation Events|Yes||No|No||
-|Critical events|Yes||No|No||
-|Delete Events|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||
-|Information Events|Yes||No|No||
-|Maintenance Events|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||
-|Update Events|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||
+|Creation|Yes||No|No||
+|Critical|Yes||No|No||
+|Delete|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||
+|Information|Yes||No|No||
+|Maintenance|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||
+|Update|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||
 
 ## Next Steps
 

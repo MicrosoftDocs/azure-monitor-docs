@@ -613,6 +613,8 @@ items:
   href: QualysKnowledgeBase.md
 - name: QuantumProviderAccountDeviceOperationLogs
   href: QuantumProviderAccountDeviceOperationLogs.md
+- name: QuantumProviderAccountMessageAuditLogs
+  href: QuantumProviderAccountMessageAuditLogs.md
 - name: REDConnectionEvents
   href: REDConnectionEvents.md
 - name: Rapid7InsightVMCloudAssets

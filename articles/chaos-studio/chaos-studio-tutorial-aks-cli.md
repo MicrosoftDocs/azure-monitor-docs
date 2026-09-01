@@ -3,7 +3,7 @@ title: Create a chaos experiment using a Chaos Mesh fault with Azure CLI
 description: Create an experiment that uses an AKS Chaos Mesh fault by using Azure Chaos Studio with the Azure CLI.
 author: prasha-microsoft
 ms.topic: how-to
-ms.date: 04/25/2024
+ms.date: 08/31/2026
 ms.reviewer: nikhilkaul
 ms.custom: template-how-to, devx-track-azurecli
 ms.devlang: azurecli
@@ -12,6 +12,8 @@ ms.devlang: azurecli
 # Create a chaos experiment that uses a Chaos Mesh fault with the Azure CLI
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+Use this article for in-cluster Chaos Mesh fault injection with Experiments (classic). For current-model AKS resiliency testing with Chaos Studio Workspaces, see [Test workload resiliency on AKS](chaos-studio-aks-guidance.md) or [deploy a sample application and test its zone resilience](chaos-studio-tutorial-sample-app.md).
 
 You can use a chaos experiment to verify that your application is resilient to failures by causing those failures in a controlled environment. In this article, you cause periodic Azure Kubernetes Service (AKS) pod failures on a namespace by using a chaos experiment and Azure Chaos Studio. Running this experiment can help you defend against service unavailability when there are sporadic failures.
 
@@ -233,5 +235,7 @@ You're now ready to run your experiment. To see the effect, we recommend that yo
 
 ## Next steps
 Now that you've run an AKS Chaos Mesh service-direct experiment, you're ready to:
+- [Test workload resiliency on AKS with Chaos Studio Workspaces](chaos-studio-aks-guidance.md)
+- [Deploy a sample application and test its zone resilience with Chaos Studio Workspaces](chaos-studio-tutorial-sample-app.md)
 - [Create an experiment that uses agent-based faults](chaos-studio-tutorial-agent-based-portal.md)
 - [Manage your experiment](chaos-studio-run-experiment.md)

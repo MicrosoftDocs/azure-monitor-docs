@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.OperationalInsights/workspaces
 description: Reference for Microsoft.OperationalInsights/workspaces in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/14/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.OperationalInsights/workspaces, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -20,7 +20,7 @@ For a list of supported metrics, see [Supported metrics - Microsoft.OperationalI
 |---|---|---|---|---|---|
 |Audit|No|[LAQueryLogs](/azure/azure-monitor/reference/tables/laquerylogs)<p>Audit logs for queries executed in Log Analytics Workspaces.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/laquerylogs)|
 |Jobs|Yes|[LAJobLogs](/azure/azure-monitor/reference/tables/lajoblogs)<p>Provides information about jobs executions (e.g. Export Job) within Log Analytics workspace. Including job status, duration, and errors.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/lajoblogs)|
-|Summary Logs|Yes|[LASummaryLogs](/azure/azure-monitor/reference/tables/lasummarylogs)<p>Provides Summary logs rules execution details, including run status, duration and errors. Can be used to view bins executions statuses, identify rules that take a long time to complete, and failures that could be optimized in query, or shorted bin time.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/lasummarylogs)|
+|SummaryLogs|Yes|[LASummaryLogs](/azure/azure-monitor/reference/tables/lasummarylogs)<p>Provides Summary logs rules execution details, including run status, duration and errors. Can be used to view bins executions statuses, identify rules that take a long time to complete, and failures that could be optimized in query, or shorted bin time.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/lasummarylogs)|
 
 ## Next Steps
 

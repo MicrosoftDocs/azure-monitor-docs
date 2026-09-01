@@ -1,6 +1,6 @@
 ---
-title: Troubleshoot Code Optimizations
-description: Learn how to use Application Insights Code Optimizations on Azure. View a checklist of troubleshooting steps.
+title: Troubleshoot Code Optimizations in Azure
+description: Troubleshoot Application Insights Code Optimizations in Azure Monitor. Follow a checklist of steps to resolve setup issues and start getting code insights.
 author: austinmccollum
 ms.author: austinmc
 ms.reviewer: hannahhunter
@@ -15,11 +15,11 @@ ms.custom: sap:Availability Tests
 
 This article provides troubleshooting steps and information to use Application Insights Code Optimizations for Microsoft Azure.
 
-## Troubleshooting checklist
+## Code Optimizations troubleshooting checklist
 
 ### Step 1: View a video about Code Optimizations setup
 
-Start by verifying you've set up Code Optimizations properly. Watch the following video on how to set up Code Optimizations.
+Start by verifying you set up Code Optimizations properly. Watch the following video on how to set up Code Optimizations.
 
 > [!VIDEO https://www.youtube-nocookie.com/embed/vbi9YQgIgC8]
 
@@ -33,7 +33,7 @@ Start by verifying you've set up Code Optimizations properly. Watch the followin
 
 ### Step 4: Verify that .NET Profiler is collecting profiles
 
-To make sure that profiles are uploaded to your Application Insights resource, follow these steps：
+To ensure that .NET Profiler uploads profiles to your Application Insights resource, follow these steps:
 
 1. In the [Azure portal](https://portal.azure.com), search for and select **Application Insights**.
 
@@ -54,9 +54,9 @@ To make sure that profiles are uploaded to your Application Insights resource, f
 
 ### Step 5: Regularly check the Profiler
 
-After you successfully complete the previous steps, keep checking the **Profiler** page for insights. Meanwhile, the service continues to analyze your profiles and provide insights as soon as it detects any issues in your code.
+After you complete the previous steps, keep checking the **Profiler** page for insights. Meanwhile, the service continues to analyze your profiles and provide insights as soon as it detects any issues in your code.
 
-After you enable the .NET Profiler, several hours might be required for you to generate profiles and for the service to analyze them. If the service detects no issues in your code, a message appears that confirms that no insights were found.
+After you enable the .NET Profiler, it might take several hours to generate profiles and for the service to analyze them. If the service detects no issues in your code, a message confirms that it found no insights.
 
 ## Contact us for help
 

@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.StorageCache/amlFilesystems
 description: Reference for Microsoft.StorageCache/amlFilesystems metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.StorageCache/amlFilesystems, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -34,10 +34,19 @@ For a list of supported logs, see [Supported log categories - Microsoft.StorageC
 
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Client Read Latency Total**<br><br>Client total read op latency. |`ClientReadLatencyTotal` | No | MilliSeconds |Minimum, Maximum, Average, Total (Sum) |`ostnum`|PT1M |No|
+|**Auto Imported Directories**<br><br>The number of directories imported in a 1 minute interval. |`AutoImportedDirectories` | No | Count |Minimum, Maximum, Average, Total (Sum) |`phase`|PT1M |No|
+|**Auto Imported Files**<br><br>The number of files imported in a 1 minute interval. |`AutoImportedFiles` | No | Count |Minimum, Maximum, Average, Total (Sum) |`phase`|PT1M |No|
+|**Auto Imported Symbolic Links**<br><br>The number of symbolic links imported in a 1 minute interval. |`AutoImportedSymlinks` | No | Count |Minimum, Maximum, Average, Total (Sum) |`phase`|PT1M |No|
+|**Auto Imported Blobs**<br><br>The number of blobs imported in a 1 minute interval. |`AutoImporterBlobs` | No | Count |Minimum, Maximum, Average, Total (Sum) |`phase`|PT1M |No|
+|**Auto Importer Conflicts**<br><br>The number of importer entry conflicts experienced in a 1 minute interval. |`AutoImporterConflicts` | No | Count |Minimum, Maximum, Average, Total (Sum) |`phase`|PT1M |No|
+|**Auto Importer Deletions**<br><br>The number of file system entries deleted in a 1 minute interval. |`AutoImporterDeletions` | No | Count |Minimum, Maximum, Average, Total (Sum) |`phase`|PT1M |No|
+|**Auto Importer Errors**<br><br>The number of importer errors encountered in a 1 minute interval. |`AutoImporterErrors` | No | Count |Minimum, Maximum, Average, Total (Sum) |`phase`|PT1M |No|
+|**Client Read Average Latency**<br><br>Client average read op latency. |`ClientReadLatencyAvg` | No | Milliseconds |Minimum, Maximum, Average |`ostnum`|PT1M |No|
+|**Client Read Latency Total**<br><br>Client total read op latency. |`ClientReadLatencyTotal` | No | Milliseconds |Minimum, Maximum, Average, Total (Sum) |`ostnum`|PT1M |No|
 |**Client Read Ops**<br><br>Number of client read ops performed. |`ClientReadOps` | No | Count |Minimum, Maximum, Average |`ostnum`|PT1M |No|
 |**Client Read Throughput**<br><br>Client read data transfer rate. |`ClientReadThroughput` | No | BytesPerSecond |Minimum, Maximum, Average |`ostnum`|PT1M |No|
-|**Client Write Latency Total**<br><br>Client total write op latency. |`ClientWriteLatencyTotal` | No | MilliSeconds |Minimum, Maximum, Average, Total (Sum) |`ostnum`|PT1M |No|
+|**Client Write Average Latency**<br><br>Client average write op latency. |`ClientWriteLatencyAvg` | No | Milliseconds |Minimum, Maximum, Average |`ostnum`|PT1M |No|
+|**Client Write Latency Total**<br><br>Client total write op latency. |`ClientWriteLatencyTotal` | No | Milliseconds |Minimum, Maximum, Average, Total (Sum) |`ostnum`|PT1M |No|
 |**Client Write Ops**<br><br>Number of client write ops performed. |`ClientWriteOps` | No | Count |Minimum, Maximum, Average |`ostnum`|PT1M |No|
 |**Client Write Throughput**<br><br>Client write data transfer rate. |`ClientWriteThroughput` | No | BytesPerSecond |Minimum, Maximum, Average |`ostnum`|PT1M |No|
 |**HSM Action Errors**<br><br>Total number of errors encountered processing requests. |`HSMActionErrors` | No | Count |Minimum, Maximum, Average, Total (Sum) |`mdtnum`|PT1M |No|
@@ -47,10 +56,17 @@ For a list of supported logs, see [Supported log categories - Microsoft.StorageC
 |**HSM Remove Requests**<br><br>Number of in-flight HSM remove requests. |`HSMRemoveRequests` | No | Count |Minimum, Maximum, Average, Total (Sum) |`mdtnum`|PT1M |No|
 |**HSM Restore Requests**<br><br>Number of in-flight HSM restore requests. |`HSMRestoreRequests` | No | Count |Minimum, Maximum, Average, Total (Sum) |`mdtnum`|PT1M |No|
 |**Lustre Client Evictions**<br><br>The number of client evictions reported over a 1 minute period. |`LustreClientEvictions` | No | Count |Minimum, Maximum, Average, Total (Sum) |\<none\>|PT1M |No|
+|**Manual Imported Directories**<br><br>The number of directories imported in a 1 minute interval. |`ManualImportedDirectories` | No | Count |Minimum, Maximum, Average, Total (Sum) |`phase`|PT1M |No|
+|**Manual Imported Files**<br><br>The number of files imported in a 1 minute interval. |`ManualImportedFiles` | No | Count |Minimum, Maximum, Average, Total (Sum) |`phase`|PT1M |No|
+|**Manual Imported Symbolic Links**<br><br>The number of symbolic links imported in a 1 minute interval. |`ManualImportedSymlinks` | No | Count |Minimum, Maximum, Average, Total (Sum) |`phase`|PT1M |No|
+|**Manual Imported Blobs**<br><br>The number of blobs imported in a 1 minute interval. |`ManualImporterBlobs` | No | Count |Minimum, Maximum, Average, Total (Sum) |`phase`|PT1M |No|
+|**Manual Importer Conflicts**<br><br>The number of importer entry conflicts experienced in a 1 minute interval. |`ManualImporterConflicts` | No | Count |Minimum, Maximum, Average, Total (Sum) |`phase`|PT1M |No|
+|**Manual Importer Errors**<br><br>The number of importer errors encountered in a 1 minute interval. |`ManualImporterErrors` | No | Count |Minimum, Maximum, Average, Total (Sum) |`phase`|PT1M |No|
 |**MDT Bytes Available**<br><br>Number of bytes marked as available on the MDT. |`MDTBytesAvailable` | No | Bytes |Minimum, Maximum, Average |`mdtnum`|PT1M |No|
 |**MDT Bytes Total**<br><br>Total number of bytes supported on the MDT. |`MDTBytesTotal` | No | Bytes |Minimum, Maximum, Average |`mdtnum`|PT1M |No|
 |**MDT Bytes Used**<br><br>Number of bytes available for use minus the number of bytes marked as free on the MDT. |`MDTBytesUsed` | No | Bytes |Minimum, Maximum, Average |`mdtnum`|PT1M |No|
-|**MDT Client Latency**<br><br>Client latency for all operations to MDTs. |`MDTClientLatency` | No | MilliSeconds |Minimum, Maximum, Average |`mdtnum`, `operation`|PT1M |No|
+|**MDT Client Latency**<br><br>Client latency for all operations to MDTs. |`MDTClientLatency` | No | Milliseconds |Minimum, Maximum, Average |`mdtnum`, `operation`|PT1M |No|
+|**MDT Client Average Latency**<br><br>Client average latency for all operations to MDTs. |`MDTClientLatencyAvg` | No | Milliseconds |Minimum, Maximum, Average |`mdtnum`, `operation`|PT1M |No|
 |**Client MDT Ops**<br><br>Number of client MDT metadata ops performed. |`MDTClientOps` | No | Count |Minimum, Maximum, Average |`mdtnum`, `operation`|PT1M |No|
 |**MDT Connected Clients**<br><br>Number of client connections (exports) to the MDT |`MDTConnectedClients` | No | Count |Minimum, Maximum, Average, Total (Sum) |`mdtnum`|PT1M |No|
 |**MDT Files Free**<br><br>Count of free files (inodes) on the MDT. |`MDTFilesFree` | No | Count |Minimum, Maximum, Average |`mdtnum`|PT1M |No|
@@ -59,7 +75,8 @@ For a list of supported logs, see [Supported log categories - Microsoft.StorageC
 |**OST Bytes Available**<br><br>Number of bytes marked as available on the OST. |`OSTBytesAvailable` | No | Bytes |Minimum, Maximum, Average |`ostnum`|PT1M |No|
 |**OST Bytes Total**<br><br>Total number of bytes supported on the OST. |`OSTBytesTotal` | No | Bytes |Minimum, Maximum, Average |`ostnum`|PT1M |No|
 |**OST Bytes Used**<br><br>Number of bytes available for use minus the number of bytes marked as free on the OST. |`OSTBytesUsed` | No | Bytes |Minimum, Maximum, Average |`ostnum`|PT1M |No|
-|**OST Client Latency**<br><br>Client latency for all operations to OSTs. |`OSTClientLatency` | No | MilliSeconds |Minimum, Maximum, Average |`ostnum`, `operation`|PT1M |No|
+|**OST Client Latency**<br><br>Client latency for all operations to OSTs. |`OSTClientLatency` | No | Milliseconds |Minimum, Maximum, Average |`ostnum`, `operation`|PT1M |No|
+|**OST Client Average Latency**<br><br>Client average latency for all operations to OSTs. |`OSTClientLatencyAvg` | No | Milliseconds |Minimum, Maximum, Average |`ostnum`, `operation`|PT1M |No|
 |**Client OST Ops**<br><br>Number of client OST metadata ops performed. |`OSTClientOps` | No | Count |Minimum, Maximum, Average |`ostnum`, `operation`|PT1M |No|
 |**OST Connected Clients**<br><br>Number of client connections (exports) to the OST |`OSTConnectedClients` | No | Count |Minimum, Maximum, Average |`ostnum`|PT1M |No|
 |**OST Files Free**<br><br>Count of free files (inodes) on the OST. |`OSTFilesFree` | No | Count |Minimum, Maximum, Average |`ostnum`|PT1M |No|
