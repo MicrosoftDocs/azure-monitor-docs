@@ -2,7 +2,7 @@
 title: Signals in Azure Monitor health models (preview)
 description: Learn signal concepts and configuration for Azure Monitor health models, including signal types, data sources, definitions, and thresholds.
 ms.topic: how-to
-ms.date: 07/20/2026
+ms.date: 08/19/2026
 ai-usage: ai-assisted
 ---
 
@@ -18,6 +18,7 @@ Each entity in a health model can use any of the available signal types describe
 | Log Analytics workspace | Runs a [log query](../logs/queries.md) from a Log Analytics workspace and evaluates the result. |
 | Azure Monitor workspace | Runs a [PromQL query](../metrics/metrics-explorer.md) from an Azure Monitor workspace and evaluates the result. |
 | Azure Resource Health | Uses the [Azure Resource Health](../../service-health/resource-health-overview.md) status of the resource represented by the entity, so platform-reported availability contributes to the entity's health state. |
+| External health | Data for externally evaluated signals from your application or other monitoring systems. For more information, see [Submit data for externally evaluated signals](./health-report-ingestion.md). |
 
 ## Configure signals in the designer
 The **Signals** tab of the [entity editor](./designer.md#entities) allows you to create or edit signals and assign them to the entity. If a signal type is defined for the entity, then you can configure its details. If not, then you're given an option to enable and configure that type.
@@ -29,10 +30,10 @@ When you add the first signal of a particular type to an entity, you must specif
 | Property | Description |
 |:---|:---|
 | Data source | The signals that are added to the entity will access this data source to apply their logic and compare to their threshold. Each entity can have only one data source for each signal type, but you can have multiple signals of that type that use the same data source. Each signal type uses a different type of data source that you must configure for each entity. See the data source for each signal type in [Signal types](#signal-types). |
-| Authentication setting | The **Authentication setting** specifies the authentication setting used by the entity to access the data source. The managed identity you specified when you created the health model is used by default. You can create additional settings in the [Authentication settings](./create.md#identity) view.<br><br>An icon specifies whether the method has required access to collect telemetry from the resource. Click **Change** to select another authentication setting. . See [Permissions required](./create.md#permissions-required) for the managed identity requirements. |
+| Authentication setting | The **Authentication setting** specifies the authentication setting used by the entity to access the data source. The managed identity you specified when you created the health model is used by default. You can create additional settings in the [Authentication settings](./create.md#identity) view.<br><br>An icon specifies whether the method has required access to collect telemetry from the resource. Select **Change** to select another authentication setting. See [Permissions required](./create.md#permissions-required) for the managed identity requirements. |
 
 ## Add signal assignment
-When you click **Add a signal assignment** in the entity editor, you have multiple options.
+When you select **Add a signal assignment** in the entity editor, you have multiple options.
 
 | Option | Description |
 |:---|:---|
@@ -104,7 +105,7 @@ The following table describes the properties that define Log Analytics workspace
 |:---|:---|
 | Display name | Name of the signal as it appears in the health model. |
 | Refresh interval | How often the query should be run. |
-| Query text | The text of the log query to run. Click **Edit query** to create a new query or edit an existing one. Log Analytics interface is displayed where you can write queries and test the results. |
+| Query text | The text of the log query to run. Select **Edit query** to create a new query or edit an existing one. The Log Analytics interface is displayed where you can write queries and test the results. |
 | Query time range | The time range for the records retrieved by the query. It will only retrieve data from this time range. The value is set in the query editor when you edit the query. |
 | Value column name | The name of the column returned from the query that contains the value to compare to the thresholds for each health state. |
 | Data unit | Label for the units of the value returned from the query. This doesn't affect the results but only how the value is displayed. |
@@ -171,11 +172,11 @@ To add a signal definition to another entity, select **Signal definitions** to c
 
 Edit signal definitions in the designer as you would edit any other signal. When you edit the signal definition for one entity, the changes will be applied to all entities that use that signal definition. You might use the same metric to measure the health of multiple entities, but different entities might require different thresholds. In this case, create multiple signal definitions with different thresholds.
 
-The **Signal definitions** view lists all of the signal definitions in the health model. Click on any signal definition to view its details including the entities that use it.
+The **Signal definitions** view lists all of the signal definitions in the health model. Select any signal definition to view its details, including the entities that use it.
 
 :::image type="content" source="media/signals/signal-definitions-view.png" lightbox="media/signals/signal-definitions-view.png" alt-text="Screenshot showing the signal definitions view.":::
 
-To delete a signal definition, open the signal definitions view, select any signal definitions to delete, and click **Delete** at the top of the screen. This button will be disabled if any of the selected signals are in use by an entity in the health model.
+To delete a signal definition, open the signal definitions view, select any signal definitions to delete, and select **Delete** at the top of the screen. This button is disabled if any of the selected signals are in use by an entity in the health model.
 
 ## Next steps
 - [Configure a health model using the designer](./designer.md)

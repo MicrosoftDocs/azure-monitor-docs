@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.ServiceNetworking/trafficControllers
 description: Reference for Microsoft.ServiceNetworking/trafficControllers in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/14/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.ServiceNetworking/trafficControllers, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -18,8 +18,8 @@ For a list of supported metrics, see [Supported metrics - Microsoft.ServiceNetwo
 
 |Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
 |---|---|---|---|---|---|
-|Application Gateway for Containers Access Log|Yes|[AGCAccessLogs](/azure/azure-monitor/reference/tables/agcaccesslogs)<p>Contains details of client requests made to Application Gateway for Containers. Each client request creates a log entry that can be used to identify slow requests, determine error rates, and correlate logs with backend services.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/agcaccesslogs)|
-|Application Gateway for Containers Firewall Log|Yes|[AGCFirewallLogs](/azure/azure-monitor/reference/tables/agcfirewalllogs)<p>Contains web application firewall logs logged through either detection or prevention mode for Application Gateway for Containers.|Yes|No||
+|TrafficControllerAccessLog|Yes|[AGCAccessLogs](/azure/azure-monitor/reference/tables/agcaccesslogs)<p>Contains details of client requests made to Application Gateway for Containers. Each client request creates a log entry that can be used to identify slow requests, determine error rates, and correlate logs with backend services.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/agcaccesslogs)|
+|TrafficControllerFirewallLog|Yes|[AGCFirewallLogs](/azure/azure-monitor/reference/tables/agcfirewalllogs)<p>Contains web application firewall logs logged through either detection or prevention mode for Application Gateway for Containers.|Yes|No||
 
 ## Next Steps
 

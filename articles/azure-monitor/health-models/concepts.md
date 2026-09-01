@@ -7,7 +7,7 @@ ai-usage: ai-assisted
 ---
 
 # Azure Monitor health model concepts (preview)
-This article describes the concepts that you must understand to create and use [Azure Monitor health models](./overview.md). This article includes the components that make up a model, how those components are related, and how the health of each component is determined. For details on creating and configuring these components, see [Designer in Azure Monitor health models](./designer.md).
+This article describes the concepts that you must understand to create and use [Azure Monitor health models](./overview.md). This article includes the components that make up a model, how those components are related, and how the health of each component is determined. To define customer commitments before you choose components and signals, see [Health modeling with Azure Monitor health models](./health-modeling.md). For details on creating and configuring these components, see [Designer in Azure Monitor health models](./designer.md).
 
 
 ## Entities
@@ -43,7 +43,7 @@ Azure Monitor health models use the health states in the following table to repr
 
 
 ## Signals
-A signal is a value from a metric or query that's periodically compared to threshold values for each health state. Health models don't collect source telemetry for signals. Instead, a signal samples or queries data that Azure Monitor already collects for the represented resources, as well as health information from other supported sources, such as Azure Resource Health. Users can also send external health reports to entities by using the health report ingestion API.
+A signal is a value from a metric or query that's periodically compared to threshold values for each health state. Health models don't collect source telemetry for signals. Instead, a signal samples or queries data that Azure Monitor already collects for the represented resources, as well as health information from other supported sources, such as Azure Resource Health. Users can also [send external health reports to entities](./health-report-ingestion.md) by using the Health Report Ingestion API.
 
 The signals applied to each Azure resource entity are evaluated from the metrics or logs that are associated with the resource. The collection of this data is defined for the resource itself and not in the health model. The health model instead focuses on how to interpret that data in the context of the role of the resource in the workload.
 

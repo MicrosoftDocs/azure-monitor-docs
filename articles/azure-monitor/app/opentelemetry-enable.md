@@ -2,7 +2,7 @@
 title: Enable OpenTelemetry in Application Insights
 description: Learn how to enable OpenTelemetry (OTel) data collection in Application Insights for .NET, Java, Node.js, and Python applications using the Azure Monitor OpenTelemetry Distro.
 ms.topic: how-to
-ms.date: 04/08/2026
+ms.date: 06/19/2026
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
@@ -46,7 +46,7 @@ The following table summarizes the packages and install commands for each suppor
 |----------|---------|------------------|
 | ASP.NET Core | `Azure.Monitor.OpenTelemetry.AspNetCore` | `dotnet add package Azure.Monitor.OpenTelemetry.AspNetCore` |
 | .NET | `Azure.Monitor.OpenTelemetry.Exporter` | `dotnet add package Azure.Monitor.OpenTelemetry.Exporter` |
-| Java | `applicationinsights-agent-3.7.8.jar` | [Download from GitHub](https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.7.8/applicationinsights-agent-3.7.8.jar) |
+| Java | `applicationinsights-agent-3.7.9.jar` | [Download from GitHub](https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.7.9/applicationinsights-agent-3.7.9.jar) |
 | Node.js | `@azure/monitor-opentelemetry` | `npm install @azure/monitor-opentelemetry` |
 | Python | `azure-monitor-opentelemetry` | `pip install azure-monitor-opentelemetry` |
 
@@ -130,7 +130,7 @@ dotnet add package Azure.Monitor.OpenTelemetry.Exporter
 
 #### [Java](#tab/java)
 
-Download the latest [applicationinsights-agent-3.7.8.jar](https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.7.8/applicationinsights-agent-3.7.8.jar) file.
+Download the latest [applicationinsights-agent-3.7.9.jar](https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.7.9/applicationinsights-agent-3.7.9.jar) file.
 
 > [!WARNING]
 >
@@ -245,7 +245,7 @@ var loggerFactory = LoggerFactory.Create(builder =>
 
 Autoinstrumentation is enabled through configuration changes. *No code changes are required.*
 
-Point the Java virtual machine (JVM) to the jar file by adding `-javaagent:"path/to/applicationinsights-agent-3.7.8.jar"` to your application's JVM args.
+Point the Java virtual machine (JVM) to the jar file by adding `-javaagent:"path/to/applicationinsights-agent-3.7.9.jar"` to your application's JVM args.
 
 > [!NOTE]
 > Sampling is enabled by default at a rate of five requests per second, aiding in cost management. Telemetry data could be missing in scenarios exceeding this rate. For more information on modifying sampling configuration, see [sampling overrides](./java-standalone-sampling-overrides.md).
@@ -330,7 +330,7 @@ To paste your connection string, use one of the following methods:
 
 * **Set the Application Insights connection string in a configuration file** - *Java only*
 
-    Create a configuration file named `applicationinsights.json`, and place it in the same directory as `applicationinsights-agent-3.7.8.jar` with the following content:
+    Create a configuration file named `applicationinsights.json`, and place it in the same directory as `applicationinsights-agent-3.7.9.jar` with the following content:
 
     ```json
     {

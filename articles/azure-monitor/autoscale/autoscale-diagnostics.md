@@ -2,7 +2,7 @@
 title: Autoscale diagnostics
 description: This article shows you how to configure diagnostics in autoscale.
 ms.topic: how-to
-ms.date: 07/27/2026
+ms.date: 08/19/2026
 ms.reviewer: akkumari
 ai-usage: ai-assisted
 
@@ -55,7 +55,7 @@ Logged when autoscale first looks at an autoscale profile:
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": ["FixedDateProfileEvaluation", "RecurrentProfileEvaluation", "DefaultProfileEvaluation"],
   "category": "AutoscaleEvaluations",
   "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",
@@ -69,12 +69,12 @@ Logged when autoscale first looks at an autoscale profile:
 
 ### Profile cool-down evaluation
 
-Logged when autoscale evaluates if it shouldn't scale because of a cool-down period:
+Logged when autoscale evaluates whether to skip a candidate rule that's still in its cool-down period:
 
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": "ScaleRuleCooldownEvaluation",
   "category": "AutoscaleEvaluations",
   "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",
@@ -90,7 +90,7 @@ Logged when autoscale evaluates if it shouldn't scale because of a cool-down per
 }
 ```
 
-The `cooldown` and `lastScaleActionTime` values reflect the most recent scale action in either direction, not a separate cooldown timer for each direction. When `skipRuleEvaluationForCooldown` is `true`, autoscale skips the rule because the cooldown from that last scale action is still active. For more information, see the [How does autoscale evaluate cooldown?](autoscale-understanding-settings.md#how-does-autoscale-evaluate-cooldown) section.
+The `lastScaleActionTime` value identifies the most recent scale action. The `cooldown` value is the cool-down period configured on the candidate rule. When `skipRuleEvaluationForCooldown` is `true`, autoscale skips that rule because the evaluation occurs before the end of its cool-down period. For more information, see the [How does autoscale evaluate cooldown?](autoscale-understanding-settings.md#how-does-autoscale-evaluate-cooldown) section.
 
 ### Rule evaluation
 
@@ -99,7 +99,7 @@ Logged when autoscale first starts evaluating a particular scale rule:
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": "ScaleRuleEvaluation",
   "category": "AutoscaleEvaluations",
   "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",
@@ -126,7 +126,7 @@ Logged when autoscale evaluates the metric being used to trigger a scale action:
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": "MetricEvaluation",
   "category": "AutoscaleEvaluations",
   "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",
@@ -150,7 +150,7 @@ Logged when autoscale evaluates the number of instances already running in prepa
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": "InstanceCountEvaluation",
   "category": "AutoscaleEvaluations",
   "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",
@@ -171,7 +171,7 @@ Logged when autoscale starts evaluation if a scale action should take place:
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": "ScaleActionOperationEvaluation",
   "category": "AutoscaleEvaluations",
   "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",
@@ -191,7 +191,7 @@ Logged when autoscale updates the number of compute instances running, either up
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": "InstanceUpdateEvaluation",
   "category": "AutoscaleEvaluations",
   "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",
@@ -216,7 +216,7 @@ Logged when autoscale initiates a scale action, either up or down:
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": "InstanceScaleAction",
   "category": "AutoscaleScaleActions",
   "resultType": ["Succeeded", "InProgress", "Failed"],
@@ -240,7 +240,7 @@ Logged at different intervals of an instance scale action:
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": "InstanceScaleAction",
   "category": "AutoscaleScaleActions",
   "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",

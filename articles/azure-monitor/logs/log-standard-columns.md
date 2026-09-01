@@ -1,33 +1,43 @@
 ---
-title: Standard columns in Azure Monitor log records | Microsoft Docs
+title: Standard columns in Azure Monitor log records
 description: Describes columns that are common to multiple data types in Azure Monitor logs.
 ms.topic: concept-article
-ms.date: 05/26/2024
+ms.date: 08/24/2026
+ai-usage: ai-assisted
 
 ---
 
 # Standard columns in Azure Monitor Logs
-Data in Azure Monitor Logs is [stored as a set of records in either a Log Analytics workspace or Application Insights application](../logs/data-platform-logs.md), each with a particular data type that has a unique set of columns. Many data types have standard columns that are common across multiple types. This article describes these columns and provides examples of how you can use them in queries.
+Data in Azure Monitor Logs is [stored as a set of records in either a Log Analytics workspace or Application Insights application](../logs/data-platform-logs.md). Each data type has a unique set of columns. Many data types have standard columns that are common across multiple types. This article describes these columns and provides examples of how to use them in queries.
 
 Workspace-based applications in Application Insights store their data in a Log Analytics workspace and use the same standard columns as other tables in the workspace. Classic applications store their data separately and have different standard columns as specified in this article.
 
-> [!NOTE]
-> Some of the standard columns won't show in the schema view or intellisense in Log Analytics, and they won't show in query results unless you explicitly specify the column in the output.
-> 
+The following table summarizes the standard columns. Classic Application Insights tables use different column names where noted.
 
-## TenantId
+| Column | Description | Applies to |
+|--------|-------------|------------|
+| `TenantId` | Workspace ID for the Log Analytics workspace. | Workspace |
+| `TimeGenerated` | Date and time the record was created by the data source. Classic Application Insights tables use `Timestamp`. | Workspace and classic Application Insights |
+| `_TimeReceived` | Date and time the record was received by the Azure Monitor ingestion point. | Workspace |
+| `Type` | Name of the table the record was retrieved from. Classic Application Insights tables use `itemType`. | Workspace and classic Application Insights |
+| `_ItemId` | Unique identifier for the record. | Workspace |
+| `_ResourceId` | Unique identifier for the resource the record is associated with. | Workspace |
+| `_SubscriptionId` | Subscription ID of the resource the record is associated with. | Workspace |
+| `_IsBillable` | Whether the ingested data is billable. | Workspace |
+| `_BilledSize` | Size in bytes of the billed data. | Workspace |
+
+> [!NOTE]
+> Some of the standard columns don't show in the schema view or IntelliSense in Log Analytics. They don't show in query results unless you explicitly specify the column in the output.
+
+## TenantId column
 The **TenantId** column holds the workspace ID for the Log Analytics workspace.
 
-## TimeGenerated
-The **TimeGenerated**  column contains the date and time that the record was created by the data source. See [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md) for more details.
+## TimeGenerated column
+The **TimeGenerated** column contains the date and time when the data source created the record. For more information, see [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md).
 
-**TimeGenerated** provides a common column to use for filtering or summarizing by time. When you select a time range for a view or dashboard in the Azure portal, it uses **TimeGenerated** to filter the results. 
+**TimeGenerated** provides a common column to use for filtering or summarizing by time. When you select a time range for a view or dashboard in the Azure portal, it uses **TimeGenerated** to filter the results.
 
-> [!NOTE]
-> Tables supporting classic Application Insights resources use the **Timestamp** column instead of the **TimeGenerated** column.
-
-> [!NOTE]
-> The **TimeGenerated** value cannot be older than 2 days before received time or more than a day in the future. If in some situation, the value is older than 2 days or more than a day in the future, it would be replaced with the actual received time.
+Tables that support classic Application Insights resources use the **Timestamp** column instead of the **TimeGenerated** column. The **TimeGenerated** value can't be older than two days before the received time or more than a day in the future. If the value falls outside that range, Azure Monitor replaces it with the actual received time.
 
 ### Examples
 
@@ -40,7 +50,7 @@ Event
 | summarize count() by bin(TimeGenerated, 1day) 
 | sort by TimeGenerated asc 
 ```
-## \_TimeReceived
+## \_TimeReceived column
 The **\_TimeReceived** column contains the date and time that the record was received by the Azure Monitor ingestion point in the Azure cloud. This can be useful for identifying latency issues between the data source and the cloud. An example would be a networking issue causing a delay with data being sent from an agent. See [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md) for more details.
 
 > [!NOTE]
@@ -58,7 +68,7 @@ Event
 | summarize avg(AgentLatency), avg(TotalLatency) by bin(TimeGenerated,1hr)
 ``` 
 
-## Type
+## Type column
 The **Type** column holds the name of the table that the record was retrieved from which can also be thought of as the record type. This column is useful in queries that combine records from multiple tables, such as those that use the `search` operator, to distinguish between records of different types. **$table** can be used in place of **Type** in some queries.
 
 > [!NOTE]
@@ -73,11 +83,11 @@ search *
 | summarize count() by Type
 
 ```
-## \_ItemId
+## \_ItemId column
 The **\_ItemId** column holds a unique identifier for the record.
 
 
-## \_ResourceId
+## \_ResourceId column
 The **\_ResourceId** column holds a unique identifier for the resource that the record is associated with. This gives you a standard column to use to scope your query to only records from a particular resource, or to join related data across multiple tables.
 
 For Azure resources, the value of **_ResourceId** is the [Azure resource ID URL](/azure/azure-resource-manager/templates/template-functions-resource). The column is limited to Azure resources, including [Azure Arc](/azure/azure-arc/overview) resources, or to custom logs that indicated the Resource ID during ingestion.
@@ -121,14 +131,14 @@ union withsource = tt *
 | summarize Bytes=sum(_BilledSize) by resourceGroup | sort by Bytes nulls last 
 ```
 
-Use these `union withsource = tt *` queries sparingly as scans across data types are expensive to execute.
+Use these `union withsource=tt *` queries sparingly because scans across data types are expensive to execute.
 
 It is always more efficient to use the \_SubscriptionId column than extracting it by parsing the \_ResourceId column.
 
-## \_SubscriptionId
+## \_SubscriptionId column
 The **\_SubscriptionId** column holds the subscription ID of the resource that the record is associated with. This gives you a standard column to use to scope your query to only records from a particular subscription, or to compare different subscriptions.
 
-For Azure resources, the value of **__SubscriptionId** is the subscription part of the [Azure resource ID URL](/azure/azure-resource-manager/templates/template-functions-resource). The column is limited to Azure resources, including [Azure Arc](/azure/azure-arc/overview) resources, or to custom logs that indicated the Subscription ID during ingestion.
+For Azure resources, the value of **\_SubscriptionId** is the subscription part of the [Azure resource ID URL](/azure/azure-resource-manager/templates/template-functions-resource). This column is limited to Azure resources, including [Azure Arc](/azure/azure-arc/overview) resources, or to custom logs that indicate the subscription ID during ingestion.
 
 > [!NOTE]
 > Some data types already have fields that contain Azure subscription ID . While these fields are kept for backward compatibility, it's recommended to use the \_SubscriptionId column to perform cross correlation since it's more consistent.
@@ -150,17 +160,14 @@ union withsource = tt *
 | summarize Bytes=sum(_BilledSize) by _SubscriptionId | sort by Bytes nulls last 
 ```
 
-Use these `union withsource = tt *` queries sparingly as scans across data types are expensive to execute.
+As noted for the [_ResourceId column](#_resourceid-column), use `union withsource = tt *` queries sparingly because scans across data types are expensive to execute.
 
 
-## \_IsBillable
+## \_IsBillable column
 The **\_IsBillable** column specifies whether ingested data is considered billable. Data with **\_IsBillable** equal to `false` does not incur data ingestion, retention, workspace replication, or archive charges. 
 
 ### Examples
-To get a list of computers sending billed data types, use the following query:
-
-> [!NOTE]
-> Use queries with `union withsource = tt *` sparingly as scans across data types are expensive to execute. 
+To get a list of computers sending billed data types, use the following query. As noted for the [_ResourceId column](#_resourceid-column), use `union withsource = tt *` queries sparingly because scans across data types are expensive to execute.
 
 ```Kusto
 union withsource = tt * 
@@ -180,7 +187,7 @@ union withsource = tt *
 | summarize dcount(computerName) by bin(TimeGenerated, 1h) | sort by TimeGenerated asc
 ```
 
-## \_BilledSize
+## \_BilledSize column
 The **\_BilledSize** column specifies the size in bytes of data that's billed to your Azure account if **\_IsBillable** is true. See [Data size calculation](cost-logs.md#data-size-calculation) to learn more about the details of how the billed size is calculated. 
 
 
@@ -196,7 +203,7 @@ union withsource = tt *
 To see the size of billable events ingested per subscription, use the following query:
 
 ```Kusto
-union withsource=table * 
+union withsource = tt * 
 | where _IsBillable == true 
 | summarize Bytes=sum(_BilledSize) by  _SubscriptionId | sort by Bytes nulls last 
 ```
@@ -204,7 +211,7 @@ union withsource=table *
 To see the size of billable events ingested per resource group, use the following query:
 
 ```Kusto
-union withsource=table * 
+union withsource = tt * 
 | where _IsBillable == true 
 | parse _ResourceId with "/subscriptions/" SubscriptionId "/resourcegroups/" ResourceGroupName "/" *
 | summarize Bytes=sum(_BilledSize) by  _SubscriptionId, ResourceGroupName | sort by Bytes nulls last 

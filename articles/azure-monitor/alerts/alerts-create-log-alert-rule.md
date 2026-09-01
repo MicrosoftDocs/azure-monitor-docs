@@ -147,10 +147,12 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     >
     > There are some limitations to using an alert rule frequency of <a name="frequency">one minute</a>. When you set the alert rule frequency to one minute, an internal manipulation is performed to optimize the query. This manipulation can cause the query to fail if it contains unsupported operations. The most common reasons why a query isn't supported are:
     >
+    > * The table referenced in the query contains no data. Data must be ingested into the table before one-minute frequency can be selected.
     > * The query contains the `search`, `union`, or `take` (limit) operation.
     > * The query contains the `ingestion_time()` function.
     > * The query uses the `adx` pattern.
     > * The query calls a function that calls other tables.
+    > * The query uses the `AzureDiagnostics` table and filters on a `Category` value that has an equivalent resource-specific table – for example, `AzureDiagnostics | where Category == "AZFWThreatIntel"`. Query the resource-specific table directly instead, such as `AZFWThreatIntel`. For more information, see [Azure diagnostics mode](../platform/resource-logs.md?tabs=log-analytics#azure-diagnostics-mode).
 
     [Sample log search alert queries](./alerts-log-alert-query-samples.md) are available for Azure Data Explorer and Resource Graph.
 

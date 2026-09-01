@@ -1,6 +1,51 @@
 {
   "redirections": [
     {
+      "source_path": "articles/operations/index.yml",
+      "redirect_url": "/azure/azure-monitor/",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/operations/overview.md",
+      "redirect_url": "/azure/azure-monitor/fundamentals/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/operations/observability.md",
+      "redirect_url": "/azure/azure-monitor/aiops/observability-agent-overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/operations/security.md",
+      "redirect_url": "/azure/defender-for-cloud/defender-for-cloud-introduction",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/operations/resiliency.md",
+      "redirect_url": "/azure/copilot/resiliency-agent",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/operations/configuration-overview.md",
+      "redirect_url": "/azure/azure-arc/servers/essential-machine-management/enrollment",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/operations/configuration-enrollment.md",
+      "redirect_url": "/azure/azure-arc/servers/essential-machine-management/enrollment",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/operations/configuration-enrollment-troubleshoot.md",
+      "redirect_url": "/azure/azure-arc/servers/essential-machine-management/troubleshoot",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/operations/optimization.md",
+      "redirect_url": "/azure/copilot/optimization-agent",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/azure-monitor/aiops/observability-agent-responsible-use.md",
       "redirect_url": "/azure/azure-monitor/aiops/observability-agent-transparency",
       "redirect_document_id": false

@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.Network/networkSecurityPerimeters
 description: Reference for Microsoft.Network/networkSecurityPerimeters in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/14/2026
+ms.date: 08/21/2026
 ms.custom: Microsoft.Network/networkSecurityPerimeters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -18,19 +18,19 @@ For a list of supported metrics, see [Supported metrics - Microsoft.Network/netw
 
 |Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
 |---|---|---|---|---|---|
-|Cross perimeter inbound access allowed by perimeter link.|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
-|Cross perimeter outbound access allowed by perimeter link.|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
-|Inbound access allowed within same perimeter.|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
-|Outbound attempted to same or different perimeter.|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
-|Private endpoint traffic allowed.|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
-|Public inbound access allowed by NSP access rules.|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
-|Public inbound access denied by NSP access rules.|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
-|Public inbound access allowed by PaaS resource rules.|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
-|Public inbound access denied by PaaS resource rules.|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
-|Public outbound access allowed by NSP access rules.|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
-|Public outbound access denied by NSP access rules.|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
-|Public outbound access allowed by PaaS resource rules.|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
-|Public outbound access denied by PaaS resource rules|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
+|NspCrossPerimeterInboundAllowed|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
+|NspCrossPerimeterOutboundAllowed|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
+|NspIntraPerimeterInboundAllowed|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
+|NspOutboundAttempt|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
+|NspPrivateInboundAllowed|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
+|NspPublicInboundPerimeterRulesAllowed|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
+|NspPublicInboundPerimeterRulesDenied|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
+|NspPublicInboundResourceRulesAllowed|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
+|NspPublicInboundResourceRulesDenied|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
+|NspPublicOutboundPerimeterRulesAllowed|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
+|NspPublicOutboundPerimeterRulesDenied|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
+|NspPublicOutboundResourceRulesAllowed|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
+|NspPublicOutboundResourceRulesDenied|Yes|[NSPAccessLogs](/azure/azure-monitor/reference/tables/nspaccesslogs)<p>Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.|Yes|Yes||
 
 ## Next Steps
 

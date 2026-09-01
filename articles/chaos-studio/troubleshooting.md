@@ -1,18 +1,19 @@
 ---
-title: Troubleshoot common Azure Chaos Studio problems
-description: Learn to troubleshoot common problems when you use Azure Chaos Studio.
+title: Troubleshoot Experiments (classic) in Azure Chaos Studio
+description: Learn to troubleshoot common problems with Experiments (classic), including targets, capabilities, experiment runs, and the Chaos Studio agent.
 author: c-ashton
 ms.reviewer: nikhilkaul
 ms.topic: troubleshooting
-ms.date: 10/14/2024
+ms.date: 08/31/2026
 ms.custom: template-troubleshooting
+ai-usage: ai-assisted
 ---
 
-# Troubleshoot issues with Azure Chaos Studio
+# Troubleshoot Experiments (classic) in Azure Chaos Studio
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 
-As you use Azure Chaos Studio, you might occasionally encounter some problems. This article explains common problems and troubleshooting steps.
+As you use Experiments (classic), you might encounter problems with targets, capabilities, experiment runs, or the Chaos Studio agent. This article explains common problems and troubleshooting steps.
 
 > [!TIP]
 > For issues with Workspaces and Scenarios (preview), see [Troubleshoot Workspaces and Scenarios in Azure Chaos Studio](troubleshoot-workspaces-scenarios.md).

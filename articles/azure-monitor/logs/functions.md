@@ -3,7 +3,7 @@ title: Functions in Azure Monitor log queries
 description: This article describes how to use functions to call a query from another log query in Azure Monitor.
 ms.topic: how-to
 ms.reviewer: roygal
-ms.date: 10/08/2024
+ms.date: 08/11/2026
 
 ---
 
@@ -28,15 +28,15 @@ There are two types of functions in Azure Monitor:
 
 ## View functions
 
-You can view solution functions and workspace functions in the current workspace on the **Functions** tab in the left pane of a Log Analytics workspace. Use **Filter** to filter the functions included in the list. Use **Group by** to change their grouping. Enter a string in the **Search** box to locate a particular function. Hover over a function to view details about it, including a description and parameters.
+View solution functions and workspace functions in the current workspace by selecting **Functions** in the left pane of a Log Analytics workspace. Expand a category or enter a string in the **Search** box to locate a particular function. Hover over a function to view details about it, including a description and parameters.
 
-:::image type="content" source="media/functions/view-functions.png" alt-text="Screenshot that shows viewing a function." lightbox="media/functions/view-functions.png":::
+:::image type="content" source="media/functions/view-functions.png" alt-text="Screenshot showing Logs selected in the workspace navigation and function details in the Functions pane." lightbox="media/functions/view-functions.png":::
 
 ## Use a function
 
 Use a function in a query by typing its name with values for any parameters the same as you would type in a command. The output of the function can either be returned as results or piped to another command.
 
-Add a function to the current query by double-clicking on its name or hovering over it and selecting **Use in editor**. Functions in the workspace will also be included in IntelliSense as you type in a query.
+Run a function from the **Functions** pane by hovering over its name and selecting **Run**. IntelliSense includes functions in the workspace as you enter a query.
 
 If a query requires parameters, provide them by using the syntax `function_name(param1,param2,...)`.
 
@@ -194,15 +194,15 @@ Parameters are ordered as they're created. Parameters that have no default value
 
 ## Work with function code
 
-You can view the code of a function either to gain insight into how it works or to modify the code for a workspace function. Select **Load the function code** to add the function code to the current query in the editor.
+View the code of a function to understand how it works or reuse it in another function. Switch the editor to **KQL mode**, hover over the function, and select **Load to editor**.
 
-If you add the function code to an empty query or the first line of an existing query, the function name is added to the tab. A workspace function enables the option to edit the function details.
+The function code is added to the current query tab.
 
 :::image type="content" source="media/functions/function-code.png" alt-text="Screenshot that shows loading function code." lightbox="media/functions/function-code.png":::
 
 ## Edit a function
 
-Edit the properties or the code of a function by creating a new query. Hover over the name of the function and select **Load function code**. Make any modifications that you want to the code and select **Save**. Then select **Edit function details**. Make any changes you want to the properties and parameters of the function and select **Save**.
+To create a modified version of a function, create a new query in **KQL mode**. Hover over the function name and select **Load to editor**. Modify the code, and then select **Save** > **Save as function**. Provide a unique function name, modify the properties and parameters, and select **Save**.
 
 :::image type="content" source="media/functions/function-edit.png" alt-text="Screenshot that shows editing a function." lightbox="media/functions/function-edit.png":::
 
@@ -250,7 +250,7 @@ Create a new query and view the new function by hovering over it. Look at the or
 
 :::image type="content" source="media/functions/example-view-details.png" alt-text="Screenshot that shows viewing details." lightbox="media/functions/example-view-details.png":::
 
-Select **Use in editor** to add the new function to a query. Then add values for the parameters. You don't need to specify a value for `CategoryParam` because it has a default value.
+Call the new function from a query and provide values for its required parameters. You don't need to specify a value for `CategoryParam` because it has a default value.
 
 :::image type="content" source="media/functions/example-use-function.png" alt-text="Screenshot that shows adding values for parameters." lightbox="media/functions/example-use-function.png":::
 

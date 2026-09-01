@@ -3,6 +3,7 @@ title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
 ms.date: 09/01/2026
+ai-usage: ai-assisted
 ---
 
 # What's new in Azure Monitor documentation
@@ -13,9 +14,11 @@ This article lists significant changes to Azure Monitor documentation.
 
 ### August 2026
 
-|Subservice | Article | Description |
-|---|---|---|
-|Virtual Machines|[Run Performance Diagnostics reports on Azure virtual machines](../vm/performance-diagnostics-run.md#threshold-settings)|Custom threshold settings for continuous and on-demand diagnostics are generally available.|
+| Subservice | Article | Description |
+| --- | --- | --- |
+| Fundamentals | Azure Operations Center retirement | Azure Operations Center retired in August 2026. Use [Azure Monitor](overview.md) for monitoring and analysis capabilities. The [Azure Copilot Observability Agent](../aiops/observability-agent-overview.md) provides natural-language data exploration, guided investigations, Azure Monitor issues, and autonomous alert operations. |
+| Logs | [Table feature comparison](../logs/data-platform-logs.md#table-feature-comparison)<br>[Configure a table plan in a Log Analytics workspace](../logs/logs-table-plans.md) | **Auxiliary / Lake** table plans take the next step in capabilities to let teams keep more of their data without stretching the budget.<br>- Expanded **Auxiliary / Lake** support for Azure tables<br>- Switch between **Analytics** and **Auxiliary / Lake** plans<br>- **Auxiliary / Lake** available in sovereign clouds.<br>For more information, see the Observability blog post, [Azure Monitor Auxiliary Logs expands with Azure tables support, plan switching, and sovereign clouds](https://techcommunity.microsoft.com/blog/azureobservabilityblog/azure-monitor-auxiliary-logs-expands-with-azure-tables-support-plan-switching-an/4525206). |
+| Virtual Machines | [Run Performance Diagnostics reports on Azure virtual machines](../vm/performance-diagnostics-run.md#threshold-settings) | Custom threshold settings for continuous and on-demand diagnostics are generally available. |
 
 ### July 2026
 
@@ -109,7 +112,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Logs|[Log Analytics workspace overview](../logs/log-analytics-workspace-overview.md)|Added a clarification note to help customers resolve a common workspace configuration question more quickly.|
 |Logs|[Log ingestion time in Azure Monitor](../logs/data-ingestion-time.md)|Updated ingestion latency guidance with refreshed measurements, tab-based comparisons, and links to related articles on diagnostic settings, resource logs, activity log, and metrics.|
 |Logs|[Best practices for Azure Monitor Logs](../logs/best-practices-logs.md)|Refreshed best practices and dedicated cluster guidance for query performance, cluster sizing, and cost management.|
-|Logs|[Tables feature support](../logs/tables-feature-support.md)|Added 89 more tables that support transformations and refreshed the supported tables list for the Logs Ingestion API.|
+|Logs|[Azure Monitor Logs table feature support](../reference/tables-features.md)|Added 89 more tables that support transformations and refreshed the supported tables list for the Logs Ingestion API.|
 |Logs|[Audit queries in Azure Monitor Logs](../logs/query-audit.md)|Documented support for obfuscating string literals in Log Analytics query audit logs.|
 |Logs|[Set up a table with the Auxiliary plan](../logs/create-custom-table.md#create-a-custom-table)|Updated Auxiliary plan guidance to match the renamed portal experience and custom log creation terminology.|
 |Logs|[Customer-managed keys](../logs/customer-managed-keys.md)|Removed outdated CLI workaround guidance after the underlying issue was fixed.|
@@ -179,7 +182,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Operations|[Azure Operations Center (gated preview)](/azure/operations/)|Published documentation for the Azure Operations Center gated public preview.|
 |Virtual Machines|[Fabric/ADX AMA destination (preview)](../vm/send-fabric-destination.md)|Published public preview documentation for sending AMA-collected data to a Fabric/ADX destination using data collection rules (DCRs).|
 |Virtual Machines|[VM insights onboarding via Azure Policy](../vm/vminsights-enable-policy.md?tabs=basics)|Updated VM insights onboarding guidance using Azure Policy to reflect new initiatives and the latest enablement experience.|
-|Virtual Machines|[VM OpenTelemetry metrics (preview)](../vm/vminsights-opentelemetry.md)|Released preview documentation for OpenTelemetry-based metrics collection for virtual machines.|
+|Virtual Machines|[VM OpenTelemetry metrics (preview)](../vm/metrics-opentelemetry-guest.md)|Released preview documentation for OpenTelemetry-based metrics collection for virtual machines.|
 |Visualize|[Azure Monitor dashboards for Grafana GA](../visualize/visualize-grafana-overview.md)|Published documentation for Azure Monitor dashboards for Grafana reaching general availability (GA).|
 
 ### October 2025
@@ -191,7 +194,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Node.js samples](../app/opentelemetry-configuration.md?tabs=nodejs)| We published new OpenTelemetry Node.js samples across our portfolio based on the [authoritative parity source](/samples/azure/azure-sdk-for-js/monitor-opentelemetry-typescript).|
 |Data Collection|[DCR visualizer](../data-collection/data-collection-rule-view.md)| Published new article for viewing DCRs to deliver content for new DCR Visualizer.|
 |Fundamentals|[VM agents troubleshooting](best-practices-security.md#recommended-action)| Published self-service steps for identifying and remediating VM agents still outdated TLS.|
-|Logs|[New transforms tables](../logs/tables-feature-support.md)|New tables supported for transforms.|
+|Logs|[Azure Monitor Logs table feature support](../reference/tables-features.md)|New tables supported for transforms.|
 |Logs|[New regions](../logs/workspace-replication.md#supported-regions)|New regions supported for workspace replication.|
 
 ### September 2025
@@ -217,7 +220,7 @@ This article lists significant changes to Azure Monitor documentation.
 | Kubernetes | [Enable monitoring for AKS clusters](../containers/kubernetes-monitoring-enable.md) | Rewrite to improve clarity and reduce scope to AKS. |
 | Kubernetes | [Quickstart monitoring a Kubernetes cluster in Azure Monitor](../containers/kubernetes-monitoring-quickstart.md) | New article to walk  through basic enabling of monitoring. |
 | Kubernetes | [Kubernetes workbooks in Azure Monitor](../containers/kubernetes-workbooks.md) | Rewrite to emphasize latest Prometheus experience. |
-| Kubernetes | [Monitor Kubernetes clusters using Azure Monitor and cloud native tools](../containers/monitor-kubernetes.md) | Updated for Application insights updates and Azure Monitor dashboards with Grafana. Scope reduced to compliment rewritten overview. |
+| Kubernetes | [Monitor Kubernetes clusters using Azure Monitor and cloud native tools](../containers/monitor-kubernetes.md) | Updated for Application Insights updates and Azure Monitor dashboards with Grafana. Scope reduced to compliment rewritten overview. |
 | Metrics | [Connect Grafana to Azure Monitor managed service for Prometheus](../metrics/prometheus-grafana.md) | Updated for Azure Monitor dashboards with Grafana.  |
 | Metrics | [Azure Monitor managed service for Prometheus technical details](../metrics/prometheus-metrics-details.md) | New article to consolidate technical details related to Prometheus metrics. |
 | Metrics | [Overview of Azure Monitor with Prometheus](../metrics/prometheus-metrics-overview.md) | Rewrite to improve clarity and remove technical details moved to other article. |
@@ -675,7 +678,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Containers|[Container insights log schema](../containers/container-insights-logs-schema.md)|Combine Prometheus and Container insights|
 |Containers|[Enable monitoring for Kubernetes clusters](../containers/container-insights-enable-aks.md)|New article to consolidate onboarding process for all container configurations and for both Prometheus and Container insights.|
 |Containers|[Customize scraping of Prometheus metrics in Azure Monitor managed service for Prometheus](../containers/prometheus-metrics-scrape-configuration.md)|Azure Monitor Managed Prometheus Docs for pod annotation scraping through configmap.|
-|Essentials|[Custom metrics in Azure Monitor (preview)](../metrics/metrics-custom-overview.md)|Article refreshed an updated|
+|Essentials|[Custom metrics in Azure Monitor (preview)](../metrics/metrics-custom-overview.md)|Article refreshed and updated|
 |General|[Disable monitoring of your Kubernetes cluster](../containers/kubernetes-monitoring-disable.md)|New article to consolidate process for all container configurations and for both Prometheus and Container insights.|
 |Logs|[Best practices for Azure Monitor Logs](../logs/best-practices-logs.md)|Dedicated clusters are now available in all commitment tiers, with a minimum daily ingestion of 100 GB.|
 |Logs|[Enhance data and service resilience in Azure Monitor Logs with availability zones](../logs/availability-zones.md)|Availability zones are now supported in the Israel Central, Poland Central, and Italy North regions.|
@@ -782,7 +785,7 @@ Application-Insights|[Application Insights overview](../app/app-insights-overvie
 Containers|[Troubleshoot collection of Prometheus metrics in Azure Monitor](../containers/prometheus-metrics-troubleshoot.md)|Added the *Troubleshoot using PowerShell script* section.|
 Containers|[Monitor Kubernetes clusters using Azure services and cloud native tools](../containers/monitor-kubernetes.md)|Updated previous scenario for hybrid Kubernetes clusters and managed Prometheus.|
 Containers|[Monitor Azure Kubernetes Service (AKS)](/azure/aks/monitor-aks)|New article providing simplified introduction to monitoring AKS cluster.|
-Containers|[Container insights overview](../containers/kubernetes-monitoring-overview.md)|Rewritten for to include new features and managed services.|
+Containers|[Container insights overview](../containers/kubernetes-monitoring-overview.md)|Rewritten to include new features and managed services.|
 Essentials|[Send Prometheus metrics to Log Analytics workspace with Container insights](../containers/container-insights-prometheus-logs.md)|Updated to simplify article to only legacy method of sending Prometheus metrics to Log Analytics workspace.|
 Essentials|[Collect Prometheus metrics from an AKS cluster](../containers/kubernetes-monitoring-enable.md)|Updated to include additional onboarding methods.|
 Essentials|[Azure Monitor managed service for Prometheus rule groups](../metrics/prometheus-rule-groups.md)|Expanded "Limiting rules to a specific cluster"|
@@ -829,7 +832,7 @@ Application-Insights|[Enable a framework extension for Application Insights Java
 Autoscale|[Use autoscale actions to send email and webhook alert notifications in Azure Monitor](../autoscale/autoscale-webhook-email.md)|Article updated and refreshed|
 Containers|[Query logs from Container insights](../containers/container-insights-log-query.md#container-logs)|New section: Container logs, with sample queries|
 Containers|[Authentication for Container Insights](../containers/container-insights-authentication.md)|New article: Configure agent authentication for the Container Insights agent|
-Essentials|[Azure monitoring REST API walkthrough](../platform/rest-api-walkthrough.md)|Added multi resource request examples|
+Essentials|[Azure monitoring REST API walkthrough](../platform/rest-api-walkthrough.md)|Added multi-resource request examples|
 Essentials|[Azure Monitor managed service for Prometheus rule groups](../metrics/prometheus-rule-groups.md)| Added CLI & PowerShell reference and examples|
 Logs|[Set up resources required to send data to Azure Monitor Logs using the Logs Ingestion API](../logs/set-up-logs-ingestion-api-prerequisites.md)|New article. Run a PowerShell script to set up resources required to send data to Azure Monitor using the Logs Ingestion API.|
 Logs|[Migrate from the HTTP Data Collector API to the Log Ingestion API to send data to Azure Monitor Logs](../logs/custom-logs-migrate.md)|Updated guidance for migrating from the legacy Azure Monitor Data Collector API to the Log Ingestion API.|
@@ -1112,7 +1115,7 @@ Application-insights|[Using Azure Monitor Application Insights with Spring Boot]
 Application-insights|[Configuration options: Azure Monitor Application Insights for Java](../app/java-standalone-config.md)|Added new features on Capture Log4j Markers and Logback Markers as custom properties on the corresponding trace (log message) telemetry.|
 Application-insights|[Create custom KPI dashboards by using Application Insights](../app/overview-dashboard.md#create-custom-kpi-dashboards-using-application-insights)|Refreshed with new screenshots and instructions.|
 Application-insights|[Share Azure dashboards by using Azure role-based access control](/azure/azure-portal/azure-portal-dashboard-share-access)|Refreshed with new screenshots and instructions.|
-Application-insights|[Application monitoring for Azure App Service and ASP.NET](../app/azure-web-apps-net.md)|Added important notes about System.IO.FileNotFoundException after an 2.8.44 autoinstrumentation upgrade.|
+Application-insights|[Application monitoring for Azure App Service and ASP.NET](../app/azure-web-apps-net.md)|Added important notes about System.IO.FileNotFoundException after a 2.8.44 autoinstrumentation upgrade.|
 Application-insights|[Geolocation and IP address handling](../app/ip-collection.md)| Updated geolocation lookup information.|
 Containers|[Metric alert rules in Container insights (preview)](../containers/container-insights-metric-alerts.md)|Updated to include Container insights metric alerts.|
 Containers|[Custom metrics collected by Container insights](/previous-versions/azure/azure-monitor/containers/container-insights-custom-metrics)|New article.|
@@ -1444,7 +1447,7 @@ All references to unsupported versions of .NET and .NET CORE are scrubbed from A
 
 | Article | Description |
 |:---|:---|
-| [Azure Monitor customer-managed key](../logs/customer-managed-keys.md) | Updated limitations and constraint. |
+| [Azure Monitor customer-managed key](../logs/customer-managed-keys.md) | Updated limitations and constraints. |
 | [Design a Log Analytics workspace architecture](../logs/workspace-design.md) | Rewritten to better describe decision criteria and include Microsoft Sentinel considerations. |
 | [Manage access to Log Analytics workspaces](../logs/manage-access.md) | Consolidated and rewrote all content on configuring workspace access. |
 | [Restore logs in Azure Monitor (preview)](../logs/restore.md) | Documented new Log Analytics table management configuration UI, which lets you configure a table's log plan and archive and retention policies. |

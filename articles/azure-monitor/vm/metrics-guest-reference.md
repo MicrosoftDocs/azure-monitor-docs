@@ -1,12 +1,12 @@
 ---
-title: OpenTelemetry Guest OS Metrics reference (preview)
+title: OpenTelemetry Guest OS Metrics reference
 description: List of OpenTelemetry metrics collected by default from Windows and Linux virtual machines by Azure Monitor Agent.
 ms.topic: concept-article
-ms.date: 07/01/2026
+ms.date: 08/25/2026
 ms.reviewer: tylerkight
 ---
 
-# OpenTelemetry Guest OS Metrics reference (preview)
+# OpenTelemetry Guest OS Metrics reference
 
 This article lists the performance counters that Azure Monitor Agent collects from Windows and Linux virtual machines, along with the OpenTelemetry resource attributes that are automatically added to those metrics. Use it as a reference when you configure a data collection rule (DCR) or explore metrics in Azure Monitor Metrics Explorer.
 
@@ -280,4 +280,4 @@ The `process.command_line` attribute can contain extremely long strings with tho
 Use custom metrics from various services:
 
 * [How to begin collecting OpenTelemetry Guest OS performance counters: DCR collection](../vm/data-collection-performance.md)
- * [How to begin collecting OpenTelemetry Guest OS performance counters: VM Insights](../vm/vminsights-opentelemetry.md)
+* [Metrics experience for virtual machines in Azure Monitor](./metrics-opentelemetry-guest.md)

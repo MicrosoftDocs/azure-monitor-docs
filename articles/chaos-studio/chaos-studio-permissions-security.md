@@ -1,14 +1,15 @@
 ---
-title: Permissions and security for Azure Chaos Studio
-description: Understand how permissions work in Azure Chaos Studio and how you can secure resources from accidental fault injection.
+title: Permissions and security for Experiments (classic)
+description: Understand permissions for Experiments (classic) in Azure Chaos Studio and secure target resources from accidental fault injection.
 author: prasha-microsoft
 ms.reviewer: carlsonr
 ms.topic: concept-article
-ms.date: 07/30/2026
+ms.date: 08/31/2026
 ms.custom: template-concept, devx-track-arm-template
+ai-usage: ai-assisted
 ---
 
-# Permissions and security in Azure Chaos Studio
+# Permissions and security for Experiments (classic)
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

@@ -2,7 +2,9 @@
 title: Tutorial - Add ingestion-time transformation to Azure Monitor Logs using Resource Manager templates
 description: Describes how to add a custom transformation to data flowing through Azure Monitor Logs using Resource Manager templates.
 ms.topic: tutorial
-ms.date: 03/17/2025
+ms.custom: cbo-v1.5
+ms.date: 08/27/2026
+ai-usage: ai-assisted
 ---
 
 # Tutorial: Add transformation in workspace data collection rule to Azure Monitor using Resource Manager templates
@@ -24,7 +26,7 @@ In this tutorial, you learn to:
 > This tutorial uses PowerShell from Azure Cloud Shell to make REST API calls using the Azure Monitor **Tables** API and the Azure portal to install Resource Manager templates. You can use any other method to make these calls.
 
 ## Prerequisites
-To complete this tutorial, you need the following: 
+To complete this tutorial, you need the following:
 
 - Log Analytics workspace where you have at least [contributor rights](manage-access.md#azure-rbac).
 - [Permissions to create Data Collection Rule objects](../essentials/data-collection-rule-create-edit.md#permissions) in the workspace.
@@ -33,7 +35,7 @@ To complete this tutorial, you need the following:
 
 ## Overview
 
-In this tutorial, you'll reduce the storage requirement for the `LAQueryLogs` table by filtering out certain records. You'll also remove the contents of a column while parsing the column data to store a piece of data in a custom column. The [LAQueryLogs table](query-audit.md#audit-data) is created when you enable [log query auditing](query-audit.md) in a workspace, but this is only used as a sample for the tutorial. You can use this same basic process to create a transformation for any [supported table](tables-feature-support.md) in a Log Analytics workspace.  
+In this tutorial, you reduce the storage requirement for the `LAQueryLogs` table by filtering out certain records. You also remove the contents of a column while parsing the column data to store a piece of data in a custom column. The [LAQueryLogs table](query-audit.md#audit-data) is created when you enable [log query auditing](query-audit.md) in a workspace. Use this same basic process to create a transformation for any [supported table](../reference/tables-features.md) in a Log Analytics workspace.
 
 
 ## Enable query audit logs
@@ -43,11 +45,11 @@ You need to enable [query auditing](query-audit.md) for your workspace to create
 
     :::image type="content" source="media/tutorial-workspace-transformations-portal/diagnostic-settings.png" lightbox="media/tutorial-workspace-transformations-portal/diagnostic-settings.png" alt-text="Screenshot of diagnostic settings.":::
 
-2. Provide a name for the diagnostic setting and select the workspace so that the auditing data is stored in the same workspace. Select the **Audit** category and  then click **Save** to save the diagnostic setting and close the diagnostic setting page.
+2. Provide a name for the diagnostic setting and select the workspace so that the auditing data is stored in the same workspace. Select the **Audit** category and then select **Save** to save the diagnostic setting and close the diagnostic setting page.
 
     :::image type="content" source="media/tutorial-workspace-transformations-portal/new-diagnostic-setting.png" lightbox="media/tutorial-workspace-transformations-portal/new-diagnostic-setting.png" alt-text="Screenshot of new diagnostic setting.":::
 
-3. Select **Logs** and then run some queries to populate `LAQueryLogs` with some data. These queries don't need to actually return any data. 
+3. Select **Logs** and then run some queries to populate `LAQueryLogs` with some data. These queries don't need to actually return any data.
 
     :::image type="content" source="media/tutorial-workspace-transformations-portal/sample-queries.png" lightbox="media/tutorial-workspace-transformations-portal/sample-queries.png" alt-text="Screenshot of sample log queries.":::
 
@@ -57,18 +59,18 @@ Before you can create the transformation, the following two changes must be made
 - The table must be enabled for workspace transformation. This is required for any table that will have a transformation, even if the transformation doesn't modify the table's schema.
 - Any additional columns populated by the transformation must be added to the table.
 
-Use the **Tables - Update** API to configure the table with the PowerShell code below. Calling the API enables the table for workspace transformations, whether or not custom columns are defined. In this sample, it includes a custom column called *Resources_CF* that will be populated with the transformation query. 
+Use the [Tables](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation to configure the table with the following PowerShell code. Calling the API enables the table for workspace transformations, whether or not you define custom columns. In this sample, it includes a custom column named *Resources_CF* that the transformation query populates.
 
 > [!IMPORTANT]
 > Any custom columns added to a built-in table must end in *_CF*. Columns added to a custom table (a table with a name that ends in *_CL*) does not need to have this suffix.
 
-1. Click the **Cloud Shell** button in the Azure portal and ensure the environment is set to **PowerShell**.
+1. Select the **Cloud Shell** button in the Azure portal and ensure the environment is set to **PowerShell**.
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/open-cloud-shell.png" lightbox="media/tutorial-workspace-transformations-api/open-cloud-shell.png" alt-text="Screenshot of opening Cloud Shell.":::
 
-2. Copy the following PowerShell code and replace the **Path** parameter with the details for your workspace. 
+2. Copy the following PowerShell code and replace the **Path** parameter with the details for your workspace.
 
-    ```PowerShell
+    ```powershell
     $tableParams = @'
     {
         "properties": {
@@ -78,9 +80,7 @@ Use the **Tables - Update** API to configure the table with the PowerShell code 
                     {
                         "name": "Resources_CF",
                         "description": "The list of resources, this query ran against",
-                        "type": "string",
-                        "isDefaultDisplay": true,
-                        "isHidden": false
+                        "type": "string"
                     }
                 ]
             }
@@ -88,7 +88,7 @@ Use the **Tables - Update** API to configure the table with the PowerShell code 
     }
     '@
 
-    Invoke-AzRestMethod -Path "/subscriptions/{subscription}/resourcegroups/{resourcegroup}/providers/microsoft.operationalinsights/workspaces/{workspace}/tables/LAQueryLogs?api-version=2021-12-01-preview" -Method PUT -payload $tableParams
+    Invoke-AzRestMethod -Path "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>/tables/LAQueryLogs?api-version=<ApiVersion>" -Method PUT -payload $tableParams
     ```
 
 3. Paste the code into the Cloud Shell prompt to run it.
@@ -100,11 +100,11 @@ Use the **Tables - Update** API to configure the table with the PowerShell code 
     :::image type="content" source="media/tutorial-workspace-transformations-portal/verify-table.png" lightbox="media/tutorial-workspace-transformations-portal/verify-table.png" alt-text="Screenshot of Log Analytics with new column.":::
 
 ## Define transformation query
-Use Log Analytics to test the transformation query before adding it to a data collection rule. 
+Use Log Analytics to test the transformation query before adding it to a data collection rule.
 
-1. Open your workspace in the **Log Analytics workspaces** menu in the Azure portal and select **Logs** to open Log Analytics. 
+1. Open your workspace in the **Log Analytics workspaces** menu in the Azure portal and select **Logs** to open Log Analytics.
 
-2. Run the following query to view the contents of the `LAQueryLogs` table. Notice the contents of the `RequestContext` column. The transformation will retrieve the workspace name from this column and remove the rest of the data in it. 
+2. Run the following query to view the contents of the `LAQueryLogs` table. Notice the contents of the `RequestContext` column. The transformation retrieves the workspace name from this column and removes the rest of the data in it.
 
     ```kusto
     LAQueryLogs
@@ -115,7 +115,7 @@ Use Log Analytics to test the transformation query before adding it to a data co
 
 3. Modify the query to the following:
 
-    ``` kusto
+    ```kusto
     LAQueryLogs
     | where QueryText !contains 'LAQueryLogs'
     | extend Context = parse_json(RequestContext)
@@ -151,53 +151,53 @@ Since this is the first transformation in the workspace, you need to create a [w
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/deploy-custom-template.png" lightbox="media/tutorial-workspace-transformations-api/deploy-custom-template.png" alt-text="Screenshot to deploy custom template.":::
 
-2. Click **Build your own template in the editor**.
+2. Select **Build your own template in the editor**.
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/build-custom-template.png" lightbox="media/tutorial-workspace-transformations-api/build-custom-template.png" alt-text="Screenshot to build template in the editor.":::
 
-3. Paste the Resource Manager template below into the editor and then click **Save**. This template defines the DCR and contains the transformation query. You don't need to modify this template since it will collect values for its parameters.
+3. Paste the following Resource Manager template into the editor and then select **Save**. This template uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template) resource type, documented under [Data collection rules](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rules) in the REST API index. It defines the DCR and contains the transformation query. You don't need to modify this template since it collects values for its parameters.
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/edit-template.png" lightbox="media/tutorial-workspace-transformations-api/edit-template.png" alt-text="Screenshot to edit Resource Manager template.":::
 
 
     ```json
     {
-        "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-        "contentVersion": "1.0.0.0",
-        "parameters": {
-            "dataCollectionRuleName": {
-                "type": "string",
-                "metadata": {
-                    "description": "Specifies the name of the Data Collection Rule to create."
-                }
-            },
-            "location": {
-                "type": "string",
-                "defaultValue": "westus2",
-                "allowedValues": [
-                    "westus2",
+        "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+        "contentVersion": "1.0.0.0",
+        "parameters": {
+            "dataCollectionRuleName": {
+                "type": "string",
+                "metadata": {
+                    "description": "Specifies the name of the Data Collection Rule to create."
+                }
+            },
+            "location": {
+                "type": "string",
+                "defaultValue": "westus2",
+                "allowedValues": [
+                    "westus2",
                     "eastus2",
-                    "eastus2euap"
-                ],
-                "metadata": {
-                    "description": "Specifies the location in which to create the Data Collection Rule."
-                }
-            },
-            "workspaceResourceId": {
-                "type": "string",
-                "metadata": {
-                    "description": "Specifies the Azure resource ID of the Log Analytics workspace to use."
-                }
-            }
-        },
-        "resources": [
-            {
-                "type": "Microsoft.Insights/dataCollectionRules",
-                "name": "[parameters('dataCollectionRuleName')]",
-                "location": "[parameters('location')]",
-                "apiVersion": "2021-09-01-preview",
-                "kind": "WorkspaceTransforms",
-                "properties": {
+                    "eastus2euap"
+                ],
+                "metadata": {
+                    "description": "Specifies the location in which to create the Data Collection Rule."
+                }
+            },
+            "workspaceResourceId": {
+                "type": "string",
+                "metadata": {
+                    "description": "Specifies the Azure resource ID of the Log Analytics workspace to use."
+                }
+            }
+        },
+        "resources": [
+            {
+                "type": "Microsoft.Insights/dataCollectionRules",
+                "name": "[parameters('dataCollectionRuleName')]",
+                "location": "[parameters('location')]",
+                "apiVersion": "<ApiVersion>",
+                "kind": "WorkspaceTransforms",
+                "properties": {
                     "destinations": {
                         "logAnalytics": [
                             {
@@ -217,15 +217,15 @@ Since this is the first transformation in the workspace, you need to create a [w
                             "transformKql": "source |where QueryText !contains 'LAQueryLogs' | extend Context = parse_json(RequestContext) | extend Resources_CF = tostring(Context['workspaces']) |extend RequestContext = ''"
                         }
                     ]
-                }
-            }
-        ],
-        "outputs": {
-            "dataCollectionRuleId": {
-                "type": "string",
-                "value": "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dataCollectionRuleName'))]"
-            }
-        }
+                }
+            }
+        ],
+        "outputs": {
+            "dataCollectionRuleId": {
+                "type": "string",
+                "value": "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dataCollectionRuleName'))]"
+            }
+        }
     }
     ```
 
@@ -233,9 +233,9 @@ Since this is the first transformation in the workspace, you need to create a [w
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/custom-deployment-values.png" lightbox="media/tutorial-workspace-transformations-api/custom-deployment-values.png" alt-text="Screenshot to edit  custom deployment values.":::
 
-5. Click **Review + create** and then **Create** when you review the details.
+5. Select **Review + create** and then **Create** when you review the details.
 
-6. When the deployment is complete, expand the **Deployment details** box and click on your data collection rule to view its details. Click **JSON View**.
+6. When the deployment is complete, expand the **Deployment details** box and select your data collection rule to view its details. Select **JSON View**.
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/data-collection-rule-details.png" lightbox="media/tutorial-workspace-transformations-api/data-collection-rule-details.png" alt-text="Screenshot for data collection rule details.":::
 
@@ -249,20 +249,20 @@ The final step to enable the transformation is to link the DCR to the workspace.
 > [!IMPORTANT]
 > A workspace can only be connected to a single DCR, and the linked DCR must contain this workspace as a destination.
 
-Use the **Workspaces - Update** API to configure the table with the PowerShell code below. 
+Use the [Workspaces](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation to configure the workspace with the following PowerShell code.
 
-1. Click the **Cloud Shell** button to open Cloud Shell again. Copy the following PowerShell code and replace the parameters with values for your workspace and DCR. 
+1. Select the **Cloud Shell** button to open Cloud Shell again. Copy the following PowerShell code and replace the parameters with values for your workspace and DCR.
 
-    ```PowerShell
+    ```powershell
     $defaultDcrParams = @'
     {
         "properties": {
-            "defaultDataCollectionRuleResourceId": "/subscriptions/{subscription}/resourceGroups/{resourcegroup}/providers/Microsoft.Insights/dataCollectionRules/{DCR}"
+            "defaultDataCollectionRuleResourceId": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.Insights/dataCollectionRules/<DataCollectionRuleName>"
         }
     }
     '@
 
-    Invoke-AzRestMethod -Path "/subscriptions/{subscription}/resourcegroups/{resourcegroup}/providers/microsoft.operationalinsights/workspaces/{workspace}?api-version=2021-12-01-preview" -Method PATCH -payload $defaultDcrParams
+    Invoke-AzRestMethod -Path "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>?api-version=<ApiVersion>" -Method PATCH -payload $defaultDcrParams
     ```
 
 2. Paste the code into the Cloud Shell prompt to run it.
@@ -270,7 +270,7 @@ Use the **Workspaces - Update** API to configure the table with the PowerShell c
     :::image type="content" source="media/tutorial-workspace-transformations-api/cloud-shell-script-link-workspace.png" lightbox="media/tutorial-workspace-transformations-api/cloud-shell-script-link-workspace.png" alt-text="Screenshot of script to link workspace to DCR.":::
 
 ## Test transformation
-Allow about 30 minutes for the transformation to take effect, and you can then test it by running a query against the table. Only data sent to the table after the transformation was applied will be affected. 
+Allow about 30 minutes for the transformation to take effect, and you can then test it by running a query against the table. Only data sent to the table after the transformation was applied is affected.
 
 For this tutorial, run some sample queries to send data to the `LAQueryLogs` table. Include some queries against `LAQueryLogs` so you can verify that the transformation filters these records. Notice that the output has the new `Workspace_CF` column, and there are no records for `LAQueryLogs`.
 
@@ -284,8 +284,8 @@ The cache that drives IntelliSense may take up to 24 hours to update.
 ### Transformation on a dynamic column isn't working
 There is currently a known issue affecting dynamic columns. A temporary workaround is to explicitly parse dynamic column data using `parse_json()` prior to performing any operations against them.
 
-## Next steps
+## Related content
 
 - [Read more about transformations](../essentials/data-collection-transformations.md)
-- [See which tables support workspace transformations](tables-feature-support.md)
+- [Tables that support workspace transformations](../reference/tables-features.md)
 - [Learn more about writing transformation queries](../essentials/data-collection-transformations-structure.md)

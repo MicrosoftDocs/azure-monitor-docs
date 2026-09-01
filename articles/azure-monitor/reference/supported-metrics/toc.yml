@@ -28,6 +28,8 @@
   href: microsoft-azuresphere-catalogs-metrics.md
 - name: Microsoft.azurestackhci/clusters
   href: microsoft-azurestackhci-clusters-metrics.md
+- name: Microsoft.AzureStackHCI/edgeMachines
+  href: microsoft-azurestackhci-edgemachines-metrics.md
 - name: Microsoft.Batch/batchaccounts
   href: microsoft-batch-batchaccounts-metrics.md
 - name: microsoft.bing/accounts
@@ -128,8 +130,6 @@
   href: microsoft-deviceregistry-namespaces-metrics.md
 - name: Microsoft.Devices/IotHubs
   href: microsoft-devices-iothubs-metrics.md
-- name: Microsoft.Devices/provisioningServices
-  href: microsoft-devices-provisioningservices-metrics.md
 - name: Microsoft.DevOpsInfrastructure/pools
   href: microsoft-devopsinfrastructure-pools-metrics.md
 - name: Microsoft.DigitalTwins/digitalTwinsInstances
@@ -296,6 +296,8 @@
   href: microsoft-network-expressroutecircuits-peerings-metrics.md
 - name: microsoft.network/expressroutegateways
   href: microsoft-network-expressroutegateways-metrics.md
+- name: Microsoft.Network/expressRouteLags
+  href: microsoft-network-expressroutelags-metrics.md
 - name: Microsoft.Network/expressRoutePorts
   href: microsoft-network-expressrouteports-metrics.md
 - name: Microsoft.Network/frontdoors
@@ -422,6 +424,8 @@
   href: microsoft-sql-servers-elasticpools-metrics.md
 - name: Microsoft.Sql/servers/jobAgents
   href: microsoft-sql-servers-jobagents-metrics.md
+- name: Microsoft.Storage/contextCaches/contextCacheContainers
+  href: microsoft-storage-contextcaches-contextcachecontainers-metrics.md
 - name: Microsoft.Storage/storageAccounts
   href: microsoft-storage-storageaccounts-metrics.md
 - name: Microsoft.Storage/storageAccounts/blobServices
@@ -490,6 +494,8 @@
   href: oracle-database-dbsystems-metrics.md
 - name: Oracle.Database/exadbVmClusters
   href: oracle-database-exadbvmclusters-metrics.md
+- name: Oracle.Database/goldenGateDeployments
+  href: oracle-database-goldengatedeployments-metrics.md
 - name: Private.MessagingConnectors/connectors
   href: private-messagingconnectors-connectors-metrics.md
 - name: Wandisco.Fusion/migrators

@@ -327,13 +327,13 @@ The following sample DCR performs the following actions:
 
 ### Json logs
 
-DCRs for Json logs have a `logfiles` data source that has the details for the log files that should be collected by the agent. This includes the name of a stream that must be defined in `streamDeclarations` with the columns of the incoming data. See [Collect logs from a JSON file with Azure Monitor Agent](../agents/data-collection-log-json.md) for further details.
+DCRs for JSON logs have a `logfiles` data source that has the details for the log files that should be collected by the agent. This includes the name of a stream that must be defined in `streamDeclarations` with the columns of the incoming data. See [Collect logs from a JSON file with Azure Monitor Agent](../agents/data-collection-log-json.md) for further details.
 
 Add a transformation to the `dataFlows` property to filter out records you don't want to collect and to format the data to match the schema of the destination table.
 
 The following sample DCR performs the following actions:
 
-* Collects entries from all files with an extension of `.json` in the `c:\logs` folder of the agent computer. The file must be formatted in json and have the columns listed in the stream declaration.
+* Collects entries from all files with an extension of `.json` in the `c:\logs` folder of the agent computer. The file must be formatted in JSON and have the columns listed in the stream declaration.
 * Sends the collected logs to a custom table called `MyTable_CL`. This table must already exist and have the same columns as the incoming stream. If the columns don't match, you would need to modify the transformation in `transformKql` property to format the data for the target table.
 
 ```json
@@ -519,7 +519,7 @@ The sample DCR below has the following details:
 
 There are multiple reasons why you might want to send data from a single data source to multiple tables in the same Log Analytics workspace, including the following:
 
-* Save ingestion costs by sending records used for occasional troubleshooting to a [basic logs table](../logs/basic-logs-azure-tables.md). 
+* Save ingestion costs by sending records used for occasional troubleshooting to a [Basic table](../reference/tables-features.md).
 * Send records or columns with sensitive data to a table with different permissions or retention settings.
 
 To send data from a single data source to multiple tables, create multiple data flows in the DCR with a unique transformation query and output table for each as shown in the following diagram.

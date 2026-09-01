@@ -1,14 +1,15 @@
 ---
-title: Supported resource types and role assignments for Chaos Studio
-description: Understand the list of supported resource types and which role assignment is needed to enable an experiment to run a fault against that resource type.
+title: Supported resource types for Experiments (classic)
+description: Review resource types and recommended role assignments for Experiments (classic) in Azure Chaos Studio before you run faults.
 services: chaos-studio
 author: prasha-microsoft
 ms.topic: reference
-ms.date: 10/14/2024
+ms.date: 08/31/2026
 ms.reviewer: prashabora
+ai-usage: ai-assisted
 ---
 
-# Supported resource types and role assignments for Chaos Studio
+# Supported resource types and role assignments for Experiments (classic)
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 
