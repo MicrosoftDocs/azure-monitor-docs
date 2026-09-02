@@ -1,13 +1,15 @@
 ---
-title: Collect Syslog events with Azure Monitor Agent 
+title: Collect Syslog Events with Azure Monitor Agent
 description: Configure collection of Syslog events by using a data collection rule on virtual machines with Azure Monitor Agent.
 ms.topic: how-to
-ms.custom: linux-related-content
-ms.date: 03/03/2026
+ms.custom: linux-related-content, cbo-v1.5
+ms.date: 09/01/2026
+ai-usage: ai-assisted
 ---
 
 # Collect Syslog events from virtual machine client with Azure Monitor
-Syslog is an event logging protocol that's common to Linux. You can use the Syslog daemon built into Linux devices and appliances to collect local events of the types you specify. Applications send messages that are either stored on the local machine or delivered to a Syslog collector. Collect Syslog events from virtual machines using a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md) with a **Linux Syslog** data source. 
+
+Syslog is an event logging protocol that's common to Linux. Use the Syslog daemon built into Linux devices and appliances to collect local events of the types you specify. Applications send messages that are either stored on the local machine or delivered to a Syslog collector. Collect Syslog events from virtual machines by using a [data collection rule (DCR)](../data-collection/data-collection-rule-create-edit.md) with a **Linux Syslog** data source.
 
 > [!TIP]
 > To collect data from devices that don't allow local installation of Azure Monitor agent, configure a dedicated Linux-based log forwarder as described in [Forward Syslog data to a Log Analytics workspace with Microsoft Sentinel by using Azure Monitor Agent](/azure/sentinel/forward-syslog-monitor-agent).
@@ -16,7 +18,7 @@ Syslog is an event logging protocol that's common to Linux. You can use the Sysl
 Details for the creation of the DCR are provided in [Collect data from VM client with Azure Monitor](../vm/data-collection.md). This article provides other details for the Linux Syslog data source type.
 
 > [!NOTE]
-> To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#syslog-events).
+> To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../data-collection/data-collection-rule-samples.md#syslog-events).
 
 ## Create the DCR
 
@@ -24,12 +26,14 @@ Create the DCR using the process in [Collect data from virtual machine client wi
 
 [!INCLUDE [configure-syslog-ama](~/reusable-content/ce-skilling/azure/includes/azure-monitor/agents/configure-syslog-ama.md)]
 
+> [!NOTE]
+> To confirm which facilities a DCR collects, check the `facilityNames` property in the DCR definition rather than the portal form. See [View DCR definition](../data-collection/data-collection-rule-view.md#view-dcr-definition).
 
 >[!Note]
 >When ingesting syslog data using a log forwarder, inconsistencies may arise between the TimeGenerated and EventTime fields.
 > - TimeGenerated reflects the UTC time when the syslog message was processed by the machine hosting the log forwarder or collector.
 > - EventTime is extracted from the syslog header, which doesn't include time zone information and is converted to UTC using the local time zone offset of the forwarder/collector.
-> 
+>
 > This can lead to differences between the two fields when the forwarder/collector and the device generating the log are in different time zones.
 
 
@@ -43,14 +47,14 @@ When Azure Monitor Agent is installed on a Linux machine, it installs a default 
 ### Rsyslog
 On many Linux distributions, the rsyslogd daemon is responsible for consuming, storing, and routing log messages sent by using the Linux Syslog API. Azure Monitor Agent uses the TCP forward output module (`omfwd`) in rsyslog to forward log messages.
 
-The Azure Monitor Agent installation includes default config files located in `/etc/opt/microsoft/azuremonitoragent/syslog/rsyslogconf/`. When Syslog is added to a DCR, this configuration is installed under the `etc/rsyslog.d` system directory and rsyslog is automatically restarted for the changes to take effect. 
+The Azure Monitor Agent installation includes default config files located in `/etc/opt/microsoft/azuremonitoragent/syslog/rsyslogconf/`. When you add Syslog to a DCR, Azure Monitor Agent installs this configuration under the `etc/rsyslog.d` system directory and automatically restarts `rsyslog` for the changes to take effect.
 
 > [!NOTE]
 > On rsyslog-based systems, Azure Monitor Linux Agent adds forwarding rules to the default ruleset defined in the rsyslog configuration. If multiple rulesets are used, inputs bound to nondefault rulesets are **not** forwarded to Azure Monitor Agent. For more information about multiple rulesets in rsyslog, see the [official documentation](https://docs.rsyslog.com/doc/concepts/multi_ruleset.html).
 
 The following default configuration collects Syslog messages sent from the local agent for all facilities with all log levels.
 
-```
+```output
 $ cat /etc/rsyslog.d/10-azuremonitoragent-omfwd.conf
 # Azure Monitor Agent configuration: forward logs to azuremonitoragent
 
@@ -76,19 +80,19 @@ target="127.0.0.1" Port="28330" Protocol="tcp")
 
 The following configuration is used when you use SELinux and decide to use Unix sockets.
 
-```
+```output
 $ cat /etc/rsyslog.d/10-azuremonitoragent.conf
 # Azure Monitor Agent configuration: forward logs to azuremonitoragent
 $OMUxSockSocket /run/azuremonitoragent/default_syslog.socket
-template(name="AMA_RSYSLOG_TraditionalForwardFormat" type="string" string="<%PRI%>%TIMESTAMP% %HOSTNAME% %syslogtag%%msg:::sp-if-no-1st-sp%%msg%") 
+template(name="AMA_RSYSLOG_TraditionalForwardFormat" type="string" string="<%PRI%>%TIMESTAMP% %HOSTNAME% %syslogtag%%msg:::sp-if-no-1st-sp%%msg%")
 $OMUxSockDefaultTemplate AMA_RSYSLOG_TraditionalForwardFormat
 # Forwarding all events through Unix Domain Socket
-*.* :omuxsock: 
+*.* :omuxsock:
 ```
 
-```
+```output
 $ cat /etc/rsyslog.d/05-azuremonitoragent-loadomuxsock.conf
-# Azure Monitor Agent configuration: load rsyslog forwarding module. 
+# Azure Monitor Agent configuration: load rsyslog forwarding module.
 $ModLoad omuxsock
 ```
 
@@ -101,8 +105,9 @@ On some legacy systems, you might see rsyslog log formatting issues when a tradi
 The Azure Monitor Agent installation includes default config files located in `/etc/opt/microsoft/azuremonitoragent/syslog/syslog-ngconf/azuremonitoragent-tcp.conf`. When Syslog is added to a DCR, this configuration is installed under the `/etc/syslog-ng/conf.d/azuremonitoragent-tcp.conf` system directory and syslog-ng is automatically restarted for the changes to take effect.
 
 The default contents are shown in the following example. This example collects Syslog messages sent from the local agent for all facilities and all severities.
-```
-$ cat /etc/syslog-ng/conf.d/azuremonitoragent-tcp.conf 
+
+```output
+$ cat /etc/syslog-ng/conf.d/azuremonitoragent-tcp.conf
 # Azure MDSD configuration: syslog forwarding config for mdsd agent
 options {};
 
@@ -110,9 +115,9 @@ options {};
 # replace it by appropriate source name like in redhat 's_sys'
 # Forwrding using tcp
 destination d_azure_mdsd {
-	network("127.0.0.1" 
+	network("127.0.0.1"
 	port(28330)
-	log-fifo-size(25000));			
+	log-fifo-size(25000));
 };
 
 log {
@@ -121,22 +126,24 @@ log {
 	flags(flow-control);
 };
 ```
+
 The following configuration is used when you use SELinux and decide to use Unix sockets.
-```
-$ cat /etc/syslog-ng/conf.d/azuremonitoragent.conf 
-# Azure MDSD configuration: syslog forwarding config for mdsd agent options {}; 
-# during install time, we detect if s_src exist, if it does then we 
-# replace it by appropriate source name like in redhat 's_sys' 
-# Forwrding using unix domain socket 
-destination d_azure_mdsd { 
-	unix-dgram("/run/azuremonitoragent/default_syslog.socket" 
-	flags(no_multi_line) ); 
+
+```output
+$ cat /etc/syslog-ng/conf.d/azuremonitoragent.conf
+# Azure MDSD configuration: syslog forwarding config for mdsd agent options {};
+# during install time, we detect if s_src exist, if it does then we
+# replace it by appropriate source name like in redhat 's_sys'
+# Forwrding using unix domain socket
+destination d_azure_mdsd {
+	unix-dgram("/run/azuremonitoragent/default_syslog.socket"
+	flags(no_multi_line) );
 };
- 
+
 log {
-	source(s_src); # will be automatically parsed from /etc/syslog-ng/syslog-ng.conf 
+	source(s_src); # will be automatically parsed from /etc/syslog-ng/syslog-ng.conf
 	destination(d_azure_mdsd);
-}; 
+};
 ```
 
 >[!Note]
@@ -175,15 +182,15 @@ The following facilities are supported with the Syslog collector:
 | 21 | local5 |
 | 22 | local6 |
 | 23 | local7 |
-| 24 | {no piority} |
+| 24 | {no priority} |
 
 ## Semicolons get removed from Syslog messages
 
-The Azure Monitor Agent (AMA) forwards Syslog data as received. It doesn’t modify message content. However, semicolon (;) characters in Syslog messages get removed during ingestion into Azure Log Analytics. 
+The Azure Monitor Agent (AMA) forwards Syslog data as it receives it. It doesn’t modify the message content. However, during ingestion into Azure Log Analytics, semicolon (;) characters in Syslog messages get removed.
 
 If you need to preserve semicolons, consider modifying the Syslog message at the source before ingestion. For example, you might replace semicolons with a different character, such as a comma or pipe (|), or you might encode the message content before sending it to Azure Monitor.
 
 ## Next steps
 
 - Learn more about [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md).
-- Learn more about [data collection rules](../essentials/data-collection-rule-overview.md).
+- Learn more about [data collection rules](../data-collection/data-collection-rule-overview.md).
