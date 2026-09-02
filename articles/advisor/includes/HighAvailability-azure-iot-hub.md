@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure IoT Hub
@@ -102,23 +102,5 @@ Recommendation ID: 63f181a7-95a9-42be-9443-34ea8a5b4d3e
 Subcategory: ServiceUpgradeAndRetirement
 
 <!--63f181a7-95a9-42be-9443-34ea8a5b4d3e_end-->
-
-<!--7a37c33a-2d33-4f8a-9162-198c149a6441_begin-->
-
-#### Test Anuja  
-  
-Test anuja  
-  
-**Potential benefits**: Test  
-
-**Impact:** High
-  
-  
-
-ResourceType: microsoft.devices/iothubs  
-Recommendation ID: 7a37c33a-2d33-4f8a-9162-198c149a6441  
-Subcategory: undefined
-
-<!--7a37c33a-2d33-4f8a-9162-198c149a6441_end-->
 
 <!--articleBody-->

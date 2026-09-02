@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Subscriptions
@@ -47,23 +47,5 @@ Recommendation ID: f52ed1b8-9d60-469c-b1d8-b671043fe264
 
 
 <!--f52ed1b8-9d60-469c-b1d8-b671043fe264_end-->
-
-<!--c19f3817-e270-4989-aff6-dc3927cc0e74_begin-->
-
-#### Virtual networks aren't managed by IP Address Manager (IPAM)  
-  
-One or more virtual networks in this subscription aren't managed by IP Address Manager (IPAM). Associate them with IPAM pools to centrally track IP allocation, prevent address space overlaps, and simplify network planning.  
-  
-**Potential benefits**: Centralized IP address management and overlap prevention  
-
-**Impact:** Medium
-  
-For more information, see [What is IP address management (IPAM) in Azure Virtual Network Manager?](/azure/virtual-network-manager/concept-ip-address-management)  
-
-ResourceType: microsoft.subscriptions/subscriptions  
-Recommendation ID: c19f3817-e270-4989-aff6-dc3927cc0e74  
-
-
-<!--c19f3817-e270-4989-aff6-dc3927cc0e74_end-->
 
 <!--articleBody-->

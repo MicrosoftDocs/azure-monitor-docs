@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 08/11/2026
+ms.date: 06/23/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -488,14 +488,13 @@ Azure Firewall SLAs vary by deployment type such as single or multiple availabil
 
 **Impact:** High
   
-For more information, see [Deploy Azure Firewall with Availability Zones](https://aka.ms/learnmore_firewalls)  
+For more information, see [Deploy Azure Firewall with Availability Zones using PowerShell](https://aka.ms/learnmore_firewalls)  
 
 ResourceType: microsoft.network/azurefirewalls  
 Recommendation ID: e82f5b61-b0f8-48e7-8e18-5aa1f57bff81  
 Subcategory: HighAvailability
 
 <!--e82f5b61-b0f8-48e7-8e18-5aa1f57bff81_end-->
-
 
 <!--796b9be0-487d-4daa-8771-f08e4d7c9c0c_begin-->
 
@@ -771,27 +770,5 @@ Recommendation ID: 1e97d137-7812-474d-af09-6d5b3e2a1508
 Subcategory: undefined
 
 <!--1e97d137-7812-474d-af09-6d5b3e2a1508_end-->
-
-
-
-
-
-<!--ec16c75d-3cce-496c-b6db-673cfff50134_begin-->
-
-#### Update VPN client profile for Point-to-Site connections  
-  
-Azure VPN Gateway is migrating gateway certificates referenced by Point-to-Site (P2S) VPN client profiles. If P2S connections continue to rely on previously distributed client profiles, your users and devices might fail to connect to VPN Gateway. Update your VPN Gateway Point-to-Site client profile.  
-  
-**Potential benefits**: Avoid service disruption  
-
-**Impact:** Medium
-  
-For more information, see [How to Update Your VPN Client Profile - Azure VPN Gateway](/azure/vpn-gateway/point-to-site-user-vpn-profile-update?tabs=vpn-gateway)  
-
-ResourceType: microsoft.network/virtualnetworks  
-Recommendation ID: ec16c75d-3cce-496c-b6db-673cfff50134  
-Subcategory: undefined
-
-<!--ec16c75d-3cce-496c-b6db-673cfff50134_end-->
 
 <!--articleBody-->

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 08/11/2026
+ms.date: 06/23/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Storage
@@ -214,7 +214,5 @@ Recommendation ID: 6015a8e7-c899-4724-b39d-4281ddcc2551
 Subcategory: undefined
 
 <!--6015a8e7-c899-4724-b39d-4281ddcc2551_end-->
-
-
 
 <!--articleBody-->

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 05/26/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Database for PostgreSQL
@@ -146,23 +146,5 @@ Subcategory: undefined
 
 <!--bbce2e96-97d6-406e-bb16-07fda2759879_end-->
 
-
-<!--663d5f76-f42c-4118-ad34-b663eef91c8f_begin-->
-
-#### Enable zone redundancy for Azure SQL Managed Instance to improve high availability and resiliency  
-  
-Azure SQL Managed Instance offers built-in availability by deploying multiple replicas in the same zone. For higher availability, use a zone-redundant configuration that spreads replicas across three Azure availability zones, each with independent power, cooling, and networking.  
-  
-**Potential benefits**: Enhanced availability with minimal latency impact  
-
-**Impact:** High
-  
-For more information, see [Availability Through Local and Zone Redundancy - Azure SQL Managed Instance](https://aka.ms/learnmore_sql_managedinstances)  
-
-ResourceType: microsoft.dbforpostgresql/servers  
-Recommendation ID: 663d5f76-f42c-4118-ad34-b663eef91c8f  
-Subcategory: HighAvailability
-
-<!--663d5f76-f42c-4118-ad34-b663eef91c8f_end-->
 
 <!--articleBody-->

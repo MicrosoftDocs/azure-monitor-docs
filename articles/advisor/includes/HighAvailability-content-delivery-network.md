@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Content Delivery Network
@@ -177,25 +177,5 @@ Recommendation ID: 600a3187-48dd-495b-a9e8-320f83571b01
 Subcategory: undefined
 
 <!--600a3187-48dd-495b-a9e8-320f83571b01_end-->
-
-<!--82414842-53d0-4f37-b036-ccce163e9300_begin-->
-
-#### Azure Front Door and CDN profiles will end support for DHE cipher suites on 1 April 2026  
-  
-To ensure uninterrupted service and maintain strong encryption standards, take the following actions:
-1.	Update your origins to disable DHE ciphers and use the recommended cipher suites
-2.	Inform your clients to only use the recommended ciphers while connecting to your domains. If you own any of the  
-  
-**Potential benefits**: Reliability and security  
-
-**Impact:** Low
-  
-For more information, see [DHE ciphers - Azure Front Door](/azure/frontdoor/diffie-hellman-ciphers)  
-
-ResourceType: microsoft.cdn/profiles  
-Recommendation ID: 82414842-53d0-4f37-b036-ccce163e9300  
-Subcategory: undefined
-
-<!--82414842-53d0-4f37-b036-ccce163e9300_end-->
 
 <!--articleBody-->

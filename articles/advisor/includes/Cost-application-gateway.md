@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 03/10/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Cost Application Gateway
@@ -41,7 +41,7 @@ Your Front Door Classic tier contains a large number of domains or routing rules
 
 **Impact:** Medium
   
-For more information, see [Compare Pricing Between Azure Front Door Tiers](/azure/frontdoor/understanding-pricing)  
+For more information, see [Compare pricing between Azure Front Door tiers ](/azure/frontdoor/understanding-pricing)  
 
 ResourceType: microsoft.network/frontdoors  
 Recommendation ID: e6744163-0be2-4c17-83da-179a0af9d14f  
@@ -49,60 +49,5 @@ Recommendation ID: e6744163-0be2-4c17-83da-179a0af9d14f
 
 <!--e6744163-0be2-4c17-83da-179a0af9d14f_end-->
 
-
-
-<!--746768e6-0478-4023-84db-ef80967ee988_begin-->
-
-#### Example of Kusto recommendation  
-  
-Example of Kusto recommendation  
-  
-**Potential benefits**: Example  
-
-**Impact:** Low
-  
-  
-
-ResourceType: microsoft.network/loadbalancers  
-Recommendation ID: 746768e6-0478-4023-84db-ef80967ee988  
-
-
-<!--746768e6-0478-4023-84db-ef80967ee988_end-->
-
-<!--c49de82b-eae1-426c-8f73-8d9c84d65fc9_begin-->
-
-#### Example ARG with extendedProperties and strcat  
-  
-Example ARG  
-  
-**Potential benefits**: Example ARG  
-
-**Impact:** Low
-  
-  
-
-ResourceType: microsoft.network/loadbalancers  
-Recommendation ID: c49de82b-eae1-426c-8f73-8d9c84d65fc9  
-
-
-<!--c49de82b-eae1-426c-8f73-8d9c84d65fc9_end-->
-
-<!--e3d3ce5f-a7b1-42e8-92ec-afbe1ee83c9c_begin-->
-
-#### Example ARG with extendedProperties and bagpack  
-  
-Example ARG 2  
-  
-**Potential benefits**: Example ARG 2  
-
-**Impact:** Low
-  
-  
-
-ResourceType: microsoft.network/loadbalancers  
-Recommendation ID: e3d3ce5f-a7b1-42e8-92ec-afbe1ee83c9c  
-
-
-<!--e3d3ce5f-a7b1-42e8-92ec-afbe1ee83c9c_end-->
 
 <!--articleBody-->

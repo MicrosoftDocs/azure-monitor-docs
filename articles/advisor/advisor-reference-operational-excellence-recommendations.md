@@ -4,7 +4,7 @@ description: Operational excellence recommendations
 ms.topic: article
 author: kanika1894
 ms.author: kapasrij
-ms.date: 07/28/2026
+ms.date: 04/14/2026
 ---
 
 # Operational Excellence recommendations

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 06/09/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Cosmos DB
@@ -16,20 +16,19 @@ ms.custom: HighAvailability Azure Cosmos DB
 
 #### Configure Azure Cosmos DB containers with a partition key  
   
-The Cosmos DB nonpartitioned collections are approaching the provisioned storage quota and potentially lose the ability to add data. Migrate to new collections using a partition key definition, so the service automatically scales out the collections.  
+When Azure Cosmos DB nonpartitioned collections reach their provisioned storage quota, you lose the ability to add data. Your Cosmos DB nonpartitioned collections are approaching their provisioned storage quota. Migrate these collections to new collections with a partition key definition so they can automatically be scaled out by the service.  
   
 **Potential benefits**: Scale your containers seamlessly with increase in storage or request rates without running into any limits  
 
 **Impact:** High
   
-For more information, see [Partitioning and horizontal scaling - Azure Cosmos DB](/azure/cosmos-db/partitioning-overview#choose-partitionkey)  
+For more information, see [Partitioning and horizontal scaling - Azure Cosmos DB](/azure/cosmos-db/partitioning-overview#choose-partitionkey).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 5e4e9f04-9201-4fd9-8af6-a9539d13d8ec  
-Subcategory: undefined
+Subcategory: Scalability 
 
 <!--5e4e9f04-9201-4fd9-8af6-a9539d13d8ec_end-->
-
 
 <!--bdb595a4-e148-41f9-98e8-68ec92d1932e_begin-->
 
@@ -60,14 +59,13 @@ When an Azure Cosmos DB account can't access its linked Azure Key Vault hosting 
 
 **Impact:** Medium
   
-For more information, see [Configure Customer-Managed Keys - Azure Cosmos DB](/azure/cosmos-db/how-to-setup-cmk)  
+For more information, see [Configure customer-managed keys - Azure Cosmos DB](/azure/cosmos-db/how-to-setup-cmk).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 44a0a07f-23a2-49df-b8dc-a1b14c7c6a9d  
-Subcategory: undefined
+Subcategory: Other
 
 <!--44a0a07f-23a2-49df-b8dc-a1b14c7c6a9d_end-->
-
 
 <!--213974c8-ed9c-459f-9398-7cdaa3c28856_begin-->
 
@@ -79,14 +77,13 @@ Azure Cosmos containers configured with the Lazy indexing mode update asynchrono
 
 **Impact:** Medium
   
-For more information, see [Manage Indexing Policies - Azure Cosmos DB](/azure/cosmos-db/how-to-manage-indexing-policy)  
+For more information, see [Manage indexing policies in Azure Cosmos DB](/azure/cosmos-db/how-to-manage-indexing-policy).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 213974c8-ed9c-459f-9398-7cdaa3c28856  
-Subcategory: undefined
+Subcategory: Other
 
 <!--213974c8-ed9c-459f-9398-7cdaa3c28856_end-->
-
 
 <!--bc9e5110-a220-4ab9-8bc9-53f92d3eef70_begin-->
 
@@ -136,14 +133,13 @@ Some of your applications are connecting to your upgraded Azure Cosmos DB's API 
 
 **Impact:** Medium
   
-For more information, see [4.0 Supported Features and Syntax - Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb-feature-support-40)  
+For more information, see [4.0 server version supported features and syntax in Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb-feature-support-40).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 123039b5-0fda-4744-9a17-d6b5d5d122b2  
-Subcategory: undefined
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--123039b5-0fda-4744-9a17-d6b5d5d122b2_end-->
-
 
 <!--0da795d9-26d2-4f02-a019-0ec383363c88_begin-->
 
@@ -155,14 +151,13 @@ Your Azure Cosmos DB API for MongoDB account is eligible to upgrade to version 4
 
 **Impact:** Medium
   
-For more information, see [Upgrade the Mongo version - Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb-version-upgrade)  
+For more information, see [Upgrade the Mongo version - Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb-version-upgrade).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 0da795d9-26d2-4f02-a019-0ec383363c88  
-Subcategory: undefined
+Subcategory: Other
 
 <!--0da795d9-26d2-4f02-a019-0ec383363c88_end-->
-
 
 <!--ec6fe20c-08d6-43da-ac18-84ac83756a88_begin-->
 
@@ -193,14 +188,13 @@ Production workloads on Azure Cosmos DB run in a single region might have availa
 
 **Impact:** Medium
   
-For more information, see [Reliability in Azure Cosmos DB](/azure/cosmos-db/high-availability)  
+For more information, see [High availability (Reliability)  in Azure Cosmos DB for NoSQL](/azure/cosmos-db/high-availability).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: b57f7a29-dcc8-43de-86fa-18d3f9d3764d  
-Subcategory: undefined
+Subcategory: BusinessContinuity
 
 <!--b57f7a29-dcc8-43de-86fa-18d3f9d3764d_end-->
-
 
 <!--51a4e6bd-5a95-4a41-8309-40f5640fdb8b_begin-->
 
@@ -212,14 +206,13 @@ An Azure Cosmos DB account using an old version of the SDK lacks the latest fixe
 
 **Impact:** Medium
   
-For more information, see [Azure Cosmos DB documentation - Azure Cosmos DB](/azure/cosmos-db/)  
+For more information, see [Azure Cosmos DB](/azure/cosmos-db/).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 51a4e6bd-5a95-4a41-8309-40f5640fdb8b  
-Subcategory: undefined
+Subcategory: Other
 
 <!--51a4e6bd-5a95-4a41-8309-40f5640fdb8b_end-->
-
 
 <!--60a55165-9ccd-4536-81f6-e8dc6246d3d2_begin-->
 
@@ -250,16 +243,31 @@ Enable service managed failover for Cosmos DB account to ensure high availabilit
 
 **Impact:** Medium
   
-For more information, see [Reliability in Azure Cosmos DB](/azure/cosmos-db/high-availability)  
+For more information, see [High availability (Reliability)  in Azure Cosmos DB for NoSQL](/azure/cosmos-db/high-availability).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 5de9f2e6-087e-40da-863a-34b7943beed4  
-Subcategory: undefined
+Subcategory: Other
 
 <!--5de9f2e6-087e-40da-863a-34b7943beed4_end-->
 
+<!--64fbcac1-f652-4b6f-8170-2f97ffeb5631_begin-->
 
+#### Enable HA for your Production workload  
+  
+Many clusters with consistent workloads do not have high availability (HA) enabled. It's recommended to activate HA from the Scale page in the Azure portal to prevent database downtime in case of unexpected node failures and to qualify for SLA guarantees.  
+  
+**Potential benefits**: Activate HA to avoid database downtime in case of an unexpected node failure  
 
+**Impact:** High
+  
+For more information, see [Scale or configure a cluster - Azure Cosmos DB for MongoDB vCore](/azure/reliability/reliability-cosmos-db).
+
+ResourceType: microsoft.documentdb/databaseaccounts  
+Recommendation ID: 64fbcac1-f652-4b6f-8170-2f97ffeb5631  
+Subcategory: HighAvailability
+
+<!--64fbcac1-f652-4b6f-8170-2f97ffeb5631_end-->
 
 <!--8034b205-167a-4fd5-a133-0c8cb166103c_begin-->
 
@@ -290,14 +298,13 @@ Your Azure Managed Instance for Apache Cassandra cluster is designated as a prod
 
 **Impact:** Medium
   
-For more information, see [Building Resilient Applications - Azure Managed Instance for Apache Cassandra](/azure/managed-instance-apache-cassandra/resilient-applications)  
+For more information, see [Building resilient applications - Azure Managed Instance for Apache Cassandra](/azure/managed-instance-apache-cassandra/resilient-applications).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 92056ca3-8fab-43d1-bebf-f9c377ef20e9  
-Subcategory: undefined
+Subcategory: DisasterRecovery
 
 <!--92056ca3-8fab-43d1-bebf-f9c377ef20e9_end-->
-
 
 <!--a030f8ab-4dd4-4751-822b-f231a0df5f5a_begin-->
 
@@ -309,14 +316,13 @@ We found high number of Control Plane operations on your account through resourc
 
 **Impact:** Medium
   
-For more information, see [Service Quotas and Default Limits - Azure Cosmos DB](https://docs.microsoft.com/azure/cosmos-db/concepts-limits#control-plane)  
+For more information, see [Service quotas and default limits - Azure Cosmos DB](/azure/cosmos-db/concepts-limits#control-plane).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: a030f8ab-4dd4-4751-822b-f231a0df5f5a  
-Subcategory: undefined
+Subcategory: Scalability
 
 <!--a030f8ab-4dd4-4751-822b-f231a0df5f5a_end-->
-
 
 <!--52fef986-5897-4359-8b92-0f22749f0d73_begin-->
 
@@ -413,59 +419,5 @@ Subcategory: undefined
 
 <!--649fd0b8-0bf0-43fe-bfa1-c408f6d33200_end-->
 
-
-<!--0082c3b0-5b9c-4157-bb43-29307b6f882e_begin-->
-
-#### Migrate Cosmos DB Synapse Link (NoSQL) to Fabric Mirroring  
-  
-Azure Synapse Link for Azure Cosmos DB NoSQL will be retired on 31 March 2029. Customers using this feature should migrate analytical workloads to Cosmos DB Mirroring in Microsoft Fabric, the recommended replacement solution, before the retirement date to avoid service disruption and potential loss.  
-  
-**Potential benefits**: Prevent disruption to Cosmos DB analytics workloads  
-
-**Impact:** Medium
-  
-For more information, see [Migrate from Azure Synapse Link to Azure Cosmos DB mirroring in Microsoft Fabric - Microsoft Fabric](https://aka.ms/CosmosMirrorSynapseMigration)  
-
-ResourceType: microsoft.documentdb/databaseaccounts  
-Recommendation ID: 0082c3b0-5b9c-4157-bb43-29307b6f882e  
-Subcategory: undefined
-
-<!--0082c3b0-5b9c-4157-bb43-29307b6f882e_end-->
-
-<!--57e0d793-c9f3-4681-80ef-8ae162164eac_begin-->
-
-#### Anuja:Test cosmos  
-  
-Anuja Test recommendation  
-  
-**Potential benefits**: Anuja Test  
-
-**Impact:** High
-  
-For more information, see [Training - Courses, Learning Paths, Modules](https://aka.ms/learn)  
-
-ResourceType: microsoft.documentdb/databaseaccounts  
-Recommendation ID: 57e0d793-c9f3-4681-80ef-8ae162164eac  
-Subcategory: undefined
-
-<!--57e0d793-c9f3-4681-80ef-8ae162164eac_end-->
-
-<!--b1125561-842f-495c-b653-89f9bedd228c_begin-->
-
-#### Migrate to Cosmos DB Mirroring in Microsoft Fabric  
-  
-Azure Synapse Link for Azure Cosmos DB NoSQL is being retired. Transition to Cosmos DB Mirroring in Microsoft Fabric.  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** Medium
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=558560)  
-
-ResourceType: microsoft.documentdb/databaseaccounts  
-Recommendation ID: b1125561-842f-495c-b653-89f9bedd228c  
-Subcategory: undefined
-
-<!--b1125561-842f-495c-b653-89f9bedd228c_end-->
 
 <!--articleBody-->

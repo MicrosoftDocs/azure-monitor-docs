@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 10/28/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability HDInsight
@@ -195,23 +195,5 @@ Recommendation ID: 66bfeb4c-1351-4672-b410-3ecea872b17d
 Subcategory: undefined
 
 <!--66bfeb4c-1351-4672-b410-3ecea872b17d_end-->
-
-<!--3f1db78d-27d0-4f12-96d0-88487531ec79_begin-->
-
-#### Evaluate and Migrate from Azure HDInsight  
-  
-Consider transitioning to a replacement solution such as Microsoft Fabric or a suitable offering from the Azure Marketplace.  
-  
-**Potential benefits**: Avoid service disruptions and data loss  
-
-**Impact:** High
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=498728)  
-
-ResourceType: microsoft.hdinsight/clusters  
-Recommendation ID: 3f1db78d-27d0-4f12-96d0-88487531ec79  
-Subcategory: undefined
-
-<!--3f1db78d-27d0-4f12-96d0-88487531ec79_end-->
 
 <!--articleBody-->

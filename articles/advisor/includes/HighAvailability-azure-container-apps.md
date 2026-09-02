@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Container Apps
@@ -155,41 +155,5 @@ Recommendation ID: ea0bf0e5-dc1b-446f-a1e8-eff1b913eb31
 Subcategory: undefined
 
 <!--ea0bf0e5-dc1b-446f-a1e8-eff1b913eb31_end-->
-
-<!--8b235ca1-10f4-4035-9cc1-cbc4c9dd0835_begin-->
-
-#### Transition to Azure Cache for Redis or Azure Database for PostgreSQL  
-  
-Container Apps running add-ons are going to be deleted along with associated application data. Transition to Azure-managed services, such as Azure Cache for Redis or Azure Database for PostgreSQL if you’re ready to use a production-level service.  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** High
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485683)  
-
-ResourceType: microsoft.app/containerapps  
-Recommendation ID: 8b235ca1-10f4-4035-9cc1-cbc4c9dd0835  
-Subcategory: undefined
-
-<!--8b235ca1-10f4-4035-9cc1-cbc4c9dd0835_end-->
-
-<!--f963674a-055c-4418-a0e4-7cea4e23e3e5_begin-->
-
-#### Test reco adkhandelwal  
-  
-Container apps reco for testing  
-  
-**Potential benefits**: container apps will work perfectly  
-
-**Impact:** Medium
-  
-  
-
-ResourceType: microsoft.app/containerapps  
-Recommendation ID: f963674a-055c-4418-a0e4-7cea4e23e3e5  
-Subcategory: undefined
-
-<!--f963674a-055c-4418-a0e4-7cea4e23e3e5_end-->
 
 <!--articleBody-->

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 08/11/2026
+ms.date: 06/09/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure SQL Database
@@ -221,9 +221,5 @@ Recommendation ID: 46cc1fcd-f1eb-4558-a7fb-22ba33f9e8e9
 Subcategory: undefined
 
 <!--46cc1fcd-f1eb-4558-a7fb-22ba33f9e8e9_end-->
-
-
-
-
 
 <!--articleBody-->

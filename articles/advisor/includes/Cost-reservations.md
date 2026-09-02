@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 10/28/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Cost Reservations
@@ -430,23 +430,5 @@ Recommendation ID: 9ed827e8-2a1c-45f3-93f0-df6962034a33
 
 
 <!--9ed827e8-2a1c-45f3-93f0-df6962034a33_end-->
-
-<!--7ac18a52-fb6c-4931-8d9d-ef5efff6acf0_begin-->
-
-#### DELETE - Consider purchasing a savings plan for database to unlock lower prices  
-  
-Azure savings plans unlock lower prices on select services when you commit to spend a specified amount each hour for 1 or 3 years. We analyzed your recent database usage and recommend purchasing an Azure savings plan databases.  
-  
-**Potential benefits**: savings  
-
-**Impact:** High
-  
-  
-
-ResourceType: microsoft.subscriptions/subscriptions  
-Recommendation ID: 7ac18a52-fb6c-4931-8d9d-ef5efff6acf0  
-
-
-<!--7ac18a52-fb6c-4931-8d9d-ef5efff6acf0_end-->
 
 <!--articleBody-->

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Arc-enabled servers
@@ -29,23 +29,5 @@ Recommendation ID: 9d5717d2-4708-4e3f-bdda-93b3e6f1715b
 Subcategory: Other
 
 <!--9d5717d2-4708-4e3f-bdda-93b3e6f1715b_end-->
-
-<!--b6a810bf-11a1-478c-a347-428c4fe5c1a1_begin-->
-
-#### Migrate from Dependency Agent and VM Insights Map  
-  
-Dependency Agent and VM Insights Map is retiring. We recommend considering a replacement solution from the Azure Marketplace to continue collecting data about processes running on virtual machines and external process dependencies.  
-  
-**Potential benefits**: Avoid service disruption  
-
-**Impact:** Medium
-  
-For more information, see [VM Insights Map and Dependency Agent retirement guidance - Azure Monitor](https://aka.ms/DependencyAgentRetirement)  
-
-ResourceType: microsoft.hybridcompute/machines  
-Recommendation ID: b6a810bf-11a1-478c-a347-428c4fe5c1a1  
-Subcategory: undefined
-
-<!--b6a810bf-11a1-478c-a347-428c4fe5c1a1_end-->
 
 <!--articleBody-->
