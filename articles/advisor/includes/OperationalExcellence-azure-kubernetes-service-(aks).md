@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 08/11/2026
+ms.date: 07/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure Kubernetes Service (AKS)
@@ -180,7 +180,23 @@ Recommendation ID: 89e238d9-56e5-4f05-bd9a-295ebd55711d
 
 <!--89e238d9-56e5-4f05-bd9a-295ebd55711d_end-->
 
+<!--eedc2853-3369-4ede-8a75-68caf73e24df_begin-->
 
+#### Monitoring addon workspace is deleted  
+  
+Monitoring addon workspace is deleted. Correct issues to setup monitoring addon.  
+  
+**Potential benefits**: Correct issues to setup monitoring addon  
+
+**Impact:** High
+  
+For more information, see [Disable monitoring of your Kubernetes cluster - Azure Monitor](https://aka.ms/aks-disable-monitoring-addon)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: eedc2853-3369-4ede-8a75-68caf73e24df  
+
+
+<!--eedc2853-3369-4ede-8a75-68caf73e24df_end-->
 
 <!--8b4d2e9e-8999-4677-8dfd-71911a6282bd_begin-->
 
@@ -218,7 +234,23 @@ Recommendation ID: 1d259bad-88f0-46d5-b40b-ce5825dc0914
 
 <!--1d259bad-88f0-46d5-b40b-ce5825dc0914_end-->
 
+<!--a347b531-5dbf-4870-80b0-ace7964605b1_begin-->
 
+#### Disable the Application Routing Addon  
+  
+This cluster has Pod Security Policies enabled, which are going to be deprecated in favor of Azure Policy for AKS  
+  
+**Potential benefits**: AKS Pod Security Policies will be deprecated and Azure Policy for AKS should be used instead  
+
+**Impact:** Medium
+  
+For more information, see [Use Azure Policy to secure your Azure Kubernetes Service (AKS) clusters - Azure Kubernetes Service](/azure/aks/use-pod-security-on-azure-policy)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: a347b531-5dbf-4870-80b0-ace7964605b1  
+
+
+<!--a347b531-5dbf-4870-80b0-ace7964605b1_end-->
 
 <!--2f568da2-1934-419c-b299-c038ccea1ea0_begin-->
 
@@ -238,6 +270,22 @@ Recommendation ID: 2f568da2-1934-419c-b299-c038ccea1ea0
 
 <!--2f568da2-1934-419c-b299-c038ccea1ea0_end-->
 
+<!--4c72c554-1573-4ce8-8bbf-7b2aab0bf297_begin-->
 
+#### Update cluster's service principal  
+  
+This cluster's service principal is expired and the cluster will not be healthy until the service principal is updated  
+  
+**Potential benefits**: Your cluster will work correctly  
+
+**Impact:** Medium
+  
+For more information, see [Update or rotate the credentials for an Azure Kubernetes Service (AKS) cluster - Azure Kubernetes Service](/azure/aks/update-credentials)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 4c72c554-1573-4ce8-8bbf-7b2aab0bf297  
+
+
+<!--4c72c554-1573-4ce8-8bbf-7b2aab0bf297_end-->
 
 <!--articleBody-->
