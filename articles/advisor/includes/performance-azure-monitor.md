@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 09/23/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Monitor
@@ -12,58 +12,40 @@ ms.custom: Performance Azure Monitor
   
 ## Azure Monitor  
   
-<!--6b673b7b-cd84-4904-ad53-d93d578d2992_begin-->
+<!--a74bb2bd-d97d-4f3e-9c70-063dd7dce6e0_begin-->
 
-#### df  
+#### Optimize the application code to reduce CPU and memory usage  
   
-f g  
+Application Insights Code Optimizations analyzes .NET Profiler traces to detect CPU and memory bottlenecks in cloud apps, providing actionable code-level recommendations via GitHub Copilot to improve performance.  
   
-**Potential benefits**: sdf  
+**Potential benefits**: Improve application performance through targeted code fixes.  
 
 **Impact:** Medium
   
+For more information, see [Monitor and analyze runtime behavior with Code Optimizations - Azure Monitor](https://aka.ms/codeoptimizations/docs)  
+
+ResourceType: microsoft.insights/components  
+Recommendation ID: a74bb2bd-d97d-4f3e-9c70-063dd7dce6e0  
+
+
+<!--a74bb2bd-d97d-4f3e-9c70-063dd7dce6e0_end-->
+
+<!--61992b6b-0245-4408-a288-0c2fd17c0cc0_begin-->
+
+#### Optimize the application code to reduce CPU and memory usage  
   
-
-ResourceType: microsoft.alertsmanagement/actionrules  
-Recommendation ID: 6b673b7b-cd84-4904-ad53-d93d578d2992  
-
-
-<!--6b673b7b-cd84-4904-ad53-d93d578d2992_end-->
-
-<!--dae90acb-285d-41f0-813e-ddb3fe0be124_begin-->
-
-#### d gdfg  
+Application Insights Code Optimizations analyzes .NET Profiler traces to detect CPU and memory bottlenecks in cloud apps, providing actionable code-level recommendations via GitHub Copilot to improve performance.  
   
-as da  
-  
-**Potential benefits**: asd  
+**Potential benefits**: Improve application performance through targeted code fixes.  
 
 **Impact:** Medium
   
-  
+For more information, see [Monitor and analyze runtime behavior with Code Optimizations - Azure Monitor](https://aka.ms/codeoptimizations/docs)  
 
-ResourceType: microsoft.alertsmanagement/alerts  
-Recommendation ID: dae90acb-285d-41f0-813e-ddb3fe0be124  
-
-
-<!--dae90acb-285d-41f0-813e-ddb3fe0be124_end-->
-
-<!--00b6b64b-7e6b-45b5-9d2f-8096fc9f6e65_begin-->
-
-#### dfgd  
-  
-dfg dfg  
-  
-**Potential benefits**: sdfsdfs  
-
-**Impact:** Medium
-  
-  
-
-ResourceType: microsoft.alertsmanagement/alerts  
-Recommendation ID: 00b6b64b-7e6b-45b5-9d2f-8096fc9f6e65  
+ResourceType: microsoft.insights/components  
+Recommendation ID: 61992b6b-0245-4408-a288-0c2fd17c0cc0  
 
 
-<!--00b6b64b-7e6b-45b5-9d2f-8096fc9f6e65_end-->
+<!--61992b6b-0245-4408-a288-0c2fd17c0cc0_end-->
 
 <!--articleBody-->

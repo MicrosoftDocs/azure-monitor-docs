@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 05/26/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Cognitive Services
@@ -301,23 +301,5 @@ Recommendation ID: 134edfc1-8479-4792-b19b-b47ac18a58ac
 Subcategory: undefined
 
 <!--134edfc1-8479-4792-b19b-b47ac18a58ac_end-->
-
-<!--6483482f-c248-40b8-90a1-a7138e3b4ef0_begin-->
-
-#### Migrate to authoring workflows from Foundry workflows UI and workflows API  
-  
-Foundry workflows UI and workflows API are being retired.  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** Medium
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=561143)  
-
-ResourceType: microsoft.cognitiveservices/accounts  
-Recommendation ID: 6483482f-c248-40b8-90a1-a7138e3b4ef0  
-Subcategory: undefined
-
-<!--6483482f-c248-40b8-90a1-a7138e3b4ef0_end-->
 
 <!--articleBody-->

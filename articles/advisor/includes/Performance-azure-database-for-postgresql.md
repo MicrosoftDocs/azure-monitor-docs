@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Database for PostgreSQL
@@ -222,14 +222,13 @@ Your server's autovacuum parameter setting is OFF and the Bloat ratio (dead tupl
 
 **Impact:** High
   
-For more information, see [Autovacuum Tuning - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-autovacuum-tuning)  
+For more information, see [Autovacuum Tuning](/azure/postgresql/flexible-server/how-to-autovacuum-tuning)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: dfecf01a-aac2-4429-bc03-7de5756e8bc8  
 
 
 <!--dfecf01a-aac2-4429-bc03-7de5756e8bc8_end-->
-
 
 
 
@@ -262,14 +261,13 @@ Your server has orphaned prepared transactions. Rollback or commit the orphaned 
 
 **Impact:** High
   
-For more information, see [Autovacuum Tuning - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#prepared-statements)  
+For more information, see [Autovacuum Tuning](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#prepared-statements)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: eecd0096-23c1-4ad6-9a8d-fc55d9e8cc40  
 
 
 <!--eecd0096-23c1-4ad6-9a8d-fc55d9e8cc40_end-->
-
 
 
 

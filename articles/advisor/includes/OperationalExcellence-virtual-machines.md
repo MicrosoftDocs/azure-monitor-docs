@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 11/25/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Virtual Machines
@@ -84,23 +84,5 @@ Recommendation ID: 2881ca3a-070d-40fb-9471-83783ff487c0
 
 
 <!--2881ca3a-070d-40fb-9471-83783ff487c0_end-->
-
-<!--619aa7ea-de81-4a6e-a8a2-4eb405b4d010_begin-->
-
-#### Host Linux web apps on Azure App Service  
-  
-Azure App Service provides benefits to hosted Linux web apps including high service-level agreement (SLA), reduced management overhead, containerization capability, and automatic scaling.  
-  
-**Potential benefits**: Maximize business value of the cloud.  
-
-**Impact:** Medium
-  
-For more information, see [Overview of Azure App Service - Azure App Service](/azure/app-service/overview)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 619aa7ea-de81-4a6e-a8a2-4eb405b4d010  
-
-
-<!--619aa7ea-de81-4a6e-a8a2-4eb405b4d010_end-->
 
 <!--articleBody-->

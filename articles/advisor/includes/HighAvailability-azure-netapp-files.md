@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 05/26/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure NetApp Files
@@ -190,23 +190,5 @@ Recommendation ID: 2c3230cf-e6a3-4479-8a82-b8031b991b24
 Subcategory: undefined
 
 <!--2c3230cf-e6a3-4479-8a82-b8031b991b24_end-->
-
-<!--bb32bed1-2b85-4e0d-ad99-531510e38ef2_begin-->
-
-#### Delete Deprecating Elastic Zone-redundant Scale Resources  
-  
-Delete 'scale' resources created during ANF Elastic Zone-redundant private preview, by Dec 3 as we are will no longer support these resources beyond this date. Access to scale resources is currently only through APIs, and the deletion can also only be performed through APIs.  
-  
-**Potential benefits**: Prevent Unexpected Billing  
-
-**Impact:** High
-  
-For more information, see [Solution architectures using Azure NetApp Files](/azure/azure-netapp-files/azure-netapp-files-solution-architectures)  
-
-ResourceType: microsoft.netapp/netappaccounts  
-Recommendation ID: bb32bed1-2b85-4e0d-ad99-531510e38ef2  
-Subcategory: undefined
-
-<!--bb32bed1-2b85-4e0d-ad99-531510e38ef2_end-->
 
 <!--articleBody-->

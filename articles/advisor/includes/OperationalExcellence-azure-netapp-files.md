@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 05/26/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure NetApp Files
@@ -119,23 +119,5 @@ Recommendation ID: 36851155-3579-47fc-afc6-8334fe9eb26a
 
 
 <!--36851155-3579-47fc-afc6-8334fe9eb26a_end-->
-
-<!--2e08fac1-8e56-423c-a13c-969f9ccbbcd6_begin-->
-
-#### Azure NetApp Files End of Support for RC4 will default to AES256 encryption  
-  
-Azure NetApp Files will only support AES encryption for Active Directory authentication. This applies to SMB, dual-protocol, and NFSv4.1 Kerberos scenarios that use an Active Directory connection.  RC4 encryption will not be supported.  AES-256 and AES-128 are supported, with AES-256 recommended.  
-  
-**Potential benefits**: Improved Encryption  
-
-**Impact:** High
-  
-For more information, see [Understand AES in Azure NetApp Files](/azure/azure-netapp-files/understand-advanced-encryption-standard)  
-
-ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
-Recommendation ID: 2e08fac1-8e56-423c-a13c-969f9ccbbcd6  
-
-
-<!--2e08fac1-8e56-423c-a13c-969f9ccbbcd6_end-->
 
 <!--articleBody-->

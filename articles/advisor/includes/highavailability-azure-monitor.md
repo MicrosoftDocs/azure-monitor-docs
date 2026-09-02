@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 05/26/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Monitor
@@ -12,40 +12,40 @@ ms.custom: HighAvailability Azure Monitor
   
 ## Azure Monitor  
   
-<!--4f596526-f726-4a70-b8d2-12d07fa1f274_begin-->
+<!--bc89d51f-df67-4814-ae1f-f36116d34218_begin-->
 
-#### test  
+#### Update Data Collection Rules  
   
-test  
+Preview feature Send virtual machine client data to Event Hubs and Storage is retiring. Switch to alternatives to continue using AMA or other Azure solutions that provide more reliable, scalable and performant solutions to send data.  
   
-**Potential benefits**: save  
+**Potential benefits**: Avoid service disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=551523)  
+
+ResourceType: microsoft.insights/actiongroups  
+Recommendation ID: bc89d51f-df67-4814-ae1f-f36116d34218  
+Subcategory: undefined
+
+<!--bc89d51f-df67-4814-ae1f-f36116d34218_end-->
+
+<!--c40a2c46-1da0-4205-be9d-c7d3d8688272_begin-->
+
+#### Classic Application Insights is being retired  
+  
+Classic Application Insights is being retired, migrate to workspace-based Application Insights resources.  
+  
+**Potential benefits**: Avoid potential disruptions  
 
 **Impact:** High
   
-  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=we-re-retiring-classic-application-insights-on-29-february-2024)  
 
-ResourceType: microsoft.alertsmanagement/actionrules  
-Recommendation ID: 4f596526-f726-4a70-b8d2-12d07fa1f274  
+ResourceType: microsoft.insights/components  
+Recommendation ID: c40a2c46-1da0-4205-be9d-c7d3d8688272  
 Subcategory: undefined
 
-<!--4f596526-f726-4a70-b8d2-12d07fa1f274_end-->
-
-<!--69ef546b-e775-4401-a90a-d22d3a4f872a_begin-->
-
-#### Migrate from Dependency Agent and VM Insights Map  
-  
-Dependency Agent and VM Insights Map is retiring. We recommend considering a replacement solution from the Azure Marketplace to continue collecting data about processes running on virtual machines and external process dependencies.  
-  
-**Potential benefits**: Avoid service disruption  
-
-**Impact:** High
-  
-For more information, see [VM Insights Map and Dependency Agent retirement guidance - Azure Monitor](https://aka.ms/DependencyAgentRetirement)  
-
-ResourceType: microsoft.operationalinsights/workspaces  
-Recommendation ID: 69ef546b-e775-4401-a90a-d22d3a4f872a  
-Subcategory: undefined
-
-<!--69ef546b-e775-4401-a90a-d22d3a4f872a_end-->
+<!--c40a2c46-1da0-4205-be9d-c7d3d8688272_end-->
 
 <!--articleBody-->

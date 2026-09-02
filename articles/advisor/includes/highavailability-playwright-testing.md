@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Playwright Testing
@@ -12,7 +12,7 @@ ms.custom: HighAvailability Playwright Testing
   
 ## Playwright Testing  
   
-<!--0667dd15-9710-4d5c-aab2-c583382f38a9_begin-->
+<!--2c1fc2d7-3e01-4bce-b306-5d506c4d7f2a_begin-->
 
 #### Migrate to Azure App Testing  
   
@@ -25,9 +25,9 @@ To avoid service disruptions, users should migrate existing Playwright workloads
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=499860)  
 
 ResourceType: microsoft.azureplaywrightservice/accounts  
-Recommendation ID: 0667dd15-9710-4d5c-aab2-c583382f38a9  
+Recommendation ID: 2c1fc2d7-3e01-4bce-b306-5d506c4d7f2a  
 Subcategory: undefined
 
-<!--0667dd15-9710-4d5c-aab2-c583382f38a9_end-->
+<!--2c1fc2d7-3e01-4bce-b306-5d506c4d7f2a_end-->
 
 <!--articleBody-->

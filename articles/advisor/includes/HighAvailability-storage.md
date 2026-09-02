@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 06/23/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Storage
@@ -214,23 +214,5 @@ Recommendation ID: 6015a8e7-c899-4724-b39d-4281ddcc2551
 Subcategory: undefined
 
 <!--6015a8e7-c899-4724-b39d-4281ddcc2551_end-->
-
-<!--ac5004ba-370a-44cb-9423-0aaba813f014_begin-->
-
-#### Enable point-in-time restore for GPv2 accounts to safeguard against data loss  
-  
-Consider enabling point-in-time restore for standard general purpose v2 accounts with flat namespace to protect against accidental deletion or corruption by restoring block blob data to an earlier state.  
-  
-**Potential benefits**: Protects data from loss and corruption  
-
-**Impact:** Low
-  
-For more information, see [Point-in-time restore for block blobs - Azure Storage](/azure/storage/blobs/point-in-time-restore-overview)  
-
-ResourceType: microsoft.storage/storageaccounts  
-Recommendation ID: ac5004ba-370a-44cb-9423-0aaba813f014  
-Subcategory: undefined
-
-<!--ac5004ba-370a-44cb-9423-0aaba813f014_end-->
 
 <!--articleBody-->

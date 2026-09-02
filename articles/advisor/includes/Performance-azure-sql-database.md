@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure SQL Database
@@ -119,23 +119,5 @@ Recommendation ID: 01dea77b-3ca4-4583-9b09-88f5a8fd5857
 
 
 <!--01dea77b-3ca4-4583-9b09-88f5a8fd5857_end-->
-
-<!--5d8a202c-aa70-497e-be25-f46db9d5d158_begin-->
-
-#### Use Automatic connection type to improve network performance of your SQL clients  
-  
-To reduce latency for inbound SQL client connections, select the Automatic connection type. Automatic type replaces Redirect and is backwards-compatible with legacy proxy connection type.  
-  
-**Potential benefits**: Improved network performance of SQL clients  
-
-**Impact:** Low
-  
-  
-
-ResourceType: microsoft.sql/managedinstances  
-Recommendation ID: 5d8a202c-aa70-497e-be25-f46db9d5d158  
-
-
-<!--5d8a202c-aa70-497e-be25-f46db9d5d158_end-->
 
 <!--articleBody-->

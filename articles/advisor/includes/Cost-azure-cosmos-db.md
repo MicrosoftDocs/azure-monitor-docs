@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 04/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Cost Azure Cosmos DB
@@ -22,14 +22,13 @@ Based on your usage in the past 7 days, you can save by enabling autoscale. For 
 
 **Impact:** Medium
   
-For more information, see [Create Containers and Databases with Autoscale Throughput - Azure Cosmos DB](/azure/cosmos-db/provision-throughput-autoscale)  
+For more information, see [Create Azure Cosmos DB containers and databases in autoscale or dynamic scaling mode. ](/azure/cosmos-db/provision-throughput-autoscale)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: cdf51428-a41b-4735-ba23-39f3b7cde20c  
 
 
 <!--cdf51428-a41b-4735-ba23-39f3b7cde20c_end-->
-
 
 <!--4a993d7c-9d83-4d85-b5a9-7cce0b136378_begin-->
 
@@ -41,14 +40,13 @@ Your Azure Cosmos DB free tier account is currently containing resources with a 
 
 **Impact:** Medium
   
-For more information, see [Understanding Your Bill - Azure Cosmos DB](/azure/cosmos-db/understand-your-bill#azure-free-tier)  
+For more information, see [Understanding your Azure Cosmos DB bill ](/azure/cosmos-db/understand-your-bill#azure-free-tier)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 4a993d7c-9d83-4d85-b5a9-7cce0b136378  
 
 
 <!--4a993d7c-9d83-4d85-b5a9-7cce0b136378_end-->
-
 
 <!--a4255ba5-b07e-45ae-99ca-25e6c2079e3c_begin-->
 
@@ -98,13 +96,12 @@ You can now enable continuous backup on the same Azure Cosmos DB accounts where 
 
 **Impact:** Low
   
-For more information, see [Microsoft Fabric Mirrored Databases From Azure Cosmos DB - Microsoft Fabric](/fabric/database/mirrored-database/azure-cosmos-db)  
+For more information, see [Microsoft Fabric Mirrored Databases From Azure Cosmos DB (Preview) - Microsoft Fabric ](/fabric/database/mirrored-database/azure-cosmos-db)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 57a36b11-140b-4276-a162-9919ca4e9462  
 
 
 <!--57a36b11-140b-4276-a162-9919ca4e9462_end-->
-
 
 <!--articleBody-->

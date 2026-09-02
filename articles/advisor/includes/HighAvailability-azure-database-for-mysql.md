@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 10/14/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Database for MySQL
@@ -147,41 +147,5 @@ Recommendation ID: c317d906-e24a-4f6d-8cd7-389bd6bc602c
 Subcategory: null
 
 <!--c317d906-e24a-4f6d-8cd7-389bd6bc602c_end-->
-
-<!--89d6be0d-68ba-4786-8a16-97f2ffb39ba2_begin-->
-
-#### Enable zone redundancy for Azure SQL Managed Instance to improve high availability and resiliency  
-  
-Azure SQL Managed Instance offers built-in availability by deploying multiple replicas in the same zone. For higher availability, use a zone-redundant configuration that spreads replicas across three Azure availability zones, each with independent power, cooling, and networking.  
-  
-**Potential benefits**: Enhanced availability with minimal latency impact  
-
-**Impact:** High
-  
-For more information, see [Availability Through Local and Zone Redundancy - Azure SQL Managed Instance](https://aka.ms/learnmore_sql_managedinstances)  
-
-ResourceType: microsoft.dbformysql/flexibleservers  
-Recommendation ID: 89d6be0d-68ba-4786-8a16-97f2ffb39ba2  
-Subcategory: HighAvailability
-
-<!--89d6be0d-68ba-4786-8a16-97f2ffb39ba2_end-->
-
-<!--c3da6010-c919-401b-b467-9b9dce4bd88f_begin-->
-
-#### Out of Memory Detection  
-  
-Memory utilization can often hover between 80- 90% of the available physical memory of an instance. It's very important to have the appropriate memory allocation and utilization. To detect the Out of Memory MySQL logs are parsed to count the number of instances reported in the given duration.  
-  
-**Potential benefits**: Gives count of the occurrences of Out of Memory exceptions  
-
-**Impact:** High
-  
-For more information, see [Troubleshoot Low Memory Issues - Azure Database for MySQL](/azure/mysql/flexible-server/how-to-troubleshoot-low-memory-issues)  
-
-ResourceType: microsoft.dbformysql/flexibleservers  
-Recommendation ID: c3da6010-c919-401b-b467-9b9dce4bd88f  
-Subcategory: undefined
-
-<!--c3da6010-c919-401b-b467-9b9dce4bd88f_end-->
 
 <!--articleBody-->

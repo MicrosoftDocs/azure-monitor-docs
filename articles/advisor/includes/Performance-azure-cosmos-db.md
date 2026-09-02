@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 04/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Cosmos DB
@@ -22,14 +22,13 @@ Your Azure Cosmos DB containers are using the default indexing policy, which ind
 
 **Impact:** Medium
   
-For more information, see [Indexing policies - Azure Cosmos DB](/azure/cosmos-db/index-policy)  
+For more information, see [Azure Cosmos DB indexing policies](/azure/cosmos-db/index-policy)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 683b5e32-48aa-4b46-a822-4e22a20ee244  
 
 
 <!--683b5e32-48aa-4b46-a822-4e22a20ee244_end-->
-
 
 <!--75c8c891-46d2-41fa-a81c-84e870a139a9_begin-->
 

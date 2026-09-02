@@ -4,7 +4,7 @@ description: Full list of available cost recommendations in Advisor.
 ms.topic: article
 author: kanika1894
 ms.author: kapasrij
-ms.date: 07/28/2026
+ms.date: 02/10/2026
 ---
 
 # Cost recommendations
@@ -21,8 +21,6 @@ Azure Advisor helps you optimize and reduce your overall Azure spend by identify
 [!INCLUDE [Cost-app-service.md](./includes/Cost-app-service.md)]
 
 [!INCLUDE [Cost-application-gateway.md](./includes/Cost-application-gateway.md)]
-
-[!INCLUDE [Cost-azure-container-apps.md](./includes/Cost-azure-container-apps.md)]
 
 [!INCLUDE [Cost-azure-cosmos-db.md](./includes/Cost-azure-cosmos-db.md)]
 
@@ -45,8 +43,6 @@ Azure Advisor helps you optimize and reduce your overall Azure spend by identify
 [!INCLUDE [Cost-content-delivery-network.md](./includes/Cost-content-delivery-network.md)]
 
 [!INCLUDE [Cost-data-factory.md](./includes/Cost-data-factory.md)]
-
-[!INCLUDE [Cost-dev-box.md](./includes/Cost-dev-box.md)]
 
 [!INCLUDE [Cost-reservations.md](./includes/Cost-reservations.md)]
 

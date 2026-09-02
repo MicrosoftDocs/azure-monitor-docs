@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Subscriptions
@@ -106,23 +106,5 @@ Subcategory: undefined
 
 <!--2d6324ac-055e-4657-a42c-a7ef571d4aad_end-->
 
-
-<!--77d02663-a380-4cd0-b049-184d881ec515_begin-->
-
-#### test  
-  
-xyz  
-  
-**Potential benefits**: xyz  
-
-**Impact:** Medium
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485072)  
-
-ResourceType: microsoft.subscriptions/subscriptions  
-Recommendation ID: 77d02663-a380-4cd0-b049-184d881ec515  
-Subcategory: undefined
-
-<!--77d02663-a380-4cd0-b049-184d881ec515_end-->
 
 <!--articleBody-->
