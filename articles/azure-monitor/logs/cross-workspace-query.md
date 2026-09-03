@@ -20,6 +20,7 @@ When you manage subscriptions in other Microsoft Entra tenants with [Azure Light
 
 > [!IMPORTANT]
 > If you're using a [workspace-based Application Insights resource](../app/create-workspace-resource.md), telemetry is stored in a Log Analytics workspace with all other log data. Use the `workspace()` expression to query data from applications in multiple workspaces. You don't need a cross-workspace query to query data from multiple applications in the same workspace.
+> For Azure Lighthouse, MSSP, and other delegated-access scenarios, organizations should be aware that cross-workspace queries executed against a customer's Log Analytics workspace may generate query audit records when query auditing is enabled. These records can provide visibility into query activity, including details such as query text, caller identity, and referenced workspaces or resources. Service providers should consider query auditability when designing cross-workspace investigations, automation workflows, and shared query functions.
 
 ## Permissions required
 
