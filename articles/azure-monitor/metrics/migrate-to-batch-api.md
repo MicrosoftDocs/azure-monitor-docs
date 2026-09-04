@@ -449,7 +449,7 @@ The following show sample response formats.
       ],
       "namespace": "microsoft.storage/storageaccounts",
       "resourceregion": "westus2",
-      "resourceid": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount"
+      "resourceid": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount"
     },
     {
       "cost": 11516,
@@ -594,7 +594,7 @@ The following show sample response formats.
       ],
       "namespace": "microsoft.storage/storageaccounts",
       "resourceregion": "westus2",
-      "resourceid": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample3/providers/Microsoft.Storage/storageAccounts/sample3diag"
+      "resourceid": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/sample3/providers/Microsoft.Storage/storageAccounts/sample3diag"
     }
   ]
 }
