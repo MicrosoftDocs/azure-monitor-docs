@@ -8,6 +8,7 @@ ai-usage: ai-assisted
 ms.custom:
   - devx-track-azurepowershell
   - references_region
+  - cbo-v1.5
 ---
 
 # Set up the Azure Monitor Agent on Windows client devices
@@ -89,13 +90,13 @@ Here's a comparison between the client installer and the virtual machine (VM) ex
 
 1. To install with the *default settings*, run the following command:
 
-    ```cli
+    ```cmd
     msiexec /i AzureMonitorAgentClientSetup.msi /qn
     ```
 
 1. To install with custom file paths, [network proxy settings](azure-monitor-agent-network-configuration.md), or on a nonpublic cloud, use the following command. Use the values from the next table.
 
-    ```cli
+    ```cmd
     msiexec /i AzureMonitorAgentClientSetup.msi /qn DATASTOREDIR="C:\example\folder"
     ```
 
@@ -132,6 +133,9 @@ The following image demonstrates how the monitored object association works:
 
 Then, continue in the next section to create and associate DCRs to a monitored object by using REST APIs or Azure PowerShell commands.
 
+> [!NOTE]
+> These operations are preview-only and aren't listed in the [Azure Monitor REST API index](../fundamentals/azure-monitor-rest-api-index.md). To list the API versions a resource type supports, run `az provider show --namespace <Namespace> --query "resourceTypes[?resourceType=='<ResourceType>'].apiVersions"`.
+
 ### Permissions required
 
 > [!IMPORTANT]
@@ -145,49 +149,81 @@ Then, continue in the next section to create and associate DCRs to a monitored o
 
 This step grants permissions to create and link a monitored object to a user or group.
 
-After this step is complete, reauthenticate your session and reacquire your bearer token (REST) or re-run Connect-AzAccount (PowerShell) / az login (CLI).
+After you complete this step, reauthenticate your session and reacquire your bearer token (REST) or re-run `Connect-AzAccount` (PowerShell) / `az login` (CLI).
 
 # [Azure CLI](#tab/cli)
 
-[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
+The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to call the [Role Assignments - Create](/rest/api/authorization/role-assignments/create) REST API operation.
 
 ```bash
 # Set variables
 principalId="<PrincipalId>"
-roleAssignmentGuid="$(uuidgen)"
+apiVersion="<ApiVersion>"
+
+# Get the Monitored Objects Contributor role definition ID
+roleName="Monitored Objects Contributor"
+roleDefinitionId=$(az role definition list --scope "/" --name "$roleName" \
+  --query "[0].id" --output tsv)
+
+# Generate a GUID for the role assignment
+roleAssignmentGuid=$(uuidgen)
+
+# Build request URL
+apiEndpoint="https://management.azure.com"
+path="/providers/Microsoft.Insights"
+provider="/providers/Microsoft.Authorization/roleAssignments/$roleAssignmentGuid"
+queryString="?api-version=$apiVersion"
+url="$apiEndpoint$path$provider$queryString"
+
+# Build the request body as JSON
+body=$(jq -n --arg roleDefinitionId "$roleDefinitionId" \
+  --arg principalId "$principalId" '{
+  properties: {
+    roleDefinitionId: $roleDefinitionId,
+    principalId: $principalId
+  }
+}')
 
 # Assign the Monitored Objects Contributor role
-az rest \
-  --method put \
-  --uri "https://management.azure.com/providers/microsoft.insights/providers/microsoft.authorization/roleassignments/$roleAssignmentGuid?api-version=2021-04-01-preview" \
-  --body "{
-    \"properties\": {
-      \"roleDefinitionId\": \"/providers/Microsoft.Authorization/roleDefinitions/56be40e24db14ccf93c37e44c597135b\",
-      \"principalId\": \"$principalId\"
-    }
-  }"
+az rest --method put --url "$url" --body "$body"
 ```
 
 | Parameter | Description |
 |-----------|-------------|
-| principalId | The `Object Id` of the user or group to assign the role to. |
+| principalId | The object ID of the user or group to assign the role to. Use `az ad signed-in-user show --query id --output tsv` for the current user. |
 | roleAssignmentGuid | Any valid GUID. Generated automatically with `uuidgen`. |
 
-After this step is complete, re-run `az login`.
+After you complete this step, re-run `az login`.
 
 # [Azure PowerShell](#tab/powershell)
 
-[!INCLUDE [Azure PowerShell using REST](../includes/powershell-using-rest.md)]
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [Role Assignments - Create](/rest/api/authorization/role-assignments/create) REST API operation.
 
 ```powershell
 # Set variables
 $principalId = "<PrincipalId>"
+$apiVersion = "<ApiVersion>"
+
+# Get the Monitored Objects Contributor role definition ID
+$roleName = "Monitored Objects Contributor"
+$roleDefinitionGuid = (Get-AzRoleDefinition -Scope "/" -Name $roleName).Id
+$roleDefinitionPath = "/providers/Microsoft.Authorization/roleDefinitions"
+$roleDefinitionId = "$roleDefinitionPath/$roleDefinitionGuid"
+
+# Generate a GUID for the role assignment
 $roleAssignmentGuid = (New-Guid).Guid
 
-# Build the request body
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$path = "/providers/Microsoft.Insights"
+$provider = "/providers/Microsoft.Authorization/roleAssignments/$roleAssignmentGuid"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path$provider$queryString"
+
+# Build request body
 $body = @{
     properties = @{
-        roleDefinitionId = "/providers/Microsoft.Authorization/roleDefinitions/56be40e24db14ccf93c37e44c597135b"
+        roleDefinitionId = $roleDefinitionId
         principalId      = $principalId
     }
 } | ConvertTo-Json -Depth 3
@@ -195,7 +231,7 @@ $body = @{
 # Define parameters for Invoke-AzRestMethod
 $invokeAzRestMethodParams = @{
     Method  = "PUT"
-    Path    = "/providers/microsoft.insights/providers/microsoft.authorization/roleassignments/$roleAssignmentGuid`?api-version=2021-04-01-preview"
+    Uri     = $url
     Payload = $body
 }
 
@@ -205,33 +241,35 @@ Invoke-AzRestMethod @invokeAzRestMethodParams
 
 | Parameter | Description |
 |-----------|-------------|
-| principalId | The `Object Id` of the user or group to assign the role to. Use `(Get-AzADUser -SignedIn).Id` for the current user. |
+| principalId | The object ID of the user or group to assign the role to. Use `(Get-AzADUser -SignedIn).Id` for the current user. |
 | roleAssignmentGuid | Any valid GUID. Generated automatically with `New-Guid`. |
 
-After this step is complete, re-run `Connect-AzAccount`.
+After you complete this step, re-run `Connect-AzAccount`.
 
 # [REST](#tab/rest)
 
+The following REST example uses the [Role Assignments - Create](/rest/api/authorization/role-assignments/create) REST API operation.
+
 ```REST
-PUT https://management.azure.com/providers/microsoft.insights/providers/microsoft.authorization/roleassignments/{RoleAssignmentGuid}?api-version=2021-04-01-preview
-Authorization: Bearer {AccessToken}
+PUT https://management.azure.com/providers/Microsoft.Insights/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentGuid}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
   "properties": {
-    "roleDefinitionId": "/providers/Microsoft.Authorization/roleDefinitions/56be40e24db14ccf93c37e44c597135b",
+    "roleDefinitionId": "/providers/Microsoft.Authorization/roleDefinitions/56be40e2-4db1-4ccf-93c3-7e44c597135b",
     "principalId": "<PrincipalId>"
   }
 }
 ```
 
-| Parameter (camelCase) or<br>Placeholder (PascalCase) | In | Type | Description |
-|------------------------------------------------------|----|------|-------------|
-| RoleAssignmentGuid | URI | string | Any valid globally unique identifier (GUID). Generate one with a [GUID generator](https://guidgenerator.com/). |
-| roleDefinitionId | body | string | Fixed value — the Monitored Objects Contributor role ID: `/providers/Microsoft.Authorization/roleDefinitions/56be40e24db14ccf93c37e44c597135b` |
-| principalId | body | string | The `Object Id` of the user or group to assign the role to. |
+| Placeholder | In | Type | Description |
+|-------------|----|------|-------------|
+| roleAssignmentGuid | URI | string | Any valid globally unique identifier (GUID). Generate one with a [GUID generator](https://guidgenerator.com/). |
+| roleDefinitionId | body | string | Fixed value — the ID of the Monitored Objects Contributor built-in role. |
+| principalId | body | string | The object ID of the user or group to assign the role to. |
 
-After this step is complete, *reauthenticate* your session and *reacquire* your Azure Resource Manager bearer token.
+After you complete this step, *reauthenticate* your session and *reacquire* your Azure Resource Manager bearer token.
 
 ---
 
@@ -241,39 +279,53 @@ This step creates the monitored object for the Microsoft Entra tenant scope. It 
 
 # [Azure CLI](#tab/cli)
 
-[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
+The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to create the monitored object for your Microsoft Entra tenant.
 
 ```bash
 # Set variables
 tenantId="<TenantId>"
 azureRegion="<AzureRegion>"
+apiVersion="<ApiVersion>"
+
+# Build request URL
+apiEndpoint="https://management.azure.com"
+provider="/providers/Microsoft.Insights/monitoredObjects/$tenantId"
+queryString="?api-version=$apiVersion"
+url="$apiEndpoint$provider$queryString"
+
+# Build the request body as JSON
+body=$(jq -n --arg azureRegion "$azureRegion" '{
+  properties: {
+    location: $azureRegion
+  }
+}')
 
 # Create the monitored object
-az rest \
-  --method put \
-  --uri "https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/$tenantId?api-version=2021-09-01-preview" \
-  --body "{
-    \"properties\": {
-      \"location\": \"$azureRegion\"
-    }
-  }"
+az rest --method put --url "$url" --body "$body"
 ```
 
 | Parameter | Description |
 |-----------|-------------|
-| tenandId | The Microsoft Entra tenant ID. |
+| tenantId | The Microsoft Entra tenant ID. |
 | azureRegion | The Azure region where the monitored object is stored. Must be the *same region* as the DCR. |
 
 # [Azure PowerShell](#tab/powershell)
 
-[!INCLUDE [Azure PowerShell using REST](../includes/powershell-using-rest.md)]
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to create the monitored object for your Microsoft Entra tenant.
 
 ```powershell
 # Set variables
 $tenantId = "<TenantId>"
 $azureRegion = "<AzureRegion>"
+$apiVersion = "<ApiVersion>"
 
-# Build the request body
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$provider = "/providers/Microsoft.Insights/monitoredObjects/$tenantId"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$provider$queryString"
+
+# Build request body
 $body = @{
     properties = @{
         location = $azureRegion
@@ -283,7 +335,7 @@ $body = @{
 # Define parameters for Invoke-AzRestMethod
 $invokeAzRestMethodParams = @{
     Method  = "PUT"
-    Path    = "/providers/Microsoft.Insights/monitoredObjects/$tenantId`?api-version=2021-09-01-preview"
+    Uri     = $url
     Payload = $body
 }
 
@@ -293,14 +345,16 @@ Invoke-AzRestMethod @invokeAzRestMethodParams
 
 | Parameter | Description |
 |-----------|-------------|
-| tenandId | The Microsoft Entra tenant ID. |
+| tenantId | The Microsoft Entra tenant ID. |
 | azureRegion | The Azure region where the monitored object is stored. Must be the *same region* as the DCR. |
 
 # [REST](#tab/rest)
 
+The following REST example creates the monitored object for your Microsoft Entra tenant.
+
 ```REST
-PUT https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{TenantId}?api-version=2021-09-01-preview
-Authorization: Bearer {AccessToken}
+PUT https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{tenantId}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
@@ -310,9 +364,9 @@ Content-Type: application/json
 }
 ```
 
-| Placeholder (PascalCase) | In | Type | Description |
-|--------------------------|----|------|-------------|
-| TenantId | URI | string | The Microsoft Entra tenant ID. The monitored object is created using the same ID. |
+| Placeholder | In | Type | Description |
+|-------------|----|------|-------------|
+| tenantId | URI | string | The Microsoft Entra tenant ID. The monitored object is created using the same ID. |
 | AzureRegion | body | string | The Azure region where the monitored object is stored. Must be the *same region* as the DCR. |
 
 ---
@@ -326,7 +380,7 @@ This step associates the DCR to the monitored object by creating a data collecti
 
 # [Azure CLI](#tab/cli)
 
-[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
+The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to call the [Data Collection Rule Associations - Create](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rule-associations) REST API operation.
 
 ```bash
 # Set variables
@@ -335,27 +389,36 @@ subscriptionId="<SubscriptionId>"
 resourceGroupName="<ResourceGroupName>"
 dcrName="<DcrName>"
 associationName="<AssociationName>"
+apiVersion="<ApiVersion>"
 
 # Build the monitored object resource ID
 monitoredObjectId="/providers/Microsoft.Insights/monitoredObjects/$tenantId"
 
 # Build the DCR resource ID
-dcrId="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Insights/dataCollectionRules/$dcrName"
+dcrPath="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+dcrProvider="Microsoft.Insights/dataCollectionRules/$dcrName"
+dcrId="$dcrPath/providers/$dcrProvider"
+
+# Build request URL
+apiEndpoint="https://management.azure.com"
+provider="/providers/Microsoft.Insights/dataCollectionRuleAssociations"
+queryString="?api-version=$apiVersion"
+url="$apiEndpoint$monitoredObjectId$provider/$associationName$queryString"
+
+# Build the request body as JSON
+body=$(jq -n --arg dcrId "$dcrId" '{
+  properties: {
+    dataCollectionRuleId: $dcrId
+  }
+}')
 
 # Associate the DCR to the monitored object
-az rest \
-  --method put \
-  --uri "https://management.azure.com$monitoredObjectId/providers/microsoft.insights/datacollectionruleassociations/$associationName?api-version=2021-09-01-preview" \
-  --body "{
-    \"properties\": {
-      \"dataCollectionRuleId\": \"$dcrId\"
-    }
-  }"
+az rest --method put --url "$url" --body "$body"
 ```
 
 # [Azure PowerShell](#tab/powershell)
 
-[!INCLUDE [Azure PowerShell using REST](../includes/powershell-using-rest.md)]
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [Data Collection Rule Associations - Create](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rule-associations) REST API operation.
 
 ```powershell
 # Set variables
@@ -364,14 +427,23 @@ $subscriptionId = "<SubscriptionId>"
 $resourceGroupName = "<ResourceGroupName>"
 $dcrName = "<DcrName>"
 $associationName = "<AssociationName>"
+$apiVersion = "<ApiVersion>"
 
 # Build the monitored object resource ID
 $monitoredObjectId = "/providers/Microsoft.Insights/monitoredObjects/$tenantId"
 
 # Build the DCR resource ID
-$dcrId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Insights/dataCollectionRules/$dcrName"
+$dcrPath = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$dcrProvider = "Microsoft.Insights/dataCollectionRules/$dcrName"
+$dcrId = "$dcrPath/providers/$dcrProvider"
 
-# Build the request body
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$provider = "/providers/Microsoft.Insights/dataCollectionRuleAssociations"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$monitoredObjectId$provider/$associationName$queryString"
+
+# Build request body
 $body = @{
     properties = @{
         dataCollectionRuleId = $dcrId
@@ -381,7 +453,7 @@ $body = @{
 # Define parameters for Invoke-AzRestMethod
 $invokeAzRestMethodParams = @{
     Method  = "PUT"
-    Path    = "$monitoredObjectId/providers/microsoft.insights/datacollectionruleassociations/$associationName`?api-version=2021-09-01-preview"
+    Uri     = $url
     Payload = $body
 }
 
@@ -391,9 +463,11 @@ Invoke-AzRestMethod @invokeAzRestMethodParams
 
 # [REST](#tab/rest)
 
+The following REST example uses the [Data Collection Rule Associations - Create](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rule-associations) REST API operation.
+
 ```REST
-PUT https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{TenantId}/providers/microsoft.insights/datacollectionruleassociations/{AssociationName}?api-version=2021-09-01-preview
-Authorization: Bearer {AccessToken}
+PUT https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{tenantId}/providers/Microsoft.Insights/dataCollectionRuleAssociations/{associationName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
@@ -403,10 +477,10 @@ Content-Type: application/json
 }
 ```
 
-| Parameter (camelCase) or<br>Placeholder (PascalCase) | In | Type | Description |
-|------------------------------------------------------|----|------|-------------|
-| TenantId | URI | string | The Microsoft Entra tenant ID (same as step 2). |
-| AssociationName | URI | string | A unique name for this association. Use a different name for each DCR you associate. |
+| Placeholder | In | Type | Description |
+|-------------|----|------|-------------|
+| tenantId | URI | string | The Microsoft Entra tenant ID (same as step 2). |
+| associationName | URI | string | A unique name for this association. Use a different name for each DCR you associate. |
 | dataCollectionRuleId | body | string | The full resource ID of an existing DCR created in the *same region* as the monitored object. |
 
 ---
@@ -417,41 +491,63 @@ Use this step to verify the associations or view all DCRs linked to the monitore
 
 # [Azure CLI](#tab/cli)
 
-[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
+The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to call the [Data Collection Rule Associations - List By Resource](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rule-associations) REST API operation.
 
 ```bash
 # Set variables
 tenantId="<TenantId>"
+apiVersion="<ApiVersion>"
+
+# Build the monitored object resource ID
+monitoredObjectId="/providers/Microsoft.Insights/monitoredObjects/$tenantId"
+
+# Build request URL
+apiEndpoint="https://management.azure.com"
+provider="/providers/Microsoft.Insights/dataCollectionRuleAssociations"
+queryString="?api-version=$apiVersion"
+url="$apiEndpoint$monitoredObjectId$provider$queryString"
 
 # List all associations for the monitored object
-az rest \
-  --method get \
-  --uri "https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/$tenantId/providers/microsoft.insights/datacollectionruleassociations?api-version=2021-09-01-preview"
+az rest --method get --url "$url"
 ```
 
 # [Azure PowerShell](#tab/powershell)
 
-[!INCLUDE [Azure PowerShell using REST](../includes/powershell-using-rest.md)]
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [Data Collection Rule Associations - List By Resource](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rule-associations) REST API operation.
 
 ```powershell
 # Set variables
 $tenantId = "<TenantId>"
+$apiVersion = "<ApiVersion>"
+
+# Build the monitored object resource ID
+$monitoredObjectId = "/providers/Microsoft.Insights/monitoredObjects/$tenantId"
+
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$provider = "/providers/Microsoft.Insights/dataCollectionRuleAssociations"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$monitoredObjectId$provider$queryString"
 
 # Define parameters for Invoke-AzRestMethod
 $invokeAzRestMethodParams = @{
     Method = "GET"
-    Path   = "/providers/Microsoft.Insights/monitoredObjects/$tenantId/providers/microsoft.insights/datacollectionruleassociations?api-version=2021-09-01-preview"
+    Uri    = $url
 }
 
 # List all associations for the monitored object
-(Invoke-AzRestMethod @invokeAzRestMethodParams).Content | ConvertFrom-Json | Select-Object -ExpandProperty value
+(Invoke-AzRestMethod @invokeAzRestMethodParams).Content |
+    ConvertFrom-Json |
+    Select-Object -ExpandProperty value
 ```
 
 # [REST](#tab/rest)
 
+The following REST example uses the [Data Collection Rule Associations - List By Resource](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rule-associations) REST API operation.
+
 ```REST
-GET https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{TenantId}/providers/microsoft.insights/datacollectionruleassociations?api-version=2021-09-01-preview
-Authorization: Bearer {AccessToken}
+GET https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{tenantId}/providers/Microsoft.Insights/dataCollectionRuleAssociations?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 ```
 
 **Example response:**
@@ -460,11 +556,11 @@ Authorization: Bearer {AccessToken}
 {
   "value": [
     {
-      "id": "/providers/Microsoft.Insights/monitoredObjects/<TenantId>/providers/Microsoft.Insights/dataCollectionRuleAssociations/<AssociationName>",
-      "name": "<AssociationName>",
+      "id": "/providers/Microsoft.Insights/monitoredObjects/aaaabbbb-0000-cccc-1111-dddd2222eeee/providers/Microsoft.Insights/dataCollectionRuleAssociations/clientDevicesAssociation",
+      "name": "clientDevicesAssociation",
       "type": "Microsoft.Insights/dataCollectionRuleAssociations",
       "properties": {
-        "dataCollectionRuleId": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.Insights/dataCollectionRules/<DcrName>",
+        "dataCollectionRuleId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/monitoring-rg/providers/Microsoft.Insights/dataCollectionRules/client-devices-dcr",
         "provisioningState": "Succeeded"
       }
     }
@@ -476,11 +572,11 @@ Authorization: Bearer {AccessToken}
 
 ### Complete script
 
-The following scripts combine all four steps into a single runnable script.
+Each of the following scripts combines all four steps into a single runnable script.
 
-# [Azure CLI](#tab/cli-1)
+# [Azure CLI](#tab/cli-2)
 
-[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
+The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to run all four steps in sequence. It calls the [Role Assignments - Create](/rest/api/authorization/role-assignments/create) and [Data Collection Rule Associations - Create](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rule-associations) REST API operations.
 
 ```bash
 # Set variables
@@ -490,59 +586,81 @@ resourceGroupName="<ResourceGroupName>"
 dcrName="<DcrName>"
 associationName="<AssociationName>"
 azureRegion="<AzureRegion>"
+roleAssignmentApiVersion="<RoleAssignmentApiVersion>"
+monitoredObjectApiVersion="<MonitoredObjectApiVersion>"
 
-# Get the current user's Object ID
+# Get the current user's object ID
 principalId=$(az ad signed-in-user show --query id --output tsv)
 
-# Generate a new GUID for the role assignment
+# Get the Monitored Objects Contributor role definition ID
+roleName="Monitored Objects Contributor"
+roleDefinitionId=$(az role definition list --scope "/" --name "$roleName" \
+  --query "[0].id" --output tsv)
+
+# Generate a GUID for the role assignment
 roleAssignmentGuid=$(uuidgen)
-
-# --- Step 1: Assign the Monitored Objects Contributor role ---
-az rest \
-  --method put \
-  --uri "https://management.azure.com/providers/microsoft.insights/providers/microsoft.authorization/roleassignments/$roleAssignmentGuid?api-version=2021-04-01-preview" \
-  --body "{
-    \"properties\": {
-      \"roleDefinitionId\": \"/providers/Microsoft.Authorization/roleDefinitions/56be40e24db14ccf93c37e44c597135b\",
-      \"principalId\": \"$principalId\"
-    }
-  }"
-
-# --- Step 2: Create the monitored object ---
-az rest \
-  --method put \
-  --uri "https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/$tenantId?api-version=2021-09-01-preview" \
-  --body "{
-    \"properties\": {
-      \"location\": \"$azureRegion\"
-    }
-  }"
 
 # Build the monitored object resource ID
 monitoredObjectId="/providers/Microsoft.Insights/monitoredObjects/$tenantId"
 
 # Build the DCR resource ID
-dcrId="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Insights/dataCollectionRules/$dcrName"
+dcrPath="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+dcrProvider="Microsoft.Insights/dataCollectionRules/$dcrName"
+dcrId="$dcrPath/providers/$dcrProvider"
+
+# Build shared request URL segments
+apiEndpoint="https://management.azure.com"
+dcraProvider="/providers/Microsoft.Insights/dataCollectionRuleAssociations"
+rbacQueryString="?api-version=$roleAssignmentApiVersion"
+monitorQueryString="?api-version=$monitoredObjectApiVersion"
+
+# --- Step 1: Assign the Monitored Objects Contributor role ---
+rolePath="/providers/Microsoft.Insights"
+roleProvider="/providers/Microsoft.Authorization/roleAssignments/$roleAssignmentGuid"
+roleUrl="$apiEndpoint$rolePath$roleProvider$rbacQueryString"
+
+body=$(jq -n --arg roleDefinitionId "$roleDefinitionId" \
+  --arg principalId "$principalId" '{
+  properties: {
+    roleDefinitionId: $roleDefinitionId,
+    principalId: $principalId
+  }
+}')
+
+az rest --method put --url "$roleUrl" --body "$body"
+
+# --- Step 2: Create the monitored object ---
+monitoredObjectUrl="$apiEndpoint$monitoredObjectId$monitorQueryString"
+
+body=$(jq -n --arg azureRegion "$azureRegion" '{
+  properties: {
+    location: $azureRegion
+  }
+}')
+
+az rest --method put --url "$monitoredObjectUrl" --body "$body"
 
 # --- Step 3: Associate the DCR to the monitored object ---
-az rest \
-  --method put \
-  --uri "https://management.azure.com$monitoredObjectId/providers/microsoft.insights/datacollectionruleassociations/$associationName?api-version=2021-09-01-preview" \
-  --body "{
-    \"properties\": {
-      \"dataCollectionRuleId\": \"$dcrId\"
-    }
-  }"
+associationPath="$monitoredObjectId$dcraProvider/$associationName"
+associationUrl="$apiEndpoint$associationPath$monitorQueryString"
+
+body=$(jq -n --arg dcrId "$dcrId" '{
+  properties: {
+    dataCollectionRuleId: $dcrId
+  }
+}')
+
+az rest --method put --url "$associationUrl" --body "$body"
 
 # --- Step 4: List all associations ---
-az rest \
-  --method get \
-  --uri "https://management.azure.com$monitoredObjectId/providers/microsoft.insights/datacollectionruleassociations?api-version=2021-09-01-preview"
+listUrl="$apiEndpoint$monitoredObjectId$dcraProvider$monitorQueryString"
+
+az rest --method get --url "$listUrl"
 ```
 
 # [Azure PowerShell](#tab/powershell-2)
 
-[!INCLUDE [Azure PowerShell using REST](../includes/powershell-using-rest.md)]
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to run all four steps in sequence. It calls the [Role Assignments - Create](/rest/api/authorization/role-assignments/create) and [Data Collection Rule Associations - Create](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rule-associations) REST API operations.
 
 ```powershell
 # Set variables
@@ -552,30 +670,58 @@ $resourceGroupName = "<ResourceGroupName>"
 $dcrName = "<DcrName>"
 $associationName = "<AssociationName>"
 $azureRegion = "<AzureRegion>"
+$roleAssignmentApiVersion = "<RoleAssignmentApiVersion>"
+$monitoredObjectApiVersion = "<MonitoredObjectApiVersion>"
 
-# Get the current user's Object ID
+# Get the current user's object ID
 $principalId = (Get-AzADUser -SignedIn).Id
 
-# Generate a new GUID for the role assignment
+# Get the Monitored Objects Contributor role definition ID
+$roleName = "Monitored Objects Contributor"
+$roleDefinitionGuid = (Get-AzRoleDefinition -Scope "/" -Name $roleName).Id
+$roleDefinitionPath = "/providers/Microsoft.Authorization/roleDefinitions"
+$roleDefinitionId = "$roleDefinitionPath/$roleDefinitionGuid"
+
+# Generate a GUID for the role assignment
 $roleAssignmentGuid = (New-Guid).Guid
 
+# Build the monitored object resource ID
+$monitoredObjectId = "/providers/Microsoft.Insights/monitoredObjects/$tenantId"
+
+# Build the DCR resource ID
+$dcrPath = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$dcrProvider = "Microsoft.Insights/dataCollectionRules/$dcrName"
+$dcrId = "$dcrPath/providers/$dcrProvider"
+
+# Build shared request URL segments
+$apiEndpoint = "https://management.azure.com"
+$dcraProvider = "/providers/Microsoft.Insights/dataCollectionRuleAssociations"
+$rbacQueryString = "?api-version=$roleAssignmentApiVersion"
+$monitorQueryString = "?api-version=$monitoredObjectApiVersion"
+
 # --- Step 1: Assign the Monitored Objects Contributor role ---
+$rolePath = "/providers/Microsoft.Insights"
+$roleProvider = "/providers/Microsoft.Authorization/roleAssignments/$roleAssignmentGuid"
+$roleUrl = "$apiEndpoint$rolePath$roleProvider$rbacQueryString"
+
 $body = @{
     properties = @{
-        roleDefinitionId = "/providers/Microsoft.Authorization/roleDefinitions/56be40e24db14ccf93c37e44c597135b"
+        roleDefinitionId = $roleDefinitionId
         principalId      = $principalId
     }
 } | ConvertTo-Json -Depth 3
 
 $invokeAzRestMethodParams = @{
     Method  = "PUT"
-    Path    = "/providers/microsoft.insights/providers/microsoft.authorization/roleassignments/$roleAssignmentGuid`?api-version=2021-04-01-preview"
+    Uri     = $roleUrl
     Payload = $body
 }
 
 Invoke-AzRestMethod @invokeAzRestMethodParams
 
 # --- Step 2: Create the monitored object ---
+$monitoredObjectUrl = "$apiEndpoint$monitoredObjectId$monitorQueryString"
+
 $body = @{
     properties = @{
         location = $azureRegion
@@ -584,19 +730,16 @@ $body = @{
 
 $invokeAzRestMethodParams = @{
     Method  = "PUT"
-    Path    = "/providers/Microsoft.Insights/monitoredObjects/$tenantId`?api-version=2021-09-01-preview"
+    Uri     = $monitoredObjectUrl
     Payload = $body
 }
 
 Invoke-AzRestMethod @invokeAzRestMethodParams
 
-# Build the monitored object resource ID
-$monitoredObjectId = "/providers/Microsoft.Insights/monitoredObjects/$tenantId"
-
-# Build the DCR resource ID
-$dcrId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Insights/dataCollectionRules/$dcrName"
-
 # --- Step 3: Associate the DCR to the monitored object ---
+$associationPath = "$monitoredObjectId$dcraProvider/$associationName"
+$associationUrl = "$apiEndpoint$associationPath$monitorQueryString"
+
 $body = @{
     properties = @{
         dataCollectionRuleId = $dcrId
@@ -605,19 +748,23 @@ $body = @{
 
 $invokeAzRestMethodParams = @{
     Method  = "PUT"
-    Path    = "$monitoredObjectId/providers/microsoft.insights/datacollectionruleassociations/$associationName`?api-version=2021-09-01-preview"
+    Uri     = $associationUrl
     Payload = $body
 }
 
 Invoke-AzRestMethod @invokeAzRestMethodParams
 
 # --- Step 4: List all associations ---
+$listUrl = "$apiEndpoint$monitoredObjectId$dcraProvider$monitorQueryString"
+
 $invokeAzRestMethodParams = @{
     Method = "GET"
-    Path   = "$monitoredObjectId/providers/microsoft.insights/datacollectionruleassociations?api-version=2021-09-01-preview"
+    Uri    = $listUrl
 }
 
-(Invoke-AzRestMethod @invokeAzRestMethodParams).Content | ConvertFrom-Json | Select-Object -ExpandProperty value
+(Invoke-AzRestMethod @invokeAzRestMethodParams).Content |
+    ConvertFrom-Json |
+    Select-Object -ExpandProperty value
 ```
 
 ---
@@ -628,38 +775,50 @@ The following removes a specific DCR association from the monitored object.
 
 # [Azure CLI](#tab/cli)
 
-[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
+The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to call the [Data Collection Rule Associations - Delete](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rule-associations) REST API operation.
 
 ```bash
 # Set variables
 tenantId="<TenantId>"
 associationName="<AssociationName>"
+apiVersion="<ApiVersion>"
 
 # Build the monitored object resource ID
 monitoredObjectId="/providers/Microsoft.Insights/monitoredObjects/$tenantId"
 
+# Build request URL
+apiEndpoint="https://management.azure.com"
+provider="/providers/Microsoft.Insights/dataCollectionRuleAssociations"
+queryString="?api-version=$apiVersion"
+url="$apiEndpoint$monitoredObjectId$provider/$associationName$queryString"
+
 # Disassociate the DCR from the monitored object
-az rest \
-  --method delete \
-  --uri "https://management.azure.com$monitoredObjectId/providers/microsoft.insights/datacollectionruleassociations/$associationName?api-version=2021-09-01-preview"
+az rest --method delete --url "$url"
 ```
 
 # [Azure PowerShell](#tab/powershell)
 
-[!INCLUDE [Azure PowerShell using REST](../includes/powershell-using-rest.md)]
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [Data Collection Rule Associations - Delete](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rule-associations) REST API operation.
 
 ```powershell
 # Set variables
 $tenantId = "<TenantId>"
 $associationName = "<AssociationName>"
+$apiVersion = "<ApiVersion>"
 
 # Build the monitored object resource ID
 $monitoredObjectId = "/providers/Microsoft.Insights/monitoredObjects/$tenantId"
 
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$provider = "/providers/Microsoft.Insights/dataCollectionRuleAssociations"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$monitoredObjectId$provider/$associationName$queryString"
+
 # Define parameters for Invoke-AzRestMethod
 $invokeAzRestMethodParams = @{
     Method = "DELETE"
-    Path   = "$monitoredObjectId/providers/microsoft.insights/datacollectionruleassociations/$associationName`?api-version=2021-09-01-preview"
+    Uri    = $url
 }
 
 # Disassociate the DCR from the monitored object
@@ -668,15 +827,17 @@ Invoke-AzRestMethod @invokeAzRestMethodParams
 
 # [REST](#tab/rest)
 
+The following REST example uses the [Data Collection Rule Associations - Delete](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rule-associations) REST API operation.
+
 ```REST
-DELETE https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{TenantId}/providers/microsoft.insights/datacollectionruleassociations/{AssociationName}?api-version=2021-09-01-preview
-Authorization: Bearer {AccessToken}
+DELETE https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{tenantId}/providers/Microsoft.Insights/dataCollectionRuleAssociations/{associationName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 ```
 
-| Name | In | Type | Description |
-|------|----|------|-------------|
-| TenantId | path | string | The Microsoft Entra tenant ID (same as step 2). |
-| associationName | path | string | The name of the association. The name is case insensitive. |
+| Placeholder | In | Type | Description |
+|-------------|----|------|-------------|
+| tenantId | URI | string | The Microsoft Entra tenant ID (same as step 2). |
+| associationName | URI | string | The name of the association. The name is case insensitive. |
 
 ---
 
@@ -686,50 +847,57 @@ To fully clean up, you can remove all DCR associations and then delete the monit
 
 # [Azure CLI](#tab/cli)
 
-[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
+The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to call the [Data Collection Rule Associations - Delete](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rule-associations) REST API operation for each association, and then deletes the monitored object.
 
 ```bash
 # Set variables
 tenantId="<TenantId>"
+apiVersion="<ApiVersion>"
 
 # Build the monitored object resource ID
 monitoredObjectId="/providers/Microsoft.Insights/monitoredObjects/$tenantId"
 
+# Build request URL
+apiEndpoint="https://management.azure.com"
+provider="/providers/Microsoft.Insights/dataCollectionRuleAssociations"
+queryString="?api-version=$apiVersion"
+listUrl="$apiEndpoint$monitoredObjectId$provider$queryString"
+
 # Get all associations for the monitored object
-associations=$(az rest \
-  --method get \
-  --uri "https://management.azure.com$monitoredObjectId/providers/microsoft.insights/datacollectionruleassociations?api-version=2021-09-01-preview" \
-  --query "value[].id" \
-  --output tsv)
+associations=$(az rest --method get --url "$listUrl" \
+  --query "value[].id" --output tsv)
 
 # Disassociate all DCRs from the monitored object
 for associationId in $associations; do
-  az rest \
-    --method delete \
-    --uri "https://management.azure.com$associationId?api-version=2021-09-01-preview"
+  az rest --method delete --url "$apiEndpoint$associationId$queryString"
 done
 
 # Delete the monitored object
-az rest \
-  --method delete \
-  --uri "https://management.azure.com$monitoredObjectId?api-version=2021-09-01-preview"
+az rest --method delete --url "$apiEndpoint$monitoredObjectId$queryString"
 ```
 
 # [Azure PowerShell](#tab/powershell)
 
-[!INCLUDE [Azure PowerShell using REST](../includes/powershell-using-rest.md)]
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [Data Collection Rule Associations - Delete](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rule-associations) REST API operation for each association, and then deletes the monitored object.
 
 ```powershell
 # Set variables
 $tenantId = "<TenantId>"
+$apiVersion = "<ApiVersion>"
 
 # Build the monitored object resource ID
 $monitoredObjectId = "/providers/Microsoft.Insights/monitoredObjects/$tenantId"
 
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$provider = "/providers/Microsoft.Insights/dataCollectionRuleAssociations"
+$queryString = "?api-version=$apiVersion"
+$listUrl = "$apiEndpoint$monitoredObjectId$provider$queryString"
+
 # Get all associations for the monitored object
 $invokeAzRestMethodParams = @{
     Method = "GET"
-    Path   = "$monitoredObjectId/providers/microsoft.insights/datacollectionruleassociations?api-version=2021-09-01-preview"
+    Uri    = $listUrl
 }
 
 $associations = (Invoke-AzRestMethod @invokeAzRestMethodParams).Content |
@@ -740,7 +908,7 @@ $associations = (Invoke-AzRestMethod @invokeAzRestMethodParams).Content |
 foreach ($association in $associations) {
     $invokeAzRestMethodParams = @{
         Method = "DELETE"
-        Path   = "$($association.id)?api-version=2021-09-01-preview"
+        Uri    = "$apiEndpoint$($association.id)$queryString"
     }
 
     Invoke-AzRestMethod @invokeAzRestMethodParams
@@ -749,7 +917,7 @@ foreach ($association in $associations) {
 # Delete the monitored object
 $invokeAzRestMethodParams = @{
     Method = "DELETE"
-    Path   = "$monitoredObjectId`?api-version=2021-09-01-preview"
+    Uri    = "$apiEndpoint$monitoredObjectId$queryString"
 }
 
 Invoke-AzRestMethod @invokeAzRestMethodParams
@@ -757,28 +925,30 @@ Invoke-AzRestMethod @invokeAzRestMethodParams
 
 # [REST](#tab/rest)
 
+The following REST examples use the [Data Collection Rule Associations - Delete](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rule-associations) REST API operation to remove each association, and then delete the monitored object.
+
 **Step 1: List all associations:**
 
 ```REST
-GET https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{TenantId}/providers/microsoft.insights/datacollectionruleassociations?api-version=2021-09-01-preview
-Authorization: Bearer {AccessToken}
+GET https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{tenantId}/providers/Microsoft.Insights/dataCollectionRuleAssociations?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 ```
 
-**Step 2 — Delete each association:**
+**Step 2: Delete each association:**
 
 > [!NOTE]
-> Repeat for each association ID returned
+> Repeat for each association name returned in step 1.
 
 ```REST
-DELETE https://management.azure.com/{AssociationId}?api-version=2021-09-01-preview
-Authorization: Bearer {AccessToken}
+DELETE https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{tenantId}/providers/Microsoft.Insights/dataCollectionRuleAssociations/{associationName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 ```
 
-**Step 3 — Delete the monitored object:**
+**Step 3: Delete the monitored object:**
 
 ```REST
-DELETE https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{TenantId}?api-version=2021-09-01-preview
-Authorization: Bearer {AccessToken}
+DELETE https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{tenantId}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 ```
 
 ---
