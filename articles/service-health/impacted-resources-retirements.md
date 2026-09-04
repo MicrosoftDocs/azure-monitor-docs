@@ -2,8 +2,9 @@
 title: Impacted Resources from Azure Health Advisories
 description: This article details where to find information from Azure Service Health impacted resources from Health Advisory events.
 ms.topic: concept-article
-ms.date: 06/23/2026
-
+ms.custom: cbo-v1.4
+ms.date: 08/21/2026
+ai-usage: ai-assisted
 ---
 
 # Impacted resources from Azure Health Advisories
@@ -22,11 +23,11 @@ This article explains what communication is available to users, and where they c
 
 In the Azure portal, the **Impacted Resources** tab in the **Health advisories** panel shows the resources affected by a Health Advisory event. The following example shows how the tab highlights a Health Advisory scenario with impacted resources.
 
-:::image type="content" source="./media/impacted-retirements/impacted-retirements-migrate-data.png" alt-text="Screenshot of Health advisories panel." Lightbox="./media/impacted-retirements/impacted-retirements-migrate-data.png":::
+:::image type="content" source="./media/impacted-retirements/impacted-retirements-health-advisory.png" alt-text="Screenshot of Health advisories panel." Lightbox="./media/impacted-retirements/impacted-retirements-health-advisory.png":::
 
 The **Impacted Resources** tab displays the affected resources.
 
-:::image type="content" source="./media/impacted-retirements/impacted-retirements-filter.png" alt-text="Screenshot of Impacted Resources tab." Lightbox="./media/impacted-retirements/impacted-retirements-migrate-data.png":::
+:::image type="content" source="./media/impacted-retirements/impacted-retirements-migrate-data.png" alt-text="Screenshot of Impacted Resources tab." Lightbox="./media/impacted-retirements/impacted-retirements-migrate-data.png":::
 
 Service Health provides the following information on resources impacted by a Health Advisory event.
 
@@ -34,8 +35,6 @@ Service Health provides the following information on resources impacted by a Hea
 | ---------------------|------------------------------------------------------------------------|
 | **Resource Name**    | The name of the resource impacted by the event.                        |
 | **Resource Type**    | The type of resource impacted by the event.                            |
-| **Resource Name**    | The name of the resource impacted by the planned maintenance event.    |
-| **Resource Type**    | The type of resource impacted by the planned maintenance event.        |
 | **Resource Group**   | The resource group that contains the impacted resource.                |
 | **Region**           | The region where the impacted resource is located.                     |
 | **Subscription ID**  | The unique ID for the subscription that contains the impacted resource.|
@@ -75,7 +74,7 @@ Follow these steps to get information about resources impacted by Health Advisor
 
 For all Health Advisory events such as *retirements*, *action required*, and *informational*, use this sample query.
 
-```dotnetcli
+```kusto
 servicehealthresources
 | where type =~ "microsoft.resourcehealth/events/impactedresources"
 | where id contains "{0}"
@@ -84,26 +83,30 @@ servicehealthresources
 | extend resourceType = tostring(properties.targetResourceType)
 | extend region = tostring(properties.targetRegion)
 | extend resourceGroup = tostring(properties.resourceGroup)
-| project resourceId, resourceName, resourceType, region, resourceGroup, subscriptionId`
+| project resourceId, resourceName, resourceType, region, resourceGroup, subscriptionId
 ```
+
 For tenant-scoped events, use the [Impacted Resources - List By Tenant Id And Event Id](/rest/api/resourcehealth/impacted-resources/list-by-tenant-id-and-event-id) REST API instead.
 
 **Step 2. Use API + ARG Query (retirement events only)**
 
 If Step 1 returns no data and the event type is *retirement*, use the event's tracking ID to retrieve the `ID` from the Recommendation Metadata API, then use it to query `advisorresources`. For more information, see [Recommendation Metadata - List - REST API](/rest/api/advisor/recommendation-metadata/list).
 
-```http
-| GET https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2025-01-01&$filter={$filter}
+```REST
+GET https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version={apiVersion}&$filter={$filter}
 ```
 
 **URI Parameters**
 
 | Name            | In    | Required | Type   | Description                                                                       |
 | ----------------| ----- | -------- | ------ | --------------------------------------------------------------------------------- |
-| **api-version** | query | True     | string | The version of the API to use with the client request.<br>Example: 2025-05-01     |
-| **$filter**     | query |          | string | Example:<br>`- $filter= trackingIds/any`(t: t eq ' TEST-123')                     |
+| **api-version** | query | True     | string | The version of the API to use with the client request.<br>Example: 2025-01-01     |
+| **$filter**     | query |          | string | Example:<br>`$filter=trackingIds/any(t: t eq '<TrackingId>')`                      |
 
 **Sample response**
+
+<details>
+<summary>Recommendation metadata returned for a retirement tracking ID</summary>
 
 ```json
 {
@@ -126,7 +129,7 @@ If Step 1 returns no data and the event type is *retirement*, use the event's tr
                         "recommendationImpact": "Medium",
                         "supportedResourceType": "microsoft.network/loadbalancers",
                         "recommendationSubCategory": "ServiceUpgradeAndRetirement",
-                        "id": "7e570000-n78d-yh67-2xzc4-v16005e1k",
+                        "id": "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e",
                         "displayName": "Azure Basic Load Balancer is being retired",
                         "properties": [
                             {
@@ -158,7 +161,7 @@ If Step 1 returns no data and the event type is *retirement*, use the event's tr
                         "_self": "",
                         "_etag": "",
                         "_attachments": "attachments/",
-                        "_ts": 
+                        "_ts": 1750000000
                     }
                 ]
             },
@@ -269,21 +272,23 @@ If Step 1 returns no data and the event type is *retirement*, use the event's tr
 }
 ```
 
+</details>
+
 Use the `ID` to fetch impacted resources from Azure Resource Graph (ARG).
 
-```dotnetcli
+```kusto
 advisorresources
 | where type == "microsoft.advisor/recommendations"
-| where properties.recommendationTypeId == "7e570000-n78d-yh67-2xzc4-v16005e1k" //use the Id fetched from above
+// Use the ID fetched from the Recommendation Metadata API
+| where properties.recommendationTypeId == "<RecommendationTypeId>"
 | extend resourceId = tolower(properties.resourceMetadata.resourceId)
-| project resourceId 
+| project resourceId
 | join kind=inner (
     resources
-    | extend region = location, resourceId = tolower(id), resourceName = name, resourceGroup = resourceGroup, subscriptionId, resourceType = type 
+    | extend region = location, resourceId = tolower(id), resourceName = name, resourceGroup = resourceGroup, subscriptionId, resourceType = type
 ) on resourceId
-| project region = location, resourceId = tolower(id), resourceName = name, resourceGroup = resourceGroup, subscriptionId, resourceType = type 
+| project region = location, resourceId = tolower(id), resourceName = name, resourceGroup = resourceGroup, subscriptionId, resourceType = type
 ```
-
 
 ### Frequently Asked Questions
 
