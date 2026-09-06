@@ -1,15 +1,18 @@
 ---
-title: Use REST APIs to interact with Chaos Studio
-description: Create, view, and manage Azure Chaos Studio experiments, targets, and capabilities with REST APIs.
+title: Manage Experiments (classic) with REST API samples
+description: Use Azure Chaos Studio REST API samples to create and manage Experiments (classic), start or stop runs, and configure targets and capabilities.
 services: chaos-studio
 author: prasha-microsoft
 ms.topic: how-to
-ms.date: 10/14/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.reviewer: prashabora
 ms.custom: devx-track-azurecli
 ---
 
-# Use REST APIs to interact with Chaos Studio
+# Manage Experiments (classic) with REST API samples
+
+These Azure Chaos Studio REST API examples use Experiments (classic), targets, and capabilities. For current-model automation, start with [Chaos Studio Workspaces and Scenarios with Azure CLI](chaos-studio-manage-cli.md), or review the [Workspaces automation and SDK coverage](chaos-studio-workspaces-limitations.md#limitations).
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

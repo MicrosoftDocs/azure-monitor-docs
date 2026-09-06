@@ -1,14 +1,17 @@
 ---
-title: Use Microsoft Entra authentication with Chaos Studio AKS faults
-description: Learn about the different ways for Chaos Studio to authenticate with your AKS cluster.
+title: Configure AKS authentication for Experiments (classic)
+description: Configure AKS authentication for Azure Chaos Studio Experiments (classic) with Chaos Mesh, local accounts, or Microsoft Entra authentication.
 services: chaos-studio
 author: rsgel
 ms.topic: how-to
-ms.date: 08/05/2026
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.author: nikhilkaul
 ---
 
-# Use Microsoft Entra authentication with Chaos Studio AKS faults
+# Configure AKS authentication for Experiments (classic)
+
+This AKS authentication guide applies to Chaos Mesh faults in Azure Chaos Studio Experiments (classic). For current-model node resilience tests, use [AKS resilience testing with Chaos Studio Workspaces](chaos-studio-aks-guidance.md); that workflow targets node infrastructure rather than in-cluster pod faults.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

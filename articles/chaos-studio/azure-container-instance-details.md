@@ -1,15 +1,18 @@
 ---
-title: Container image details and instructions on how to pull the image for Azure Chaos Studio - Relay Bridge Host
-description: Learn how to pull the container image used by Azure Chaos Studio during virtual network injection
+title: Relay container image for Experiments (classic)
+description: Inspect and pull the Azure Chaos Studio relay container image for private-network fault injection with Experiments (classic).
 services: chaos-studio
 author: nikhilkaul
 ms.topic: reference
-ms.date: 10/01/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.reviewer: nikhilkaul
 ms.custom: devx-track-azurecli
 ---
 
-# Container image details and instructions on how to pull the image for Azure Chaos Studio - Relay Bridge Host
+# Relay container image for Experiments (classic)
+
+This relay container image supports virtual network injection with Azure Chaos Studio Experiments (classic). For the current model, review [Chaos Studio Workspaces private-networking limitations](chaos-studio-workspaces-limitations.md#limitations); this relay setup isn't a Workspaces prerequisite.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 
@@ -58,4 +61,3 @@ Customers can pull this container image using Docker or any container runtime th
    ```
 
    You should see `mcr.microsoft.com/azure-chaos-studio/relay-bridge-host` listed with the tag `1.0.02749.72`.
-

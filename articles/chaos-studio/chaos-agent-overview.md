@@ -1,20 +1,19 @@
 ---
-title: Chaos Studio agent overview
-description: Learn about the Chaos Studio agent, which runs inside virtual machines to inject faults like CPU pressure, memory pressure, and network disruptions.
+title: Agent overview for Experiments (classic)
+description: Learn how the Azure Chaos Studio agent injects VM faults for Experiments (classic), and how agent management differs in Workspaces Scenarios.
 services: chaos-studio
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 07/22/2026
+ms.date: 09/05/2026
 ms.reviewer: nikhilkaul
 ai-usage: ai-assisted
 ---
 
-# Chaos Studio agent overview
+# Agent overview for Experiments (classic)
+
+The Azure Chaos Studio agent runs in virtual machines to inject faults for Experiments (classic). For the current model, start with [Chaos Studio Workspaces agent-based Scenario requirements](chaos-studio-scenarios.md#agent-based-scenario-requirements). Supported Workspaces Scenarios install and remove the agent automatically.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
-
-> [!NOTE]
-> This section covers the agent used with the classic experiments model, which you install and manage yourself. In [Workspaces (preview)](chaos-studio-workspaces-overview.md), the CPU Pressure and Physical Memory Pressure scenarios handle the agent for you automatically, with no installation or setup. If you're using workspaces, start with [Agent-based Scenario requirements](chaos-studio-scenarios.md#agent-based-scenario-requirements) instead.
 
 The Chaos Studio agent is a component that runs inside your virtual machines (VMs) to inject faults that can't be achieved through the Azure control plane alone. Faults like CPU pressure, memory pressure, and network latency require in-guest access to the operating system, and the agent provides that access.
 
@@ -44,4 +43,3 @@ You can combine both fault types in a single Scenario or experiment. For example
 - [Install the agent (portal)](chaos-studio-tutorial-agent-based-portal.md)
 - [Supported operating systems](chaos-agent-os-support.md)
 - [Fault and action library](chaos-studio-fault-library.md)
-

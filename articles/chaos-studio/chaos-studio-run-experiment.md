@@ -1,14 +1,17 @@
 ---
-title: Run and manage a chaos experiment in Azure Chaos Studio
-description: Learn how to start, stop, view details, and view history for a chaos experiment in Azure Chaos Studio.
+title: Run and manage an experiment (classic)
+description: Start, stop, and manage Azure Chaos Studio experiment runs in Experiments (classic), and inspect run history, execution details, and fault errors.
 services: chaos-studio
 author: prasha-microsoft
 ms.topic: how-to
-ms.date: 10/14/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.reviewer: prashabora
 ---
 
-# Run and manage an experiment in Azure Chaos Studio
+# Run and manage an experiment (classic)
+
+Manage Azure Chaos Studio Experiments (classic) with this guide. For current-model tests, follow the [Chaos Studio Workspaces quickstart to run a Scenario](quickstart-create-workspace.md#run-the-scenario) and review [Scenario reports](chaos-studio-scenario-reports.md) rather than experiment history.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

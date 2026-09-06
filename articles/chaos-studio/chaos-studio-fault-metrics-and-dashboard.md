@@ -1,15 +1,17 @@
 ---
-title: Measure Fault Impact with an Azure Workbook
-description: Learn to troubleshoot common problems when you use Azure Chaos Studio.
+title: Measure fault impact with Azure Workbooks (classic)
+description: Measure Azure Chaos Studio fault impact with an Azure Monitor workbook for Experiments (classic), correlating experiment timing and resource metrics.
 author: nikhilkaul-msft
 ms.reviewer: nikhilkaul
 ms.topic: how-to
-ms.date: 07/25/2025
+ms.date: 09/05/2026
 ms.custom: template-how-to
 ---
 
 
-# Measure fault impact with an Azure Monitor Workbook
+# Measure fault impact with Azure Workbooks (classic)
+
+This Azure Monitor workbook measures fault impact for Azure Chaos Studio Experiments (classic). For the current model, start with [Chaos Studio Scenario reports](chaos-studio-scenario-reports.md) and correlate the run with your application monitoring to assess recovery.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

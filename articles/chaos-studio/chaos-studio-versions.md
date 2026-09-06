@@ -1,15 +1,17 @@
 ---
-title: Azure Chaos Studio version compatibility
-description: Learn about version compatibility for Chaos Mesh, AKS, agent operating systems, and browser support in Azure Chaos Studio.
+title: Version compatibility for Experiments (classic)
+description: Check Azure Chaos Studio version compatibility for Experiments (classic), including tested Chaos Mesh and AKS combinations and agent OS support.
 services: chaos-studio
 author: rsgel 
-ms.topic: overview
-ms.date: 06/10/2026
+ms.topic: reference
+ms.date: 09/05/2026
 ms.reviewer: carlsonr
 ai-usage: ai-assisted
 ---
 
-# Azure Chaos Studio version compatibility
+# Version compatibility for Experiments (classic)
+
+This Azure Chaos Studio version compatibility reference applies to Experiments (classic). For the current model, use [Chaos Studio Workspaces Scenario requirements](chaos-studio-scenarios.md) and [Workspaces limitations](chaos-studio-workspaces-limitations.md); classic integration versions don't define Scenario support.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

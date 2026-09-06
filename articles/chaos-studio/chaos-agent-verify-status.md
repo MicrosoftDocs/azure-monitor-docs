@@ -1,15 +1,18 @@
 ---
-title: Verify Azure Chaos Studio Agent Status
-description: Learn how to verify the status of the Azure Chaos Studio agent on a virtual machine after installation.
+title: Verify Chaos Studio agent status (classic)
+description: Check Azure Chaos Studio agent status after installation for Experiments (classic), interpret extension health, and identify connectivity issues.
 services: chaos-studio
 author: nikhilkaul-msft
 ms.topic: how-to
-ms.date: 03/12/2025
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.reviewer: nikhilkaul
 ms.custom: 
 ---
 
-# Verify Chaos agent status
+# Verify Chaos Studio agent status (classic)
+
+Check agent status with this guide after installing the Azure Chaos Studio agent for Experiments (classic). For the current model, use [Chaos Studio Workspaces Scenario troubleshooting](troubleshoot-workspaces-scenarios.md#problems-connecting-the-chaos-agent-to-chaos-studio), because Scenario runs manage the agent lifecycle.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

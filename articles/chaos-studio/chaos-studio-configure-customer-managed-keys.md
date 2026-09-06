@@ -1,16 +1,18 @@
 ---
-title: Configure customer-managed keys (preview) for experiment encryption
-titleSuffix: Azure Chaos Studio
-description: Learn how to configure customer-managed keys (preview) for your Azure Chaos Studio experiment resource by using Azure Blob Storage.
+title: Configure customer-managed keys for Experiments (classic)
+description: Configure customer-managed keys in preview for Azure Chaos Studio Experiments (classic), using Azure Blob Storage and a user-assigned identity.
 services: chaos-studio
 ms.custom: devx-track-azurecli
 ms.reviewer: ninallam
 author: nikhilkaul-msft
-ms.date: 11/07/2024
+ms.date: 09/05/2026
 ms.topic: how-to
+ai-usage: ai-assisted
 ---
  
-# Configure customer-managed keys (preview) for Azure Chaos Studio by using Azure Blob Storage
+# Configure customer-managed keys for Experiments (classic)
+
+Customer-managed keys for Azure Chaos Studio Experiments (classic) are in preview. Chaos Studio Workspaces doesn't support customer-managed keys; review [Workspaces limitations](chaos-studio-workspaces-limitations.md#limitations) before choosing a resource model for your encryption requirements.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

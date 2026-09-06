@@ -1,15 +1,18 @@
 ---
-title: Resource Manager template samples for agents in Chaos Studio
-description: Sample Azure Resource Manager templates to deploy and configure virtual machine agents in Chaos Studio.
+title: Agent ARM template for Experiments (classic)
+description: Deploy the Azure Chaos Studio agent to a virtual machine scale set with an ARM template and managed identity for Experiments (classic).
 services: chaos-studio
 author: nikhilkaul-msft
 ms.topic: sample
-ms.date: 03/03/2025
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.author: nikhilkaul
 ms.reviewer: nikhilkaul
 ---
 
-# Resource Manager template samples for agents in Chaos Studio
+# Agent ARM template for Experiments (classic)
+
+Use this ARM template to install an agent for Azure Chaos Studio Experiments (classic). For current-model tests, review [agent-based Scenario requirements in Chaos Studio Workspaces](chaos-studio-scenarios.md#agent-based-scenario-requirements), where supported Scenarios manage agent installation.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

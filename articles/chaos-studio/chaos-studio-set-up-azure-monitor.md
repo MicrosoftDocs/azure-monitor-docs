@@ -1,15 +1,18 @@
 ---
-title: Set up Azure monitor for a Chaos Studio experiment
-description: Understand the steps to connect Azure Monitor to your Chaos Studio Experiment
+title: Send experiment telemetry to Azure Monitor (classic)
+description: Send Azure Chaos Studio fault events to Azure Monitor for Experiments (classic), and correlate fault timing with your existing monitoring dashboards.
 services: chaos-studio
 author: nikhilkaul-msft
 ms.topic: how-to
-ms.date: 10/14/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.reviewer: nikhilkaul
 ms.custom: ignite-fall-2023
 ---
 
-# How-to: Configure your experiment to emit Experiment Fault Events to Azure Monitor
+# Send experiment telemetry to Azure Monitor (classic)
+
+These diagnostic settings emit telemetry for Azure Chaos Studio Experiments (classic). For current-model tests, use [Chaos Studio Scenario reports](chaos-studio-scenario-reports.md) to review Actions and timing, then correlate the run with resource and application monitoring.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

@@ -1,14 +1,16 @@
 ---
-title: "Troubleshooting Chaos Agent"
-description: "Learn how to diagnose and resolve common issues with the Chaos Agent, including installation, network connectivity, and agent health issues."
+title: Troubleshoot the Chaos Studio agent (classic)
+description: Troubleshoot Azure Chaos Studio agent installation, connectivity, identity, and health issues on virtual machines used by Experiments (classic).
 services: chaos-studio
 author: nikhilkaul-msft
 ms.topic: troubleshooting-general
-ms.date: 03/03/2025
+ms.date: 09/05/2026
 ms.reviewer: nikhilkaul
 ---
 
-# Troubleshooting Chaos Agent
+# Troubleshoot the Chaos Studio agent (classic)
+
+Use this guide to troubleshoot the Azure Chaos Studio agent for Experiments (classic). For the current model, use [Chaos Studio Workspaces agent connectivity troubleshooting](troubleshoot-workspaces-scenarios.md#problems-connecting-the-chaos-agent-to-chaos-studio), which covers agents managed by Scenario runs.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

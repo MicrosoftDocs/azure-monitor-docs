@@ -1,15 +1,15 @@
 ---
-title: Troubleshoot Workspaces and Scenarios in Azure Chaos Studio
-description: Resolve common problems with Azure Chaos Studio Workspaces and Scenarios, including empty resource discovery, role assignment failures, and Scenario runs that fail or skip Actions.
+title: Troubleshoot Chaos Studio Workspaces and Scenarios
+description: "Troubleshoot Chaos Studio Workspaces and Scenarios: empty discovery, missing permissions, failed runs, skipped Actions, and agent connectivity."
 author: nikhilkaul-msft
 ms.topic: troubleshooting-general
-ms.date: 07/30/2026
+ms.date: 09/05/2026
 ai-usage: ai-assisted
 ---
 
-# Troubleshoot workspaces and scenarios in Azure Chaos Studio
+# Troubleshoot Chaos Studio Workspaces and Scenarios
 
-This article explains common problems you might encounter when you use [workspaces](chaos-studio-workspaces-overview.md) and [scenarios](chaos-studio-scenarios.md) in Azure Chaos Studio. The problems are organized by the symptom you see. For problems with the classic experiments model (experiments, targets, and capabilities), see [Troubleshoot issues with Azure Chaos Studio](troubleshooting.md).
+Troubleshoot [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) by symptom: resources aren't discovered, permissions are missing, a Scenario run fails, or Actions are skipped. This guide also covers agent connectivity for Workspaces Scenarios. For experiments, targets, and capabilities in the legacy model, use [Experiments (classic) troubleshooting](troubleshooting.md).
 
 [!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
@@ -55,7 +55,7 @@ A Scenario run ends with a Failed status, or an individual Action fails without 
 
 1. **The Scenario report's Action summary.** The report lists each Action with its status, duration, resources targeted, and parameters, which usually narrows the failure to a specific Action and resource. See [Scenario reports in Azure Chaos Studio](chaos-studio-scenario-reports.md).
 1. **Skipped vs. Failed.** A **Skipped** Action didn't execute, usually because the target resource wasn't found in the Workspace scope or the Action's preconditions weren't met. A **Failed** Action executed and encountered an error. If everything is Skipped rather than Failed, see [A run affects nothing](#a-run-affects-nothing-all-actions-skipped).
-1. **The Azure activity log for the target resource.** Service-direct Actions execute Azure Resource Manager operations, which appear in the [activity log](../azure-monitor/platform/activity-log.md) of the target resource. A failed operation there includes the underlying error detail.
+1. **The Azure activity log for the target resource.** Service-direct Actions execute Azure Resource Manager operations, which appear in the [Azure activity log](../azure-monitor/platform/activity-log.md) of the target resource. A failed operation there includes the underlying error detail.
 1. **Role assignments on the target resource.** Verify that the Workspace's managed identity has the role each Action requires on the *target resource* (for example, Virtual Machine Contributor for a VM shutdown), not just the Reader role on the scope. The Reader role is enough for the Workspace to discover a resource, but not to act on it: if an execution role is missing, the affected Action fails at execution time. See the role table in [Permissions and identity in Chaos Studio Workspaces](chaos-studio-workspace-permissions.md#role-assignments-the-workspace-identity-needs).
 1. **Agent-based Actions that fail during setup.** If an agent-based Action, such as CPU Pressure or Physical Memory Pressure, fails at the agent installation step, a network configuration is usually blocking the agent's connection to Chaos Studio. See [Problems connecting the Chaos agent to Chaos Studio](#problems-connecting-the-chaos-agent-to-chaos-studio).
 

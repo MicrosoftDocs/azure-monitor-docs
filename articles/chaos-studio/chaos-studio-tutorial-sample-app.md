@@ -1,15 +1,15 @@
 ---
-title: "Tutorial: Deploy a sample app and test zone resilience on AKS"
-description: Deploy a sample application to a zone-redundant AKS cluster, break it with an Azure Chaos Studio zone-down scenario, and then fix the deployment and prove it survives a rerun.
+title: "Tutorial: Test AKS zone resilience with a Scenario"
+description: Run an Azure Chaos Studio Scenario on an AKS sample app, observe a zone failure, fix pod placement, and compare recovery with a second test run.
 author: nikhilkaul-msft
 ms.topic: tutorial
-ms.date: 08/25/2026
+ms.date: 09/05/2026
 ai-usage: ai-assisted
 ---
 
-# Tutorial: Deploy a sample application and test its zone resilience with Chaos Studio
+# Tutorial: Test AKS zone resilience with a Scenario
 
-In this tutorial, you deploy a sample retail application to a zone-redundant Azure Kubernetes Service (AKS) cluster, and then use an Azure Chaos Studio workspace to simulate an availability zone failure twice. The first run exposes a real resilience gap: the application's front end is deliberately pinned to a single zone, so the storefront goes down with that zone. You then fix the deployment, run the same scenario again, and watch the application ride through the failure. Along the way, you launch a browser-based monitor that shows the failure and the fix as they happen, and you learn why the storefront's own availability and the cluster's node status don't change at the same moment.
+In this Azure Chaos Studio Scenario tutorial, use [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) to test an Azure Kubernetes Service (AKS) sample application's resilience to a zone failure. Deploy the app to a zone-redundant test cluster and run **Compute Zone Down** against its node infrastructure. The first run exposes a front end pinned to one zone. Fix pod placement, rerun the Scenario, and compare application availability and Scenario reports.
 
 This tutorial makes a good first demo and reuses the [AKS store demo](https://github.com/Azure-Samples/aks-store-demo) sample application from the AKS quickstarts, so there's no container registry or build step. Plan for about an hour: cluster creation plus two scenario runs of about 5 minutes each.
 
@@ -32,7 +32,7 @@ This tutorial optimizes for a working demo. For the concepts behind each step, t
 
 - An Azure subscription. [!INCLUDE [quickstarts-free-trial-note](~/reusable-content/ce-skilling/azure/includes/quickstarts-free-trial-note.md)]
 - Azure CLI, `kubectl`, `kubelogin`, and Python 3 (standard library only - no packages to install). [Azure Cloud Shell](/azure/cloud-shell/overview) has all four preinstalled. If you work locally, install `kubectl` with `az aks install-cli` and [`kubelogin`](/azure/aks/kubelogin-authentication) separately.
-- The **Microsoft.Chaos** resource provider registered in your subscription. To register it for the first time, see [Register the Chaos Studio resource provider](chaos-studio-quickstart-azure-portal.md#register-the-chaos-studio-resource-provider).
+- The `Microsoft.Chaos` resource provider registered in your subscription. For registration instructions, see [Workspaces quickstart prerequisites](quickstart-create-workspace.md#prerequisites).
 
 ## Create a zone-redundant AKS cluster
 

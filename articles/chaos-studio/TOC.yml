@@ -1,190 +1,190 @@
-- name: Azure Chaos Studio documentation
+- name: Chaos Studio Workspaces documentation
   href: index.yml
-- name: Overview
-  items:
-    - name: What is Azure Chaos Studio?
-      href: chaos-studio-overview.md
-    - name: Chaos engineering overview
-      href: chaos-studio-chaos-engineering-overview.md
-    - name: Choose between Workspaces and Experiments (classic)
-      href: chaos-studio-workspaces-vs-experiments.md
 - name: Chaos Studio Workspaces
   items:
     - name: Chaos Studio Workspaces overview
       href: chaos-studio-workspaces-overview.md
     - name: "Quickstart: Create a Workspace and run a Scenario"
       href: quickstart-create-workspace.md
+    - name: Scenarios and outage templates for Chaos Studio Workspaces
+      href: chaos-studio-scenarios.md
+    - name: Chaos Studio Workspaces vs. Experiments (classic)
+      href: chaos-studio-workspaces-vs-experiments.md
+    - name: Scenario reports in Chaos Studio Workspaces
+      href: chaos-studio-scenario-reports.md
+    - name: Permissions and identity in Chaos Studio Workspaces
+      href: chaos-studio-workspace-permissions.md
     - name: Manage Workspaces and Scenarios with the Azure CLI
       href: chaos-studio-manage-cli.md
-    - name: Scenarios
-      href: chaos-studio-scenarios.md
-    - name: Scenario reports
-      href: chaos-studio-scenario-reports.md
-    - name: Permissions and identity
-      href: chaos-studio-workspace-permissions.md
-    - name: Least-privilege custom roles
+    - name: Create least-privilege roles for Chaos Studio Workspaces
       href: chaos-studio-workspaces-least-privilege-roles.md
-    - name: "Tutorial: Deploy a sample app and test zone resilience on AKS"
+    - name: "Tutorial: Test AKS zone resilience with a Scenario"
       href: chaos-studio-tutorial-sample-app.md
-    - name: "Tutorial: PostgreSQL zone-down failover"
+    - name: "Tutorial: Run a PostgreSQL zone-down failover Scenario"
       href: chaos-studio-tutorial-postgresql-failover.md
-    - name: Test workload resiliency on AKS (preview)
+    - name: Test AKS resilience with Chaos Studio Workspaces
       href: chaos-studio-aks-guidance.md
-    - name: Troubleshoot Workspaces and Scenarios
+    - name: Troubleshoot Chaos Studio Workspaces and Scenarios
       href: troubleshoot-workspaces-scenarios.md
-    - name: Limitations and known issues (preview)
+    - name: Chaos Studio Workspaces limitations (preview)
       href: chaos-studio-workspaces-limitations.md
     - name: Chaos Studio Workspaces (Azure portal)
       href: https://portal.azure.com/#view/Microsoft_Azure_Chaos/ChaosStudio.MenuView/~/workspaces
     - name: Chaos Studio AI plugin
       href: https://github.com/microsoft/chaos-studio
+- name: About Azure Chaos Studio
+  items:
+    - name: What is Azure Chaos Studio?
+      href: chaos-studio-overview.md
+    - name: Chaos engineering and resilience in Azure
+      href: chaos-studio-chaos-engineering-overview.md
 - name: Experiments (classic)
   items:
     - name: Experiments
       items:
-        - name: Concepts
+        - name: Experiments (classic) concepts
           items:
-            - name: Chaos experiments
+            - name: Experiments (classic) overview
               href: chaos-studio-chaos-experiments.md
-            - name: Faults and actions
+            - name: Faults and actions for Experiments (classic)
               href: chaos-studio-faults-actions.md
-            - name: Targets and capabilities
+            - name: Targets and capabilities for Experiments (classic)
               href: chaos-studio-targets-capabilities.md
-            - name: Target selection
+            - name: Target selection for Experiments (classic)
               href: chaos-studio-target-selection.md
-        - name: "Quickstart: Create and run a chaos experiment"
+        - name: "Quickstart: Create and run an experiment (classic)"
           href: chaos-studio-quickstart-azure-portal.md
         - name: Create and run experiments
           items:
             - name: Service-direct faults
               items:
-                - name: Portal
+                - name: Create service-direct faults in the portal (classic)
                   href: chaos-studio-tutorial-service-direct-portal.md
-                - name: CLI
+                - name: Create service-direct faults with Azure CLI (classic)
                   href: chaos-studio-tutorial-service-direct-cli.md
             - name: Agent-based faults
               items:
-                - name: Portal
+                - name: Create agent-based faults in the portal (classic)
                   href: chaos-studio-tutorial-agent-based-portal.md
-                - name: CLI
+                - name: Create agent-based faults with Azure CLI (classic)
                   href: chaos-studio-tutorial-agent-based-cli.md
             - name: Chaos Mesh faults on AKS
               items:
-                - name: Portal
+                - name: Create AKS Chaos Mesh faults in the portal (classic)
                   href: chaos-studio-tutorial-aks-portal.md
-                - name: CLI
+                - name: Create AKS Chaos Mesh faults with Azure CLI (classic)
                   href: chaos-studio-tutorial-aks-cli.md
-                - name: Use Microsoft Entra authentication with Chaos Mesh
+                - name: Configure AKS authentication for Experiments (classic)
                   href: chaos-studio-aks-authentication.md
-                - name: Authorize Chaos Studio IP addresses for an AKS cluster
+                - name: Authorize AKS IP ranges for Experiments (classic)
                   href: chaos-studio-aks-ip-ranges.md
             - name: Dynamic targeting
               items:
-                - name: Portal
+                - name: Configure dynamic targets in the portal (classic)
                   href: chaos-studio-tutorial-dynamic-target-portal.md
-                - name: CLI
+                - name: Configure dynamic targets with Azure CLI (classic)
                   href: chaos-studio-tutorial-dynamic-target-cli.md
-        - name: Experiment templates
+        - name: Experiments (classic) templates
           items:
-            - name: Entra ID outage
+            - name: Simulate a Microsoft Entra ID outage (classic)
               href: chaos-studio-tutorial-aad-outage-portal.md
-            - name: Availability zone down (VMSS)
+            - name: Simulate zone down on VM scale sets (classic)
               href: chaos-studio-tutorial-availability-zone-down-portal.md
-            - name: DNS outage (NSG)
+            - name: Simulate a DNS outage with NSG rules (classic)
               href: chaos-studio-tutorial-dns-outage.md
-        - name: Run and manage experiments
+        - name: Run and manage an experiment (classic)
           href: chaos-studio-run-experiment.md
-        - name: Schedule an experiment
+        - name: "Tutorial: Schedule a recurring experiment (classic)"
           href: tutorial-schedule.md
-        - name: Measure experiment impact with Azure Monitor
+        - name: Measure fault impact with Azure Workbooks (classic)
           href: chaos-studio-fault-metrics-and-dashboard.md
-        - name: Samples
+        - name: Experiments (classic) samples
           items:
-            - name: Azure REST API
+            - name: Manage Experiments (classic) with REST API samples
               href: chaos-studio-samples-rest-api.md
-            - name: ARM templates (targets)
+            - name: Target ARM templates for Experiments (classic)
               href: sample-template-targets.md
-            - name: ARM templates (experiments)
+            - name: ARM template samples for Experiments (classic)
               href: sample-template-experiment.md
-            - name: Bicep
+            - name: Bicep experiment sample for Experiments (classic)
               href: chaos-studio-bicep.md
-            - name: Azure Policy definitions
+            - name: Azure Policy target samples for Experiments (classic)
               href: sample-policy-targets.md
-    - name: Chaos Studio agent
+    - name: Chaos Studio agent for Experiments (classic)
       items:
-        - name: Overview
+        - name: Agent overview for Experiments (classic)
           href: chaos-agent-overview.md
-        - name: Concepts
+        - name: Agent concepts for Experiments (classic)
           href: chaos-agent-concepts.md
-        - name: Supported operating systems
+        - name: Agent OS support for Experiments (classic)
           href: chaos-agent-os-support.md
         - name: Install and configure
           items:
-            - name: Portal installation
+            - name: Create agent-based faults in the portal (classic)
               href: chaos-studio-tutorial-agent-based-portal.md
-            - name: CLI installation
+            - name: Create agent-based faults with Azure CLI (classic)
               href: chaos-studio-tutorial-agent-based-cli.md
-            - name: ARM template
+            - name: Agent ARM template for Experiments (classic)
               href: chaos-agent-arm-template.md
-            - name: Verify agent status
+            - name: Verify Chaos Studio agent status (classic)
               href: chaos-agent-verify-status.md
-            - name: Private Link for agent
+            - name: Configure agent Private Link for Experiments (classic)
               href: chaos-studio-private-link-agent-service.md
-            - name: Uninstall the agent
+            - name: Uninstall the Chaos Studio agent (classic)
               href: chaos-agent-uninstall.md
-        - name: Troubleshooting
+        - name: Troubleshoot the Chaos Studio agent (classic)
           href: chaos-agent-troubleshooting.md
-        - name: Known issues
+        - name: Agent known issues for Experiments (classic)
           href: chaos-agent-known-issues.md
-    - name: Security and networking
+    - name: Experiments (classic) security and networking
       items:
-        - name: Permissions and security
+        - name: Permissions and security for Experiments (classic)
           href: chaos-studio-permissions-security.md
-        - name: Assign experiment permissions
+        - name: Assign permissions to Experiments (classic)
           href: chaos-studio-assign-experiment-permissions.md
-        - name: Private networking
+        - name: Set up virtual network injection for Experiments (classic)
           href: chaos-studio-private-networking.md
-        - name: Container image details
+        - name: Relay container image for Experiments (classic)
           href: azure-container-instance-details.md
-        - name: Configure customer-managed keys
+        - name: Configure customer-managed keys for Experiments (classic)
           href: chaos-studio-configure-customer-managed-keys.md
-    - name: Monitoring
+    - name: Experiments (classic) monitoring
       items:
-        - name: Emit telemetry to Azure Monitor
+        - name: Send experiment telemetry to Azure Monitor (classic)
           href: chaos-studio-set-up-azure-monitor.md
-        - name: Emit telemetry to App Insights
+        - name: Send agent telemetry to Application Insights (classic)
           href: chaos-studio-set-up-app-insights.md
-    - name: Troubleshooting
+    - name: Troubleshoot Experiments (classic)
       href: troubleshooting.md
-    - name: Reference
+    - name: Experiments (classic) reference
       items:
-        - name: Fault library
+        - name: Fault and action library for Experiments (classic)
           href: chaos-studio-fault-library.md
-        - name: Experiment examples
+        - name: Experiment examples for the CLI and portal (classic)
           href: experiment-examples.md
-        - name: Supported resource types
+        - name: Supported resources for Experiments (classic)
           href: chaos-studio-fault-providers.md
-        - name: Chaos Mesh version compatibility
+        - name: Version compatibility for Experiments (classic)
           href: chaos-studio-versions.md
-        - name: Limitations and known issues
+        - name: Limitations and known issues for Experiments (classic)
           href: chaos-studio-limitations.md
-        - name: Service limits
+        - name: Service limits for Experiments (classic)
           href: chaos-studio-service-limits.md
-- name: Reference
+        - name: Python SDK (classic)
+          href: /python/api/azure-mgmt-chaos/
+        - name: JavaScript SDK (classic)
+          href: https://www.npmjs.com/package/@azure/arm-chaos/
+- name: Azure Chaos Studio shared reference
   items:
-    - name: Regional availability
+    - name: Regional availability by resource model
       href: chaos-studio-region-availability.md
     - name: Reliability
       href: /azure/reliability/reliability-chaos-studio?toc=/azure/chaos-studio/toc.json&bc=/azure/chaos-studio/breadcrumb/toc.json
     - name: REST API
       href: /rest/api/chaosstudio/
-    - name: Python SDK
-      href: /python/api/azure-mgmt-chaos/
     - name: .NET SDK
       href: /dotnet/api/overview/azure/resourcemanager.chaos-readme?view=azure-dotnet-preview&preserve-view=true
-    - name: JavaScript SDK
-      href: https://www.npmjs.com/package/@azure/arm-chaos/
-- name: Resources
+- name: Azure Chaos Studio resources
   items:
     - name: Service updates
       href: https://azure.microsoft.com/updates/

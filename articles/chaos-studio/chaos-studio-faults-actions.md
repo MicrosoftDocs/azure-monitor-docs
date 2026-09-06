@@ -1,14 +1,17 @@
 ---
-title: Faults and actions in Azure Chaos Studio
-description: Understand what faults and actions are in Azure Chaos Studio. What is the difference between a fault and an action? How do you define a fault?
+title: Faults and actions for Experiments (classic)
+description: Understand Azure Chaos Studio faults and actions in Experiments (classic), including continuous and discrete actions, delays, and fault properties.
 author: prasha-microsoft
 ms.reviewer: prashabora
 ms.topic: concept-article
-ms.date: 10/14/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.custom: template-concept
 ---
 
-# Faults and actions in Azure Chaos Studio
+# Faults and actions for Experiments (classic)
+
+These fault and action concepts apply to Azure Chaos Studio Experiments (classic). For current-model tests, explore [Chaos Studio Workspaces Scenarios and Actions](chaos-studio-scenarios.md), including templates and custom Scenario composition.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

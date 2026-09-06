@@ -1,15 +1,18 @@
 ---
-title: Resource Manager template samples for targets and capabilities in Chaos Studio
-description: Sample Azure Resource Manager (ARM) templates to add resources to Azure Chaos Studio by using targets and capabilities.
+title: Target ARM templates for Experiments (classic)
+description: Deploy Azure Chaos Studio targets and capabilities with ARM template samples for Experiments (classic), including service-direct resource onboarding.
 services: chaos-studio
 author: prasha-microsoft 
 ms.topic: sample
-ms.date: 10/14/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.reviewer: prashabora
 ms.custom: devx-track-arm-template
 ---
 
-# Azure Resource Manager template samples for targets and capabilities in Azure Chaos Studio
+# Target ARM templates for Experiments (classic)
+
+These ARM templates enable targets and capabilities for Azure Chaos Studio Experiments (classic). For current-model onboarding, use the [Chaos Studio Workspaces quickstart](quickstart-create-workspace.md). Workspaces discovers resources through its scope rather than these classic target templates.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

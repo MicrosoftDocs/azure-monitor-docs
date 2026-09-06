@@ -1,15 +1,15 @@
 ---
-title: Limitations and known issues in Chaos Studio Workspaces (preview)
-description: Review limitations and known issues in the Chaos Studio Workspaces public preview and identify capabilities that require Experiments (classic).
+title: Chaos Studio Workspaces limitations (preview)
+description: Review Chaos Studio Workspaces limitations for Scenarios, AKS, agents, private networking, and automation before choosing a resilience test.
 author: nikhilkaul-msft
 ms.topic: troubleshooting-known-issue
-ms.date: 08/31/2026
+ms.date: 09/05/2026
 ai-usage: ai-assisted
 ---
 
-# Limitations and known issues in Chaos Studio Workspaces (preview)
+# Chaos Studio Workspaces limitations (preview)
 
-This article lists limitations and known issues in the [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) public preview. For limitations of the Experiments (classic) model, see [Limitations and known issues for Experiments (classic)](chaos-studio-limitations.md).
+Review [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) limitations before you select a Scenario or scope a resilience test. This page covers public preview constraints for Scenario coverage, AKS node infrastructure, agent-based Actions, private networking, and automation. The separate [Experiments (classic) limitations](chaos-studio-limitations.md) don't define Workspaces support.
 
 [!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 

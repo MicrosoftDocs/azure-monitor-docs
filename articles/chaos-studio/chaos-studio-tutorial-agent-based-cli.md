@@ -1,15 +1,17 @@
 ---
-title: Create an experiment using an agent-based fault with Azure CLI
-description: Create an experiment that uses an agent-based fault and configure the chaos agent with the Azure CLI.
+title: Create agent-based faults with Azure CLI (classic)
+description: Install the Chaos Studio agent and define a CPU pressure experiment with Azure CLI and REST requests for Azure Chaos Studio Experiments (classic).
 author: prasha-microsoft
 ms.topic: how-to
-ms.date: 10/14/2024
+ms.date: 09/05/2026
 ms.reviewer: prashabora
 ms.custom: template-how-to, devx-track-azurecli
 ms.devlang: azurecli
 ---
 
-# Create a chaos experiment that uses an agent-based fault with the Azure CLI
+# Create agent-based faults with Azure CLI (classic)
+
+This Azure CLI guide creates agent-based faults with Azure Chaos Studio Experiments (classic). For current-model CPU tests, use the [Workspaces CPU Pressure Scenario](chaos-studio-scenarios.md#cpu-pressure) and [Workspaces CLI guide](chaos-studio-manage-cli.md). Check Scenario requirements before choosing a model.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 
@@ -270,7 +272,7 @@ az role assignment create --role "Reader" --assignee-principal-type "ServicePrin
 
 ## Run your experiment
 
-You're now ready to run your experiment. To see the effect, we recommend that you open [an Azure Monitor metrics chart](../azure-monitor/essentials/tutorial-metrics.md) with your VM's CPU pressure in a separate browser tab.
+You're now ready to run your experiment. To see the effect, we recommend that you open [an Azure Monitor metrics chart](../azure-monitor/platform/tutorial-metrics.md) with your VM's CPU pressure in a separate browser tab.
 
 1. Start the experiment by using the Azure CLI. Replace `$SUBSCRIPTION_ID`, `$RESOURCE_GROUP`, and `$EXPERIMENT_NAME` with the properties for your experiment.
 

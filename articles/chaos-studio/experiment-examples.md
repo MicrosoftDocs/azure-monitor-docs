@@ -1,15 +1,17 @@
 ---
-title: Azure CLI & Azure portal example experiments
-description: See real examples of creating various chaos experiments in the Azure portal and CLI. 
+title: Experiment examples for the CLI and portal (classic)
+description: Explore Azure Chaos Studio experiment examples for Experiments (classic), with REST request bodies and portal fault parameters to adapt to your resources.
 services: chaos-studio
 author: nikhilkaul-msft
-ms.topic: reference
-ms.date: 05/07/2024
+ms.topic: sample
+ms.date: 09/05/2026
 ms.reviewer: nikhilkaul
 ms.custom: none, devx-track-azurecli
 ---
 
-# Example Experiments
+# Experiment examples for the CLI and portal (classic)
+
+These Azure Chaos Studio experiment examples use Experiments (classic). For current-model templates, use the [Chaos Studio Workspaces Scenario catalog](chaos-studio-scenarios.md) or [custom Scenario designer](chaos-studio-scenarios.md#create-a-custom-scenario). Classic experiment JSON isn't a Workspaces Scenario definition.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

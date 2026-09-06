@@ -1,14 +1,17 @@
 ---
-title: Azure Policy samples for adding resources to Chaos Studio
-description: Sample Azure policies to add resources to Azure Chaos Studio by using targets and capabilities.
+title: Azure Policy target samples for Experiments (classic)
+description: Use Azure Policy samples to enable targets and capabilities for Azure Chaos Studio Experiments (classic) on supported Azure resource types.
 services: chaos-studio
 author: prasha-microsoft 
 ms.topic: sample
-ms.date: 10/14/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.reviewer: prashabora
 ---
 
-# Azure Policy samples for adding resources to Azure Chaos Studio
+# Azure Policy target samples for Experiments (classic)
+
+These Azure Policy samples onboard resources to Azure Chaos Studio Experiments (classic). For the current model, follow the [Chaos Studio Workspaces quickstart](quickstart-create-workspace.md), where discovery uses a Workspace scope rather than these classic target and capability policies.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

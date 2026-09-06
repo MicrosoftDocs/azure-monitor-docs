@@ -1,15 +1,15 @@
 ---
-title: Choose between Chaos Studio Workspaces and Experiments (classic)
-description: Compare Chaos Studio Workspaces and Experiments (classic), choose the resource model that fits your resilience test, and evaluate an adoption path.
+title: Chaos Studio Workspaces vs. Experiments (classic)
+description: "Compare Chaos Studio Workspaces vs. Experiments (classic): Scenario coverage, permissions, reports, preview status, and when to choose each model."
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 08/31/2026
+ms.date: 09/05/2026
 ai-usage: ai-assisted
 ---
 
-# Choose between Chaos Studio Workspaces and Experiments (classic)
+# Chaos Studio Workspaces vs. Experiments (classic)
 
-Azure Chaos Studio offers two resource models for resilience testing. [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) is the current model. It discovers resources within a scope and runs Scenarios against them. [Experiments (classic)](chaos-studio-chaos-experiments.md) is the legacy model. It runs experiments against targets that you enable individually. Use this comparison to choose a model for each resilience test and to evaluate where Workspaces fit your existing testing strategy. The Experiments (classic) model is generally available, and Chaos Studio Workspaces is in public preview.
+Compare [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) and [Experiments (classic)](chaos-studio-chaos-experiments.md) to choose an Azure Chaos Studio resource model for each resilience test. Workspaces is the current model: it discovers resources within a scope, runs Scenarios, and generates Scenario reports. Experiments (classic) is the legacy model, with individually enabled targets and custom fault compositions. Workspaces is in public preview; Experiments (classic) is generally available.
 
 [!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 

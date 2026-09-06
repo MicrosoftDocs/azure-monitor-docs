@@ -1,16 +1,16 @@
 ---
 title: Chaos Studio Workspaces overview
-description: Learn how Chaos Studio Workspaces, the current resource model for resilience testing, discovers resources, recommends Scenarios, runs tests, and produces reports.
+description: Use Chaos Studio Workspaces for Azure resilience testing. Discover resources, run outage Scenarios, and review Scenario reports in public preview.
 author: nikhilkaul-msft
-ms.topic: concept-article
-ms.date: 08/31/2026
+ms.topic: overview
+ms.date: 09/05/2026
 ms.custom: references_regions
 ai-usage: ai-assisted
 ---
 
 # Chaos Studio Workspaces overview
 
-Chaos Studio Workspaces is the current resource model for organizing resilience testing in Azure Chaos Studio. A Workspace connects to your Azure environment through a scope, discovers the resources you deployed, and recommends Scenarios that simulate relevant outage patterns. A Scenario run executes the Scenario's Actions against selected resources and produces a report of what happened.
+Chaos Studio Workspaces is the current resource model for Azure resilience testing in Azure Chaos Studio. Use a Workspace to discover resources within a scope, choose Scenarios that simulate outage patterns, and review what happened in each Scenario run. Start with the [Workspaces quickstart](quickstart-create-workspace.md), or explore the [Scenario catalog](chaos-studio-scenarios.md) for zone failures, networking outages, and database failovers.
 
 [!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
@@ -20,7 +20,7 @@ Instead of assembling individual Actions and selecting resources manually, you s
 
 Outage simulation is most useful when it mirrors how failures happen. Real incidents don't affect one resource at a time. A zone failure takes down virtual machines, disrupts load balancers, and forces database failovers simultaneously. Workspaces address this pattern by starting from the outage pattern (the Scenario) rather than from individual Actions.
 
-Workspaces are also flexible enough to match how your organization is structured. You can create a Workspace per application, per environment (development, staging, production), per team, or per compliance boundary. Because the scope controls which resources the Workspace discovers, you can scale from a single resource group to an entire subscription without changing the workflow. Teams that manage multiple applications can maintain separate Workspaces for each, with distinct scopes, identities, and Scenario configurations.
+Workspaces are also flexible enough to match how your organization is structured. You can create a Workspace per application, per preproduction environment, per team, or per compliance boundary. Because the scope controls which resources the Workspace discovers, you can scale from a single resource group to an entire subscription without changing the workflow. Teams that manage multiple applications can maintain separate Workspaces for each, with distinct scopes, identities, and Scenario configurations.
 
 A Workspace also removes the setup friction that slows teams down. Instead of manually selecting resources and configuring Actions one at a time, the Workspace discovers your infrastructure and shows you which Scenarios apply to the resources it finds. After a Scenario runs, you get a Scenario report that documents exactly what happened: which Actions executed, which were skipped, how long each took, and whether the run succeeded.
 
@@ -88,6 +88,16 @@ For a detailed walkthrough of Scenario reports, see [Scenario reports in Azure C
 Chaos Studio Workspaces and Experiments (classic) are separate resource models. Workspaces use Scenarios that compose actions. The Experiments (classic) model uses experiments, targets, capabilities, and faults. Choose Experiments (classic) when you need a fault composition or capability that isn't available in the catalog of Scenarios.
 
 For a side-by-side comparison and guidance on when to choose each model, see [Choose between Chaos Studio Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md).
+
+## Choose a resilience test
+
+Use the Scenario catalog and walkthroughs to match a test to your resources:
+
+- [Compute Zone Down Scenarios](chaos-studio-scenarios.md#compute-zone-down) simulate availability zone failures for virtual machines and virtual machine scale sets.
+- [AKS resilience testing with Chaos Studio Workspaces](chaos-studio-aks-guidance.md) targets node scale sets in the cluster's infrastructure resource group, not in-cluster pod faults.
+- [PostgreSQL failover Scenario tutorial](chaos-studio-tutorial-postgresql-failover.md) walks through a database failover test and its report.
+
+Review [Workspaces permissions and identity](chaos-studio-workspace-permissions.md) and [Workspaces limitations](chaos-studio-workspaces-limitations.md) before you run a test.
 
 [!INCLUDE [chaos-studio-feedback](includes/chaos-studio-feedback.md)]
 

@@ -1,15 +1,15 @@
 ---
-title: Test workload resiliency on AKS with Chaos Studio (preview)
-description: Learn how to test the resiliency of workloads running on Azure Kubernetes Service (AKS) by using Azure Chaos Studio workspaces to simulate an availability zone failure.
+title: Test AKS resilience with Chaos Studio Workspaces
+description: Test AKS zone resilience with Chaos Studio Workspaces. Scope Compute Zone Down to node scale sets and observe workload recovery in a test cluster.
 author: nikhilkaul-msft
 ms.topic: how-to
-ms.date: 07/17/2026
+ms.date: 09/05/2026
 ai-usage: ai-assisted
 ---
 
-# Test workload resiliency on AKS with Chaos Studio (preview)
+# Test AKS resilience with Chaos Studio Workspaces
 
-This article explains how to use Azure Chaos Studio [workspaces](chaos-studio-workspaces-overview.md) to test the resiliency of workloads running on Azure Kubernetes Service (AKS). You simulate a compute failure that shuts down the cluster's node virtual machines in one availability zone, then observe how the cluster and your workloads respond.
+Use [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) for Azure Kubernetes Service (AKS) resilience testing by running the **Compute Zone Down** Scenario against node scale sets in the cluster's infrastructure resource group. This test shuts down node virtual machines in one availability zone so you can observe workload recovery. It tests node infrastructure, not in-cluster pod faults.
 
 [!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
@@ -87,7 +87,7 @@ Because workspace discovery is bounded by the [scope](chaos-studio-workspace-per
 
 ## Alternatives
 
-For in-cluster fault injection (pod failures, network faults, stress inside the cluster), the classic experiments model supports AKS Chaos Mesh faults today. See [Create an experiment that uses Chaos Mesh faults on AKS](chaos-studio-tutorial-aks-portal.md).
+For in-cluster fault injection, such as pod failures, network faults, or stress inside the cluster, use [AKS Chaos Mesh faults with Experiments (classic)](chaos-studio-tutorial-aks-portal.md).
 
 ## Next steps
 

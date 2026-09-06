@@ -1,15 +1,15 @@
 ---
-title: Scenarios in Azure Chaos Studio
-description: Review the Scenarios available in Chaos Studio Workspaces. Each Scenario simulates an outage pattern by using composed Actions.
+title: Scenarios and outage templates for Chaos Studio Workspaces
+description: Explore Azure Chaos Studio Scenarios for zone down, DNS outages, and database failovers. Review Workspaces templates, Actions, and resource requirements.
 author: nikhilkaul-msft
 ms.topic: reference
-ms.date: 08/31/2026
+ms.date: 09/05/2026
 ai-usage: ai-assisted
 ---
 
-# Scenarios in Azure Chaos Studio
+# Scenarios and outage templates for Chaos Studio Workspaces
 
-A Scenario is a preconfigured resilience test that simulates a specific outage pattern. Each Scenario composes one or more Actions into a sequence that mirrors how real failures cascade across Azure resources. When you create a [Workspace](chaos-studio-workspaces-overview.md), Chaos Studio discovers your resources and shows you which Scenarios apply to them.
+Azure Chaos Studio Scenarios are resilience tests in [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) that simulate outage patterns, such as zone down, DNS outages, and database failovers. Each Scenario composes Actions against supported Azure resources. A Workspace discovers resources in its scope and shows you which Scenarios apply.
 
 This page lists the Scenarios available in Chaos Studio Workspaces. Chaos Studio ships a set of supported Scenario templates that cover common outage patterns. You can run these templates as-is, or use the [Scenario designer](#create-a-custom-scenario) to customize your own.
 
@@ -46,6 +46,8 @@ Blocks connectivity to Microsoft Entra ID endpoints by applying an NSG rule that
 #### Compute Zone Down
 
 Simulates a full availability zone failure by shutting down virtual machines and Azure Virtual Machine Scale Sets instances in a target zone. Availability zone failures are among the most impactful cloud incidents, making this Scenario a high-priority starting point for resilience testing.
+
+For AKS node scale sets, follow [AKS resilience testing with Chaos Studio Workspaces](chaos-studio-aks-guidance.md). This approach tests node infrastructure, not in-cluster pod faults.
 
 | Property | Value |
 |---|---|
@@ -145,6 +147,8 @@ Combines a cache stampede with an App Service process crash to test recovery whe
 | Outage category | Cache / Load |
 
 ### Messaging and event-driven Scenarios
+
+These Scenarios test how applications respond when messaging services or related dependencies become unavailable.
 
 #### Event-Driven Messaging Disruption
 
@@ -310,7 +314,7 @@ resource customScenario 'Microsoft.Chaos/workspaces/scenarios@2026-05-01-preview
 }
 ```
 
-Action IDs are URNs of the form `urn:csci:microsoft:{service}:{action}/{version}`. For the full resource schema, including every Action and parameter property, see the [Microsoft.Chaos/workspaces/scenarios template reference](/azure/templates/microsoft.chaos/workspaces/scenarios). The [fault and action library for Experiments (classic)](chaos-studio-fault-library.md) describes the separate classic catalog; an entry in that catalog doesn't indicate that an Action is available in Chaos Studio Workspaces.
+Action IDs are URNs of the form `urn:csci:microsoft:{service}:{action}/{version}`. For the full resource schema, including every Action and parameter property, see the [Microsoft.Chaos/workspaces/scenarios template reference](/azure/templates/microsoft.chaos/workspaces/scenarios). Use the [supported Scenario templates](#supported-scenario-templates) and the Scenario designer to identify Workspaces Actions. The separate catalog for Experiments (classic) doesn't establish Action availability in Workspaces; see the [resource model comparison](chaos-studio-workspaces-vs-experiments.md).
 
 ## What determines which Scenarios appear in your Workspace
 

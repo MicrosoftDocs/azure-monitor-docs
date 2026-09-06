@@ -1,14 +1,17 @@
 ---
-title: Create and run a chaos experiment by using Azure Chaos Studio
-description: Understand the steps to create and run an Azure Chaos Studio experiment in 10 minutes.
+title: "Quickstart: Create and run an experiment (classic)"
+description: Create and run a VM shutdown test with the Azure Chaos Studio Experiments (classic) quickstart, or start new tests with the Workspaces quickstart.
 services: chaos-studio
 author: prasha-microsoft
 ms.topic: quickstart
-ms.date: 09/26/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.reviewer: prashabora
 ---
 
-# Quickstart: Create and run a chaos experiment by using Azure Chaos Studio
+# Quickstart: Create and run an experiment (classic)
+
+This Azure Chaos Studio quickstart uses Experiments (classic) to shut down a virtual machine. For the current model, start with the [Chaos Studio Workspaces quickstart](quickstart-create-workspace.md), which discovers resources and runs a Scenario.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 
