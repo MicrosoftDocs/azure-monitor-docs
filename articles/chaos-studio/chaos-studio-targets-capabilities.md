@@ -1,14 +1,17 @@
 ---
-title: Targets and capabilities in Azure Chaos Studio
-description: Understand how to control resource onboarding in Azure Chaos Studio by using targets and capabilities.
+title: Targets and capabilities for Experiments (classic)
+description: Enable Azure Chaos Studio targets and capabilities for Experiments (classic) to control which resources and faults are available to experiments.
 author: prasha-microsoft
 ms.reviewer: prashabora
 ms.topic: concept-article
-ms.date: 10/14/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.custom: template-concept
 ---
 
-# Targets and capabilities in Azure Chaos Studio
+# Targets and capabilities for Experiments (classic)
+
+Azure Chaos Studio targets and capabilities enable resources for Experiments (classic). For the current model, follow the [Chaos Studio Workspaces quickstart](quickstart-create-workspace.md) to discover resources through a Workspace scope rather than enabling classic targets individually.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

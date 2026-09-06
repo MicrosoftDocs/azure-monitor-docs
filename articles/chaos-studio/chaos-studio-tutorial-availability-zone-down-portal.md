@@ -1,14 +1,17 @@
 ---
-title: Use an Azure Chaos Studio experiment template to take down Virtual Machine Scale Set availability zones with autoscale disabled
-description: Use the Azure portal to create an experiment from the Availability Zone Down experiment template.
+title: Simulate zone down on VM scale sets (classic)
+description: Use an Azure Chaos Studio Experiments (classic) template to shut down virtual machine scale set instances in an availability zone with autoscale disabled.
 author: prasha-microsoft
 ms.reviewer: prashabora
 ms.topic: how-to
-ms.date: 10/14/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.custom: template-how-to
 ---
 
-# Use a chaos experiment template to take down Virtual Machine Scale Set availability zones with autoscale disabled
+# Simulate zone down on VM scale sets (classic)
+
+This Azure Chaos Studio availability zone down template uses Experiments (classic) and disables autoscale for the test. For the current model, explore [Compute Zone Down Scenarios in Chaos Studio Workspaces](chaos-studio-scenarios.md#compute-zone-down). Review the Actions in each model rather than assuming equivalent coverage.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

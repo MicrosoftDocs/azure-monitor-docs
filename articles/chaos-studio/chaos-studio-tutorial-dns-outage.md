@@ -1,15 +1,18 @@
 ---
-title: Simulate a DNS Outage with Azure Chaos Studio Using an NSG Rule Fault
-description: Use the Azure portal to create an experiment that simulates a DNS outage using an NSG rules fault
+title: Simulate a DNS outage with NSG rules (classic)
+description: Simulate a DNS outage with Azure Chaos Studio Experiments (classic) by blocking port 53 with an NSG rule, then observe retries and application behavior.
 author: nikhilkaul-msft
 ms.reviewer: nikhilkaul
 ms.topic: how-to
-ms.date: 10/23/2025
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.custom: template-how-to
 ---
 
 
-# Simulate a DNS outage with Azure Chaos Studio using a Network Security Group (NSG) Rule Fault
+# Simulate a DNS outage with NSG rules (classic)
+
+This Azure Chaos Studio DNS outage guide uses an NSG rule fault in Experiments (classic). For the current model, use the [DNS Outage Scenario in Chaos Studio Workspaces](chaos-studio-scenarios.md#dns-outage) and start with the [Workspaces quickstart](quickstart-create-workspace.md).
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 
@@ -125,4 +128,3 @@ Based on what you learned, consider implementing one or more of the following:
 - **Retry logic** – Use exponential backoff and jitter when handling lookup failures.  
 - **Private DNS zones** – For internal dependencies, resolve names privately to avoid public resolver reliance.  
 - **Health checks** – Integrate DNS resolution checks in readiness/liveness probes.
-

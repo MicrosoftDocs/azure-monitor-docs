@@ -1,14 +1,17 @@
 ---
-title: Create an experiment using a service-direct fault with Chaos Studio
-description: Create an experiment that uses a service-direct fault with Azure Chaos Studio to fail over an Azure Cosmos DB instance.
+title: Create service-direct faults in the portal (classic)
+description: Use the portal designer to configure a Cosmos DB failover, select its target, and assign roles for Azure Chaos Studio Experiments (classic).
 author: prasha-microsoft
 ms.reviewer: prashabora
 ms.topic: how-to
-ms.date: 10/14/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.custom: template-how-to
 ---
 
-# Create a chaos experiment that uses a service-direct fault to fail over an Azure Cosmos DB instance
+# Create service-direct faults in the portal (classic)
+
+This portal guide tests Azure Cosmos DB failover with Azure Chaos Studio Experiments (classic). For current-model tests, check the [Chaos Studio Workspaces Scenario catalog](chaos-studio-scenarios.md) and [Workspaces quickstart](quickstart-create-workspace.md). Choose a Scenario only if its Actions cover your required outage pattern.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

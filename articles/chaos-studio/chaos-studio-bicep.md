@@ -1,15 +1,18 @@
 ---
-title: Use Bicep to create an experiment in Azure Chaos Studio 
-description: Sample Bicep templates to create Azure Chaos Studio experiments.
+title: Bicep experiment sample for Experiments (classic)
+description: Use an Azure Chaos Studio Bicep sample to enable a VM target, configure capabilities, and deploy a shutdown experiment with Experiments (classic).
 services: chaos-studio
 author: rsgel
 ms.topic: sample
-ms.date: 10/14/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.reviewer: carlsonr
 ms.custom: devx-track-bicep
 ---
 
-# Use Bicep to create an experiment in Azure Chaos Studio 
+# Bicep experiment sample for Experiments (classic)
+
+This Bicep sample creates Azure Chaos Studio Experiments (classic), targets, and capabilities. For the current model, see [how to structure a custom Workspaces Scenario](chaos-studio-scenarios.md#how-a-custom-scenario-is-structured), including a Bicep example. The resource models are separate.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

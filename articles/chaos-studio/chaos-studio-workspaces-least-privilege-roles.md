@@ -1,17 +1,17 @@
 ---
-title: Use least-privilege custom roles with Chaos Studio Workspaces
-description: Discover the exact RBAC actions and target resources a Scenario needs, then create least-privilege custom roles for the Workspace managed identity instead of using fixResourcePermissions.
+title: Create least-privilege roles for Chaos Studio Workspaces
+description: Create least-privilege roles for Chaos Studio Workspaces from Scenario validation output, and assign only the permissions each target resource needs.
 author: nikhilkaul-msft
 ms.service: azure-chaos-studio
 ms.author: nikhilkaul
 ms.topic: how-to
-ms.date: 07/28/2026
+ms.date: 09/05/2026
 ai-usage: ai-assisted
 ---
 
-# Use least-privilege custom roles with Chaos Studio Workspaces
+# Create least-privilege roles for Chaos Studio Workspaces
 
-A Chaos Studio Workspace runs Scenarios by using its [managed identity](chaos-studio-workspace-permissions.md), which must hold the RBAC roles required to act on each target resource. The `fixResourcePermissions` operation can assign those roles for you automatically, but it grants **Azure built-in roles** (for example, Virtual Machine Contributor or Network Contributor). Built-in roles include more permissions than a Scenario actually uses, so they don't satisfy a strict least-privilege policy.
+Use least-privilege custom roles in Chaos Studio Workspaces when Azure built-in roles grant more permissions than your policy allows. A Workspace runs Scenarios with a [managed identity](chaos-studio-workspace-permissions.md). The `fixResourcePermissions` operation assigns built-in roles; this guide instead uses Scenario validation output to identify the required permissions and target resources for your custom roles.
 
 This article is for customers who opt out of `fixResourcePermissions` and instead create their own **custom roles** that contain only the exact actions a Scenario needs. It shows you how to:
 

@@ -3,14 +3,16 @@ title: Fault and action library for Experiments (classic)
 description: Review faults and actions for Experiments (classic) in Azure Chaos Studio, including prerequisites, parameters, and supported target resources.
 services: chaos-studio
 author: rsgel
-ms.topic: how-to
-ms.date: 08/31/2026
+ms.topic: reference
+ms.date: 09/05/2026
 ms.reviewer: vikramraju
 ms.custom: linux-related-content
 ai-usage: ai-assisted
 ---
 
 # Fault and action library for Experiments (classic)
+
+This Azure Chaos Studio fault and action library is for Experiments (classic). For current-model tests, use the [Chaos Studio Workspaces Scenario catalog](chaos-studio-scenarios.md), which lists Scenario Actions and supported resources. A classic fault entry doesn't establish availability in Workspaces.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

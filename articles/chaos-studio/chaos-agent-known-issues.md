@@ -1,15 +1,18 @@
 ---
-title: "Chaos Agent Known Issues"
-description: "A list of known issues affecting the Chaos Agent and agent-based faults in Azure Chaos Studio, along with workarounds or mitigation steps."
+title: Agent known issues for Experiments (classic)
+description: Review Azure Chaos Studio agent known issues and workarounds for Experiments (classic), including Linux network faults and agent configuration.
 services: chaos-studio
 author: nikhilkaul-msft
 ms.topic: troubleshooting-known-issue
-ms.date: 03/03/2025
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.reviewer: nikhilkaul
 ms.custom: 
 ---
 
-# Chaos Agent Known Issues
+# Agent known issues for Experiments (classic)
+
+These known issues concern the Azure Chaos Studio agent for Experiments (classic). For the current model, use [Chaos Studio Workspaces limitations](chaos-studio-workspaces-limitations.md) and [Scenario agent connectivity troubleshooting](troubleshoot-workspaces-scenarios.md#problems-connecting-the-chaos-agent-to-chaos-studio).
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

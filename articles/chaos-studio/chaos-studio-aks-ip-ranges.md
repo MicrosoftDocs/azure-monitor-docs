@@ -1,14 +1,17 @@
 ---
-title: Authorize Chaos Studio IP addresses for an AKS cluster 
-description: Learn about several ways to authorize Chaos Studio IP addresses to communicate with your AKS cluster.
+title: Authorize AKS IP ranges for Experiments (classic)
+description: Authorize Azure Chaos Studio IP ranges for AKS Chaos Mesh faults in Experiments (classic), using service tags, scripts, or manual configuration.
 services: chaos-studio
 author: rsgel
 ms.topic: how-to
-ms.date: 12/4/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.author: nikhilkaul
 ---
 
-# Add Chaos Studio IPs as Authorized IPs on AKS
+# Authorize AKS IP ranges for Experiments (classic)
+
+Authorize AKS API access for Azure Chaos Studio Experiments (classic) with this guide. For the current model, follow [AKS resilience testing with Chaos Studio Workspaces](chaos-studio-aks-guidance.md), which tests node scale sets rather than using Chaos Mesh inside the cluster.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

@@ -1,14 +1,17 @@
 ---
-title: Create a chaos experiment to shut down all targets in a zone
-description: Use the Azure portal to create an experiment that uses dynamic targeting to select hosts in a zone.
+title: Configure dynamic targets in the portal (classic)
+description: Build a target query in the portal, preview matching VM scale set instances, and run a zone shutdown with Azure Chaos Studio Experiments (classic).
 author: rsgel
 ms.reviewer: carlsonr
 ms.topic: how-to
-ms.date: 10/14/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.custom: template-how-to
 ---
 
-# Create a chaos experiment to shut down all targets in a zone
+# Configure dynamic targets in the portal (classic)
+
+This portal guide uses dynamic targeting in Azure Chaos Studio Experiments (classic). For current-model zone tests, explore [Workspaces Compute Zone Down Scenarios](chaos-studio-scenarios.md#compute-zone-down). Workspaces doesn't support classic dynamic targeting; review [Workspaces limitations](chaos-studio-workspaces-limitations.md#limitations) before choosing a model.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

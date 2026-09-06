@@ -1,27 +1,26 @@
 ---
-title: Troubleshoot Experiments (classic) in Azure Chaos Studio
-description: Learn to troubleshoot common problems with Experiments (classic), including targets, capabilities, experiment runs, and the Chaos Studio agent.
+title: Troubleshoot Experiments (classic)
+description: Troubleshoot Azure Chaos Studio Experiments (classic), including target onboarding, capabilities, experiment runs, agent errors, and permissions.
 author: c-ashton
 ms.reviewer: nikhilkaul
-ms.topic: troubleshooting
-ms.date: 08/31/2026
+ms.topic: troubleshooting-general
+ms.date: 09/05/2026
 ms.custom: template-troubleshooting
 ai-usage: ai-assisted
 ---
 
-# Troubleshoot Experiments (classic) in Azure Chaos Studio
+# Troubleshoot Experiments (classic)
+
+Use this Azure Chaos Studio troubleshooting guide for Experiments (classic), targets, capabilities, and agents. For the current model, use [Chaos Studio Workspaces and Scenarios troubleshooting](troubleshoot-workspaces-scenarios.md), which covers discovery, permissions, failed runs, and skipped Actions.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 
 As you use Experiments (classic), you might encounter problems with targets, capabilities, experiment runs, or the Chaos Studio agent. This article explains common problems and troubleshooting steps.
 
-> [!TIP]
-> For issues with Workspaces and Scenarios (preview), see [Troubleshoot Workspaces and Scenarios in Azure Chaos Studio](troubleshoot-workspaces-scenarios.md).
-
 ## General troubleshooting tips
 
 The following sources are useful when you troubleshoot problems with Chaos Studio:
-- **Activity log**: The [Azure activity log](../azure-monitor/essentials/activity-log.md) has a record of all create, update, and delete operations in a subscription. These records include Chaos Studio operations like enabling a target or capabilities, installing the agent, and creating or running an experiment. Failures in the activity log indicate that a user action essential to using Chaos Studio might have failed to complete. Most service-direct faults also inject faults by executing an Azure Resource Manager operation, so the activity log also has the record of faults that were injected during an experiment for some service-direct faults.
+- **Activity log**: The [Azure activity log](../azure-monitor/platform/activity-log.md) has a record of all create, update, and delete operations in a subscription. These records include Chaos Studio operations like enabling a target or capabilities, installing the agent, and creating or running an experiment. Failures in the activity log indicate that a user action essential to using Chaos Studio might have failed to complete. Most service-direct faults also inject faults by executing an Azure Resource Manager operation, so the activity log also has the record of faults that were injected during an experiment for some service-direct faults.
 - **Experiment details**: Experiment execution details show the status and errors of an individual experiment run. Opening a specific fault in experiment details shows the resources that failed and the error messages for a failure. Learn more about how to [access experiment details](chaos-studio-run-experiment.md#view-experiment-history-and-details).
 - **Agent logs**: If you're using an agent-based fault, you might need to RDP or SSH in to the virtual machine (VM) to understand why the agent failed to run a fault. The instructions for accessing agent logs depend on the operating system:
     * **Chaos Windows agent**: Agent logs are in the Windows Event Log in the Application category with the source `AzureChaosAgent`. The agent adds fault activity and regular health check (ability to authenticate to and communicate with the Chaos Studio agent service) events to this log.

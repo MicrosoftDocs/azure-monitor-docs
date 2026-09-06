@@ -1,17 +1,19 @@
 ---
-title: Manage Chaos Studio Workspaces and Scenarios with the Azure CLI
-description: Install the Azure CLI extension for Azure Chaos Studio, bootstrap a Workspace, and configure, validate, and run a Scenario from the command line.
+title: Manage Workspaces and Scenarios with the Azure CLI
+description: Use the Azure Chaos Studio CLI to create Workspaces, discover resources, configure Scenario permissions, validate runs, and review execution results.
 author: nikhilkaul-msft
 ms.topic: how-to
-ms.date: 08/31/2026
+ms.date: 09/05/2026
 ms.custom: devx-track-azurecli
 ms.devlang: azurecli
 ai-usage: ai-assisted
 ---
 
-# Manage Chaos Studio Workspaces and Scenarios with the Azure CLI
+# Manage Workspaces and Scenarios with the Azure CLI
 
-The Azure CLI extension for Azure Chaos Studio (`az chaos`) helps you create a workspace, discover the resources in scope, and configure, validate, and run scenarios without leaving the command line. This article walks through the full workflow, from installing the extension to running your first scenario and cleaning up.
+Use the Azure Chaos Studio CLI extension (`az chaos`) to manage [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) and Scenarios from the command line. This guide covers resource discovery, permission configuration, validation, Scenario runs, and cleanup in a preproduction environment.
+
+[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
 The `az chaos` extension targets Chaos Studio Workspaces. To script Experiments (classic) instead, see [Create a chaos experiment that uses an agent-based fault with the Azure CLI](chaos-studio-tutorial-agent-based-cli.md).
 

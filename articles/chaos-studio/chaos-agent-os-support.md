@@ -1,14 +1,17 @@
 ---
-title: Chaos Agent Version Compatibility
-description: Compatibility reference for the Azure Chaos Studio Agent across operating systems, fault differences, and package dependencies.
+title: Agent OS support for Experiments (classic)
+description: Check Azure Chaos Studio agent OS support, fault compatibility, and package dependencies for Windows and Linux in Experiments (classic).
 services: chaos-studio
 author: nikhilkaul-msft
 ms.topic: reference
-ms.date: 03/03/2025
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.reviewer: nikhilkaul
 ---
 
-# Chaos Agent Version Compatibility
+# Agent OS support for Experiments (classic)
+
+This operating system matrix applies to the Azure Chaos Studio agent for Experiments (classic). For the current model, check [supported operating systems for Workspaces agent-based Scenarios](chaos-studio-scenarios.md#supported-operating-systems); the classic matrix doesn't define Workspaces support.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

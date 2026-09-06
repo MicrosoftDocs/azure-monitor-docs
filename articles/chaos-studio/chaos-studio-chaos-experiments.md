@@ -1,15 +1,17 @@
 ---
-title: Experiments (classic) in Azure Chaos Studio
+title: Experiments (classic) overview
 description: Understand Experiments (classic) in Azure Chaos Studio, including the parts of a chaos experiment and how experiments use faults, targets, and sequencing.
 author: prasha-microsoft
 ms.reviewer: prashabora
 ms.topic: concept-article
-ms.date: 08/31/2026
+ms.date: 09/05/2026
 ms.custom: template-concept
 ai-usage: ai-assisted
 ---
 
-# Experiments (classic) in Azure Chaos Studio
+# Experiments (classic) overview
+
+Azure Chaos Studio Experiments (classic) defines resilience tests with faults, targets, steps, and branches. For current-model tests, use [Chaos Studio Workspaces Scenarios](chaos-studio-scenarios.md), or [compare Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md) to choose the model that fits your requirements.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

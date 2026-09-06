@@ -1,17 +1,37 @@
 ---
-title: Regional availability of Azure Chaos Studio
-description: Compare regional availability for Chaos Studio Workspaces and Experiments (classic), including Workspace deployment, experiments, and resource targeting.
+title: Regional availability by resource model
+description: Check Azure Chaos Studio regions for Workspaces deployment and cross-region Scenarios, plus separate Experiments (classic) and target availability.
 author: prasha-microsoft 
 ms.reviewer: prashabora
 ms.topic: concept-article
-ms.date: 08/31/2026
+ms.date: 09/05/2026
 ms.custom: template-concept, references_regions
 ai-usage: ai-assisted
 ---
 
-# Regional availability of Azure Chaos Studio
+# Regional availability by resource model
 
-This article describes regional availability for the two Azure Chaos Studio resource models: Chaos Studio Workspaces and Experiments (classic). It explains where you can deploy Workspaces and experiments, and where Experiments (classic) can target resources.
+Azure Chaos Studio regional availability differs by resource model. Start with the [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) deployment regions below. Workspaces can discover and run Scenarios against resources in any Azure region. The separate tables for Experiments (classic) describe experiment deployment and target availability, not Workspaces restrictions.
+
+## Regional availability of Chaos Studio Workspaces
+
+[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
+
+A Workspace is a logical resource: it can discover and run Scenarios against resources in any Azure region, regardless of where the Workspace itself is deployed. You don't need to create the Workspace in the same region as your target resources.
+
+During public preview, you can create Chaos Studio Workspaces in the following regions:
+
+- East US 2
+- West US 2
+- West Central US
+- North Europe
+- Sweden Central
+- UK South
+- Japan East
+
+No feature flag is required in these regions. Register the `Microsoft.Chaos` resource provider and create a Workspace. Because Workspaces target resources across regions, your target resources don't need to be in one of these regions.
+
+## Deployment and targeting regions for Experiments (classic)
 
 Chaos Studio is a regional Azure service. For Experiments (classic), the service has two regional components: the region where an experiment is deployed and the region where a resource is targeted.
 
@@ -64,24 +84,6 @@ The list of regions where resource targeting is available is a superset of the r
 * **Action execution**. When an experiment runs a fault, the fault itself (for example, shutting down a VM) happens within the target region.
 
 Any target or capability metadata is deleted when a target is deleted.
-
-## Regional availability of Chaos Studio Workspaces
-
-[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
-
-A Workspace is a logical resource: it can discover and run Scenarios against resources in any Azure region, regardless of where the Workspace itself is deployed. You don't need to create the Workspace in the same region as your target resources.
-
-During public preview, you can create Chaos Studio Workspaces in the following regions:
-
-- East US 2
-- West US 2
-- West Central US
-- North Europe
-- Sweden Central
-- UK South
-- Japan East
-
-No feature flag is required in these regions. Register the `Microsoft.Chaos` resource provider and create a Workspace. Because Workspaces target resources across regions, your target resources don't need to be in one of these regions.
 
 ## High availability with Chaos Studio
 

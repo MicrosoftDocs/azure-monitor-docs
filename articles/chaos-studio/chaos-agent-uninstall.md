@@ -1,15 +1,18 @@
 ---
-title: "Uninstalling the Chaos Agent"
-description: "Instructions for uninstalling the Chaos Agent via the Azure portal and Azure CLI."
+title: Uninstall the Chaos Studio agent (classic)
+description: Remove the Azure Chaos Studio agent from a virtual machine or scale set through the portal or CLI after using Experiments (classic).
 services: chaos-studio
 author: nikhilkaul-msft
 ms.topic: how-to
-ms.date: 03/02/2025
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.reviewer: nikhilkaul
 ms.custom: 
 ---
 
-# Uninstalling the Chaos Agent
+# Uninstall the Chaos Studio agent (classic)
+
+Remove an Azure Chaos Studio agent that you manage for Experiments (classic) with these steps. In the current model, [Workspaces agent-based Scenarios](chaos-studio-scenarios.md#agent-based-scenario-requirements) install and remove the agent as part of each run.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 

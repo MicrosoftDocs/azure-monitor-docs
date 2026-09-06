@@ -1,14 +1,17 @@
 ---
-title: Target selection in Azure Chaos Studio
-description: Understand two different ways to select experiment targets and target scoping in Azure Chaos Studio.
+title: Target selection for Experiments (classic)
+description: Compare manual and query-based target selection for Azure Chaos Studio Experiments (classic), including how dynamic targets are resolved at run time.
 author: prasha-microsoft
 ms.reviewer: prashabora
 ms.topic: concept-article
-ms.date: 10/14/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.custom: template-concept
 ---
 
-# Target selection in Azure Chaos Studio
+# Target selection for Experiments (classic)
+
+This target-selection guide applies to Azure Chaos Studio Experiments (classic). For the current model, review [Chaos Studio Workspaces discovery scope](chaos-studio-workspace-permissions.md#scope-determines-which-resources-a-workspace-can-discover) and [Scenario resource exclusions](chaos-studio-scenarios.md#resource-exclusions), which use a separate model.
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 
