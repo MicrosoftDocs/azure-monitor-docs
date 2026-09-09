@@ -222,14 +222,14 @@ Perf
 
 ```promql
 sum by ("Microsoft.resourceid", device, mountpoint, type) (
-  {"system.filesystem.usage", state="free", type=~"ext4|xfs|btrfs|ntfs|vfat"}
+  {"system.filesystem.usage", state="free"}
 ) / (1024 * 1024)
 ```
 
 **Query parameters:**
 - Time range: `7d`
 
-**Rationale:** Converts bytes to megabytes to match Windows counter output. Filters common filesystem types and excludes system volumes using regex pattern matching.
+**Rationale:** Converts bytes to megabytes to match Windows counter output.
 
 ### KQL vs PromQL syntax comparison
 
