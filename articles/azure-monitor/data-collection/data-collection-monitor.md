@@ -2,7 +2,7 @@
 title: Monitor DCR data collection in Azure Monitor
 description: Configure log collection for monitoring of DCR-based data collection in Azure Monitor.
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 09/10/2026
 ---
 
 # Monitor DCR data collection in Azure Monitor
@@ -74,6 +74,8 @@ DCR metrics are collected automatically for all DCRs, and you can analyze them u
 | Metric | Dimensions | Description |
 |--------|------------|-------------|
 | Logs Ingestion Bytes per Min | Input Stream | Total number of bytes received per minute. |
+| Logs Ingestion Bytes In (Uncompressed) | Input stream | Total uncompressed bytes ingested before transformation. |
+| Logs Ingestion Bytes Out (Uncompressed) | Input stream<br>Destination table | Total uncompressed bytes produced after transformation. |
 | Logs Ingestion Requests per Min | Input stream<br>HTTP response code | Number of calls received per minute. |
 | Logs Rows Dropped per Min | Input stream | Number of log rows dropped during processing per minute. This includes rows dropped both due to filtering criteria in KQL transformation and rows dropped due to errors. |
 | Logs Rows Received per Min | Input stream | Number of log rows received for processing per minute. |
