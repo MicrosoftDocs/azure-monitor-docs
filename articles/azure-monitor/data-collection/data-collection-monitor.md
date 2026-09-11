@@ -77,6 +77,7 @@ DCR metrics are collected automatically for all DCRs, and you can analyze them u
 | Logs Ingestion Bytes In (Uncompressed) | Input stream | Total uncompressed bytes ingested before transformation. |
 | Logs Ingestion Bytes Out (Uncompressed) | Input stream<br>Destination table | Total uncompressed bytes produced after transformation. This metric reflects transformation effects and doesn't represent bytes persisted in the destination. |
 | Logs Ingestion Requests per Min | Input stream<br>HTTP response code | Number of calls received per minute. |
+| Log Columns Dropped | Input stream<br>Columns dropped at | Number of columns dropped after data processing. |
 | Logs Rows Dropped per Min | Input stream | Number of log rows dropped during processing per minute. This includes rows dropped both due to filtering criteria in KQL transformation and rows dropped due to errors. |
 | Logs Rows Received per Min | Input stream | Number of log rows received for processing per minute. |
 | Logs Transformation Duration per Min | Input stream | Average KQL transformation runtime per minute. Represents KQL transformation code efficiency. Data flows with longer transformation run time can experience delays in data processing and greater data latency. |
@@ -92,6 +93,7 @@ The following signals could be useful for monitoring the health of your log coll
 | New entries in `DCRErrorLogs` or sudden change in `Log Transform Errors`. | * Problems with Log Ingestion API setup such as authentication, access to DCR or DCE, call payload issues.<br>- Changes in data structure causing KQL transformation failures.<br>- Changes in data destination configuration causing data delivery failures. |
 | Sudden change in `Logs Ingestion Bytes per Min` | * Changes in configuration of log ingestion on the client, including AMA settings.<br>- Changes in structure of logs sent.|
 | Sudden change in ratio between `Logs Ingestion Bytes In (Uncompressed)` and `Logs Ingestion Bytes Out (Uncompressed)` | * Changes in transformation selectivity. Split the output metric by destination table to identify the affected data flow. |
+| New values or a sudden change in `Log Columns Dropped` | * Changes in the incoming schema or transformation output. Split by the **Columns dropped at** dimension to identify the processing stage. |
 | Sudden change in ratio between `Logs Ingestion Bytes per Min` and `Logs Rows Received per Min` | * Changes in the structure of logs sent. Examine the changes to make sure the data is properly processed with KQL transformation. |
 | Sudden change in `Logs Transformation Duration per Min` | * Changes in the structure of logs affecting the efficiency of log filtering criteria set in KQL transformation. Examine the changes to make sure the data is properly processed with KQL transformation. |
 | `Logs Ingestion Requests per Min` or `Logs Ingestion Bytes per Min` approaching Log Ingestion API service limits. | * Examine and optimize your DCR configuration to avoid throttling. |
@@ -103,6 +105,7 @@ Rather than reactively troubleshooting issues, create alert rules to be proactiv
 | Condition | Alert details |
 |:----------|:--------------|
 | Sudden changes of rows dropped | Metric alert rule using a dynamic threshold for `Logs Rows Dropped per Min`. |
+| Columns dropped during data processing | Metric alert rule using a static or dynamic threshold for `Log Columns Dropped`. |
 | Number of API calls approaching service limits | Metric alert rule using a static threshold for `Logs Ingestion Requests per Min`. Set threshold near 12,000, which is the service limit for maximum requests/minute per DCR. |
 | Error logs | Log query alert using `DCRLogErrors`. Use a **Table rows** measure and **Threshold value** of **1** to be alerted whenever any errors are logged. |
 
