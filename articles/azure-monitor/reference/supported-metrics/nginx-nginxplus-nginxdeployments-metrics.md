@@ -2,7 +2,7 @@
 title: Supported metrics - NGINX.NGINXPLUS/nginxDeployments
 description: Reference for NGINX.NGINXPLUS/nginxDeployments metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 09/08/2026
 ms.custom: NGINX.NGINXPLUS/nginxDeployments, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -272,9 +272,9 @@ For a list of supported logs, see [Supported log categories - NGINX.NGINXPLUS/ng
 ### Category: nginxaas statistics
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**NCU provisioned**<br><br>The number of successfully provisioned NCUs during the aggregation interval. During scaling events, this may lag behind ncu.requested as the system works to achieve the request. Available for Standard plan deployments |`ncu.provisioned` | No | Count |Total (Sum) |\<none\>|PT1M |Yes|
-|**NCU requested**<br><br>The requested number of NCUs during the aggregation interval. Describes the goal state of the system. Available for Standard plan deployments |`ncu.requested` | No | Count |Total (Sum) |\<none\>|PT1M |Yes|
-|**NGINXaaS capacity percentage**<br><br>The percentage of the deployment's total capacity being used. This may burst above 100%. Available for Standard plan deployments |`nginxaas.capacity.percentage` | No | Count |Total (Sum) |\<none\>|PT1M |Yes|
+|**NCU provisioned**<br><br>The number of successfully provisioned NCUs during the aggregation interval. During scaling events, this may lag behind ncu.requested as the system works to achieve the request. Available for Standard plan deployments |`ncu.provisioned` | No | Count |Maximum |\<none\>|PT1M |Yes|
+|**NCU requested**<br><br>The requested number of NCUs during the aggregation interval. Describes the goal state of the system. Available for Standard plan deployments |`ncu.requested` | No | Count |Maximum |\<none\>|PT1M |Yes|
+|**NGINXaaS capacity percentage**<br><br>The percentage of the deployment's total capacity being used. This may burst above 100%. Available for Standard plan deployments |`nginxaas.capacity.percentage` | No | Count |Maximum |\<none\>|PT1M |Yes|
 |**Certificates**<br><br>The number of certificates added to the NGINXaaS deployment dimensioned by the name of the certificate and its status |`nginxaas.certificates` | No | Count |Total (Sum) |`name`, `status`|PT1M |Yes|
 |**Maxmind status**<br><br>The status of any MaxMind license in use for downloading geoip2 databases. Refer to License Health to learn more about the status dimension |`nginxaas.maxmind` | No | Count |Total (Sum) |`status`|PT1M |Yes|
 |**Ports used**<br><br>The number of listen ports used by the deployment during the aggregation interval. |`ports.used` | No | Count |Total (Sum) |\<none\>|PT1M |Yes|
