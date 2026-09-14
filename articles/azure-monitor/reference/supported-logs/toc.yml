@@ -200,6 +200,9 @@ items:
 - name: Microsoft.Devices/IotHubs
   href: microsoft-devices-iothubs-logs.md
   displayName: C2D Commands,C2D Twin Operations,Configurations,Connections,D2CTwinOperations,Device Identity Operations,Device Streams (Preview),Device Telemetry,Direct Methods,Distributed Tracing (Preview),File Upload Operations,Jobs Operations,Routes,Twin Queries
+- name: Microsoft.Devices/provisioningServices
+  href: microsoft-devices-provisioningservices-logs.md
+  displayName: Device Operations,Service Operations
 - name: Microsoft.DevOpsInfrastructure/pools
   href: microsoft-devopsinfrastructure-pools-logs.md
   displayName: Resource Provisioning Logs

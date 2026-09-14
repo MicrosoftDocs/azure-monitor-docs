@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.DBforPostgreSQL/flexibleServers
 description: Reference for Microsoft.DBforPostgreSQL/flexibleServers metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 08/21/2026
+ms.date: 09/08/2026
 ms.custom: Microsoft.DBforPostgreSQL/flexibleServers, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -100,6 +100,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.DBforPos
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**Active client connections**<br><br>Connections from clients which are associated with a PostgreSQL connection |`client_connections_active` | No | Count |Maximum, Minimum, Average |`DatabaseName`, `ServerName`|PT1M |Yes|
+|**Total client connections (Preview)**<br><br>Total number of client connections established to PgBouncer, including active, waiting, and authenticating connections |`client_connections_total` | No | Count |Maximum, Minimum, Average |`ServerName`|PT1M |Yes|
 |**Waiting client connections**<br><br>Connections from clients that are waiting for a PostgreSQL connection to service them |`client_connections_waiting` | No | Count |Maximum, Minimum, Average |`DatabaseName`, `ServerName`|PT1M |Yes|
 |**Number of connection pools**<br><br>Total number of connection pools |`num_pools` | No | Count |Maximum, Minimum, Average |`DatabaseName`, `ServerName`|PT1M |Yes|
 |**Active server connections**<br><br>Connections to PostgreSQL that are in use by a client connection |`server_connections_active` | No | Count |Maximum, Minimum, Average |`DatabaseName`, `ServerName`|PT1M |Yes|

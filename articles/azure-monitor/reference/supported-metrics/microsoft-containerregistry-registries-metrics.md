@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.ContainerRegistry/registries
 description: Reference for Microsoft.ContainerRegistry/registries metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 09/08/2026
 ms.custom: Microsoft.ContainerRegistry/registries, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -35,12 +35,14 @@ For a list of supported logs, see [Supported log categories - Microsoft.Containe
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**AgentPool CPU Time**<br><br>AgentPool CPU Time in seconds |`AgentPoolCPUTime` | No | Seconds |Total (Sum) |\<none\>|PT1M |Yes|
+|**Data Transfer**<br><br>Total outbound data transferred from the registry, measured in bytes. |`DataTransfer` | No | Bytes |Total (Sum) |`ApiName`, `Region`|PT1M |Yes|
 |**Run Duration**<br><br>Run Duration in milliseconds |`RunDuration` | No | MilliSeconds |Total (Sum) |\<none\>|PT1M |Yes|
 |**Storage used**<br><br>The amount of storage used by the container registry. For a registry account, it's the sum of capacity used by all the repositories within a registry. It's sum of capacity used by shared layers, manifest files, and replica copies in each of its repositories. |`StorageUsed` | No | Bytes |Average |`Geolocation`|PT1H |Yes|
 |**Successful Pull Count**<br><br>Number of successful image pulls |`SuccessfulPullCount` | No | Count |Total (Sum) |\<none\>|PT1M |Yes|
 |**Successful Push Count**<br><br>Number of successful image pushes |`SuccessfulPushCount` | No | Count |Total (Sum) |\<none\>|PT1M |Yes|
 |**Total Pull Count**<br><br>Number of image pulls in total |`TotalPullCount` | No | Count |Total (Sum) |\<none\>|PT1M |Yes|
 |**Total Push Count**<br><br>Number of image pushes in total |`TotalPushCount` | No | Count |Total (Sum) |\<none\>|PT1M |Yes|
+|**Transactions**<br><br>Count of registry API operations, segmented by API name and response type. |`Transactions` | No | Count |Total (Sum) |`ApiName`, `ResponseType`, `Region`|PT1M |Yes|
 
 ## Next steps
 

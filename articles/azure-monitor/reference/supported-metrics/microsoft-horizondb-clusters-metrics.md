@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.HorizonDB/clusters
 description: Reference for Microsoft.HorizonDB/clusters metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 08/14/2026
+ms.date: 09/08/2026
 ms.custom: Microsoft.HorizonDB/clusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -37,6 +37,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.HorizonD
 |---|---|---|---|---|---|---|---|
 |**Active Connections**<br><br>Active Database Connections |`ActiveConnections` | No | Count |Average, Maximum, Minimum |`ReplicaName`|PT1M |No|
 |**Succeeded Connections**<br><br>Succeeded Connections |`ConnectionsSucceeded` | No | Count |Total (Sum) |`ReplicaName`|PT1M |No|
+|**Queries per Second**<br><br>Number of top-level queries executed per second, excluding queries nested within functions |`QueriesPerSecond` | No | Count |Minimum, Maximum, Total (Sum) |`ReplicaName`|PT1M |No|
 |**Query Store Flush Status**<br><br>Indicates if the last query store flush succeeded (1) or failed (0) |`QueryStoreFlushStatus` | No | Count |Average, Maximum, Minimum |`ReplicaName`|PT1M |No|
 |**Total Transactions**<br><br>Number of total transactions executed in this database |`TotalTransactions` | No | Count |Total (Sum) |`database_name`, `ReplicaName`|PT1M |No|
 |**Transactions Committed**<br><br>Number of transactions in this database that have been committed |`TransactionsCommitted` | No | Count |Total (Sum) |`database_name`, `ReplicaName`|PT1M |No|
@@ -70,7 +71,8 @@ For a list of supported logs, see [Supported log categories - Microsoft.HorizonD
 ### Category: Database
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Buffer Pool Cache Hit Ratio**<br><br>Cache hit ratio for shared buffers |`BufferPoolCacheHitRatio` | No | Count |Average, Maximum, Minimum |`ReplicaName`|PT1M |No|
+|**Buffer Pool Cache Hit Ratio**<br><br>Percentage of reads served from shared buffers |`BufferPoolCacheHitRatio` | No | Count |Average, Maximum, Minimum |`ReplicaName`|PT1M |No|
+|**Database Size**<br><br>Size of database |`DatabaseSize` | No | Bytes |Average, Maximum, Minimum |`database_name`, `ReplicaName`|PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Maximum Used Transaction IDs**<br><br>Largest number of transaction IDs consumed; used to monitor proximity to XID wraparound |`MaximumUsedTransactionIDs` | No | Count |Average, Maximum, Minimum |`ReplicaName`|PT1M |No|
 |**Temporary Files**<br><br>Number of temporary files that were created by queries in this database |`TemporaryFiles` | No | Count |Total (Sum) |`database_name`, `ReplicaName`|PT1M |No|
 |**Temporary Files Size**<br><br>Total amount of data that's written to temporary files by queries in this database |`TemporaryFilesSize` | No | Bytes |Total (Sum) |`database_name`, `ReplicaName`|PT1M |No|
@@ -91,14 +93,41 @@ For a list of supported logs, see [Supported log categories - Microsoft.HorizonD
 |**Network Out**<br><br>Network Out across active connections |`NetworkBytesEgress` | No | Bytes |Total (Sum) |`ReplicaName`|PT1M |No|
 |**Network In**<br><br>Network In across active connections |`NetworkBytesIngress` | No | Bytes |Total (Sum) |`ReplicaName`|PT1M |No|
 
+### Category: Replication
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Max Logical Replication Lag**<br><br>Maximum lag across all logical replication slots |`MaxLogicalReplicationDelay` | No | Bytes |Maximum, Minimum, Average |`ReplicaName`|PT1M |No|
+
 ### Category: Storage
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**Commit Latency, in Microsecond**<br><br>The maximum duration taken by the engine to complete the commit operations |`CommitLatency` | No | Unspecified |Maximum |\<none\>|PT1M |No|
+|**Read Iops**<br><br>Number of read I/O operations from storage |`ReadIops` | No | CountPerSecond |Average, Maximum, Minimum |`ReplicaName`|PT1M |No|
+|**Read Throughput**<br><br>Amount of data read from storage |`ReadThroughput` | No | BytesPerSecond |Average, Maximum, Minimum |`ReplicaName`|PT1M |No|
+|**SSD Cache Hit Ratio**<br><br>Percentage of reads served by the local SSD cache |`SsdCacheHitRatio` | No | Percent |Average, Maximum, Minimum |`ReplicaName`|PT1M |No|
+|**SSD Cache Hits**<br><br>Number of reads served by the local SSD cache |`SsdCacheHits` | No | Count |Average, Maximum, Minimum |`ReplicaName`|PT1M |No|
+|**SSD Cache Misses**<br><br>Number of reads that missed the SSD cache and were served from the storage |`SsdCacheMisses` | No | Count |Average, Maximum, Minimum |`ReplicaName`|PT1M |No|
+|**SSD Cache Writes**<br><br>Number of writes performed into the SSD cache |`SsdCacheWrites` | No | Count |Average, Maximum, Minimum |`ReplicaName`|PT1M |No|
 |**Storage Used**<br><br>Amount of storage space that's used. The storage that's used by the service can include the database files and the transaction log tail |`StorageUsed` | No | Bytes |Average, Maximum, Minimum |\<none\>|PT1M |No|
 |**WAL Bytes Written**<br><br>Amount of WAL Bytes generated by PostgreSQL Engine |`WALBytesWritten` | No | BytesPerSecond |Maximum |\<none\>|PT1M |No|
-|**WAL Writes per Second**<br><br>Number of WAL I/O operations per second |`WALWritesPerSecond` | No | CountPerSecond |Maximum |\<none\>|PT1M |No|
-|**Write Latency, in Microsecond**<br><br>The maximum duration taken by WAL record to be flushed |`WriteLatency` | No | Unspecified |Maximum |\<none\>|PT1M |No|
+|**WAL Writes per Second**<br><br>Number of WAL write I/O operations per second |`WALWritesPerSecond` | No | CountPerSecond |Maximum |\<none\>|PT1M |No|
+|**Write Latency, in Microsecond**<br><br>Maximum time taken to flush a WAL record (microseconds) |`WriteLatency` | No | Unspecified |Maximum |\<none\>|PT1M |No|
+
+### Category: Vacuum
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Analyze Operations on User Tables**<br><br>Number of times user tables have been manually analyzed in this database |`AnalyzeUserTables` | No | Count |Maximum, Minimum, Average |`database_name`, `ReplicaName`|PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**Autoanalyze Operations on User Tables**<br><br>Number of times user tables have been analyzed by the autovacuum daemon in this database |`AutoAnalyzeUserTables` | No | Count |Maximum, Minimum, Average |`database_name`, `ReplicaName`|PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**Autovacuum Operations on User Tables**<br><br>Number of times user tables have been vacuumed by the autovacuum daemon in this database |`AutovacuumUserTables` | No | Count |Maximum, Minimum, Average |`database_name`, `ReplicaName`|PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**Bloat Percent**<br><br>Estimated bloat percentage for user tables in this database |`BloatPercent` | No | Percent |Maximum |`database_name`, `ReplicaName`|PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**Estimated Dead Rows in User Tables**<br><br>Estimated number of dead rows in user tables in this database |`EstimatedDeadRowsUserTables` | No | Count |Maximum, Minimum, Average |`database_name`, `ReplicaName`|PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**Estimated Live Rows in User Tables**<br><br>Estimated number of live rows in user tables in this database |`EstimatedLiveRowsUserTables` | No | Count |Maximum, Minimum, Average |`database_name`, `ReplicaName`|PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**Rows Modified Since Analyze in User Tables**<br><br>Estimated number of rows modified since user tables were last analyzed in this database |`ModifiedRowsSinceAnalyzeUserTables` | No | Count |Maximum, Minimum, Average |`database_name`, `ReplicaName`|PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**User Tables**<br><br>Number of user tables in this database |`UserTables` | No | Count |Maximum, Minimum, Average |`database_name`, `ReplicaName`|PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**Analyzed User Tables**<br><br>Number of user tables analyzed in this database |`UserTablesAnalyzed` | No | Count |Maximum, Minimum, Average |`database_name`, `ReplicaName`|PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**Autoanalyzed User Tables**<br><br>Number of user tables analyzed by the autovacuum daemon in this database |`UserTablesAutoanalyzed` | No | Count |Maximum, Minimum, Average |`database_name`, `ReplicaName`|PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**Autovacuumed User Tables**<br><br>Number of user tables vacuumed by the autovacuum daemon in this database |`UserTablesAutovacuumed` | No | Count |Maximum, Minimum, Average |`database_name`, `ReplicaName`|PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**Vacuumed User Tables**<br><br>Number of user tables vacuumed in this database |`UserTablesVacuumed` | No | Count |Maximum, Minimum, Average |`database_name`, `ReplicaName`|PT30M, PT1H, PT6H, PT12H, P1D |No|
 
 ## Next steps
 
