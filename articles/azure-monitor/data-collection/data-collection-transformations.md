@@ -29,6 +29,8 @@ The following tables in a Log Analytics workspace support transformations.
 
 Some data collection scenarios support adding a transformation through the Azure portal, but most scenarios require creating a new DCR using its JSON definition or adding a transformation to an existing DCR. See [Create a transformation in Azure Monitor](data-collection-transformations-create.md) for different options and [Best practices and samples for transformations in Azure Monitor](data-collection-transformations-samples.md) for sample transformation queries of common scenarios.
 
+In the DCR JSON, `properties.dataFlows[].transformKql` defines an inline KQL transformation. Multi-stage transformations instead define named pipelines in `properties.transformations` and assign them through `transform` on a supported data source or data flow. Don't specify both `transform` and `transformKql` on the same data flow. For how these properties relate to collection scenarios, see [Overview of DCR data flow](data-collection-rule-structure.md#overview-of-dcr-data-flow).
+
 ## Multi-stage transformations (preview)
 
 > [!IMPORTANT]
