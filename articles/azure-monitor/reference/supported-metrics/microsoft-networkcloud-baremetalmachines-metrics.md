@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.NetworkCloud/bareMetalMachines
 description: Reference for Microsoft.NetworkCloud/bareMetalMachines metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 09/15/2026
 ms.custom: Microsoft.NetworkCloud/bareMetalMachines, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -84,7 +84,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 |**MST Register Temperature**<br><br>Temperature (in Celsius) reported by the MST (Mellanox Software Tools) register. |`MellanoxMstregTemperature` | No | Unspecified |Average |`Host`, `Interface Name`, `MachineRole`|PT1M |No|
 |**Received Bytes**<br><br>This point in time metric represents the number of bytes that have been successfully received by the network interface at the physical layer since the last collection. |`MellanoxRxBytesPhy` | No | Bytes |Average |`Host`, `Interface Name`, `MachineRole`|PT1M |No|
 |**Corrected Bits**<br><br>This point in time metric represents the number of bits corrected by the network device since the last collection. |`MellanoxRxCorrectedBitsPhy` | No | Count |Average |`Host`, `Interface Name`, `MachineRole`|PT1M |No|
-|**Corrected Bit Rate**<br><br>Rate of corrected bits by the network device, the rate is determined by the number of corrected bits divided by the number of RX bytes recieved in the given time frame. |`MellanoxRxCorrectedRate` | No | Percent |Average |`Host`, `Interface Name`, `MachineRole`|PT1M |No|
+|**Corrected Bit Rate**<br><br>Rate of corrected bits by the network device, the rate is determined by the number of corrected bits divided by the number of RX bytes received in the given time frame. |`MellanoxRxCorrectedRate` | No | Percent |Average |`Host`, `Interface Name`, `MachineRole`|PT1M |No|
 |**CRC Errors**<br><br>This point in time metric represents the number of CRC errors encountered by the network device since the last collection. |`MellanoxRxCrcErrorsPhy` | No | Count |Average |`Host`, `Interface Name`, `MachineRole`|PT1M |No|
 |**Network Error Rate**<br><br>Rate of errors encountered by the network device as determined by the number of MellanoxRxPcsSymbolErrPhy errors divided by the number of RX bytes in a specific time frame and indicates the errors that FEC could not correct. |`MellanoxRxErrorRate` | No | Percent |Average |`Host`, `Interface Name`, `MachineRole`|PT1M |No|
 |**PCS Symbol Errors**<br><br>This point in time metric represents the number of PCS symbol errors encountered by the network device since the last collection. |`MellanoxRxPcsSymbolErrPhy` | No | Count |Average |`Host`, `Interface Name`, `MachineRole`|PT1M |No|
@@ -124,7 +124,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 |**Node Network Received Packets**<br><br>Total number of packets received by the node network interfaces. |`NodeNetworkReceivePackets` | No | Count |Average |`Device`, `Host`, `MachineRole`|PT1M |No|
 |**Node Network Speed Bytes**<br><br>Current network speed, in bytes per second, for the node network interfaces. |`NodeNetworkSpeedBytes` | No | Bytes |Average |`Device`, `Host`, `MachineRole`|PT1M |No|
 |**Node Network Up**<br><br>Indicates the operational status of the nodes network interfaces. Value is 1 if operstate is 'up', 0 otherwise. |`NodeNetworkStatus` | No | Count |Count |`Device`, `Host`, `MachineRole`|PT1M |No|
-|**Node Network Transmited Packets**<br><br>Total number of packets transmitted by the node network interfaces. |`NodeNetworkTransmitPackets` | No | Count |Average |`Device`, `Host`, `MachineRole`|PT1M |No|
+|**Node Network Transmitted Packets**<br><br>Total number of packets transmitted by the node network interfaces. |`NodeNetworkTransmitPackets` | No | Count |Average |`Device`, `Host`, `MachineRole`|PT1M |No|
 
 ### Category: Storage
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|

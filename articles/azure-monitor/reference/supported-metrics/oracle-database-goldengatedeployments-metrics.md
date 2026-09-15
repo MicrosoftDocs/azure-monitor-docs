@@ -2,7 +2,7 @@
 title: Supported metrics - Oracle.Database/goldenGateDeployments
 description: Reference for Oracle.Database/goldenGateDeployments metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 08/28/2026
+ms.date: 09/15/2026
 ms.custom: Oracle.Database/goldenGateDeployments, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -56,7 +56,7 @@ For a list of supported logs, see [Supported log categories - Oracle.Database/go
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**CPU Utilization**<br><br>Total CPU usage percentage by all consumer groups. |`oci_goldengate_CpuUtilization` | No | Percent |Minimum, Maximum, Average |`deploymentId`, `deploymentName`|PT1M |No|
-|**File System Usage**<br><br>Percentage of file system used. |`oci_goldengate_FileSystemUsage` | No | Percent |Minimum, Maximum, Average |`deploymentId`, `deploymentName`|PT1M |No|
+|**File System Usage**<br><br>Amount of file system space, in GB, used by the deployment. |`oci_goldengate_FileSystemUsage` | No | Bytes |Minimum, Maximum, Average |`deploymentId`, `deploymentName`|PT1M |No|
 |**Memory Utilization**<br><br>Percentage of available memory used. |`oci_goldengate_MemoryUtilization` | No | Percent |Minimum, Maximum, Average |`deploymentId`, `deploymentName`|PT1M |No|
 |**OCPU Consumption**<br><br>Total OCPU number consumed by the deployment. |`oci_goldengate_OcpuConsumption` | No | Count |Minimum, Maximum, Average |`deploymentId`, `deploymentName`|PT1M |No|
 |**Swap Space Usage**<br><br>Percentage of swap space used by the deployment. |`oci_goldengate_SwapSpaceUsage` | No | Percent |Minimum, Maximum, Average |`deploymentId`, `deploymentName`|PT1M |No|

@@ -628,4 +628,4 @@ items:
   displayName: Creation Events,Delete Events,Update Events
 - name: Oracle.Database/goldenGateDeployments
   href: oracle-database-goldengatedeployments-logs.md
-  displayName: Backup Events,Creation Events,Critical Events,Delete Events,Information Events,Maintenance Events,Restore Events,Update Events
+  displayName: Backup Events,Critical Events,Delete Events,Information Events,Maintenance Events,Update Events
