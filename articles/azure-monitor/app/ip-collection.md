@@ -39,6 +39,9 @@ To enable IP collection and storage, the `DisableIpMasking` property of the Appl
 
 If you use OpenTelemetry, you can also populate the request IP used for geolocation by setting the `client.address` span attribute. The stored `client_IP` value still follows the masking behavior described in this article unless `DisableIpMasking` is enabled. For more information, see [Set the user IP](opentelemetry-add-modify.md#set-the-user-ip).
 
+> [!NOTE]
+> `DisableIpMasking` applies to classic Application Insights ingestion. Telemetry ingested through the native OTLP path (OTLP endpoint to data collection endpoint to data collection rule, stored in the `OTelLogs` and `OTelSpans` tables) records `0.0.0.0` in `ClientIP` regardless of the `DisableIpMasking` value. The `client.address` attribute is still used for the geolocation lookup on that path, but the address itself is not retained.
+
 For broader control over sensitive telemetry such as IP addresses, set the relevant tables as protected. Protected tables block standard and custom read roles by default until you grant explicit access. For more information, see [Configure protected tables in Azure Monitor Logs](../logs/protected-tables-configure.md).
 
 ## Disable IP masking
