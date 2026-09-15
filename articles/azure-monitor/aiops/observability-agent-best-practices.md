@@ -59,7 +59,7 @@ Exceptions must either:
 
 ### Use the latest Application Insights SDK or OpenTelemetry distro
 
-Use the latest supported [Application Insights SDK](../app/asp-net.md) or [Azure Monitor OpenTelemetry distribution](../app/opentelemetry-enable.md). For new applications, use OpenTelemetry-based instrumentation. Older SDK versions might send telemetry by using outdated models or inefficient collection methods.
+Use the latest supported [Application Insights SDK](../app/asp-net.md) or [Microsoft OpenTelemetry Distro](../app/opentelemetry-enable.md) for .NET, Node.js, and Python. For Java, use the Azure Monitor OpenTelemetry Distro. For new applications, use OpenTelemetry-based instrumentation. Older SDK versions might send telemetry by using outdated models or inefficient collection methods.
 
 Newer versions provide:
 

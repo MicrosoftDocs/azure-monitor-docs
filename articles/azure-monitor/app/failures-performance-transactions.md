@@ -71,9 +71,9 @@ The **Search** view allows you to find and explore individual telemetry items.
 ---
 
 > [!NOTE]
-> In addition to the out-of-the-box telemetry sent by the Azure Monitor OpenTelemetry Distro or JavaScript SDK, you can add and modify telemetry (for example, custom events).
+> In addition to the out-of-the-box telemetry sent by the Microsoft OpenTelemetry Distro for .NET, Node.js, and Python, the Azure Monitor OpenTelemetry Distro for Java, or the JavaScript SDK, you can add and modify telemetry (for example, custom events).
 >
-> For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md).
+> For more information, see [Add and modify OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md).
 
 ## Filter telemetry
 
@@ -99,7 +99,7 @@ You can select which event types to view from the **Event types** dropdown menu,
 
 * **Availability** - Results from [availability tests](availability-overview.md), used to monitor uptime and responsiveness from different locations around the globe.
 
-* **Custom Event** - Custom events set up and captured using the [Azure Monitor OpenTelemetry Distro](opentelemetry-add-modify.md#send-custom-events) or the [JavaScript SDK](javascript-sdk.md).
+* **Custom Event** - Custom events set up and captured using the [Microsoft OpenTelemetry Distro](opentelemetry-add-modify.md#send-custom-events) for .NET, Node.js, and Python, the Azure Monitor OpenTelemetry Distro for Java, or the [JavaScript SDK](javascript-sdk.md).
 
 * **Dependency** - Outbound calls from your application to external services such as REST APIs, databases, or message queues.
 
@@ -109,7 +109,7 @@ You can select which event types to view from the **Event types** dropdown menu,
 
 * **Request** - HTTP requests to your server application, including API calls, web pages, and assets. These events are used to create the request and response overview charts.
 
-* **Trace** - Diagnostic log data captured through logging frameworks included in the [Azure Monitor OpenTelemetry Distro](opentelemetry-collect-detect.md#included-instrumentation-libraries).
+* **Trace** - Diagnostic log data captured through logging frameworks included in the [Microsoft OpenTelemetry Distro](opentelemetry-collect-detect.md#included-instrumentation-libraries) for .NET, Node.js, and Python, or the Azure Monitor OpenTelemetry Distro for Java.
 
 If you want to restore the filters later, select **Reset** from the top navigation bar.
 
