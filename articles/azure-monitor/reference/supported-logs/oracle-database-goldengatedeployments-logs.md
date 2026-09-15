@@ -2,7 +2,7 @@
 title: Supported log categories - Oracle.Database/goldenGateDeployments
 description: Reference for Oracle.Database/goldenGateDeployments in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 08/28/2026
+ms.date: 09/15/2026
 ms.custom: Oracle.Database/goldenGateDeployments, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -19,12 +19,10 @@ For a list of supported metrics, see [Supported metrics - Oracle.Database/golden
 |Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
 |---|---|---|---|---|---|
 |Backup|Yes||No|No||
-|Creation|Yes||No|No||
 |Critical|Yes||No|No||
 |Delete|Yes||No|No||
 |Information|Yes||No|No||
 |Maintenance|Yes||No|No||
-|Restore|Yes||No|No||
 |Update|Yes||No|No||
 
 ## Next Steps

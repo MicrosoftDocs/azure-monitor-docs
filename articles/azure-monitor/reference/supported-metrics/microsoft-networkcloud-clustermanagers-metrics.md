@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.NetworkCloud/clusterManagers
 description: Reference for Microsoft.NetworkCloud/clusterManagers metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 09/15/2026
 ms.custom: Microsoft.NetworkCloud/clusterManagers, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -37,9 +37,9 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 |---|---|---|---|---|---|---|---|
 |**Cluster Connection Status**<br><br>Tracks changes in the connection status of the Cluster(s) managed by the Cluster Manager. The reason filter describes the connection status. In the absence of data, this metric will default to 0. |`NexusClusterConnectionStatus` | No | Count |Average |`clusterName`, `reason`|PT1M |No|
 |**Cluster Deploy Requests**<br><br>Nexus cluster deployment requests. This metric is emitted only when there is a cluster deployment request, so an Aggregation type of 'Count' should be used. Note, filter on the property 'Result' to see if the deployment was successful or not. If using an aggregation type of 'Avg', please note 1 denotes unsuccessful 0 denotes successful. In the absence of data, this metric will default to 0. |`NexusClusterDeploymentClusterRequests` | No | Count |Average |`clusterName`, `clusterVersion`, `result`|PT1M |No|
-|**Cluster Machine Upgrade**<br><br>Nexus machine upgrade request, successful will have a value of 0 while unsuccessful while have a value of 1. |`NexusClusterMachineUpgrade` | No | Count |Average |`clusterName`, `clusterVersion`, `result`, `upgradedFromVersion`, `upgradedToVersion`, `upgradeStrategy`|PT1M |No|
-|**Cluster Management Bundle Upgrade**<br><br>Nexus Cluster management bundle upgrade, successful will have a value of 0 while unsuccessful while have a value of 1. |`NexusClusterManagementBundleUpgrade` | No | Count |Average |`clusterName`, `clusterVersion`, `result`, `upgradedFromVersion`, `upgradedToVersion`|PT1M |No|
-|**Cluster Runtime Bundle Upgrade**<br><br>Nexus Cluster runtime bundle upgrade, successful will have a value of 0 while unsuccessful while have a value of 1. |`NexusClusterRuntimeBundleUpgrade` | No | Count |Average |`clusterName`, `clusterVersion`, `result`, `upgradedFromVersion`, `upgradedToVersion`|PT1M |No|
+|**Cluster Machine Upgrade**<br><br>Nexus machine upgrade request. This metric is emitted only when there is a cluster machine upgrade request, so an Aggregation type of 'Count' should be used. Note, filter on the property 'Result' to see if the deployment was successful or not. If using an aggregation type of 'Avg', please note 1 denotes unsuccessful 0 denotes successful. |`NexusClusterMachineUpgrade` | No | Count |Average |`clusterName`, `clusterVersion`, `result`, `upgradedFromVersion`, `upgradedToVersion`, `upgradeStrategy`|PT1M |No|
+|**Cluster Management Bundle Upgrade**<br><br>Nexus Cluster management bundle upgrade. This metric is emitted only when there is a cluster management bundle upgrade request, so an Aggregation type of 'Count' should be used. Note, filter on the property 'Result' to see if the deployment was successful or not. If using an aggregation type of 'Avg', please note 1 denotes unsuccessful 0 denotes successful. |`NexusClusterManagementBundleUpgrade` | No | Count |Average |`clusterName`, `clusterVersion`, `result`, `upgradedFromVersion`, `upgradedToVersion`|PT1M |No|
+|**Cluster Runtime Bundle Upgrade**<br><br>Nexus Cluster runtime bundle upgrade. This metric is emitted only when there is a cluster runtime bundle upgrade request, so an Aggregation type of 'Count' should be used. Note, filter on the property 'Result' to see if the deployment was successful or not. If using an aggregation type of 'Avg', please note 1 denotes unsuccessful 0 denotes successful. |`NexusClusterRuntimeBundleUpgrade` | No | Count |Average |`clusterName`, `clusterVersion`, `result`, `upgradedFromVersion`, `upgradedToVersion`|PT1M |No|
 
 ## Next steps
 
