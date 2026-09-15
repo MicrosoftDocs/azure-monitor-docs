@@ -58,7 +58,7 @@ The following tables list where preaggregation occurs.
 
 ### Metrics preaggregation with Microsoft OpenTelemetry Distro
 
-Use the Microsoft OpenTelemetry Distro for .NET, Node.js, and Python. For Java, use the Azure Monitor OpenTelemetry Distro. The table also includes the standalone .NET exporter.
+Use the Microsoft OpenTelemetry Distro for .NET, Node.js, and Python. For Java, use the Azure Monitor OpenTelemetry Distro. The following table also includes the standalone .NET exporter.
 
 | Current production SDK | Standard metrics preaggregation | Custom metrics preaggregation |
 |------------------------|---------------------------------|-------------------------------|

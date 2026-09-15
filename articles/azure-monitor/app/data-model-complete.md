@@ -25,7 +25,7 @@ Data collected by Application Insights models this typical application execution
 
 ## Types of telemetry
 
-The following types of telemetry are used to monitor the execution of your application. Collection depends on the language and instrumentation: the [Microsoft OpenTelemetry Distro](opentelemetry-enable.md) for .NET, Node.js, and Python, the Azure Monitor OpenTelemetry Distro for Java, or the [Application Insights JavaScript SDK](javascript-sdk.md) for browsers.
+Use the following types of telemetry to monitor the execution of your application. Collection depends on the language and instrumentation: the [Microsoft OpenTelemetry Distro](opentelemetry-enable.md) for .NET, Node.js, and Python, the Azure Monitor OpenTelemetry Distro for Java, or the [Application Insights JavaScript SDK](javascript-sdk.md) for browsers.
 
 | Telemetry type | Table name<br>(Application Insights) | Table name<br>(Log Analytics) | Description |
 |----------------|--------------------------------------|-------------------------------|-------------|
