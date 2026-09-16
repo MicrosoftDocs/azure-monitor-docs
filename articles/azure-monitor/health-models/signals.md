@@ -2,7 +2,7 @@
 title: Signals in Azure Monitor health models (preview)
 description: Learn signal concepts and configuration for Azure Monitor health models, including signal types, data sources, definitions, and thresholds.
 ms.topic: how-to
-ms.date: 09/01/2026
+ms.date: 09/10/2026
 ai-usage: ai-assisted
 ---
 
@@ -101,6 +101,20 @@ ContainerLogV2
 | summarize value = count()
 ```
 
+The Azure portal provides a visual editor for log queries.
+
+- Use **Insert template** to see the available query template strings and insert them into the query. This command is disabled when the cursor isn't inside a string literal.
+- Use **Open in Logs view** to preview query results for a richer authoring experience.
+  - Run the query to apply your changes.
+  - Query template strings resolve to their actual values, so the Logs view provides accurate results.
+  - When you return from the Logs view, resolved values are parsed back into query template strings.
+
+> [!IMPORTANT]
+> The Logs view uses your user identity, while signal evaluation uses the identity of the health model. Depending on the permissions assigned to each identity, the query might fail or return different data.
+
+:::image type="content" source="media/signals/log-query-editor.png" lightbox="media/signals/log-query-editor.png" alt-text="Screenshot of log query editor.":::
+
+
 ### Signal properties
 The following table describes the properties that define Log Analytics workspace signal.
 
@@ -125,6 +139,14 @@ Azure Monitor workspace signals run a [PromQL query](../metrics/metrics-explorer
 ### Azure Monitor workspace
 Before you can create an Azure Monitor workspace signal, you must specify the workspace to query and the authentication that the health model will use to access it. You can only specify a single workspace for each entity.
 
+### PromQL query
+
+The Azure portal provides a visual editor for Prometheus queries.
+
+- Use **Insert template** to see the available query template strings and insert them into the query. This command is disabled when the cursor isn't inside a string literal.
+
+:::image type="content" source="media/signals/prometheus-query-editor.png" lightbox="media/signals/prometheus-query-editor.png" alt-text="Screenshot of Prometheus query editor.":::
+
 ### Signal properties
 The following table describes the properties that define Azure Monitor workspace signal.
 
@@ -139,6 +161,44 @@ The following table describes the properties that define Azure Monitor workspace
 | Unhealthy threshold | If this calculation is true, then the state of the entity is set to **Unhealthy**. If this calculation is false, then the **Degraded** threshold is checked. |
 
 ---
+
+## Query templates
+Both Log Analytics and Azure Monitor workspace signals support a predefined set of **template strings**. Use templates within string literals in your queries. The health model dynamically replaces them when running signal evaluation.
+
+The following table lists all supported template strings.
+
+| Template string | Description |
+|:---|:---|
+| `{{healthmodel.name}}` | The name of the health model. |
+| `{{entity.name}}` | The name of the entity that owns the signal. |
+| **Azure resource templates** | |
+| `{{entity.azureResourceId}}` | The full resource ID of the Azure resource associated with the entity. |
+| `{{entity.azureResourceId.name}}` | The name of the Azure resource associated with the entity. |
+| `{{entity.azureResourceId.resourceGroupName}}` | The name of the resource group that contains the Azure resource associated with the entity. |
+| `{{entity.azureResourceId.subscriptionId}}` | The subscription ID of the Azure resource associated with the entity. |
+| **Log Analytics workspace templates** | |
+| `{{entity.logAnalyticsWorkspaceResourceId}}` | The full resource ID of the Log Analytics workspace associated with the entity. |
+| `{{entity.logAnalyticsWorkspaceResourceId.name}}` | The name of the Log Analytics workspace associated with the entity. |
+| `{{entity.logAnalyticsWorkspaceResourceId.resourceGroupName}}` | The name of the resource group that contains the Log Analytics workspace associated with the entity. |
+| `{{entity.logAnalyticsWorkspaceResourceId.subscriptionId}}` | The subscription ID of the Log Analytics workspace associated with the entity. |
+| **Azure Monitor workspace templates** | |
+| `{{entity.azureMonitorWorkspaceResourceId}}` | The full resource ID of the Azure Monitor workspace associated with the entity. |
+| `{{entity.azureMonitorWorkspaceResourceId.name}}` | The name of the Azure Monitor workspace associated with the entity. |
+| `{{entity.azureMonitorWorkspaceResourceId.resourceGroupName}}` | The name of the resource group that contains the Azure Monitor workspace associated with the entity. |
+| `{{entity.azureMonitorWorkspaceResourceId.subscriptionId}}` | The subscription ID of the Azure Monitor workspace associated with the entity. |
+
+The following example shows a Log Analytics query that uses a template string:
+
+```kusto
+ContainerLogV2
+| where _ResourceId == '{{entity.azureResourceId}}'
+| where LogSource == 'stderr'
+| summarize value = count()
+```
+
+Use any template in either query type. For example, you can reference `{{entity.azureResourceId}}` or `{{entity.azureMonitorWorkspaceResourceId}}` in a log signal query.
+
+Signal definitions are a common use case for query templates. Create a signal definition that uses a query template, and apply it to multiple entities. The signal uses each entity’s context during evaluation, so you don’t need to adjust the query manually.
 
 ## Azure Resource Health signals
 Azure Resource Health signals use Azure platform health information as a signal on an entity. This signal surfaces whether resource availability or platform-reported issues are contributing to the entity's health state, alongside the metric and query signals that you define.
