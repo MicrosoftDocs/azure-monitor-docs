@@ -663,11 +663,28 @@ items:
     - name: Health modeling
       displayName: health models, workload health, customer commitments
       href: health-models/health-modeling.md
+    - name: Quickstarts
+      items:
+      - name: Create a health model in the Azure portal
+        displayName: health models, portal
+        href: health-models/create.md
+      - name: Create a health model with Azure CLI
+        displayName: health models, Azure CLI, az monitor health-models
+        href: health-models/quickstart-cli.md
+      - name: Create a health model with Azure PowerShell
+        displayName: health models, Azure PowerShell, New-AzResourceGroupDeployment
+        href: health-models/quickstart-powershell.md
+      - name: Create a health model with Bicep
+        displayName: health models, Bicep, ARM, Resource Manager, template
+        href: health-models/tutorial-bicep.md
+      - name: Create a health model with an ARM template
+        displayName: health models, ARM, Resource Manager, template, JSON
+        href: health-models/quickstart-arm-template.md
+      - name: Create a health model with Terraform
+        displayName: health models, Terraform, AzAPI, infrastructure as code
+        href: health-models/quickstart-terraform.md
     - name: Create and configure
       items:
-      - name: Create a health model
-        displayName: health models
-        href: health-models/create.md
       - name: Use the designer
         displayName: health models
         href: health-models/designer.md
@@ -685,9 +702,6 @@ items:
         href: health-models/discoveries.md
     - name: Tutorials
       items:
-      - name: Create a health model by using Bicep
-        displayName: health models
-        href: health-models/tutorial-bicep.md
       - name: Configure signals
         displayName: health models
         href: health-models/tutorial-signals.md

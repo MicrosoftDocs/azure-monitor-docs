@@ -15,7 +15,7 @@ Each entity in a health model can use any of the available signal types describe
 | Signal type | Data source |
 |:---|:---|
 | Dependencies | Specifies how the health state of dependent entities is aggregated on the entity. |
-| Azure resource | Samples a [platform metric](../essentials/data-platform-metrics.md) from a specific resource and compares it against numeric thresholds. |
+| Azure resource | Samples a [platform metric](../metrics/data-platform-metrics.md) from a specific resource and compares it against numeric thresholds. |
 | Log Analytics workspace | Runs a [log query](../logs/queries.md) from a Log Analytics workspace and evaluates the result. |
 | Azure Monitor workspace | Runs a [PromQL query](../metrics/metrics-explorer.md) from an Azure Monitor workspace and evaluates the result. |
 | Azure Resource Health | Uses the [Azure Resource Health](../../service-health/resource-health-overview.md) status of the resource represented by the entity, so platform-reported availability contributes to the entity's health state. |
@@ -51,7 +51,7 @@ The details required for each signal will vary depending on its type.
 ### [Azure resource](#tab/azureresource)
 
 ### Azure resource signals
-Azure resource signals sample the value of a [platform metric](../essentials/data-platform-metrics.md) from a particular resource and compare against a numeric threshold to determine the health state. Only metric definitions that are supported for the resource type of the Azure resource represented by the entity are available.
+Azure resource signals sample the value of a [platform metric](../metrics/data-platform-metrics.md) from a particular resource and compare it against a numeric threshold to determine the health state. The signal supports only metric definitions that the represented Azure resource type supports.
 
 :::image type="content" source="media/signals/azure-resource-signals.png" lightbox="media/signals/azure-resource-signals.png" alt-text="Screenshot of Azure resource signals for an entity.":::
 
@@ -132,7 +132,7 @@ The following table describes the properties that define Log Analytics workspace
 ### [Azure Monitor workspace](#tab/azuremonitorworkspace)
 
 ### Azure Monitor workspace signals
-Azure Monitor workspace signals run a [PromQL query](../metrics/metrics-explorer.md) to analyze Prometheus data and evaluate the results to determine the health state. Use Azure Monitor workspace signals in place of metric signals for resources that have metric data scraped by [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md). The log query must return a single record with a numeric value.
+Azure Monitor workspace signals run a [PromQL query](../metrics/metrics-explorer.md) to analyze Prometheus data and evaluate the results to determine the health state. Use Azure Monitor workspace signals in place of metric signals for resources that have metric data scraped by [Azure Monitor managed service for Prometheus](../metrics/prometheus-metrics-overview.md). The log query must return a single record with a numeric value.
 
 :::image type="content" source="media/signals/prometheus-signals.png" lightbox="media/signals/prometheus-signals.png" alt-text="Screenshot of PromQL signals for an entity.":::
 
