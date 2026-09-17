@@ -253,7 +253,19 @@ Autoconfiguration sets environment variables so existing SDKs export telemetry t
 - **Change protocol**: OpenTelemetry supports two main protocols to transmit and receive telemetry data: gRPC and HTTP. By default, AKS autoconfiguration uses `http/protobuf`. Use the following annotations to override the default protocol for a deployment.
 
   For gRPC, use:
+- gRPC: `instrumentation.opentelemetry.io/otel-protocol: "grpc"`
 
+
+```yml
+instrumentation.opentelemetry.io/otel-protocol: "grpc"
+```
+
+- HTTP/Protobuf: `instrumentation.opentelemetry.io/otel-protocol: "http/protobuf"`
+
+
+```yml
+instrumentation.opentelemetry.io/otel-protocol: "http/protobuf"
+```
   
 
 ## Limitations
