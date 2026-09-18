@@ -272,7 +272,6 @@ For gRPC, use:
 For HTTP, use:
 - HTTP/Protobuf: `instrumentation.opentelemetry.io/otel-protocol: "http/protobuf"`
 
-
 ```yml
   apiVersion: apps/v1
   kind: Deployment
