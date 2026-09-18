@@ -258,7 +258,15 @@ For gRPC, use:
 
 
 ```yml
-instrumentation.opentelemetry.io/otel-protocol: "grpc"
+  apiVersion: apps/v1
+  kind: Deployment
+  ...
+  spec:
+    template:
+      metadata:
+        annotations:
+          instrumentation.opentelemetry.io/inject-nodejs: "cr1"
+          instrumentation.opentelemetry.io/otel-protocol: "grpc"
 ```
 
 For HTTP, use:
@@ -266,7 +274,15 @@ For HTTP, use:
 
 
 ```yml
-instrumentation.opentelemetry.io/otel-protocol: "http/protobuf"
+  apiVersion: apps/v1
+  kind: Deployment
+  ...
+  spec:
+    template:
+      metadata:
+        annotations:
+          instrumentation.opentelemetry.io/inject-nodejs: "cr1"
+          instrumentation.opentelemetry.io/otel-protocol: "http/protobuf"
 ```
   
 
