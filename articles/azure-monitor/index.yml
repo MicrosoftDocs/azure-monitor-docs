@@ -118,6 +118,24 @@ landingContent:
             url: metrics/azure-monitor-workspace-manage.md
 
  # Card
+  - title: Health models
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: What are health models?
+            url: health-models/overview.md
+          - text: Health model concepts
+            url: health-models/concepts.md
+      - linkListType: how-to-guide
+        links:
+          - text: Create a health model
+            url: health-models/create.md
+          - text: Configure signals
+            url: health-models/signals.md
+          - text: Analyze health state
+            url: health-models/analyze-health.md
+
+ # Card
   - title: Monitoring agents & data collection
     linkLists: 
       - linkListType: get-started
