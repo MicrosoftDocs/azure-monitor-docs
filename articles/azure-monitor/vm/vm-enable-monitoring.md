@@ -4,14 +4,14 @@ description: Learn how to enable monitoring for virtual machines and virtual mac
 ai-usage: ai-assisted
 ms.topic: how-to
 ms.reviewer: xpathak
+ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, devx-track-arm-template, devx-track-bicep, cbo-v1.4
 ms.date: 08/25/2026
-ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, devx-track-arm-template, devx-track-bicep
 
 ---
 
 # Enable VM monitoring in Azure Monitor
 
-This article describes how to enable monitoring for virtual machines, virtual machine scale sets, and Arc-enabled servers at scale by using command line tools. By using these tools, you can use infrastructure as code (IaC) tools and automation methods. These methods allow you to consistently deploy monitoring across your VM fleet and integrate monitoring configuration into your DevOps pipelines.
+This article describes how to enable monitoring for virtual machines, virtual machine scale sets, and Arc-enabled servers at scale by using command line tools. These tools support infrastructure as code (IaC) and automation methods. These methods allow you to consistently deploy monitoring across your VM fleet and integrate monitoring configuration into your DevOps pipelines.
 
 > [!NOTE]
 > - To enable monitoring for a single virtual machine by using the Azure portal, see [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md).
@@ -32,7 +32,7 @@ For a list of supported operating systems, see [Azure Monitor agent supported op
 - **Log Analytics workspace** if you enable logs-based metrics or collect logs. Logs-based metrics are the classic experience and are typically used for compatibility with existing implementations. See [Create a Log Analytics workspace](../logs/quick-create-workspace.md).
 - **Permissions** to create data collection rules (DCRs) and associate them with VMs. See [Data collection rule permissions](../data-collection/data-collection-rule-create-edit.md#permissions).
 - **Managed identity for query-based metric alerts** if you create alert rules on OpenTelemetry metrics in Azure Monitor workspace. Use a user-assigned managed identity and grant required permissions as described in [Query-based metric alerts overview (preview)](../alerts/alerts-query-based-metric-alerts-overview.md).
-- **Azure Connected Machine agent** if you're monitoring virtual machines hosted outside of Azure. You must first install the Connected Machine agent so that the machine can be managed through Azure Arc-enabled servers before you can install the Azure Monitor agent and enable monitoring. See [Connect a machine to Arc-enabled servers](/azure/azure-arc/servers/quick-enable-hybrid-vm).
+- **Azure Connected Machine agent** if you're monitoring virtual machines hosted outside of Azure. You must first install the Connected Machine agent so that the machine can be managed through Azure Arc-enabled servers before installing the Azure Monitor agent and enabling monitoring. See [Connect a machine to Azure Arc-enabled servers](/azure/azure-arc/servers/quick-enable-hybrid-vm).
 
 
 ## Overview
@@ -42,7 +42,7 @@ To enable full monitoring by collecting data from the guest operating system and
 | Step | Description |
 |:---|:---|
 | [Install the Azure Monitor agent](#install-azure-monitor-agent) | Install the agent on each virtual machine to monitor. You only need to install the agent once because it can use any number of DCRs that each collect different data. |
-| [Create data collection rules (DCRs)](#create-data-collection-rules) | Each DCR specifies data to collect and where to send it. You can create your own DCRs or use existing ones depending on your requirements. You need to understand the different types of DCRs and their purposes to determine which ones to use. |
+| [Create data collection rules (DCRs)](#create-data-collection-rules) | Each DCR specifies data to collect and where to send it. Create your own DCRs or use existing ones depending on your requirements. You need to understand the different types of DCRs and their purposes to determine which ones to use. |
 | [Associate DCRs with VMs](#associate-dcrs-with-vms) | When you create an association between a VM and a DCR, the agent downloads that DCR and begins data collection. Create associations with multiple DCRs for the agent to collect different types of data. Remove associations to stop data collection. |
 
 
@@ -52,6 +52,8 @@ To enable full monitoring by collecting data from the guest operating system and
 > Monitoring is included in Essential machine management which automatically enables multiple management features for your virtual machines. See [Essential machine management](/azure/azure-arc/servers/essential-machine-management/enrollment?toc=/azure/virtual-machines/toc.json).
 >
 > To enable monitoring at scale using Azure Policy, see [Enable VM insights using Azure Policy](vminsights-enable-policy.md).
+>
+> To onboard a virtual machine with a single ARM or Bicep deployment, see [Deploy a complete onboarding template](#deploy-a-complete-onboarding-template).
 
 
 ## Install Azure Monitor agent
@@ -72,11 +74,11 @@ For the full set of installation options, including Linux, Virtual Machine Scale
 
 ## Create data collection rules
 
-Data collection rules (DCRs) define what data to collect from the Azure Monitor agent and where to send it. You can create different types of DCRs depending on what you want to monitor. Some DCRs enable features in the Azure portal, such as the enhanced monitoring experience for VMs, while others collect specific types of logs or metrics that you can use for analysis or alerting.
+Data collection rules (DCRs) define what data to collect from the Azure Monitor agent and where to send it. Create different types of DCRs depending on what you want to monitor. Some DCRs enable features in the Azure portal, such as the enhanced monitoring experience for VMs, while others collect specific types of logs or metrics for analysis or alerting.
 
 DCRs are structured in JSON. When you create DCRs using the Azure portal, you don't require any knowledge of the DCR structure. You may need to understand the DCR structure though to create DCRs from scratch or to add advanced functionality to existing DCRs such as adding a transformation.
 
-When onboarding from the Azure portal, the default behavior is to create new DCRs for the selected monitoring configuration. Or you can select an existing DCR to simplify your monitoring configuration. If your configuration sends data to both an Azure Monitor workspace and a Log Analytics workspace in the same region, onboarding tries to use a single DCR for both destinations.
+When onboarding from the Azure portal, the default behavior is to create new DCRs for the selected monitoring configuration. Or select an existing DCR to simplify your monitoring configuration. If your configuration sends data to both an Azure Monitor workspace and a Log Analytics workspace in the same region, onboarding tries to use a single DCR for both destinations.
 
 Onboarding from the Azure portal can also include OpenTelemetry per-process metrics, recommended alerts, and dashboards with Grafana. For details on this portal workflow, see [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md).
 
@@ -86,7 +88,7 @@ The following table describes the most common DCR types used for VM monitoring. 
 |:---|:---|
 | **OpenTelemetry metrics** | Collects system-level performance counters by using OpenTelemetry standards. This option is the recommended metrics path for new VM monitoring deployments in the Azure portal. Use the DCR definition in the following section. Modify the `counterSpecifiers` section to add metrics to collect. See [Customize OpenTelemetry metrics for Azure virtual machines](./metrics-opentelemetry-guest-modify.md). |
 | **Log based metrics** | Collects predefined performance counters in a Log Analytics workspace. Enables the classic logs-based experience in the Azure portal. Use the DCR definition in the following section. Don't modify this DCR. |
-| **Logs** | Collect different types of logs from the VM, including Windows events and Syslog. These DCRs don't enable any additional experiences in Azure Monitor, but you can analyze them by using Log Analytics and use them for alerting. See [Collect guest log data from virtual machines with Azure Monitor](./data-collection.md) for a description of the different data sources available. See [Data collection rule (DCR) samples in Azure Monitor](../data-collection/data-collection-rule-samples.md#collect-vm-client-data) for sample DCR definitions for log collection. |
+| **Logs** | Collect different types of logs from the VM, including Windows events and Syslog. These DCRs don't enable any additional experiences in Azure Monitor. Analyze them by using Log Analytics and use them for alerting. See [Collect guest log data from virtual machines with Azure Monitor](./data-collection.md) for a description of the different data sources available. See [Data collection rule (DCR) samples in Azure Monitor](../data-collection/data-collection-rule-samples.md#collect-vm-client-data) for sample DCR definitions for log collection. |
 
 Use the following DCR definitions to enable enhanced monitoring for a virtual machine. The only modification needed is to update the location and destination workspace in each definition to point to your Azure Monitor workspace for OpenTelemetry metrics or your Log Analytics workspace for logs-based metrics. 
 <br><br>
@@ -196,7 +198,7 @@ Save the DCR definition to a JSON file. For the CLI, PowerShell, API, and portal
 
 ## Associate DCRs with VMs
 
-The final step is to create associations between your DCRs and your VMs. This step activates the DCRs and tells the Azure Monitor agent to begin collecting data based on the rules defined in the DCR. You can create multiple associations for a VM if you want to collect different types of data. You can also remove associations to stop data collection from specific DCRs without affecting other associations or the agent itself.
+The final step is to create associations between your DCRs and your VMs. This step activates the DCRs and tells the Azure Monitor agent to begin collecting data based on the rules defined in the DCR. Create multiple associations for a VM to collect different types of data. Remove associations to stop data collection from specific DCRs without affecting other associations or the agent itself.
 
 ## [Azure CLI](#tab/cli)
 
@@ -227,7 +229,7 @@ az monitor data-collection rule association create \
   --resource /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.HybridCompute/machines/<arc-server-name>
 ```
 
-## [PowerShell](#tab/powershell)
+## [Azure PowerShell](#tab/powershell)
 
 **Azure VM**
 
@@ -254,6 +256,88 @@ New-AzDataCollectionRuleAssociation `
   -AssociationName "dcr-association" `
   -ResourceUri "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.HybridCompute/machines/<vm-name>" `
   -DataCollectionRuleId "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/microsoft.insights/datacollectionrules/<dcr-name>"
+```
+
+---
+
+## Deploy a complete onboarding template
+
+The Azure Monitor Community repository hosts ARM and Bicep templates that complete all three onboarding steps in a single deployment. Each template enables a managed identity on the virtual machine, creates or reuses an Azure Monitor workspace and a DCR, associates the DCR, installs the agent, and optionally creates recommended alert rules.
+
+Download the templates and parameter files from [VM Insights onboarding templates](https://github.com/microsoft/AzureMonitorCommunity/tree/master/Scenarios/How%20to%20onboard%20VMs%20to%20VM%20Insights%20V2) in the Azure Monitor Community repository. The repository readme documents every parameter and the six deployment scenarios the parameter files cover.
+
+These templates onboard individual Azure virtual machines. For virtual machine scale sets and Arc-enabled servers, follow the command line steps described earlier in this article. The deployment updates the managed identity configuration of an existing virtual machine, so review the identity parameters before deploying to a machine that already uses user-assigned identities.
+
+# [Azure CLI](#tab/cli)
+
+The following Azure CLI examples use the [`az deployment sub create`](/cli/azure/deployment/sub#az-deployment-sub-create) and [`az deployment group create`](/cli/azure/deployment/group#az-deployment-group-create) commands.
+
+**Bicep**
+
+The Bicep template sets `targetScope` to `subscription` because its modules deploy into different resource groups. The `.bicepparam` file resolves the template through its `using` statement, so the command doesn't need a `--template-file` argument.
+
+```bash
+# Set variables
+azureRegion="<AzureRegion>"
+bicepParameterFile="<PathToBicepParameterFile>"
+
+# Deploy the Bicep template
+az deployment sub create \
+  --location "$azureRegion" \
+  --parameters "$bicepParameterFile"
+```
+
+**ARM template**
+
+```bash
+# Set variables
+resourceGroupName="<VmResourceGroupName>"
+templateFile="<PathToTemplateFile>"
+parameterFile="<PathToParameterFile>"
+
+# Deploy the ARM template
+az deployment group create \
+  --resource-group "$resourceGroupName" \
+  --template-file "$templateFile" \
+  --parameters "@$parameterFile"
+```
+
+# [Azure PowerShell](#tab/powershell)
+
+The following Azure PowerShell examples use the [`New-AzSubscriptionDeployment`](/powershell/module/az.resources/new-azsubscriptiondeployment) and [`New-AzResourceGroupDeployment`](/powershell/module/az.resources/new-azresourcegroupdeployment) cmdlets.
+
+**Bicep**
+
+```powershell
+# Set variables
+$azureRegion = "<AzureRegion>"
+$templateFile = "<PathToBicepFile>"
+$parameterFile = "<PathToBicepParameterFile>"
+
+# Deploy the Bicep template
+$bicepDeployment = @{
+    Location              = $azureRegion
+    TemplateFile          = $templateFile
+    TemplateParameterFile = $parameterFile
+}
+New-AzSubscriptionDeployment @bicepDeployment
+```
+
+**ARM template**
+
+```powershell
+# Set variables
+$resourceGroupName = "<VmResourceGroupName>"
+$templateFile = "<PathToTemplateFile>"
+$parameterFile = "<PathToParameterFile>"
+
+# Deploy the ARM template
+$armDeployment = @{
+    ResourceGroupName     = $resourceGroupName
+    TemplateFile          = $templateFile
+    TemplateParameterFile = $parameterFile
+}
+New-AzResourceGroupDeployment @armDeployment
 ```
 
 ---
