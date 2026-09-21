@@ -35,7 +35,7 @@ This article describes the version details for the Azure Monitor pipeline Arc-en
 ### Version 1.5.2 - August 4, 2026
 
 > [!WARNING]
-> When upgrading from a version earlier than 1.5, data currently stored in a durable buffer is orphaned by a storage-path change and isn't forwarded. This affects only pipelines with durable buffering enabled. Allow the durable buffer to drain before upgrading.
+> When you upgrade from a version earlier than 1.5, a storage path change orphans data currently stored in a durable buffer and stops forwarding it. This change affects only pipelines with durable buffering enabled. Allow the durable buffer to drain before upgrading.
 
 - **Improved error-log visibility** — error records now identify the affected pipeline component and emitting event. This release also fixes an issue that prevented some delivered error logs from appearing in `AzureMonitorPipelineLogErrors`.
 - **Reliable durable buffering with multiple replicas** — each collector replica now uses a separate location on shared persistent storage, preventing replicas from conflicting over buffered data.
