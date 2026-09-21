@@ -134,7 +134,7 @@ API endpoint is `api.loganalytics.io` or `api.loganalytics.azure.com`.
 | Operation groups | Description |
 |------------------|-------------|
 | <a name="op-logs-query"></a>[Query](/rest/api/logsquery/query) | Query Analytics table logs using the REST API. For more information, see the [Logs query API overview](../logs/api/overview.md). |
-| <a name="op-logs-search"></a>[Search](../logs/basic-logs-query.md?tabs=rest#run-a-query-on-a-basic-or-auxiliary-table) | Query Auxiliary / Lake or Basic table logs using the REST API. For more information, see [Run a query on a Basic or Auxiliary table](../logs/basic-logs-query.md?tabs=rest#run-a-query-on-a-basic-or-auxiliary-table) |
+| <a name="op-logs-search"></a>[Search](../logs/basic-logs-query.md?tabs=rest#run-a-query-that-includes-basic-or-auxiliary-tables) | Query Auxiliary / Lake or Basic table logs using the REST API. For more information, see [Run a query on a Basic or Auxiliary table](../logs/basic-logs-query.md?tabs=rest#run-a-query-that-includes-basic-or-auxiliary-tables) |
 | <a name="op-logs-metadata"></a>[Metadata](/rest/api/logsquery/metadata) | Retrieve metadata information for a Log Analytics workspace, including table schemas and functions. |
 
 ### Logs management

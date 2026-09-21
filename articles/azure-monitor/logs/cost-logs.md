@@ -3,7 +3,7 @@ title: Azure Monitor Logs Cost Calculations And Options
 description: Cost details for data stored in a Log Analytics workspace in Azure Monitor, including commitment tiers and data size calculation.
 ms.topic: concept-article
 ms.reviewer: Dale.Koetke
-ms.date: 09/18/2025
+ms.date: 09/02/2026
 ---
 
 # Azure Monitor Logs cost calculations and options
@@ -119,11 +119,13 @@ The table plan governs data stored in a Log Analytics workspace table. It determ
 | **Query** | Interactive queries aren't charged based on data scanned. | Interactive queries are billed per GB of data scanned within the query's time range. | Interactive queries are billed per GB of data scanned. |
 | **Retention and search jobs** | After the analytics retention period, data moves to long-term retention at a reduced charge. Retrieve data from long-term retention by running a [search job](#search-jobs). | See [Log data retention](#log-data-retention) and [Search jobs](#search-jobs) for plan-specific scan charges. | See [Log data retention](#log-data-retention) and [Search jobs](#search-jobs) for plan-specific scan charges. |
 
+When a query includes a Basic or Auxiliary table, query charges are based on the total data scanned across all queried tables. Data in Analytics tables within their Analytics retention period isn't included in the billable scanned data. For more information, see [Query data in Basic and Auxiliary tables](basic-logs-query.md#pricing-model).
+
 For more information about the Basic Logs and Auxiliary Logs table plans, see [Azure Monitor Logs overview: Table plans](data-platform-logs.md#table-plans).
 
 ## Log data retention
 
-In addition to data ingestion, there's a charge for the retention of data in each Log Analytics workspace. You can set the retention period for the entire workspace or for each table. After this period, the data is either removed or kept in long-term retention. During the long-term retention period, you pay a reduced retention charge, and there's a charge to retrieve the data using a [search job](search-jobs.md). Use long-term retention to reduce your costs for data that you must store for compliance or occasional investigation. Learn more about [retention options and configuration](./data-retention-configure.md).
+In addition to data ingestion, there's a charge for retaining data in each Log Analytics workspace. Set the retention period for the entire workspace or for each table. After this period, the data is either removed or kept in long-term retention. During long-term retention, you pay a reduced retention charge, and query or [search job](search-jobs.md) charges apply based on the table plan and query. Use long-term retention to reduce costs for data that must be stored for compliance or occasional investigation. Learn more about [retention options and configuration](./data-retention-configure.md).
 
 Analytics Logs, Basic Logs, and Auxiliary Logs all use the same per-GB rate for long-term retention. Billing for data retention happens daily (based on days in the UTC time zone).
 
