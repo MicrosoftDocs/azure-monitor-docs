@@ -2,7 +2,7 @@
 title: Azure Monitor pipeline extension versions
 description: Extension versions and release notes for Azure Monitor pipeline. 
 ms.topic: how-to
-ms.date: 02/06/2026
+ms.date: 09/21/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
@@ -15,6 +15,32 @@ This article describes the version details for the Azure Monitor pipeline Arc-en
 - You can manually install the release once it's available in your region.
 
 ## Version details
+
+### Version 1.7.0 - September 16, 2026
+
+- **Improved support for restricted clusters** — the operator now runs as a non-root user, allowing installation on clusters that enforce the Kubernetes Pod Security `restricted` profile, including Tanzu environments.
+- **More reliable Syslog monitoring** — restored accepted and rejected log counts for Syslog receivers that don't use format filtering.
+- **Built-in diagnostic collection** — added a diagnostic script to the `azure-monitor-pipeline-forensics` ConfigMap so it can be retrieved directly from a running cluster.
+- **Security and reliability improvements** — updated the pipeline runtime, Azure Linux base image, and supporting dependencies.
+
+### Version 1.6.1 - August 26, 2026
+
+> [!IMPORTANT]
+> Self-monitoring metric names changed in this release. Update queries, alerts, dashboards, and workbooks that use `exporter_sent_log_records` or `exporter_send_failed_log_records`. Use `exported_log_records` and `log_records_failed_to_export` instead.
+
+- **Expanded pipeline self-monitoring** — added preview metrics for accepted and rejected logs, export results, records awaiting export, processor activity, processing duration, persistent-storage utilization, and records dropped from persistent storage.
+- **Fewer unnecessary rollouts** — stabilized generated configuration when multiple Syslog receivers are present, preventing unchanged pipeline groups from restarting.
+- **Security and reliability improvements** — updated the pipeline runtime, collector authentication components, Azure Linux base image, and supporting dependencies.
+
+### Version 1.5.2 - August 4, 2026
+
+> [!WARNING]
+> When upgrading from a version earlier than 1.5, data currently stored in a durable buffer is orphaned by a storage-path change and isn't forwarded. This affects only pipelines with durable buffering enabled. Allow the durable buffer to drain before upgrading.
+
+- **Improved error-log visibility** — error records now identify the affected pipeline component and emitting event. This release also fixes an issue that prevented some delivered error logs from appearing in `AzureMonitorPipelineLogErrors`.
+- **Reliable durable buffering with multiple replicas** — each collector replica now uses a separate location on shared persistent storage, preventing replicas from conflicting over buffered data.
+- **Improved Syslog filtering reliability** — fixed a crash that could occur when applying format filters to Syslog data.
+- **Security and reliability improvements** — updated the Go runtime, pipeline image, and Azure Linux base image.
 
 ### Version 1.4.0 - June 24, 2026
 
