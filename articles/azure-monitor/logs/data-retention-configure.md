@@ -3,7 +3,7 @@ title: Manage Data Retention in a Log Analytics Workspace
 description: Configure retention settings for a table in a Log Analytics workspace in Azure Monitor.
 ms.topic: how-to
 ms.reviewer: adi.biran
-ms.date: 9/09/2025
+ms.date: 09/02/2026
 ai-usage: ai-assisted
 ms.custom: references_regions
 
@@ -15,7 +15,7 @@ ms.custom: references_regions
 A Log Analytics workspace retains data in two states:
 
 * **Analytics retention**: In this state, data is available for monitoring, troubleshooting, and near-real-time analytics.
-* **Long-term retention**: In this low-cost state, data isn't available for table plan features, but can be accessed through [search jobs](../logs/search-jobs.md).
+* **Long-term retention**: In this low-cost state, Analytics and Basic data is available through [search jobs](../logs/search-jobs.md). Auxiliary data remains queryable throughout its total retention period.
 
 This article explains how Log Analytics workspaces retain data and how to manage the data retention of tables in your workspace.
 
@@ -23,12 +23,12 @@ This article explains how Log Analytics workspaces retain data and how to manage
 
 By default, all tables in a Log Analytics workspace retain data for 30 days, except for [log tables with 90-day default retention](#log-tables-with-90-day-default-retention). Tables with the Analytics plan make your data available for real-time queries during this Analytics retention period. All table plans can retrieve the stored data through queries or search jobs, and the data is available for visualizations, alerts, and other features and services, based on the table plan.
 
-You can extend the analytics retention period of tables with the Analytics plan up to two years. Basic plan tables have a fixed period of 30 days for queries while Auxiliary plan tables can be queried for the total retention period. Both Basic and Auxiliary tables have additional considerations however. For more information, see [Query data in Basic and Auxiliary tables](basic-logs-query.md).
+Extend the analytics retention period of tables with the Analytics plan up to two years. Basic plan tables have a fixed period of 30 days for queries while Auxiliary plan tables can be queried for the total retention period. Both Basic and Auxiliary tables have additional considerations however. For more information, see [Query data in Basic and Auxiliary tables](basic-logs-query.md).
 
 > [!NOTE]
 > You can reduce the analytics retention period of Analytics tables to as little as four days using the API or CLI. However, since 31 days of analytics retention are included in the ingestion price, lowering the retention period below 31 days doesn't reduce costs.
 
-To retain data in the same table beyond the default retention period, extend the table's total retention to up to 12 years. At the end of the analytics retention period, the data stays in the table for the remainder of the total retention period you configure. During this period - the long-term retention period - run a search job to retrieve the specific data you need from the table and make it available for interactive queries in a search results table.
+To retain data in the same table beyond the default retention period, extend the table's total retention to up to 12 years. Analytics data remains in the table after Analytics retention for the remainder of the configured total retention period. Run a search job to retrieve Analytics data after Analytics retention or Basic data older than 30 days when the query doesn't include an Auxiliary table. Auxiliary data remains queryable throughout its total retention period.
 
 :::image type="content" source="media/data-retention-configure/interactive-auxiliary-retention-log-analytics-workspace.png" lightbox="media/data-retention-configure/interactive-auxiliary-retention-log-analytics-workspace.png" alt-text="Diagram that shows analytics and long-term retention in Azure Monitor Logs.":::
 
@@ -55,7 +55,7 @@ When you change the long-term retention settings of a table with existing data, 
 
 ## Configure the default analytics retention period of Analytics tables
 
-The default retention period of Analytics tables in a Log Analytics workspace is 30 days. You can change the default analytics period of Analytics tables up to two years by modifying the workspace-level data retention setting. Basic and Auxiliary tables only have a total retention period, which is 30 days by default.
+The default retention period of Analytics tables in a Log Analytics workspace is 30 days. Change the default analytics period of Analytics tables up to two years by modifying the workspace-level data retention setting. Basic and Auxiliary tables only have a total retention period, which is 30 days by default.
 
 Changing the default workspace-level data retention setting automatically affects all Analytics tables to which the default setting still applies in your workspace. If you've already changed the analytics retention of a particular table, that table isn't affected when you change the workspace default data retention setting.
 

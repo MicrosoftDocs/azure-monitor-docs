@@ -3,7 +3,7 @@ title: Log query scope in Azure Monitor Log Analytics
 description: Describes the scope and time range for a log query in Azure Monitor Log Analytics.
 ms.topic: concept-article
 ms.reviewer: ilanawaitser
-ms.date: 05/26/2026
+ms.date: 09/02/2026
 
 ---
 
@@ -32,7 +32,7 @@ The method you use to start Log Analytics determines the scope, and in some case
 | Subscription | Records created by all resources in the subscription. Can include data from multiple Log Analytics workspaces. | Select **Logs** from the subscription menu.   | Can't change scope. |
 | Other Azure resources | Records created by the resource. Can include data from multiple Log Analytics workspaces.  | Select **Logs** from the resource menu.<br>OR<br>Select **Logs** from the **Azure Monitor** menu and then select a new scope. | Can only change scope to same resource type. |
 
-### Limitations when scoped to a resource
+### Considerations when scoped to a resource
 
 When the query scope is a Log Analytics workspace or an Application Insights application, all options in the portal and all query commands are available. When scoped to a resource though, the following options in the portal not available because they're associated with a single workspace or application:
 
@@ -57,13 +57,15 @@ Your query will be blocked from running if the scope includes workspaces in 20 o
 <!-- convertborder later -->
 :::image type="content" source="media/scope/query-failed.png" lightbox="media/scope/query-failed.png" alt-text="Screenshot of query failed." border="false":::
 
-Queries are also blocked when the scope includes tables in the Basic or Auxiliary plans since they only support queries on the workspace scope.
+Queries are also blocked when the resource scope includes tables in the Basic or Auxiliary plans. Queries that include these table plans require a Log Analytics workspace as the scope.
 
 ## Time range
 The time range specifies the set of records that are evaluated for the query based on when the record was created. This is defined by the **TimeGenerated** column on every record in the workspace or application as specified in the following table. For a classic Application Insights application, the **timestamp** column is used for the time range.
 
 
-Set the time range by selecting it from the time picker at the top of the Log Analytics window.  You can select a predefined period or select **Custom** to specify a specific time range.
+Set the time range by selecting it from the time picker at the top of the Log Analytics window. Select a predefined period or select **Custom** to specify a specific time range.
+
+When a query includes a Basic or Auxiliary table, set an explicit start and end time with the time picker. A time filter in the KQL query doesn't replace this explicit time range.
 <!-- convertborder later -->
 :::image type="content" source="media/scope/time-picker.png" lightbox="media/scope/time-picker.png" alt-text="Screenshot of the time picker." border="false":::
 

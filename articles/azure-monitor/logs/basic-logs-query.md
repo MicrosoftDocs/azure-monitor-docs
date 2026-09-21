@@ -1,15 +1,15 @@
 ---
-title: Query Data in a Basic and Auxiliary Table in Azure Monitor Logs
-description: This article explains how to query data from Basic and Auxiliary logs tables.
+title: Query Data in Basic and Auxiliary Tables in Azure Monitor Logs
+description: Learn how to query data across Basic and Auxiliary tables and Log Analytics workspaces, including scope, time range, performance, and billing.
 ms.topic: how-to
 ms.reviewer: adi.biran
-ms.date: 07/21/2025
+ms.date: 09/02/2026
 ai-usage: ai-assisted
 ---
 
-# Query data in a Basic and Auxiliary table in Azure Monitor Logs
+# Query data in Basic and Auxiliary tables in Azure Monitor Logs
 
-Basic and Auxiliary logs tables reduce the cost of ingesting high-volume verbose logs and let you query the data they store with some limitations. This article explains how to query data from Basic and Auxiliary logs tables.
+Basic and Auxiliary table plans reduce the cost of ingesting high-volume, verbose logs. Queries that include these tables support full Kusto Query Language (KQL), including queries across multiple tables and Log Analytics workspaces. This article explains the query window, scope, performance, and billing considerations.
 
 For more information about Basic and Auxiliary table plans, see [Azure Monitor Logs Overview: Table plans](data-platform-logs.md#table-plans).
 
@@ -18,36 +18,34 @@ For more information about Basic and Auxiliary table plans, see [Azure Monitor L
 
 [!INCLUDE [log-analytics-query-permissions](includes/log-analytics-query-permissions.md)]
 
-## Limitations
+## Considerations
 
-Queries on data in Basic and Auxiliary tables are subject to the following limitations:
+Queries that include data in Basic or Auxiliary tables have the following considerations.
 
-### Kusto Query Language (KQL) language limitations
+### Query capabilities
 
-Queries of data in Basic or Auxiliary tables support all KQL [scalar](/azure/data-explorer/kusto/query/scalar-functions) and [aggregation](/azure/data-explorer/kusto/query/aggregation-functions) functions. However, Basic or Auxiliary table queries are limited to a single table. Therefore, these limitations apply:
+Queries that include Basic or Auxiliary tables support full KQL across multiple tables. Use the [`workspace()` expression](cross-workspace-query.md#query-across-log-analytics-workspaces-using-workspace) to query these tables across Log Analytics workspaces.
 
-* Operators that join data from multiple tables are limited:
-
-    * [join](/azure/data-explorer/kusto/query/join-operator?pivots=azuremonitor), [find](/azure/data-explorer/kusto/query/find-operator?pivots=azuremonitor), [search](/azure/data-explorer/kusto/query/search-operator), and [externaldata](/azure/data-explorer/kusto/query/externaldata-operator?pivots=azuremonitor) aren't supported.
-    * [lookup](/azure/data-explorer/kusto/query/lookup-operator) and [union](/azure/data-explorer/kusto/query/union-operator?pivots=azuremonitor) are supported, but limited to up to five Analytics tables.
-
-* [User-defined functions](/azure/data-explorer/kusto/query/functions/user-defined-functions) aren't supported.
-
-* [Cross-service](/azure/azure-monitor/logs/cross-workspace-query) and [cross-resource](/azure/azure-monitor/logs/cross-workspace-query) queries aren't supported.
+The [`externaldata` operator](/azure/data-explorer/kusto/query/externaldata-operator?pivots=azuremonitor), [cross-service queries](cross-workspace-query.md), cross-resource queries that use the `resource()` expression, and resource-context queries aren't supported when the query includes a Basic or Auxiliary table.
 
 ### Time range
 
-Specify the start and end datetime using the time range picker in Log Analytics or using time range syntax with an API call. If you specify the time range in the query, the union of the time range picker and the KQL time range is used.
+Specify the start and end date and time by using the time range picker in Log Analytics or the `timespan` parameter in an API call. A time filter in the KQL query doesn't replace this explicit time range.
 
-Auxiliary log tables support a time range for the total retention period. Basic log tables support a time range up to the past 30 days. If you need to find data between 30 days ago and the total retention period of the Basic table, use a search job. For more information, see [Search jobs in Basic tables](search-jobs.md).
+The maximum query time range depends on the table plans included in the query:
+
+* A query that includes Analytics and Basic tables, but no Auxiliary table, can cover the past 30 days.
+* A query that includes an Auxiliary table can cover the total retention period of the queried tables, up to 12 years.
+
+A query that includes Analytics and Basic tables, but no Auxiliary table, can cover the past 30 days. If you need data older than 30 days, run a [search job](search-jobs.md).
 
 ### Query scope
 
-Set the Log Analytics workspace as the scope of your query. You can't run queries using another resource for the scope. For more information about query scope, see [Log query scope and time range in Azure Monitor Log Analytics](scope.md).
+Set a Log Analytics workspace as the query scope. To query multiple workspaces, explicitly reference each additional workspace by using the [`workspace()` expression](cross-workspace-query.md#query-across-log-analytics-workspaces-using-workspace). Resource scope isn't supported when the query includes a Basic or Auxiliary table. For more information, see [Log query scope and time range in Azure Monitor Log Analytics](scope.md).
 
 ### Concurrent queries
 
-You can run two concurrent queries per user. For more information, see [Log Analytics query limits](../fundamentals/service-limits.md#user-query-throttling).
+Each user can run two concurrent queries. For more information, see [Log Analytics query limits](../fundamentals/service-limits.md#user-query-throttling).
 
 ### Auxiliary log query performance
 
@@ -61,7 +59,7 @@ You can't [purge personal data](personal-data-mgmt.md#export-delete-or-purge-per
 
 Basic and Auxiliary table plans currently support Workbooks and Grafana, while Azure Monitor Dashboards are not supported.
 
-## Run a query on a Basic or Auxiliary table
+## Run a query that includes Basic or Auxiliary tables
 
 Running a query on Basic or Auxiliary tables follows the same steps as querying any other table in Log Analytics. For more information, see [Log Analytics tutorial](./log-analytics-tutorial.md).
 
@@ -69,24 +67,17 @@ Running a query on Basic or Auxiliary tables follows the same steps as querying 
 
 In the Azure portal, select **Monitor** > **Logs** > **Tables**.
 
-In the list of tables, you can identify Basic and Auxiliary tables by their unique icon:
+In the list of tables, identify Basic and Auxiliary tables by their unique icon:
 
 :::image type="content" source="./media/basic-logs-query/table-icon.png" lightbox="./media/basic-logs-query/table-icon.png" alt-text="Screenshot of the Basic Logs table icon in the table list." border="false":::
 
-You can also hover over a table name for the table information view, which specifies that the table has the Basic or Auxiliary table plan:
+Hover over a table name to open the table information view, which identifies the Basic or Auxiliary table plan:
 
 :::image type="content" source="./media/basic-logs-query/table-info.png" lightbox="./media/basic-logs-query/table-info.png" alt-text="Screenshot of the Basic Logs table indicator in the table details." border="false":::
 
-When you add a table to the query, Log Analytics identifies a Basic or Auxiliary table and aligns the authoring experience accordingly.
-
-:::image type="content" source="./media/basic-logs-query/query-validator.png" lightbox="./media/basic-logs-query/query-validator.png" alt-text="Screenshot of query on Basic Logs limitations.":::
-
 # [REST](#tab/rest)
 
-Use **/search** from the [Log Analytics API](api/overview.md) to query data in a Basic or Auxiliary table using a REST API. This is similar to the [/query](api/request-format.md) API with the following differences:
-
-* The query is subject to the language limitations described in [KQL language limitations](#kusto-query-language-kql-language-limitations).
-* The time span must be specified as a query parameter (`timespan`) instead of in the request body.
+Use **/search** from the [Log Analytics API](api/overview.md) to query data in a Basic or Auxiliary table by using a REST API. Specify the time span as a query parameter (`timespan`) instead of in the request body.
 
 **Sample Request:**
 
@@ -104,7 +95,17 @@ Content-Type: application/json
 
 ## Pricing model
 
-The charge for a query on Basic and Auxiliary tables is based on the amount of data the query scans, which depends on the size of the table and the query's time range. The data scanned is defined as the volume of data that was ingested within the time range specified by the query for the table which is being queried. For example, a query that scans three days of data in a table that ingests 100 GB each day, would be charged for 300 GB.
+When a query includes a Basic or Auxiliary table, the charge is based on the total data scanned across all queried tables. Data ingestion charges from Analytics tables within their retention period isn't included in the billable scanned data.
+
+The data scanned depends on the amount of data ingested into each queried table during the specified time range. For example, a query that scans three days of data in a table that ingests 100 GB each day is charged for 300 GB. If the query includes multiple tables, the scanned data is the sum of the data scanned from each table.
+
+| Table ingestion rate | Table plan | Charge based on data scanned |
+| --- | --- | --- |
+| Table ingests 100 GB per day | Basic | Query charge based on 300 GB |
+| Table ingests 400 GB per day | Auxiliary | Query charge based on 1200 GB |
+| Table ingests 500 GB per day | Analytics | no query charge |
+
+In the example table, the query charge is based on 1500 GB (300 + 1200) of data scanned.
 
 For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
