@@ -14,7 +14,7 @@ The [HTTP Data Collector API](../logs/data-collector-api.md) is [deprecated](/li
 
 This article describes the differences between the two APIs and how to migrate to the Logs ingestion API.
 
-Two dates affect Data Collector API ingestion. On **March 1, 2026**, the API endpoint stopped accepting legacy TLS versions. Clients that don't negotiate TLS 1.2 or later can't ingest data. On **September 14, 2026**, the API ends support but ingestion continues for TLS compliant clients. Verify your client's TLS configuration before assuming ingestion is healthy, regardless of your migration timeline.
+Two dates affect Data Collector API ingestion. On **March 1, 2026**, the API endpoint stopped accepting legacy TLS versions. Clients that don't negotiate TLS 1.2 or later can't ingest data. On **September 14, 2026**, the API [ended support](/lifecycle/definitions#end-of-support) but ingestion continues for TLS compliant clients. Verify your client's TLS configuration before assuming ingestion is healthy, regardless of your migration timeline.
 
 ## Advantages of the Logs ingestion API
 
