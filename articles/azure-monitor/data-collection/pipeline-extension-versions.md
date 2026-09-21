@@ -19,7 +19,7 @@ This article describes the version details for the Azure Monitor pipeline Arc-en
 ### Version 1.7.0 - September 16, 2026
 
 - **Improved support for restricted clusters** — the operator now runs as a non-root user, allowing installation on clusters that enforce the Kubernetes Pod Security `restricted` profile, including Tanzu environments.
-- **More reliable Syslog monitoring** — restored accepted and rejected log counts for Syslog receivers that don't use format filtering.
+- **Complete Syslog receive counts in pipeline monitoring** — the **Logs accepted (preview)** and **Logs rejected (preview)** metrics now count records from Syslog receivers even when no `allowedFormats` filter is configured. Previously, those receivers could omit receive counts, making the metrics appear lower than the actual traffic. See [Monitor pipeline health and performance](./pipeline-troubleshoot.md#monitor-pipeline-health-and-performance).
 - **Built-in diagnostic collection** — added a diagnostic script to the `azure-monitor-pipeline-forensics` ConfigMap so it can be retrieved directly from a running cluster.
 - **Security and reliability improvements** — updated the pipeline runtime, Azure Linux base image, and supporting dependencies.
 
