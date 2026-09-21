@@ -27,7 +27,7 @@ Error logs are generated when data reaches the Azure Monitor ingestion pipeline 
 - Log delivery errors
 - [Transformation](data-collection-transformations.md) errors where the structure of the logs makes the transformation KQL invalid
 - Log Ingestion API calls:
-    - with any HTTP response other than 200/202
+    - with any HTTP response other than 200 or 202
     - with payload containing malformed data
     - with payload over any [ingestion limits](/azure/azure-monitor/service-limits#logs-ingestion-api)
     - throttling due to overage of API call limits
