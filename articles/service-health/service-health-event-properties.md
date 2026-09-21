@@ -54,7 +54,7 @@ Key properties include:
 - **Timestamps**: Examples are `properties.impactStartTime` and `properties.impactMitigationTime`.
 
 Start by checking `properties.incidentType` to understand what kind of issue and detail is involved, and then check the level for the severity.
-To learn how to use Azure activity logs, see [Azure activity log event schema](/azure/azure-monitor/platform/activity-log-schema#service-health-category).
+To learn how to use Azure activity logs, see [Azure activity log event schema](../azure-monitor/fundamentals/activity-log-schema.md#service-health-category).
 
 | Property name                      | Description                                                                                                          |
 | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
@@ -127,4 +127,4 @@ Service Health event type (`properties.incidentType`)
 - [View and access security advisories](security-advisories-elevated-access.md)
 - [Service Health event tags](service-health-event-tags.md)
 - [Service Health data transitions](service-health-notification-transitions.md)
-- [Activity log - Service Health](/azure/azure-monitor/platform/activity-log-schema#service-health-category)
+- [Activity log - Service Health](../azure-monitor/fundamentals/activity-log-schema.md#service-health-category)

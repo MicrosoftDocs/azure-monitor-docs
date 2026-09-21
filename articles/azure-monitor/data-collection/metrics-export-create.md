@@ -15,7 +15,7 @@ Platform metrics measure the performance of different aspects of your Azure reso
 
 ## Compare to diagnostic settings
 
-Before this feature, you could only export platform metrics by using [diagnostic settings](../platform/diagnostic-settings.md). Diagnostic settings are still required for resource types that don't yet support DCRs.
+Before this feature, you could only export platform metrics by using [diagnostic settings](diagnostic-settings.md). Diagnostic settings are still required for resource types that don't yet support DCRs.
 
 Platform telemetry DCRs provide several benefits over diagnostic settings:
 

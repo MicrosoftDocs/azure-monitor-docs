@@ -151,7 +151,7 @@ Routing your monitoring data to an event hub with Azure Monitor enables you to e
 ## Next steps
 
 * [Azure Monitor data sources and data collection methods](/azure/azure-monitor/data-sources)
-* [Azure Monitor data collection rules](../data-collection/data-collection-rule-overview.md)
-* [Metrics export using data collection rules](../data-collection/metrics-export-create.md)
-* [Azure Monitor diagnostic settings](create-diagnostic-settings.md)
+* [Azure Monitor data collection rules](data-collection-rule-overview.md)
+* [Metrics export using data collection rules](metrics-export-create.md)
+* [Azure Monitor diagnostic settings](diagnostic-settings.md)
 * [Set up an alert based on an activity log event](../alerts/alerts-log-webhook.md)

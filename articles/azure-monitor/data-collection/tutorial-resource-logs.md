@@ -9,7 +9,7 @@ ai-usage: ai-assisted
 
 # Collect and analyze resource logs from an Azure resource in Azure Monitor
 
-[Resource logs](./resource-logs.md) provide insight into the detailed operation of an Azure resource and are useful for monitoring their health and availability. Azure resources generate resource logs automatically, but you must create a [diagnostic setting](./diagnostic-settings.md) to collect them. This tutorial takes you through the process of creating a diagnostic setting to send resource logs to a Log Analytics workspace where you analyze them with log queries.
+[Resource logs](../logs/resource-logs.md) provide insight into the detailed operation of an Azure resource and are useful for monitoring their health and availability. Azure resources generate resource logs automatically, but you must create a [diagnostic setting](diagnostic-settings.md) to collect them. This tutorial takes you through the process of creating a diagnostic setting to send resource logs to a Log Analytics workspace where you analyze them with log queries.
 
 In this tutorial, you learn how to:
 
@@ -50,7 +50,7 @@ To create a new Log Analytics workspace, use the following procedure. To use an 
 
 ## Create a diagnostic setting
 
-[Diagnostic settings](../essentials/diagnostic-settings.md) specify where to send resource logs for a particular resource. A single diagnostic setting can have multiple [destinations](../essentials/diagnostic-settings.md#destinations), but this tutorial uses only a Log Analytics workspace. For the full anatomy of a diagnostic setting, including all supported categories and destinations, see [Diagnostic settings in Azure Monitor](../essentials/diagnostic-settings.md).
+[Diagnostic settings](diagnostic-settings.md) specify where to send resource logs for a particular resource. A single diagnostic setting can have multiple [destinations](diagnostic-settings.md#destinations), but this tutorial uses only a Log Analytics workspace. For the full anatomy of a diagnostic setting, including all supported categories and destinations, see [Diagnostic settings in Azure Monitor](diagnostic-settings.md).
 
 1. Under the **Monitoring** section of your resource's menu, select **Diagnostic settings**. Then select **Add diagnostic setting**.
 
@@ -59,7 +59,7 @@ To create a new Log Analytics workspace, use the following procedure. To use an 
 
     :::image type="content" source="media/tutorial-resource-logs/diagnostic-settings.png" lightbox="media/tutorial-resource-logs/diagnostic-settings.png" alt-text="Screenshot that shows Diagnostic settings.":::
 
-1. Enter a name for the diagnostic setting and select the categories that you want to collect. See the documentation for each service for a definition of its available categories. **AllMetrics** sends the same [platform metrics](./tutorial-metrics.md) for the resource to the workspace. This data lets you analyze it by using log queries along with other monitoring data. Select **Send to Log Analytics workspace** and then select the workspace that you created.
+1. Enter a name for the diagnostic setting and select the categories that you want to collect. See the documentation for each service for a definition of its available categories. **AllMetrics** sends the same [platform metrics](../metrics/tutorial-metrics.md) for the resource to the workspace. This data lets you analyze it by using log queries along with other monitoring data. Select **Send to Log Analytics workspace** and then select the workspace that you created.
 
     :::image type="content" source="media/tutorial-resource-logs/diagnostic-setting-details.png" lightbox="media/tutorial-resource-logs/diagnostic-setting-details.png" alt-text="Screenshot that shows Diagnostic setting details.":::
 
@@ -99,4 +99,4 @@ See [Log queries in Azure Monitor](../logs/log-query-overview.md) for details ab
 Once you're collecting monitoring data for your Azure resources, see your different options for creating alert rules to be proactively notified when Azure Monitor identifies interesting information.
 
 > [!div class="nextstepaction"]
-> [Create alert rules for an Azure resource](../alerts/alert-options.md)
+> [Create alert rules for an Azure resource](../alerts/alerts-types.md)

@@ -28,7 +28,7 @@ In the Azure portal, open your Azure Monitor pipeline resource and select **Moni
 
 ### Collect and view logs
 
-Create a [diagnostic setting in Azure Monitor](../platform/diagnostic-settings.md) to collect resource logs for the pipeline. You can send these logs to a Log Analytics workspace, a storage account, an event hub, or a partner solution. If you send logs to a Log Analytics workspace, you can query them in the `AzureMonitorPipelineLogErrors` table.
+Create a [diagnostic setting in Azure Monitor](diagnostic-settings.md) to collect resource logs for the pipeline. You can send these logs to a Log Analytics workspace, a storage account, an event hub, or a partner solution. If you send logs to a Log Analytics workspace, you can query them in the `AzureMonitorPipelineLogErrors` table.
 
 ### Collect logs from cluster pods
 

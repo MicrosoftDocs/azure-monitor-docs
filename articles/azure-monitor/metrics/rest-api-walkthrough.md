@@ -454,7 +454,7 @@ The following JSON shows an example response body:
 
 ## Querying metrics for multiple resources at a time
 
-In addition to querying metrics for an individual resource, some resource types also support querying multiple resources in a single request. These APIs power the [multi-resource experience in Azure metrics explorer](../metrics/analyze-metrics.md). You can view the set of resource types that support querying multiple resources on the [Metrics blade in Azure Monitor](https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/metrics) by using the resource type dropdown in the scope selector on the context blade. For more information, see the [multi-resource UX documentation](../metrics/analyze-metrics.md).
+In addition to querying metrics for an individual resource, some resource types also support querying multiple resources in a single request. These APIs power the [multi-resource experience in Azure metrics explorer](analyze-metrics.md). You can view the set of resource types that support querying multiple resources on the [Metrics blade in Azure Monitor](https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/metrics) by using the resource type dropdown in the scope selector on the context blade. For more information, see the [multi-resource UX documentation](analyze-metrics.md).
 
 There are some important differences between querying metrics for multiple and individual resources.
 
@@ -638,4 +638,4 @@ GET https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef0123
 * Review the [overview of monitoring](../fundamentals/overview.md)
 * View the [supported metrics with Azure Monitor](../reference/metrics-index.md)
 * Review the new [Azure Monitor Query client libraries](https://devblogs.microsoft.com/azure-sdk/announcing-the-new-azure-monitor-query-client-libraries/)
-* [Activity log in Azure Monitor](activity-log.md#view-and-retrieve-the-activity-log)
+* [Activity log in Azure Monitor](../fundamentals/activity-log.md#view-and-retrieve-the-activity-log)

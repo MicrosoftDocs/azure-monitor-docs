@@ -81,7 +81,7 @@ For a listing of different data sources that populate each type, see [Metrics in
 
 In addition to using the tools in Azure to analyze monitoring data, you might have a requirement to forward it to an external tool like a security information and event management product. This forwarding is typically done directly from monitored resources through [Azure Event Hubs](/azure/event-hubs/).
 
-Some sources send data directly to an event hub. For others, use another process, such as a logic app, to retrieve the required data. For more information, see [Stream Azure monitoring data to an event hub for consumption by an external tool](../platform/stream-monitoring-data-event-hubs.md).
+Some sources send data directly to an event hub. For others, use another process, such as a logic app, to retrieve the required data. For more information, see [Stream Azure monitoring data to an event hub for consumption by an external tool](../data-collection/stream-monitoring-data-event-hubs.md).
 
 ## Next steps
 

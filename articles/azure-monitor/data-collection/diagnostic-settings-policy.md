@@ -9,7 +9,7 @@ ai-usage: ai-assisted
 
 # Create diagnostic settings at scale by using custom Azure policies
 
-Azure Policy and policy initiatives provide a method to enable logging at scale by using [diagnostic settings](./diagnostic-settings.md) for Azure Monitor. This article describes how to create a custom policy for Azure resources that don't have a built-in policy. To create diagnostic settings for Azure resources that have built-in policies, see [Create diagnostic settings at scale by using built-in Azure policies](diagnostic-settings-policy-built-in.md).
+Azure Policy and policy initiatives provide a method to enable logging at scale by using [diagnostic settings](diagnostic-settings.md) for Azure Monitor. This article describes how to create a custom policy for Azure resources that don't have a built-in policy. To create diagnostic settings for Azure resources that have built-in policies, see [Create diagnostic settings at scale by using built-in Azure policies](diagnostic-settings-policy-built-in.md).
 
 ## Prerequisites
 
@@ -115,4 +115,4 @@ After the assignment and any remediation task complete, confirm that diagnostic 
 
 * [Azure Monitor data sources and data collection methods](../fundamentals/data-sources.md)
 * [Diagnostic settings in Azure Monitor](diagnostic-settings.md)
-* [Metrics export using data collection rules](../data-collection/metrics-export-create.md)
+* [Metrics export using data collection rules](metrics-export-create.md)

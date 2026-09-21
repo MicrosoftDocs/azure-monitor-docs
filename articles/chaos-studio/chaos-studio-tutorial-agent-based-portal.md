@@ -98,7 +98,7 @@ When you create a chaos experiment, Chaos Studio creates a system-assigned manag
 1. Select **Review + assign** > **Review + assign**.
 
 ## Run your experiment
-You're now ready to run your experiment. To see the impact, we recommend that you open an [Azure Monitor metrics chart](../azure-monitor/platform/tutorial-metrics.md) with your VM's CPU pressure in a separate browser tab.
+You're now ready to run your experiment. To see the impact, we recommend that you open an [Azure Monitor metrics chart](../azure-monitor/metrics/tutorial-metrics.md) with your VM's CPU pressure in a separate browser tab.
 
 1. In the **Experiments** view, select your experiment. Select **Start** > **OK**.
 

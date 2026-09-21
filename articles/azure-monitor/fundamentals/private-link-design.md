@@ -91,7 +91,7 @@ If you block queries from public networks, clients like machines and SDKs outsid
 
 Following are exceptions to this network access:
 
-- **Diagnostic logs**. Logs and metrics sent to a workspace from a [diagnostic setting](../platform/diagnostic-settings.md) use a secure private Microsoft channel and aren't controlled by these settings.
+- **Diagnostic logs**. Logs and metrics sent to a workspace from a [diagnostic setting](../data-collection/diagnostic-settings.md) use a secure private Microsoft channel and aren't controlled by these settings.
 - **Custom metrics or Azure Monitor guest metrics**. [Custom metrics](../metrics/metrics-custom-overview.md) sent from the Azure Monitor Agent can't be configured over private links.
 
 > [!NOTE]

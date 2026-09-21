@@ -145,7 +145,7 @@ landingContent:
           - text: Data collection rules (DCRs)
             url: agents/data-collection-rule-overview.md
           - text: Diagnostic settings
-            url: platform/diagnostic-settings.md
+            url: data-collection/diagnostic-settings.md
       - linkListType: how-to-guide
         links:            
           - text: Install and manage the Azure Monitor Agent

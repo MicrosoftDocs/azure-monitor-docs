@@ -17,7 +17,7 @@ Stores resource logs for Azure services that use Azure Diagnostics mode. Resourc
 
 The resource log for each Azure service has a unique set of columns. The AzureDiagnostics table includes the most common columns used by Azure services. If a resource log includes a column that doesn't already exist in the AzureDiagnostics table, that column is added the first time that data is collected. If the maximum number of 500 columns is reached, data for any additional columns is added to a dynamic column.
 
-Azure services that use resource-specific mode store data in a table specific to that service and don't use the AzureDiagnostics table. See [Azure resource logs](/azure/azure-monitor/platform/resource-logs#send-to-log-analytics-workspace) for details on the differences. See [Resources using Azure Diagnostics mode](#resources-using-azure-diagnostics-mode) for the services that use Azure Diagnostics.
+Azure services that use resource-specific mode store data in a table specific to that service and don't use the AzureDiagnostics table. See [Azure resource logs](../../logs/resource-logs.md#collection-mode) for details on the differences. See [Resources using Azure Diagnostics mode](#resources-using-azure-diagnostics-mode) for the services that use Azure Diagnostics.
 
 > [!NOTE]
 > The AzureDiagnostics table is a custom log table created exclusively by the Azure Monitor pipeline the first time an Azure resource begins sending logs in Azure Diagnostics mode. Unlike other tables, the AzureDiagnostics table can't be created via an ARM template or tables API. Consequently, it's not possible to modifying the table's default retention values before its creation.
@@ -77,7 +77,7 @@ While query best practices such as always filtering by time as the first clause 
 
 ## Resources using Azure Diagnostics mode
 
-The following services use Azure diagnostics mode for their resource logs and send data to the Azure Diagnostics table. See [Azure resource logs](/azure/azure-monitor/platform/resource-logs) for details on this configuration.
+The following services use Azure diagnostics mode for their resource logs and send data to the Azure Diagnostics table. See [Azure resource logs](/azure/azure-monitor/logs/resource-logs) for details on this configuration.
 > [!NOTE]
 > All other resources send data to resource-specific tables.
 
@@ -135,7 +135,7 @@ The following services use Azure diagnostics mode for their resource logs and se
 
 ### Azure Diagnostics mode or resource-specific mode
 
-The following services use either Azure diagnostics mode or resource-specific mode for their resource logs depending on the diagnostics settings configuration. When using resource-specific mode, these resources don't send data to the AzureDiagnostics table. See [Azure resource logs](/azure/azure-monitor/platform/resource-logs) for details on this configuration.
+The following services use either Azure diagnostics mode or resource-specific mode for their resource logs depending on the diagnostics settings configuration. When using resource-specific mode, these resources don't send data to the AzureDiagnostics table. See [Azure resource logs](/azure/azure-monitor/logs/resource-logs) for details on this configuration.
 
 |Service name | resourceType|
 |---|---|

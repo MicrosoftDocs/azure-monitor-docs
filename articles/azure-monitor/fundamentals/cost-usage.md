@@ -15,15 +15,15 @@ This article describes the different ways that Azure Monitor charges for usage a
 
 ## Pricing model
 
-Azure Monitor uses a consumption-based pricing (pay-as-you-go) billing model where you only pay for what you use. Features of Azure Monitor that are enabled by default don't incur any charge. These features include collection and alerting on the [Activity log](../platform/activity-log.md) and collection and analysis of [platform metrics](../reference/metrics-index.md).
+Azure Monitor uses a consumption-based pricing (pay-as-you-go) billing model where you only pay for what you use. Features of Azure Monitor that are enabled by default don't incur any charge. These features include collection and alerting on the [Activity log](activity-log.md) and collection and analysis of [platform metrics](../reference/metrics-index.md).
 
 Several other features don't have a direct cost, but you instead pay for the ingestion and retention of data that they collect. The following table describes the different types of usage that are charged in Azure Monitor. Detailed current pricing for each is provided in [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 | Type | Description |
 |:-----|:------------|
 | Logs | Ingestion, retention, and export of data in [Log Analytics workspaces](../logs/log-analytics-workspace-overview.md) and [legacy Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource). Log data ingestion is the largest component of Azure Monitor charges for most customers. There's no charge for querying this data except for [Basic and Auxiliary logs](../logs/data-platform-logs.md#table-plans) or [data in long-term retention](../logs/data-retention-configure.md).<br><br>Charges for Logs can vary significantly on the configuration that you choose. See [Azure Monitor Logs pricing details](../logs/cost-logs.md) for details on how charges for Logs data are calculated and the different pricing tiers available. |
-| Platform logs | Processing of [diagnostic and auditing information](../platform/resource-logs.md) is charged for [certain services](../reference/logs-index.md) when sent to destinations other than a Log Analytics workspace. There's no direct charge when this data is sent to a Log Analytics workspace, but there's a charge for the workspace data ingestion and collection. |
-| Metrics | There's no charge for [standard metrics](../reference/metrics-index.md) collected from Azure resources. [Native custom metrics](../metrics/metrics-custom-overview.md) are free during preview. There's a cost for retrieving metrics from the [REST API](../platform/rest-api-walkthrough.md#retrieve-metric-values). |
+| Platform logs | Processing of [diagnostic and auditing information](../logs/resource-logs.md) is charged for [certain services](../reference/logs-index.md) when sent to destinations other than a Log Analytics workspace. There's no direct charge when this data is sent to a Log Analytics workspace, but there's a charge for the workspace data ingestion and collection. |
+| Metrics | There's no charge for [standard metrics](../reference/metrics-index.md) collected from Azure resources. [Native custom metrics](../metrics/metrics-custom-overview.md) are free during preview. There's a cost for retrieving metrics from the [REST API](../metrics/rest-api-walkthrough.md#retrieve-metric-values). |
 | Prometheus Metrics | Pricing for [Azure Monitor managed service for Prometheus](../metrics/prometheus-metrics-overview.md) is based on [data samples ingested](../containers/kubernetes-monitoring-enable.md) and [query samples processed](../metrics/azure-monitor-workspace-manage.md#link-a-grafana-workspace). Data is retained for 18 months at no extra charge. |
 | Alerts | Alerts are charged based on the type and number of [signals](../alerts/alerts-overview.md) used by the alert rule, its frequency, and the type of [notification configured through an action group](../alerts/action-groups.md). For [log search alerts](../alerts/alerts-types.md#log-alerts) configured for [at scale monitoring](../alerts/alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions), the cost also depends on the number of time series created by the dimensions resulting from your query. |
 | Web tests | There's a cost for [standard web tests](../app/availability.md) and [multi-step web tests](../app/availability.md) in Application Insights. Multi-step web tests are deprecated. |
@@ -35,7 +35,7 @@ See a full list of [Azure Monitor billing meter names](cost-meters.md).
 Sending data to Azure Monitor can incur data bandwidth charges. As described in the [Azure Bandwidth pricing page](https://azure.microsoft.com/pricing/details/bandwidth/), data transfer between Azure services located in two regions charged as outbound data transfer at the normal rate. Inbound data transfer is free. Data transfer charges for Azure Monitor though are typically small compared to the costs for data ingestion and retention. You should focus more on your ingested data volume to control your costs.
 
 > [!NOTE]
-> Data sent to a different region using [diagnostic settings](../platform/diagnostic-settings.md) doesn't incur data transfer charges.
+> Data sent to a different region using [diagnostic settings](../data-collection/diagnostic-settings.md) doesn't incur data transfer charges.
 
 ## View Azure Monitor usage and charges
 

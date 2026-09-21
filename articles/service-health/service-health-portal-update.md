@@ -147,5 +147,5 @@ On the **Service issues** pane, you can filter by **Scope**. The **Scope** colum
 - [View and access Security advisories](security-advisories-elevated-access.md)
 - [Service Health event tags](service-health-event-tags.md)
 - [Service Health data transitions](service-health-notification-transitions.md)
-- [Activity log - Service Health](/azure/azure-monitor/platform/activity-log-schema#service-health-category).
+- [Activity log - Service Health](../azure-monitor/fundamentals/activity-log-schema.md#service-health-category).
 - [How to report an impact](report-issue.md)

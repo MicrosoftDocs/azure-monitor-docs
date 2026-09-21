@@ -14,15 +14,15 @@ Azure resource logs provide insight into operations that are performed in an Azu
 
 ## Collecting resource logs
 
-Resource logs aren't collected by default. To collect them, you must create a diagnostic setting for each Azure resource. See [Diagnostic settings in Azure Monitor](diagnostic-settings.md) for details. The information below provides further details on the different destinations that resources logs can be sent to.
+Resource logs aren't collected by default. To collect them, you must create a diagnostic setting for each Azure resource. See [Diagnostic settings in Azure Monitor](../data-collection/diagnostic-settings.md) for details. The information below provides further details on the different destinations that resources logs can be sent to.
 
-:::image type="content" source="media/diagnostic-settings/platform-logs-metrics.png" lightbox="media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics." border="false":::
+:::image type="content" source="../data-collection/media/diagnostic-settings/platform-logs-metrics.png" lightbox="../data-collection/media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics." border="false":::
 
 > [!NOTE]
 >
 > Resource Logs aren't completely lossless. They're based on a store and forward architecture designed to affordably move petabytes of data per day at scale. This capability includes built-in redundancy and retries across the platform but doesn't provide transactional guarantees. Anytime a persistent source of data loss is identified, its resolution and future prevention is prioritized. Small data losses may still occur to temporary, non-repeating service issues distributed across Azure.
 
-After resource logs are collected, the time for them to become available for analysis varies by destination and Azure service. For expected ingestion latency, see [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md#azure-metrics-resource-logs-activity-logs).
+After resource logs are collected, the time for them to become available for analysis varies by destination and Azure service. For expected ingestion latency, see [Log data ingestion time in Azure Monitor](data-ingestion-time.md#azure-metrics-resource-logs-activity-logs).
 
 ## Destinations
 
@@ -32,10 +32,10 @@ The following sections describe details of resource logs for each destination.
 
 ### [Log Analytics workspace](#tab/log-analytics)
 
-Send the resource logs to a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) for the following functionality:
+Send the resource logs to a [Log Analytics workspace](log-analytics-workspace-overview.md) for the following functionality:
 
 
-- Correlate resource logs with other log data using [log queries](../logs/log-query-overview.md). 
+- Correlate resource logs with other log data using [log queries](log-query-overview.md).
 - Create [log alerts](../alerts/alerts-create-log-alert-rule.md) from resource log entries.
 - Access resource log data with [Power BI](/power-bi/transform-model/log-analytics/desktop-log-analytics-overview).
 
@@ -75,7 +75,7 @@ All Azure services will eventually use the resource-specific mode. As part of th
 :::image type="content" source="media/resource-logs/diagnostic-settings-mode-selector.png" lightbox="media/resource-logs/diagnostic-settings-mode-selector.png" alt-text="Screenshot that shows the Diagnostics settings mode selector.":::
 
 > [!NOTE]
-> For an example that sets the collection mode by using an Azure Resource Manager template, see [Resource Manager template samples for diagnostic settings in Azure Monitor](resource-manager-diagnostic-settings.md#diagnostic-setting-for-recovery-services-vault).
+> For an example that sets the collection mode by using an Azure Resource Manager template, see [Resource Manager template samples for diagnostic settings in Azure Monitor](../data-collection/resource-manager-diagnostic-settings.md#diagnostic-setting-for-recovery-services-vault).
 
 You can modify an existing diagnostic setting to resource-specific mode. In this case, data that was already collected remains in the `AzureDiagnostics` table until it's removed according to your retention setting for the workspace. New data is collected in the dedicated table. Use the [union](/azure/kusto/query/unionoperator) operator to query data across both tables.
 
@@ -155,7 +155,7 @@ The following sample output data is from Azure Event Hubs for a resource log:
 Send resource logs to Azure Storage to retain them for archiving. After you've created the diagnostic setting, a storage container is created in the storage account as soon as an event occurs in one of the enabled log categories.
 
 > [!NOTE]
-> An alternate to archiving is to send the resource log to a table in your Log Analytics workspace with [low-cost, long-term retention](../logs/data-retention-configure.md).
+> An alternate to archiving is to send the resource log to a table in your Log Analytics workspace with [low-cost, long-term retention](data-retention-configure.md).
 
 The blobs within the container use the following naming convention:
 
@@ -187,7 +187,7 @@ Resource logs can be sent to partner solutions that are fully integrated into Az
 ---
 
 ## Categories and schemas
-All resource logs share a common top-level schema. Each service defines unique properties for its own logs. See [Common and service-specific schemas for Azure resource logs](./resource-logs-schema.md) for the common schema and the schemas for each service. See [Supported Resource log categories for Azure Monitor](/azure/azure-monitor/reference/logs-index) for the different categories supported by each service and links to the schemas for each category.
+All resource logs share a common top-level schema. Each service defines unique properties for its own logs. See [Common and service-specific schemas for Azure resource logs](resource-logs-schema.md) for the common schema and the schemas for each service. See [Supported Resource log categories for Azure Monitor](/azure/azure-monitor/reference/logs-index) for the different categories supported by each service and links to the schemas for each category.
 
 
 
@@ -195,4 +195,4 @@ All resource logs share a common top-level schema. Each service defines unique p
 ## Next steps
 
 * [Read more about resource logs](../fundamentals/data-sources.md).
-* [Create diagnostic settings to send platform logs and metrics to different destinations](diagnostic-settings.md).
+* [Create diagnostic settings to send platform logs and metrics to different destinations](../data-collection/diagnostic-settings.md).
