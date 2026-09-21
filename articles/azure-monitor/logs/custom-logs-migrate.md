@@ -10,11 +10,11 @@ ai-usage: ai-assisted
 
 # Migrate from the HTTP Data Collector API to the Logs ingestion API
 
-The [HTTP Data Collector API](../logs/data-collector-api.md) is scheduled for retirement. Support for the legacy Data Collector API ends **September 14, 2026**. Existing ingestion continues to work, but the API only receives critical security fixes. Migrate to the [Logs ingestion API](../logs/logs-ingestion-api-overview.md) which provides more processing power and flexibility in ingesting logs and [managing tables](../logs/manage-logs-tables.md).
+The [HTTP Data Collector API](../logs/data-collector-api.md) is [deprecated](/lifecycle/faq/azure-infrastructure#deprecation--previous-gen). [Support ended](/lifecycle/definitions#end-of-support) for the legacy Data Collector API **September 14, 2026**, although ingestion continues to function. Migrate to the [Logs ingestion API](../logs/logs-ingestion-api-overview.md) which provides more processing power and flexibility in ingesting logs and [managing tables](../logs/manage-logs-tables.md).
 
 This article describes the differences between the two APIs and how to migrate to the Logs ingestion API.
 
-Two dates affect Data Collector API ingestion. On **March 1, 2026**, the API endpoint stopped accepting legacy TLS versions. Clients that don't negotiate TLS 1.2 or later can't ingest data. On **September 14, 2026**, the API retires but ingestion continues for TLS compliant clients. Verify your client's TLS configuration before assuming ingestion is healthy, regardless of your migration timeline.
+Two dates affect Data Collector API ingestion. On **March 1, 2026**, the API endpoint stopped accepting legacy TLS versions. Clients that don't negotiate TLS 1.2 or later can't ingest data. On **September 14, 2026**, the API [ended support](/lifecycle/definitions#end-of-support) but ingestion continues for TLS compliant clients. Verify your client's TLS configuration before assuming ingestion is healthy, regardless of your migration timeline.
 
 ## Advantages of the Logs ingestion API
 
