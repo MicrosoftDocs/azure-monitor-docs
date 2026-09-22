@@ -195,8 +195,6 @@ The Logs Ingestion API supports custom tables and selected Azure tables. The tar
 
 ## Limits and considerations
 
-
-
 For limits related to the Logs Ingestion API, see [Azure Monitor service limits](../fundamentals/service-limits.md#logs-ingestion-api).
 
 ## Next steps
