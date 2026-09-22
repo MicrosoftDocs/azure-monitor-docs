@@ -2,7 +2,7 @@
 title: Troubleshoot Azure Monitor pipeline
 description: Guidance for troubleshooting issues with Azure Monitor pipeline deployment, configuration, data collection, and connectivity.
 ms.topic: troubleshooting-general
-ms.date: 03/20/2026
+ms.date: 09/21/2026
 ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 ---
 
@@ -18,21 +18,48 @@ Track the health and performance of your pipeline deployment using Azure Monitor
 
 In the Azure portal, open your Azure Monitor pipeline resource and select **Monitoring** and then **Metrics**. The following metrics are available:
 
+> [!IMPORTANT]
+> Starting with pipeline version 1.6.1, use `exported_log_records` instead of `exporter_sent_log_records` and `log_records_failed_to_export` instead of `exporter_send_failed_log_records`. Update any queries, alerts, dashboards, or workbooks that use the previous metric names.
+
 | Component | Metric name | Display name | Description | Dimensions |
 |:---|:---|:---|:---|:---|
-| Pipeline group process | `process_cpu_utilization` | CPU utilization (preview) | The percentage of CPU utilized by the pipeline group process, normalized across all cores. | Instance ID |
-| Pipeline group process | `process_memory_usage` | Memory used (preview) | Total physical memory (resident set size) used by the pipeline group process. | Instance ID |
-| Pipeline group process | `process_uptime` | Process uptime (preview) | Uptime of the pipeline group process since last start. | Instance ID |
-| Exporter | `exporter_sent_log_records` | Logs exported (preview) | Number of log records successfully sent by the exporter to the destination. | Instance ID, Pipeline name, Component name |
-| Exporter | `exporter_send_failed_log_records` | Failed log exports (preview) | Number of log records that the exporter couldn't deliver after exhausting its own retries, if any. The same logs might be counted more than once if an upstream retry or buffering mechanism resubmits them. A nonzero value indicates export issues but not necessarily data loss because the pipeline might still retry successfully. | Instance ID, Pipeline name, Component name |
+| Pipeline group process | `process_cpu_utilization` | CPU utilization | The percentage of CPU utilized by the pipeline group process, normalized across all cores. | Instance ID |
+| Pipeline group process | `process_memory_usage` | Memory used | Total physical memory (resident set size) used by the pipeline group process. | Instance ID |
+| Pipeline group process | `process_uptime` | Process uptime | Uptime of the pipeline group process since last start. | Instance ID |
+| Receiver | `accepted_log_records` | Logs accepted (preview) | Number of log records accepted into the pipeline. | Instance ID, Component name |
+| Receiver | `rejected_log_records` | Logs rejected (preview) | Number of log records rejected by validation while entering the pipeline. | Instance ID, Component name |
+| Processor | `processor_input_log_records` | Logs entering processor (preview) | Number of log records entering the configured processor. | Instance ID, Pipeline name, Component name |
+| Processor | `processor_output_log_records` | Logs leaving processor (preview) | Number of log records leaving the configured processor. | Instance ID, Pipeline name, Component name |
+| Processor | `processing_duration` | Logs processing duration (preview) | Time spent processing log records in the configured processor. | Instance ID, Pipeline name, Component name |
+| Exporter | `exported_log_records` | Logs exported (preview) | Number of log records successfully sent to the destination. | Instance ID, Pipeline name, Component name |
+| Exporter | `log_records_failed_to_export` | Logs failed to export (preview) | Number of log records the pipeline couldn't deliver after exhausting its own retries, if any. The same logs might be counted more than once if an upstream retry or buffering mechanism resubmits them. A nonzero value indicates export issues but not necessarily data loss because the pipeline might still retry successfully. | Instance ID, Pipeline name, Component name |
+| Exporter | `log_records_pending_export` | Logs currently pending export (preview) | Current number of log records queued or in flight for export. | Instance ID, Pipeline name, Component name |
+| Persistent storage | `persistent_storage_utilization` | Persistent storage utilization (preview) | Percentage of configured persistent storage currently in use. | Instance ID, Pipeline name, Component name |
+| Persistent storage | `log_records_dropped_from_storage` | Logs dropped from persistent storage (preview) | Number of log records dropped from persistent storage. | Loss reason, Instance ID, Pipeline name, Component name |
 
 ### Collect and view logs
-
 Create a [diagnostic setting in Azure Monitor](diagnostic-settings.md) to collect resource logs for the pipeline. You can send these logs to a Log Analytics workspace, a storage account, an event hub, or a partner solution. If you send logs to a Log Analytics workspace, you can query them in the `AzureMonitorPipelineLogErrors` table.
+
 
 ### Collect logs from cluster pods
 
 To investigate issues not visible in the Azure portal, collect logs directly from pipeline pods on your Kubernetes cluster.
+
+Starting with pipeline version 1.7.0, the extension includes a diagnostic collection script in the `azure-monitor-pipeline-forensics` ConfigMap. The script requires `kubectl` and `zip`. Run the following commands from a machine that has access to the cluster:
+
+```bash
+kubectl get configmap azure-monitor-pipeline-forensics \
+  --namespace <namespace> \
+  --output go-template='{{ index .data "azure-monitor-pipeline-forensics.sh" }}' \
+  > azure-monitor-pipeline-forensics.sh
+
+chmod +x azure-monitor-pipeline-forensics.sh
+./azure-monitor-pipeline-forensics.sh -n <namespace> -p <pipeline-name>
+```
+
+The script creates `azure-monitor-pipeline-forensics.zip` in the current directory. It collects logs and diagnostic information only for the specified pipeline instance.
+
+You can also collect individual pod logs manually.
 
 **Retrieve pod logs:**
 ```bash
