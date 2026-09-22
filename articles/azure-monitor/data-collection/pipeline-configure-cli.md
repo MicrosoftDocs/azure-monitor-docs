@@ -3,7 +3,7 @@ title: Configure Azure Monitor pipeline with CLI or ARM templates
 description: Learn how to configure Azure Monitor pipeline with CLI or ARM templates for automation and advanced scenarios.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 03/20/2026
+ms.date: 09/21/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
@@ -1383,6 +1383,9 @@ Edge devices in some environments might experience intermittent connectivity due
 | persistence.MaxStorageUsage (optional) | no limit (in GB)  | no max |
 
 After you create the volume in the appropriate namespace, configure it by using parameters in the pipeline configuration file. The pipeline reads data from persistent storage by using first-in-first-out (FIFO). The pipeline discards any data that's older than the maximum retention period.
+
+> [!WARNING]
+> When upgrading from a pipeline version earlier than 1.5, data already stored in a durable buffer remains under the previous storage path and isn't forwarded after the upgrade. Allow the durable buffer to drain before upgrading.
 
 > [!CAUTION]
 > Each replica of the pipeline stores data in a location in the persistent volume specific to that replica. Decreasing the number of replicas while the cluster is disconnected from the cloud prevents that data from being backfilled when connectivity is restored.

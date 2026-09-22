@@ -2,7 +2,7 @@
 title: Azure Monitor Agent extension versions
 description: Release notes and version history for the Azure Monitor Agent virtual machine extension, including Windows, Linux, and metrics updates.
 ms.topic: release-notes
-ms.date: 08/17/2026
+ms.date: 09/21/2026
 ms.custom: references_region
 ms.reviewer: shseth, nmangum
 ai-usage: ai-assisted
@@ -101,7 +101,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 - Added support for Azure Linux 4.
 - Added support for Rocky Linux 10 on x86_64 and Arm64.
-- Added support for overriding or disabling OTLP gRPC, HTTP, and Prometheus ingestion ports through Data Collection Rule (DCR) agent settings.
+- Added support for overriding OTLP gRPC, HTTP, and Prometheus ingestion ports through [Data Collection Rule (DCR) agent settings](agent-settings.md).
 - Added AKS workload identity authentication for custom OTLP metrics ingestion.
 - Added Metrics Extension support for the GovSG sovereign cloud.
 
