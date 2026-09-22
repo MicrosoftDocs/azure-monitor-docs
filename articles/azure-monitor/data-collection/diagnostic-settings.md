@@ -9,7 +9,7 @@ ms.reviewer: lualderm
 
 # Diagnostic settings in Azure Monitor
 
-You can use diagnostic settings in Azure Monitor to collect [resource logs](./resource-logs.md) and to send [platform metrics](./metrics-supported.md) and the [activity log](./activity-log.md) to various destinations. Create a separate diagnostic setting for each resource that you want to collect data from. Each setting defines the data from the resource to collect and the destinations to send that data to. This article describes the details of diagnostic settings, including how to create them and the destinations available for sending data.
+You can use diagnostic settings in Azure Monitor to collect [resource logs](../logs/resource-logs.md) and to send [platform metrics](../reference/metrics-index.md) and the [activity log](../fundamentals/activity-log.md) to various destinations. Create a separate diagnostic setting for each resource that you want to collect data from. Each setting defines the data from the resource to collect and the destinations to send that data to. This article describes the details of diagnostic settings, including how to create them and the destinations available for sending data.
 
 :::image type="content" source="media/diagnostic-settings/platform-logs-metrics.png" lightbox="media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram that shows collection of activity logs, resource logs, and platform metrics." border="false":::
 
@@ -29,9 +29,9 @@ Diagnostic settings can collect data from the sources in the following table. Fo
 
 | Data source | Description |
 |:------------|:------------|
-| [Platform metrics](./metrics-supported.md) | Automatically collected without configuration. Use a diagnostic setting to send platform metrics to other destinations. |
-| [Activity log](./activity-log.md) | Automatically collected without configuration. Use a diagnostic setting to send activity log entries to other destinations. |
-| [Resource logs](./resource-logs.md) | Aren't collected by default. Create a diagnostic setting to collect resource logs. |
+| [Platform metrics](../reference/metrics-index.md) | Automatically collected without configuration. Use a diagnostic setting to send platform metrics to other destinations. |
+| [Activity log](../fundamentals/activity-log.md) | Automatically collected without configuration. Use a diagnostic setting to send activity log entries to other destinations. |
+| [Resource logs](../logs/resource-logs.md) | Aren't collected by default. Create a diagnostic setting to collect resource logs. |
 
 After you configure a diagnostic setting, the time for each data source to become available for analysis varies. For expected latency for platform metrics, resource logs, and activity logs, see [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md#azure-metrics-resource-logs-activity-logs).
 
@@ -60,7 +60,7 @@ The destination doesn't have to be in the same subscription as the resource that
 
 You can create a diagnostic setting by using any of the following methods.
 
-To create a diagnostic setting for the activity log by using the Azure portal, see [Export activity log](./activity-log.md#export-activity-log). To create a diagnostic setting for a management group, see [Management Group Diagnostic Settings](/rest/api/monitor/management-group-diagnostic-settings).
+To create a diagnostic setting for the activity log by using the Azure portal, see [Export activity log](../fundamentals/activity-log.md#export-activity-log). To create a diagnostic setting for a management group, see [Management Group Diagnostic Settings](/rest/api/monitor/management-group-diagnostic-settings).
 
 ### [Azure portal](#tab/portal)
 
@@ -86,7 +86,7 @@ Use the following steps to create a new diagnostic setting or to edit an existin
 
 6. For **Destination details**, select the checkbox for each destination that you want to include in the diagnostic settings. Then provide the details for each destination.
 
-   If you select a Log Analytics workspace as a destination, you might need to specify the collection mode. For details, see [Collection mode](./resource-logs.md#collection-mode).
+   If you select a Log Analytics workspace as a destination, you might need to specify the collection mode. For details, see [Collection mode](../logs/resource-logs.md#collection-mode).
 
 ### [PowerShell](#tab/powershell)
 
@@ -113,7 +113,7 @@ Use the [az monitor diagnostic-settings create](/cli/azure/monitor/diagnostic-se
 > [!IMPORTANT]
 > To export the activity log by using Azure CLI, create or update a subscription-scope diagnostic setting with [az monitor diagnostic-settings subscription create](/cli/azure/monitor/diagnostic-settings/subscription#az-monitor-diagnostic-settings-subscription-create) or [az monitor diagnostic-settings subscription update](/cli/azure/monitor/diagnostic-settings/subscription#az-monitor-diagnostic-settings-subscription-update).
 
-The following example script creates a diagnostic setting that sends data to all three destinations. To specify [resource-specific mode](resource-logs.md#resource-specific) if the service supports it, add the `export-to-resource-specific` parameter with a value of `true`.
+The following example script creates a diagnostic setting that sends data to all three destinations. To specify [resource-specific mode](../logs/resource-logs.md#resource-specific) if the service supports it, add the `export-to-resource-specific` parameter with a value of `true`.
 
 ```azurecli
 az monitor diagnostic-settings create  \
@@ -130,7 +130,7 @@ az monitor diagnostic-settings create  \
 
 ### [ARM (JSON)](#tab/arm)
 
-The following sample template creates a diagnostic setting to send all audit logs to a Log Analytics workspace. The `apiVersion` value can change depending on the resource in the scope. For sample templates for other resources, see [Resource Manager template samples for diagnostic settings in Azure Monitor](./resource-manager-diagnostic-settings.md).
+The following sample template creates a diagnostic setting to send all audit logs to a Log Analytics workspace. The `apiVersion` value can change depending on the resource in the scope. For sample templates for other resources, see [Resource Manager template samples for diagnostic settings in Azure Monitor](resource-manager-diagnostic-settings.md).
 
 **Template File**
 
@@ -192,7 +192,7 @@ The following sample template creates a diagnostic setting to send all audit log
 
 ### [Bicep](#tab/bicep)
 
-The following sample template creates a diagnostic setting to send all audit logs to a Log Analytics workspace. The `apiVersion` value can change depending on the resource in the scope. For sample templates for other resources, see [Resource Manager template samples for diagnostic settings in Azure Monitor](./resource-manager-diagnostic-settings.md).
+The following sample template creates a diagnostic setting to send all audit logs to a Log Analytics workspace. The `apiVersion` value can change depending on the resource in the scope. For sample templates for other resources, see [Resource Manager template samples for diagnostic settings in Azure Monitor](resource-manager-diagnostic-settings.md).
 
 **Template File**
 
@@ -258,7 +258,7 @@ If you do use category groups in a diagnostic setting, you can't select individu
 
 ## Metrics limitations
 
-When you use Azure Monitor diagnostic settings to export platform metrics to a Log Analytics workspace, the following limitations apply. Not all metrics can be sent to a Log Analytics workspace with diagnostic settings. See the **Exportable** column in the [list of supported metrics](./metrics-supported.md).
+When you use Azure Monitor diagnostic settings to export platform metrics to a Log Analytics workspace, the following limitations apply. Not all metrics can be sent to a Log Analytics workspace with diagnostic settings. See the **Exportable** column in the [list of supported metrics](../reference/metrics-index.md).
 
 Diagnostic settings don't currently support multidimensional metrics. Metrics with dimensions are exported as flattened single-dimensional metrics and aggregated across dimension values. For example, the `IOReadBytes` metric on a blockchain can be explored and charted on a per-node level. When the metric is exported with diagnostic settings, it shows all read bytes for all nodes.
 
@@ -266,13 +266,13 @@ To work around the limitations for specific metrics, you can manually extract th
 
 ## Controlling costs
 
-Azure Monitor diagnostic settings can generate costs based on the destination and volume of collected data. For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) or refer to the [Frequently Asked Questions section](./diagnostic-settings-faq.md).
+Azure Monitor diagnostic settings can generate costs based on the destination and volume of collected data. For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) or refer to the [Frequently Asked Questions section](diagnostic-settings-faq.md).
 
 To control costs from diagnostic settings:
 
 * Collect only the log categories that you need for each service.
 * Skip collecting platform metrics unless you need metric data in the workspace for complex analysis by using log queries. Azure Monitor collects platform metrics automatically and makes them available in metrics explorer without a diagnostic setting.
-* Use [transformations](../data-collection/data-collection-transformations.md) to filter data for supported tables in a Log Analytics workspace. Diagnostic settings don't allow granular filtering within a selected category.
+* Use [transformations](data-collection-transformations.md) to filter data for supported tables in a Log Analytics workspace. Diagnostic settings don't allow granular filtering within a selected category.
 
 ## Expected latency after creating a diagnostic setting
 
@@ -314,5 +314,5 @@ For expected latency under normal operating conditions for all source types, see
 
 ## Related content
 
-* [Migrate from diagnostic settings storage retention to Azure Storage lifecycle management](./migrate-to-azure-storage-lifecycle-policy.md)
-* [Azure Monitor data sources and data collection methods](./platform-logs-overview.md)
+* [Migrate from diagnostic settings storage retention to Azure Storage lifecycle management](migrate-to-azure-storage-lifecycle-policy.md)
+* [Azure Monitor data sources and data collection methods](../fundamentals/data-sources.md)

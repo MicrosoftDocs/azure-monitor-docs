@@ -11,9 +11,9 @@ ms.reviewer: lualderm
 > [!NOTE]
 > Resource logs were previously known as diagnostic logs. The name was changed in October 2019 as the types of logs gathered by Azure Monitor shifted to include more than just the Azure resource.
 >
-> This article used to list resource log categories that you can collect. That list is now at [Resource log categories](resource-logs-categories.md).
+> This article used to list resource log categories that you can collect. That list is now at [Resource log categories](../reference/logs-index.md).
 
-[Azure Monitor resource logs](../essentials/platform-logs-overview.md) are logs emitted by Azure services that describe the operation of those services or resources. All resource logs available through Azure Monitor share a common top-level schema. Each service has the flexibility to emit unique properties for its own events.
+[Azure Monitor resource logs](../fundamentals/data-sources.md) are logs emitted by Azure services that describe the operation of those services or resources. All resource logs available through Azure Monitor share a common top-level schema. Each service has the flexibility to emit unique properties for its own events.
 
 A combination of the resource type (available in the `resourceId` property) and the category uniquely identify a schema. This article describes the top-level schemas for resource logs and links to the schemata for each service.
 
@@ -21,7 +21,7 @@ A combination of the resource type (available in the `resourceId` property) and 
 ## Top-level common schema
 
 > [!NOTE]
-> The schema described here is valid when resource logs are sent to Azure storage or to an event hub. When the logs are sent to a Log Analytics workspace, the column names may be different. See [Standard columns in Azure Monitor Logs](../logs/log-standard-columns.md) for columns common to all tables in a Log Analytics workspace and [Azure Monitor data reference](/azure/azure-monitor/reference) for a reference of different tables.
+> The schema described here is valid when resource logs are sent to Azure storage or to an event hub. When the logs are sent to a Log Analytics workspace, the column names may be different. See [Standard columns in Azure Monitor Logs](log-standard-columns.md) for columns common to all tables in a Log Analytics workspace and [Azure Monitor data reference](/azure/azure-monitor/reference) for a reference of different tables.
 
 | Name | Required or optional | Description |
 |---|---|---|
@@ -75,7 +75,7 @@ The schema for resource logs varies depending on the resource and log category. 
 | Azure Firewall | [Logging for Azure Firewall](/azure/firewall/diagnostic-logs) |
 | Azure Front Door | [Logging for Azure Front Door](/azure/frontdoor/front-door-diagnostics) |
 | Azure Functions | [Monitoring Azure Functions Data Reference Resource Logs](/azure/azure-functions/monitor-functions-reference#resource-logs) |
-| Application Insights | [Application Insights Data Reference Resource Logs](../monitor-azure-monitor-reference.md#supported-resource-logs-for-microsoftinsightscomponents) |
+| Application Insights | [Application Insights Data Reference Resource Logs](../fundamentals/monitor-azure-monitor-reference.md#supported-resource-logs-for-microsoftinsightscomponents) |
 | Azure Health Data Services | [Logging for Azure Health Data Services](/azure/healthcare-apis/logging) |
 | Azure IoT Hub | [IoT Hub operations](/azure/iot-hub/monitor-iot-hub-reference#resource-logs) |
 | Azure IoT Hub Device Provisioning Service| [Device Provisioning Service operations](/azure/iot-dps/monitor-iot-dps-reference#resource-logs) |
@@ -105,8 +105,8 @@ The schema for resource logs varies depending on the resource and log category. 
 
 ## Next steps
 
-* [See the resource log categories you can collect](resource-logs-categories.md)
-* [Learn more about resource logs](../essentials/platform-logs-overview.md)
-* [Stream resource logs to Event Hubs](./resource-logs.md#destinations)
+* [See the resource log categories you can collect](../reference/logs-index.md)
+* [Learn more about resource logs](../fundamentals/data-sources.md)
+* [Stream resource logs to Event Hubs](resource-logs.md#destinations)
 * [Change resource log diagnostic settings by using the Azure Monitor REST API](/rest/api/monitor/diagnosticsettings)
-* [Analyze logs from Azure Storage with Log Analytics](./resource-logs.md#destinations)
+* [Analyze logs from Azure Storage with Log Analytics](resource-logs.md#destinations)

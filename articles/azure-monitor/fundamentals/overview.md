@@ -16,7 +16,7 @@ In addition to supporting Azure Monitor features, the Azure Monitor data platfor
 ## Monitor your cloud resources
 Azure Monitor collects logs and metrics from all the resources across the different Azure services that you use, including audit logs from Microsoft Entra ID. This monitoring data is integrated into the Azure portal experience for each service. View a summary of the health and performance of your resources and then drill down into more detailed monitoring data and analysis tools to investigate and troubleshoot issues. Some services also provide dedicated monitoring experiences called Azure Monitor insights that deliver deep visibility into the performance and operation of your cloud resources.
 
-See [Monitor Azure resources](../platform/monitor-azure-resource.md).
+See [Monitor Azure resources](monitor-azure-resource.md).
 
 ## Monitor your infrastructure
 Azure Monitor monitors the health and performance of your virtual machines and Kubernetes clusters that make up the infrastructure of many environments. Collect event logs in addition to OpenTelemetry and Prometheus metrics and drill down on different components to view their configuration, operation, and performance details. Azure Network Watcher provides a suite of tools that use the Azure Monitor data platform to monitor the network health of your infrastructure resources.

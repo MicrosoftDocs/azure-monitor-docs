@@ -16,11 +16,11 @@ items:
   - name: Azure Monitor overview page
     href: fundamentals/overview-page.md
   - name: Monitor an Azure resource
-    href: platform/monitor-azure-resource.md
+    href: fundamentals/monitor-azure-resource.md
   - name: Analyze metric data
-    href: platform/tutorial-metrics.md
+    href: metrics/tutorial-metrics.md
   - name: Collect and view resource logs
-    href: platform/tutorial-resource-logs.md
+    href: data-collection/tutorial-resource-logs.md
 - name: Best practices
   items:
   - name: Reliability
@@ -749,9 +749,9 @@ items:
     displayName: data sources, data collection
     href: fundamentals/data-sources.md
   - name: Activity logs
-    href: platform/activity-log.md
+    href: fundamentals/activity-log.md
   - name: Resource logs
-    href: platform/resource-logs.md
+    href: logs/resource-logs.md
 - name: Data collection
   items:
   - name: Data collection rules (DCR)
@@ -837,20 +837,20 @@ items:
       items:
       - name: Create or edit
         displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-        href: platform/diagnostic-settings.md
+        href: data-collection/diagnostic-settings.md
       - name: Frequently asked questions
-        href: platform/diagnostic-settings-faq.md
+        href: data-collection/diagnostic-settings-faq.md
       - name: Create with Azure Policy
         items:
         - name: Use built-in policy or initiative
           displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-          href: platform/diagnostic-settings-policy-built-in.md
+          href: data-collection/diagnostic-settings-policy-built-in.md
         - name: Create custom policy
           displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-          href: platform/diagnostic-settings-policy.md
+          href: data-collection/diagnostic-settings-policy.md
       - name: Migrate storage retention
         displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-        href: platform/migrate-to-azure-storage-lifecycle-policy.md
+        href: data-collection/migrate-to-azure-storage-lifecycle-policy.md
   - name: Collect OpenTelemetry
     items:
     - name: OpenTelemetry with Azure Monitor
@@ -1035,7 +1035,7 @@ items:
     - name: Collect logs from Event Hubs
       href: logs/ingest-logs-event-hub.md
     - name: Stream monitoring data to Event Hubs
-      href: platform/stream-monitoring-data-event-hubs.md
+      href: data-collection/stream-monitoring-data-event-hubs.md
   - name: Azure Monitor pipeline
     items:
       - name: Overview
@@ -1452,7 +1452,7 @@ items:
     items:
     - name: Metrics REST API Walkthrough
       displayName: metrics, analyze
-      href: platform/rest-api-walkthrough.md
+      href: metrics/rest-api-walkthrough.md
     - name: Migrate to the metrics getBatch API
       href: metrics/migrate-to-batch-api.md
   - name: Log Analytics
@@ -1733,7 +1733,7 @@ items:
       - name: Action groups
         href: alerts/resource-manager-action-groups.md
     - name: Diagnostic settings
-      href: platform/resource-manager-diagnostic-settings.md
+      href: data-collection/resource-manager-diagnostic-settings.md
     - name: Log queries
       href: logs/resource-manager-log-queries.md
     - name: Workbooks
@@ -1773,9 +1773,9 @@ items:
     - name: Supported resource log categories
       href: /azure/azure-monitor/reference/logs-index
     - name: Resource log schemas
-      href: platform/resource-logs-schema.md
+      href: logs/resource-logs-schema.md
     - name: Activity log schema
-      href: platform/activity-log-schema.md
+      href: fundamentals/activity-log-schema.md
     - name: Azure Monitor Logs table feature support
       href: reference/tables-features.md
   - name: Windows diagnostics extension schema

@@ -8,11 +8,11 @@ ai-usage: ai-assisted
 ---
 
 # Analyze metrics for an Azure resource in Azure Monitor
-[Metrics](../metrics/data-platform-metrics.md) are numerical values that are collected at regular intervals and describe some aspect of an Azure resource. They are automatically collected for most Azure resources at no cost. For example, a metric might tell you the processor utilization of a virtual machine, the free space in a storage account, or the incoming traffic for a virtual network.
+[Metrics](data-platform-metrics.md) are numerical values that are collected at regular intervals and describe some aspect of an Azure resource. They are automatically collected for most Azure resources at no cost. For example, a metric might tell you the processor utilization of a virtual machine, the free space in a storage account, or the incoming traffic for a virtual network.
 
-[Metrics explorer](../metrics/metrics-explorer.md) is a feature of Azure Monitor in the Azure portal. Use it to create charts from metric values, visually correlate trends, and investigate spikes and dips in metric values. Plot charts from metrics created by your Azure resources to investigate their health and utilization.
+[Metrics explorer](metrics-explorer.md) is a feature of Azure Monitor in the Azure portal. Use it to create charts from metric values, visually correlate trends, and investigate spikes and dips in metric values. Plot charts from metrics created by your Azure resources to investigate their health and utilization.
 
-This tutorial walks through the classic metrics explorer. If your portal shows the newer experience, see [Azure Monitor metrics explorer with PromQL](../metrics/metrics-explorer.md) to analyze metrics with Prometheus query language.
+This tutorial walks through the classic metrics explorer. If your portal shows the newer experience, see [Azure Monitor metrics explorer with PromQL](metrics-explorer.md) to analyze metrics with Prometheus query language.
 
 In this tutorial, you learn how to:
 
@@ -65,14 +65,14 @@ By default, the chart shows the most recent 24 hours of metrics data.
 ## Apply dimension filters and splitting
 See the following references for advanced features to analyze your metrics further and identify potential outliers in your data:
 
-- [Filtering](../essentials/metrics-charts.md#filters) lets you choose which dimension values are included in the chart. For example, you might want to show only successful requests when you chart a *server response time* metric.
-- [Splitting](../essentials/metrics-charts.md#apply-splitting) controls whether the chart displays separate lines for each value of a dimension or aggregates the values into a single line. For example, you might want to see one line for an average response time across all server instances. Or you might want separate lines for each server.
+- [Filtering](analyze-metrics.md#add-filters) lets you choose which dimension values are included in the chart. For example, you might want to show only successful requests when you chart a *server response time* metric.
+- [Splitting](analyze-metrics.md#apply-metric-splitting) controls whether the chart displays separate lines for each value of a dimension or aggregates the values into a single line. For example, you might want to see one line for an average response time across all server instances. Or you might want separate lines for each server.
 
-See [examples of charts](../essentials/metric-chart-samples.md) that have filtering and splitting applied.
+See [examples of charts](metric-chart-samples.md) that have filtering and splitting applied.
 
 ## Advanced chart settings
 
-Customize the chart style and title, and modify advanced chart settings. When you finish customization, pin the chart to a dashboard to save your work. Configure metrics alerts as needed. To learn about these options and other advanced features of metrics explorer, see [Advanced features of metrics explorer](../essentials/metrics-charts.md#locking-the-range-of-the-y-axis).
+Customize the chart style and title, and modify advanced chart settings. When you finish customization, pin the chart to a dashboard to save your work. Configure metrics alerts as needed. To learn about these options and other advanced features of metrics explorer, see [Advanced features of metrics explorer](analyze-metrics.md#lock-the-y-axis-range).
 
 ## Next steps
 Now that you've learned how to work with metrics in Azure Monitor, learn how to create a metric alert rule to be notified when a metric value indicates a potential problem.

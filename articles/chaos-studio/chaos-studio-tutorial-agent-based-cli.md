@@ -272,7 +272,7 @@ az role assignment create --role "Reader" --assignee-principal-type "ServicePrin
 
 ## Run your experiment
 
-You're now ready to run your experiment. To see the effect, we recommend that you open [an Azure Monitor metrics chart](../azure-monitor/platform/tutorial-metrics.md) with your VM's CPU pressure in a separate browser tab.
+You're now ready to run your experiment. To see the effect, we recommend that you open [an Azure Monitor metrics chart](../azure-monitor/metrics/tutorial-metrics.md) with your VM's CPU pressure in a separate browser tab.
 
 1. Start the experiment by using the Azure CLI. Replace `$SUBSCRIPTION_ID`, `$RESOURCE_GROUP`, and `$EXPERIMENT_NAME` with the properties for your experiment.
 

@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 
 Azure Monitor records management operations for your Azure resources through the activity log feature. The activity log records operations like creating a virtual machine, changing a key vault access policy, or Resource Manager deployment errors. These management operations are also called [*control plane*](/azure/azure-resource-manager/management/control-plane-and-data-plane) operations. Use the activity log to review or audit this information, or create an alert to be proactively notified when an event occurs.
 
-In contrast to the activity log, [Azure resource logs](resource-logs.md) capture *data plane* operations performed within a resource. For example, these operations include getting a secret from a key vault or making a request to a database. Resource logs aren't collected by default and require configuration with a [diagnostic setting](./diagnostic-settings.md).
+In contrast to the activity log, [Azure resource logs](../logs/resource-logs.md) capture *data plane* operations performed within a resource. For example, these operations include getting a secret from a key vault or making a request to a database. Resource logs aren't collected by default and require configuration with a [diagnostic setting](../data-collection/diagnostic-settings.md).
 
 > [!TIP]
 > If a deployment operation error directs you to this article, see [Troubleshoot common Azure deployment errors](/azure/azure-resource-manager/troubleshooting/common-deployment-errors).
@@ -30,7 +30,7 @@ Azure retains activity log events for *90 days* and then deletes them. You aren'
 
 ## View and retrieve the activity log
 
-View activity log events for a subscription, resource group, or an individual resource. Use the Azure portal or programmatically query them by using the [Activity Log REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log). 
+View activity log events for a subscription, resource group, or an individual resource. Use the Azure portal or programmatically query them by using the [Activity Log REST API](azure-monitor-rest-api-index.md#activity-log).
 
 The Azure portal provides the **Activity log** blade from most service menus. Each of these areas also support programmatic access with REST or through specific Azure CLI and Azure PowerShell commands.
 
@@ -46,7 +46,7 @@ The following sections present common scenarios showing different ways to access
 
 * Azure PowerShell samples highlight the specific cmdlets available through the [Get-AzActivityLog](/powershell/module/az.monitor/get-azactivitylog) cmdlet.
 
-* REST API samples show how to retrieve events by using the required `$filter` parameter with the [Activity Log REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log).
+* REST API samples show how to retrieve events by using the required `$filter` parameter with the [Activity Log REST API](azure-monitor-rest-api-index.md#activity-log).
 
     The [List activity log events for a resource group](#list-activity-log-events-for-a-resource-group) sample also demonstrates how to explicitly set a timeout for your client to match the maximum timeout period for the activity log REST API of 75 seconds by using the [`Prefer` header](../logs/api/timeouts.md#timeout-request-header).
     
@@ -68,7 +68,7 @@ The following example retrieves activity log events for a subscription during a 
 
 The menu you open **Activity log** from determines its initial filter. If you open it from the **Monitor** menu, the only filter selected by default is the subscription. This is the same as opening it from **Subscriptions** > select subscription > **Activity Log**. 
 
-:::image type="content" source="./media/activity-log/view-activity-log.png" lightbox="./media/activity-log/view-activity-log.png" alt-text="Screenshot that shows the activity log." :::
+:::image type="content" source="media/activity-log/view-activity-log.png" lightbox="media/activity-log/view-activity-log.png" alt-text="Screenshot that shows the activity log." :::
 
 # [Azure CLI](#tab/cli-1)
 
@@ -149,7 +149,7 @@ Get-AzActivityLog @getAzActivityLogParams
 
 # [REST](#tab/rest-1)
 
-To list activity log events, use this `GET` request for the [Activity Log REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log).
+To list activity log events, use this `GET` request for the [Activity Log REST API](azure-monitor-rest-api-index.md#activity-log).
 
 ```REST
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version={apiVersion}&$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}'
@@ -433,7 +433,7 @@ The following table describes the parameters used in the preceding examples.
 | subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
 | resourceGroupName | myResourceGroup | User input |
 | managementGroupId | myManagementGroup | User input |
-| apiVersion | • 2015-04-01<br>• 2017-03-01-preview (for management group-level) | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
+| apiVersion | • 2015-04-01<br>• 2017-03-01-preview (for management group-level) | [Reference](azure-monitor-rest-api-index.md) |
 
 ## View change history
 
@@ -468,12 +468,12 @@ For an individual resource, select **Activity Logs Insights** from the **Workboo
 
 Create a diagnostic setting to send activity log entries to other destinations for extra retention time and functionality.
 
-:::image type="content" source="media/diagnostic-settings/platform-logs-metrics.png" lightbox="media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics." border="false":::
+:::image type="content" source="../data-collection/media/diagnostic-settings/platform-logs-metrics.png" lightbox="../data-collection/media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics." border="false":::
 
-In the Azure portal, select **Activity log** on the **Azure Monitor** menu and then select **Export Activity Logs**. For more information and other methods for creating diagnostic settings, see [Diagnostic settings in Azure Monitor](diagnostic-settings.md). Make sure you disable any [legacy configuration for the activity log](/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods).
+In the Azure portal, select **Activity log** on the **Azure Monitor** menu and then select **Export Activity Logs**. For more information and other methods for creating diagnostic settings, see [Diagnostic settings in Azure Monitor](../data-collection/diagnostic-settings.md). Make sure you disable any [legacy configuration for the activity log](/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods).
 
 
-:::image type="content" source="media/diagnostic-settings/menu-activity-log.png" alt-text="Screenshot that shows the Azure Monitor menu with Activity log selected and Export activity logs highlighted in the Monitor-Activity log menu bar.":::
+:::image type="content" source="../data-collection/media/diagnostic-settings/menu-activity-log.png" alt-text="Screenshot that shows the Azure Monitor menu with Activity log selected and Export activity logs highlighted in the Monitor-Activity log menu bar.":::
 
 
 The following sections provide details on each configurable destination for resource logs.
@@ -712,5 +712,5 @@ Use the activity log to find out when the system created a resource and who crea
 ## Related content
 
 * [Activity log event schema](activity-log-schema.md)
-* [Resource logs](resource-logs.md)
-* [Diagnostic settings](diagnostic-settings.md)
+* [Resource logs](../logs/resource-logs.md)
+* [Diagnostic settings](../data-collection/diagnostic-settings.md)

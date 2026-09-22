@@ -91,7 +91,7 @@ If you have an existing solution for collection of logs, then follow the guidanc
 
 #### Collect control plane logs for AKS clusters
 
-The logs for AKS control plane components are implemented in Azure as [resource logs](../platform/resource-logs.md). [Create a diagnostic setting](./kubernetes-monitoring-enable.md#enable-control-plane-logs-on-an-aks-cluster) for each AKS cluster to send resource logs to a Log Analytics workspace. Use Azure Policy to ensure consistent configuration across multiple clusters.
+The logs for AKS control plane components are implemented in Azure as [resource logs](../logs/resource-logs.md). [Create a diagnostic setting](./kubernetes-monitoring-enable.md#enable-control-plane-logs-on-an-aks-cluster) for each AKS cluster to send resource logs to a Log Analytics workspace. Use Azure Policy to ensure consistent configuration across multiple clusters.
 
 There's a cost for sending resource logs to a workspace, so collect only those log categories that you intend to use. For a description of the categories that are available for AKS, see [Resource logs](/azure/aks/monitor-aks-reference#resource-logs).  Start by collecting a minimal number of categories and then modify the diagnostic setting to collect additional categories as your needs increase and as you understand your associated costs. Send logs to an Azure storage account to reduce costs if you need to retain the information for compliance reasons. For details on the cost of ingesting and retaining log data, see [Azure Monitor Logs pricing details](../logs/cost-logs.md).
 
@@ -111,7 +111,7 @@ If you're unsure which resource logs to initially enable, use the following reco
 To forward control plane logs to an existing logging solution, use the [data export feature of the Log Analytics workspace](../logs/logs-data-export.md) as described in [Enable collection of container logs](#enable-collection-of-container-logs).
 
 #### Collect Activity log for AKS clusters
-Configuration changes to your AKS clusters are stored in the [Activity log](../platform/activity-log.md). [Create a diagnostic setting to send this data to your Log Analytics workspace](../platform/activity-log.md#export-activity-log) to analyze it with other monitoring data. There's no cost for this data collection, and Log Analytics can analyze or alert on the data.
+Configuration changes to your AKS clusters are stored in the [Activity log](../fundamentals/activity-log.md). [Create a diagnostic setting to send this data to your Log Analytics workspace](../fundamentals/activity-log.md#export-activity-log) to analyze it with other monitoring data. There's no cost for this data collection, and Log Analytics can analyze or alert on the data.
 
 
 ### Monitor level 2 - Cluster level components

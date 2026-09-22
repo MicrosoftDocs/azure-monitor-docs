@@ -45,7 +45,7 @@ Use the following client libraries and command-line tools to retrieve platform a
 
 * [Azure CLI](/cli/azure/monitor/metrics)
 * [Azure PowerShell cmdlets](/powershell/module/az.monitor)
-* [REST API](../platform/rest-api-walkthrough.md) or client library
+* [REST API](rest-api-walkthrough.md) or client library
 * [.NET](/dotnet/api/overview/azure/Monitor.Query-readme)
 * [Go](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/monitor/query/azmetrics)
 * [Java](/java/api/overview/azure/monitor-query-readme)
@@ -69,7 +69,7 @@ Azure Monitor collects metrics from the following sources. After these metrics a
 
 Azure Monitor provides REST APIs that allow you to get data in and out of Azure Monitor Metrics.
 * **Custom metrics API** - [Custom metrics](metrics-custom-overview.md) allow you to load your own metrics into the Azure Monitor Metrics database. The same analysis tools that process Azure Monitor platform metrics can then use those metrics.
-* **Azure Monitor Metrics REST API** - Allows you to access Azure Monitor platform metrics definitions and values. For more information, see [Azure Monitor REST API](/rest/api/monitor/metrics/list). For information on how to use the API, see the [Azure monitoring REST API walkthrough](../platform/rest-api-walkthrough.md).
+* **Azure Monitor Metrics REST API** - Allows you to access Azure Monitor platform metrics definitions and values. For more information, see [Azure Monitor REST API](/rest/api/monitor/metrics/list). For information on how to use the API, see the [Azure monitoring REST API walkthrough](rest-api-walkthrough.md).
 * **Azure Monitor Metrics Batch REST API** - [Azure Monitor Metrics Batch API](/rest/api/monitor/metrics-batch/) is a high-volume API designed for customers with large volume metrics queries. It's similar to the existing standard Azure Monitor Metrics REST API, but provides the capability to retrieve metric data for up to 50 resource IDs in the same subscription and region in a single batch API call. This improves query throughput and reduces the risk of throttling.
 
 ## Security
@@ -80,7 +80,7 @@ Secure connection is established between the agent and the Azure Monitor service
 
 ## Metrics explorer
 
-Use [Metrics explorer](analyze-metrics.md) to interactively analyze the data in your metric database and chart the values of multiple metrics over time. Pin the charts to a dashboard to view them with other visualizations. Retrieve metrics by using the [Azure monitoring REST API](../platform/rest-api-walkthrough.md).
+Use [Metrics explorer](analyze-metrics.md) to interactively analyze the data in your metric database and chart the values of multiple metrics over time. Pin the charts to a dashboard to view them with other visualizations. Retrieve metrics by using the [Azure monitoring REST API](rest-api-walkthrough.md).
 <!-- convertborder later -->
 :::image type="content" source="media/data-platform-metrics/metrics-explorer.png" lightbox="media/data-platform-metrics/metrics-explorer.png" alt-text="Screenshot that shows an example graph in Metrics explorer that displays server requests, server response time, and failed requests." border="false":::
 
@@ -150,7 +150,7 @@ Platform and custom metrics are stored for **93 days** with the following except
 * **Application Insights log-based metrics**: Behind the scenes, [log-based metrics](../app/metrics-overview.md#log-based-metrics) translate into log queries. Their retention is variable and matches the retention of events in underlying logs, which is 31 days to two years. For Application Insights resources, logs are stored for 90 days.
 
 > [!NOTE]
-> You can [send platform metrics for Azure Monitor resources to a Log Analytics workspace](../platform/diagnostic-settings.md) for long-term trending.
+> You can [send platform metrics for Azure Monitor resources to a Log Analytics workspace](../data-collection/diagnostic-settings.md) for long-term trending.
 
 While platform and custom metrics are stored for 93 days, you can only query (in the **Metrics** tile) for a maximum of 30 days' worth of data on any single chart. This limitation doesn't apply to log-based metrics. If you see a blank chart or your chart displays only part of metric data, verify that the difference between start and end dates in the time picker doesn't exceed the 30-day interval. After you've selected a 30-day interval, you can [pan](analyze-metrics.md#pan-across-metrics-data) the chart to view the full retention window.
 

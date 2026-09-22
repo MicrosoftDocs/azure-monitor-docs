@@ -98,7 +98,7 @@ Follow these steps when designing a multi-stage DCR:
 
 ## Workspace transformation DCR
 
-Transformations are defined in a data collection rule (DCR), but there are still data collections in Azure Monitor that don't yet use a DCR. Examples include resource logs collected by [diagnostic settings](../platform/diagnostic-settings.md) and application data collected by [Application Insights](../app/app-insights-overview.md).
+Transformations are defined in a data collection rule (DCR), but there are still data collections in Azure Monitor that don't yet use a DCR. Examples include resource logs collected by [diagnostic settings](diagnostic-settings.md) and application data collected by [Application Insights](../app/app-insights-overview.md).
 
 The *workspace transformation data collection rule (DCR)* is a special [DCR](data-collection-rule-overview.md) that's applied directly to a Log Analytics workspace. The purpose of this DCR is to perform [transformations](data-collection-transformations.md) on data that doesn't yet use a DCR for its data collection, and thus has no means to define a transformation.
 

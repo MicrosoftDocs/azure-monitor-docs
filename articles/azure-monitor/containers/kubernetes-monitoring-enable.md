@@ -658,13 +658,13 @@ Use the following resources for configuration requirements for particular scenar
 
 ## Enable control plane logs on an AKS cluster
 
-Control plane logs are implemented as [resource logs](../platform/resource-logs.md) in Azure Monitor. To collect these logs, create a [diagnostic setting](../platform/diagnostic-settings.md) for the cluster. Send them to the same Log Analytics workspace as your container logs.
+Control plane logs are implemented as [resource logs](../logs/resource-logs.md) in Azure Monitor. To collect these logs, create a [diagnostic setting](../data-collection/diagnostic-settings.md) for the cluster. Send them to the same Log Analytics workspace as your container logs.
 
 ### [Azure CLI](#tab/azure-cli)
 
 Use the [`az monitor diagnostic-settings create`](/cli/azure/monitor/diagnostic-settings#az-monitor-diagnostic-settings-create) command to create a diagnostic setting with the [Azure CLI](/cli/azure/monitor). See the documentation for this command for descriptions of its parameters.
 
-The following example creates a diagnostic setting that sends all Kubernetes categories to a Log Analytics workspace. This includes [resource-specific mode](../platform/resource-logs.md#resource-specific) to send the logs to specific tables listed in [Supported resource logs for Microsoft.ContainerService/fleets](/azure/aks/monitor-aks-reference#resource-logs).
+The following example creates a diagnostic setting that sends all Kubernetes categories to a Log Analytics workspace. This includes [resource-specific mode](../logs/resource-logs.md#resource-specific) to send the logs to specific tables listed in [Supported resource logs for Microsoft.ContainerService/fleets](/azure/aks/monitor-aks-reference#resource-logs).
 
 ```azurecli-interactive
 az monitor diagnostic-settings create \
@@ -893,7 +893,7 @@ Within a few minutes after enabling monitoring, you should be able to use the fo
 
 ### [Azure Policy](#tab/azure-policy)
 
-See [Create diagnostic settings at scale using built-in Azure Policies](../platform/diagnostic-settings-policy.md) for details about using Azure Policy to create diagnostic settings at scale.
+See [Create diagnostic settings at scale using built-in Azure Policies](../data-collection/diagnostic-settings-policy.md) for details about using Azure Policy to create diagnostic settings at scale.
 
 ---
 

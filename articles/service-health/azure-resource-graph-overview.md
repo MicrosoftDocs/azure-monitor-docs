@@ -52,7 +52,7 @@ This table shows the core fields in the ARG table for the Service Health, Impact
 
 The **ServiceHealthResources** queries returns data about resources within your subscriptions that are affected by service health events.<br>
 
-These notifications are a subclass of activity log events and can also be found in the [Azure activity log](/azure/azure-monitor/platform/activity-log). <br>
+These notifications are a subclass of activity log events and can also be found in the [Azure activity log](/azure/azure-monitor/fundamentals/activity-log). <br>
 
 Depending on the event classification, **EventType** and **EventSubtype** service health notifications could be either informational or actionable.
 
