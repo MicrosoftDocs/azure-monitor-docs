@@ -134,7 +134,7 @@ The URI includes the region, the [DCE or DCR ingestion endpoint](#endpoint), DCR
 The URI uses the following format.
 
 ```
-{Endpoint}/dataCollectionRules/{DCR Immutable ID}/streams/{Stream Name}?api-version=2023-01-01
+{endpoint}/dataCollectionRules/{dcrImmutableId}/streams/{streamName}?api-version={apiVersion}
 ```
 
 For example:
@@ -169,7 +169,7 @@ The body of the call includes the custom data to be sent to Azure Monitor. The s
     {
         "Time": "2023-11-14 15:10:02",
         "Computer": "Value01",
-        "AdditionalContext": "Value02"
+        "AdditionalContext": "Value02",
         "NestedJson": {
             "Level2": {
               "Key1": "Value03",
