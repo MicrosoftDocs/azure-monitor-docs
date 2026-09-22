@@ -42,12 +42,12 @@ The DCR logs ingestion endpoint is generated when you create a DCR for direct in
 
 :::image type="content" source="media/logs-ingestion-api-overview/logs-ingestion-endpoint.png" alt-text="Screenshot that shows log ingestion endpoint in a DCR." lightbox="media/logs-ingestion-api-overview/logs-ingestion-endpoint.png":::
 
-A DCE is only required when you're connecting to a Log Analytics workspace using [private link](../fundamentals/private-link-security.md) or if your DCR doesn't include the logs ingestion endpoint. This may be the case if you're using an older DCR or if you created the DCR without the `"kind": "Direct"` parameter. See [Data collection rule (DCR)](#data-collection-rule-dcr) below for more details.
+You only need a DCE when you're connecting to a Log Analytics workspace using [private link](../fundamentals/private-link-security.md) or if your DCR doesn't include the logs ingestion endpoint. This condition might apply if you're using an older DCR or if you created the DCR without the `"kind": "Direct"` parameter. See [Data collection rule (DCR)](#data-collection-rule) below for more details.
 
 > [!NOTE]
 > The `logsIngestion` property was added on March 31, 2024. Prior to this date, a DCE was required for the Logs ingestion API. Endpoints can't be added to an existing DCR, but you can keep using any existing DCRs with existing DCEs. If you want to move to a DCR endpoint, then you must create a new DCR to replace the existing one. A DCR with endpoints can also use a DCE. In this case, you can choose whether to use the DCE or the DCR endpoints for each of the clients that use the DCR.
 
-## Data collection rule (DCR)
+## Data collection rule
 
 When you [create a custom table](create-custom-table.md#create-a-custom-table) in a Log Analytics workspace using the Azure portal, a DCR that can be used with the Logs ingestion API is created for you. If you're sending data to a table that already exists, then you must create the DCR manually. Start with the sample DCR below, replacing values for the following parameters in the template. Use any of the methods described in [Create and edit data collection rules (DCRs) in Azure Monitor](../data-collection/data-collection-rule-create-edit.md) to create the DCR.
 
@@ -81,6 +81,10 @@ When you [create a custom table](create-custom-table.md#create-a-custom-table) i
                     {
                         "name": "AdditionalContext",
                         "type": "string"
+                    },
+                    {
+                        "name": "NestedJson",
+                        "type": "dynamic"
                     }
                 ]
             }
@@ -130,7 +134,7 @@ The URI includes the region, the [DCE or DCR ingestion endpoint](#endpoint), DCR
 The URI uses the following format.
 
 ```
-{Endpoint}/dataCollectionRules/{DCR Immutable ID}/streams/{Stream Name}?api-version=2023-01-01
+{endpoint}/dataCollectionRules/{dcrImmutableId}/streams/{streamName}?api-version={apiVersion}
 ```
 
 For example:
@@ -158,21 +162,25 @@ The following table describes request headers for your API call.
 
 ### Request body
 
-The body of the call includes the custom data to be sent to Azure Monitor. The shape of the data must be a JSON array with item structure that matches the format expected by the stream in the DCR. Here's an example of a single-item array.
-
-For example:
+The body of the call includes the custom data to send to Azure Monitor. The data must be a JSON array with an item structure that matches the format expected by the stream in the DCR. Here's an example of a single-item array that matches the `streamDeclarations` in the [Data Collection Rule](#data-collection-rule) section.
 
 ```json
 [
-{
-    "TimeGenerated": "2023-11-14 15:10:02",
-    "Column01": "Value01",
-    "Column02": "Value02"
-}
+    {
+        "Time": "2023-11-14 15:10:02",
+        "Computer": "Value01",
+        "AdditionalContext": "Value02",
+        "NestedJson": {
+            "Level2": {
+              "Key1": "Value03",
+              "Key2": "Value04"
+            }
+        }
+    }
 ]
 ```
 
-Ensure that the request body is properly encoded in UTF-8 to prevent any issues with data transmission.
+Ensure that the request body is properly encoded in UTF-8 to prevent any issues with data transmission. If your ingestion data includes nested JSON and your table plan is Auxiliary, the table schema for that column must be `dynamic`.
 
 ### Example
 
@@ -185,7 +193,7 @@ The Logs Ingestion API supports custom tables and selected Azure tables. The tar
 > [!NOTE]
 > Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). `_ResourceId`, `id`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names. Custom columns you add to an Azure table must have the suffix `_CF`.
 
-## Limits and restrictions
+## Limits and considerations
 
 For limits related to the Logs Ingestion API, see [Azure Monitor service limits](../fundamentals/service-limits.md#logs-ingestion-api).
 
