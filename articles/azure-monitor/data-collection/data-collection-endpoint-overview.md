@@ -46,7 +46,7 @@ View the DCE for a DCR from the **Overview** page of the DCR. Select **Configure
 
 ### Logs ingestion API
 
-When you [create a DCR for Logs ingestion API](../logs/logs-ingestion-api-overview.md#data-collection-rule), the DCR has a `logsIngestion` property, which is an endpoint for sending logs using the API. If you use this endpoint, you don't need a DCE. Use a DCE instead of the DCR endpoint if you prefer. You must use a DCE if you're sending data to a Log Analytics workspace configured for Private Link.
+When you [create a DCR for Logs ingestion API](../logs/logs-ingestion-api-overview.md#data-collection-rule), the DCR has a `logsIngestion` property, which is an endpoint for sending logs by using the API. If you use this endpoint, you don't need a DCE. Use a DCE instead of the DCR endpoint if you prefer. You must use a DCE if you're sending data to a Log Analytics workspace configured for Private Link.
 
 ## Components of a DCE
 
