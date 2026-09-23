@@ -240,6 +240,70 @@ The **Signal definitions** view lists all of the signal definitions in the healt
 
 To delete a signal definition, open the signal definitions view, select any signal definitions to delete, and select **Delete** at the top of the screen. This button is disabled if any of the selected signals are in use by an entity in the health model.
 
+## Signal grouping
+Organize signals into aggregation groups to control health-state evaluation. Signal groups use aggregation rules to calculate a group health state, which contributes to the health state of the entity.
+
+- All signal types can be added to any group.
+- A signal can be a member of multiple groups.
+- Ungrouped signals contribute directly to the entity's health state.
+
+:::image type="content" source="media/signals/signal-groups-designer.png" lightbox="media/signals/signal-groups-designer.png" alt-text="Screenshot of signal group configuration in designer.":::
+
+:::image type="content" source="media/signals/signal-groups-health-detail.png" lightbox="media/signals/signal-groups-health-detail.png" alt-text="Screenshot of signal group health evaluation.":::
+
+### Example
+
+The following example contains an entity with four signals of different types and two signal groups.
+
+- Signal 1 is ungrouped and **Healthy**.
+- Group 1 uses **Healthy limit** aggregation with **Absolute** values, a degraded threshold of 1, and an unhealthy threshold of 0. Its health state is **Degraded**.
+  - Signal 2 is **Degraded**.
+  - Signal 3 is **Healthy**.
+  - Signal 4 is **Unhealthy**.
+- Group 2 uses **Worst of** aggregation. Its health state is **Healthy**.
+  - Signal 3 is **Healthy** and is also a member of Group 1.
+
+Group 1 has one healthy signal out of three. The healthy signal count meets the degraded threshold of 1 but stays above the unhealthy threshold of 0, so the group is degraded. Because Group 1 is degraded, the entity's overall health state is **Degraded**.
+
+### Set up
+
+To configure your first signal group:
+
+1. Go to the entity editor in the designer.
+1. Configure data sources.
+1. In the **Signals** section, select **Signal grouping**.
+1. Select **Create signal group**.
+1. Configure **Display name** and **Aggregation type**.
+1. Select **Save**.
+
+The new signal group appears in the signal list. You can now add signals to it. To add signals to the group:
+
+1. Select one or more signals. If the entity has no signals, add a signal first. You can select a signal that's already in a group.
+1. Select **Signal grouping**.
+1. Select **Add selected signals to group**, and then select a group from the list.
+
+To remove a signal from a group:
+
+1. Select the signals that you want to remove from a group.
+1. Select **Signal grouping**.
+1. Select **Remove from group**.
+
+Removing a signal from a group doesn't remove it from the entity.
+
+### Configuration options
+
+The following table describes the options for configuring a signal group.
+
+| Setting | Options | Description |
+|:---|:---|:---|
+| Display name | Text. | Specifies the name shown for the signal group. |
+| Aggregation type | **Worst of**, **Best of**, **Healthy limit**, or **Not-healthy limit**. | Determines how the health states of signals in the group combine to calculate the group health state:<br><br>- **Worst of**: Applies the worst health state in the group. This option is the default.<br>- **Best of**: Applies the best health state in the group.<br>- **Healthy limit**: Evaluates the number or percentage of healthy signals against the configured thresholds.<br>- **Not-healthy limit**: Evaluates the number or percentage of signals that aren't healthy against the configured thresholds. |
+| Data unit | **Absolute** or **Percentage**. | Specifies whether thresholds use a signal count or a percentage of the signals included in the aggregation calculation. This setting is available only for **Healthy limit** and **Not-healthy limit**. |
+| Degraded threshold | Numeric value. | Specifies when the group becomes degraded:<br><br>- **Healthy limit**: The healthy signal count or percentage must fall to or below this value. This value must be greater than the unhealthy threshold.<br>- **Not-healthy limit**: The not-healthy signal count or percentage must reach or exceed this value. This value must be less than the unhealthy threshold.<br><br>This threshold is optional. If you omit it, the group transitions directly between healthy and unhealthy. |
+| Unhealthy threshold | Numeric value. | Specifies when the group becomes unhealthy:<br><br>- **Healthy limit**: The healthy signal count or percentage must fall to or below this value.<br>- **Not-healthy limit**: The not-healthy signal count or percentage must reach or exceed this value.<br><br>This threshold is required for **Healthy limit** and **Not-healthy limit**. |
+| Ignore unknown | Selected or cleared. | Excludes signals that have an **Unknown** health state from aggregation calculations when selected. This option is selected by default and is available only for **Healthy limit** and **Not-healthy limit**. |
+
+
 ## Next steps
 - [Configure a health model using the designer](./designer.md)
 - [Configure alerts in health models](./alerts.md)
