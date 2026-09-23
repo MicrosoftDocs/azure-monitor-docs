@@ -52,7 +52,71 @@ Health models allow you to create alerts based on health state instead of indivi
 
 :::image type="content" source="media/overview/alert-sample.png" lightbox="media/overview/alert-sample.png" alt-text="Diagram of a health model with alert rules at parent level." border="false":::
 
+## Billing and cost management
 
+Azure Monitor health models billing is based on two factors: _API usage_ and _active signals_. Your monthly cost is the combination of API calls consumed and the number and type of signals configured across your health models. 
+
+### API usage
+
+API billing is consumption-based. Each subscription receives 1,000,000 API calls per month at no additional charge. Usage beyond the included allowance is billed based on the number of additional API calls consumed.
+
+For example:
+
+| Monthly API calls | Billable usage |
+|---|---|
+| 500,000 | 0 |
+| 1,000,000 | 0 |
+| 1,250,000 | 250,000 |
+
+API usage can vary depending on ... <//TODO>
+
+//Questions:
+
+- Which API operations are eligible?
+- Outcome count? what about failed calls? throttled calls, auth calls?
+- Are retries counted
+
+
+### Signals
+
+Signals enable health models to monitor and evaluate operational conditions across your environment. Signal billing is based on the active signals configured within your health models. Supported signal categories include:
+
+- Azure Monitor Metrics signals
+- Log Query signals
+- Prometheus Query signals
+
+Each active signal contributes to billable inventory according to its signal type, each with its differnet characteristics and billing category. As the number of configured signals increases, signal-related costs can also increase.
+
+//Questions: 
+
+1. Is billing based on:
+  - Active at any point during the month?
+  - Active at month-end?
+  - Active-days within a month?
+2. Is there a different price for each signal type?
+3. Are disabled signals immediately removed from billing?
+4. How's billing data retained for audits? Anything special here?
+
+// TO DO
+
+### Optimize costs
+
+The cost drivers for your health models are API call volume, active signal count, and signal type. 
+
+//TO DO: Link to WAF service guide for cost optimization, when ready. Thoughts:
+
+- Avoid unncessary traffic
+- Duplicate traffic?
+- Retry calls count? If so, what's the best practice
+- Are there overlapping signals from other parts of Monitor.
+- Be intentional about signals that you care about? Review regularly, remove what you don't need. Include health models in your cost reporting?
+- Cost goverance policies on signals?
+
+### How does costs appear in your invoice?
+
+// TO DO
+
+Charges for API usage and signals appear alongside your other Azure Monitor costs on your invoice. Use [Cost analysis](../fundamentals/cost-usage.md) in Cost Management to view usage by meter, reconcile charges against active signal inventory and API consumption, and identify opportunities to reduce cost. For current rates, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Next steps
 
