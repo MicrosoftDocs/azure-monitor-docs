@@ -238,7 +238,7 @@ Autoconfiguration sets environment variables so existing SDKs export telemetry t
           instrumentation.opentelemetry.io/inject-configuration: "cr1"
   ```
 
-- **Exclude deployments from a default CR** When you use namespace-wide onboarding for user-configured instrumentation, a default custom resource is created, the `spec.settings.autoInstrumentationPlatforms` setting is left empty and all deployments are configured to send OTLP data to the connection string defined in `applicationInsightsConnectionString`. Use the annotation value `"false"` to exclude a deployment.
+- **Exclude deployments from a default CR**: When you use namespace-wide onboarding for user-configured instrumentation, a default custom resource is created, the `spec.settings.autoInstrumentationPlatforms` setting is left empty and all deployments are configured to send OTLP data to the connection string defined in `applicationInsightsConnectionString`. Use the annotation value `"false"` to exclude a deployment.
   
   ```yml
   apiVersion: apps/v1
