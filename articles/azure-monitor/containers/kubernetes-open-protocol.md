@@ -235,7 +235,7 @@ Autoconfiguration sets environment variables so existing SDKs export telemetry t
     template:
       metadata:
         annotations:
-          instrumentation.opentelemetry.io/inject-nodejs: "cr1"
+          instrumentation.opentelemetry.io/inject-configuration: "cr1"
   ```
 
 - **Exclude deployments:** When you use the `inject-configuration` annotation, the `spec.settings.autoInstrumentationPlatforms` setting on the referenced custom resource is ignored and the deployment is configured to send OTLP data to the connection string defined in `applicationInsightsConnectionString`. Use the annotation value `"false"` to exclude a deployment from Autoconfiguration.
@@ -247,7 +247,7 @@ Autoconfiguration sets environment variables so existing SDKs export telemetry t
     template:
       metadata:
         annotations:
-          instrumentation.opentelemetry.io/inject-nodejs: "false"
+          instrumentation.opentelemetry.io/inject-configuration: "false"
   ```
 
 - **Change protocol**: OpenTelemetry supports two main protocols to transmit and receive telemetry data: gRPC and HTTP. By default, AKS autoconfiguration uses `http/protobuf`. Use the following annotations to override the default protocol for a deployment.
@@ -265,7 +265,7 @@ For gRPC, use:
     template:
       metadata:
         annotations:
-          instrumentation.opentelemetry.io/inject-nodejs: "cr1"
+          instrumentation.opentelemetry.io/inject-configuration: "cr1"
           instrumentation.opentelemetry.io/otel-protocol: "grpc"
 ```
 
@@ -280,7 +280,7 @@ For HTTP, use:
     template:
       metadata:
         annotations:
-          instrumentation.opentelemetry.io/inject-nodejs: "cr1"
+          instrumentation.opentelemetry.io/inject-configuration: "cr1"
           instrumentation.opentelemetry.io/otel-protocol: "http/protobuf"
 ```
   
