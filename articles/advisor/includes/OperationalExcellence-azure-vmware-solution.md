@@ -29,4 +29,21 @@ Recommendation ID: 78785b91-c41b-4d86-9a8f-37705c13c2a6
 
 <!--78785b91-c41b-4d86-9a8f-37705c13c2a6_end-->
 
+<!--67fa3f81-5b79-4cf5-bb60-d437c3950375_begin-->
+
+#### Resolve Azure VMware Solution host blockers to enable successful host maintenance  
+  
+Review affected hosts and apply the recommended actions to support successful maintenance operations and help keep your environment up to date. No cost involved, but Private Cloud goes out of SLA.
+  
+**Potential benefits**: Reduce maintenance failures, delays, and operational risk.
+
+**Impact:** High
+  
+For more information, see [Private Cloud Maintenance - Azure VMware Solution](/azure/azure-vmware/azure-vmware-solution-private-cloud-maintenance-best-practices#alert-codes-and-remediation-table).  
+
+ResourceType: microsoft.avs/privateclouds  
+Recommendation ID: 67fa3f81-5b79-4cf5-bb60-d437c3950375  
+
+<!--67fa3f81-5b79-4cf5-bb60-d437c3950375_end-->
+
 <!--articleBody-->
