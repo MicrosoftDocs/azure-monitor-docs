@@ -165,4 +165,21 @@ Recommendation ID: 89e238d9-56e5-4f05-bd9a-295ebd55711d
 
 <!--89e238d9-56e5-4f05-bd9a-295ebd55711d_end-->
 
+<!--478c34be-baee-415c-b0a0-b2210f1bf400_begin-->
+
+#### Outdated Azure OS SKUs found for Azure Linux (Mariner)  
+  
+Found outdated Azure Linux (Mariner) OS SKUs. 'CBL-Mariner' SKU isn't supported. 'Mariner' SKU is equivalent to 'AzureLinux', but it's advisable to switch to 'AzureLinux' SKU for future updates and support, as 'AzureLinux' is the Generally Avaliable version.  
+  
+**Potential benefits**: Avoid using deprecated Azure Linux OS SKU  
+
+**Impact:** Medium
+  
+For more information, see [Troubleshoot common issues for Azure Linux Container Host for AKS - Azure](https://aka.ms/AzureLinuxOSSKU)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 478c34be-baee-415c-b0a0-b2210f1bf400  
+
+<!--478c34be-baee-415c-b0a0-b2210f1bf400_end-->
+
 <!--articleBody-->
