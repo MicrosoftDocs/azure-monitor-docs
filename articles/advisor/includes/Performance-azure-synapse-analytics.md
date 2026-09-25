@@ -27,25 +27,6 @@ For more information, see [SynapseManagementClient Class (Microsoft.Azure.Manage
 ResourceType: microsoft.synapse/workspaces  
 Recommendation ID: 7c83695a-3fa9-4668-9080-85151f5ab7be  
 
-
 <!--7c83695a-3fa9-4668-9080-85151f5ab7be_end-->
-
-<!--2699ef96-788d-41b6-939c-cebe568f7875_begin-->
-
-#### Tables with Clustered Columnstore Indexes (CCI) with less than 60 million rows  
-  
-Clustered columnstore tables are organized in data into segments. Having high segment quality is critical to achieving optimal query performance on a columnstore table. Segment quality is measured using the number of rows in a compressed row group.  
-  
-**Potential benefits**: CCI (Clustered Columnstore Index) is suitable for large tables, typically over 60 million rows. For smaller tables, consider creating the table as HEAP or Clustered Index with additional secondary Indexes.  
-
-**Impact:** Medium
-  
-For more information, see [Best practices for dedicated SQL pools - Azure Synapse Analytics](https://aka.ms/AzureSynapseCCIGuidance)  
-
-ResourceType: microsoft.synapse/workspaces  
-Recommendation ID: 2699ef96-788d-41b6-939c-cebe568f7875  
-
-
-<!--2699ef96-788d-41b6-939c-cebe568f7875_end-->
 
 <!--articleBody-->
