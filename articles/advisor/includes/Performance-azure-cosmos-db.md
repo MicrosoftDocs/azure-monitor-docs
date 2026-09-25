@@ -139,4 +139,21 @@ Recommendation ID: b633adb4-0c3c-4ab6-ab52-a9d752c6ac52
 
 <!--b633adb4-0c3c-4ab6-ab52-a9d752c6ac52_end-->
 
+<!--ed6c74bd-af73-477b-b149-e6c741632b06_begin-->
+
+#### Review compute capacity for sustained primary CPU pressure  
+  
+Sustained CPU pressure on the primary can slow your cluster. Review workload demand and scale compute when validated pressure persists beyond the available capacity.  
+  
+**Potential benefits**: Improve performance during sustained demand  
+
+**Impact:** Medium
+  
+For more information, see [Compute and Storage Configurations - Azure DocumentDB](/azure/documentdb/compute-storage)  
+
+ResourceType: microsoft.documentdb/mongoclusters  
+Recommendation ID: ed6c74bd-af73-477b-b149-e6c741632b06  
+
+<!--ed6c74bd-af73-477b-b149-e6c741632b06_end-->
+
 <!--articleBody-->
