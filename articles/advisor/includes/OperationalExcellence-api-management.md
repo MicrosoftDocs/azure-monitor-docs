@@ -114,4 +114,38 @@ Recommendation ID: d6c54614-97fe-4f55-85cf-adb49ca7ccd3
 
 <!--d6c54614-97fe-4f55-85cf-adb49ca7ccd3_end-->
 
+<!--3b94bf03-9715-47c0-b8d4-556f5122aa6c_begin-->
+
+#### Validate JSON Web Token (JWT) issued by Microsoft Entra ID using validate-azure-ad-token policy  
+  
+The new validate-azure-ad-token policy provides a simplified configuration experience for validating JSON Web Token (JWT) issued by Microsoft Entra ID. In the future, the validate-azure-ad-token policy more tightly integrates with Microsoft Entra features.  
+  
+**Potential benefits**: Simplified JWT validation policy for Microsoft Entra ID  
+
+**Impact:** Low
+  
+For more information, see [Introducing a better way to integrate Azure AD with API Management](https://aka.ms/apim/validate-azure-ad-token/announcement)  
+
+ResourceType: microsoft.apimanagement/service  
+Recommendation ID: 3b94bf03-9715-47c0-b8d4-556f5122aa6c  
+
+<!--3b94bf03-9715-47c0-b8d4-556f5122aa6c_end-->
+
+<!--dd689461-5ae0-42f0-9cfa-1756b1712e04_begin-->
+
+#### Use Azure Service Tag for restricting Inbound Connectivity for Developer and Premium VNet support  
+  
+Your API Management instance uses virtual network (VNet) integration in the Developer or Premium SKU, but inbound access isn’t restricted by the Azure service tag ApiManagement. Use this service tag to limit inbound traffic and simplify network rules.  
+  
+**Potential benefits**: Prevent outage when managing configuration.  
+
+**Impact:** High
+  
+For more information, see [VNet configuration settings](/azure/api-management/virtual-network-reference#control-plane-ip-addresses)  
+
+ResourceType: microsoft.apimanagement/service  
+Recommendation ID: dd689461-5ae0-42f0-9cfa-1756b1712e04  
+
+<!--dd689461-5ae0-42f0-9cfa-1756b1712e04_end-->
+
 <!--articleBody-->
