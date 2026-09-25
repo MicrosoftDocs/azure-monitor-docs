@@ -65,7 +65,7 @@ Recommendation ID: a25fccfd-854d-4c1a-9fae-aa0597a45e27
 
 <!--2f57b58b-1677-4c31-8a37-be79838d14ca_begin-->
 
-#### Cache instances perform best when the host machines where client application runs is able to keep up with responses from the cache  
+#### Improve cache throughput by scaling app host machine.  
   
 Cache instances perform best when the host machines where client application runs is able to keep up with responses from the cache. If client host machine is running hot on memory, CPU, or network bandwidth, the cache responses will not reach your application fast enough and could result in higher latency.  
   
@@ -116,7 +116,7 @@ Recommendation ID: 64dce138-80d7-48ad-934b-025a425386a7
 
 <!--2adfe155-4639-4d83-9814-15ce7454fa25_begin-->
 
-#### Improve your Cache and application performance when memory rss usage is high.  
+#### Improve your Cache and application performance when running with high memory pressure  
   
 Cache instances perform best when not running under high memory pressure which may cause them to become unresponsive, experience data loss, or become unavailable. Apply best practices to reduce used memory or scale to a different size or sku with more capacity.  
   

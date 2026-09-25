@@ -53,7 +53,7 @@ Recommendation ID: 75c8c891-46d2-41fa-a81c-84e870a139a9
 
 #### Use hierarchical partition keys for optimal data distribution  
   
-This account has a custom setting that allows the logical partition size in a container to exceed the limit of 20 GB. This setting was applied by the Azure Cosmos DB team as a temporary measure to give you time to architect your application again with a different partition key. It's not recommended as a long-term solution, as SLA guarantees aren't honored when the limit is increased. You can now use hierarchical partition keys (preview) to architect your application again. The feature allows you to exceed the limit of 20 GB by setting up to three partition keys, ideal for multi-tenant scenarios or workloads that use synthetic keys.  
+This account has a custom setting that allows the logical partition size in a container to exceed the limit of 20 GB. The Azure Cosmos DB team applied this setting as a temporary measure to give you time to architect your application again with a different partition key. It's not recommended as a long-term solution, as SLA guarantees aren't honored when the limit is increased. You can now use hierarchical partition keys (preview) to architect your application again. This feature allows you to exceed the limit of 20 GB by setting up to three partition keys. It's ideal for multitenant scenarios or workloads that use synthetic keys.
   
 **Potential benefits**: Optimize data distribution and performance  
 
@@ -125,7 +125,7 @@ Recommendation ID: 4391ebb6-9519-4563-97c8-85f40cb92a63
 
 <!--b633adb4-0c3c-4ab6-ab52-a9d752c6ac52_begin-->
 
-#### PerformanceBoostervCore  
+#### Get notified when usage exceeds 90% within 12 hours  
   
 When CPU usage surpasses 90% within a 12-hour timeframe, users are notified about the high usage. Additionally it advises them to scale up to a higher tier to get a better performance.  
   
@@ -133,8 +133,6 @@ When CPU usage surpasses 90% within a 12-hour timeframe, users are notified abou
 
 **Impact:** Medium
   
-For more information, see [Scale or configure a cluster - Azure Cosmos DB for MongoDB vCore](/azure/documentdb/how-to-scale-cluster)  
-
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: b633adb4-0c3c-4ab6-ab52-a9d752c6ac52  
 

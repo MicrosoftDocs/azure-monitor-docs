@@ -15,7 +15,7 @@ ms.custom: Performance Workloads
 
 <!--eabfd1a1-6092-471b-8cff-22dd044e5535_begin-->
 
-#### Upgrade to the newest Workloads SDK version  
+#### Upgrade to the newest Workloads SDK version for AMS  
   
 Upgrade to the newest Workloads SDK version to get the best results in terms of model quality, performance, and service availability.  
   
@@ -153,7 +153,7 @@ Recommendation ID: 096a9a97-88fa-4e92-b818-c2b9dbbc38ed
 
 #### For improved file system performance in HANA DB with ANF, set receiver backlog queue size to 300000  
   
-The parameter net.core.netdev_max_backlog specifies the size of the receiver backlog queue, used if a Network interface receives packets faster than the kernel can process. Set the parameter as per SAP note: 3024346. This configuration certifies HANA DB to run with ANF and improves file system performance.  
+The parameter `net.core.netdev_max_backlog` specifies the size of the receiver backlog queue for the network interface when packets arrive faster than the kernel can process them. Set the parameter as described in SAP note 3024346. This configuration certifies HANA DB to run with ANF and improves file system performance.
   
 **Potential benefits**: Improved file system performance  
 
@@ -304,7 +304,7 @@ Recommendation ID: d3bcfaa8-bce5-4869-9b1a-cc11d1dc3a61
 
 <!--612ab8fc-8f4e-4605-bc3f-278e4dfa20e7_begin-->
 
-#### For improved file system performance  in HANA DB with ANF, optimize net.ipv4.ip_local_port_range  
+#### For improved file system performance in HANA DB with ANF, optimize net.ipv4.ip_local_port_range  
   
 As HANA uses a considerable number of connections for the internal communication, it makes sense to have as many client ports available as possible for this purpose. Set the OS parameter, net.ipv4.ip_local_port_range parameter as per SAP note 2382421 to ensure optimal internal HANA communication.  
   
