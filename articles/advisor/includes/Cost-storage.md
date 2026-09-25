@@ -16,7 +16,7 @@ ms.custom: Cost Storage
 
 #### Consider premium tier for storage with a high transaction-per-TB ratio  
   
-If the transactions-per-TB ratio is high, consider migrating to premium storage. Based on the region and a transaction mix above 30 or 35 transactions-per-TB makes the storage account a good candidate for migration to premium storage.  
+If the transactions-per-TB ratio is high, consider migrating to premium storage. Based on the region and a transaction mix, a ratio above 30 or 35 transactions per TB makes the storage account a good candidate for migration to premium storage.
   
 **Impact:** Medium
   
