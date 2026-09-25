@@ -14,9 +14,9 @@ ms.custom: Cost Azure Monitor
   
 <!--3dfe0963-0fe5-49e0-aaaa-593b6fd4308e_begin-->
 
-#### Data ingestion anomaly was detected  
+#### Increase in log ingestion volume detected  
   
-We have identified a much higher ingestion rate over the past week, based on your ingestion in the three previous weeks. Take note of this change and the expected change in your costs.  
+We have identified a much higher ingestion rate over the past week, based on your ingestion in the three previous weeks. Please take note of this change and the expected change in your costs.  
   
 **Impact:** Medium
   
@@ -30,7 +30,7 @@ Recommendation ID: 3dfe0963-0fe5-49e0-aaaa-593b6fd4308e
 
 <!--805748e7-8764-49fe-b5b2-7fff63daaac2_begin-->
 
-#### Consider configuring the low-cost Basic logs plan on selected tables  
+#### Consider configuring the cost effective Basic logs plan on selected tables  
   
 We have identified ingestion of more than 1 GB per month to tables that are eligible for the low cost Basic log data plan. The Basic log plan gives you search capabilities for debugging and troubleshooting at a much lower cost.  
   

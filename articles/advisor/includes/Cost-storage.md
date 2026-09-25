@@ -14,9 +14,9 @@ ms.custom: Cost Storage
   
 <!--c81a0349-18c0-4bd2-81c7-475adde922d2_begin-->
 
-#### Based on your high transactions/TB  ratio, there's a possibility that premium storage might be more cost effective in addition to being performant for your scenario. More details on pricing for premium and standard accounts can be found here  
+#### Consider premium tier for storage with a high transaction-per-TB ratio  
   
-The customer can lower the bill if the transactions/TB ratio is high. Exact number would depend on transaction mix and region but anywhere >30 or 35 TPB/TB may be good candidates to at least evaluate a move to premium storage.  
+If the transactions-per-TB ratio is high, consider migrating to premium storage. Based on the region and a transaction mix above 30 or 35 transactions-per-TB makes the storage account a good candidate for migration to premium storage.  
   
 **Impact:** Medium
   
