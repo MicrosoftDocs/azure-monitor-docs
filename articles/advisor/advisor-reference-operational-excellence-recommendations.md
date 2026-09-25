@@ -37,6 +37,8 @@ You can get these recommendations on the **Operational Excellence** tab of the A
 
 [!INCLUDE [OperationalExcellence-azure-arc-enabled-kubernetes.md](./includes/OperationalExcellence-azure-arc-enabled-kubernetes.md)]
 
+[!INCLUDE [operationalexcellence-azure-arc-enabled-servers.md](./includes/operationalexcellence-azure-arc-enabled-servers.md)]
+
 [!INCLUDE [OperationalExcellence-azure-cache-for-redis.md](./includes/OperationalExcellence-azure-cache-for-redis.md)]
 
 [!INCLUDE [OperationalExcellence-azure-container-apps.md](./includes/OperationalExcellence-azure-container-apps.md)]
