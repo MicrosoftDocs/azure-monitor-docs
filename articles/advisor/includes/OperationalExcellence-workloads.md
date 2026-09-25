@@ -522,4 +522,327 @@ Recommendation ID: a07aa063-45a8-4538-9bd5-41f4a8abff4b
 
 <!--a07aa063-45a8-4538-9bd5-41f4a8abff4b_end-->
 
+<!--120fda4b-ad0b-4a39-bfe2-5bf5c90ee128_begin-->
+
+#### Set the net.ipv4.tcp_retries2 parameter to 15 on your SAP application virtual machine  
+  
+On your application virtual machine (VM) operating system (OS), edit `/etc/sysctl.conf` and add `net.ipv4.tcp_retries2 = 15`. Apply this setting to all application VM OS instances in your SAP workload to reconnect faster after an SAP Central Services (ASCS) failover.
+  
+**Potential benefits**: Optimize application VMs to reconnect faster after failover.
+
+**Impact:** Medium
+  
+For more information, see [NFS file system hangs.  New mount attempts hang also.](https://www.suse.com/support/kb/doc/?id=000019722#:~:text=To%20check%20for%20current%20values%20of%20certain%20TCP%20tuning)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 120fda4b-ad0b-4a39-bfe2-5bf5c90ee128  
+
+<!--120fda4b-ad0b-4a39-bfe2-5bf5c90ee128_end-->
+
+<!--18bdc0e6-aaaf-43ef-84a3-d820cf801580_begin-->
+
+#### Ensure TCP time-wait reuse is set to 0 on SAP workload Application VMs  
+  
+In the Application VM OS, edit the `/etc/sysctl.conf` file and add `net.ipv4.tcp_tw_reuse = 0`. Set this value for all Application VM OS in SAP workloads to enable faster reconnection after an ASCS failover.
+  
+**Potential benefits**: Optimize SAP App VMs to reconnect faster after ASCS failover.
+
+**Impact:** Medium
+  
+For more information, see [Cluster SAP ASCS/SCS instance on WSFC using shared disk in Azure](/azure/virtual-machines/workloads/sap/high-availability-guide).  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 18bdc0e6-aaaf-43ef-84a3-d820cf801580  
+
+<!--18bdc0e6-aaaf-43ef-84a3-d820cf801580_end-->
+
+<!--1c0de4ee-f89a-473b-a057-b90f0e4127a1_begin-->
+
+#### Disable fstrim in SLES OS to avoid XFS metadata corruption in SAP workloads  
+  
+Running SAP HANA on over-provisioned storage isn't recommended. Active fstrim can cause XFS metadata corruption. Disable fstrim in SLES to avoid filesystem issues and ensure reliability of SAP workloads. See SAP note 2205917 for details.
+  
+**Potential benefits**: Ensure high reliability of the file system in SAP workloads.
+
+**Impact:** High
+  
+For more information, see [Disabling fstrim - under which conditions?](https://www.suse.com/support/kb/doc/?id=000019447)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 1c0de4ee-f89a-473b-a057-b90f0e4127a1  
+
+<!--1c0de4ee-f89a-473b-a057-b90f0e4127a1_end-->
+
+<!--2b1d5151-0f65-433d-84e0-783b18589139_begin-->
+
+#### Ensure SELinux is set to Permissive mode for SAP with DB2 or Oracle on Linux  
+  
+Run SELinux in permissive mode, which means it logs policy violations but doesn't enforce them. This setting prevents several components of the SAP server system from breaking.
+  
+**Potential benefits**: Improved performance and support for SAP workloads  
+
+**Impact:** Medium
+  
+For more information, see [SAP Note 2936683](https://launchpad.support.sap.com/#/notes/2936683)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 2b1d5151-0f65-433d-84e0-783b18589139  
+
+<!--2b1d5151-0f65-433d-84e0-783b18589139_end-->
+
+<!--3127f497-59f1-4c4b-a31f-1ec81f1969fc_begin-->
+
+#### To avoid performance regressions, swap space on HANA systems should be 2 GB in SAP workloads
+  
+Configure a small swap space of 2 GB for SLES and RHEL to avoid performance regressions during high memory utilization. This configuration ensures the overall system remains usable and only certain requests are terminated without memory errors.
+  
+**Potential benefits**: Avoid performance regressions during high memory utilization.
+
+**Impact:** High
+  
+For more information, see [SAP Note 1999997](https://launchpad.support.sap.com/#/notes/1999997)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 3127f497-59f1-4c4b-a31f-1ec81f1969fc  
+
+<!--3127f497-59f1-4c4b-a31f-1ec81f1969fc_end-->
+
+<!--3a856750-59f5-49a3-9392-5f1aafad9af8_begin-->
+
+#### Ensure VM swappiness kernel parameter is configured for SAP with DB2  
+  
+Adjust VM swappiness kernel parameter for better performance and reliability of SAP with DB2 database.  
+  
+**Potential benefits**: Improved performance and support for SAP DB2 workloads  
+
+**Impact:** Medium
+  
+For more information, see [Kernel parameter requirements (Linux)](https://www.ibm.com/docs/en/db2/11.1?topic=unix-kernel-parameter-requirements-linux)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 3a856750-59f5-49a3-9392-5f1aafad9af8  
+
+<!--3a856750-59f5-49a3-9392-5f1aafad9af8_end-->
+
+<!--4b9e9b3d-4d73-44f4-ad67-b87857c00eca_begin-->
+
+#### Tag your Electronic Health Record (EHR) workload resources
+  
+Tag your Electronic Health Record (EHR) workload resources with contextual metadata to enable advanced filtering, reporting, governance, and cost management.  
+  
+**Potential benefits**: Use tags to improve governance and reporting.  
+
+**Impact:** Medium
+  
+For more information, see [Use tags to organize your Azure resources and management hierarchy - Azure Resource Manager](/azure/azure-resource-manager/management/tag-resources).  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 4b9e9b3d-4d73-44f4-ad67-b87857c00eca  
+
+<!--4b9e9b3d-4d73-44f4-ad67-b87857c00eca_end-->
+
+<!--569e45d1-cfd0-4e6f-ab7f-15e876cd139c_begin-->
+
+#### Enable boot diagnostics from Azure portal, PowerShell, or CLI
+  
+Boot diagnostics is a debugging feature for Azure virtual machines (VM) that helps diagnose VM boot failures. By using boot diagnostics, you can see the state of your VM as it boots up through serial log information and screenshots.
+  
+**Potential benefits**: Diagnose VM boot failures.  
+
+**Impact:** Medium
+  
+For more information, see [Azure boot diagnostics - Azure Virtual Machines](/azure/virtual-machines/boot-diagnostics).  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 569e45d1-cfd0-4e6f-ab7f-15e876cd139c  
+
+<!--569e45d1-cfd0-4e6f-ab7f-15e876cd139c_end-->
+
+<!--5db444f4-42ba-4123-985a-5fa143e47112_begin-->
+
+#### Configure the number of unanswered TCP keepalive probes based on your workload needs  
+  
+Configure the number of unanswered TCP keepalive probes (keepalive checks) to detect unresponsive connections quickly. Use your workload needs to choose the recommended value.  
+  
+**Potential benefits**: Optimize application servers to reconnect after failover.  
+
+**Impact:** Medium
+  
+For more information, see [Maintenance and updates - Azure Virtual Machines](/azure/virtual-machines/maintenance-and-updates).
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 5db444f4-42ba-4123-985a-5fa143e47112  
+
+<!--5db444f4-42ba-4123-985a-5fa143e47112_end-->
+
+<!--8ad2ccab-5b5e-4f1f-a9ef-254ff39febba_begin-->
+
+#### Ensure your Linux kernel semaphore settings support SAP workloads that use DB2 or Oracle databases  
+  
+Adjust your Linux kernel settings to meet the requirements for SAP software that uses DB2 or Oracle databases.  
+  
+**Potential benefits**: Improve performance and reliability of SAP workloads.  
+
+**Impact:** Medium
+  
+For more information, see [IBM Db2 Azure Virtual Machines DBMS deployment for SAP workload](/azure/sap/workloads/dbms-guide-ibm?tabs=extra-small)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 8ad2ccab-5b5e-4f1f-a9ef-254ff39febba  
+
+<!--8ad2ccab-5b5e-4f1f-a9ef-254ff39febba_end-->
+
+<!--9ceb1fd6-faae-40a4-80f3-f1693153439e_begin-->
+
+#### Deploy each electronic health record (EHR) component to an independent resource group
+  
+Deploy each electronic health record (EHR) workload component to an independent resource group in each environment and region to improve governance and isolation.  
+  
+**Potential benefits**: Improve governance and operational isolation.  
+
+**Impact:** Low
+  
+For more information, see [Use the Azure portal and Azure Resource Manager to Manage Resource Groups - Azure Resource Manager](/azure/azure-resource-manager/management/manage-resource-groups-portal)  
+
+ResourceType: microsoft.workloads/virtualinstances  
+Recommendation ID: 9ceb1fd6-faae-40a4-80f3-f1693153439e  
+
+<!--9ceb1fd6-faae-40a4-80f3-f1693153439e_end-->
+
+<!--a7f3c891-2e54-4d86-b9c1-5f8e2a4d6b73_begin-->
+
+#### Ensure the VM SKU is certified for the HANA scenario in your workload  
+  
+Select a VM SKU that is certified for your specific SAP HANA scenario (OLAP, OLTP, OLAP scale-out, or OLTP scale-out). For supported VM SKUs, see SAP Note 1928533. Using a certified SKU helps improve performance and ensures SAP supportability.  
+  
+**Potential benefits**: Improved performance and support for SAP workloads  
+
+**Impact:** Medium
+  
+For more information, see [SAP Note 1928533](https://launchpad.support.sap.com/#/notes/1928533)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: a7f3c891-2e54-4d86-b9c1-5f8e2a4d6b73  
+
+<!--a7f3c891-2e54-4d86-b9c1-5f8e2a4d6b73_end-->
+
+<!--b4234934-34ab-4a36-91ca-7c9f5cf3dc85_begin-->
+
+#### Ensure TCP retries1 is set to 3 on SAP workload Application VMs  
+  
+In the Application VM OS, edit the `/etc/sysctl.conf` file and add `net.ipv4.tcp_retries1 = 3`. Set this value for all Application VM OS in SAP workloads to enable faster reconnection after an ASCS failover.
+  
+**Potential benefits**: Optimize SAP App VMs to reconnect faster after ASCS failover.
+
+**Impact:** Medium
+  
+For more information, see [Cluster SAP ASCS/SCS instance on WSFC using shared disk in Azure](/azure/virtual-machines/workloads/sap/high-availability-guide).  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: b4234934-34ab-4a36-91ca-7c9f5cf3dc85  
+
+<!--b4234934-34ab-4a36-91ca-7c9f5cf3dc85_end-->
+
+<!--c9d4e7a2-8f15-4b63-a1c6-3e5d9b2f7a84_begin-->
+
+#### Ensure all NICs of workload VMs are attached to the same virtual network  
+  
+Connect all network interfaces (NICs) associated with virtual machines in your workload to the same virtual network (VNet). This setup ensures consistent network connectivity, simplified management, and optimal performance for your workloads.
+  
+**Potential benefits**: Improved network reliability and management.
+
+**Impact:** High
+  
+For more information, see [What is Azure Virtual Network?](/azure/virtual-network/virtual-networks-overview)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: c9d4e7a2-8f15-4b63-a1c6-3e5d9b2f7a84  
+
+<!--c9d4e7a2-8f15-4b63-a1c6-3e5d9b2f7a84_end-->
+
+<!--d4c7e8a2-5f19-4b63-9e81-2a6d3c5f7b90_begin-->
+
+#### Ensure the VM operating system is supported as per your workload recommendation  
+  
+The operating system on your workload VMs must be compatible with your workload requirements. Using supported OS configurations ensures optimal performance, reliability, and vendor support.  
+  
+**Potential benefits**: Improved performance and support for SAP workloads  
+
+**Impact:** Medium
+  
+For more information, see [SAP Note 1928533](https://launchpad.support.sap.com/#/notes/1928533)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: d4c7e8a2-5f19-4b63-9e81-2a6d3c5f7b90  
+
+<!--d4c7e8a2-5f19-4b63-9e81-2a6d3c5f7b90_end-->
+
+<!--d4e5f6a7-b8c9-4d1e-a2f3-c5b6d7e8f9a0_begin-->
+
+#### Use SAP-certified VM SKUs for SAP workloads  
+  
+SAP workloads require VM SKUs certified by SAP for optimal performance, reliability, and full support from SAP and Microsoft.  
+  
+**Potential benefits**: Improved performance and supportability for SAP workloads.
+
+**Impact:** Medium
+  
+For more information, see [SAP Note 1928533](https://launchpad.support.sap.com/#/notes/1928533)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: d4e5f6a7-b8c9-4d1e-a2f3-c5b6d7e8f9a0  
+
+<!--d4e5f6a7-b8c9-4d1e-a2f3-c5b6d7e8f9a0_end-->
+
+<!--dffd35a2-c840-4e39-bb45-8f6859f361b9_begin-->
+
+#### Ensure TCP keepalive interval is set to 75 seconds in the Application VMs of SAP workloads  
+  
+In the Application VM OS, edit the `/etc/sysctl.conf` file and add `net.ipv4.tcp_keepalive_intvl = 75`. Set this value for all Application VM OS in SAP workloads to enable faster reconnection after an ASCS failover.
+  
+**Potential benefits**: Optimize SAP App VMs to reconnect faster after ASCS failover.
+
+**Impact:** Medium
+  
+For more information, see [SAP Note 1410736](https://launchpad.support.sap.com/#/notes/1410736)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: dffd35a2-c840-4e39-bb45-8f6859f361b9  
+
+<!--dffd35a2-c840-4e39-bb45-8f6859f361b9_end-->
+
+<!--f4a7c2d8-9e15-4b63-8a91-2c5d7e3f6b18_begin-->
+
+#### Set the parameter net.ipv4.tcp_keepalive_time to '300' in the Application VM OS in SAP workloads  
+  
+In the Application VM OS, edit the `/etc/sysctl.conf` file and add `net.ipv4.tcp_keepalive_time = 300`. Add this setting to all Application VM OS in SAP workloads to enable faster reconnection after an ASCS failover.
+  
+**Potential benefits**: Optimize SAP App VMs to reconnect faster after ASCS failover.
+
+**Impact:** Medium
+  
+For more information, see [SAP Note 1410736](https://launchpad.support.sap.com/#/notes/1410736)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: f4a7c2d8-9e15-4b63-8a91-2c5d7e3f6b18  
+
+<!--f4a7c2d8-9e15-4b63-8a91-2c5d7e3f6b18_end-->
+
+<!--fd3f5c0e-4ced-4c43-a16b-24b35c612eae_begin-->
+
+#### Ensure randomize VA space kernel parameter is configured for SAP with DB2  
+  
+Adjust the randomize VA space kernel parameter for better security of SAP with DB2 database.
+  
+**Potential benefits**: Improved security for SAP workloads.
+
+**Impact:** Medium
+  
+For more information, see [Linux: suggested minimum values](https://www.ibm.com/docs/tsm/7.1.0?topic=systems-linux-suggested-minimum-values)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: fd3f5c0e-4ced-4c43-a16b-24b35c612eae  
+
+<!--fd3f5c0e-4ced-4c43-a16b-24b35c612eae_end-->
+
 <!--articleBody-->
