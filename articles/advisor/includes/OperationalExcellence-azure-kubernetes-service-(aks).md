@@ -169,7 +169,7 @@ Recommendation ID: 89e238d9-56e5-4f05-bd9a-295ebd55711d
 
 #### Outdated Azure OS SKUs found for Azure Linux (Mariner)  
   
-Found outdated Azure Linux (Mariner) OS SKUs. 'CBL-Mariner' SKU isn't supported. 'Mariner' SKU is equivalent to 'AzureLinux', but it's advisable to switch to 'AzureLinux' SKU for future updates and support, as 'AzureLinux' is the Generally Avaliable version.  
+Found outdated Azure Linux (Mariner) OS SKUs. The `CBL-Mariner` SKU isn't supported. The `Mariner` SKU is equivalent to `AzureLinux`, but it's advisable to switch to `AzureLinux` SKU for future updates and support, as `AzureLinux` is the generally available version.
   
 **Potential benefits**: Avoid using deprecated Azure Linux OS SKU  
 
