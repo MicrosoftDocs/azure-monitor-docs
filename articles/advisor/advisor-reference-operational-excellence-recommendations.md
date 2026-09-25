@@ -75,6 +75,8 @@ You can get these recommendations on the **Operational Excellence** tab of the A
 
 [!INCLUDE [OperationalExcellence-event-hubs.md](./includes/OperationalExcellence-event-hubs.md)]
 
+[!INCLUDE [operationalexcellence-hdinsight.md](./includes/operationalexcellence-hdinsight.md)]
+
 [!INCLUDE [OperationalExcellence-key-vault.md](./includes/OperationalExcellence-key-vault.md)]
 
 [!INCLUDE [OperationalExcellence-microsoft.apicenter.md](./includes/OperationalExcellence-microsoft.apicenter.md)]
