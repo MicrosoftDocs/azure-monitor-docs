@@ -754,6 +754,9 @@ items:
     href: logs/resource-logs.md
 - name: Data collection
   items:
+  - name: Overview
+    displayName: data collection methods, collection paths, collection topology, collector-based collection, Azure Monitor agent, Azure Monitor pipeline
+    href: data-collection/data-collection-overview.md
   - name: Data collection rules (DCR)
     items:
     - name: Overview
