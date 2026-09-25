@@ -277,7 +277,7 @@ Recommendation ID: eecd0096-23c1-4ad6-9a8d-fc55d9e8cc40
   
 One or more nodes in the server group are approaching limits for the currently provisioned storage values. When a node reaches the limit, it potentially experiences degraded performance or the server is moved to read-only mode. To ensure continued performance, increase the provisioned disk space.  
   
-**Potential benefits**: Improve server performance by increasing the storage and continue to use server in read-write mode.  
+**Potential benefits**: Improved server performance  
 
 **Impact:** High
   
@@ -315,7 +315,7 @@ Recommendation ID: 6772abda-0192-4e70-bfeb-409c7e7cf73c
   
 Your server has enable_indexonlyscan turned off. Turn on the enable_indexonlyscan setting to optimize query performance.  
   
-**Potential benefits**: Turn on enable_indexonlyscan for improved query performance.  
+**Potential benefits**: Turn on enable_indexonlyscan to improve query performance.  
 
 **Impact:** Medium
   
