@@ -143,7 +143,7 @@ Recommendation ID: b633adb4-0c3c-4ab6-ab52-a9d752c6ac52
 
 #### Review compute capacity for sustained primary CPU pressure  
   
-Sustained CPU pressure on the primary can slow your cluster. Review workload demand and scale compute when validated pressure persists beyond the available capacity.  
+Sustained CPU pressure on the primary node can slow your cluster. Review workload demand and scale compute when validated pressure persists beyond the available capacity.  
   
 **Potential benefits**: Improve performance during sustained demand  
 
