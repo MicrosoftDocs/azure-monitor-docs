@@ -18,8 +18,6 @@ ms.custom: Cost Application Gateway
   
 We recommend having at least two origins for resiliency. However, if only a single origin is available, Azure Front Door will continue to route traffic to it regardless of the health probe status. In such cases, health probes don't influence Front Door's routing behavior and offer no benefits.  
   
-**Potential benefits**: Save on bandwidth costs by disabling health probes  
-
 **Impact:** Low
   
 For more information, see [Best Practices - Azure Front Door](https://aka.ms/afd-disable-health-probes)  
@@ -37,8 +35,6 @@ Recommendation ID: 1c7fc5ab-f776-4aee-8236-ab478519f68f
   
 Your Front Door Classic tier contains a large number of domains or routing rules, which adds extra charges. Front Door Standard or Premium doesn't charge per additional domain or routing rule. Consider migrating to save costs.  
   
-**Potential benefits**: Save costs  
-
 **Impact:** Medium
   
 For more information, see [Compare pricing between Azure Front Door tiers ](/azure/frontdoor/understanding-pricing)  

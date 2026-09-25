@@ -27,7 +27,6 @@ For more information, see [What is Azure Language in Foundry Tools - Foundry Too
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: c8bbcb72-b778-48b4-882c-d8ce271995e5  
 
-
 <!--c8bbcb72-b778-48b4-882c-d8ce271995e5_end-->
 
 <!--1b94aa41-a51e-4cad-98fb-3a44447d5997_begin-->
@@ -45,82 +44,7 @@ For more information, see [What is language detection in Language? - Foundry Too
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 1b94aa41-a51e-4cad-98fb-3a44447d5997  
 
-
 <!--1b94aa41-a51e-4cad-98fb-3a44447d5997_end-->
-
-<!--08e6c0c6-2265-4380-a2b5-7d80d54fa6a5_begin-->
-
-#### Upgrade to the newest Cognitive Service Health Insights API version  
-  
-Upgrade to the newest API version to get the best results in terms of model quality, performance, and service availability.  
-  
-**Potential benefits**: Better service availability and performance  
-
-**Impact:** Medium
-  
-For more information, see [What is Azure AI Health Insights (Preview) - Azure AI Health Insights](/azure/azure-health-insights/overview)  
-
-ResourceType: microsoft.cognitiveservices/accounts  
-Recommendation ID: 08e6c0c6-2265-4380-a2b5-7d80d54fa6a5  
-
-
-<!--08e6c0c6-2265-4380-a2b5-7d80d54fa6a5_end-->
-
-<!--1f1b5a94-3e2b-4f9c-8277-7f87e6c989a8_begin-->
-
-#### Upgrade to the newest Cognitive Service Health Insights API version  
-  
-Upgrade to the newest API version to get the best results in terms of model quality, performance, and service availability  
-  
-**Potential benefits**: More features, better service availability, and performance.  
-
-**Impact:** Medium
-  
-For more information, see [Health Insights](/rest/api/health-insights/)  
-
-ResourceType: microsoft.cognitiveservices/accounts  
-Recommendation ID: 1f1b5a94-3e2b-4f9c-8277-7f87e6c989a8  
-
-
-<!--1f1b5a94-3e2b-4f9c-8277-7f87e6c989a8_end-->
-
-<!--5bb8940d-e316-4dea-90fd-5d879619c98c_begin-->
-
-#### Add PTU deployments to the resource  
-  
-The resource is approaching PTU utilization limit for seven or more days. Add more PTUs to your deployment. In Azure Monitor, set PTU utilization alerts.  
-  
-**Potential benefits**: Manage increase in workload and reduce latency  
-
-**Impact:** Medium
-  
-For more information, see [Understanding costs associated with provisioned throughput units (PTU) - Foundry Tools](/azure/ai-services/openai/how-to/provisioned-throughput-onboarding)  
-
-ResourceType: microsoft.cognitiveservices/accounts  
-Recommendation ID: 5bb8940d-e316-4dea-90fd-5d879619c98c  
-
-
-<!--5bb8940d-e316-4dea-90fd-5d879619c98c_end-->
-
-
-<!--6b44d824-b4f7-4928-b755-abec825931dd_begin-->
-
-#### Request more PTU quota  
-  
-Request more PTU quota for the deployment. The resource is approaching the limit for the PTU quota  
-  
-**Potential benefits**: Meet throughput and latency requirements  
-
-**Impact:** Medium
-  
-For more information, see [Understanding costs associated with provisioned throughput units (PTU) - Foundry Tools](/azure/ai-services/openai/how-to/provisioned-throughput-onboarding)  
-
-ResourceType: microsoft.cognitiveservices/accounts  
-Recommendation ID: 6b44d824-b4f7-4928-b755-abec825931dd  
-
-
-<!--6b44d824-b4f7-4928-b755-abec825931dd_end-->
-
 
 <!--8dde1045-da54-4d32-b8f9-635c5c9c0ac6_begin-->
 
@@ -137,7 +61,6 @@ For more information, see [Autoscale Foundry Tools limits - Foundry Tools](/azur
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 8dde1045-da54-4d32-b8f9-635c5c9c0ac6  
 
-
 <!--8dde1045-da54-4d32-b8f9-635c5c9c0ac6_end-->
 
 <!--f88ef142-07dd-4569-a304-7cc9de8a14e5_begin-->
@@ -150,11 +73,10 @@ Upgrade to the latest SDK version to get the best results in terms of model qual
 
 **Impact:** Medium
   
-For more information, see [Azure Health Decision Support SDK for .NET - Azure for .NET Developers](/dotnet/api/overview/azure/health-decision-support?view=azure-dotnet-preview)  
+For more information, see [Azure Health Decision Support SDK for .NET - Azure for .NET Developers](/dotnet/api/overview/azure/health-decision-support?view=azure-dotnet-preview&preserve-view=true)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: f88ef142-07dd-4569-a304-7cc9de8a14e5  
-
 
 <!--f88ef142-07dd-4569-a304-7cc9de8a14e5_end-->
 

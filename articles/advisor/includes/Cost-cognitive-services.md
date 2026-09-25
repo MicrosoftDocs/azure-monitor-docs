@@ -18,8 +18,6 @@ ms.custom: Cost Cognitive Services
   
 We observed that your LUIS resource has had enough usage in the past 30 days that you might want to consider using a commitment tier.  
   
-**Potential benefits**: Can help to reduce the cost on this LUIS resource  
-
 **Impact:** Medium
   
 For more information, see [Pricing - Language Understanding ](https://azure.microsoft.com/pricing/details/cognitive-services/language-understanding-intelligent-services)  
@@ -36,8 +34,6 @@ Recommendation ID: 24d8db35-c214-4aae-892e-531b98dea439
   
 We observed that your Computer Vision resource has had enough Read usage in the past 30 days that you might want to consider using a commitment tier.  
   
-**Potential benefits**: Can help to reduce the cost on this Computer Vision resource  
-
 **Impact:** Medium
   
 For more information, see [Pricing - Computer Vision API ](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision)  
@@ -54,8 +50,6 @@ Recommendation ID: 37cc8f6a-8059-407e-995a-10528ee3687b
   
 We observed that your Translator resource has had enough usage in the past 30 days that you might want to consider using a commitment tier.  
   
-**Potential benefits**: Can help to reduce the cost on this Translator resource  
-
 **Impact:** Medium
   
 For more information, see [Pricing - Translator ](https://azure.microsoft.com/pricing/details/cognitive-services/translator)  
@@ -72,8 +66,6 @@ Recommendation ID: 4cfb349a-b25a-4bef-a7b4-ff9886dd53b6
   
 We observed that your Language Service resource has had enough usage in the past 30 days that you might want to consider using a commitment tier.  
   
-**Potential benefits**: Can help to reduce the cost on this Language Service resource  
-
 **Impact:** Medium
   
 For more information, see [Pricing - Azure Language in Foundry Tools ](https://azure.microsoft.com/pricing/details/cognitive-services/language-service)  
@@ -90,8 +82,6 @@ Recommendation ID: c1c98b41-ddf6-4b27-988c-0e8e6359a42a
   
 We observed that your Form Recognizer resource has had enough usage in the past 30 days that you might want to consider using a commitment tier.  
   
-**Potential benefits**: Can help to reduce the cost on this Form Recognizer resource  
-
 **Impact:** Medium
   
 For more information, see [Pricing - Azure Document Intelligence in Foundry Tools ](https://azure.microsoft.com/pricing/details/form-recognizer)  
@@ -108,8 +98,6 @@ Recommendation ID: da48cdd1-0c3f-4050-b037-89ecdb2be69a
   
 We observed that your Speech Service resource has had enough usage in the past 30 days that you might want to consider using a commitment tier.  
   
-**Potential benefits**: Can help to reduce the cost on this Speech Service resource  
-
 **Impact:** Medium
   
 For more information, see [Pricing - Document Intelligence ](https://azure.microsoft.com/pricing/details/form-recognizer)  

@@ -18,8 +18,6 @@ ms.custom: Cost Reservations
   
 Reservations shown below are expiring soon or recently expired. Your resources will continue to operate normally, however, you will be billed at the on-demand rates going forward. To optimize your costs, configure automatic renewal for these reservations or purchase a replacement manually.  
   
-**Potential benefits**: Continue to receive discounted rates for your resources  
-
 **Impact:** High
   
 For more information, see [Azure Reserved Virtual Machine Instances](https://aka.ms/reservedinstances)  
@@ -37,8 +35,6 @@ Recommendation ID: abb1f687-2d58-4197-8f5b-8882f05c04b8
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -56,8 +52,6 @@ Recommendation ID: 5b8ddf04-be28-44ec-ab2c-a63a34d1de13
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -75,8 +69,6 @@ Recommendation ID: 10aedd06-621e-4b4f-a45c-5256573e0191
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -94,8 +86,6 @@ Recommendation ID: 1b8c5187-32a6-4a2f-8ca1-b0b7d6ce9e86
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -114,8 +104,6 @@ Recommendation ID: 0d524e8d-4cfd-4db5-9f91-8b4bb5235a8e
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -133,8 +121,6 @@ Recommendation ID: 3f6c5689-6a05-4896-a6e0-c6f8a22a44c2
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -152,8 +138,6 @@ Recommendation ID: 407b6ad6-8e0b-40e7-9384-643520cae0ed
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -171,8 +155,6 @@ Recommendation ID: 0eb54047-acd9-4f26-8ffb-8cec713782d6
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -190,8 +172,6 @@ Recommendation ID: 0169a2e1-c7bf-4c37-90b8-0714811c82d3
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -209,8 +189,6 @@ Recommendation ID: a205074f-8049-48b3-903f-556f5e530ae3
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -228,8 +206,6 @@ Recommendation ID: a8fd63ce-4600-43eb-af33-a6d5481f5930
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -247,8 +223,6 @@ Recommendation ID: 32755df6-aa2f-48d7-9ab7-92b8a80352ea
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -266,8 +240,6 @@ Recommendation ID: dadc1876-61e3-42fc-a70e-e863bbc460b6
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
   
@@ -286,8 +258,6 @@ Recommendation ID: 06ad499a-0952-48d3-b061-ec81c9cabb8b
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -305,8 +275,6 @@ Recommendation ID: 148cdd60-97e8-426b-a7b9-141b7cb4bc2f
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -324,8 +292,6 @@ Recommendation ID: 8ee30d6b-2c73-452a-b4ad-e4386cd6f7d0
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -343,8 +309,6 @@ Recommendation ID: 84b1a508-fc21-49da-979e-96894f1665df
   
 We analyzed your recent compute usage and recommend adding a Azure savings plan. Azure savings plans unlock lower prices on select compute services when you commit to spend a fixed hourly amount for 1 or 3 years.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure Savings Plan for Compute](https://aka.ms/savingsplan-compute)  
@@ -362,8 +326,6 @@ Recommendation ID: 89515250-1243-43d1-b4e7-f9437cedffd8
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -381,8 +343,6 @@ Recommendation ID: 680a5388-28aa-44e8-88af-32e3598dc869
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -400,8 +360,6 @@ Recommendation ID: 885cd4f5-dfa0-4d68-bbfd-00f89fc2b69c
   
 Based on your usage over the selected term and look-back period, we recommend reservations to maximize savings. Reservations apply automatically to matching deployments. Savings are estimated per subscription. Shared scope options are available during purchase.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
@@ -419,8 +377,6 @@ Recommendation ID: db621e98-4a20-4942-b174-c455dc71dbae
   
 Microsoft Fabric purchases are recommended based on usage over the selected term and look-back period. Purchase a reservation to save over pay-as-you-go costs, it automatically applies to matching resources. Shared scope recommendations are available in the reservation purchase experience.  
   
-**Potential benefits**: savings  
-
 **Impact:** High
   
 For more information, see [Azure reservation recommendations - Microsoft Cost Management](https://aka.ms/rirecommendations)  
