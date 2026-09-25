@@ -48,6 +48,8 @@ Azure Advisor helps you optimize and reduce your overall Azure spend by identify
 
 [!INCLUDE [Cost-virtual-machines.md](./includes/Cost-virtual-machines.md)]
 
+[!INCLUDE [cost-virtual-network-gateway.md](./includes/cost-virtual-network-gateway.md)]
+
 
 ## Next steps
 
