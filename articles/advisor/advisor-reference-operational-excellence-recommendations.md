@@ -77,8 +77,6 @@ You can get these recommendations on the **Operational Excellence** tab of the A
 
 [!INCLUDE [OperationalExcellence-key-vault.md](./includes/OperationalExcellence-key-vault.md)]
 
-[!INCLUDE [OperationalExcellence-media-services.md](./includes/OperationalExcellence-media-services.md)]
-
 [!INCLUDE [OperationalExcellence-microsoft.apicenter.md](./includes/OperationalExcellence-microsoft.apicenter.md)]
 
 [!INCLUDE [OperationalExcellence-microsoft.kubernetesruntime.md](./includes/OperationalExcellence-microsoft.kubernetesruntime.md)]

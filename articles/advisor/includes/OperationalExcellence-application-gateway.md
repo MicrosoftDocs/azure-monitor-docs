@@ -12,23 +12,6 @@ ms.custom: OperationalExcellence Application Gateway
   
 ## Application Gateway  
   
-<!--0e19257e-dcef-4d00-8de1-5fe1ae0fd948_begin-->
-
-#### Application Gateway v1 has been retired. Migrate to Application Gateway v2.  
-  
-We announced the deprecation of Application Gateway V1 on April 28, 2023. Starting from April 28, 2026, we are retiring Application Gateway v1 SKU. If you use Application Gateway V1 SKU, start planning your migration to V2 now.  
-  
-**Potential benefits**: Plan your migration to v2 now.  
-
-**Impact:** High
-  
-For more information, see [We're retiring Application Gateway V1 SKU in April 2026 - Azure Application Gateway](https://aka.ms/appgw/v1eol)  
-
-ResourceType: microsoft.network/applicationgateways  
-Recommendation ID: 0e19257e-dcef-4d00-8de1-5fe1ae0fd948  
-
-
-<!--0e19257e-dcef-4d00-8de1-5fe1ae0fd948_end-->
 
 <!--3467464b-955a-4caf-95e5-547344ba0281_begin-->
 
@@ -44,7 +27,6 @@ For more information, see [Common key vault errors in Application Gateway - Azur
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: 3467464b-955a-4caf-95e5-547344ba0281  
-
 
 <!--3467464b-955a-4caf-95e5-547344ba0281_end-->
 
@@ -63,7 +45,6 @@ For more information, see [Upgrade to Azure Application Gateway WAF policy](http
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: 47ee7abd-4f5e-45d7-9d9f-d0329616fef9  
 
-
 <!--47ee7abd-4f5e-45d7-9d9f-d0329616fef9_end-->
 
 <!--884975b5-12b5-433d-a633-904d8db75c5f_begin-->
@@ -81,9 +62,7 @@ For more information, see [Azure Virtual Network Name Resolution Guide](https://
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: 884975b5-12b5-433d-a633-904d8db75c5f  
 
-
 <!--884975b5-12b5-433d-a633-904d8db75c5f_end-->
-
 
 <!--ea000e01-b053-4076-a61b-e4cc58e9db07_begin-->
 
@@ -100,17 +79,13 @@ For more information, see [Remove-AzApplicationGatewayFrontendIPConfig (Az.Netwo
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: ea000e01-b053-4076-a61b-e4cc58e9db07  
 
-
 <!--ea000e01-b053-4076-a61b-e4cc58e9db07_end-->
-
-
-
 
 <!--7aaefe5a-5b88-4790-9a3d-5106722f7c34_begin-->
 
 #### Upgrade to the latest DRS rule set in Application Gateway WAF  
   
-WAF rule sets are constantly updated to guard against new attacks. Upgrading to the latest DRS version provides enhanced engine performance, improved protection, and reduced false positives. CRS rule sets are legacy versions, older than DRS; it's recommended to use the latest DRS version (DRS 2.2).  
+WAF rule sets are constantly updated to guard against new attacks. Upgrading to the latest DRS version provides enhanced engine performance, improved protection, and reduced false positives. CRS rule sets are legacy versions, older than DRS; it is recommended to use the latest DRS version (DRS 2.2).  
   
 **Potential benefits**: Ensure increased efficiency and better protection  
 
@@ -121,9 +96,7 @@ For more information, see [CRS and DRS rule groups and rules - Azure Web Applica
 ResourceType: microsoft.network/applicationgatewaywebapplicationfirewallpolicies  
 Recommendation ID: 7aaefe5a-5b88-4790-9a3d-5106722f7c34  
 
-
 <!--7aaefe5a-5b88-4790-9a3d-5106722f7c34_end-->
-
 
 <!--aa60b18a-feab-4857-8d9a-e4f6a8d3ef0e_begin-->
 
@@ -139,7 +112,6 @@ For more information, see [CRS and DRS rule groups and rules - Azure Web Applica
 
 ResourceType: microsoft.network/applicationgatewaywebapplicationfirewallpolicies  
 Recommendation ID: aa60b18a-feab-4857-8d9a-e4f6a8d3ef0e  
-
 
 <!--aa60b18a-feab-4857-8d9a-e4f6a8d3ef0e_end-->
 
@@ -158,7 +130,6 @@ For more information, see [What is Azure Web Application Firewall on Azure Appli
 ResourceType: microsoft.network/applicationgatewaywebapplicationfirewallpolicies  
 Recommendation ID: fd86a3fc-2048-46a7-8ea1-d859cecf54ef  
 
-
 <!--fd86a3fc-2048-46a7-8ea1-d859cecf54ef_end-->
 
 <!--8cf57fc1-66ee-4089-a92f-29b9fdb27ea7_begin-->
@@ -175,7 +146,6 @@ For more information, see [Configure Connection Monitor for Azure ExpressRoute](
 
 ResourceType: microsoft.network/expressroutecircuits  
 Recommendation ID: 8cf57fc1-66ee-4089-a92f-29b9fdb27ea7  
-
 
 <!--8cf57fc1-66ee-4089-a92f-29b9fdb27ea7_end-->
 
@@ -194,14 +164,13 @@ For more information, see [Migrate Azure Front Door (classic) to Standard or Pre
 ResourceType: microsoft.network/frontdoors  
 Recommendation ID: 14368063-38db-4dd6-a755-9c49ff123a5e  
 
-
 <!--14368063-38db-4dd6-a755-9c49ff123a5e_end-->
 
 <!--a1ad465b-8218-40d6-a6ce-4bfff566a6cd_begin-->
 
 #### Upgrade to the latest DRS rule set in Front Door WAF  
   
-WAF rule sets are constantly updated to guard against new attacks. Upgrading to the latest DRS version will provide enhanced engine performance, better protection, and a reduction in false positives. It's recommended to use the latest DRS rule set version.  
+WAF rule sets are constantly updated to guard against new attacks. Upgrading to the latest DRS version will provide enhanced engine performance, better protection, and a reduction in false positives. It is recommended to use the latest DRS rule set version.  
   
 **Potential benefits**: Ensure increased efficiency and better protection  
 
@@ -212,9 +181,7 @@ WAF rule sets are constantly updated to guard against new attacks. Upgrading to 
 ResourceType: microsoft.network/frontdoorwebapplicationfirewallpolicies  
 Recommendation ID: a1ad465b-8218-40d6-a6ce-4bfff566a6cd  
 
-
 <!--a1ad465b-8218-40d6-a6ce-4bfff566a6cd_end-->
-
 
 <!--c7a883a4-fda2-4bcd-9f78-dad70c19429f_begin-->
 
@@ -231,27 +198,7 @@ For more information, see [Default Outbound Access in Azure - Azure Virtual Netw
 ResourceType: microsoft.network/networkinterfaces  
 Recommendation ID: c7a883a4-fda2-4bcd-9f78-dad70c19429f  
 
-
 <!--c7a883a4-fda2-4bcd-9f78-dad70c19429f_end-->
-
-
-<!--7c27d589-c7ed-47e1-8fe9-fe12ea81634a_begin-->
-
-#### Enable Traffic Analytics to view insights into traffic patterns across Azure resources  
-  
-Traffic Analytics is a cloud-based solution that provides visibility into user and application activity in Azure. Traffic analytics analyzes Network Watcher network security group (NSG) flow logs to provide insights into traffic flow. With traffic analytics, you can view top talkers across Azure and non Azure deployments, investigate open ports, protocols and malicious flows in your environment and optimize your network deployment for performance. You can process flow logs at 10 mins and 60 mins processing intervals, giving you faster analytics on your traffic.  
-  
-**Potential benefits**: Identify top talkers, traffic hotspots, resource utilisation and security based on traffic patterns in NSG  
-
-**Impact:** High
-  
-For more information, see [Traffic analytics overview - Azure Network Watcher](https://aka.ms/aa_enableta_learnmore)  
-
-ResourceType: microsoft.network/networksecuritygroups  
-Recommendation ID: 7c27d589-c7ed-47e1-8fe9-fe12ea81634a  
-
-
-<!--7c27d589-c7ed-47e1-8fe9-fe12ea81634a_end-->
 
 <!--6f087e7e-afdf-4a3d-a1de-41d70404b9cb_begin-->
 
@@ -268,9 +215,7 @@ For more information, see [Virtual Network Flow Logs - Azure Network Watcher](ht
 ResourceType: microsoft.network/networkwatchers/flowlogs  
 Recommendation ID: 6f087e7e-afdf-4a3d-a1de-41d70404b9cb  
 
-
 <!--6f087e7e-afdf-4a3d-a1de-41d70404b9cb_end-->
-
 
 <!--dedaaba3-b5aa-4e91-a12e-6886ba0b2f6d_begin-->
 
@@ -287,15 +232,13 @@ For more information, see [Configure Connection Monitor for Azure ExpressRoute](
 ResourceType: microsoft.network/virtualnetworkgateways  
 Recommendation ID: dedaaba3-b5aa-4e91-a12e-6886ba0b2f6d  
 
-
 <!--dedaaba3-b5aa-4e91-a12e-6886ba0b2f6d_end-->
-
 
 <!--f8d4da72-3b27-4dd7-839c-bd69b9b95111_begin-->
 
 #### VNet with more than 5 peerings should be managed using AVNM connectivity configuration  
   
-VNet with more than 5 peerings should be managed using AVNM connectivity configuration. Azure Virtual Network Manager is a management service that enables you to group, configure, deploy, and manage virtual networks globally across subscriptions.  
+VNet with more than 5 peerings should be managed using Azure Virtual Network Manager (AVNM) connectivity configuration. Azure Virtual Network Manager is a management service that enables you to group, configure, deploy, and manage virtual networks globally across subscriptions.  
   
 **Potential benefits**: Operational excellence will be increased and more reliable.  
 
@@ -305,7 +248,6 @@ VNet with more than 5 peerings should be managed using AVNM connectivity configu
 
 ResourceType: microsoft.network/virtualnetworks  
 Recommendation ID: f8d4da72-3b27-4dd7-839c-bd69b9b95111  
-
 
 <!--f8d4da72-3b27-4dd7-839c-bd69b9b95111_end-->
 
@@ -324,7 +266,6 @@ For more information, see [Azure Monitor supported metrics by resource type - Az
 ResourceType: microsoft.network/azurefirewalls  
 Recommendation ID: 8a885111-34c0-4fd6-bb77-dbbb844ad7e5  
 
-
 <!--8a885111-34c0-4fd6-bb77-dbbb844ad7e5_end-->
 
 <!--8abe4b22-d8ad-4bff-babe-38b9267e46b7_begin-->
@@ -342,9 +283,7 @@ For more information, see [Monitor Azure Virtual WAN](/azure/virtual-wan/monitor
 ResourceType: microsoft.network/virtualhubs  
 Recommendation ID: 8abe4b22-d8ad-4bff-babe-38b9267e46b7  
 
-
 <!--8abe4b22-d8ad-4bff-babe-38b9267e46b7_end-->
-
 
 <!--37652095-cbe3-4132-9c62-526eeb6f4d75_begin-->
 
@@ -360,7 +299,6 @@ For more information, see [Upgrade Virtual WAN - Basic SKU type to Standard - Az
 
 ResourceType: microsoft.network/virtualhubs  
 Recommendation ID: 37652095-cbe3-4132-9c62-526eeb6f4d75  
-
 
 <!--37652095-cbe3-4132-9c62-526eeb6f4d75_end-->
 
@@ -378,7 +316,6 @@ For more information, see [Configure Azure ExpressRoute Direct](/azure/expressro
 
 ResourceType: microsoft.network/expressrouteports  
 Recommendation ID: 88ecf03e-51dc-4aa4-9a4d-2ee48c407f56  
-
 
 <!--88ecf03e-51dc-4aa4-9a4d-2ee48c407f56_end-->
 

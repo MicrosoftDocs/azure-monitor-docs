@@ -12,23 +12,6 @@ ms.custom: OperationalExcellence Azure Container Apps
   
 ## Azure Container Apps  
   
-<!--A0C6DF20-B77A-4215-A877-A8EE03CEB156_begin-->
-
-#### The API version you use for Microsoft.App is deprecated, please use latest API version  
-  
-The API version you use for Microsoft.App is deprecated, please use latest API version  
-  
-**Potential benefits**: More stable API experience  
-
-**Impact:** Low
-  
-For more information, see [Azure Resource Manager template reference for Microsoft.App" - Bicep, ARM template & Terraform AzAPI reference](https://aka.ms/containerappsapiversion)  
-
-ResourceType: microsoft.app/containerapps  
-Recommendation ID: A0C6DF20-B77A-4215-A877-A8EE03CEB156  
-
-
-<!--A0C6DF20-B77A-4215-A877-A8EE03CEB156_end-->
 
 <!--135f09ad-9dbb-433d-8854-da272e05f435_begin-->
 
@@ -44,7 +27,6 @@ For more information, see [How to turn on Java features in Azure Container Apps]
 
 ResourceType: microsoft.app/containerapps  
 Recommendation ID: 135f09ad-9dbb-433d-8854-da272e05f435  
-
 
 <!--135f09ad-9dbb-433d-8854-da272e05f435_end-->
 

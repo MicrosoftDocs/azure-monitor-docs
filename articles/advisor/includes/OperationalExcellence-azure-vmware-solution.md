@@ -16,7 +16,7 @@ ms.custom: OperationalExcellence Azure VMware Solution
 
 #### New HCX version is available for upgrade  
   
-Your HCX version isn't latest. New HCX version is available for upgrade. Updating a VMware HCX system installs the latest features, problem fixes, and security patches.  
+Your HCX version is not latest. New HCX version is available for upgrade. Updating a VMware HCX system installs the latest features, problem fixes, and security patches.  
   
 **Potential benefits**: Get latest features, problem fixes, and security patches  
 
@@ -27,8 +27,6 @@ For more information, see [TechDocs](https://aka.ms/vmware/hcxdoc)
 ResourceType: microsoft.avs/privateclouds  
 Recommendation ID: 78785b91-c41b-4d86-9a8f-37705c13c2a6  
 
-
 <!--78785b91-c41b-4d86-9a8f-37705c13c2a6_end-->
-
 
 <!--articleBody-->

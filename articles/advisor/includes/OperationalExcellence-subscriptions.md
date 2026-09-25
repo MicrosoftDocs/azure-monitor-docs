@@ -27,7 +27,6 @@ For more information, see [Azure Virtual Network Manager documentation](/azure/v
 ResourceType: microsoft.subscriptions/subscriptions  
 Recommendation ID: a58fd47f-d7b9-49dc-b763-c511d8774639  
 
-
 <!--a58fd47f-d7b9-49dc-b763-c511d8774639_end-->
 
 <!--f52ed1b8-9d60-469c-b1d8-b671043fe264_begin-->
@@ -44,7 +43,6 @@ For more information, see [Azure Carbon Optimization REST APIs (Preview)](/rest/
 
 ResourceType: microsoft.subscriptions/subscriptions  
 Recommendation ID: f52ed1b8-9d60-469c-b1d8-b671043fe264  
-
 
 <!--f52ed1b8-9d60-469c-b1d8-b671043fe264_end-->
 

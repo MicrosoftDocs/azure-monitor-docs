@@ -22,11 +22,10 @@ Deprecated Microsoft Planetary Computer ARM API preview version detected. Using 
 
 **Impact:** High
   
-For more information, see [GeoCatalogs - REST API (Azure Planetary Computer)](/rest/api/planetarycomputer/resource-manager/geocatalogs?view=rest-planetarycomputer-resource-manager-2026-04-15)  
+For more information, see [GeoCatalogs - REST API (Azure Planetary Computer)](/rest/api/planetarycomputer/resource-manager/geocatalogs?view=rest-planetarycomputer-resource-manager-2026-04-15&preserve-view=true)  
 
 ResourceType: microsoft.orbital/geocatalogs  
 Recommendation ID: cfdd653f-53d8-498d-8310-16da6d1b95b1  
-
 
 <!--cfdd653f-53d8-498d-8310-16da6d1b95b1_end-->
 
@@ -40,11 +39,10 @@ Deprecated Microsoft Planetary Computer API preview version detected. Using this
 
 **Impact:** High
   
-For more information, see [Data Plane](/rest/api/planetarycomputer/data-plane/operation-groups?view=rest-planetarycomputer-data-plane-2026-04-15)  
+For more information, see [Data Plane](/rest/api/planetarycomputer/data-plane/operation-groups?view=rest-planetarycomputer-data-plane-2026-04-15&preserve-view=true)  
 
 ResourceType: microsoft.orbital/geocatalogs  
 Recommendation ID: b7e3affb-e367-4b6b-ada0-ad40197a9ad3  
-
 
 <!--b7e3affb-e367-4b6b-ada0-ad40197a9ad3_end-->
 
