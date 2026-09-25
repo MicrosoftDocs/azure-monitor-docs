@@ -53,7 +53,7 @@ Recommendation ID: 75c8c891-46d2-41fa-a81c-84e870a139a9
 
 #### Use hierarchical partition keys for optimal data distribution  
   
-This account has a custom setting that allows the logical partition size in a container to exceed the limit of 20 GB. This setting was applied by the Azure Cosmos DB team as a temporary measure to give you time to architect your application again with a different partition key. It is not recommended as a long-term solution, as SLA guarantees are not honored when the limit is increased. You can now use hierarchical partition keys (preview) to architect your application again. The feature allows you to exceed the limit of 20 GB by setting up to three partition keys, ideal for multi-tenant scenarios or workloads that use synthetic keys.  
+This account has a custom setting that allows the logical partition size in a container to exceed the limit of 20 GB. The Azure Cosmos DB team applied this setting as a temporary measure to give you time to architect your application again with a different partition key. It's not recommended as a long-term solution, as SLA guarantees aren't honored when the limit is increased. You can now use hierarchical partition keys (preview) to architect your application again. This feature allows you to exceed the limit of 20 GB by setting up to three partition keys. It's ideal for multitenant scenarios or workloads that use synthetic keys.
   
 **Potential benefits**: Optimize data distribution and performance  
 
