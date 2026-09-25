@@ -14,9 +14,9 @@ ms.custom: Cost App Service
   
 <!--39a8510f-5bbf-4304-9bcd-4106c996473b_begin-->
 
-#### Unused/Empty App Service plan  
+#### (Preview) Unused or empty App Service plan
   
-Your App Service plan has no apps running. Consider deleting the resource to save costs.  
+Your App Service plan doesn't have any apps. Consider deleting the resource to save costs.
   
 **Impact:** Medium
   

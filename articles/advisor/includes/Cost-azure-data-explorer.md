@@ -46,7 +46,7 @@ Recommendation ID: 2397042e-4064-41ca-a50e-4e845051bb0b
 
 <!--d9c2f871-904e-4907-8572-0a33b0651f01_begin-->
 
-#### Unused stopped Data Explorer resources  
+#### Consider deleting stopped Data Explorer resources  
   
 This recommendation surfaces all stopped Data Explorer resources that have been stopped for at least 60 days. Consider deleting the resources.  
   
@@ -62,7 +62,7 @@ Recommendation ID: d9c2f871-904e-4907-8572-0a33b0651f01
 
 <!--354D7BBB-A243-4BE1-A8B9-43DBFC05C44A_begin-->
 
-#### Unused running Data Explorer resources  
+#### Consider stopping unused Data Explorer resources  
   
 This recommendation surfaces all running Data Explorer resources with no user activity. Consider stopping the resources.  
   

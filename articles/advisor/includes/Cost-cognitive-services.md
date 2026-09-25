@@ -14,7 +14,7 @@ ms.custom: Cost Cognitive Services
   
 <!--24d8db35-c214-4aae-892e-531b98dea439_begin-->
 
-#### Potential Cost Savings on this LUIS Resource  
+#### Consider using a commitment tier for LUIS resource  
   
 We observed that your LUIS resource has had enough usage in the past 30 days that you might want to consider using a commitment tier.  
   
@@ -30,7 +30,7 @@ Recommendation ID: 24d8db35-c214-4aae-892e-531b98dea439
 
 <!--37cc8f6a-8059-407e-995a-10528ee3687b_begin-->
 
-#### Potential Cost Savings on this Computer Vision Resource  
+#### Consider using a commitment tier for Computer Vision resource  
   
 We observed that your Computer Vision resource has had enough Read usage in the past 30 days that you might want to consider using a commitment tier.  
   
@@ -46,7 +46,7 @@ Recommendation ID: 37cc8f6a-8059-407e-995a-10528ee3687b
 
 <!--4cfb349a-b25a-4bef-a7b4-ff9886dd53b6_begin-->
 
-#### Potential Cost Savings on this Translator Resource  
+#### Consider using a commitment tier for Translator resource  
   
 We observed that your Translator resource has had enough usage in the past 30 days that you might want to consider using a commitment tier.  
   
@@ -62,7 +62,7 @@ Recommendation ID: 4cfb349a-b25a-4bef-a7b4-ff9886dd53b6
 
 <!--c1c98b41-ddf6-4b27-988c-0e8e6359a42a_begin-->
 
-#### Potential Cost Savings on this Language Service Resource  
+#### Consider using a commitment tier for Language Service resource  
   
 We observed that your Language Service resource has had enough usage in the past 30 days that you might want to consider using a commitment tier.  
   
@@ -78,7 +78,7 @@ Recommendation ID: c1c98b41-ddf6-4b27-988c-0e8e6359a42a
 
 <!--da48cdd1-0c3f-4050-b037-89ecdb2be69a_begin-->
 
-#### Potential Cost Savings on this Form Recognizer Resource  
+#### Consider using a commitment tier for Form Recognizer resource  
   
 We observed that your Form Recognizer resource has had enough usage in the past 30 days that you might want to consider using a commitment tier.  
   
@@ -94,7 +94,7 @@ Recommendation ID: da48cdd1-0c3f-4050-b037-89ecdb2be69a
 
 <!--e4429ab9-f27e-4750-89a7-30bce345f7fa_begin-->
 
-#### Potential Cost Savings on this Speech Service Resource  
+#### Consider using a commitment tier for Speech Service resource  
   
 We observed that your Speech Service resource has had enough usage in the past 30 days that you might want to consider using a commitment tier.  
   
