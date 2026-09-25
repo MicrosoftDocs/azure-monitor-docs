@@ -120,11 +120,11 @@ Recommendation ID: d6c54614-97fe-4f55-85cf-adb49ca7ccd3
   
 The new validate-azure-ad-token policy provides a simplified configuration experience for validating JSON Web Token (JWT) issued by Microsoft Entra ID. In the future, the validate-azure-ad-token policy more tightly integrates with Microsoft Entra features.  
   
-**Potential benefits**: Simplified JWT validation policy for Microsoft Entra ID  
+**Potential benefits**: Simplified JWT validation policy for Microsoft Entra ID.
 
 **Impact:** Low
   
-For more information, see [Introducing a better way to integrate Azure AD with API Management](https://aka.ms/apim/validate-azure-ad-token/announcement)  
+For more information, see [Introducing a better way to integrate Azure AD with API Management](https://aka.ms/apim/validate-azure-ad-token/announcement).
 
 ResourceType: microsoft.apimanagement/service  
 Recommendation ID: 3b94bf03-9715-47c0-b8d4-556f5122aa6c  
@@ -133,7 +133,7 @@ Recommendation ID: 3b94bf03-9715-47c0-b8d4-556f5122aa6c
 
 <!--dd689461-5ae0-42f0-9cfa-1756b1712e04_begin-->
 
-#### Use Azure Service Tag for restricting Inbound Connectivity for Developer and Premium VNet support  
+#### Use Azure Service Tag to restrict inbound connectivity for Developer and Premium VNet support  
   
 Your API Management instance uses virtual network (VNet) integration in the Developer or Premium SKU, but inbound access isn’t restricted by the Azure service tag ApiManagement. Use this service tag to limit inbound traffic and simplify network rules.  
   
