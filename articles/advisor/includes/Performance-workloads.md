@@ -153,7 +153,7 @@ Recommendation ID: 096a9a97-88fa-4e92-b818-c2b9dbbc38ed
 
 #### For improved file system performance in HANA DB with ANF, set receiver backlog queue size to 300000  
   
-The parameter net.core.netdev_max_backlog specifies the size of the receiver backlog queue for the network interface when packets are faster than the kernel process. Set the parameter per SAP note: 3024346. The configuration certifies HANA DB to run with ANF and improves file system performance.  
+The parameter `net.core.netdev_max_backlog` specifies the size of the receiver backlog queue for the network interface when packets arrive faster than the kernel can process them. Set the parameter as described in SAP note 3024346. This configuration certifies HANA DB to run with ANF and improves file system performance.
   
 **Potential benefits**: Improved file system performance  
 
