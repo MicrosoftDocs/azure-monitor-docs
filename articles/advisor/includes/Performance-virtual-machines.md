@@ -122,4 +122,21 @@ Recommendation ID: 031dcbd7-479c-4059-a7ba-c5474c94b72e
 
 <!--031dcbd7-479c-4059-a7ba-c5474c94b72e_end-->
 
+<!--bf658a6c-8ecc-4c05-a667-e5c7b4d1eaea_begin-->
+
+#### Deploy new Premium SSD v2 data disks for better performance and lower costs  
+  
+You currently create Premium SSD (P-series) data disks. Premium SSD v2 lets you configure capacity, IOPS, and throughput independently so you only pay for what you use. Select Premium SSD v2 as the disk type in the Azure portal, CLI, or ARM template for new data disk deployments.  
+  
+**Potential benefits**: Reduce costs up to 51%. More IOPS (4x) and throughput (33%)  
+
+**Impact:** Medium
+  
+For more information, see [Deploy a Premium SSD v2 managed disk - Azure Virtual Machines](/azure/virtual-machines/disks-deploy-premium-v2?tabs=azure-cli)  
+
+ResourceType: microsoft.compute/disks  
+Recommendation ID: bf658a6c-8ecc-4c05-a667-e5c7b4d1eaea  
+
+<!--bf658a6c-8ecc-4c05-a667-e5c7b4d1eaea_end-->
+
 <!--articleBody-->
