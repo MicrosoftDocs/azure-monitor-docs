@@ -22,7 +22,7 @@ The API version you use for Microsoft.App is deprecated, please use latest API v
 
 **Impact:** Low
   
-For more information, see [Azure Resource Manager template reference for Microsoft.App" - Bicep, ARM template & Terraform AzAPI reference](https://aka.ms/containerappsapiversion)  
+For more information, see [Azure Resource Manager template reference for Microsoft.App - Bicep, ARM template & Terraform AzAPI reference](https://aka.ms/containerappsapiversion)  
 
 ResourceType: microsoft.app/containerapps  
 Recommendation ID: A0C6DF20-B77A-4215-A877-A8EE03CEB156  

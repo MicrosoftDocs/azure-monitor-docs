@@ -305,9 +305,9 @@ Recommendation ID: 84b1a508-fc21-49da-979e-96894f1665df
 
 <!--89515250-1243-43d1-b4e7-f9437cedffd8_begin-->
 
-#### Consider purchasing a savings plan for compute to unlock lower prices  
+#### Consider purchasing a savings plan to unlock lower prices  
   
-We analyzed your recent compute usage and recommend adding a Azure savings plan. Azure savings plans unlock lower prices on select compute services when you commit to spend a fixed hourly amount for 1 or 3 years.  
+We analyzed your recent usage and recommend adding an Azure savings plan. Azure savings plans unlock lower prices on select services when you commit to spend a fixed hourly amount for 1 or 3 years.  
   
 **Impact:** High
   

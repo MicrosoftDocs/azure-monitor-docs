@@ -27,7 +27,6 @@ For more information, see [About Azure CDN from Microsoft (classic) to Azure Fro
 ResourceType: microsoft.cdn/profiles  
 Recommendation ID: 062d41f2-0dfa-48e0-a9b8-fb40fa5b001f  
 
-
 <!--062d41f2-0dfa-48e0-a9b8-fb40fa5b001f_end-->
 
 <!--articleBody-->

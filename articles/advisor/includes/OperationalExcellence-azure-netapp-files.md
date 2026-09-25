@@ -27,14 +27,13 @@ For more information, see [Configure network features for an Azure NetApp Files 
 ResourceType: microsoft.netapp/netappaccounts  
 Recommendation ID: d35fd191-4fa0-4949-8517-50750bd9672e  
 
-
 <!--d35fd191-4fa0-4949-8517-50750bd9672e_end-->
 
 <!--f1a7425d-69fa-463e-a2b0-f1d37cb995cf_begin-->
 
 #### Backup Vault Migration  
   
-All the backups in the volume needs to be migrated to Backup Vault. Note, this recommendation will automatically disappear in 24 hours after you migrate all the volumes in your subscription.  
+All backups in the volume need to be migrated to Backup Vault. This recommendation automatically disappears 24 hours after all volumes in your subscription are migrated.  
   
 **Potential benefits**: Helps in managing Backups better  
 
@@ -45,14 +44,13 @@ For more information, see [Manage backup policies for Azure NetApp Files](https:
 ResourceType: microsoft.netapp/netappaccounts  
 Recommendation ID: f1a7425d-69fa-463e-a2b0-f1d37cb995cf  
 
-
 <!--f1a7425d-69fa-463e-a2b0-f1d37cb995cf_end-->
 
 <!--464a7366-ddae-4d74-9187-386bfc45e4f5_begin-->
 
 #### Avoid mounting issue by specifying NFSv4.1 mount options  
   
-To avoid any issues with clients mounting NFSv4.2 and to comply with supportability, ensure the NFSv4.1 version is specified in mount options or the client's NFS client configuration is set to cap the NFS version at NFSv4.1.  
+To avoid any issues with clients mounting NFSv4.2 and to comply with supportability, ensure the NFSv4.1 version is specified in mount options or the client’s NFS client configuration is set to cap the NFS version at NFSv4.1.  
   
 **Potential benefits**: Avoid Mounting Issues  
 
@@ -62,7 +60,6 @@ To avoid any issues with clients mounting NFSv4.2 and to comply with supportabil
 
 ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
 Recommendation ID: 464a7366-ddae-4d74-9187-386bfc45e4f5  
-
 
 <!--464a7366-ddae-4d74-9187-386bfc45e4f5_end-->
 
@@ -81,7 +78,6 @@ For more information, see [Understand guidelines for Active Directory Domain Ser
 ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
 Recommendation ID: db4ccef4-d6aa-40a8-8d3c-b42ffc20a9a0  
 
-
 <!--db4ccef4-d6aa-40a8-8d3c-b42ffc20a9a0_end-->
 
 <!--95c1a2fb-ee2f-40bf-b3b4-ee8fc3fd94dd_begin-->
@@ -98,7 +94,6 @@ For more information, see [Service levels for Azure NetApp Files](/azure/azure-n
 
 ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
 Recommendation ID: 95c1a2fb-ee2f-40bf-b3b4-ee8fc3fd94dd  
-
 
 <!--95c1a2fb-ee2f-40bf-b3b4-ee8fc3fd94dd_end-->
 
@@ -117,7 +112,23 @@ For more information, see [What's new in Azure NetApp Files](/azure/azure-netapp
 ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
 Recommendation ID: 36851155-3579-47fc-afc6-8334fe9eb26a  
 
-
 <!--36851155-3579-47fc-afc6-8334fe9eb26a_end-->
+
+<!--5a81adcd-918b-43c2-a9d0-f1fd9f94e1ba_begin-->
+
+#### Azure NetApp Files end of support for RC4 defaults to AES256 encryption
+  
+Azure NetApp Files supports only AES encryption for Active Directory authentication. This support applies to SMB, dual-protocol, and NFSv4.1 Kerberos scenarios that use an Active Directory connection.  RC4 encryption isn't supported.  AES-256 and AES-128 are supported, with AES-256 recommended.
+  
+**Potential benefits**: Improved encryption
+
+**Impact:** High
+  
+For more information, see [Understand AES in Azure NetApp Files](/azure/azure-netapp-files/understand-advanced-encryption-standard)  
+
+ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
+Recommendation ID: 5a81adcd-918b-43c2-a9d0-f1fd9f94e1ba  
+
+<!--5a81adcd-918b-43c2-a9d0-f1fd9f94e1ba_end-->
 
 <!--articleBody-->

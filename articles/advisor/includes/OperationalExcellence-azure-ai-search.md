@@ -14,7 +14,7 @@ ms.custom: OperationalExcellence Azure AI Search
   
 <!--20c2eb91-7c3b-4744-8bd3-44820f563ce1_begin-->
 
-#### Azure AI Search Storage is 80% full; add partition to increase capacity  
+#### Azure AI Search Storage is 80% full. Add partition to increase capacity.  
   
 Azure AI Search storage is 80% full. Add a new partition to increase capacity. If the maximum number of allowed partitions is reached, upgrade the service tier to a higher level.  
   
@@ -26,7 +26,6 @@ For more information, see [Estimate capacity for query and index workloads - Azu
 
 ResourceType: microsoft.search/searchservices  
 Recommendation ID: 20c2eb91-7c3b-4744-8bd3-44820f563ce1  
-
 
 <!--20c2eb91-7c3b-4744-8bd3-44820f563ce1_end-->
 

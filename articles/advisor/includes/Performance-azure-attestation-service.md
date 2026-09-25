@@ -14,7 +14,7 @@ ms.custom: Performance Azure Attestation Service
   
 <!--3629448e-9b3e-4c5d-96ec-4760bbfde5ab_begin-->
 
-#### Update Attestation API Version  
+#### Upgrade the Attestation API to the latest version  
   
 We identified API requests from outdated Attestation API for resources under this subscription. We recommend switching to the latest Attestation API versions. You need to update your existing code to use the latest API version. This ensures you receive the latest features and performance improvements.  
   

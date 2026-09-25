@@ -14,7 +14,7 @@ ms.custom: Performance Azure Synapse Analytics
   
 <!--7c83695a-3fa9-4668-9080-85151f5ab7be_begin-->
 
-#### Update SynapseManagementClient SDK Version  
+#### Upgrade the SynapseManagementClient SDK to the latest version  
   
 New SynapseManagementClient is using .NET SDK 4.0 or above.  
   

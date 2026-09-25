@@ -27,7 +27,6 @@ For more information, see [Service Fabric managed clusters FAQ](/azure/service-f
 ResourceType: microsoft.servicefabric/managedclusters  
 Recommendation ID: 70825f31-3f42-4070-ae1c-757da5872db3  
 
-
 <!--70825f31-3f42-4070-ae1c-757da5872db3_end-->
 
 <!--articleBody-->

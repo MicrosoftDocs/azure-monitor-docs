@@ -40,11 +40,15 @@ Azure Advisor helps you optimize and reduce your overall Azure spend by identify
 
 [!INCLUDE [Cost-content-delivery-network.md](./includes/Cost-content-delivery-network.md)]
 
+[!INCLUDE [cost-expressroute.md](./includes/cost-expressroute.md)]
+
 [!INCLUDE [Cost-reservations.md](./includes/Cost-reservations.md)]
 
 [!INCLUDE [Cost-storage.md](./includes/Cost-storage.md)]
 
 [!INCLUDE [Cost-virtual-machines.md](./includes/Cost-virtual-machines.md)]
+
+[!INCLUDE [cost-virtual-network-gateway.md](./includes/cost-virtual-network-gateway.md)]
 
 
 ## Next steps

@@ -14,11 +14,11 @@ ms.custom: Performance Application Gateway
   
 <!--2ee9f31e-df58-4893-b3e7-66c0cd74183a_begin-->
 
-#### Make sure you have enough instances in your Application Gateway to support your traffic  
+#### Verify enough instances exist in the Application Gateway for the traffic  
   
-Your Application Gateway has been running on high utilization recently and under heavy load, you may experience traffic loss or increase in latency. It's important that you scale your Application Gateway according to your traffic and with a bit of a buffer, so you are prepared for any traffic surges or spikes and minimizing the impact on your QoS Application Gateway v1 SKU (Standard/WAF) supports manual scaling and v2 SKU (Standard_v2/WAF_v2) support manual and autoscaling. In manual scaling, increase your instance count and if autoscaling is enabled, make sure your maximum instance count is set to a higher value so Application Gateway can scale out as the traffic increases.  
+The Application Gateway is under high utilization and faces latency or traffic loss. Scale with buffer capacity. The v1 SKU supports manual scaling. The v2 SKU supports manual and autoscaling. Set a high maximum instance count to handle spikes.  
   
-**Potential benefits**: Ensure availability of your sites  
+**Potential benefits**: Ensure availability of the sites.
 
 **Impact:** Medium
   

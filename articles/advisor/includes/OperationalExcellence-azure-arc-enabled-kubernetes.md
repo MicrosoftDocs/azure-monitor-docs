@@ -27,7 +27,6 @@ For more information, see [Kubernetes monitoring in Azure Monitor - Azure Monito
 ResourceType: microsoft.kubernetes/connectedclusters  
 Recommendation ID: bfa9dd65-27ca-4d93-8634-a909b1132277  
 
-
 <!--bfa9dd65-27ca-4d93-8634-a909b1132277_end-->
 
 <!--articleBody-->
