@@ -49,13 +49,33 @@ For pricing and optimization guidance, see [Azure Monitor Logs cost calculations
 
 When your source supports multiple paths, choose based on the operational characteristics you need:
 
-:::image type="content" source="media/overview/collection-topology.svg" alt-text="Diagram showing a direct cloud path, Azure Monitor agent nested inside each monitored host, and multiple agents, edge and multicloud sources, and other producers fanning into an off-host Azure Monitor pipeline. All paths send to Azure Monitor cloud ingestion, ingest-time transformations, and storage. Dashed blue lines show DCR configuration rather than telemetry." lightbox="media/overview/collection-topology.svg" border="false":::
-
 - Use **Azure Monitor agent** for collection and resilience on each monitored machine or Kubernetes cluster.
 - Use **Azure Monitor pipeline** with any supported producer—not only sources that can't run an agent—when you need consistent governance, high-volume fan-in, preprocessing across producers, cost control, or persistent buffering through connectivity interruptions.
 - Combine Azure Monitor agent and pipeline where supported when you need both collection close to resources and centralized processing.
 
 The source category alone doesn't determine the topology. Protocol, signal, and preview support varies by method. See [What is Azure Monitor pipeline?](pipeline-overview.md) for its supported sources and capabilities.
+
+### Explore topology paths
+
+Select a tab to view the complete reference topology or focus on one collection path.
+
+#### [All paths](#tab/all-paths)
+
+:::image type="content" source="media/overview/collection-topology.svg" alt-text="Diagram showing a direct cloud path, Azure Monitor agent nested inside each monitored host, and multiple agents, edge and multicloud sources, and other producers fanning into an off-host Azure Monitor pipeline. All paths send to Azure Monitor cloud ingestion, ingest-time transformations, and storage. Dashed blue lines show DCR configuration rather than telemetry." lightbox="media/overview/collection-topology.svg" border="false":::
+
+#### [Direct](#tab/direct)
+
+:::image type="content" source="media/overview/collection-topology-direct.svg" alt-text="Diagram with the direct collection path highlighted. An instrumented application or client uses an SDK or API to send directly to Azure Monitor cloud ingestion without a collector. Other topology choices are dimmed." lightbox="media/overview/collection-topology-direct.svg" border="false":::
+
+#### [Agent](#tab/agent)
+
+:::image type="content" source="media/overview/collection-topology-agent.svg" alt-text="Diagram with the Azure Monitor agent path highlighted. The agent runs on each monitored host or Kubernetes cluster and can send directly to Azure Monitor cloud ingestion. Other topology choices are dimmed." lightbox="media/overview/collection-topology-agent.svg" border="false":::
+
+#### [Pipeline](#tab/pipeline)
+
+:::image type="content" source="media/overview/collection-topology-pipeline.svg" alt-text="Diagram with the Azure Monitor pipeline path highlighted. Agents, applications, services, network and security sources, and edge and multicloud sources fan into a shared off-source pipeline that sends to Azure Monitor cloud ingestion. Other topology choices are dimmed." lightbox="media/overview/collection-topology-pipeline.svg" border="false":::
+
+---
 
 ## 4. Decide where to process data
 
