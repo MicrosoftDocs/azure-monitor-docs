@@ -31,7 +31,7 @@ Recommendation ID: c8bbcb72-b778-48b4-882c-d8ce271995e5
 
 <!--1b94aa41-a51e-4cad-98fb-3a44447d5997_begin-->
 
-#### Upgrade to the latest Cognitive Service Text Analytics SDK version  
+#### Upgrade to the latest SDK version for Text Analytics  
   
 Upgrade to the latest SDK version to get the best results in terms of model quality, performance, and service availability. New features are also available as new endpoints starting from V3.0 such as PII recognition, Entity recognition, and entity linking available as separate endpoints. In terms of changes in preview endpoints, we have Opinion Mining in SA endpoint, redacted text property in PII endpoint.  
   

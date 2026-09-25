@@ -16,7 +16,7 @@ ms.custom: Performance Virtual Machines
 
 #### Enable Accelerated Networking to improve network performance and latency  
   
-We detected that Accelerated Networking isn't enabled on VM resources in your existing deployment that may be capable of supporting this feature. If your VM OS image supports Accelerated Networking as detailed in the documentation, make sure to enable this free feature on these VMs to maximize the performance and latency of your networking workloads in cloud  
+We detected that Accelerated Networking is not enabled on VM resources in your existing deployment that may be capable of supporting this feature. If your VM OS image supports Accelerated Networking as detailed in the documentation, make sure to enable this free feature on these VMs to maximize the performance and latency of your networking workloads in cloud  
   
 **Potential benefits**: Improves performance throughput while reducing latency and jitter  
 
@@ -88,7 +88,7 @@ Recommendation ID: 5e305558-6944-40bb-9d69-eb161b42fcec
 
 <!--c889b55f-9132-444d-a31f-c9e91f1345c9_begin-->
 
-#### Improve user experience and connectivity by deploying VMs closer to user's location  
+#### Improve user experience and connectivity by deploying VMs closer to user's location.  
   
 We determined that your VMs are located in a region different or far from where your users are connecting, using Windows Virtual Desktop (WVD). This leads to prolonged connection response times and impacts overall user experience on WVD.  
   
