@@ -16,7 +16,7 @@ ms.custom: Cost Azure Monitor
 
 #### Increase in log ingestion volume detected  
   
-We have identified a much higher ingestion rate over the past week, based on your ingestion in the three previous weeks. Please take note of this change and the expected change in your costs.  
+You have a much higher ingestion rate over the past week, based on your ingestion in the three previous weeks. Please take note of this change and the expected change in your costs.
   
 **Impact:** Medium
   
