@@ -14,7 +14,7 @@ ms.custom: Cost Virtual Machines
   
 <!--48eda464-1485-4dcf-a674-d0905df5054a_begin-->
 
-#### (Preview) Review disks that are not attached to a VM and evaluate if you still need the disks  
+#### (Preview) Review disks that aren't attached to a VM and evaluate if you still need the disks
   
 There are disks not attached to a VM. Evaluate if you still need them. Deleting a disk is irreversible. Create a snapshot before deletion and confirm the data is no longer needed. Unattached replica disks associated with Azure Site Recovery are excluded from this recommendation.  
   
