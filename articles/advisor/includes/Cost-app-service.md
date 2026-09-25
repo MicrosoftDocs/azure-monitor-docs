@@ -18,8 +18,6 @@ ms.custom: Cost App Service
   
 Your App Service plan has no apps running. Consider deleting the resource to save costs.  
   
-**Potential benefits**: Optimize your cost  
-
 **Impact:** Medium
   
 For more information, see [Plan and Manage Costs for App Service - Azure App Service](/azure/app-service/overview-manage-costs#costs-that-might-accrue-after-resource-deletion)  
@@ -37,8 +35,6 @@ Recommendation ID: 39a8510f-5bbf-4304-9bcd-4106c996473b
   
 We've analyzed the usage patterns of your app service plan over the past 7 days and identified low CPU usage. While certain scenarios can result in low utilization by design, you can often save money by choosing a less expensive SKU while retaining the same features.  
   
-**Potential benefits**: Optimize your cost  
-
 **Impact:** Medium
   
 For more information, see [Plan and Manage Costs for App Service - Azure App Service](/azure/app-service/overview-manage-costs)  

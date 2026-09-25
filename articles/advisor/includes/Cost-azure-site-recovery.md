@@ -18,8 +18,6 @@ ms.custom: Cost Azure Site Recovery
   
 For SQL/HANA DBs in Azure VMs being backed up to Azure, using daily differential with weekly full backup is often more cost-effective than daily fully backups. For HANA, Azure Backup also supports incremental backup which is even more cost effective.  
   
-**Potential benefits**: Optimize costs without impacting RPO  
-
 **Impact:** Medium
   
 For more information, see [FAQ — Back up SAP HANA databases on Azure VMs - Azure Backup ](https://aka.ms/DBBackupCostOptimization)  
