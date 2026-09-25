@@ -18,7 +18,7 @@ ms.custom: Performance Application Gateway
   
 The Application Gateway is under high utilization and faces latency or traffic loss. Scale with buffer capacity. The v1 SKU supports manual scaling. The v2 SKU supports manual and autoscaling. Set a high maximum instance count to handle spikes.  
   
-**Potential benefits**: Ensure availability of your sites  
+**Potential benefits**: Ensure availability of the sites  
 
 **Impact:** Medium
   

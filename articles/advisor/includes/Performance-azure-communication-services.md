@@ -36,7 +36,7 @@ Recommendation ID: c6da5a5f-149d-4550-82c9-ec3921a586f3
   
 Azure Communication Services Calling SDK can be used to enable voice, video, screen-sharing, and other real-time communication. Update to the recommended version of Calling SDK to ensure the latest fixes and features. A nonrecommended version was detected in the last 48-60 hours.  
   
-**Potential benefits**: Newer versions of Calling SDK contain latest fixes and new features  
+**Potential benefits**: Newer Calling SDK versions contain latest fixes and features  
 
 **Impact:** High
   
