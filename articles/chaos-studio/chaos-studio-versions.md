@@ -11,9 +11,9 @@ ai-usage: ai-assisted
 
 # Version compatibility for Experiments (classic)
 
-This Azure Chaos Studio version compatibility reference applies to Experiments (classic). For the current model, use [Chaos Studio Workspaces Scenario requirements](chaos-studio-scenarios.md) and [Workspaces limitations](chaos-studio-workspaces-limitations.md); classic integration versions don't define Scenario support.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This Azure Chaos Studio version compatibility reference applies to Experiments (classic). For the current model, use [Chaos Studio Workspaces Scenario requirements](chaos-studio-scenarios.md) and [Workspaces limitations](chaos-studio-workspaces-limitations.md); classic integration versions don't define Scenario support.
 
 This page lists tested version combinations for components that Chaos Studio integrates with.
 

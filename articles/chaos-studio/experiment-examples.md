@@ -11,9 +11,9 @@ ms.custom: none, devx-track-azurecli
 
 # Experiment examples for the CLI and portal (classic)
 
-These Azure Chaos Studio experiment examples use Experiments (classic). For current-model templates, use the [Chaos Studio Workspaces Scenario catalog](chaos-studio-scenarios.md) or [custom Scenario designer](chaos-studio-scenarios.md#create-a-custom-scenario). Classic experiment JSON isn't a Workspaces Scenario definition.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+These Azure Chaos Studio experiment examples use Experiments (classic). For current-model templates, use the [Chaos Studio Workspaces Scenario catalog](chaos-studio-scenarios.md) or [custom Scenario designer](chaos-studio-scenarios.md#create-a-custom-scenario). Classic experiment JSON isn't a Workspaces Scenario definition.
 
 This article provides examples for creating experiments from your command line (CLI) and Azure portal parameter examples for various experiments. You can copy and paste the following commands into the CLI or Azure portal, and edit them for your specific resources. 
 

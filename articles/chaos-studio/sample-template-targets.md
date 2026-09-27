@@ -12,9 +12,9 @@ ms.custom: devx-track-arm-template
 
 # Target ARM templates for Experiments (classic)
 
-These ARM templates enable targets and capabilities for Azure Chaos Studio Experiments (classic). For current-model onboarding, use the [Chaos Studio Workspaces quickstart](quickstart-create-workspace.md). Workspaces discovers resources through its scope rather than these classic target templates.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+These ARM templates enable targets and capabilities for Azure Chaos Studio Experiments (classic). For current-model onboarding, use the [Chaos Studio Workspaces quickstart](quickstart-create-workspace.md). Workspaces discovers resources through its scope rather than these classic target templates.
 
 This article includes sample [Azure Resource Manager templates (ARM templates)](/azure/azure-resource-manager/templates/syntax) to create [targets and capabilities](chaos-studio-targets-capabilities.md) to add a resource to Azure Chaos Studio. Each sample includes a template file and a parameters file with sample values to provide to the template.
 

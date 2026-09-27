@@ -12,9 +12,9 @@ ms.custom: devx-track-bicep
 
 # Bicep experiment sample for Experiments (classic)
 
-This Bicep sample creates Azure Chaos Studio Experiments (classic), targets, and capabilities. For the current model, see [how to structure a custom Workspaces Scenario](chaos-studio-scenarios.md#how-a-custom-scenario-is-structured), including a Bicep example. The resource models are separate.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This Bicep sample creates Azure Chaos Studio Experiments (classic), targets, and capabilities. For the current model, see [how to structure a custom Workspaces Scenario](chaos-studio-scenarios.md#how-a-custom-scenario-is-structured), including a Bicep example. The resource models are separate.
 
 [!INCLUDE [About Bicep](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-bicep-introduction.md)]
 

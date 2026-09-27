@@ -12,9 +12,9 @@ ms.custom: ignite-fall-2023
 
 # Send experiment telemetry to Azure Monitor (classic)
 
-These diagnostic settings emit telemetry for Azure Chaos Studio Experiments (classic). For current-model tests, use [Chaos Studio Scenario reports](chaos-studio-scenario-reports.md) to review Actions and timing, then correlate the run with resource and application monitoring.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+These diagnostic settings emit telemetry for Azure Chaos Studio Experiments (classic). For current-model tests, use [Chaos Studio Scenario reports](chaos-studio-scenario-reports.md) to review Actions and timing, then correlate the run with resource and application monitoring.
 
 In this guide, we'll show you the steps needed to integrate an Experiment to emit telemetry to Azure Monitor. These events show the start and stop of each fault as well as the type of fault executed and the resource the fault was executed against. You can overlay this data on top of your existing Azure Monitor or external monitoring dashboards.
 

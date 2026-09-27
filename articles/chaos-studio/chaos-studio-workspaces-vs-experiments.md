@@ -3,13 +3,13 @@ title: Chaos Studio Workspaces vs. Experiments (classic)
 description: "Compare Chaos Studio Workspaces vs. Experiments (classic): Scenario coverage, permissions, reports, preview status, and when to choose each model."
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 09/05/2026
+ms.date: 09/25/2026
 ai-usage: ai-assisted
 ---
 
 # Chaos Studio Workspaces vs. Experiments (classic)
 
-Compare [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) and [Experiments (classic)](chaos-studio-chaos-experiments.md) to choose an Azure Chaos Studio resource model for each resilience test. Workspaces is the current model: it discovers resources within a scope, runs Scenarios, and generates Scenario reports. Experiments (classic) is the legacy model, with individually enabled targets and custom fault compositions. Workspaces is in public preview; Experiments (classic) is generally available.
+Compare [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) and [Experiments (classic)](chaos-studio-chaos-experiments.md) to choose an Azure Chaos Studio resource model for each resilience test. Workspaces is the current model: it discovers resources within a scope, runs Scenarios, and generates Scenario reports. Experiments (classic) is the legacy model being replaced by Workspaces. With Experiments (classic), you enable each target individually and combine faults to build custom tests. Workspaces is in public preview; Experiments (classic) is generally available.
 
 [!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
@@ -19,7 +19,7 @@ Both models inject real faults against your Azure resources, but they differ in 
 
 | Aspect | Chaos Studio Workspaces (preview) | Experiments (classic) |
 |---|---|---|
-| Servicing state | Active development. New Chaos Studio features ship in the Workspaces model. | Legacy model. There's no further feature development, and only critical fixes, such as security updates, are considered for backport. |
+| Servicing state | Active development. New Chaos Studio features ship in the Workspaces model. | Legacy model being replaced by Workspaces. There's no further feature development, and only critical fixes, such as security updates, are considered for backport. |
 | Onboarding | Set a scope (subscription, resource group, or service group). The Workspace discovers supported resources automatically. | Enable a target and capabilities on each resource before it can be used in an experiment. |
 | Test definition | Start from a Scenario template that already composes the Actions and sequencing for an outage pattern, or customize one in the Scenario designer. | Assemble faults, steps, and branches manually, and select target resources for each fault. |
 | Finding what to test | The Scenario library shows which Scenarios apply to the resources discovered in your scope. | Choose faults from the [fault library for Experiments (classic)](chaos-studio-fault-library.md) and check resource requirements. |
@@ -55,32 +55,25 @@ Choose Workspaces when:
 
 ## When to choose Experiments (classic)
 
-Choose Experiments (classic) when:
+Experiments (classic) is being replaced by Workspaces. During the transition, choose Experiments (classic) only when:
 
 - You need a fault that the scenario catalog doesn't yet cover, such as specific agent-based faults or [AKS Chaos Mesh faults](chaos-studio-tutorial-aks-portal.md) for in-cluster fault injection.
 - You rely on classic-only capabilities such as [dynamic targeting](chaos-studio-tutorial-dynamic-target-portal.md) or [scheduled experiment runs](tutorial-schedule.md).
 - You require a generally available resource model. Chaos Studio Workspaces is in public preview and isn't recommended for production workloads.
 
-If you choose Experiments (classic), keep its servicing state in mind: it's a legacy model with no further feature development, and only critical fixes, such as security updates, are considered for backport.
+Microsoft no longer adds features to Experiments (classic) and considers only critical fixes, such as security updates, for backport to this legacy model. Plan to move each test to Workspaces when it meets your capability and general availability requirements.
 
-## Evaluate a move from Experiments (classic)
+## Move from Experiments (classic)
 
-Treat adoption as a model-selection decision for each resilience test. Don't assume that a Scenario and an existing experiment have equivalent coverage.
+Follow [Move from Experiments (classic) to Chaos Studio Workspaces](chaos-studio-migrate-from-classic.md) to map your experiments to Scenarios, run equivalent tests in a Workspace, and clean up classic resources. Don't assume that a Scenario tests the same resources and faults as your experiment. Check each replacement Scenario in a preproduction environment first.
 
-1. Check the [Scenario catalog](chaos-studio-scenarios.md) for the outage pattern and resources you need to test.
-1. Review [Workspaces limitations](chaos-studio-workspaces-limitations.md) for any required fault or capability that isn't available.
-1. Review the [Workspaces permission model](chaos-studio-workspace-permissions.md) and the roles required by the Scenario.
-1. Use the [Workspaces quickstart](quickstart-create-workspace.md) to validate the selected Scenario and its report in a safe environment.
-1. Choose Experiments (classic) for a testing requirement that depends on a classic-only fault or capability.
+## Use both models during the transition
 
-This decision path evaluates model fit. It doesn't define a resource-conversion procedure.
-
-## Use both models
-
-Your model choice can differ by resilience test. Use Chaos Studio Workspaces where the Scenario catalog covers the outage pattern, and use Experiments (classic) where you need a classic-only fault composition or capability.
+You can run both models side by side as you move your tests. Use Chaos Studio Workspaces when the Scenario catalog covers the outage you want to test and preview use meets your requirements. Keep an experiment in Experiments (classic) if it needs a generally available resource model or a classic-only fault or capability.
 
 ## Next steps
 
+- [Move from Experiments (classic) to Chaos Studio Workspaces](chaos-studio-migrate-from-classic.md).
 - [Chaos Studio Workspaces overview](chaos-studio-workspaces-overview.md).
 - [Create a Workspace and run your first Scenario](quickstart-create-workspace.md).
 - [Configure permissions and identity for Chaos Studio Workspaces](chaos-studio-workspace-permissions.md).

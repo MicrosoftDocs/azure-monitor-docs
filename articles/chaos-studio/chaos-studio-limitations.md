@@ -11,9 +11,9 @@ ai-usage: ai-assisted
 
 # Limitations and known issues for Experiments (classic)
 
-These Azure Chaos Studio limitations apply to Experiments (classic). For current-model constraints, use [Chaos Studio Workspaces limitations and known issues](chaos-studio-workspaces-limitations.md). Classic target, agent, and automation restrictions don't define Workspaces support.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+These Azure Chaos Studio limitations apply to Experiments (classic). For current-model constraints, use [Chaos Studio Workspaces limitations and known issues](chaos-studio-workspaces-limitations.md). Classic target, agent, and automation restrictions don't define Workspaces support.
 
 The following limitations and known issues apply to Experiments (classic).
 

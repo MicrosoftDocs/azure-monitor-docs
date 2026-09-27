@@ -12,9 +12,9 @@ ms.custom: template-how-to
 
 # Simulate a DNS outage with NSG rules (classic)
 
-This Azure Chaos Studio DNS outage guide uses an NSG rule fault in Experiments (classic). For the current model, use the [DNS Outage Scenario in Chaos Studio Workspaces](chaos-studio-scenarios.md#dns-outage) and start with the [Workspaces quickstart](quickstart-create-workspace.md).
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This Azure Chaos Studio DNS outage guide uses an NSG rule fault in Experiments (classic). For the current model, use the [DNS Outage Scenario in Chaos Studio Workspaces](chaos-studio-scenarios.md#dns-outage) and start with the [Workspaces quickstart](quickstart-create-workspace.md).
 
 A healthy application depends on the ability to resolve hostnames quickly and reliably. But what happens if DNS — the backbone of service discovery on the Internet — becomes unavailable?
 
