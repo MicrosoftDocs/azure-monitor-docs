@@ -12,9 +12,9 @@ ms.custom: devx-track-azurecli
 
 # Manage Experiments (classic) with REST API samples
 
-These Azure Chaos Studio REST API examples use Experiments (classic), targets, and capabilities. For current-model automation, start with [Chaos Studio Workspaces and Scenarios with Azure CLI](chaos-studio-manage-cli.md), or review the [Workspaces automation and SDK coverage](chaos-studio-workspaces-limitations.md#limitations).
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+These Azure Chaos Studio REST API examples use Experiments (classic), targets, and capabilities. For current-model automation, start with [Chaos Studio Workspaces and Scenarios with Azure CLI](chaos-studio-manage-cli.md), or review the [Workspaces automation and SDK coverage](chaos-studio-workspaces-limitations.md#limitations).
 
 If you're integrating Azure Chaos Studio into your CI/CD pipelines, or you simply prefer to use direct API calls to interact with your Azure resources, you can use Chaos Studio's REST API. For the full API reference, visit the [Azure Chaos Studio REST API reference](/rest/api/chaosstudio/). This page provides samples for using the REST API effectively, and is not intended as a comprehensive reference.
 

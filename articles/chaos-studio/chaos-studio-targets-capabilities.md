@@ -11,9 +11,9 @@ ms.custom: template-concept
 
 # Targets and capabilities for Experiments (classic)
 
-Azure Chaos Studio targets and capabilities enable resources for Experiments (classic). For the current model, follow the [Chaos Studio Workspaces quickstart](quickstart-create-workspace.md) to discover resources through a Workspace scope rather than enabling classic targets individually.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+Azure Chaos Studio targets and capabilities enable resources for Experiments (classic). For the current model, follow the [Chaos Studio Workspaces quickstart](quickstart-create-workspace.md) to discover resources through a Workspace scope rather than enabling classic targets individually.
 
 Before you can inject a fault against an Azure resource, the resource must first have corresponding targets and capabilities enabled. Targets and capabilities control which resources are enabled for fault injection and which faults can run against those resources.
 

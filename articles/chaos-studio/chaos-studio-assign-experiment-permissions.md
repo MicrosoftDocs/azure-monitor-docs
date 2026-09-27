@@ -12,9 +12,9 @@ ms.custom:
 
 # Assign permissions to Experiments (classic)
 
-Assign permissions to an Azure Chaos Studio experiment identity with these Experiments (classic) instructions. For the current model, use [Chaos Studio Workspaces permissions and identity](chaos-studio-workspace-permissions.md), where Scenarios use the Workspace identity.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+Assign permissions to an Azure Chaos Studio experiment identity with these Experiments (classic) instructions. For the current model, use [Chaos Studio Workspaces permissions and identity](chaos-studio-workspace-permissions.md), where Scenarios use the Workspace identity.
 
 Proper assignment of permissions is an essential part of configuring your experiments successfully in Azure Chaos Studio. Chaos experiments use managed identities and role-based access control to obtain the necessary permissions to inject faults on experiment targets. You can use Azure built-in roles or a custom role to assign the right permissions to your experiment's managed identity. When creating or editing your experiments in the Azure portal, you may use Chaos Studio's automatic role assignment functionality to easily assign, check, or update your experiment managed identity's access.
 

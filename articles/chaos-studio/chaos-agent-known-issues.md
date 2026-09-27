@@ -12,9 +12,9 @@ ms.custom:
 
 # Agent known issues for Experiments (classic)
 
-These known issues concern the Azure Chaos Studio agent for Experiments (classic). For the current model, use [Chaos Studio Workspaces limitations](chaos-studio-workspaces-limitations.md) and [Scenario agent connectivity troubleshooting](troubleshoot-workspaces-scenarios.md#problems-connecting-the-chaos-agent-to-chaos-studio).
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+These known issues concern the Azure Chaos Studio agent for Experiments (classic). For the current model, use [Chaos Studio Workspaces limitations](chaos-studio-workspaces-limitations.md) and [Scenario agent connectivity troubleshooting](troubleshoot-workspaces-scenarios.md#problems-connecting-the-chaos-agent-to-chaos-studio).
 
 This document provides a list of known issues encountered with the Chaos Agent in Azure Chaos Studio, along with recommended workarounds or solutions. This list is updated regularly as new issues are identified.
 

@@ -40,6 +40,8 @@
       href: chaos-studio-chaos-engineering-overview.md
 - name: Experiments (classic)
   items:
+    - name: Move from Experiments (classic) to Workspaces
+      href: chaos-studio-migrate-from-classic.md
     - name: Experiments
       items:
         - name: Experiments (classic) concepts

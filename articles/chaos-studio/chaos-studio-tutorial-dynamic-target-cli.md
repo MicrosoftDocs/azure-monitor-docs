@@ -12,9 +12,9 @@ ms.devlang: azurecli
 
 # Configure dynamic targets with Azure CLI (classic)
 
-This Azure CLI guide uses dynamic targeting in Azure Chaos Studio Experiments (classic). For current-model zone tests, explore [Workspaces Compute Zone Down Scenarios](chaos-studio-scenarios.md#compute-zone-down). Workspaces doesn't support classic dynamic targeting; review [Workspaces limitations](chaos-studio-workspaces-limitations.md#limitations) before choosing a model.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This Azure CLI guide uses dynamic targeting in Azure Chaos Studio Experiments (classic). For current-model zone tests, explore [Workspaces Compute Zone Down Scenarios](chaos-studio-scenarios.md#compute-zone-down). Workspaces doesn't support classic dynamic targeting; review [Workspaces limitations](chaos-studio-workspaces-limitations.md#limitations) before choosing a model.
 
 You can use dynamic targeting in a chaos experiment to choose a set of targets to run an experiment against. In this article, we show you how to dynamically target virtual machine scale sets to shut down based on availability zone. Running this experiment can help you test failover to an Azure Virtual Machine Scale Sets instance in a different region if there's an outage.
 

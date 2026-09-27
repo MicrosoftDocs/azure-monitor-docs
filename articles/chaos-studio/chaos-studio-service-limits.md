@@ -10,9 +10,9 @@ ai-usage: ai-assisted
 
 # Service limits for Experiments (classic)
 
-These Azure Chaos Studio service limits apply to Experiments (classic). For current-model constraints, use [Chaos Studio Workspaces limitations](chaos-studio-workspaces-limitations.md) and [Scenario requirements](chaos-studio-scenarios.md). Don't apply the classic experiment and target quotas to Workspaces.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+These Azure Chaos Studio service limits apply to Experiments (classic). For current-model constraints, use [Chaos Studio Workspaces limitations](chaos-studio-workspaces-limitations.md) and [Scenario requirements](chaos-studio-scenarios.md). Don't apply the classic experiment and target quotas to Workspaces.
 
 This article provides service limits for Experiments (classic). For more information about Azure-wide service limits and quotas, see [Azure subscription and service limits, quotas, and constraints](/azure/azure-resource-manager/management/azure-subscription-service-limits).
 

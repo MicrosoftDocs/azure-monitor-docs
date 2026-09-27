@@ -11,9 +11,9 @@ ms.author: nikhilkaul
 
 # Configure AKS authentication for Experiments (classic)
 
-This AKS authentication guide applies to Chaos Mesh faults in Azure Chaos Studio Experiments (classic). For current-model node resilience tests, use [AKS resilience testing with Chaos Studio Workspaces](chaos-studio-aks-guidance.md); that workflow targets node infrastructure rather than in-cluster pod faults.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This AKS authentication guide applies to Chaos Mesh faults in Azure Chaos Studio Experiments (classic). For current-model node resilience tests, use [AKS resilience testing with Chaos Studio Workspaces](chaos-studio-aks-guidance.md); that workflow targets node infrastructure rather than in-cluster pod faults.
 
 ## Overview
 

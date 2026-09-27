@@ -11,9 +11,9 @@ ai-usage: ai-assisted
 
 # Permissions and security for Experiments (classic)
 
-This Azure Chaos Studio permissions guide covers Experiments (classic), targets, and capabilities. For the current model, use [Chaos Studio Workspaces permissions and identity](chaos-studio-workspace-permissions.md). Workspaces Scenarios share a Workspace identity rather than an experiment identity.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This Azure Chaos Studio permissions guide covers Experiments (classic), targets, and capabilities. For the current model, use [Chaos Studio Workspaces permissions and identity](chaos-studio-workspace-permissions.md). Workspaces Scenarios share a Workspace identity rather than an experiment identity.
 
 Azure Chaos Studio enables you to improve service resilience by systematically injecting faults into your Azure resources. Fault injection is a powerful way to improve service resilience, but it can also be dangerous. Causing failures in your application can have more impact than originally intended and open opportunities for malicious actors to infiltrate your applications.
 
