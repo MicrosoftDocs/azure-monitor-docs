@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Network/publicIPAddresses
 description: Reference for Microsoft.Network/publicIPAddresses metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 09/28/2026
 ms.custom: Microsoft.Network/publicIPAddresses, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -42,11 +42,14 @@ For a list of supported logs, see [Supported log categories - Microsoft.Network/
 |**Inbound TCP packets to trigger DDoS mitigation**<br><br>Inbound TCP packets to trigger DDoS mitigation |`DDoSTriggerTCPPackets` | No | CountPerSecond |Maximum |\<none\>|PT1M |Yes|
 |**Inbound UDP packets to trigger DDoS mitigation**<br><br>Inbound UDP packets to trigger DDoS mitigation |`DDoSTriggerUDPPackets` | No | CountPerSecond |Maximum |\<none\>|PT1M |Yes|
 |**Under DDoS attack or not**<br><br>Under DDoS attack or not |`IfUnderDDoSAttack` | No | Count |Maximum |\<none\>|PT1M |Yes|
+|**Inbound other bytes DDoS**<br><br>Inbound other bytes DDoS |`OtherBytesInDDoS` | No | BytesPerSecond |Maximum |\<none\>|PT1M |Yes|
+|**Inbound other packets DDoS**<br><br>Inbound other packets DDoS |`OtherPacketsInDDoS` | No | CountPerSecond |Maximum |\<none\>|PT1M |Yes|
 |**Packet Count**<br><br>Total number of Packets transmitted within time period |`PacketCount` | No | Count |Total (Sum) |`Port`, `Direction`|PT1M |Yes|
 |**Inbound packets dropped DDoS**<br><br>Inbound packets dropped DDoS |`PacketsDroppedDDoS` | No | CountPerSecond |Maximum |\<none\>|PT1M |Yes|
 |**Inbound packets forwarded DDoS**<br><br>Inbound packets forwarded DDoS |`PacketsForwardedDDoS` | No | CountPerSecond |Maximum |\<none\>|PT1M |Yes|
 |**Inbound packets DDoS**<br><br>Inbound packets DDoS |`PacketsInDDoS` | No | CountPerSecond |Maximum |\<none\>|PT1M |Yes|
 |**SYN Count**<br><br>Total number of SYN Packets transmitted within time period |`SynCount` | No | Count |Total (Sum) |`Port`, `Direction`|PT1M |Yes|
+|**Inbound SYN packets DDoS**<br><br>Inbound SYN packets DDoS |`SYNPacketsInDDoS` | No | CountPerSecond |Maximum |\<none\>|PT1M |Yes|
 |**Inbound TCP bytes dropped DDoS**<br><br>Inbound TCP bytes dropped DDoS |`TCPBytesDroppedDDoS` | No | BytesPerSecond |Maximum |\<none\>|PT1M |Yes|
 |**Inbound TCP bytes forwarded DDoS**<br><br>Inbound TCP bytes forwarded DDoS |`TCPBytesForwardedDDoS` | No | BytesPerSecond |Maximum |\<none\>|PT1M |Yes|
 |**Inbound TCP bytes DDoS**<br><br>Inbound TCP bytes DDoS |`TCPBytesInDDoS` | No | BytesPerSecond |Maximum |\<none\>|PT1M |Yes|

@@ -2,7 +2,7 @@
 title: Supported Resource log categories for Azure Monitor
 description: Understand the supported services and event schemas for Azure Monitor resource logs.
 ms.topic: generated-reference
-ms.date: 09/21/2026
+ms.date: 09/28/2026
 
 # NOTE This list is largely auto-generated. Any modification made to this list via GitHub might be written over without warning. Contact the author of this article for details on how to make permanent updates.
 ---
@@ -59,7 +59,6 @@ Following table lists metrics and log categories available for each resource typ
 |`Microsoft.`<br>`ContainerRegistry` <a name="microsoftcontainerregistry"></a>|[`registries`](./supported-metrics/microsoft-containerregistry-registries-metrics.md)|[`registries`](./supported-logs/microsoft-containerregistry-registries-logs.md)|
 |`Microsoft.`<br>`ContainerService` <a name="microsoftcontainerservice"></a>|[`managedClusters`](./supported-metrics/microsoft-containerservice-managedclusters-metrics.md)|[`fleets`](./supported-logs/microsoft-containerservice-fleets-logs.md)<br>[`managedClusters`](./supported-logs/microsoft-containerservice-managedclusters-logs.md)|
 |`Microsoft.`<br>`CustomProviders` <a name="microsoftcustomproviders"></a>|[`resourceproviders`](./supported-metrics/microsoft-customproviders-resourceproviders-metrics.md)|[`resourceproviders`](./supported-logs/microsoft-customproviders-resourceproviders-logs.md)|
-|`Microsoft.`<br>`D365CustomerInsights` <a name="microsoftd365customerinsights"></a>|N/A|[`instances`](./supported-logs/microsoft-d365customerinsights-instances-logs.md)|
 |`Microsoft.Dashboard` <a name="microsoftdashboard"></a>|[`grafana`](./supported-metrics/microsoft-dashboard-grafana-metrics.md)|[`dashboards`](./supported-logs/microsoft-dashboard-dashboards-logs.md)<br>[`grafana`](./supported-logs/microsoft-dashboard-grafana-logs.md)|
 |`Microsoft.Databricks` <a name="microsoftdatabricks"></a>|N/A|[`workspaces`](./supported-logs/microsoft-databricks-workspaces-logs.md)|
 |`Microsoft.DataFactory` <a name="microsoftdatafactory"></a>|[`datafactories`](./supported-metrics/microsoft-datafactory-datafactories-metrics.md)<br>[`factories`](./supported-metrics/microsoft-datafactory-factories-metrics.md)|[`factories`](./supported-logs/microsoft-datafactory-factories-logs.md)|

@@ -2,9 +2,10 @@
 title: Migrate from Log Analytics Agent Custom Log Table to Azure Monitor Agent DCR-Based Custom Log Table
 description: Learn the steps to migrate from Log Analytics agent custom log table to Azure Monitor Agent DCR-based custom log table.
 ms.topic: upgrade-and-migration-article
-ms.date: 04/07/2026
 ms.reviewer: shseth, nmangum
-ms.custom: ai-assisted
+ms.date: 04/07/2026
+ms.custom: ai-assisted, cbo-v1.6
+ai-usage: ai-assisted
 ---
 
 # Migrate from Log Analytics agent custom log table to Azure Monitor Agent DCR-based custom log table
@@ -28,79 +29,74 @@ You should follow the steps only if the following criteria are met:
 * You created the original table using the Custom Log Wizard.
 * You want to preserve the existing data in the table.
 * You don't need Log Analytics agents to send data to the existing table.
-* You want to exclusively write new data by using a [DCR for AMA custom text logs](data-collection-log-text.md) and possibly configure an [ingestion time transformation](azure-monitor-agent-transformation.md).
+* You want to exclusively write new data by using a [DCR for AMA custom text logs](../vm/data-collection-log-text.md) and possibly configure an [ingestion time transformation](../vm/data-collection-log-text.md).
+
+## Prerequisites
+
+For Azure CLI or Azure PowerShell, select the subscription that contains your Log Analytics workspace before you run the migration command.
 
 ## Procedure
 
-1. Configure your data collection rule (DCR) following the instructions in [collect text logs with AMA](data-collection-log-text.md).
+1. Configure your data collection rule (DCR) by following the instructions in [collect text logs with AMA](../vm/data-collection-log-text.md).
 
 1. To enable ingestion from a DCR and manage your table in the Azure portal, issue the following API call against your existing custom log table. This call only changes the table the first time you run it. Running it again has no effect. Migration is one-way, so you can't migrate the table back to the Log Analytics agent.
 
     # [Azure CLI](#tab/cli)
 
-    The following Azure CLI example uses the [az monitor log-analytics workspace table migrate](/cli/azure/monitor/log-analytics/workspace/table) command.
+    The following Azure CLI example uses the [`az monitor log-analytics workspace table migrate`](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-migrate) command.
 
-    ```azurecli
-    subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-    resourceGroupName="myResourceGroup"
-    workspaceName="myWorkspace"
-    tableName="myTable"
+    ```bash
+    # Set variables
+    resourceGroupName="<ResourceGroupName>"
+    workspaceName="<WorkspaceName>"
+    tableName="<TableName>_CL"
 
-    az account set --subscription "$subscriptionId"
-
-    az monitor log-analytics workspace table migrate \
-      --resource-group "$resourceGroupName" \
+    # Migrate the custom log table
+    az monitor log-analytics workspace table migrate --resource-group "$resourceGroupName" \
       --workspace-name "$workspaceName" \
       --table-name "$tableName"
     ```
 
     [!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
-    # [PowerShell](#tab/powershell)
+    # [Azure PowerShell](#tab/powershell)
 
-    The following PowerShell example uses the [Invoke-AzOperationalInsightsMigrateTable](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsmigratetable) cmdlet.
+    The following Azure PowerShell example uses the [`Invoke-AzOperationalInsightsMigrateTable`](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsmigratetable) cmdlet.
 
-    ```azurepowershell
-    $subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-    $resourceGroupName = "myResourceGroup"
-    $workspaceName = "myWorkspace"
-    $tableName = "myTable"
-    
-    Set-AzContext -Subscription $subscriptionId
-    
-    $migrateTableParams = @{
+    ```powershell
+    # Set variables
+    $resourceGroupName = "<ResourceGroupName>"
+    $workspaceName = "<WorkspaceName>"
+    $tableName = "<TableName>_CL"
+
+    # Define parameters for Invoke-AzOperationalInsightsMigrateTable
+    $invokeAzOperationalInsightsMigrateTableParams = @{
         ResourceGroupName = $resourceGroupName
         WorkspaceName     = $workspaceName
         TableName         = $tableName
     }
-    
-    Invoke-AzOperationalInsightsMigrateTable @migrateTableParams
+
+    # Migrate the custom log table
+    Invoke-AzOperationalInsightsMigrateTable @invokeAzOperationalInsightsMigrateTableParams
     ```
 
     [!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
 
     # [REST](#tab/rest)
 
+    The following REST example uses the [`Tables - Migrate`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation.
+
     ```REST
-    POST https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version={apiVersion}
+    POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}_CL/migrate?api-version={apiVersion}
     Authorization: Bearer {accessToken}
     Content-Type: application/json
     ```
 
     ---
 
-    | Variable | Example value | Purpose |
-    |----------|---------------|---------|
-    | host | *management.azure.com* | Implicit ARM endpoint |
-    | subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
-    | resourceGroupName | myResourceGroup | User input |
-    | workspaceName | myWorkspace | User input |
-    | tableName | myTable | User input |
-    | apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
-
 1. Discontinue the Log Analytics agent custom text logs collection and start using AMA custom text logs.
 
 ## Next steps
 
-* [Walk through a tutorial sending custom logs using the Azure portal.](data-collection-log-text.md)
-* [Create an ingestion time transform for your custom text data](azure-monitor-agent-transformation.md)
+* [Walk through a tutorial sending custom logs using the Azure portal.](../vm/data-collection-log-text.md)
+* [Create an ingestion time transform for your custom text data](../vm/data-collection-log-text.md)

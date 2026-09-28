@@ -1,8 +1,9 @@
 ---
-title: Azure Monitor REST API index
+title: Azure Monitor REST API Index
 description: Lists the operation groups for the Azure Monitor REST API, which includes Application Insights, Log Analytics, and Monitor.
-ms.date: 04/29/2026
 ms.topic: reference
+ms.custom: cbo-v1.6
+ms.date: 04/29/2026
 ---
 
 # Azure Monitor REST API index
@@ -26,10 +27,10 @@ These Azure Monitor APIs retrieve and manage activity logs.
 
 | Operation groups | Description |
 |------------------|-------------|
-| <a name="op-monitor-activity-logs"></a>[Activity log(s)](/rest/api/monitor/activity-logs) | Get a list of event entries in the [activity log](../essentials/platform-logs-overview.md). |
+| <a name="op-monitor-activity-logs"></a>[Activity log(s)](/rest/api/monitor/activity-logs) | Get a list of event entries in the [activity log](data-sources.md). |
 | <a name="op-monitor-event-categories"></a>[(Activity log) event categories](/rest/api/monitor/event-categories) | Lists the types of Activity Log Entries. |
-| <a name="op-monitor-activity-log-profiles"></a>[Activity log profiles](/rest/api/monitor/log-profiles) | Operations to manage [activity log profiles](../essentials/platform-logs-overview.md) so you can route activity log events to other locations. |
-| <a name="op-monitor-activity-log-tenant-events"></a>[Activity log tenant events](/rest/api/monitor/tenant-activity-logs) | Gets the [Activity Log](../essentials/platform-logs-overview.md) event entries for a specific tenant. |
+| <a name="op-monitor-activity-log-profiles"></a>[Activity log profiles](/rest/api/monitor/log-profiles) | Operations to manage [activity log profiles](data-sources.md) so you can route activity log events to other locations. |
+| <a name="op-monitor-activity-log-tenant-events"></a>[Activity log tenant events](/rest/api/monitor/tenant-activity-logs) | Gets the [Activity Log](data-sources.md) event entries for a specific tenant. |
 
 ### Alerts management and action groups
 
@@ -44,7 +45,7 @@ These Azure Monitor APIs create and manage alert rules, action groups, and alert
 | <a name="op-monitor-metric-alert-baseline"></a>[Metric alert baseline](/rest/api/monitor/baselines) | List the metric baselines used in alert rules with [dynamic thresholds](../alerts/alerts-dynamic-thresholds.md). |
 | <a name="op-monitor-metric-alerts"></a>[Metric alerts](/rest/api/monitor/metric-alerts) | Manages and lists [metric alert rules](../alerts/alerts-overview.md). |
 | <a name="op-monitor-metric-alerts-status"></a>[Metric alerts status](/rest/api/monitor/metric-alerts-status) | Lists the status of [metric alert rules](../alerts/alerts-overview.md). |
-| <a name="op-monitor-prometheus-rule-groups"></a>[Prometheus rule groups](/rest/api/alerts-management/prometheus-rule-groups/prometheus-rule-groups) | Manages and lists [Prometheus rule groups](../essentials/prometheus-rule-groups.md) (alert rules and recording rules). |
+| <a name="op-monitor-prometheus-rule-groups"></a>[Prometheus rule groups](/rest/api/alerts-management/prometheus-rule-groups/prometheus-rule-groups) | Manages and lists [Prometheus rule groups](../metrics/prometheus-rule-groups.md) (alert rules and recording rules). |
 | <a name="op-monitor-scheduled-query-rules-2023-03-15-preview"></a>[Scheduled query rules - 2023-03-15 (preview)](/rest/api/monitor/scheduled-query-rules?view=rest-monitor-2023-03-15-preview&preserve-view=true) | Manages and lists [log search alert rules](../alerts/alerts-types.md#log-alerts). |
 | <a name="op-monitor-scheduled-query-rules-2018-04-16"></a>[Scheduled query rules - 2018-04-16](/rest/api/monitor/scheduled-query-rules?view=rest-monitor-2018-04-16&preserve-view=true) | Manages and lists [log search alert rules](../alerts/alerts-types.md#log-alerts). |
 | <a name="op-monitor-scheduled-query-rules-2021-08-01"></a>[Scheduled query rules - 2021-08-01](/rest/api/monitor/scheduled-query-rules?view=rest-monitor-2021-08-01&preserve-view=true) | Manages and lists [log search alert rules](../alerts/alerts-types.md#log-alerts). |
@@ -75,8 +76,8 @@ These Azure Monitor APIs manage diagnostic settings that control routing of metr
 
 | Operation groups | Description |
 |------------------|-------------|
-| <a name="op-monitor-diagnostic-settings"></a>[Diagnostic settings](/rest/api/monitor/diagnostic-settings) | Operations to create, update, and retrieve the [diagnostic settings](../essentials/platform-logs-overview.md) for a resource. Controls the routing of metric data and diagnostic logs. |
-| <a name="op-monitor-diagnostic-settings-category"></a>[Diagnostic settings category](/rest/api/monitor/diagnostic-settings) | Relates to the [possible categories](../essentials/resource-logs-schema.md) for a given resource. |
+| <a name="op-monitor-diagnostic-settings"></a>[Diagnostic settings](/rest/api/monitor/diagnostic-settings) | Operations to create, update, and retrieve the [diagnostic settings](data-sources.md) for a resource. Controls the routing of metric data and diagnostic logs. |
+| <a name="op-monitor-diagnostic-settings-category"></a>[Diagnostic settings category](/rest/api/monitor/diagnostic-settings) | Relates to the [possible categories](../logs/resource-logs-schema.md) for a given resource. |
 | <a name="op-monitor-management-group-diagnostic-settings"></a>[Management group diagnostic settings](/rest/api/monitor/management-group-diagnostic-settings) | Manage the management group diagnostic settings for a resource and retrieve the management group diagnostic settings list for a management group. |
 | <a name="op-monitor-subscription-diagnostic-settings"></a>[Subscription diagnostic settings](/rest/api/monitor/subscription-diagnostic-settings) | Manage the subscription diagnostic settings for a resource and retrieve the subscription diagnostic settings list for a subscriptionId. |
 
@@ -89,10 +90,18 @@ These Azure Monitor APIs retrieve resource metric definitions, values, and manag
 | <a name="op-monitor-azure-monitor-workspaces"></a>[Azure Monitor Workspaces](/rest/api/monitor/azure-monitor-workspaces) | Manage an Azure Monitor workspace and retrieve the Azure Monitor workspaces within a resource group or subscription. |
 | <a name="op-monitor-azure-monitor-workspace-settings"></a>Azure Monitor Workspace subscription settings (preview) | Manage the default Azure Monitor workspace associated with a subscription, which [Azure Monitor issues](../aiops/issues-how-to.md) requires. Current API version: `2025-06-03-preview`. A REST reference page isn't published yet for this preview operation group. |
 | <a name="op-monitor-metric-definitions"></a>[Metric definitions](/rest/api/monitor/metric-definitions) | Lists the metric definitions available for the resource. That is, what [specific metrics](/azure/azure-monitor/reference/supported-metrics/metrics-index) can you collect. |
-| <a name="op-monitor-metric-namespaces"></a>[Metric namespaces](/rest/api/monitor/metric-namespaces) | Lists the metric namespaces. Most relevant when using [custom metrics](../essentials/metrics-custom-overview.md). |
+| <a name="op-monitor-metric-namespaces"></a>[Metric namespaces](/rest/api/monitor/metric-namespaces) | Lists the metric namespaces. Most relevant when using [custom metrics](../metrics/metrics-custom-overview.md). |
 | <a name="op-monitor-metrics-batch"></a>[Metrics Batch](/rest/api/monitor/metrics-batch) | List the metric values for multiple resources. This requires the `https://<region>.metrics.monitor.azure.com` endpoint. |
 | <a name="op-monitor-metrics"></a>[Metrics](/rest/api/monitor/metrics) | Lists the metric values for a resource you identify. |
 | <a name="op-monitor-metrics-custom"></a>[Metrics – Custom](/rest/api/monitor/metrics-custom) | Post the metric values for a resource. |
+
+### Related management APIs
+
+These management APIs support related workflows in Azure Service Health.
+
+| Operation groups | Description |
+|------------------|-------------|
+| <a name="op-monitor-advisor-recommendation-metadata"></a>[Advisor recommendation metadata](/rest/api/advisor/recommendation-metadata/list?view=rest-advisor-2025-01-01&preserve-view=true) | Lists Azure Advisor recommendation metadata. Stable API version `2025-01-01` supports the `trackingIds/any` filter for Service Health retirement events. |
 
 ## Application Insights APIs
 
@@ -170,13 +179,21 @@ API endpoint is `management.azure.com`.
 | <a name="op-logs-workspace-usages"></a>[Workspace usages](/rest/api/loganalytics/usages) | Retrieve the usage metrics for a Log Analytics workspace. |
 | <a name="op-logs-workspaces"></a>[Workspaces](/rest/api/loganalytics/workspaces) | Manage Log Analytics workspaces. |
 
+## Resource Manager deployments
+
+Use the Azure Resource Manager deployment APIs to deploy [sample templates for Azure Monitor](resource-manager-samples.md). These APIs use the `https://management.azure.com/` endpoint and the `Microsoft.Resources` resource provider.
+
+| Operation groups | Description |
+|------------------|-------------|
+| <a name="op-monitor-deployments"></a>[Deployments](/rest/api/resources/deployments) | Deploy resources to a resource group by using [Deployments - Create Or Update](/rest/api/resources/deployments/create-or-update). API version: `2025-04-01`. |
+
 ## Retired and deprecated APIs
 
 The following APIs have been retired or are scheduled for retirement. They're listed here for reference. See the linked documentation for migration guidance.
 
 | Operation groups | Description |
 |------------------|-------------|
-| <a name="op-retired-alert-rule-incidents"></a>[Alerts (classic) rule incidents](/rest/api/monitor/alert-rule-incidents) | [Retired in 2019](/previous-versions/azure/azure-monitor/alerts/monitoring-classic-retirement) in the public cloud. Older classic alerts functions. Gets an incident associated to a [classic metric alert rule](../alerts/alerts-classic.overview.md). When an alert rule fires because the threshold is crossed in the up or down direction, an incident is created and an entry added to the [Activity Log](../essentials/platform-logs-overview.md). |
-| <a name="op-retired-alert-classic-rules"></a>[Alert (classic) rules](/previous-versions/azure/azure-monitor/alerts/alerts-classic.overview) | [Being retired in 2019](/previous-versions/azure/azure-monitor/alerts/monitoring-classic-retirement) in the public cloud. Provides operations for managing [classic alert](../alerts/alerts-classic.overview.md) rules. |
+| <a name="op-retired-alert-rule-incidents"></a>[Alerts (classic) rule incidents](/rest/api/monitor/alert-rule-incidents) | [Retired in 2019](/previous-versions/azure/azure-monitor/alerts/monitoring-classic-retirement) in the public cloud. Older classic alerts functions. Gets an incident associated to a [classic metric alert rule](/previous-versions/azure/azure-monitor/alerts/alerts-classic.overview). When an alert rule fires because the threshold is crossed in the up or down direction, an incident is created and an entry added to the [Activity Log](data-sources.md). |
+| <a name="op-retired-alert-classic-rules"></a>[Alert (classic) rules](/previous-versions/azure/azure-monitor/alerts/alerts-classic.overview) | [Being retired in 2019](/previous-versions/azure/azure-monitor/alerts/monitoring-classic-retirement) in the public cloud. Provides operations for managing [classic alert](/previous-versions/azure/azure-monitor/alerts/alerts-classic.overview) rules. |
 | <a name="op-deprecated-data-collector"></a>[HTTP Data Collector API](../logs/custom-logs-migrate.md) | Support has ended for the legacy HTTP Data Collector API. Use this reference to migrate to the Logs ingestion API. |
 | <a name="op-retired-logs-query-batch-and-beta"></a>[Logs query API batch operator](../logs/api/migrate-batch-and-beta.md#split-batch-queries-into-single-queries)<br>[Logs query API beta version](../logs/api/migrate-batch-and-beta.md#change-beta-path-to-v1) | This operation and version of the Logs query API is deprecated. See [Migrate from Logs query batch and beta](../logs/api/migrate-batch-and-beta.md) for timelines. |
