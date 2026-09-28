@@ -131,9 +131,6 @@ items:
 - name: Microsoft.CustomProviders/resourceproviders
   href: microsoft-customproviders-resourceproviders-logs.md
   displayName: Audit logs for MiniRP calls
-- name: Microsoft.D365CustomerInsights/instances
-  href: microsoft-d365customerinsights-instances-logs.md
-  displayName: Audit events,Operational events
 - name: Microsoft.Dashboard/dashboards
   href: microsoft-dashboard-dashboards-logs.md
   displayName: Update Events

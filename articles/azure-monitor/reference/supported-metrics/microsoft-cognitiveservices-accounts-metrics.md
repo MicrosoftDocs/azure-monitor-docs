@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.CognitiveServices/accounts
 description: Reference for Microsoft.CognitiveServices/accounts metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 09/15/2026
+ms.date: 09/28/2026
 ms.custom: Microsoft.CognitiveServices/accounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -144,6 +144,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Cognitiv
 |**Prompt tokens read from cache**<br><br>Total number of tokens read from the cache. Applies to Anthropic model deployments. Surfaced in response usage section as `cache_read_input_tokens` |`cacheReadInputTokens` | No | Count |Total (Sum) |`ApiName`, `Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion`, `ContextLength`|PT1M |Yes|
 |**Prompt tokens written to cache (1 hour TTL)**<br><br>The number of prompt tokens used to create the 1 hour entry. Applies to Anthropic model deployments. Surfaced in response usage section as `cache_creation.ephemeral_1h_input_tokens` |`ephemeral1hInputTokens` | No | Count |Total (Sum) |`ApiName`, `Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion`, `ContextLength`|PT1M |Yes|
 |**Prompt tokens written to cache (5 minute TTL)**<br><br>The number of prompt tokens used to create the 5 minute cache entry. Applies to Anthropic model deployments. Surfaced in response usage section as `cache_creation.ephemeral_5m_input_tokens` |`ephemeral5mInputTokens` | No | Count |Total (Sum) |`ApiName`, `Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion`, `ContextLength`|PT1M |Yes|
+|**Foundry Model Estimated Cost (Preview)**<br><br>Estimated USD cost of model usage for this account. Applies to Foundry models only. This value is an estimate and is not an invoice or billed charge. |`FoundryModelEstimatedCost` | No | Unspecified |Total (Sum) |`ProjectId`, `ModelDeploymentName`, `ModelName`, `ModelVersion`, `Region`|PT1M |No|
 |**Generated Images**<br><br>Total number of images generated. Applies to PTU, PTU-Managed and Pay-as-you-go deployments. |`GeneratedImages` | No | Count |Total (Sum) |`ApiName`, `Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion`|PT1M |Yes|
 |**Input Tokens**<br><br>Number of prompt tokens processed (input) on a model. Applies to PTU, PTU-Managed and Pay-as-you-go deployments. |`InputTokens` | No | Count |Total (Sum) |`ApiName`, `Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion`|PT1M |Yes|
 |**Output Tokens**<br><br>Number of tokens generated (output) from an OpenAI model. Applies to PTU, PTU-Managed and Pay-as-you-go deployments. |`OutputTokens` | No | Count |Total (Sum) |`ApiName`, `Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion`|PT1M |Yes|
