@@ -94,6 +94,14 @@ These Azure Monitor APIs retrieve resource metric definitions, values, and manag
 | <a name="op-monitor-metrics"></a>[Metrics](/rest/api/monitor/metrics) | Lists the metric values for a resource you identify. |
 | <a name="op-monitor-metrics-custom"></a>[Metrics – Custom](/rest/api/monitor/metrics-custom) | Post the metric values for a resource. |
 
+### Related management APIs
+
+These management APIs support related workflows in Azure Service Health.
+
+| Operation groups | Description |
+|------------------|-------------|
+| <a name="op-monitor-advisor-recommendation-metadata"></a>[Advisor recommendation metadata](/rest/api/advisor/recommendation-metadata/list?view=rest-advisor-2025-01-01&preserve-view=true) | Lists Azure Advisor recommendation metadata. Stable API version `2025-01-01` supports the `trackingIds/any` filter for Service Health retirement events. |
+
 ## Application Insights APIs
 
 These Application Insights APIs include both control plane APIs for managing Application Insights resources and data plane APIs for querying telemetry data. See the [Application Insights section](/rest/api/application-insights/) of the Azure REST APIs documentation for the latest API versions.
