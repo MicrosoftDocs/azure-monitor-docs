@@ -3,7 +3,7 @@ title: Chaos Studio Workspaces vs. Experiments (classic)
 description: "Compare Chaos Studio Workspaces vs. Experiments (classic): Scenario coverage, permissions, reports, preview status, and when to choose each model."
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 09/25/2026
+ms.date: 09/29/2026
 ai-usage: ai-assisted
 ---
 
@@ -27,7 +27,7 @@ Both models inject real faults against your Azure resources, but they differ in 
 | Permission validation | The Workspace validates the permissions required for a run before it starts. | Missing permissions typically surface as failures at run time. |
 | Regions | A Workspace is a logical resource that can act on resources in any Azure region from any of the [supported Workspace regions](chaos-studio-region-availability.md#regional-availability-of-chaos-studio-workspaces). | Experiments deploy to [specific regions](chaos-studio-region-availability.md#regional-availability-of-experiments-classic), and targets must be in a resource-targeting region. |
 | Reporting | Each run produces a downloadable [Scenario report](chaos-studio-scenario-reports.md) with run details, an Action summary, a timeline, and an execution flow diagram. | Experiment history shows execution details and error information per run. |
-| Supported tests | Use the curated [Scenario catalog](chaos-studio-scenarios.md) or customize a Scenario in the designer or as a `Microsoft.Chaos/workspaces/scenarios` resource. | Use the classic fault catalog, including agent-based faults, AKS Chaos Mesh faults, and dynamic targeting. |
+| Supported tests | Use the curated [Scenario catalog](chaos-studio-scenarios.md) or customize a Scenario in the designer or as a `Microsoft.Chaos/workspaces/scenarios` resource with the [Actions available for custom Scenarios](chaos-studio-scenarios.md#actions-available-for-custom-scenarios). | Use the classic fault catalog, including agent-based faults, AKS Chaos Mesh faults, and dynamic targeting. |
 
 ## Main advantages of Chaos Studio Workspaces
 
