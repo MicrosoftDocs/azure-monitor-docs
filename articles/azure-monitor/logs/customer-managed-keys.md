@@ -8,6 +8,7 @@ ai-usage: ai-assisted
 ms.custom:
   - devx-track-azurepowershell, devx-track-azurecli
   - references_regions
+  - cbo-v1.6
 ---
 
 # Azure Monitor customer-managed keys
@@ -140,8 +141,8 @@ For example, add the following values in the request body for creating a cluster
 ```json
 {
   "identity": {
-      "type": "SystemAssigned"
-      }
+    "type": "SystemAssigned"
+  }
 }
 ```
 
@@ -201,10 +202,10 @@ The operation is asynchronous and can take a while to complete.
 
 # [Azure CLI](#tab/cli)
 
-> [!TIP]
-> When you pass an empty string "" for --key-version, the cluster always uses the latest key version in Key Vault and there's no need to update the cluster after key rotation.
+The following Azure CLI example uses the [`az monitor log-analytics cluster update`](/cli/azure/monitor/log-analytics/cluster#az-monitor-log-analytics-cluster-update) command.
 
-The following Azure CLI example uses the [az monitor log-analytics cluster update](/cli/azure/monitor/log-analytics/cluster) command.
+> [!TIP]
+> When you pass an empty string `""` for `--key-version`, the cluster always uses the latest key version in Key Vault and there's no need to update the cluster after key rotation.
 
 ```bash
 # Set variables
@@ -229,10 +230,10 @@ az monitor log-analytics cluster update \
 
 # [Azure PowerShell](#tab/powershell)
 
-> [!TIP]
-> When you pass an empty string '' for -KeyVersion, the cluster always uses the latest key version in Key Vault and there's no need to update the cluster after key rotation.
+The following Azure PowerShell example uses the [`Update-AzOperationalInsightsCluster`](/powershell/module/az.operationalinsights/update-azoperationalinsightscluster) cmdlet.
 
-The following Azure PowerShell example uses the [Update-AzOperationalInsightsCluster](/powershell/module/az.operationalinsights) cmdlet.
+> [!TIP]
+> When you pass an empty string `""` for `-KeyVersion`, the cluster always uses the latest key version in Key Vault and there's no need to update the cluster after key rotation.
 
 ```powershell
 # Set variables
@@ -250,7 +251,7 @@ $updateAzOperationalInsightsClusterParams = @{
     ClusterName       = $clusterName
     KeyVaultUri       = $keyVaultUri
     KeyName           = $keyName
-    KeyVersion        = ''
+    KeyVersion        = ""
 }
 
 # Update the cluster with a customer-managed key
@@ -261,11 +262,11 @@ Update-AzOperationalInsightsCluster @updateAzOperationalInsightsClusterParams
 
 # [REST](#tab/rest)
 
-The following REST example uses the [Clusters - Update](/rest/api/loganalytics/clusters/update) REST API operation.
+The following REST example uses the [`Clusters - Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-clusters) REST API operation. It updates only the key identifier details and leaves the cluster identity unchanged.
 
 ```REST
-PATCH https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.OperationalInsights/clusters/{ClusterName}?api-version=2025-07-01
-Authorization: Bearer {AccessToken}
+PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/clusters/{clusterName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
@@ -281,52 +282,24 @@ Content-Type: application/json
 
 **Response:**
 
-It takes some time to complete the propagation of the key. Check the update state by sending a GET request on the cluster and look at the KeyVaultProperties properties. Your recently updated key appears in the response.
-
-Response to `GET` request when key update is completed: 202 (Accepted) and header
-
-```json
-{
-  "identity": {
-    "type": "SystemAssigned",
-    "tenantId": "tenant-id",
-    "principalId": "principal-id"
-  },
-  "sku": {
-    "name": "capacityreservation",
-    "capacity": 100
-  },
-  "properties": {
-    "keyVaultProperties": {
-      "keyVaultUri": "https://key-vault-name.vault.azure.net",
-      "keyName": "key-name",
-      "keyVersion": ""
-    },
-    "provisioningState": "Succeeded",
-    "clusterId": "cluster-id",
-    "billingType": "Cluster",
-    "lastModifiedDate": "last-modified-date",
-    "createdDate": "created-date",
-    "isDoubleEncryptionEnabled": false,
-    "isAvailabilityZonesEnabled": false,
-    "capacityReservationProperties": {
-      "lastSkuUpdate": "last-sku-modified-date",
-      "minCapacity": 100
-    }
-  },
-  "id": "/subscriptions/subscription-id/resourceGroups/resource-group-name/providers/Microsoft.OperationalInsights/clusters/cluster-name",
-  "name": "cluster-name",
-  "type": "Microsoft.OperationalInsights/clusters",
-  "location": "cluster-region"
-}
-```
+The update can return `200 OK` or `202 Accepted`. An accepted request doesn't mean that key propagation is finished. [Verify dedicated cluster provisioning](#verify-dedicated-cluster-provisioning) before linking workspaces or starting another update.
 
 # [Bicep](#tab/bicep)
 
 > [!NOTE]
-> Bicep template deployments are create-or-update operations, not partial PATCH operations. Include any required existing cluster properties that you don’t want to change.
+> Bicep deployments are create-or-update operations, not partial PATCH operations. Use the Azure CLI, Azure PowerShell, or REST tab to change only the key on an existing cluster.
 
-The following Bicep example uses the [Microsoft.OperationalInsights clusters](/azure/templates/microsoft.operationalinsights/clusters?pivots=deployment-language-bicep) resource type.
+The following Bicep example uses the [`Microsoft.OperationalInsights/clusters`](/azure/templates/microsoft.operationalinsights/clusters?pivots=deployment-language-bicep) resource type.
+
+This template includes the cluster resource declaration and key settings. Before using it to update an existing cluster:
+
+* In `properties.keyVaultProperties`, edit only `keyVaultUri`, `keyName`, and `keyVersion` as shown. Don't replace either `keyVaultProperties` or its containing `properties` object.
+* Set the `clusterName` and `azureRegion` parameters to the existing cluster's name and region. Set `keyVaultName` and `keyName` to the vault and key to use.
+* Set `keyVersion` to an empty string to enable automatic rotation.
+* Retain all other members from your maintained cluster definition, including the existing SKU, capacity, location, tags, and other properties. Keep the existing identity unchanged.
+* Don't deploy this example unchanged over an existing cluster. It shows the key settings, not your cluster's complete configuration.
+* Don't include identity and key identifier details in the same update.
+* For a key-only update, use the Azure CLI, Azure PowerShell, or REST tab.
 
 ```bicep
 param clusterName string = '<ClusterName>'
@@ -336,7 +309,7 @@ param keyName string = '<KeyName>'
 
 var keyVaultUri = 'https://${keyVaultName}.vault.azure.net'
 
-resource logAnalyticsCluster 'Microsoft.OperationalInsights/clusters@2025-07-01' = {
+resource logAnalyticsCluster 'Microsoft.OperationalInsights/clusters@<ApiVersion>' = {
   name: clusterName
   location: azureRegion
   properties: {
@@ -349,12 +322,22 @@ resource logAnalyticsCluster 'Microsoft.OperationalInsights/clusters@2025-07-01'
 }
 ```
 
-# [ARM (JSON)](#tab/arm)
+# [ARM template](#tab/arm)
 
 > [!NOTE]
-> ARM (JSON) template deployments are create-or-update operations, not partial PATCH operations. Include any required existing cluster properties that you don’t want to change.
+> ARM template deployments are create-or-update operations, not partial PATCH operations. Use the Azure CLI, Azure PowerShell, or REST tab to change only the key on an existing cluster.
 
-The following ARM (JSON) example uses the [Microsoft.OperationalInsights clusters](/azure/templates/microsoft.operationalinsights/clusters?pivots=deployment-language-arm-template) resource type.
+The following ARM template example uses the [`Microsoft.OperationalInsights/clusters`](/azure/templates/microsoft.operationalinsights/clusters?pivots=deployment-language-arm-template) resource type.
+
+This template includes the cluster resource declaration and key settings. Before using it to update an existing cluster:
+
+* In `properties.keyVaultProperties`, edit only `keyVaultUri`, `keyName`, and `keyVersion` as shown. Don't replace either `keyVaultProperties` or its containing `properties` object.
+* Set the `clusterName` and `azureRegion` parameters to the existing cluster's name and region. Set `keyVaultName` and `keyName` to the vault and key to use.
+* Set `keyVersion` to an empty string to enable automatic rotation.
+* Retain all other members from your maintained cluster definition, including the existing SKU, capacity, location, tags, and other properties. Keep the existing identity unchanged.
+* Don't deploy this example unchanged over an existing cluster. It shows the key settings, not your cluster's complete configuration.
+* Don't include identity and key identifier details in the same update.
+* For a key-only update, use the Azure CLI, Azure PowerShell, or REST tab.
 
 ```json
 {
@@ -384,7 +367,7 @@ The following ARM (JSON) example uses the [Microsoft.OperationalInsights cluster
   "resources": [
     {
       "type": "Microsoft.OperationalInsights/clusters",
-      "apiVersion": "2025-07-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[parameters('clusterName')]",
       "location": "[parameters('azureRegion')]",
       "properties": {
@@ -400,22 +383,76 @@ The following ARM (JSON) example uses the [Microsoft.OperationalInsights cluster
 ```
 
 ---
-<!--
-| Variable | Example value | Purpose |
-|----------|---------------|---------|
-| subscriptionId | \<SubscriptionId\> | User input |
-| resourceGroupName | \<ResourceGroupName\> | User input |
-| clusterName | \<ClusterName\> | User input |
-| azureRegion | \<AzureRegion\> | User input |
-| keyVaultName | \<KeyVaultName\> | User input |
-| keyName | \<KeyName\> | User input |
-| apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
--->
+
 ### Verify dedicated cluster provisioning
 
 Verify that the cluster provisioning state is `Succeeded` before linking workspaces to the cluster. If you link workspaces and ingest data before provisioning, the process drops the ingested data and you can't recover it.
 
-Verify the provisioning state by using CLI, PowerShell, or REST API as detailed in the [Update dedicated cluster with key identifier details](#update-dedicated-cluster-with-key-identifier-details) section.
+Check the provisioning state and confirm that the returned key identifier details match the intended key.
+
+# [Azure CLI](#tab/cli-2)
+
+The following Azure CLI example uses the [`az monitor log-analytics cluster show`](/cli/azure/monitor/log-analytics/cluster#az-monitor-log-analytics-cluster-show) command.
+
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+clusterName="<ClusterName>"
+
+# Retrieve the cluster provisioning state and key settings
+az monitor log-analytics cluster show \
+  --resource-group "$resourceGroupName" \
+  --name "$clusterName"
+```
+
+[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
+
+# [Azure PowerShell](#tab/powershell-2)
+
+The following Azure PowerShell example uses the [`Get-AzOperationalInsightsCluster`](/powershell/module/az.operationalinsights/get-azoperationalinsightscluster) cmdlet.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$clusterName = "<ClusterName>"
+
+# Define parameters for Get-AzOperationalInsightsCluster
+$getAzOperationalInsightsClusterParams = @{
+    ResourceGroupName = $resourceGroupName
+    ClusterName       = $clusterName
+}
+
+# Retrieve the cluster provisioning state and key settings
+Get-AzOperationalInsightsCluster @getAzOperationalInsightsClusterParams
+```
+
+[!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
+
+# [REST](#tab/rest-2)
+
+The following REST example uses the [`Clusters - Get`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-clusters) REST API operation.
+
+```REST
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/clusters/{clusterName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+```
+
+The GET request returns `200 OK`. In the following illustrative response excerpt, `provisioningState` is `Succeeded`. An HTTP success status alone doesn't prove that provisioning is complete.
+
+```json
+{
+  "properties": {
+    "keyVaultProperties": {
+      "keyVaultUri": "https://contoso-kv.vault.azure.net",
+      "keyName": "contoso-log-key",
+      "keyVersion": ""
+    },
+    "provisioningState": "Succeeded"
+  }
+}
+```
+
+---
 
 ### Link workspaces to the dedicated cluster
 
@@ -485,7 +522,7 @@ Link a Storage Account to keep saved queries and functions in your Storage Accou
 
 # [Azure CLI](#tab/cli)
 
-The following Azure CLI example uses the [az monitor log-analytics workspace linked-storage create](/cli/azure/monitor/log-analytics/workspace/linked-storage) command.
+The following Azure CLI example uses the [`az monitor log-analytics workspace linked-storage create`](/cli/azure/monitor/log-analytics/workspace/linked-storage#az-monitor-log-analytics-workspace-linked-storage-create) command.
 
 ```bash
 # Set variables
@@ -496,22 +533,24 @@ storageAccountName="<StorageAccountName>"
 # Get the subscription ID from the current Azure CLI context
 subscriptionId=$(az account show --query id --output tsv)
 
-# Build the full resource ID for the storage account
-storageAccountId="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageAccountName"
+# Build destination storage account resource ID
+storagePath="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+storageProvider="Microsoft.Storage/storageAccounts/$storageAccountName"
+storageAccountResourceId="$storagePath/providers/$storageProvider"
 
 # Link the storage account to the workspace for custom log queries
 az monitor log-analytics workspace linked-storage create \
   --resource-group "$resourceGroupName" \
   --workspace-name "$workspaceName" \
   --type Query \
-  --storage-accounts "$storageAccountId"
+  --storage-accounts "$storageAccountResourceId"
 ```
 
 [!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 # [Azure PowerShell](#tab/powershell)
 
-The following Azure PowerShell example uses the [New-AzOperationalInsightsLinkedStorageAccount](/powershell/module/az.operationalinsights/new-azoperationalinsightslinkedstorageaccount) cmdlet.
+The following Azure PowerShell example uses the [`New-AzOperationalInsightsLinkedStorageAccount`](/powershell/module/az.operationalinsights/new-azoperationalinsightslinkedstorageaccount) cmdlet.
 
 ```powershell
 # Set variables
@@ -522,15 +561,17 @@ $storageAccountName = "<StorageAccountName>"
 # Get the subscription ID from the current Azure PowerShell context
 $subscriptionId = (Get-AzContext).Subscription.Id
 
-# Build the full resource ID for the storage account
-$storageAccountId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageAccountName"
+# Build destination storage account resource ID
+$storagePath = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$storageProvider = "Microsoft.Storage/storageAccounts/$storageAccountName"
+$storageAccountResourceId = "$storagePath/providers/$storageProvider"
 
 # Define parameters for New-AzOperationalInsightsLinkedStorageAccount
 $newAzOperationalInsightsLinkedStorageAccountParams = @{
     ResourceGroupName = $resourceGroupName
     WorkspaceName     = $workspaceName
     DataSourceType    = "Query"
-    StorageAccountId  = $storageAccountId
+    StorageAccountId  = $storageAccountResourceId
 }
 
 # Link the storage account to the workspace for custom log queries
@@ -541,11 +582,11 @@ New-AzOperationalInsightsLinkedStorageAccount @newAzOperationalInsightsLinkedSto
 
 # [REST](#tab/rest)
 
-The following REST example uses the [Linked Storage Accounts - Create Or Update](/rest/api/loganalytics/linked-storage-accounts/create-or-update) REST API operation.
+The following REST example uses the [`Linked Storage Accounts - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-linked-storage-accounts) REST API operation.
 
 ```REST
-PUT https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}/linkedStorageAccounts/Query?api-version=2025-07-01
-Authorization: Bearer {AccessToken}
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/linkedStorageAccounts/Query?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
@@ -559,7 +600,17 @@ Content-Type: application/json
 
 # [Bicep](#tab/bicep)
 
-The following Bicep example uses the [Microsoft.OperationalInsights workspaces/linkedStorageAccounts](/azure/templates/microsoft.operationalinsights/workspaces/linkedstorageaccounts?pivots=deployment-language-bicep) resource type.
+> [!NOTE]
+> Bicep deployments are create-or-update operations, not partial PATCH operations. This example sets the `Query` link to the specified storage account. It doesn't redeploy the workspace or storage account.
+
+The following Bicep example uses the [`Microsoft.OperationalInsights/workspaces/linkedStorageAccounts`](/azure/templates/microsoft.operationalinsights/workspaces/linkedstorageaccounts?pivots=deployment-language-bicep) resource type.
+
+This example creates the `Query` linked-storage child when that link doesn't exist.
+
+* If the `Query` link already exists, treat `properties.storageAccountIds` as its complete replacement array. Include every storage account ID you intend to keep.
+* Use the one-entry example only when it is the entire intended list. Don't rely on an implicit merge.
+* Keep the `Alerts` child and all other resource definitions and settings in your maintained template unchanged.
+* Use incremental deployment mode for this child-only example. Neither the workspace nor the storage account is redeployed.
 
 ```bicep
 param subscriptionId string = '<SubscriptionId>'
@@ -567,26 +618,41 @@ param resourceGroupName string = '<ResourceGroupName>'
 param workspaceName string = '<WorkspaceName>'
 param storageAccountName string = '<StorageAccountName>'
 
-var storageAccountId = '/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.Storage/storageAccounts/${storageAccountName}'
+var storageAccountResourceId = resourceId(
+  subscriptionId,
+  resourceGroupName,
+  'Microsoft.Storage/storageAccounts',
+  storageAccountName
+)
 
-resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2025-07-01' existing = {
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@<ApiVersion>' existing = {
   name: workspaceName
 }
 
-resource linkedStorageAccount 'Microsoft.OperationalInsights/workspaces/linkedStorageAccounts@2025-07-01' = {
+resource linkedStorageAccount 'Microsoft.OperationalInsights/workspaces/linkedStorageAccounts@<ApiVersion>' = {
   parent: logAnalyticsWorkspace
   name: 'Query'
   properties: {
     storageAccountIds: [
-      storageAccountId
+      storageAccountResourceId
     ]
   }
 }
 ```
 
-# [ARM (JSON)](#tab/arm)
+# [ARM template](#tab/arm)
 
-The following ARM (JSON) example uses the [Microsoft.OperationalInsights workspaces/linkedStorageAccounts](/azure/templates/microsoft.operationalinsights/workspaces/linkedstorageaccounts?pivots=deployment-language-arm-template) resource type.
+> [!NOTE]
+> ARM template deployments are create-or-update operations, not partial PATCH operations. This example sets the `Query` link to the specified storage account. It doesn't redeploy the workspace or storage account.
+
+The following ARM template example uses the [`Microsoft.OperationalInsights/workspaces/linkedStorageAccounts`](/azure/templates/microsoft.operationalinsights/workspaces/linkedstorageaccounts?pivots=deployment-language-arm-template) resource type.
+
+This example creates the `Query` linked-storage child when that link doesn't exist.
+
+* If the `Query` link already exists, treat `properties.storageAccountIds` as its complete replacement array. Include every storage account ID you intend to keep.
+* Use the one-entry example only when it is the entire intended list. Don't rely on an implicit merge.
+* Keep the `Alerts` child and all other resource definitions and settings in your maintained template unchanged.
+* Use incremental deployment mode for this child-only example. Neither the workspace nor the storage account is redeployed.
 
 ```json
 {
@@ -611,16 +677,16 @@ The following ARM (JSON) example uses the [Microsoft.OperationalInsights workspa
     }
   },
   "variables": {
-    "storageAccountId": "[format('/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Storage/storageAccounts/{2}', parameters('subscriptionId'), parameters('resourceGroupName'), parameters('storageAccountName'))]"
+    "storageAccountResourceId": "[resourceId(parameters('subscriptionId'), parameters('resourceGroupName'), 'Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
   },
   "resources": [
     {
       "type": "Microsoft.OperationalInsights/workspaces/linkedStorageAccounts",
-      "apiVersion": "2025-07-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[format('{0}/Query', parameters('workspaceName'))]",
       "properties": {
         "storageAccountIds": [
-          "[variables('storageAccountId')]"
+          "[variables('storageAccountResourceId')]"
         ]
       }
     }
@@ -629,15 +695,7 @@ The following ARM (JSON) example uses the [Microsoft.OperationalInsights workspa
 ```
 
 ---
-<!--
-| Variable | Example value | Purpose |
-|----------|---------------|---------|
-| subscriptionId | \<SubscriptionId\> | • Retrieved (CLI & PowerShell) • User input (REST, Bicep & ARM) |
-| resourceGroupName | \<ResourceGroupName\> | User input |
-| workspaceName | \<WorkspaceName\> | User input |
-| storageAccountName | \<StorageAccountName\> | User input |
-| apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
--->
+
 #### Customer-managed key for Workbooks
 
 Azure Monitor enables you to store Workbook queries encrypted with your key in your own Storage Account as well. Keep in mind the same consideration described in [Customer-managed key for saved queries and log search alerts](#customer-managed-key-for-saved-queries-and-log-search-alerts).
@@ -658,7 +716,7 @@ Link a Storage Account for *Alerts* to keep *log search alert* queries in your S
 
 # [Azure CLI](#tab/cli)
 
-The following Azure CLI example uses the [az monitor log-analytics workspace linked-storage create](/cli/azure/monitor/log-analytics/workspace/linked-storage) command.
+The following Azure CLI example uses the [`az monitor log-analytics workspace linked-storage create`](/cli/azure/monitor/log-analytics/workspace/linked-storage#az-monitor-log-analytics-workspace-linked-storage-create) command.
 
 ```bash
 # Set variables
@@ -669,22 +727,24 @@ storageAccountName="<StorageAccountName>"
 # Get the subscription ID from the current Azure CLI context
 subscriptionId=$(az account show --query id --output tsv)
 
-# Build the full resource ID for the storage account
-storageAccountId="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageAccountName"
+# Build destination storage account resource ID
+storagePath="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+storageProvider="Microsoft.Storage/storageAccounts/$storageAccountName"
+storageAccountResourceId="$storagePath/providers/$storageProvider"
 
 # Link the storage account to the workspace for alerts
 az monitor log-analytics workspace linked-storage create \
   --resource-group "$resourceGroupName" \
   --workspace-name "$workspaceName" \
   --type Alerts \
-  --storage-accounts "$storageAccountId"
+  --storage-accounts "$storageAccountResourceId"
 ```
 
 [!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 # [Azure PowerShell](#tab/powershell)
 
-The following Azure PowerShell example uses the [New-AzOperationalInsightsLinkedStorageAccount](/powershell/module/az.operationalinsights/new-azoperationalinsightslinkedstorageaccount) cmdlet.
+The following Azure PowerShell example uses the [`New-AzOperationalInsightsLinkedStorageAccount`](/powershell/module/az.operationalinsights/new-azoperationalinsightslinkedstorageaccount) cmdlet.
 
 ```powershell
 # Set variables
@@ -695,15 +755,17 @@ $storageAccountName = "<StorageAccountName>"
 # Get the subscription ID from the current Azure PowerShell context
 $subscriptionId = (Get-AzContext).Subscription.Id
 
-# Build the full resource ID for the storage account
-$storageAccountId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageAccountName"
+# Build destination storage account resource ID
+$storagePath = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$storageProvider = "Microsoft.Storage/storageAccounts/$storageAccountName"
+$storageAccountResourceId = "$storagePath/providers/$storageProvider"
 
 # Define parameters for New-AzOperationalInsightsLinkedStorageAccount
 $newAzOperationalInsightsLinkedStorageAccountParams = @{
     ResourceGroupName = $resourceGroupName
     WorkspaceName     = $workspaceName
     DataSourceType    = "Alerts"
-    StorageAccountId  = $storageAccountId
+    StorageAccountId  = $storageAccountResourceId
 }
 
 # Link the storage account to the workspace for alerts
@@ -714,11 +776,11 @@ New-AzOperationalInsightsLinkedStorageAccount @newAzOperationalInsightsLinkedSto
 
 # [REST](#tab/rest)
 
-The following REST example uses the [Linked Storage Accounts - Create Or Update](/rest/api/loganalytics/linked-storage-accounts/create-or-update) REST API operation. It links a storage account to the workspace for log search alert queries.
+The following REST example uses the [`Linked Storage Accounts - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-linked-storage-accounts) REST API operation. It links a storage account to the workspace for log search alert queries.
 
 ```REST
-PUT https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}/linkedStorageAccounts/Alerts?api-version=2025-07-01
-Authorization: Bearer {AccessToken}
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/linkedStorageAccounts/Alerts?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
@@ -732,7 +794,17 @@ Content-Type: application/json
 
 # [Bicep](#tab/bicep)
 
-The following Bicep example uses the [Microsoft.OperationalInsights workspaces/linkedStorageAccounts](/azure/templates/microsoft.operationalinsights/workspaces/linkedstorageaccounts?pivots=deployment-language-bicep) resource type.
+> [!NOTE]
+> Bicep deployments are create-or-update operations, not partial PATCH operations. This example sets the `Alerts` link to the specified storage account. It doesn't redeploy the workspace or storage account.
+
+The following Bicep example uses the [`Microsoft.OperationalInsights/workspaces/linkedStorageAccounts`](/azure/templates/microsoft.operationalinsights/workspaces/linkedstorageaccounts?pivots=deployment-language-bicep) resource type.
+
+This example creates the `Alerts` linked-storage child when that link doesn't exist.
+
+* If the `Alerts` link already exists, treat `properties.storageAccountIds` as its complete replacement array. Include every storage account ID you intend to keep.
+* Use the one-entry example only when it is the entire intended list. Don't rely on an implicit merge.
+* Keep the `Query` child and all other resource definitions and settings in your maintained template unchanged.
+* Use incremental deployment mode for this child-only example. Neither the workspace nor the storage account is redeployed.
 
 ```bicep
 param subscriptionId string = '<SubscriptionId>'
@@ -740,26 +812,41 @@ param resourceGroupName string = '<ResourceGroupName>'
 param workspaceName string = '<WorkspaceName>'
 param storageAccountName string = '<StorageAccountName>'
 
-var storageAccountId = '/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.Storage/storageAccounts/${storageAccountName}'
+var storageAccountResourceId = resourceId(
+  subscriptionId,
+  resourceGroupName,
+  'Microsoft.Storage/storageAccounts',
+  storageAccountName
+)
 
-resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2025-07-01' existing = {
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@<ApiVersion>' existing = {
   name: workspaceName
 }
 
-resource linkedStorageAccount 'Microsoft.OperationalInsights/workspaces/linkedStorageAccounts@2025-07-01' = {
+resource linkedStorageAccount 'Microsoft.OperationalInsights/workspaces/linkedStorageAccounts@<ApiVersion>' = {
   parent: logAnalyticsWorkspace
   name: 'Alerts'
   properties: {
     storageAccountIds: [
-      storageAccountId
+      storageAccountResourceId
     ]
   }
 }
 ```
 
-# [ARM (JSON)](#tab/arm)
+# [ARM template](#tab/arm)
 
-The following ARM (JSON) example uses the [Microsoft.OperationalInsights workspaces/linkedStorageAccounts](/azure/templates/microsoft.operationalinsights/workspaces/linkedstorageaccounts?pivots=deployment-language-arm-template) resource type.
+> [!NOTE]
+> ARM template deployments are create-or-update operations, not partial PATCH operations. This example sets the `Alerts` link to the specified storage account. It doesn't redeploy the workspace or storage account.
+
+The following ARM template example uses the [`Microsoft.OperationalInsights/workspaces/linkedStorageAccounts`](/azure/templates/microsoft.operationalinsights/workspaces/linkedstorageaccounts?pivots=deployment-language-arm-template) resource type.
+
+This example creates the `Alerts` linked-storage child when that link doesn't exist.
+
+* If the `Alerts` link already exists, treat `properties.storageAccountIds` as its complete replacement array. Include every storage account ID you intend to keep.
+* Use the one-entry example only when it is the entire intended list. Don't rely on an implicit merge.
+* Keep the `Query` child and all other resource definitions and settings in your maintained template unchanged.
+* Use incremental deployment mode for this child-only example. Neither the workspace nor the storage account is redeployed.
 
 ```json
 {
@@ -784,16 +871,16 @@ The following ARM (JSON) example uses the [Microsoft.OperationalInsights workspa
     }
   },
   "variables": {
-    "storageAccountId": "[format('/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Storage/storageAccounts/{2}', parameters('subscriptionId'), parameters('resourceGroupName'), parameters('storageAccountName'))]"
+    "storageAccountResourceId": "[resourceId(parameters('subscriptionId'), parameters('resourceGroupName'), 'Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
   },
   "resources": [
     {
       "type": "Microsoft.OperationalInsights/workspaces/linkedStorageAccounts",
-      "apiVersion": "2025-07-01",
+      "apiVersion": "<ApiVersion>",
       "name": "[format('{0}/Alerts', parameters('workspaceName'))]",
       "properties": {
         "storageAccountIds": [
-          "[variables('storageAccountId')]"
+          "[variables('storageAccountResourceId')]"
         ]
       }
     }
@@ -802,15 +889,7 @@ The following ARM (JSON) example uses the [Microsoft.OperationalInsights workspa
 ```
 
 ---
-<!--
-| Variable | Example value | Purpose |
-|----------|---------------|---------|
-| subscriptionId | \<SubscriptionId\> | • Retrieved (CLI & PowerShell) • User input (REST, Bicep & ARM) |
-| resourceGroupName | \<ResourceGroupName\> | User input |
-| workspaceName | \<WorkspaceName\> | User input |
-| storageAccountName | \<StorageAccountName\> | User input |
-| apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
--->
+
 ### Customer Lockbox
 
 By using Lockbox, you can approve or reject Microsoft engineer requests to access your data during customer support engagements.
