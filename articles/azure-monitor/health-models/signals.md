@@ -1,12 +1,12 @@
 ---
-title: Signals in Azure Monitor health models (preview)
+title: Signals in Azure Monitor health models
 description: Learn signal concepts and configuration for Azure Monitor health models, including signal types, data sources, definitions, and thresholds.
 ms.topic: how-to
 ms.date: 09/10/2026
 ai-usage: ai-assisted
 ---
 
-# Create and configure signals in Azure Monitor health models (preview)
+# Create and configure signals in Azure Monitor health models
 [Signals](./concepts.md#signals) determine the health of entities in [Azure Monitor health models](./overview.md). This article explains how to configure and tune signals in the designer.
 
 ## Signal types

@@ -1,12 +1,12 @@
 ---
-title: Configure health rollup in an Azure Monitor health model (preview)
+title: Configure health rollup in an Azure Monitor health model
 description: Learn how to configure aggregation rules and impact settings to control how health states roll up from child entities to parent entities in Azure Monitor health models.
 ms.topic: tutorial
 ms.date: 06/16/2026
 ai-usage: ai-assisted
 ---
 
-# Tutorial: Configure health rollup in an Azure Monitor health model (preview)
+# Tutorial: Configure health rollup in an Azure Monitor health model
 
 Health models help you represent how the health of dependent entities contributes to overall workload health. In this tutorial, you configure dependencies and impact settings to control how health states roll up from child entities to parent entities.
 
