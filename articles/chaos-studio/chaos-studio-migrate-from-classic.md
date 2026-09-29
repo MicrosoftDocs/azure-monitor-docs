@@ -3,7 +3,7 @@ title: Move from Experiments (classic) to Chaos Studio Workspaces
 description: Learn how to move Azure Chaos Studio Experiments (classic) to Chaos Studio Workspaces, map experiments to Scenarios, and clean up classic resources.
 author: nikhilkaul-msft
 ms.topic: how-to
-ms.date: 09/25/2026
+ms.date: 09/29/2026
 ai-usage: ai-assisted
 ---
 
@@ -58,7 +58,10 @@ Use this table to find a starting point for common classic tests, not a one-to-o
 | [Simulate zone down on VM scale sets (classic)](chaos-studio-tutorial-availability-zone-down-portal.md) | [Compute Zone Down](chaos-studio-scenarios.md#compute-zone-down) shuts down zonal compute resources, but doesn't include the classic template's Disable Autoscale Action. |
 | VM or virtual machine scale set shutdown in an availability zone | [Compute Zone Down](chaos-studio-scenarios.md#compute-zone-down) uses a zone filter; it isn't a replacement for every VM shutdown test. |
 | Azure Cache for Redis primary-node reboot | [Zone Down](chaos-studio-scenarios.md#zone-down) reboots the primary node and also shuts down zonal scale set instances. The [cache resilience Scenarios](chaos-studio-scenarios.md#cache-resilience-scenarios) flush Azure Managed Redis instead; they don't reproduce an Azure Cache for Redis reboot. |
-| Disable Service Bus queues or Event Hubs entities | [Event-Driven Messaging Disruption](chaos-studio-scenarios.md#event-driven-messaging-disruption) disables these entities and re-enables them after the run. It doesn't cover Service Bus topic or subscription state changes. |
+| Disable Service Bus queues or Event Hubs entities | [Event-Driven Messaging Disruption](chaos-studio-scenarios.md#event-driven-messaging-disruption) disables these entities and re-enables them after the run. For Service Bus topic or subscription state changes, build a [custom Scenario](chaos-studio-scenarios.md#actions-available-for-custom-scenarios) with the Service Bus change topic state or change subscription state Action. |
+| Azure Cosmos DB failover | Build a [custom Scenario](chaos-studio-scenarios.md#example-azure-cosmos-db-offline-region-in-bicep) with the Azure Cosmos DB offline region Action. It takes a region offline for a set duration and then brings it back online, rather than promoting a specific read region. |
+| VM redeploy or restart | [VM Maintenance Reboot](chaos-studio-scenarios.md#vm-maintenance-reboot) restarts the target VMs and then redeploys them to a different host. |
+| Key Vault deny access | [Key Vault Public Endpoint Outage](chaos-studio-scenarios.md#key-vault-public-endpoint-outage) blocks Key Vault public endpoints with an NSG rule. It isn't a one-to-one replacement: it doesn't change Key Vault access policies, and it doesn't affect private endpoints or traffic that doesn't pass through a selected NSG. |
 | Agent-based CPU pressure or physical memory pressure on a standalone VM | [CPU Pressure](chaos-studio-scenarios.md#cpu-pressure) or [Physical Memory Pressure](chaos-studio-scenarios.md#physical-memory-pressure) |
 | Zone resilience of AKS node pools | [Test AKS resilience with Chaos Studio Workspaces](chaos-studio-aks-guidance.md) |
 
@@ -68,7 +71,7 @@ Some classic capabilities aren't available in the Workspaces preview. If an expe
 
 | Required capability or configuration | Status in Workspaces |
 |---|---|
-| Faults outside the supported Scenario catalog | The full classic fault library isn't available. Check the [Scenario templates and their Actions](chaos-studio-scenarios.md#supported-scenario-templates) before moving a test. |
+| Faults outside the supported Scenario catalog | The full classic fault library isn't available. Check the [Scenario templates and their Actions](chaos-studio-scenarios.md#supported-scenario-templates) and the [Actions available for custom Scenarios](chaos-studio-scenarios.md#actions-available-for-custom-scenarios) before moving a test. |
 | AKS Chaos Mesh faults and other in-cluster pod faults | Not available. Use [AKS Chaos Mesh faults with Experiments (classic)](chaos-studio-tutorial-aks-portal.md). |
 | Agent-based faults other than CPU and physical memory pressure, and agent faults on virtual machine scale sets, Arm-based VM sizes, or VMs without public outbound connectivity | Not available. Review [Workspaces agent-based Scenario requirements](chaos-studio-scenarios.md#agent-based-scenario-requirements). If you keep an agent-based test in classic, check the classic [agent OS support](chaos-agent-os-support.md) and [private networking requirements](chaos-studio-private-networking.md). |
 | Dynamic targeting | Not available. Use [dynamic targeting with Experiments (classic)](chaos-studio-tutorial-dynamic-target-portal.md). |
