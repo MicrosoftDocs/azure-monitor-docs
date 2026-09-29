@@ -2,6 +2,7 @@
 title: Migrate From the HTTP Data Collector API to the Logs Ingestion API
 description: Learn how to migrate Azure Monitor custom log ingestion from the deprecated HTTP Data Collector API to the Logs ingestion API.
 ms.topic: how-to
+ms.custom: cbo-v1.6
 ms.date: 07/07/2026
 ai-usage: ai-assisted
 
@@ -10,7 +11,7 @@ ai-usage: ai-assisted
 
 # Migrate from the HTTP Data Collector API to the Logs ingestion API
 
-The [HTTP Data Collector API](../logs/data-collector-api.md) is [deprecated](/lifecycle/faq/azure-infrastructure#deprecation--previous-gen). [Support ended](/lifecycle/definitions#end-of-support) for the legacy Data Collector API **September 14, 2026**, although ingestion continues to function. Migrate to the [Logs ingestion API](../logs/logs-ingestion-api-overview.md) which provides more processing power and flexibility in ingesting logs and [managing tables](../logs/manage-logs-tables.md).
+The [HTTP Data Collector API](/previous-versions/azure/azure-monitor/logs/data-collector-api) is [deprecated](/lifecycle/faq/azure-infrastructure#deprecation--previous-gen). [Support ended](/lifecycle/definitions#end-of-support) for the legacy Data Collector API **September 14, 2026**, although ingestion continues to function. Migrate to the [Logs ingestion API](../logs/logs-ingestion-api-overview.md) which provides more processing power and flexibility in ingesting logs and [managing tables](../logs/manage-logs-tables.md).
 
 This article describes the differences between the two APIs and how to migrate to the Logs ingestion API.
 
@@ -66,22 +67,70 @@ To find tables that use the Data Collector API, use the following methods:
 
 * **Table properties (portal):** [View table properties](../logs/manage-logs-tables.md#view-table-properties). Tables that use the Data Collector API or ingest data through the legacy Log Analytics agent (MMA) display **Custom table (classic)** as the **Type** property.
 
-* **Table properties (API):** `tableSubType` is `Classic` when viewing table properties by using the `Table` operation of the [Logs management API](../fundamentals/azure-monitor-rest-api-index.md#logs-management). Here's an example Azure CLI command that quickly finds all tables with this criteria:
-
-```azurecli
-az monitor log-analytics workspace table list \
-  --resource-group myResourceGroupName --workspace-name myWorkspaceName \
-  --query "[?schema.tableSubType=='Classic'].{Name:name, SubType:schema.tableSubType}" -o table
-```
+* **Table properties (API):** `properties.schema.tableSubType` is `Classic` in the [Tables - List By Workspace](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) response for a classic table.
 
 * **Query heuristics:** Clues from individual records can help you further investigate legacy API usage. Records with the `SourceSystem` value of `RestAPI` indicate the record was created by the HTTP Data Collector API, so the table was legacy when the record was created. Also, certain column name suffixes indicate the column was created by the legacy API.
 
-To list tables in a workspace that contain rows ingested through the Data Collector API, run this query:
+Use the following examples to inspect table properties and identify classic tables:
+
+# [Azure CLI](#tab/cli)
+
+The following Azure CLI example uses the [`az monitor log-analytics workspace table list`](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-list) command. It filters the results to classic tables.
+
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+query="[?schema.tableSubType=='Classic'].{Name:name, SubType:schema.tableSubType}"
+
+# List classic tables
+az monitor log-analytics workspace table list \
+  --resource-group "$resourceGroupName" \
+  --workspace-name "$workspaceName" \
+  --query "$query" --output table
+```
+
+[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
+
+# [Azure PowerShell](#tab/powershell)
+
+The following Azure PowerShell example uses the [`Get-AzOperationalInsightsTable`](/powershell/module/az.operationalinsights/get-azoperationalinsightstable) cmdlet. It filters the results to classic tables.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+
+# Define parameters for Get-AzOperationalInsightsTable
+$getAzOperationalInsightsTableParams = @{
+    ResourceGroupName = $resourceGroupName
+    WorkspaceName     = $workspaceName
+}
+
+# List classic tables
+Get-AzOperationalInsightsTable @getAzOperationalInsightsTableParams |
+    Where-Object { $_.Schema.TableSubType -eq "Classic" }
+```
+
+[!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
+
+# [REST](#tab/rest)
+
+The following REST example uses the [`Tables - List By Workspace`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation. In the response's `value` array, look for tables whose `properties.schema.tableSubType` is `Classic`.
+
+```REST
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+```
+
+If the response includes `nextLink`, follow that URL to retrieve the next page of tables.
+
+---
 
 Suffix conventions for columns created by the legacy API:
 
 | Suffix | Data type |
-|:------|:----------|
+|--------|-----------|
 | `_s` | string |
 | `_d` | double |
 | `_t` | datetime |
@@ -112,13 +161,13 @@ To convert a table that uses the Data Collector API (V1) to data collection rule
 
 # [Azure CLI](#tab/cli)
 
-The following Azure CLI example uses the [az monitor log-analytics workspace table migrate](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-migrate) command.
+The following Azure CLI example uses the [`az monitor log-analytics workspace table migrate`](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-migrate) command.
 
 ```bash
 # Set variables
 resourceGroupName="<ResourceGroupName>"
 workspaceName="<WorkspaceName>"
-tableName="<TableName_CL>"
+tableName="<TableName>_CL"
 
 # Migrate the table from V1 to V2
 az monitor log-analytics workspace table migrate \
@@ -131,13 +180,13 @@ az monitor log-analytics workspace table migrate \
 
 # [Azure PowerShell](#tab/powershell)
 
-The following Azure PowerShell example uses the [Invoke-AzOperationalInsightsMigrateTable](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsmigratetable) cmdlet.
+The following Azure PowerShell example uses the [`Invoke-AzOperationalInsightsMigrateTable`](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsmigratetable) cmdlet.
 
 ```powershell
 # Set variables
 $resourceGroupName = "<ResourceGroupName>"
 $workspaceName = "<WorkspaceName>"
-$tableName = "<TableName_CL>"
+$tableName = "<TableName>_CL"
 
 # Define parameters for Invoke-AzOperationalInsightsMigrateTable
 $invokeAzOperationalInsightsMigrateTableParams = @{
@@ -154,30 +203,22 @@ Invoke-AzOperationalInsightsMigrateTable @invokeAzOperationalInsightsMigrateTabl
 
 # [REST](#tab/rest)
 
-The following REST example uses the [Tables - Migrate](/rest/api/loganalytics/tables/migrate) REST API operation.
+The following REST example uses the [`Tables - Migrate`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation.
 
 ```REST
-POST https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}/tables/{TableName_CL}/migrate?api-version=2025-07-01
-Authorization: Bearer {AccessToken}
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}_CL/migrate?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 ```
 
 ---
-<!--
-| Variable | Example value | Purpose |
-|----------|---------------|---------|
-| subscriptionId | \<SubscriptionId\> | User input |
-| resourceGroupName | \<ResourceGroupName\> | User input |
-| workspaceName | \<WorkspaceName\> | User input |
-| tableName | \<TableName_CL\> | User input |
-| apiVersion | 2025-07-01 | [Reference](/rest/api/loganalytics/tables/migrate) |
--->
-The `migrate` operation enables all DCR-based custom logs features on the table. If the Data Collector API continues to ingest data into existing columns, it doesn't create any new columns. Any previously defined [custom fields](../logs/custom-fields.md) stop getting new data. Don't change the schema to create new columns or the Data Collector API stops ingesting for the entire table. Apply a [workspace transformation](../logs/tutorial-workspace-transformations-portal.md) to migrate a table to DCRs to delay switching to the Logs ingestion API.
+
+The `migrate` operation enables all DCR-based custom logs features on the table. If the Data Collector API continues to ingest data into existing columns, it doesn't create any new columns. Any previously defined [custom fields](/previous-versions/azure/azure-monitor/logs/custom-fields) stop getting new data. Don't change the schema to create new columns or the Data Collector API stops ingesting for the entire table. Apply a [workspace transformation](../logs/tutorial-workspace-transformations-portal.md) to migrate a table to DCRs to delay switching to the Logs ingestion API.
 
 > [!IMPORTANT]
-> - Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`).
-> - `_ResourceId`, `id`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names.
-> - Custom columns you add to an Azure table must have the suffix `_CF`.
-> - If you update the table schema in your Log Analytics workspace, you must also update the input stream definition in the data collection rule to ingest data into new or modified columns.
+> * Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`).
+> * `_ResourceId`, `id`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names.
+> * Custom columns you add to an Azure table must have the suffix `_CF`.
+> * If you update the table schema in your Log Analytics workspace, you must also update the input stream definition in the data collection rule to ingest data into new or modified columns.
 
 ## Reduce data size per call
 
