@@ -178,6 +178,7 @@ API endpoint is `management.azure.com`.
 | <a name="op-logs-workspace-shared-keys"></a>[Workspace shared keys](/rest/api/loganalytics/shared-keys) | Retrieve or regenerate the shared keys for a Log Analytics workspace. |
 | <a name="op-logs-workspace-usages"></a>[Workspace usages](/rest/api/loganalytics/usages) | Retrieve the usage metrics for a Log Analytics workspace. |
 | <a name="op-logs-workspaces"></a>[Workspaces](/rest/api/loganalytics/workspaces) | Manage Log Analytics workspaces. |
+| <a name="op-logs-alerts-version"></a>[Alerts Version (legacy)](../alerts/alerts-log-api-switch.md) | Documents the legacy `PUT` migration and `GET` status operations on `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/alertsversion`, using historical API version `2017-04-26-preview`. |
 
 ## Resource Manager deployments
 
