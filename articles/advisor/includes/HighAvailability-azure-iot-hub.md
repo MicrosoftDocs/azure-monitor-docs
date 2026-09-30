@@ -14,7 +14,7 @@ ms.custom: HighAvailability Azure IoT Hub
 
 <!--d448c687-b808-4143-bbdc-02c35478198a_begin-->
 
-#### Upgrade Device Client SDK for IotHub  
+#### Upgrade Device Client SDK for IoT Hub
   
 When devices use an outdated SDK, performance degradation can occur. Some or all of your devices are using an outdated SDK. We recommend you upgrade to a supported SDK version.  
   
@@ -70,7 +70,7 @@ Subcategory: undefined
 
 #### Upgrade the Azure Device Update for IoT Hub SDK to the latest version  
   
-When a Device Update for IoT Hub instance calls the service with an outdated SDK version, it misses fixes, features, and support for current API versions. Outdated SDK versions are supported only until the API versions they use retire. Upgrade to the recommended version to stay supported.  
+When a Device Update for IoT Hub instance calls the service by using an outdated SDK version, it misses fixes, features, and support for current API versions. Outdated SDK versions are supported only until the API versions they use retire. Upgrade to the recommended version to stay supported.
   
 **Potential benefits**: Stay supported and avoid disruption when older SDKs retire.  
 
