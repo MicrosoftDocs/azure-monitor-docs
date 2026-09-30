@@ -20,7 +20,7 @@ Import data from external sources – S3, Snowflake, Azure SQL Db along with ext
   
 **Potential benefits**: Avoid service disruption  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=557406)  
 
