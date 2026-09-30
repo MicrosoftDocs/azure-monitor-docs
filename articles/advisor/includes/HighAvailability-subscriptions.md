@@ -20,7 +20,7 @@ Upgrade TLS to latest version. Support for TLS 1.0 and TLS 1.1 in Azure Monitor 
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Secure your Azure Monitor deployment - Azure Monitor](/azure/azure-monitor/fundamentals/best-practices-security?WT.mc_id=Portal-AppInsightsExtension#send-data-to-your-workspace-using-transport-layer-security-tls-12-or-higher)  
 
