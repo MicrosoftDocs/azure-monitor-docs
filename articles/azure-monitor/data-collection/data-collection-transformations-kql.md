@@ -68,6 +68,69 @@ source
 | extend DeviceId = tostring(parsedAdditionalContext.DeviceID)
 ```
 
+### Bag functions
+
+Use `pack_all()` and `bag_remove_keys()` to collect columns into a dynamic property bag and exclude selected properties without listing every column to retain. These functions operate on each incoming record individually.
+
+#### pack_all()
+
+The [pack_all()](/kusto/query/pack-all-function?view=azure-monitor&preserve-view=true) function creates a dynamic property bag from a row's columns, using the column names as property names. Use `pack_all(true)` to exclude columns with null or empty values from the resulting bag.
+
+`pack_all()` operates on columns available to the transformation. It does not by itself change the input stream schema or the destination table schema.
+
+Packing columns does not remove the original columns from the transformation output. Use `project` to select the output columns, and ensure their names and types match the destination table. Store the packed result in a column of type `dynamic`.
+
+#### bag_remove_keys()
+
+The [bag_remove_keys()](/kusto/query/bag-remove-keys-function?view=azure-monitor&preserve-view=true) function returns a dynamic property bag with the specified keys and their associated values removed.
+
+```kusto
+bag_remove_keys(bag, keys)
+```
+
+| Parameter | Type | Description |
+|---|---|---|
+| `bag` | `dynamic` | The property bag from which to remove keys. Pass a valid property bag. |
+| `keys` | `dynamic` | An array of top-level property names to remove. |
+
+> [!IMPORTANT]
+> In transformations, `bag_remove_keys()` supports removing only top-level properties. Unlike the standard KQL function, it does not support removing nested properties using JSONPath expressions such as `$.context.debug`. Specify individual top-level property names, not wildcard patterns or array-index expressions.
+
+To exclude an entire nested object or array, specify the name of its top-level property. For example, removing `context` removes that property and its complete value; it does not selectively remove a child property such as `context.debug`.
+
+#### Example: Pack attributes and exclude separately stored fields
+
+The following transformation packs nonempty columns into `Attributes`, removes `TimeGenerated` and `Message` from the bag, and retains those fields as separate output columns:
+
+```kusto
+source
+| extend Attributes = bag_remove_keys(pack_all(true), dynamic(["TimeGenerated", "Message"]))
+| project TimeGenerated, Message, Attributes
+```
+
+For an input record with these columns and values:
+
+```json
+{
+    "TimeGenerated": "2026-09-01T12:00:00Z",
+    "Message": "Request completed",
+    "HostName": "server01",
+    "OptionalText": "",
+    "RequestCount": 3
+}
+```
+
+The `Attributes` value is:
+
+```json
+{
+    "HostName": "server01",
+    "RequestCount": 3
+}
+```
+
+The destination table must have `TimeGenerated` of type `datetime`, `Message` of type `string`, and `Attributes` of type `dynamic` for this example. The input stream must expose the example fields as columns, with `TimeGenerated` typed as `datetime`. `OptionalText` is excluded because it is empty; `TimeGenerated` and `Message` are explicitly removed from the bag. Property order in a dynamic bag is not guaranteed.
+
 ## Dynamic literals
 
 Use the [`parse_json` function](/kusto/query/parse-json-function?view=azure-monitor&preserve-view=true) to handle [dynamic literals](/kusto/query/scalar-data-types/dynamic?view=azure-monitor&preserve-view=true#dynamic-literals).
@@ -248,7 +311,9 @@ The only supported data sources for the KQL statement in a transformation are:
 
     * [`array_concat`](/kusto/query/array-concat-function?view=azure-monitor&preserve-view=true)
     * [`array_length`](/kusto/query/array-length-function?view=azure-monitor&preserve-view=true)
+    * [`bag_remove_keys`](/kusto/query/bag-remove-keys-function?view=azure-monitor&preserve-view=true) (top-level keys only; see [Bag functions](#bag-functions))
     * [`pack`](/kusto/query/pack-function?view=azure-monitor&preserve-view=true)
+    * [`pack_all`](/kusto/query/pack-all-function?view=azure-monitor&preserve-view=true) (see [Bag functions](#bag-functions))
     * [`pack_array`](/kusto/query/pack-array-function?view=azure-monitor&preserve-view=true)
     * [`parse_json`](/kusto/query/parse-json-function?view=azure-monitor&preserve-view=true)
     * [`parse_xml`](/kusto/query/parse-xml-function?view=azure-monitor&preserve-view=true)
