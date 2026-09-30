@@ -18,7 +18,7 @@ ms.custom: HighAvailability Azure SQL Database
   
 Enable cross region disaster recovery for Azure SQL Database for business continuity in the event of regional outage.  
   
-**Potential benefits**: Enabling disaster recovery creates a continuously synchronized readable secondary database for a primary database.  
+**Potential benefits**: Enable database recovery after a regional failure  
 
 **Impact:** High
   
@@ -110,7 +110,7 @@ We recommend transitioning to the Hyperscale premium-series or General-purpose s
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485030)  
 
