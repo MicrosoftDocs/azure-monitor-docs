@@ -32,7 +32,7 @@ Subcategory: ServiceUpgradeAndRetirement
 
 <!--3f83aee8-222d-445c-9a46-2af5fe5b4777_begin-->
 
-#### Quota exceeded for this resource, wait or upgrade to unblock  
+#### Quota exceeded for this resource
   
 If the quota for your resource is exceeded your resource becomes blocked. You can wait for the quota to automatically get replenished soon, or, to use the resource again now, upgrade it to a paid SKU.  
   
@@ -52,7 +52,7 @@ Subcategory: Scalability
 
 #### Migrate to named entity recognition  
   
-Entity linking in Azure Language in Foundry Tools is retiring. Consider a replacement solution such as named entity recognition in Language that supports entity and doesn't provide a link to a public page.  
+Entity linking in Azure AI Language is retiring. Consider a replacement solution such as named entity recognition in Azure AI Language that supports entities but doesn't provide a link to a public page.
   
 **Potential benefits**: Maintain entity identification capabilities  
 
@@ -86,9 +86,9 @@ Subcategory: undefined
 
 <!--85c750a4-a0cb-4610-a2df-074a5e775ddc_begin-->
 
-#### Migrate away from Azure Vision in Foundry Tools - Image Analysis API  
+#### Migrate away from Azure AI Vision - Image Analysis API  
   
-The Vision - Image Analysis API is retiring. Full support for all existing Image Analysis customers continues until retirement. To ensure business continuity and minimize disruption, customers should plan for migration to alternative solutions.  
+The Azure AI Vision - Image Analysis API is retiring. Full support for all existing Image Analysis customers continues until retirement. To ensure business continuity and minimize disruption, customers should plan for migration to alternative solutions.  
   
 **Potential benefits**: Avoid service disruptions  
 
@@ -124,7 +124,7 @@ Subcategory: undefined
 
 #### Migrate to conversational language understanding  
   
-Language Understanding (LUIS) is retiring. Migrate to conversational language understanding, a capability of Azure Language in Foundry Tools.  
+Language Understanding (LUIS) is retiring. Migrate to conversational language understanding, a capability of Azure AI Service for Language.  
   
 **Potential benefits**: Avoid service disruption  
 
@@ -164,7 +164,7 @@ Computer Vision v1.0, v2.0, v2.1, v3.0, and v3.1 APIs are retiring.  You need to
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/computer-vision-api-retirements-13-9-2026/)  
 
@@ -182,7 +182,7 @@ Until the retirement date, continue use of AI Services Anomaly Detector resource
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates?id=ai-services-anomaly-detector-will-be-retired-on-1-october-2026)  
 
@@ -200,7 +200,7 @@ After the retirement date, you can no longer use AI Services Metrics Advisor wit
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates?id=ai-services-metrics-advisor-will-be-retired-on-1-october-2026)  
 
@@ -218,7 +218,7 @@ You can no longer use AI Services Personalizer with the applications after the r
   
 **Potential benefits**: Avoid potential disruptions for the applications  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates?id=ai-services-personalizer-will-be-retired-on-1-october-2026)  
 
@@ -236,7 +236,7 @@ The platform encourages users to explore our new offering Azure AI Content Safet
   
 **Potential benefits**: Avoid potential disruptions and use new capabilities  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates?id=azure-content-moderator-retirement)  
 
