@@ -56,8 +56,8 @@ You need to enable [query auditing](query-audit.md) for your workspace to create
 ## Update table schema
 Before you can create the transformation, the following two changes must be made to the table:
 
-* The table must be enabled for workspace transformation. This is required for any table that will have a transformation, even if the transformation doesn't modify the table's schema.
-* Any additional columns populated by the transformation must be added to the table.
+* Enable the table for workspace transformation. This requirement applies to any table that has a transformation, even if the transformation doesn't modify the table's schema.
+* Add any extra columns that the transformation populates to the table.
 
 Use the [Tables](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation to configure the table with the following PowerShell code. Calling the API enables the table for workspace transformations, whether or not you define custom columns. In this sample, it includes a custom column named *Resources_CF* that the transformation query populates.
 
@@ -124,9 +124,9 @@ Use Log Analytics to test the transformation query before adding it to a data co
     ```
     This makes the following changes:
 
-   * Drop rows related to querying the `LAQueryLogs` table itself to save space since these log entries aren't useful.
-   * Add a column for the name of the workspace that was queried.
-   * Remove data from the `RequestContext` column to save space.
+    * Drops rows related to querying the `LAQueryLogs` table itself to save space since these log entries aren't useful.
+    * Adds a column for the name of the workspace that was queried.
+    * Removes data from the `RequestContext` column to save space.
 
 
     :::image type="content" source="media/tutorial-workspace-transformations-portal/modified-query.png" lightbox="media/tutorial-workspace-transformations-portal/modified-query.png" alt-text="Screenshot of modified query in Log Analytics.":::
@@ -134,8 +134,8 @@ Use Log Analytics to test the transformation query before adding it to a data co
 
 1. Make the following changes to the query to use it in the transformation:
 
-   * Instead of specifying a table name (`LAQueryLogs` in this case) as the source of data for this query, use the `source` keyword. This is a virtual table that always represents the incoming data in a transformation query.
-   * Remove any operators that aren't supported by transform queries. See [Supported KQL features](/azure/azure-monitor/essentials/data-collection-transformations-structure) for a detail list of operators that are supported.
+    * Instead of specifying a table name (`LAQueryLogs` in this case) as the source of data for this query, use the `source` keyword. This keyword refers to a virtual table that always represents the incoming data in a transformation query.
+    * Remove any operators that aren't supported by transform queries. See [Supported KQL features](/azure/azure-monitor/essentials/data-collection-transformations-structure) for a detailed list of supported operators.
    * Flatten the query to a single line so that it can fit into the DCR JSON.
 
    Following is the query that you will use in the transformation after  these modifications:
@@ -240,7 +240,7 @@ The following template creates a new DCR for this tutorial. If your workspace al
 
     </details>
 
-1. On the **Custom deployment** screen, specify a **Subscription** and **Resource group** to store the data collection rule and then provide values defined in the template. This includes a **Name** for the data collection rule and the **Workspace Resource ID** that you collected in a previous step. The **Location** should be the same location as the workspace. The **Region** will already be populated and is used for the location of the data collection rule.
+1. On the **Custom deployment** screen, specify a **Subscription** and **Resource group** to store the data collection rule. Then provide values defined in the template. This information includes a **Name** for the data collection rule and the **Workspace Resource ID** that you collected in a previous step. The **Location** should be the same location as the workspace. The **Region** is already populated and is used for the location of the data collection rule.
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/custom-deployment-values.png" lightbox="media/tutorial-workspace-transformations-api/custom-deployment-values.png" alt-text="Screenshot to edit  custom deployment values.":::
 
@@ -250,7 +250,7 @@ The following template creates a new DCR for this tutorial. If your workspace al
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/data-collection-rule-details.png" lightbox="media/tutorial-workspace-transformations-api/data-collection-rule-details.png" alt-text="Screenshot for data collection rule details.":::
 
-1. Copy the **Resource ID** for the data collection rule. You'll use this in the next step.
+1. Copy the **Resource ID** for the data collection rule. You'll use this value in the next step.
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/data-collection-rule-json-view.png" lightbox="media/tutorial-workspace-transformations-api/data-collection-rule-json-view.png" alt-text="Screenshot for data collection rule JSON view.":::
 
