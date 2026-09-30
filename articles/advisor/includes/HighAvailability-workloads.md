@@ -284,9 +284,9 @@ Subcategory: Other
 
 <!--fed84141-4942-49b3-8b0c-73a8b352f754_begin-->
 
-#### Set the 'corosync join' in Pacemaker cluster to 60 for ASCS HA setup in SAP workloads  
+#### Set the corosync join in Pacemaker cluster to 60 for ASCS HA setup in SAP workloads
   
-The corosync join timeout specifies in milliseconds how long to wait for join messages in the membership protocol. It is recommended to be set 60 in Pacemaker cluster configuration for ASCS HA setup  
+The corosync join timeout specifies in milliseconds how long to wait for join messages in the membership protocol. Set it to 60 in the Pacemaker cluster configuration for ASCS HA setup.
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
@@ -572,7 +572,7 @@ Subcategory: HighAvailability
 
 <!--760ba688-69ea-431b-afeb-13683a03f0c2_begin-->
 
-#### Disable TCP timestamps on VMs placed behind Azure Load Balancer in High-Availability SAP workloads  
+#### Disable TCP timestamps on VMs placed behind Azure Load Balancer in high-availability SAP workloads
   
 Disable TCP timestamps on VMs placed behind Azure Load Balancer. Enabling TCP timestamps causes the health probes to fail due to TCP packets dropped by the VM's guest OS TCP stack causing the load balancer to mark the endpoint as down.  
   
