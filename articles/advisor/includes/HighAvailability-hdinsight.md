@@ -14,7 +14,7 @@ ms.custom: HighAvailability HDInsight
   
 <!--69740e3e-5b96-4b0e-b9b8-4d7573e3611c_begin-->
 
-#### Apply critical updates by dropping and recreating your HDInsight clusters (certificate rotation round 2)  
+#### Drop and recreate the HDInsight clusters (certificate rotation round 2) to apply critical updates  
   
 The HDInsight service attempted to apply a critical certificate update on your running clusters. However, due to some custom configuration changes, we're unable to apply the updates on all clusters. To prevent those clusters from becoming unhealthy and unusable, drop and recreate your clusters.  
   
