@@ -14,7 +14,7 @@ ms.custom: HighAvailability API Management
   
 <!--8962964c-a6d6-4c3d-918a-2777f7fbdca7_begin-->
 
-#### Hostname certificate rotation failed  
+#### Review hostname certificate for errors  
   
 The API Management service failing to refresh the hostname certificate from the Key Vault can lead to the service using a stale certificate and runtime API traffic being blocked. Ensure that the certificate exists in the Key Vault, and the API Management service identity is granted secret read access.  
   
@@ -50,11 +50,11 @@ Subcategory: Other
 
 <!--2e4d65a3-1e77-4759-bcaa-13009484a97e_begin-->
 
-#### Deploy an Azure API Management instance to multiple Azure regions for increased service availability  
+#### Deploy your Azure API Management instance to multiple Azure regions to increase service availability  
   
-Azure API Management supports multi-region deployment, which enables API publishers to add regional API gateways to an existing API Management instance. Multi-region deployment helps reduce request latency perceived by geographically distributed API consumers and improves service availability.  
+Azure API Management supports multi-region deployment, which enables you to add regional API gateways to your existing API Management instance. Multi-region deployment helps reduce request latency for geographically distributed API consumers and improves service availability.  
   
-**Potential benefits**: Increased resilience against regional failures  
+**Potential benefits**: Increase service resilience and availability across regions.  
 
 **Impact:** High
   
