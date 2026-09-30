@@ -14,7 +14,7 @@ ms.custom: HighAvailability Classic deployment model virtual machine
   
 <!--13ff4efb-6c84-4684-8838-52c123e3e3a2_begin-->
 
-#### Cloud Services (classic) is retiring. Migrate off before 31 Aug 2024  
+#### Cloud Services (classic) is retiring. Migrate before 31 Aug 2024
   
 Cloud Services (classic) is retiring. To avoid any loss of data or business continuity, migrate off before 31 Aug 2024.  
   
