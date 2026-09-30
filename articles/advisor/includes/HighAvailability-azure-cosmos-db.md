@@ -16,7 +16,7 @@ ms.custom: HighAvailability Azure Cosmos DB
 
 #### Configure Azure Cosmos DB containers with a partition key  
   
-When Azure Cosmos DB nonpartitioned collections reach their provisioned storage quota, you lose the ability to add data. Your Cosmos DB nonpartitioned collections are approaching their provisioned storage quota. Migrate these collections to new collections with a partition key definition so they can automatically be scaled out by the service.  
+The Cosmos DB nonpartitioned collections are approaching the provisioned storage quota and potentially lose the ability to add data. Migrate to new collections using a partition key definition, so the service automatically scales out the collections.  
   
 **Potential benefits**: Scale your containers seamlessly with increase in storage or request rates without running into any limits  
 
@@ -50,7 +50,7 @@ Subcategory: undefined
 
 <!--44a0a07f-23a2-49df-b8dc-a1b14c7c6a9d_begin-->
 
-#### Check linked Azure Key Vault hosting your encryption key  
+#### Your Cosmos DB account is unable to access its linked Azure Key Vault hosting your encryption key  
   
 When an Azure Cosmos DB account can't access its linked Azure Key Vault hosting the encyrption key, data access and security issues might happen. Your Azure Key Vault's configuration is preventing your Cosmos DB account from contacting the key vault to access your managed encryption keys. If you  recently performed a key rotation, ensure that the previous key, or key version, remains enabled and available until Cosmos DB completes the rotation. The previous key or key version can be disabled after 24 hours, or after the Azure Key Vault audit logs don't show any activity from Azure Cosmos DB on that key or key version.  
   
@@ -68,7 +68,7 @@ Subcategory: Other
 
 <!--213974c8-ed9c-459f-9398-7cdaa3c28856_begin-->
 
-#### Configure consistent indexing mode on Azure Cosmos DB containers  
+#### Consider Consistent indexing mode on Azure Cosmos DB containers  
   
 Azure Cosmos containers configured with the Lazy indexing mode update asynchronously, which improves write performance, but can impact query freshness. Your container is configured with the Lazy indexing mode. If query freshness is critical, use Consistent Indexing Mode for immediate index updates.  
   
@@ -104,7 +104,7 @@ Subcategory: undefined
 
 <!--38942ae5-3154-4e0b-98d9-23aa061c334b_begin-->
 
-#### Critical issue - Upgrade to the current recommended version of the Java SDK v4  
+#### Upgrade to the current recommended version of the Java SDK v4 to avoid a critical issue  
   
 A critical bug affects Azure Cosmos DB Java SDK v4 versions 4.15 and earlier. When the Global Logical Sequence Number (LSN) exceeds the maximum integer value—something that can occur transparently after a large volume of transactions over a container’s lifetime—the SDK may start returning errors. To  
   
@@ -194,7 +194,7 @@ Subcategory: BusinessContinuity
 
 <!--51a4e6bd-5a95-4a41-8309-40f5640fdb8b_begin-->
 
-#### Upgrade old Azure Cosmos DB SDK to the latest version  
+#### Upgrade your old Azure Cosmos DB SDK to the latest version  
   
 An Azure Cosmos DB account using an old version of the SDK lacks the latest fixes and improvements. Your Azure Cosmos DB account is using an old version of the SDK. For the latest fixes, performance improvements, and new feature capabilities, upgrade to the latest version.  
   
