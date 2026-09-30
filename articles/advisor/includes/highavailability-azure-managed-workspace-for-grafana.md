@@ -26,7 +26,6 @@ For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/re
 
 ResourceType: microsoft.dashboard/grafana  
 Recommendation ID: b76a9063-460e-437f-b939-da4f322293da  
-Subcategory: undefined
 
 <!--b76a9063-460e-437f-b939-da4f322293da_end-->
 

@@ -26,7 +26,6 @@ For more information, see [Secure your Azure Monitor deployment - Azure Monitor]
 
 ResourceType: microsoft.subscriptions/subscriptions  
 Recommendation ID: badb6a09-d33e-4e2a-82d8-8ed668db0aad  
-Subcategory: undefined
 
 <!--badb6a09-d33e-4e2a-82d8-8ed668db0aad_end-->
 
@@ -44,7 +43,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/v2
 
 ResourceType: microsoft.subscriptions/subscriptions  
 Recommendation ID: d63e646e-752a-40c0-aa76-b744a6b6949a  
-Subcategory: undefined
 
 <!--d63e646e-752a-40c0-aa76-b744a6b6949a_end-->
 
@@ -62,7 +60,6 @@ For more information, see [Retirement - Azure Sphere](https://aka.ms/AzureSphere
 
 ResourceType: microsoft.subscriptions/subscriptions  
 Recommendation ID: ee60d00e-823e-439d-971f-644fce1f1cb4  
-Subcategory: undefined
 
 <!--ee60d00e-823e-439d-971f-644fce1f1cb4_end-->
 
@@ -80,7 +77,6 @@ For more information, see [Manage Supercomputer and Nodepools in Microsoft Disco
 
 ResourceType: microsoft.subscriptions/subscriptions  
 Recommendation ID: 2d6324ac-055e-4657-a42c-a7ef571d4aad  
-Subcategory: undefined
 
 <!--2d6324ac-055e-4657-a42c-a7ef571d4aad_end-->
 

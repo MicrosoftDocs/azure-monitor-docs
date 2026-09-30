@@ -26,7 +26,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.servicefabric/clusters  
 Recommendation ID: 0523982f-9aef-4211-8466-3330121f34c8  
-Subcategory: undefined
 
 <!--0523982f-9aef-4211-8466-3330121f34c8_end-->
 

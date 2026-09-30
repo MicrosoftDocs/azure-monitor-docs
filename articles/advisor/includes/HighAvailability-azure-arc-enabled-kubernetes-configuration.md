@@ -27,7 +27,6 @@ For more information, see [Available extensions for Azure Arc-enabled Kubernetes
 
 ResourceType: microsoft.kubernetesconfiguration/extensions  
 Recommendation ID: 79cfad72-9b6d-4215-922d-7df77e1ea3bb  
-Subcategory: undefined
 
 <!--79cfad72-9b6d-4215-922d-7df77e1ea3bb_end-->
 
@@ -45,7 +44,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.kubernetesconfiguration/extensions  
 Recommendation ID: 51b9ef93-332d-4438-b1ba-851a6eae2e67  
-Subcategory: undefined
 
 <!--51b9ef93-332d-4438-b1ba-851a6eae2e67_end-->
 

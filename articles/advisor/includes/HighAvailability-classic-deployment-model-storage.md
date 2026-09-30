@@ -26,7 +26,6 @@ For more information, see [We're retiring classic storage accounts on August 31,
 
 ResourceType: microsoft.classicstorage/storageaccounts  
 Recommendation ID: fd04ff97-d3b3-470a-9544-dfea3a5708db  
-Subcategory: undefined
 
 <!--fd04ff97-d3b3-470a-9544-dfea3a5708db_end-->
 

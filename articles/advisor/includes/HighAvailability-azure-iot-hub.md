@@ -62,7 +62,6 @@ For more information, see [Troubleshoot Azure IoT Hub Error Codes](/azure/iot-hu
 
 ResourceType: microsoft.devices/iothubs  
 Recommendation ID: e4bda6ac-032c-44e0-9b40-e0522796a6d2  
-Subcategory: undefined
 
 <!--e4bda6ac-032c-44e0-9b40-e0522796a6d2_end-->
 

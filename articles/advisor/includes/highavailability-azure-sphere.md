@@ -26,7 +26,6 @@ For more information, see [Retirement - Azure Sphere](https://aka.ms/AzureSphere
 
 ResourceType: microsoft.azuresphere/catalogs  
 Recommendation ID: ee60d00e-823e-439d-971f-644fce1f1cb4  
-Subcategory: undefined
 
 <!--ee60d00e-823e-439d-971f-644fce1f1cb4_end-->
 

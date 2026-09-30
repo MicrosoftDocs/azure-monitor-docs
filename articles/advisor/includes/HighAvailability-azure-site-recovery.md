@@ -62,7 +62,6 @@ For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/re
 
 ResourceType: microsoft.recoveryservices/vaults  
 Recommendation ID: 21ac578c-0fb9-42eb-9c58-69716f87e7fb  
-Subcategory: undefined
 
 <!--21ac578c-0fb9-42eb-9c58-69716f87e7fb_end-->
 

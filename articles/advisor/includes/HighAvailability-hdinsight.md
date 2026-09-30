@@ -44,7 +44,6 @@ For more information, see [Broker fails to start due to a full disk in Azure HDI
 
 ResourceType: microsoft.hdinsight/clusters  
 Recommendation ID: 35e3a19f-16e7-4bb1-a7b8-49e02a35af2e  
-Subcategory: undefined
 
 <!--35e3a19f-16e7-4bb1-a7b8-49e02a35af2e_end-->
 
@@ -62,7 +61,6 @@ For more information, see [Before you start with Azure HDInsight](/azure/hdinsig
 
 ResourceType: microsoft.hdinsight/clusters  
 Recommendation ID: 8f163c95-0029-4139-952a-42bd0d773b93  
-Subcategory: undefined
 
 <!--8f163c95-0029-4139-952a-42bd0d773b93_end-->
 
@@ -80,7 +78,6 @@ For more information, see [Migrate cluster to a newer version - Azure HDInsight]
 
 ResourceType: microsoft.hdinsight/clusters  
 Recommendation ID: e4635832-0ab1-48b1-a386-c791197189e6  
-Subcategory: undefined
 
 <!--e4635832-0ab1-48b1-a386-c791197189e6_end-->
 
@@ -98,7 +95,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.hdinsight/clusters  
 Recommendation ID: 32b83a78-f586-425a-afd2-52accec61d65  
-Subcategory: undefined
 
 <!--32b83a78-f586-425a-afd2-52accec61d65_end-->
 
@@ -116,7 +112,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.hdinsight/clusters  
 Recommendation ID: f0466e91-184d-4a0d-8e18-25c1cf7a4c1c  
-Subcategory: undefined
 
 <!--f0466e91-184d-4a0d-8e18-25c1cf7a4c1c_end-->
 
@@ -134,7 +129,6 @@ For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/re
 
 ResourceType: microsoft.hdinsight/clusters  
 Recommendation ID: 66bfeb4c-1351-4672-b410-3ecea872b17d  
-Subcategory: undefined
 
 <!--66bfeb4c-1351-4672-b410-3ecea872b17d_end-->
 

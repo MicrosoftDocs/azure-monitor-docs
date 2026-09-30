@@ -26,7 +26,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.monitor/accounts  
 Recommendation ID: fe21e589-8398-4fae-be74-6364137782eb  
-Subcategory: undefined
 
 <!--fe21e589-8398-4fae-be74-6364137782eb_end-->
 

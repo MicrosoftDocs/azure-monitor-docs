@@ -98,7 +98,6 @@ For more information, see [Storage options - Azure Database for PostgreSQL](/azu
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 2de25da6-5d44-4c0d-8a37-b61f8a65babe  
-Subcategory: null
 
 <!--2de25da6-5d44-4c0d-8a37-b61f8a65babe_end-->
 
@@ -116,7 +115,6 @@ Azure Cosmos DB for PostgreSQL is retiring. Migrate to Azure Database for Postgr
 
 ResourceType: microsoft.dbforpostgresql/servergroupsv2  
 Recommendation ID: bbce2e96-97d6-406e-bb16-07fda2759879  
-Subcategory: undefined
 
 <!--bbce2e96-97d6-406e-bb16-07fda2759879_end-->
 

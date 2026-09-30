@@ -62,7 +62,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 41853861-bc9a-42b9-8ffc-f34dbaf07c00  
-Subcategory: undefined
 
 <!--41853861-bc9a-42b9-8ffc-f34dbaf07c00_end-->
 
@@ -80,7 +79,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: d5da3480-071a-49d8-b4ce-06a196d844c9  
-Subcategory: undefined
 
 <!--d5da3480-071a-49d8-b4ce-06a196d844c9_end-->
 
@@ -98,7 +96,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 85c750a4-a0cb-4610-a2df-074a5e775ddc  
-Subcategory: undefined
 
 <!--85c750a4-a0cb-4610-a2df-074a5e775ddc_end-->
 
@@ -116,7 +113,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 35c12ad3-0e52-45cd-bf53-16777b0f6a34  
-Subcategory: undefined
 
 <!--35c12ad3-0e52-45cd-bf53-16777b0f6a34_end-->
 
@@ -134,7 +130,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/la
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 2b8347d8-bd08-4046-892d-8844f741b8b2  
-Subcategory: undefined
 
 <!--2b8347d8-bd08-4046-892d-8844f741b8b2_end-->
 
@@ -152,7 +147,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 8523d119-bfd8-4f91-b17d-13d6b34338c4  
-Subcategory: undefined
 
 <!--8523d119-bfd8-4f91-b17d-13d6b34338c4_end-->
 
@@ -170,7 +164,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/co
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 4d9bed4d-22e3-4dae-8eb3-ceb1bdd8c577  
-Subcategory: undefined
 
 <!--4d9bed4d-22e3-4dae-8eb3-ceb1bdd8c577_end-->
 
@@ -188,7 +181,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: e0e84b83-8be3-48d6-91bf-730d1d5fd745  
-Subcategory: undefined
 
 <!--e0e84b83-8be3-48d6-91bf-730d1d5fd745_end-->
 
@@ -206,7 +198,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 8dca8881-92ae-480a-aa8c-0933efdf9e02  
-Subcategory: undefined
 
 <!--8dca8881-92ae-480a-aa8c-0933efdf9e02_end-->
 
@@ -224,7 +215,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: d4f522ba-0646-4c73-8ca6-7636f7ad119c  
-Subcategory: undefined
 
 <!--d4f522ba-0646-4c73-8ca6-7636f7ad119c_end-->
 
@@ -242,7 +232,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: e30a6464-0e05-4d48-b604-741074db3aa3  
-Subcategory: undefined
 
 <!--e30a6464-0e05-4d48-b604-741074db3aa3_end-->
 
@@ -260,7 +249,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 46a2ac77-9b96-4741-a036-76155cc3616c  
-Subcategory: undefined
 
 <!--46a2ac77-9b96-4741-a036-76155cc3616c_end-->
 
@@ -278,7 +266,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 134edfc1-8479-4792-b19b-b47ac18a58ac  
-Subcategory: undefined
 
 <!--134edfc1-8479-4792-b19b-b47ac18a58ac_end-->
 

@@ -26,7 +26,6 @@ For more information, see [Configure HTTPS for your custom domain - Azure Front 
 
 ResourceType: microsoft.cdn/profiles  
 Recommendation ID: 4e1c2077-7c73-4ace-b4aa-f11b36c28290  
-Subcategory: undefined
 
 <!--4e1c2077-7c73-4ace-b4aa-f11b36c28290_end-->
 
@@ -45,7 +44,6 @@ For more information, see [How to add a custom domain - Azure Front Door](/azure
 
 ResourceType: microsoft.cdn/profiles  
 Recommendation ID: bfe85fd2-ee53-4c35-8781-7790da2107e1  
-Subcategory: undefined
 
 <!--bfe85fd2-ee53-4c35-8781-7790da2107e1_end-->
 
@@ -82,7 +80,6 @@ For more information, see [How to add a custom domain - Azure Front Door](/azure
 
 ResourceType: microsoft.cdn/profiles  
 Recommendation ID: 9411bc9f-d181-497c-b519-4154ae04fb00  
-Subcategory: undefined
 
 <!--9411bc9f-d181-497c-b519-4154ae04fb00_end-->
 
@@ -174,7 +171,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.cdn/profiles  
 Recommendation ID: 600a3187-48dd-495b-a9e8-320f83571b01  
-Subcategory: undefined
 
 <!--600a3187-48dd-495b-a9e8-320f83571b01_end-->
 
