@@ -92,7 +92,7 @@ Migrate to general-purpose v2 storage account or specialized alternatives based 
   
 **Potential benefits**: Avoid service disruptions and gain improved performance  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=496964)  
 
@@ -104,7 +104,7 @@ Subcategory: undefined
 
 <!--42dbf883-9e4b-4f84-9da4-232b87c4b5e9_begin-->
 
-#### Enable Soft Delete to protect your blob data  
+#### Enable Soft Delete  
   
 Soft Delete puts deleted data into a soft deleted state instead of permanently deleted. When data is overwritten, a soft deleted snapshot is generated to save the state of the overwritten data. You can configure the amount of time soft deleted data is recoverable before it permanently expires.  
   
@@ -128,7 +128,7 @@ Migrate BlobFuse to BlobFuse2. All future enhancements and innovations related t
   
 **Potential benefits**: Enhancements to Azure Blob Storage file system access  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=498563)  
 
@@ -182,7 +182,7 @@ RC4 encryption in Azure Files Storage Accounts and Active Directory Objects is b
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Troubleshoot Encryption Changes Affecting Azure Files - Azure](/troubleshoot/azure/azure-storage/files/security/files-troubleshoot-encryption)  
 
