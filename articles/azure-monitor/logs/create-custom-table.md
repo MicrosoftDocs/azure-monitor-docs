@@ -3,7 +3,7 @@ title: Add or Delete Tables and Columns in Azure Monitor Logs
 description: Create a table with a custom schema to collect logs from any data source.
 ms.topic: how-to
 ms.reviewer: adi.biran
-ms.custom: devx-track-azurepowershell, devx-track-azurecli, devx-track-arm-template, devx-track-bicep, cbo-v1.5
+ms.custom: devx-track-azurepowershell, devx-track-azurecli, devx-track-arm-template, devx-track-bicep, cbo-v1.6
 ms.date: 08/27/2026
 ai-usage: ai-assisted
 # Customer intent: As a Log Analytics workspace administrator, I want to manage table schemas and be able to create a table with a custom schema to store logs from an Azure or non-Azure data source.
@@ -186,7 +186,7 @@ The following Azure CLI examples use the [`az monitor log-analytics workspace ta
     
     </details>
 
-2. Create a data collection rule that collects data from your data source and sends it to the custom table. This example uses the [az monitor data-collection rule](/cli/azure/monitor/data-collection/rule) command group to create a DCR that collects data from a Syslog source and sends it to the custom table you created in the previous step.
+2. Create a data collection rule that routes data sent through the Logs Ingestion API to the custom table. This example uses the [az monitor data-collection rule](/cli/azure/monitor/data-collection/rule) command group to create a Direct DCR.
 
     ```bash
     # Set variables
@@ -205,6 +205,11 @@ The following Azure CLI examples use the [`az monitor log-analytics workspace ta
     ```
 
     [!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
+
+    The `my-dcr.json` file is a resource request body for the preceding command, not an ARM deployment template. When adapting an existing DCR:
+
+    - Add the table's stream declaration under `properties.streamDeclarations` and its route under `properties.dataFlows`.
+    - Reuse or add the workspace destination under `properties.destinations.logAnalytics`. Keep all other streams, destination entries, data flows, and resource settings.
 
     <br>
     <details>
@@ -390,7 +395,7 @@ The following Azure PowerShell examples use the [`New-AzOperationalInsightsTable
     
     </details>
 
-2. Create a data collection rule that collects data from your data source and sends it to the custom table. This PowerShell example uses the [New-AzDataCollectionRule](/powershell/module/az.monitor/new-azdatacollectionrule) cmdlet to create a DCR that collects data from a Syslog source and sends it to the custom table you created in the previous step.
+2. Create a data collection rule that routes data sent through the Logs Ingestion API to the custom table. This PowerShell example uses the [New-AzDataCollectionRule](/powershell/module/az.monitor/new-azdatacollectionrule) cmdlet to create a Direct DCR.
 
     ```powershell
     # Set variables
@@ -408,6 +413,11 @@ The following Azure PowerShell examples use the [`New-AzOperationalInsightsTable
     ```
 
     [!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
+
+    The `my-dcr.json` file is a resource request body for the preceding command, not an ARM deployment template. When adapting an existing DCR:
+
+    - Add the table's stream declaration under `properties.streamDeclarations` and its route under `properties.dataFlows`.
+    - Reuse or add the workspace destination under `properties.destinations.logAnalytics`. Keep all other streams, destination entries, data flows, and resource settings.
 
     <br>
     <details>
@@ -531,6 +541,10 @@ The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-
     * `<TableName>_CL` is the name of your table.
     * `columns` includes the same columns you defined when you created the table.
 
+    <br>
+    <details>
+    <summary>Create a custom table</summary>
+
     ```REST
     PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dataCollectionRuleName}?api-version={apiVersion}
     Authorization: Bearer {accessToken}
@@ -602,12 +616,18 @@ The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-
     }
     ```
 
+    </details>
+
 
 # [Bicep](#tab/bicep)
 
 1. Create the table by using the following Bicep example. The example uses the [Microsoft.OperationalInsights workspaces/tables](/azure/templates/microsoft.operationalinsights/workspaces/tables?pivots=deployment-language-bicep) resource type to create an Auxiliary table with a custom schema.
 
     The sample lists all supported column data types except `guid`. Log Analytics stores and queries GUIDs as `string` types even if you define the column as `guid`.
+
+    <br>
+    <details>
+    <summary>Create a custom table</summary>
 
     ```bicep
     param workspaceName string = '<WorkspaceName>'
@@ -664,7 +684,13 @@ The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-
     }
     ```
 
+    </details>
+
 2. Create a DCR by using the following Bicep example, which uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-bicep) resource type.
+
+    <br>
+    <details>
+    <summary>Create a custom table</summary>
 
     ```bicep
     @description('Specifies the name of the data collection rule to create.')
@@ -758,6 +784,8 @@ The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-
     output dataCollectionRuleId string = dataCollectionRule.id
     ```
 
+    </details>
+
 
 # [ARM template](#tab/arm)
 
@@ -766,6 +794,10 @@ The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-
     > [!NOTE]
     > This sample lists all the supported column data types except `guid`. Log Analytics stores and queries GUIDs as `string` types even if you define the column as `guid`.
     
+    <br>
+    <details>
+    <summary>Create a custom table</summary>
+
     ```json
     {
       "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
@@ -831,7 +863,13 @@ The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-
     }
     ```
 
+    </details>
+
 2. Create a data collection rule that collects data from your data source and sends it to the custom table. The following ARM template example uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template) resource type.
+
+    <br>
+    <details>
+    <summary>Create a custom table</summary>
 
     ```json
     {
@@ -954,6 +992,8 @@ The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-
       }
     }
     ```
+
+    </details>
 
 ---
 
@@ -1131,10 +1171,6 @@ $invokeAzRestMethodParams = @{
 Invoke-AzRestMethod @invokeAzRestMethodParams
 ```
 
-<br>
-<details>
-<summary>Expand to view the add-column.json file.</summary>
-
 ```json
 {
   "properties": {
@@ -1152,17 +1188,12 @@ Invoke-AzRestMethod @invokeAzRestMethodParams
 }
 ```
 
-</details>
 
 The `PUT` call returns the updated table properties, which include the newly added column.
 
 **Replace a custom column**
 
 To delete a column and add another one, send a `PUT` request that includes only the columns you want to keep. The following example replaces `Custom1_CF` with `Custom2_CF`:
-
-<br>
-<details>
-<summary>Expand to view the replace-column.json file.</summary>
 
 ```json
 {
@@ -1181,15 +1212,10 @@ To delete a column and add another one, send a `PUT` request that includes only 
 }
 ```
 
-</details>
 
 **Delete all custom columns**
 
 To delete all custom columns from a table, send a `PUT` request with an empty `columns` array:
-
-<br>
-<details>
-<summary>Expand to view the delete-all-columns.json file.</summary>
 
 ```json
 {
@@ -1202,7 +1228,6 @@ To delete all custom columns from a table, send a `PUT` request with an empty `c
 }
 ```
 
-</details>
 
 # [REST](#tab/rest-1)
 

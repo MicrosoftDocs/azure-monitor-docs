@@ -3,7 +3,7 @@ title: Delete Data from a Log Analytics Workspace by Using the Delete Data API
 description: Delete data from a table in your Log Analytics workspace.
 ms.service: azure-monitor
 ms.topic: how-to
-ms.custom: cbo-v1.5
+ms.custom: cbo-v1.6
 ms.reviewer: yossiy
 ms.date: 08/31/2026
 ai-usage: ai-assisted
@@ -121,6 +121,10 @@ Save the filters as `body.json` in the directory where you run the command:
 
 The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Tables - Delete Data`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation. It polls the operation status until the delete reaches a terminal state.
 
+<br>
+<details>
+<summary>Delete matching records and track the operation</summary>
+
 ```powershell
 # User input variables - update values in <AngleBrackets>
 $resourceGroupName = "<ResourceGroupName>"
@@ -188,6 +192,8 @@ if ($operationUrl) {
     $response.Content
 }
 ```
+
+</details>
 
 # [REST](#tab/rest)
 

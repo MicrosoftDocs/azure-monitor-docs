@@ -2,7 +2,7 @@
 title: Tutorial - Add ingestion-time transformation to Azure Monitor Logs using Resource Manager templates
 description: Describes how to add a custom transformation to data flowing through Azure Monitor Logs using Resource Manager templates.
 ms.topic: tutorial
-ms.custom: cbo-v1.5
+ms.custom: cbo-v1.6
 ms.date: 08/27/2026
 ai-usage: ai-assisted
 ---
@@ -147,6 +147,12 @@ Use Log Analytics to test the transformation query before adding it to a data co
 ## Create data collection rule (DCR)
 Since this is the first transformation in the workspace, you need to create a [workspace transformation DCR](../essentials/data-collection-transformations.md#workspace-transformation-dcr). If you create workspace transformations for other tables in the same workspace, they must be stored in this same DCR.
 
+The following template creates a new DCR for this tutorial. If your workspace already has a transformation DCR:
+
+- Add the `Microsoft-Table-LAQueryLogs` flow to that DCR's `properties.dataFlows` array instead of replacing the DCR with this example.
+- Retain all other data flows, destination entries, and resource settings. The flow's destination name must match the existing workspace destination.
+- Review the complete resource definition before redeploying it. An [incremental template deployment](/azure/azure-resource-manager/templates/deployment-modes#incremental-mode) isn't a property-level patch.
+
 1. In the Azure portal's search box, type in *template* and then select **Deploy a custom template**.
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/deploy-custom-template.png" lightbox="media/tutorial-workspace-transformations-api/deploy-custom-template.png" alt-text="Screenshot to deploy custom template.":::
@@ -159,6 +165,10 @@ Since this is the first transformation in the workspace, you need to create a [w
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/edit-template.png" lightbox="media/tutorial-workspace-transformations-api/edit-template.png" alt-text="Screenshot to edit Resource Manager template.":::
 
+
+    <br>
+    <details>
+    <summary>Create the workspace transformation data collection rule</summary>
 
     ```json
     {
@@ -228,6 +238,8 @@ Since this is the first transformation in the workspace, you need to create a [w
         }
     }
     ```
+
+    </details>
 
 4. On the **Custom deployment** screen, specify a **Subscription** and **Resource group** to store the data collection rule and then provide values defined in the template. This includes a **Name** for the data collection rule and the **Workspace Resource ID** that you collected in a previous step. The **Location** should be the same location as the workspace. The **Region** will already be populated and is used for the location of the data collection rule.
 
