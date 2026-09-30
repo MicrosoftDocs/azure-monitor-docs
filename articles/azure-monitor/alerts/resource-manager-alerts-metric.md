@@ -732,7 +732,6 @@ The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](
 
 ### Parameter file
 
-<br>
 <details>
 <summary>Set parameters for the single-criterion dynamic-threshold alert</summary>
 
@@ -1042,7 +1041,6 @@ The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](
 
 ### Parameter file
 
-<br>
 <details>
 <summary>Set parameters for the multiple-criteria static-threshold alert</summary>
 
@@ -1361,7 +1359,6 @@ The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](
 
 ### Parameter file
 
-<br>
 <details>
 <summary>Set parameters for the multidimensional static-threshold alert</summary>
 
@@ -1661,7 +1658,6 @@ The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](
 
 ### Parameter file
 
-<br>
 <details>
 <summary>Set parameters for the multidimensional dynamic-threshold alert</summary>
 
@@ -2542,7 +2538,6 @@ The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](
 
 ### Parameter file
 
-<br>
 <details>
 <summary>Set parameters for the resource-group static-threshold alert</summary>
 
@@ -3049,7 +3044,6 @@ The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](
 
 ### Parameter file
 
-<br>
 <details>
 <summary>Set parameters for the resource group dynamic-threshold alert</summary>
 
@@ -3542,7 +3536,6 @@ The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](
 
 ### Parameter file
 
-<br>
 <details>
 <summary>Set parameters for the subscription static-threshold alert</summary>
 
@@ -4050,7 +4043,6 @@ The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](
 
 ### Parameter file
 
-<br>
 <details>
 <summary>Set parameters for the subscription dynamic-threshold alert</summary>
 
@@ -4536,7 +4528,6 @@ The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](
 
 ### Parameter file
 
-<br>
 <details>
 <summary>Set parameters for the virtual-machine list static-threshold alert</summary>
 
@@ -5043,7 +5034,6 @@ The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](
 
 ### Parameter file
 
-<br>
 <details>
 <summary>Set parameters for the virtual-machine list dynamic-threshold alert</summary>
 
