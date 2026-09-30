@@ -16,7 +16,7 @@ ms.custom: HighAvailability Fluid Relay
 
 #### Upgrade your Azure Fluid Relay client library  
   
-If the Azure Fluid Relay service is invoked with an old client library, it might cause application problems. To ensure your application remains operational, upgrade your Azure Fluid Relay client library to the latest version. Upgrading provides the most up-to-date functionality, and enhancements in performance and stability.  
+If you invoke the Azure Fluid Relay service by using an old client library, it might cause application problems. To keep your application running, upgrade your Azure Fluid Relay client library to the latest version. Upgrading gives you the most up-to-date functionality, and improvements in performance and stability.
   
 **Potential benefits**: Improved reliability  
 
