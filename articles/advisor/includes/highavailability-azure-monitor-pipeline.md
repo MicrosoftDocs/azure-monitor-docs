@@ -20,7 +20,7 @@ Azure Monitor is deprecating the sidecar for remote-write of Prometheus metrics 
   
 **Potential benefits**: Avoid service disruption  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=550519)  
 
