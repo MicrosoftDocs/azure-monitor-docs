@@ -45,11 +45,11 @@ You need to enable [query auditing](query-audit.md) for your workspace to create
 
     :::image type="content" source="media/tutorial-workspace-transformations-portal/diagnostic-settings.png" lightbox="media/tutorial-workspace-transformations-portal/diagnostic-settings.png" alt-text="Screenshot of diagnostic settings.":::
 
-2. Provide a name for the diagnostic setting and select the workspace so that the auditing data is stored in the same workspace. Select the **Audit** category and then select **Save** to save the diagnostic setting and close the diagnostic setting page.
+1. Provide a name for the diagnostic setting and select the workspace so that the auditing data is stored in the same workspace. Select the **Audit** category and then select **Save** to save the diagnostic setting and close the diagnostic setting page.
 
     :::image type="content" source="media/tutorial-workspace-transformations-portal/new-diagnostic-setting.png" lightbox="media/tutorial-workspace-transformations-portal/new-diagnostic-setting.png" alt-text="Screenshot of new diagnostic setting.":::
 
-3. Select **Logs** and then run some queries to populate `LAQueryLogs` with some data. These queries don't need to actually return any data.
+1. Select **Logs** and then run some queries to populate `LAQueryLogs` with some data. These queries don't need to actually return any data.
 
     :::image type="content" source="media/tutorial-workspace-transformations-portal/sample-queries.png" lightbox="media/tutorial-workspace-transformations-portal/sample-queries.png" alt-text="Screenshot of sample log queries.":::
 
@@ -68,7 +68,7 @@ Use the [Tables](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables)
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/open-cloud-shell.png" lightbox="media/tutorial-workspace-transformations-api/open-cloud-shell.png" alt-text="Screenshot of opening Cloud Shell.":::
 
-2. Copy the following PowerShell code and replace the **Path** parameter with the details for your workspace.
+1. Copy the following PowerShell code and replace the **Path** parameter with the details for your workspace.
 
     ```powershell
     $tableParams = @'
@@ -91,11 +91,11 @@ Use the [Tables](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables)
     Invoke-AzRestMethod -Path "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>/tables/LAQueryLogs?api-version=<ApiVersion>" -Method PUT -payload $tableParams
     ```
 
-3. Paste the code into the Cloud Shell prompt to run it.
+1. Paste the code into the Cloud Shell prompt to run it.
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/cloud-shell-script.png" lightbox="media/tutorial-workspace-transformations-api/cloud-shell-script.png" alt-text="Screenshot of script in Cloud Shell.":::
 
-4. You can verify that the column was added by going to the **Log Analytics workspace** menu in the Azure portal. Select **Logs** to open Log Analytics and then expand the `LAQueryLogs` table to view its columns.
+1. You can verify that the column was added by going to the **Log Analytics workspace** menu in the Azure portal. Select **Logs** to open Log Analytics and then expand the `LAQueryLogs` table to view its columns.
 
     :::image type="content" source="media/tutorial-workspace-transformations-portal/verify-table.png" lightbox="media/tutorial-workspace-transformations-portal/verify-table.png" alt-text="Screenshot of Log Analytics with new column.":::
 
@@ -104,7 +104,7 @@ Use Log Analytics to test the transformation query before adding it to a data co
 
 1. Open your workspace in the **Log Analytics workspaces** menu in the Azure portal and select **Logs** to open Log Analytics.
 
-2. Run the following query to view the contents of the `LAQueryLogs` table. Notice the contents of the `RequestContext` column. The transformation retrieves the workspace name from this column and removes the rest of the data in it.
+1. Run the following query to view the contents of the `LAQueryLogs` table. Notice the contents of the `RequestContext` column. The transformation retrieves the workspace name from this column and removes the rest of the data in it.
 
     ```kusto
     LAQueryLogs
@@ -113,7 +113,7 @@ Use Log Analytics to test the transformation query before adding it to a data co
 
     :::image type="content" source="media/tutorial-workspace-transformations-portal/initial-query.png" lightbox="media/tutorial-workspace-transformations-portal/initial-query.png" alt-text="Screenshot of initial query in Log Analytics.":::
 
-3. Modify the query to the following:
+1. Modify the query to the following:
 
     ```kusto
     LAQueryLogs
@@ -157,11 +157,11 @@ The following template creates a new DCR for this tutorial. If your workspace al
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/deploy-custom-template.png" lightbox="media/tutorial-workspace-transformations-api/deploy-custom-template.png" alt-text="Screenshot to deploy custom template.":::
 
-2. Select **Build your own template in the editor**.
+1. Select **Build your own template in the editor**.
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/build-custom-template.png" lightbox="media/tutorial-workspace-transformations-api/build-custom-template.png" alt-text="Screenshot to build template in the editor.":::
 
-3. Paste the following Resource Manager template into the editor and then select **Save**. This template uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template) resource type, documented under [Data collection rules](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rules) in the REST API index. It defines the DCR and contains the transformation query. You don't need to modify this template since it collects values for its parameters.
+1. Paste the following Resource Manager template into the editor and then select **Save**. This template uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template) resource type, documented under [Data collection rules](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rules) in the REST API index. It defines the DCR and contains the transformation query. You don't need to modify this template since it collects values for its parameters.
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/edit-template.png" lightbox="media/tutorial-workspace-transformations-api/edit-template.png" alt-text="Screenshot to edit Resource Manager template.":::
 
@@ -240,17 +240,17 @@ The following template creates a new DCR for this tutorial. If your workspace al
 
     </details>
 
-4. On the **Custom deployment** screen, specify a **Subscription** and **Resource group** to store the data collection rule and then provide values defined in the template. This includes a **Name** for the data collection rule and the **Workspace Resource ID** that you collected in a previous step. The **Location** should be the same location as the workspace. The **Region** will already be populated and is used for the location of the data collection rule.
+1. On the **Custom deployment** screen, specify a **Subscription** and **Resource group** to store the data collection rule and then provide values defined in the template. This includes a **Name** for the data collection rule and the **Workspace Resource ID** that you collected in a previous step. The **Location** should be the same location as the workspace. The **Region** will already be populated and is used for the location of the data collection rule.
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/custom-deployment-values.png" lightbox="media/tutorial-workspace-transformations-api/custom-deployment-values.png" alt-text="Screenshot to edit  custom deployment values.":::
 
-5. Select **Review + create** and then **Create** when you review the details.
+1. Select **Review + create** and then **Create** when you review the details.
 
-6. When the deployment is complete, expand the **Deployment details** box and select your data collection rule to view its details. Select **JSON View**.
+1. When the deployment is complete, expand the **Deployment details** box and select your data collection rule to view its details. Select **JSON View**.
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/data-collection-rule-details.png" lightbox="media/tutorial-workspace-transformations-api/data-collection-rule-details.png" alt-text="Screenshot for data collection rule details.":::
 
-7. Copy the **Resource ID** for the data collection rule. You'll use this in the next step.
+1. Copy the **Resource ID** for the data collection rule. You'll use this in the next step.
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/data-collection-rule-json-view.png" lightbox="media/tutorial-workspace-transformations-api/data-collection-rule-json-view.png" alt-text="Screenshot for data collection rule JSON view.":::
 
@@ -276,7 +276,7 @@ Use the [Workspaces](../fundamentals/azure-monitor-rest-api-index.md#op-logs-wor
     Invoke-AzRestMethod -Path "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>?api-version=<ApiVersion>" -Method PATCH -payload $defaultDcrParams
     ```
 
-2. Paste the code into the Cloud Shell prompt to run it.
+1. Paste the code into the Cloud Shell prompt to run it.
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/cloud-shell-script-link-workspace.png" lightbox="media/tutorial-workspace-transformations-api/cloud-shell-script-link-workspace.png" alt-text="Screenshot of script to link workspace to DCR.":::
 

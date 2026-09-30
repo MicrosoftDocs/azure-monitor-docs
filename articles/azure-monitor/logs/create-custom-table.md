@@ -186,7 +186,7 @@ The following Azure CLI examples use the [`az monitor log-analytics workspace ta
     
     </details>
 
-2. Create a data collection rule that routes data sent through the Logs Ingestion API to the custom table. This example uses the [az monitor data-collection rule](/cli/azure/monitor/data-collection/rule) command group to create a Direct DCR.
+1. Create a data collection rule that routes data sent through the Logs Ingestion API to the custom table. This example uses the [az monitor data-collection rule](/cli/azure/monitor/data-collection/rule) command group to create a Direct DCR.
 
     ```bash
     # Set variables
@@ -395,7 +395,7 @@ The following Azure PowerShell examples use the [`New-AzOperationalInsightsTable
     
     </details>
 
-2. Create a data collection rule that routes data sent through the Logs Ingestion API to the custom table. This PowerShell example uses the [New-AzDataCollectionRule](/powershell/module/az.monitor/new-azdatacollectionrule) cmdlet to create a Direct DCR.
+1. Create a data collection rule that routes data sent through the Logs Ingestion API to the custom table. This PowerShell example uses the [New-AzDataCollectionRule](/powershell/module/az.monitor/new-azdatacollectionrule) cmdlet to create a Direct DCR.
 
     ```powershell
     # Set variables
@@ -535,7 +535,7 @@ The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-
     }
     ```
 
-2. [Create a data collection rule](tutorial-logs-ingestion-api.md#create-data-collection-rule). Here's a sample with `kind` set to `Direct`. This DCR type doesn't require a data collection endpoint (DCE) because it creates its own `logsIngestion` endpoint.
+1. [Create a data collection rule](tutorial-logs-ingestion-api.md#create-data-collection-rule). Here's a sample with `kind` set to `Direct`. This DCR type doesn't require a data collection endpoint (DCE) because it creates its own `logsIngestion` endpoint.
 
     * `<WorkspaceName>` is the name of your Log Analytics workspace.
     * `<TableName>_CL` is the name of your table.
@@ -686,7 +686,7 @@ The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-
 
     </details>
 
-2. Create a DCR by using the following Bicep example, which uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-bicep) resource type.
+1. Create a DCR by using the following Bicep example, which uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-bicep) resource type.
 
     <br>
     <details>
@@ -865,7 +865,7 @@ The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-
 
     </details>
 
-2. Create a data collection rule that collects data from your data source and sends it to the custom table. The following ARM template example uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template) resource type.
+1. Create a data collection rule that collects data from your data source and sends it to the custom table. The following ARM template example uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template) resource type.
 
     <br>
     <details>
