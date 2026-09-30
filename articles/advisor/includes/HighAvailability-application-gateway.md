@@ -37,7 +37,7 @@ Subcategory: undefined
   
 To improve security and provide a more consistent experience across Azure, all users must pass a permission check to create or update an Application Gateway in a Virtual Network. The users or service principals minimum permission required is Microsoft.Network/virtualNetworks/subnets/join/action.  
   
-**Potential benefits**: Ensure access to Application Gateway V1 resource management  
+**Potential benefits**: Ensure access to Application Gateway V1 resource management.
 
 **Impact:** High
   
@@ -55,7 +55,7 @@ Subcategory: undefined
   
 Your Application Gateway is at risk of deletion after October 2024 due to a failed internal upgrade. This is due to subnet named Gatewaysubnet, which is reserved for VPN/ExpressRoute. To resolve, please change the subnet or migrate to V2. Allow a day for the message to disappear once fixed  
   
-**Potential benefits**: Ensure access to Application Gateway V1 resource management  
+**Potential benefits**: Ensure access to Application Gateway V1 resource management.
 
 **Impact:** High
   
@@ -155,7 +155,7 @@ Subcategory: BusinessContinuity
 
 <!--6cd70072-c45c-4716-bf7b-b35c18e46e72_begin-->
 
-#### Add Endpoint  
+#### Add endpoint
   
 Profiles need more than one endpoint to ensure availability if one of the endpoints fails. We also recommend that endpoints be in different regions.  
   
@@ -173,7 +173,7 @@ Subcategory: undefined
 
 <!--0bbe0a49-3c63-49d3-ab4a-aa24198f03f7_begin-->
 
-#### Add Endpoint  
+#### Add endpoint
   
 For geographic routing, traffic is routed to endpoints in defined regions. When a region fails, there is no pre-defined failover. Having an endpoint where the Regional Grouping is configured to All (World) for geographic profiles avoids traffic black holing and guarantees service availability.  
   
