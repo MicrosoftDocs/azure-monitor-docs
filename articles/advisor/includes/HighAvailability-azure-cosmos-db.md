@@ -16,7 +16,7 @@ ms.custom: HighAvailability Azure Cosmos DB
 
 #### Configure Azure Cosmos DB containers with a partition key  
   
-The Cosmos DB nonpartitioned collections are approaching the provisioned storage quota and potentially lose the ability to add data. Migrate to new collections using a partition key definition, so the service automatically scales out the collections.  
+The Cosmos DB nonpartitioned collections are approaching the provisioned storage quota and might lose the ability to add data. Migrate to new collections that use a partition key definition, so the service automatically scales out the collections.
   
 **Potential benefits**: Scale your containers seamlessly with increase in storage or request rates without running into any limits  
 
@@ -50,7 +50,7 @@ Subcategory: undefined
 
 <!--44a0a07f-23a2-49df-b8dc-a1b14c7c6a9d_begin-->
 
-#### Your Cosmos DB account is unable to access its linked Azure Key Vault hosting your encryption key  
+#### Your Cosmos DB account can't access its linked Azure Key Vault that hosts your encryption key
   
 When an Azure Cosmos DB account can't access its linked Azure Key Vault hosting the encyrption key, data access and security issues might happen. Your Azure Key Vault's configuration is preventing your Cosmos DB account from contacting the key vault to access your managed encryption keys. If you  recently performed a key rotation, ensure that the previous key, or key version, remains enabled and available until Cosmos DB completes the rotation. The previous key or key version can be disabled after 24 hours, or after the Azure Key Vault audit logs don't show any activity from Azure Cosmos DB on that key or key version.  
   
