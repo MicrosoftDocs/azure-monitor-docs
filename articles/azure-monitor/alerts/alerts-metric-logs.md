@@ -4,7 +4,8 @@ description: Get information about creating near-real time metric alerts on popu
 ms.topic: how-to
 ms.reviewer: harelbr
 ms.date: 08/27/2026
-ms.custom: references_regions, cbo-v1.5
+ms.custom: references_regions, cbo-v1.6
+ai-usage: ai-assisted
 ---
 
 # Create a metric alert in Azure Monitor Logs
@@ -76,9 +77,19 @@ To create a metric alert for logs, use the following sample Resource Manager tem
 
 For metric alerts for logs created through means other than the Azure portal, use these sample templates to create a `scheduledQueryRules`-based log-to-metric conversion rule before you create a metric alert. If you don't, the metric alert has no data in the logs.
 
+Each template creates both rules and uses the supplied `resourceId` for the source workspace and alert scope. When adapting a template to existing rules:
+
+- Retain the existing resource names, locations, tags, enabled state, and other configured properties.
+- Keep unrelated metric criteria, dimensions, action groups, and array entries. Include the complete intended configuration of both resources.
+- Review both resource definitions before redeploying. An [incremental template deployment](/azure/azure-resource-manager/templates/deployment-modes#incremental-mode) isn't a property-level patch.
+
 ### Metric alert for logs with a static threshold
 
 In the following sample template, creation of a metric alert for a static threshold depends on successful creation of the rule for extracting metrics from logs via `scheduledQueryRules`.
+
+<br>
+<details>
+<summary>Create a log-to-metric rule and static-threshold alert</summary>
 
 ```json
 {
@@ -235,7 +246,7 @@ In the following sample template, creation of a metric alert for a static thresh
     },
     "variables": {
         "convertRuleSourceWorkspace": {
-            "SourceId": "/subscriptions/1234-56789-1234-567a/resourceGroups/resourceGroupName/providers/Microsoft.OperationalInsights/workspaces/workspaceName"
+            "SourceId": "[parameters('resourceId')]"
         }
     },
     "resources": [
@@ -299,7 +310,13 @@ In the following sample template, creation of a metric alert for a static thresh
 }
 ```
 
+</details>
+
 If you save the preceding JSON as *metricfromLogsAlertStatic.json*, you can couple it with a parameter JSON file for creation based on a Resource Manager template. Here's a sample parameter JSON file:
+
+<br>
+<details>
+<summary>Set parameters for the static-threshold alert</summary>
 
 ```json
 {
@@ -331,7 +348,7 @@ If you save the preceding JSON as *metricfromLogsAlertStatic.json*, you can coup
             "value": true
         },
         "resourceId": {
-            "value": "/subscriptions/1234-56789-1234-567a/resourceGroups/myRG/providers/Microsoft.OperationalInsights/workspaces/workspaceName"
+            "value": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>"
         },
         "metricName":{
             "value": "Average_% Idle Time"
@@ -346,29 +363,53 @@ If you save the preceding JSON as *metricfromLogsAlertStatic.json*, you can coup
             "value": "Average"
         },
         "actionGroupId": {
-            "value": "/subscriptions/1234-56789-1234-567a/resourceGroups/myRG/providers/microsoft.insights/actionGroups/actionGroupName"
+            "value": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.Insights/actionGroups/<ActionGroupName>"
         }
     }
 }
 ```
+
+</details>
 
 Assuming that you saved the preceding parameter file as *metricfromLogsAlertStatic.parameters.json*, you can create metric alerts for logs by using the [Resource Manager template for creation in the Azure portal](/azure/azure-resource-manager/templates/deploy-portal).
 
 Alternatively, you can use this Azure PowerShell command:
 
 ```powershell
-New-AzResourceGroupDeployment -ResourceGroupName "myRG" -TemplateFile metricfromLogsAlertStatic.json TemplateParameterFile metricfromLogsAlertStatic.parameters.json
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+
+# Define parameters for New-AzResourceGroupDeployment
+$newAzResourceGroupDeploymentParams = @{
+    ResourceGroupName     = $resourceGroupName
+    TemplateFile          = "metricfromLogsAlertStatic.json"
+    TemplateParameterFile = "metricfromLogsAlertStatic.parameters.json"
+}
+
+# Deploy the metric alert and log-to-metric rule
+New-AzResourceGroupDeployment @newAzResourceGroupDeploymentParams
 ```
 
 Or, you can deploy the Resource Manager template by using the Azure CLI:
 
 ```bash
-az deployment group create --resource-group myRG --template-file metricfromLogsAlertStatic.json --parameters @metricfromLogsAlertStatic.parameters.json
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+
+# Deploy the metric alert and log-to-metric rule
+az deployment group create \
+    --resource-group "$resourceGroupName" \
+    --template-file metricfromLogsAlertStatic.json \
+    --parameters @metricfromLogsAlertStatic.parameters.json
 ```
 
 ### Metric alert for logs with dynamic thresholds
 
 In the following sample template, creation of a metric alert for dynamic thresholds depends on successful creation of the rule for extracting metrics from logs via `scheduledQueryRules`.
+
+<br>
+<details>
+<summary>Create a log-to-metric rule and dynamic-threshold alert</summary>
 
 ```json
 {
@@ -541,7 +582,7 @@ In the following sample template, creation of a metric alert for dynamic thresho
     },
     "variables": {
         "convertRuleSourceWorkspace": {
-            "SourceId": "/subscriptions/1234-56789-1234-567a/resourceGroups/resourceGroupName/providers/Microsoft.OperationalInsights/workspaces/workspaceName"
+            "SourceId": "[parameters('resourceId')]"
         }
     },
     "resources": [
@@ -609,7 +650,13 @@ In the following sample template, creation of a metric alert for dynamic thresho
 }
 ```
 
+</details>
+
 If you save the preceding JSON as *metricfromLogsAlertDynamic.json*, you can couple it with a parameter JSON file for creation based on a Resource Manager template. Here's a sample parameter JSON file:
+
+<br>
+<details>
+<summary>Set parameters for the dynamic-threshold alert</summary>
 
 ```json
 {
@@ -641,7 +688,7 @@ If you save the preceding JSON as *metricfromLogsAlertDynamic.json*, you can cou
             "value": true
         },
         "resourceId": {
-            "value": "/subscriptions/1234-56789-1234-567a/resourceGroups/myRG/providers/Microsoft.OperationalInsights/workspaces/workspaceName"
+            "value": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>"
         },
         "metricName":{
             "value": "Average_% Idle Time"
@@ -662,24 +709,44 @@ If you save the preceding JSON as *metricfromLogsAlertDynamic.json*, you can cou
             "value": "Average"
         },
         "actionGroupId": {
-            "value": "/subscriptions/1234-56789-1234-567a/resourceGroups/myRG/providers/microsoft.insights/actionGroups/actionGroupName"
+            "value": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.Insights/actionGroups/<ActionGroupName>"
         }
     }
 }
 ```
+
+</details>
 
 Assuming that you saved the preceding parameter file as *metricfromLogsAlertDynamic.parameters.json*, you can create metric alerts for logs by using the [Resource Manager template for creation in the Azure portal](/azure/azure-resource-manager/templates/deploy-portal).
 
 Alternatively, you can use this Azure PowerShell command:
 
 ```powershell
-New-AzResourceGroupDeployment -ResourceGroupName "myRG" -TemplateFile metricfromLogsAlertDynamic.json TemplateParameterFile metricfromLogsAlertDynamic.parameters.json
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+
+# Define parameters for New-AzResourceGroupDeployment
+$newAzResourceGroupDeploymentParams = @{
+    ResourceGroupName     = $resourceGroupName
+    TemplateFile          = "metricfromLogsAlertDynamic.json"
+    TemplateParameterFile = "metricfromLogsAlertDynamic.parameters.json"
+}
+
+# Deploy the metric alert and log-to-metric rule
+New-AzResourceGroupDeployment @newAzResourceGroupDeploymentParams
 ```
 
 Or, you can deploy the Resource Manager template by using the Azure CLI:
 
 ```bash
-az deployment group create --resource-group myRG --template-file metricfromLogsAlertDynamic.json --parameters @metricfromLogsAlertDynamic.parameters.json
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+
+# Deploy the metric alert and log-to-metric rule
+az deployment group create \
+    --resource-group "$resourceGroupName" \
+    --template-file metricfromLogsAlertDynamic.json \
+    --parameters @metricfromLogsAlertDynamic.parameters.json
 ```
 
 ## Related content

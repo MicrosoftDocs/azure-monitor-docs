@@ -1,15 +1,23 @@
 ---
-title: Resource Manager template samples for metric alerts
+title: Resource Manager Template Samples for Metric Alerts
 description: This article provides sample Resource Manager templates used to create metric alerts in Azure Monitor.
 ms.topic: sample
 ms.reviewer: harelbr
 ms.date: 08/27/2026
-ms.custom: references_regions, cbo-v1.5
+ms.custom: references_regions, cbo-v1.6
+ai-usage: ai-assisted
 ---
 
 # Resource Manager template samples for metric alert rules in Azure Monitor
 
 This article provides samples of using [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to configure [metric alert rules](../alerts/alerts-types.md#metric-alerts) in Azure Monitor. Each sample includes a template file and a parameters file with sample values to provide to the template.
+
+The samples define complete resources for their illustrated scenarios. When adapting a sample to an existing alert:
+
+- Retain its resource name, tags, enabled state, and other settings that aren't part of the intended change.
+- Include all required `scopes`, `criteria.allOf`, dimensions, and `actions` entries. Arrays describe the complete intended configuration, not entries to append automatically.
+- For an availability test, also retain the required locations, test configuration, and resource links.
+- Review the full Bicep or ARM definition before redeploying. [Incremental deployments](/azure/azure-resource-manager/templates/deployment-modes#incremental-mode) reapply resource properties; they aren't partial patches.
 
 [!INCLUDE [azure-monitor-samples](../fundamentals/includes/azure-monitor-resource-manager-samples.md)]
 
@@ -29,6 +37,12 @@ The following sample creates a metric alert rule using a single criteria and a s
 ### Template file
 
 # [Bicep](#tab/bicep)
+
+The following Bicep example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type.
+
+<br>
+<details>
+<summary>Create the single-criterion static-threshold alert</summary>
 
 ```bicep
 @description('Name of the alert')
@@ -144,7 +158,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 # [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Create the single-criterion static-threshold alert</summary>
 
 ```json
 {
@@ -315,6 +337,8 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ---
 
 ### Parameter file
@@ -365,6 +389,12 @@ The following sample creates a metric alert rule using a single criteria and a d
 ### Template file
 
 # [Bicep](#tab/bicep)
+
+The following Bicep example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type.
+
+<br>
+<details>
+<summary>Create the single-criterion dynamic-threshold alert</summary>
 
 ```bicep
 @description('Name of the alert')
@@ -493,7 +523,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 
 ```
 
+</details>
+
 # [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Create the single-criterion dynamic-threshold alert</summary>
 
 ```json
 {
@@ -688,9 +726,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ---
 
 ### Parameter file
+
+<br>
+<details>
+<summary>Set parameters for the single-criterion dynamic-threshold alert</summary>
 
 ```json
 {
@@ -722,10 +766,10 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
       "value": "Medium"
     },
     "numberOfEvaluationPeriods": {
-      "value": "4"
+      "value": 4
     },
     "minFailingPeriodsToAlert": {
-      "value": "3"
+      "value": 3
     },
     "ignoreDataBefore": {
       "value": ""
@@ -739,6 +783,8 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
   }
 }
 ```
+
+</details>
 
 ## Multiple criteria, static threshold
 
@@ -755,6 +801,12 @@ The following constraints apply when using dimensions in an alert rule that cont
 ### Template file
 
 # [Bicep](#tab/bicep)
+
+The following Bicep example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type.
+
+<br>
+<details>
+<summary>Create the multiple-criteria static-threshold alert</summary>
 
 ```bicep
 @description('Name of the alert')
@@ -841,7 +893,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 # [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Create the multiple-criteria static-threshold alert</summary>
 
 ```json
 {
@@ -976,9 +1036,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ---
 
 ### Parameter file
+
+<br>
+<details>
+<summary>Set parameters for the multiple-criteria static-threshold alert</summary>
 
 ```json
 {
@@ -1046,6 +1112,8 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ## Multiple dimensions, static threshold
 
 A single alert rule can monitor multiple metric time series at a time, which results in fewer alert rules to manage. The following sample creates a static metric alert rule on dimensional metrics.
@@ -1065,6 +1133,12 @@ For example, a few of the potential time series that are monitored by this alert
 ### Template file
 
 # [Bicep](#tab/bicep)
+
+The following Bicep example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type.
+
+<br>
+<details>
+<summary>Create the multidimensional static-threshold alert</summary>
 
 ```bicep
 @description('Name of the alert')
@@ -1146,7 +1220,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 # [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Create the multidimensional static-threshold alert</summary>
 
 ```json
 {
@@ -1273,9 +1355,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ---
 
 ### Parameter file
+
+<br>
+<details>
+<summary>Set parameters for the multidimensional static-threshold alert</summary>
 
 ```json
 {
@@ -1326,6 +1414,8 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 > [!NOTE]
 >
 > Using "All" as a dimension value is equivalent to selecting "\*" (all current and future values).
@@ -1353,6 +1443,12 @@ For example, a few of the potential time series that are monitored by this alert
 ### Template file
 
 # [Bicep](#tab/bicep)
+
+The following Bicep example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type.
+
+<br>
+<details>
+<summary>Create the multidimensional dynamic-threshold alert</summary>
 
 ```bicep
 @description('Name of the alert')
@@ -1429,7 +1525,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 # [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Create the multidimensional dynamic-threshold alert</summary>
 
 ```json
 {
@@ -1551,9 +1655,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ---
 
 ### Parameter file
+
+<br>
+<details>
+<summary>Set parameters for the multidimensional dynamic-threshold alert</summary>
 
 ```json
 {
@@ -1608,6 +1718,8 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ## Custom metric, static threshold
 
 You can use the following template to create a more advanced static threshold metric alert rule on a custom metric.
@@ -1619,6 +1731,12 @@ When creating an alert rule on a custom metric, you need to specify both the met
 ### Template file
 
 # [Bicep](#tab/bicep)
+
+The following Bicep example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type.
+
+<br>
+<details>
+<summary>Create the custom-metric static-threshold alert</summary>
 
 ```bicep
 @description('Name of the alert')
@@ -1739,7 +1857,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 # [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Create the custom-metric static-threshold alert</summary>
 
 ```json
 {
@@ -1918,6 +2044,8 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ---
 
 ### Parameter file
@@ -1994,6 +2122,12 @@ Save the following JSON as `all-vms-in-resource-group-static.json` for the purpo
 ### Template file
 
 # [Bicep](#tab/bicep)
+
+The following Bicep example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type.
+
+<br>
+<details>
+<summary>Create the resource-group static-threshold alert</summary>
 
 ```bicep
 @description('Name of the alert')
@@ -2163,7 +2297,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 # [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Create the resource-group static-threshold alert</summary>
 
 ```json
 {
@@ -2394,9 +2536,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ---
 
 ### Parameter file
+
+<br>
+<details>
+<summary>Set parameters for the resource-group static-threshold alert</summary>
 
 ```json
 {
@@ -2446,6 +2594,8 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ### Dynamic Thresholds alert on all virtual machines in one or more resource groups
 
 This sample creates a dynamic thresholds metric alert rule that monitors Percentage CPU for all virtual machines in one Azure region in one or more resource groups.
@@ -2453,6 +2603,12 @@ This sample creates a dynamic thresholds metric alert rule that monitors Percent
 ### Template file
 
 # [Bicep](#tab/bicep)
+
+The following Bicep example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type.
+
+<br>
+<details>
+<summary>Create the resource-group dynamic-threshold alert</summary>
 
 ```bicep
 @description('Name of the alert')
@@ -2631,7 +2787,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 # [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Create the resource-group dynamic-threshold alert</summary>
 
 ```json
 {
@@ -2879,9 +3043,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ---
 
 ### Parameter file
+
+<br>
+<details>
+<summary>Set parameters for the resource-group dynamic-threshold alert</summary>
 
 ```json
 {
@@ -2922,10 +3092,10 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
       "value": "Medium"
     },
     "numberOfEvaluationPeriods": {
-      "value": "4"
+      "value": 4
     },
     "minFailingPeriodsToAlert": {
-      "value": "3"
+      "value": 3
     },
     "timeAggregation": {
       "value": "Average"
@@ -2937,6 +3107,8 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ### Static threshold alert on all virtual machines in a subscription
 
 This sample creates a static threshold metric alert rule that monitors Percentage CPU for all virtual machines in one Azure region in a subscription.
@@ -2944,6 +3116,12 @@ This sample creates a static threshold metric alert rule that monitors Percentag
 ### Template file
 
 # [Bicep](#tab/bicep)
+
+The following Bicep example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type.
+
+<br>
+<details>
+<summary>Create the subscription static-threshold alert</summary>
 
 ```bicep
 @description('Name of the alert')
@@ -3116,7 +3294,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 # [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Create the subscription static-threshold alert</summary>
 
 ```json
 {
@@ -3350,9 +3536,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ---
 
 ### Parameter file
+
+<br>
+<details>
+<summary>Set parameters for the subscription static-threshold alert</summary>
 
 ```json
 {
@@ -3399,6 +3591,8 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ### Dynamic Thresholds alert on all virtual machines in a subscription
 
 This sample creates a Dynamic Thresholds metric alert rule that monitors Percentage CPU for all virtual machines (in one Azure region) in a subscription.
@@ -3406,6 +3600,12 @@ This sample creates a Dynamic Thresholds metric alert rule that monitors Percent
 ### Template file
 
 # [Bicep](#tab/bicep)
+
+The following Bicep example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type.
+
+<br>
+<details>
+<summary>Create the subscription dynamic-threshold alert</summary>
 
 ```bicep
 @description('Name of the alert')
@@ -3586,7 +3786,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 # [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Create the subscription dynamic-threshold alert</summary>
 
 ```json
 {
@@ -3836,9 +4044,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ---
 
 ### Parameter file
+
+<br>
+<details>
+<summary>Set parameters for the subscription dynamic-threshold alert</summary>
 
 ```json
 {
@@ -3876,10 +4090,10 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
       "value": "Medium"
     },
     "numberOfEvaluationPeriods": {
-      "value": "4"
+      "value": 4
     },
     "minFailingPeriodsToAlert": {
-      "value": "3"
+      "value": 3
     },
     "timeAggregation": {
       "value": "Average"
@@ -3891,6 +4105,8 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ### Static threshold alert on a list of virtual machines
 
 This sample creates a static threshold metric alert rule that monitors Percentage CPU for a list of virtual machines in one Azure region in a subscription.
@@ -3898,6 +4114,12 @@ This sample creates a static threshold metric alert rule that monitors Percentag
 ### Template file
 
 # [Bicep](#tab/bicep)
+
+The following Bicep example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type.
+
+<br>
+<details>
+<summary>Create the virtual-machine list static-threshold alert</summary>
 
 ```bicep
 @description('Name of the alert')
@@ -4068,7 +4290,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 # [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Create the virtual-machine list static-threshold alert</summary>
 
 ```json
 {
@@ -4300,9 +4530,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ---
 
 ### Parameter file
+
+<br>
+<details>
+<summary>Set parameters for the virtual-machine list static-threshold alert</summary>
 
 ```json
 {
@@ -4323,8 +4559,8 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
     },
     "targetResourceId": {
       "value": [
-        "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name1/Microsoft.Compute/virtualMachines/replace-with-vm-name1",
-        "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name2/Microsoft.Compute/virtualMachines/replace-with-vm-name2"
+        "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName1>/providers/Microsoft.Compute/virtualMachines/<VirtualMachineName1>",
+        "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName2>/providers/Microsoft.Compute/virtualMachines/<VirtualMachineName2>"
       ]
     },
     "targetResourceRegion": {
@@ -4352,6 +4588,8 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ### Dynamic Thresholds alert on a list of virtual machines
 
 This sample creates a dynamic thresholds metric alert rule that monitors Percentage CPU for a list of virtual machines in one Azure region in a subscription.
@@ -4359,6 +4597,12 @@ This sample creates a dynamic thresholds metric alert rule that monitors Percent
 ### Template file
 
 # [Bicep](#tab/bicep)
+
+The following Bicep example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type.
+
+<br>
+<details>
+<summary>Create the virtual-machine list dynamic-threshold alert</summary>
 
 ```bicep
 @description('Name of the alert')
@@ -4537,7 +4781,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 # [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Create the virtual-machine list dynamic-threshold alert</summary>
 
 ```json
 {
@@ -4785,9 +5037,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ---
 
 ### Parameter file
+
+<br>
+<details>
+<summary>Set parameters for the virtual-machine list dynamic-threshold alert</summary>
 
 ```json
 {
@@ -4808,8 +5066,8 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
     },
     "targetResourceId": {
       "value": [
-        "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name1/Microsoft.Compute/virtualMachines/replace-with-vm-name1",
-        "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name2/Microsoft.Compute/virtualMachines/replace-with-vm-name2"
+        "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName1>/providers/Microsoft.Compute/virtualMachines/<VirtualMachineName1>",
+        "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName2>/providers/Microsoft.Compute/virtualMachines/<VirtualMachineName2>"
       ]
     },
     "targetResourceRegion": {
@@ -4828,10 +5086,10 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
       "value": "Medium"
     },
     "numberOfEvaluationPeriods": {
-      "value": "4"
+      "value": 4
     },
     "minFailingPeriodsToAlert": {
-      "value": "3"
+      "value": 3
     },
     "timeAggregation": {
       "value": "Average"
@@ -4843,6 +5101,8 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 }
 ```
 
+</details>
+
 ## Availability test with metric alert
 
 [Application Insights availability tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) help you monitor the availability of your web site/application from various locations around the globe. Availability test alerts notify you when availability tests fail from a certain number of locations. Availability test alerts of the same resource type as metric alerts (Microsoft.Insights/metricAlerts). The following sample creates a simple availability test and associated alert.
@@ -4853,6 +5113,12 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<ApiVersion>' = {
 ### Template file
 
 # [Bicep](#tab/bicep)
+
+The following Bicep example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type. It also creates a [`Microsoft.Insights/webtests`](/azure/templates/microsoft.insights/webtests?pivots=deployment-language-bicep) resource.
+
+<br>
+<details>
+<summary>Create the availability test and alert</summary>
 
 ```bicep
 param appName string
@@ -4928,7 +5194,15 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<MetricAlertApiVersion>' =
 }
 ```
 
+</details>
+
 # [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type. It also creates a [`Microsoft.Insights/webtests`](/azure/templates/microsoft.insights/webtests?pivots=deployment-language-arm-template) resource.
+
+<br>
+<details>
+<summary>Create the availability test and alert</summary>
 
 ```json
 {
@@ -5037,6 +5311,8 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<MetricAlertApiVersion>' =
 }
 ```
 
+</details>
+
 ---
 
 ### Parameter file
@@ -5059,9 +5335,8 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@<MetricAlertApiVersion>' =
       "value": "Replace with the location of your Application Insights resource"
     },
     "pingText": {
-      "defaultValue": "Optional parameter that allows you to perform a content-match for the presence of a specific string within the content returned from a pingURL response",
-      "type": "String"
-    },
+      "value": ""
+    }
   }
 }
 ```
@@ -5108,6 +5383,6 @@ Additional configuration of the content-match `pingText` parameter is controlled
 
 ## Next steps
 
-- [Get other sample templates for Azure Monitor](../resource-manager-samples.md).
+- [Get other sample templates for Azure Monitor](../fundamentals/resource-manager-samples.md).
 - [Learn more about alerts](./alerts-overview.md).
 - [Get a sample to create an action group with Resource Manager template](resource-manager-action-groups.md)
