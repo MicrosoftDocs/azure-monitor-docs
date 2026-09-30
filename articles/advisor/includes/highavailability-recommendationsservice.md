@@ -20,7 +20,7 @@ Due to strategy changes, Azure Intelligent Recommendations service is retiring. 
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=484943)  
 
