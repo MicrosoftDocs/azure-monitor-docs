@@ -32,7 +32,7 @@ Subcategory: ServiceUpgradeAndRetirement
 
 <!--3f83aee8-222d-445c-9a46-2af5fe5b4777_begin-->
 
-#### Quota Exceeded for this resource  
+#### Quota exceeded for this resource
   
 If the quota for your resource is exceeded your resource becomes blocked. You can wait for the quota to automatically get replenished soon, or, to use the resource again now, upgrade it to a paid SKU.  
   
@@ -52,7 +52,7 @@ Subcategory: Scalability
 
 #### Migrate to named entity recognition  
   
-Entity linking in Azure AI Language is retiring. Consider a replacement solution such as named entity recognition in Azure AI Language that supports entity and doesn't provide a link to a public page.  
+Entity linking in Azure AI Language is retiring. Consider a replacement solution such as named entity recognition in Azure AI Language that supports entities but doesn't provide a link to a public page.
   
 **Potential benefits**: Maintain entity identification capabilities  
 
