@@ -20,13 +20,12 @@ Import data from external sources – S3, Snowflake, Azure SQL Db along with ext
   
 **Potential benefits**: Avoid service disruption  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=557406)  
 
 ResourceType: microsoft.machinelearningservices/workspaces  
 Recommendation ID: 8027dfbe-6af9-427c-8078-6e907d6a7ce1  
-Subcategory: undefined
 
 <!--8027dfbe-6af9-427c-8078-6e907d6a7ce1_end-->
 

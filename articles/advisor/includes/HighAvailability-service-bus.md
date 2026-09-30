@@ -45,7 +45,6 @@ For more information, see [Azure Service Bus - Automatically update messaging un
 
 ResourceType: microsoft.servicebus/namespaces  
 Recommendation ID: 68e62f5c-4ed1-4b78-a2a0-4d9a4cebf106  
-Subcategory: undefined
 
 <!--68e62f5c-4ed1-4b78-a2a0-4d9a4cebf106_end-->
 
@@ -80,13 +79,12 @@ Older Azure Service Bus SDK libraries (WindowsAzure.ServiceBus, Microsoft.Azure.
   
 **Potential benefits**: Maintain security & performance  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates?id=retirement-notice-update-your-azure-service-bus-sdk-libraries-by-30-september-2026)  
 
 ResourceType: microsoft.servicebus/namespaces  
 Recommendation ID: 55bd2c8e-da67-4e38-9af7-eb2123b0ca5e  
-Subcategory: undefined
 
 <!--55bd2c8e-da67-4e38-9af7-eb2123b0ca5e_end-->
 

@@ -20,13 +20,12 @@ Preview feature Send virtual machine client data to Event Hubs and Storage is re
   
 **Potential benefits**: Avoid service disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=551523)  
 
 ResourceType: microsoft.insights/actiongroups  
 Recommendation ID: bc89d51f-df67-4814-ae1f-f36116d34218  
-Subcategory: undefined
 
 <!--bc89d51f-df67-4814-ae1f-f36116d34218_end-->
 
@@ -44,7 +43,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.insights/components  
 Recommendation ID: c40a2c46-1da0-4205-be9d-c7d3d8688272  
-Subcategory: undefined
 
 <!--c40a2c46-1da0-4205-be9d-c7d3d8688272_end-->
 

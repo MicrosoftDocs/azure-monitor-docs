@@ -26,7 +26,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.aad/domainservices  
 Recommendation ID: 5605b630-3f2f-4787-a600-1f3b5042a996  
-Subcategory: undefined
 
 <!--5605b630-3f2f-4787-a600-1f3b5042a996_end-->
 

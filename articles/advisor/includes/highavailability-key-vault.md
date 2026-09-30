@@ -26,7 +26,6 @@ For more information, see [Prepare for Key Vault API version 2026-02-01 and late
 
 ResourceType: microsoft.keyvault/vaults  
 Recommendation ID: 7ff06874-39e9-41be-9552-fa1ae2a83c88  
-Subcategory: undefined
 
 <!--7ff06874-39e9-41be-9552-fa1ae2a83c88_end-->
 

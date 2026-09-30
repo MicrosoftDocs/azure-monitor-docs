@@ -20,13 +20,12 @@ Due to strategy changes, Azure Intelligent Recommendations service is retiring. 
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=484943)  
 
 ResourceType: microsoft.recommendationsservice/accounts  
 Recommendation ID: aba0b711-0b25-40d8-9cad-ea3786245252  
-Subcategory: undefined
 
 <!--aba0b711-0b25-40d8-9cad-ea3786245252_end-->
 

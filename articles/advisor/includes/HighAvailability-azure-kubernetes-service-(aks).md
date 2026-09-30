@@ -53,7 +53,6 @@ For more information, see [Use the cluster autoscaler in Azure Kubernetes Servic
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 70829b1a-272b-4728-b418-8f1a56432d33  
-Subcategory: undefined
 
 <!--70829b1a-272b-4728-b418-8f1a56432d33_end-->
 
@@ -72,7 +71,6 @@ For more information, see [Use system node pools in Azure Kubernetes Service (AK
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: a9228ae7-4386-41be-b527-acd59fad3c79  
-Subcategory: undefined
 
 <!--a9228ae7-4386-41be-b527-acd59fad3c79_end-->
 
@@ -91,7 +89,6 @@ For more information, see [Use system node pools in Azure Kubernetes Service (AK
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: f31832f1-7e87-499d-a52a-120f610aba98  
-Subcategory: undefined
 
 <!--f31832f1-7e87-499d-a52a-120f610aba98_end-->
 
@@ -99,9 +96,9 @@ Subcategory: undefined
 
 <!--fac2ad84-1421-4dd3-8477-9d6e605392b4_begin-->
 
-#### Ensure B-series Virtual Machine's (VMs) aren't used in production environments  
+#### Clusters with node pools using nonrecommended B-series
   
-When a cluster has one or more node pools using a non-recommended burstable VM SKU, full vCPU capability 100% is unguaranteed. Ensure B-series VMs aren't used in production environments.  
+When a cluster has one or more node pools that use a nonrecommended burstable VM SKU, the cluster doesn't guarantee full vCPU capability at 100%. Ensure B-series VMs aren't used in production environments.
   
 **Potential benefits**: Best practice for consistent performance  
 
@@ -141,13 +138,12 @@ To avoid service disruptions, scaling restrictions, and remain supported; upgrad
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485172)  
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 863d09bd-e767-472b-9980-f32709414ade  
-Subcategory: undefined
 
 <!--863d09bd-e767-472b-9980-f32709414ade_end-->
 
@@ -159,13 +155,12 @@ Migrate to Container insights managed identity authentication before the retirem
   
 **Potential benefits**: Avoid service disruption and gain enhanced features  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500853)  
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: b005ecf0-23e2-4279-9ca2-718d1518c9fb  
-Subcategory: undefined
 
 <!--b005ecf0-23e2-4279-9ca2-718d1518c9fb_end-->
 
@@ -183,7 +178,6 @@ For more information, see [Automate upgrades of Kubernetes and node images acros
 
 ResourceType: microsoft.containerservice/fleets  
 Recommendation ID: 8aad9adb-cb6a-4ddc-b659-12d1c6ca186a  
-Subcategory: undefined
 
 <!--8aad9adb-cb6a-4ddc-b659-12d1c6ca186a_end-->
 
@@ -197,13 +191,12 @@ Microsoft encourages identifying the best approach for your environment before t
   
 **Potential benefits**: Ensure secure traffic control on Windows-based AKS clusters  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500273)  
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: ec938125-62ef-4dc5-b7b1-257eb8d006d9  
-Subcategory: undefined
 
 <!--ec938125-62ef-4dc5-b7b1-257eb8d006d9_end-->
 
@@ -221,7 +214,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 0e15044d-e326-4281-bbe1-1e35b32308ec  
-Subcategory: undefined
 
 <!--0e15044d-e326-4281-bbe1-1e35b32308ec_end-->
 
@@ -241,7 +233,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 91594754-953c-4eda-ac71-7b8e2e9b0e74  
-Subcategory: undefined
 
 <!--91594754-953c-4eda-ac71-7b8e2e9b0e74_end-->
 
@@ -253,13 +244,12 @@ Managed NGINX Ingress via the AKS Application Routing add-on is retiring. Plan m
   
 **Potential benefits**: Avoid service interruption  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=555839)  
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 40985a2e-6876-4a4c-902e-c85d06272935  
-Subcategory: undefined
 
 <!--40985a2e-6876-4a4c-902e-c85d06272935_end-->
 
@@ -271,13 +261,12 @@ Standard_HC44rs, Standard_HC44-16rs, and Standard_HC44-32rs virtual machine size
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Migrate your HC-series virtual machines by May 31, 2027 - Azure Virtual Machines](/azure/virtual-machines/sizes/retirement/hc-series-retirement)  
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: c7507a57-0abf-47af-81bb-819a675bc956  
-Subcategory: undefined
 
 <!--c7507a57-0abf-47af-81bb-819a675bc956_end-->
 
@@ -295,7 +284,6 @@ For more information, see [Migrate your HBv2-series virtual machines by May 31, 
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 10378caa-f4fe-48f3-9893-6bdec79687b2  
-Subcategory: undefined
 
 <!--10378caa-f4fe-48f3-9893-6bdec79687b2_end-->
 
@@ -313,7 +301,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 00dbcc9d-50d4-44ef-bc21-c15785cddf42  
-Subcategory: undefined
 
 <!--00dbcc9d-50d4-44ef-bc21-c15785cddf42_end-->
 
@@ -331,7 +318,6 @@ For more information, see [Migrate your NP-series virtual machines by May 31, 20
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 1f0dbe45-11b2-44e5-a6e6-676f599f786f  
-Subcategory: undefined
 
 <!--1f0dbe45-11b2-44e5-a6e6-676f599f786f_end-->
 

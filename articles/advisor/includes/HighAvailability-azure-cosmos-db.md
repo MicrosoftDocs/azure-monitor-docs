@@ -16,7 +16,7 @@ ms.custom: HighAvailability Azure Cosmos DB
 
 #### Configure Azure Cosmos DB containers with a partition key  
   
-When Azure Cosmos DB nonpartitioned collections reach their provisioned storage quota, you lose the ability to add data. Your Cosmos DB nonpartitioned collections are approaching their provisioned storage quota. Migrate these collections to new collections with a partition key definition so they can automatically be scaled out by the service.  
+The Cosmos DB nonpartitioned collections are approaching the provisioned storage quota and might lose the ability to add data. Migrate to new collections that use a partition key definition, so the service automatically scales out the collections.
   
 **Potential benefits**: Scale your containers seamlessly with increase in storage or request rates without running into any limits  
 
@@ -44,14 +44,12 @@ For more information, see [Performance Tips for .NET SDK V2 - Azure Cosmos DB](/
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: bdb595a4-e148-41f9-98e8-68ec92d1932e  
-Subcategory: undefined
 
 <!--bdb595a4-e148-41f9-98e8-68ec92d1932e_end-->
 
-
 <!--44a0a07f-23a2-49df-b8dc-a1b14c7c6a9d_begin-->
 
-#### Check linked Azure Key Vault hosting your encryption key  
+#### Your Cosmos DB account can't access its linked Azure Key Vault that hosts your encryption key
   
 When an Azure Cosmos DB account can't access its linked Azure Key Vault hosting the encyrption key, data access and security issues might happen. Your Azure Key Vault's configuration is preventing your Cosmos DB account from contacting the key vault to access your managed encryption keys. If you  recently performed a key rotation, ensure that the previous key, or key version, remains enabled and available until Cosmos DB completes the rotation. The previous key or key version can be disabled after 24 hours, or after the Azure Key Vault audit logs don't show any activity from Azure Cosmos DB on that key or key version.  
   
@@ -69,7 +67,7 @@ Subcategory: Other
 
 <!--213974c8-ed9c-459f-9398-7cdaa3c28856_begin-->
 
-#### Configure consistent indexing mode on Azure Cosmos DB containers  
+#### Consider Consistent indexing mode on Azure Cosmos DB containers  
   
 Azure Cosmos containers configured with the Lazy indexing mode update asynchronously, which improves write performance, but can impact query freshness. Your container is configured with the Lazy indexing mode. If query freshness is critical, use Consistent Indexing Mode for immediate index updates.  
   
@@ -99,14 +97,12 @@ For more information, see [SQL Async Java API, SDK and Resources - Azure Cosmos 
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: bc9e5110-a220-4ab9-8bc9-53f92d3eef70  
-Subcategory: undefined
 
 <!--bc9e5110-a220-4ab9-8bc9-53f92d3eef70_end-->
 
-
 <!--38942ae5-3154-4e0b-98d9-23aa061c334b_begin-->
 
-#### Critical issue - Upgrade to the current recommended version of the Java SDK v4  
+#### Upgrade to the current recommended version of the Java SDK v4 to avoid a critical issue  
   
 A critical bug affects Azure Cosmos DB Java SDK v4 versions 4.15 and earlier. When the Global Logical Sequence Number (LSN) exceeds the maximum integer value—something that can occur transparently after a large volume of transactions over a container’s lifetime—the SDK may start returning errors. To  
   
@@ -118,10 +114,8 @@ For more information, see [Java SDK V4 for API for Nosql Release Notes and Resou
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 38942ae5-3154-4e0b-98d9-23aa061c334b  
-Subcategory: undefined
 
 <!--38942ae5-3154-4e0b-98d9-23aa061c334b_end-->
-
 
 <!--123039b5-0fda-4744-9a17-d6b5d5d122b2_begin-->
 
@@ -173,10 +167,8 @@ For more information, see [Prevent rate-limiting errors for Azure Cosmos DB for 
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: ec6fe20c-08d6-43da-ac18-84ac83756a88  
-Subcategory: undefined
 
 <!--ec6fe20c-08d6-43da-ac18-84ac83756a88_end-->
-
 
 <!--b57f7a29-dcc8-43de-86fa-18d3f9d3764d_begin-->
 
@@ -198,7 +190,7 @@ Subcategory: BusinessContinuity
 
 <!--51a4e6bd-5a95-4a41-8309-40f5640fdb8b_begin-->
 
-#### Upgrade old Azure Cosmos DB SDK to the latest version  
+#### Upgrade your old Azure Cosmos DB SDK to the latest version  
   
 An Azure Cosmos DB account using an old version of the SDK lacks the latest fixes and improvements. Your Azure Cosmos DB account is using an old version of the SDK. For the latest fixes, performance improvements, and new feature capabilities, upgrade to the latest version.  
   
@@ -228,10 +220,8 @@ For more information, see [Azure Cosmos DB documentation - Azure Cosmos DB](/azu
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 60a55165-9ccd-4536-81f6-e8dc6246d3d2  
-Subcategory: undefined
 
 <!--60a55165-9ccd-4536-81f6-e8dc6246d3d2_end-->
-
 
 <!--5de9f2e6-087e-40da-863a-34b7943beed4_begin-->
 
@@ -250,43 +240,6 @@ Recommendation ID: 5de9f2e6-087e-40da-863a-34b7943beed4
 Subcategory: Other
 
 <!--5de9f2e6-087e-40da-863a-34b7943beed4_end-->
-
-<!--64fbcac1-f652-4b6f-8170-2f97ffeb5631_begin-->
-
-#### Enable HA for your Production workload  
-  
-Many clusters with consistent workloads do not have high availability (HA) enabled. It's recommended to activate HA from the Scale page in the Azure portal to prevent database downtime in case of unexpected node failures and to qualify for SLA guarantees.  
-  
-**Potential benefits**: Activate HA to avoid database downtime in case of an unexpected node failure  
-
-**Impact:** High
-  
-For more information, see [Scale or configure a cluster - Azure Cosmos DB for MongoDB vCore](/azure/reliability/reliability-cosmos-db).
-
-ResourceType: microsoft.documentdb/databaseaccounts  
-Recommendation ID: 64fbcac1-f652-4b6f-8170-2f97ffeb5631  
-Subcategory: HighAvailability
-
-<!--64fbcac1-f652-4b6f-8170-2f97ffeb5631_end-->
-
-<!--8034b205-167a-4fd5-a133-0c8cb166103c_begin-->
-
-#### Enable zone redundancy for multi-region Cosmos DB accounts  
-  
-This recommendation suggests enabling zone redundancy for multi-region Cosmos DB accounts to improve high availability and reduce the risk of data loss in case of a regional outage.  
-  
-**Potential benefits**: Improved high availability and reduced risk of data loss  
-
-**Impact:** High
-  
-For more information, see [High Availability (Reliability) in Azure Cosmos DB for NoSQL](/azure/cosmos-db/high-availability#replica-outages)  
-
-ResourceType: microsoft.documentdb/databaseaccounts  
-Recommendation ID: 8034b205-167a-4fd5-a133-0c8cb166103c  
-Subcategory: undefined
-
-<!--8034b205-167a-4fd5-a133-0c8cb166103c_end-->
-
 
 <!--92056ca3-8fab-43d1-bebf-f9c377ef20e9_begin-->
 
@@ -342,8 +295,6 @@ Subcategory: BusinessContinuity
 
 <!--52fef986-5897-4359-8b92-0f22749f0d73_end-->
 
-
-
 <!--a2002089-9dd1-46b6-881c-d0f349515230_begin-->
 
 #### Evaluate multi-region write capability in Azure Cosmos DB  
@@ -358,7 +309,6 @@ For more information, see [Configure Multi-Region Writes](/azure/cosmos-db/nosql
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: a2002089-9dd1-46b6-881c-d0f349515230  
-Subcategory: undefined
 
 <!--a2002089-9dd1-46b6-881c-d0f349515230_end-->
 
@@ -376,11 +326,8 @@ For more information, see [High Availability (Reliability) in Azure Cosmos DB fo
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 687f83d3-db01-4ab1-a77b-b31e99f16d33  
-Subcategory: undefined
 
 <!--687f83d3-db01-4ab1-a77b-b31e99f16d33_end-->
-
-
 
 <!--36b07167-9b19-4725-81bc-54e8e0510a0c_begin-->
 
@@ -396,10 +343,8 @@ PPAF is a new Azure Cosmos DB preview feature that boosts availability for singl
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 36b07167-9b19-4725-81bc-54e8e0510a0c  
-Subcategory: undefined
 
 <!--36b07167-9b19-4725-81bc-54e8e0510a0c_end-->
-
 
 <!--649fd0b8-0bf0-43fe-bfa1-c408f6d33200_begin-->
 
@@ -415,9 +360,7 @@ For more information, see [About Azure Cosmos DB backup - Azure Backup](https://
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 649fd0b8-0bf0-43fe-bfa1-c408f6d33200  
-Subcategory: undefined
 
 <!--649fd0b8-0bf0-43fe-bfa1-c408f6d33200_end-->
-
 
 <!--articleBody-->

@@ -47,7 +47,6 @@ For more information, see [Geo-replication in Azure Container Registry - Azure C
 
 ResourceType: microsoft.containerregistry/registries  
 Recommendation ID: dcfa2602-227e-4b6c-a60d-7b1f6514e690  
-Subcategory: undefined
 
 <!--dcfa2602-227e-4b6c-a60d-7b1f6514e690_end-->
 

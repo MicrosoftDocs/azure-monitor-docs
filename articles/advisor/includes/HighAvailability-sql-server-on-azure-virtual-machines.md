@@ -44,7 +44,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.sqlvirtualmachine/sqlvirtualmachines  
 Recommendation ID: e44bbf9e-55e0-4f18-9ec3-812b10b93fc2  
-Subcategory: undefined
 
 <!--e44bbf9e-55e0-4f18-9ec3-812b10b93fc2_end-->
 
@@ -62,7 +61,6 @@ For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/re
 
 ResourceType: microsoft.sqlvirtualmachine/sqlvirtualmachines  
 Recommendation ID: cb5f37e8-2ce6-4f50-baa0-a2a8c25a2293  
-Subcategory: undefined
 
 <!--cb5f37e8-2ce6-4f50-baa0-a2a8c25a2293_end-->
 

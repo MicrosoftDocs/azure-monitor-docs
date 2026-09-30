@@ -44,7 +44,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.kubernetes/connectedclusters  
 Recommendation ID: 7e161911-fa97-4d8c-88a0-d7c4b9432eb0  
-Subcategory: undefined
 
 <!--7e161911-fa97-4d8c-88a0-d7c4b9432eb0_end-->
 
@@ -56,13 +55,12 @@ Windows Server 2022 image support is retiring, upgrade to the latest version to 
   
 **Potential benefits**: Take advantage of fixes, improvements, and new functionality  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=499906)  
 
 ResourceType: microsoft.kubernetes/connectedclusters  
 Recommendation ID: 988cb7a5-1439-41f5-a07a-a71de67827b5  
-Subcategory: undefined
 
 <!--988cb7a5-1439-41f5-a07a-a71de67827b5_end-->
 
@@ -80,7 +78,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.kubernetes/connectedclusters  
 Recommendation ID: ee99b379-18e9-467c-9b91-2bc8925fa45b  
-Subcategory: undefined
 
 <!--ee99b379-18e9-467c-9b91-2bc8925fa45b_end-->
 

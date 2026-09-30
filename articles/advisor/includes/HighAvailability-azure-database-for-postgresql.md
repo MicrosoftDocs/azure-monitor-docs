@@ -30,26 +30,6 @@ Subcategory: DisasterRecovery
 
 <!--5295ed8a-f7a1-48d3-b4a9-e5e472cf1685_end-->
 
-
-
-<!--6f33a917-418c-4608-b34f-4ff0e7be8637_begin-->
-
-#### Remove inactive logical replication slots  
-  
-When an Orcas PostgreSQL flexible server has inactive logical replication slots, degraded server performance and unavailability due to write ahead log (WAL) file retention and buildup of snapshot files might occur. THIS NEEDS IMMEDIATE ATTENTION. Either delete the inactive replication slots, or start consuming the changes from these slots, so that the slots' Log Sequence Number (LSN) advances and is close to the current LSN of the server.  
-  
-**Potential benefits**: Improve PostgreSQL availability by removing inactive logical replication slots  
-
-**Impact:** High
-  
-For more information, see [Logical decoding - Azure Database for PostgreSQL - Single Server ](https://aka.ms/azure_postgresql_logical_decoding)  
-
-ResourceType: microsoft.dbforpostgresql/servers  
-Recommendation ID: 6f33a917-418c-4608-b34f-4ff0e7be8637  
-Subcategory: Other
-
-<!--6f33a917-418c-4608-b34f-4ff0e7be8637_end-->
-
 <!--7d2149f5-94f7-458d-8171-92cf66832cb2_begin-->
 
 #### Create a read replica from the Azure Database for PostgreSQL flexible server  
@@ -67,8 +47,6 @@ Recommendation ID: 7d2149f5-94f7-458d-8171-92cf66832cb2
 Subcategory: DisasterRecovery
 
 <!--7d2149f5-94f7-458d-8171-92cf66832cb2_end-->
-
-
 
 <!--80b4e93c-4500-4fbd-bd6f-3ec245f72be9_begin-->
 
@@ -120,13 +98,8 @@ For more information, see [Storage options - Azure Database for PostgreSQL](/azu
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 2de25da6-5d44-4c0d-8a37-b61f8a65babe  
-Subcategory: null
 
 <!--2de25da6-5d44-4c0d-8a37-b61f8a65babe_end-->
-
-
-
-
 
 <!--bbce2e96-97d6-406e-bb16-07fda2759879_begin-->
 
@@ -142,9 +115,7 @@ Azure Cosmos DB for PostgreSQL is retiring. Migrate to Azure Database for Postgr
 
 ResourceType: microsoft.dbforpostgresql/servergroupsv2  
 Recommendation ID: bbce2e96-97d6-406e-bb16-07fda2759879  
-Subcategory: undefined
 
 <!--bbce2e96-97d6-406e-bb16-07fda2759879_end-->
-
 
 <!--articleBody-->
