@@ -176,7 +176,7 @@ Subcategory: Other
 
 <!--35ef8bba-923e-44f3-8f06-691deb679468_begin-->
 
-#### Set the expected votes parameter to '2' in Pacemaker cofiguration in ASCS HA setup in SAP workloads (RHEL)  
+#### Set expected-votes parameter to 2 for pacemaker cluster in ASCS HA setup in RHEL for SAP workloads  
   
 For a two node HA cluster, set the quorum 'expected-votes' parameter to '2' as recommended for SAP on Azure to ensure a proper quorum, resilience, and data consistency.  
   
@@ -194,7 +194,7 @@ Subcategory: HighAvailability
 
 <!--0fffcdb4-87db-44f2-956f-dc9638248659_begin-->
 
-#### Enable the 'concurrent-fencing' parameter in Pacemaker cofiguration in ASCS HA setup in SAP workloads (ConcurrentFencingHAASCSRH)  
+#### Enable concurrent-fencing parameter for pacemaker cluster in ASCS HA setup in RHEL for SAP workloads  
   
 Concurrent fencing enables the fencing operations to be performed in parallel, which enhances high availability (HA), prevents split-brain scenarios, and contributes to a robust SAP deployment. Set this parameter to 'true' in the Pacemaker cluster configuration for ASCS HA setup.  
   
@@ -284,9 +284,9 @@ Subcategory: Other
 
 <!--fed84141-4942-49b3-8b0c-73a8b352f754_begin-->
 
-#### The 'corosync join' timeout specifies in milliseconds how long to wait for join messages in the membership protocol so when a new node joins the cluster, it has time to synchronize its state with existing nodes. Set to '60' in Pacemaker cluster configuration for ASCS HA setup.  
+#### Set the 'corosync join' in Pacemaker cluster to 60 for ASCS HA setup in SAP workloads  
   
-  
+The corosync join timeout specifies in milliseconds how long to wait for join messages in the membership protocol. It is recommended to be set 60 in Pacemaker cluster configuration for ASCS HA setup  
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
@@ -482,7 +482,7 @@ Subcategory: HighAvailability
 
 <!--9db6dd7f-af0e-45aa-89df-d35062baaefb_begin-->
 
-#### Ensure high availability across zones of SAP central service  
+#### Ensure high availability of the SAP Central Services by leveraging availability zones  
   
 Verify high availability configuration across multiple availability zones within the same region for SAP central services of production workloads.  
   
@@ -572,7 +572,7 @@ Subcategory: HighAvailability
 
 <!--760ba688-69ea-431b-afeb-13683a03f0c2_begin-->
 
-#### Disable TCP timestamps on VMs placed behind Azure Load Balancer in HANA DB HA setup in SAP workloads  
+#### Disable TCP timestamps on VMs placed behind Azure Load Balancer in High-Availability SAP workloads  
   
 Disable TCP timestamps on VMs placed behind Azure Load Balancer. Enabling TCP timestamps causes the health probes to fail due to TCP packets dropped by the VM's guest OS TCP stack causing the load balancer to mark the endpoint as down.  
   
