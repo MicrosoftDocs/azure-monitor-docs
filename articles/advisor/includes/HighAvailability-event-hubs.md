@@ -30,8 +30,6 @@ Subcategory: DisasterRecovery
 
 <!--36901a23-7263-44cb-9986-d60513ad97af_end-->
 
-
-
 <!--e1e0d94e-4805-42e6-b6b4-3bbcb4909c78_begin-->
 
 #### Enable auto-inflate on Event Hubs Standard tier  
@@ -67,23 +65,5 @@ Recommendation ID: 508f935c-bd6c-4bd0-a788-78f2c611fa44
 Subcategory: undefined
 
 <!--508f935c-bd6c-4bd0-a788-78f2c611fa44_end-->
-
-<!--4b26f946-3626-4655-b9c9-b3ae6cbbdb71_begin-->
-
-#### Use services in regions that support availability zones  
-  
-Use regions that support availability zones for higher availability in a region. Provide redundancy across regions using geo-replication for higher availability.  
-  
-**Potential benefits**: Zone-redundant services prevent data loss  
-
-**Impact:** High
-  
-For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
-
-ResourceType: microsoft.eventhub/namespaces  
-Recommendation ID: 4b26f946-3626-4655-b9c9-b3ae6cbbdb71  
-Subcategory: undefined
-
-<!--4b26f946-3626-4655-b9c9-b3ae6cbbdb71_end-->
 
 <!--articleBody-->

@@ -12,28 +12,6 @@ ms.custom: HighAvailability Subscriptions
   
 ## Subscriptions
 
-<!--242639fd-cd73-4be2-8f55-70478db8d1a5_begin-->
-
-#### Create an Azure Service Health alert  
-  
-Azure Service Health alerts keep you informed about issues and advisories in four areas (Service issues, Planned maintenance, Security and Health advisories). The alerts are personalized to notify you about disruptions or potential impacts on your chosen Azure regions and services.  
-  
-**Potential benefits**: Get alerts on service, security, and health issues  
-
-**Impact:** High
-  
-For more information, see [Create Service Health alerts for Azure service notifications in Azure portal - Azure Service Health](https://aka.ms/aa_servicehealthalert_action)  
-
-ResourceType: microsoft.subscriptions/subscriptions  
-Recommendation ID: 242639fd-cd73-4be2-8f55-70478db8d1a5  
-Subcategory: MonitoringAndAlerting
-
-<!--242639fd-cd73-4be2-8f55-70478db8d1a5_end-->
-
-
-
-
-
 <!--badb6a09-d33e-4e2a-82d8-8ed668db0aad_begin-->
 
 #### Support for TLS 1.0 and TLS 1.1 in Azure Monitor is ending  
@@ -105,6 +83,5 @@ Recommendation ID: 2d6324ac-055e-4657-a42c-a7ef571d4aad
 Subcategory: undefined
 
 <!--2d6324ac-055e-4657-a42c-a7ef571d4aad_end-->
-
 
 <!--articleBody-->

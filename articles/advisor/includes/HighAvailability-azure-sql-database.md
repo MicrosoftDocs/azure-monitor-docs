@@ -30,31 +30,6 @@ Subcategory: undefined
 
 <!--2ea11bcb-dfd0-48dc-96f0-beba578b989a_end-->
 
-
-
-
-
-
-
-<!--807e58d0-e385-41ad-987b-4a4b3e3fb563_begin-->
-
-#### Enable zone redundancy for Azure SQL Database to achieve high availability and resiliency.  
-  
-To achieve high availability and resiliency, enable zone redundancy for the SQL database or elastic pool to use availability zones and ensure the database or elastic pool is resilient to zonal failures.  
-  
-**Potential benefits**: Enabling zone redundancy ensures Azure SQL Database is resilient to zonal hardware and software failures and the recovery is transparent to applications.  
-
-**Impact:** High
-  
-For more information, see [Availability Through Local and Zone Redundancy - Azure SQL Database](/azure/azure-sql/database/high-availability-sla?view=azuresql&tabs=azure-powershell#zone-redundant-availability)  
-
-ResourceType: microsoft.sql/servers/databases  
-Recommendation ID: 807e58d0-e385-41ad-987b-4a4b3e3fb563  
-Subcategory: undefined
-
-<!--807e58d0-e385-41ad-987b-4a4b3e3fb563_end-->
-
-
 <!--e1967ca0-c0c3-4ae2-b69b-13d5676a4b18_begin-->
 
 #### Enable cross region disaster recovery for SQL Managed Instance  
@@ -72,7 +47,6 @@ Recommendation ID: e1967ca0-c0c3-4ae2-b69b-13d5676a4b18
 Subcategory: DisasterRecovery
 
 <!--e1967ca0-c0c3-4ae2-b69b-13d5676a4b18_end-->
-
 
 <!--9b7e559c-2f7a-41ea-9b8f-43a53a12c273_begin-->
 
@@ -110,8 +84,6 @@ Subcategory: undefined
 
 <!--cdbef351-5bba-4639-abcd-34b594310b97_end-->
 
-
-
 <!--8eff5550-a532-452b-88dd-f4032156da2f_begin-->
 
 #### Migrate to TLS 1.2 or above for SQL databases  
@@ -122,15 +94,13 @@ Support for TLS 1.0 and 1.1 on Azure SQL db is retiring. Update the TLS policy t
 
 **Impact:** High
   
-For more information, see [Connectivity Settings - Azure SQL Database and SQL database in Fabric](/azure/azure-sql/database/connectivity-settings?view=azuresql&tabs=azure-portal#upcoming-retirement-changes)  
+For more information, see [Connectivity Settings - Azure SQL Database and SQL database in Fabric](/azure/azure-sql/database/connectivity-settings?view=azuresql&preserve-view=true&tabs=azure-portal#upcoming-retirement-changes)  
 
 ResourceType: microsoft.sql/servers  
 Recommendation ID: 8eff5550-a532-452b-88dd-f4032156da2f  
 Subcategory: undefined
 
 <!--8eff5550-a532-452b-88dd-f4032156da2f_end-->
-
-
 
 <!--78a8bb04-6f10-4112-8b1e-ac0fd88c67a2_begin-->
 

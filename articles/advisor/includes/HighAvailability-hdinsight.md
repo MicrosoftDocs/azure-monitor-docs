@@ -30,24 +30,6 @@ Subcategory: Other
 
 <!--69740e3e-5b96-4b0e-b9b8-4d7573e3611c_end-->
 
-<!--24acd95e-fc9f-490c-b32d-edc6d747d0bc_begin-->
-
-#### Non-ESP ABFS clusters [Cluster Permissions for Word Readable]  
-  
-Plan to introduce a change in non-ESP ABFS clusters, which restricts non-Hadoop group users from running Hadoop commands for storage operations. This change is to improve cluster security posture. Customers need to plan for the updates before September 30, 2023.  
-  
-**Potential benefits**: This change is to improve cluster security posture  
-
-**Impact:** High
-  
-For more information, see [Release notes for Azure HDInsight ](https://aka.ms/hdireleasenotes)  
-
-ResourceType: microsoft.hdinsight/clusters  
-Recommendation ID: 24acd95e-fc9f-490c-b32d-edc6d747d0bc  
-Subcategory: Other
-
-<!--24acd95e-fc9f-490c-b32d-edc6d747d0bc_end-->
-
 <!--35e3a19f-16e7-4bb1-a7b8-49e02a35af2e_begin-->
 
 #### Restart brokers on your Kafka Cluster Disks  
@@ -65,7 +47,6 @@ Recommendation ID: 35e3a19f-16e7-4bb1-a7b8-49e02a35af2e
 Subcategory: undefined
 
 <!--35e3a19f-16e7-4bb1-a7b8-49e02a35af2e_end-->
-
 
 <!--8f163c95-0029-4139-952a-42bd0d773b93_begin-->
 
@@ -85,44 +66,6 @@ Subcategory: undefined
 
 <!--8f163c95-0029-4139-952a-42bd0d773b93_end-->
 
-
-<!--97355d8e-59ae-43ff-9214-d4acf728467a_begin-->
-
-#### Upgrade your HDInsight Cluster  
-  
-A cluster not using the latest image doesn't have the latest upgrades. Your cluster isn't using the latest image. We recommend you use the latest versions of HDInsight images for the best of open source updates, Azure updates, and security fixes. HDInsight releases happen every 30 to 60 days.  
-  
-**Potential benefits**: Get the latest fixes and features  
-
-**Impact:** High
-  
-For more information, see [Release notes for Azure HDInsight](/azure/hdinsight/hdinsight-release-notes)  
-
-ResourceType: microsoft.hdinsight/clusters  
-Recommendation ID: 97355d8e-59ae-43ff-9214-d4acf728467a  
-Subcategory: undefined
-
-<!--97355d8e-59ae-43ff-9214-d4acf728467a_end-->
-
-
-<!--b3bf9f14-c83e-4dd3-8f5c-a6be746be173_begin-->
-
-#### Gateway or virtual machine not reachable  
-  
-We have detected a Network prob failure, it indicates unreachable gateway or a virtual machine. Verify all cluster hosts' availability.  Restart virtual machine to recover. If you need further assistance, don't hesitate to contact Azure support for help.  
-  
-**Potential benefits**: Improved availability  
-
-**Impact:** High
-  
-  
-
-ResourceType: microsoft.hdinsight/clusters  
-Recommendation ID: b3bf9f14-c83e-4dd3-8f5c-a6be746be173  
-Subcategory: Other
-
-<!--b3bf9f14-c83e-4dd3-8f5c-a6be746be173_end-->
-
 <!--e4635832-0ab1-48b1-a386-c791197189e6_begin-->
 
 #### VM agent is 9.9.9.9. Upgrade the cluster.  
@@ -140,7 +83,6 @@ Recommendation ID: e4635832-0ab1-48b1-a386-c791197189e6
 Subcategory: undefined
 
 <!--e4635832-0ab1-48b1-a386-c791197189e6_end-->
-
 
 <!--32b83a78-f586-425a-afd2-52accec61d65_begin-->
 

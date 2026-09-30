@@ -17,16 +17,11 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 1. On the **Advisor** dashboard, select the **Reliability** tab.
 
-
-[!INCLUDE [HighAvailability-agfood-platform.md](./includes/HighAvailability-agfood-platform.md)]
-
 [!INCLUDE [HighAvailability-api-management.md](./includes/HighAvailability-api-management.md)]
 
 [!INCLUDE [HighAvailability-app-service-certificates.md](./includes/HighAvailability-app-service-certificates.md)]
 
 [!INCLUDE [HighAvailability-app-service.md](./includes/HighAvailability-app-service.md)]
-
-[!INCLUDE [HighAvailability-application-gateway-for-containers.md](./includes/HighAvailability-application-gateway-for-containers.md)]
 
 [!INCLUDE [HighAvailability-application-gateway.md](./includes/HighAvailability-application-gateway.md)]
 
@@ -72,8 +67,6 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-netapp-files.md](./includes/HighAvailability-azure-netapp-files.md)]
 
-[!INCLUDE [HighAvailability-azure-relay.md](./includes/HighAvailability-azure-relay.md)]
-
 [!INCLUDE [HighAvailability-azure-signalr-service.md](./includes/HighAvailability-azure-signalr-service.md)]
 
 [!INCLUDE [HighAvailability-azure-site-recovery.md](./includes/HighAvailability-azure-site-recovery.md)]
@@ -102,11 +95,7 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-content-delivery-network.md](./includes/HighAvailability-content-delivery-network.md)]
 
-[!INCLUDE [HighAvailability-data-factory.md](./includes/HighAvailability-data-factory.md)]
-
 [!INCLUDE [HighAvailability-entra-domain-services.md](./includes/HighAvailability-entra-domain-services.md)]
-
-[!INCLUDE [HighAvailability-event-grid.md](./includes/HighAvailability-event-grid.md)]
 
 [!INCLUDE [HighAvailability-event-hubs.md](./includes/HighAvailability-event-hubs.md)]
 
@@ -118,11 +107,7 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-media-services.md](./includes/HighAvailability-media-services.md)]
 
-[!INCLUDE [HighAvailability-microsoft.bingsearch.md](./includes/HighAvailability-microsoft-bingsearch.md)]
-
 [!INCLUDE [HighAvailability-microsoft.fileshares.md](./includes/HighAvailability-microsoft-fileshares.md)]
-
-[!INCLUDE [HighAvailability-microsoft.iotsecurity.md](./includes/HighAvailability-microsoft-iotsecurity.md)]
 
 [!INCLUDE [HighAvailability-playwright-testing.md](./includes/HighAvailability-playwright-testing.md)]
 

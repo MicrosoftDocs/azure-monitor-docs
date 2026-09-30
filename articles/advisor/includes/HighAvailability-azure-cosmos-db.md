@@ -48,7 +48,6 @@ Subcategory: undefined
 
 <!--bdb595a4-e148-41f9-98e8-68ec92d1932e_end-->
 
-
 <!--44a0a07f-23a2-49df-b8dc-a1b14c7c6a9d_begin-->
 
 #### Check linked Azure Key Vault hosting your encryption key  
@@ -103,7 +102,6 @@ Subcategory: undefined
 
 <!--bc9e5110-a220-4ab9-8bc9-53f92d3eef70_end-->
 
-
 <!--38942ae5-3154-4e0b-98d9-23aa061c334b_begin-->
 
 #### Critical issue - Upgrade to the current recommended version of the Java SDK v4  
@@ -121,7 +119,6 @@ Recommendation ID: 38942ae5-3154-4e0b-98d9-23aa061c334b
 Subcategory: undefined
 
 <!--38942ae5-3154-4e0b-98d9-23aa061c334b_end-->
-
 
 <!--123039b5-0fda-4744-9a17-d6b5d5d122b2_begin-->
 
@@ -177,7 +174,6 @@ Subcategory: undefined
 
 <!--ec6fe20c-08d6-43da-ac18-84ac83756a88_end-->
 
-
 <!--b57f7a29-dcc8-43de-86fa-18d3f9d3764d_begin-->
 
 #### Add a second region to your production workloads on Azure Cosmos DB  
@@ -232,7 +228,6 @@ Subcategory: undefined
 
 <!--60a55165-9ccd-4536-81f6-e8dc6246d3d2_end-->
 
-
 <!--5de9f2e6-087e-40da-863a-34b7943beed4_begin-->
 
 #### Enable service managed failover for Cosmos DB account  
@@ -250,43 +245,6 @@ Recommendation ID: 5de9f2e6-087e-40da-863a-34b7943beed4
 Subcategory: Other
 
 <!--5de9f2e6-087e-40da-863a-34b7943beed4_end-->
-
-<!--64fbcac1-f652-4b6f-8170-2f97ffeb5631_begin-->
-
-#### Enable HA for your Production workload  
-  
-Many clusters with consistent workloads do not have high availability (HA) enabled. It's recommended to activate HA from the Scale page in the Azure portal to prevent database downtime in case of unexpected node failures and to qualify for SLA guarantees.  
-  
-**Potential benefits**: Activate HA to avoid database downtime in case of an unexpected node failure  
-
-**Impact:** High
-  
-For more information, see [Scale or configure a cluster - Azure Cosmos DB for MongoDB vCore](/azure/reliability/reliability-cosmos-db).
-
-ResourceType: microsoft.documentdb/databaseaccounts  
-Recommendation ID: 64fbcac1-f652-4b6f-8170-2f97ffeb5631  
-Subcategory: HighAvailability
-
-<!--64fbcac1-f652-4b6f-8170-2f97ffeb5631_end-->
-
-<!--8034b205-167a-4fd5-a133-0c8cb166103c_begin-->
-
-#### Enable zone redundancy for multi-region Cosmos DB accounts  
-  
-This recommendation suggests enabling zone redundancy for multi-region Cosmos DB accounts to improve high availability and reduce the risk of data loss in case of a regional outage.  
-  
-**Potential benefits**: Improved high availability and reduced risk of data loss  
-
-**Impact:** High
-  
-For more information, see [High Availability (Reliability) in Azure Cosmos DB for NoSQL](/azure/cosmos-db/high-availability#replica-outages)  
-
-ResourceType: microsoft.documentdb/databaseaccounts  
-Recommendation ID: 8034b205-167a-4fd5-a133-0c8cb166103c  
-Subcategory: undefined
-
-<!--8034b205-167a-4fd5-a133-0c8cb166103c_end-->
-
 
 <!--92056ca3-8fab-43d1-bebf-f9c377ef20e9_begin-->
 
@@ -342,8 +300,6 @@ Subcategory: BusinessContinuity
 
 <!--52fef986-5897-4359-8b92-0f22749f0d73_end-->
 
-
-
 <!--a2002089-9dd1-46b6-881c-d0f349515230_begin-->
 
 #### Evaluate multi-region write capability in Azure Cosmos DB  
@@ -380,8 +336,6 @@ Subcategory: undefined
 
 <!--687f83d3-db01-4ab1-a77b-b31e99f16d33_end-->
 
-
-
 <!--36b07167-9b19-4725-81bc-54e8e0510a0c_begin-->
 
 #### Improve Resiliency with Per‑Partition Automatic Failover  
@@ -400,7 +354,6 @@ Subcategory: undefined
 
 <!--36b07167-9b19-4725-81bc-54e8e0510a0c_end-->
 
-
 <!--649fd0b8-0bf0-43fe-bfa1-c408f6d33200_begin-->
 
 #### Configure protection for Cosmos DB  
@@ -418,6 +371,5 @@ Recommendation ID: 649fd0b8-0bf0-43fe-bfa1-c408f6d33200
 Subcategory: undefined
 
 <!--649fd0b8-0bf0-43fe-bfa1-c408f6d33200_end-->
-
 
 <!--articleBody-->

@@ -30,7 +30,6 @@ Subcategory: HighAvailability
 
 <!--02cfb5ef-a0c1-4633-9854-031fbda09946_end-->
 
-
 <!--d4102c0f-ebe3-4b22-8fe0-e488866a87af_begin-->
 
 #### Ensure Azure Disks are in the same zone as your VM for higher resiliency and availability  
@@ -49,8 +48,6 @@ Subcategory: undefined
 
 <!--d4102c0f-ebe3-4b22-8fe0-e488866a87af_end-->
 
-
-
 <!--ed651749-cd37-4fd5-9897-01b416926745_begin-->
 
 #### Enable virtual machine replication to protect applications from regional outage  
@@ -68,25 +65,6 @@ Recommendation ID: ed651749-cd37-4fd5-9897-01b416926745
 Subcategory: undefined
 
 <!--ed651749-cd37-4fd5-9897-01b416926745_end-->
-
-
-<!--57ecb3cd-f2b4-4cad-8b3a-232cca527a0b_begin-->
-
-#### Upgrade VM from Premium Unmanaged Disks to Managed Disks at no additional cost  
-  
-Azure Managed Disks provide higher resiliency, simplified service management, higher scale target and more choices among several disk types. Your VM is using premium unmanaged disks that can be migrated to managed disks at no additional cost through the portal in less than 5 minutes.  
-  
-**Potential benefits**: Leverage higher resiliency and other benefits of Managed Disks  
-
-**Impact:** High
-  
-For more information, see [Overview of Azure Disk Storage - Azure Virtual Machines ](https://aka.ms/md_overview)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 57ecb3cd-f2b4-4cad-8b3a-232cca527a0b  
-Subcategory: HighAvailability
-
-<!--57ecb3cd-f2b4-4cad-8b3a-232cca527a0b_end-->
 
 <!--11f04d70-5bb3-4065-b717-1f11b2e050a8_begin-->
 
@@ -178,8 +156,6 @@ Subcategory: undefined
 
 <!--066a047a-9ace-45f4-ac50-6325840a6b00_end-->
 
-
-
 <!--2b5cf6e5-2792-49b2-9ec0-0e901be6488b_begin-->
 
 #### Convert Standard to Premium disk for higher uptime  
@@ -197,28 +173,6 @@ Recommendation ID: 2b5cf6e5-2792-49b2-9ec0-0e901be6488b
 Subcategory: BusinessContinuity
 
 <!--2b5cf6e5-2792-49b2-9ec0-0e901be6488b_end-->
-
-
-
-
-
-<!--490262e8-313c-431f-a143-a9c2cadba41b_begin-->
-
-#### DNS Servers should be configured at the Virtual Network level  
-  
-Set the DNS Servers for the VM at the Virtual Network level to ensure consistency throughout the environment. In the configuration of the primary network interface, DNS Servers setting should be set to Inherit from virtual network.  
-  
-**Potential benefits**: Ensures consistency and reliable name resolution  
-
-**Impact:** Low
-  
-For more information, see [Name resolution for resources in Azure virtual networks ](https://aka.ms/azvnetnameres)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 490262e8-313c-431f-a143-a9c2cadba41b  
-Subcategory: Other
-
-<!--490262e8-313c-431f-a143-a9c2cadba41b_end-->
 
 <!--651c7925-17a3-42e5-85cd-73bd095cf27f_begin-->
 
@@ -256,10 +210,6 @@ Subcategory: BusinessContinuity
 
 <!--e5e707f2-f41f-4aa6-bccf-3fb9748e5b66_end-->
 
-
-
-
-
 <!--3b739bd1-c193-4bb6-a953-1362ee3b03b2_begin-->
 
 #### Upgrade your Virtual Machine Scale Set to alternative image version  
@@ -277,7 +227,6 @@ Recommendation ID: 3b739bd1-c193-4bb6-a953-1362ee3b03b2
 Subcategory: undefined
 
 <!--3b739bd1-c193-4bb6-a953-1362ee3b03b2_end-->
-
 
 <!--3d18d7cd-bdec-4c68-9160-16a677d0f86a_begin-->
 
@@ -333,7 +282,6 @@ Subcategory: BusinessContinuity
 
 <!--b4d988a9-85e6-4179-b69c-549bdd8a55bb_end-->
 
-
 <!--3c03549b-9c0a-4c13-bed4-def3c7e34ddd_begin-->
 
 #### Upgrade to Standard SSD OS disk  
@@ -351,12 +299,6 @@ Recommendation ID: 3c03549b-9c0a-4c13-bed4-def3c7e34ddd
 Subcategory: undefined
 
 <!--3c03549b-9c0a-4c13-bed4-def3c7e34ddd_end-->
-
-
-
-
-
-
 
 <!--7f71b153-c0b7-4e99-a23e-db8179183ec9_begin-->
 
@@ -376,14 +318,6 @@ Subcategory: undefined
 
 <!--7f71b153-c0b7-4e99-a23e-db8179183ec9_end-->
 
-
-
-
-
-
-
-
-
 <!--5f2613df-629f-4b07-9425-2a47ea0dfad3_begin-->
 
 #### Migrate workload to Virtual Machine Scale Sets Flex  
@@ -401,7 +335,6 @@ Recommendation ID: 5f2613df-629f-4b07-9425-2a47ea0dfad3
 Subcategory: HighAvailability
 
 <!--5f2613df-629f-4b07-9425-2a47ea0dfad3_end-->
-
 
 <!--39fb2718-a2ae-4662-a8c9-cd8df23f01eb_begin-->
 
@@ -421,7 +354,6 @@ Subcategory: HighAvailability
 
 <!--39fb2718-a2ae-4662-a8c9-cd8df23f01eb_end-->
 
-
 <!--3b587048-b04b-4f81-aaed-e43793652b0f_begin-->
 
 #### Enable application health monitoring for Virtual Machine Scale Sets (VMSS)  
@@ -440,7 +372,6 @@ Subcategory: undefined
 
 <!--3b587048-b04b-4f81-aaed-e43793652b0f_end-->
 
-
 <!--01c715f6-426a-47d3-87be-9f26e2ab2d8e_begin-->
 
 #### Validate Virtual Machine reliability with a Site Recovery test failover  
@@ -458,7 +389,6 @@ Recommendation ID: 01c715f6-426a-47d3-87be-9f26e2ab2d8e
 Subcategory: undefined
 
 <!--01c715f6-426a-47d3-87be-9f26e2ab2d8e_end-->
-
 
 <!--4175946b-cd53-4a37-9e9a-0f8a418ef6ac_begin-->
 
@@ -495,26 +425,6 @@ Recommendation ID: 00e4ac6c-afa3-4578-a021-5f15e18850a2
 Subcategory: HighAvailability
 
 <!--00e4ac6c-afa3-4578-a021-5f15e18850a2_end-->
-
-<!--42d6dc9f-3e08-4a56-959d-0fd86310035f_begin-->
-
-#### Shared disks should only be enabled in clustered servers  
-  
-Azure shared disks let you attach a disk to multiple VMs at once for deploying or migrating clustered applications, suitable only when a disk is shared among VM cluster members.  
-  
-**Potential benefits**: Enhances clustered server availability  
-
-**Impact:** Medium
-  
-For more information, see [Share an Azure managed disk across VMs - Azure Virtual Machines](/azure/virtual-machines/disks-shared)  
-
-ResourceType: microsoft.compute/disks  
-Recommendation ID: 42d6dc9f-3e08-4a56-959d-0fd86310035f  
-Subcategory: Other
-
-<!--42d6dc9f-3e08-4a56-959d-0fd86310035f_end-->
-
-
 
 <!--71c69a25-0953-41d6-bf3a-1db323cd70b0_begin-->
 
@@ -624,8 +534,6 @@ Subcategory: undefined
 
 <!--cfeba225-ca14-48fe-83ba-50d24f60f84e_end-->
 
-
-
 <!--d7d26cea-dca8-4033-9e7f-d8e8a7a08cf1_begin-->
 
 #### Migrate to encryption at host  
@@ -661,8 +569,6 @@ Recommendation ID: 779dbd8a-6102-47d0-b36c-75eb070b86d6
 Subcategory: undefined
 
 <!--779dbd8a-6102-47d0-b36c-75eb070b86d6_end-->
-
-
 
 <!--81076cd9-e656-4b1a-862b-63f2f40caa87_begin-->
 
@@ -700,8 +606,6 @@ Subcategory: undefined
 
 <!--98680ff0-2723-4c8b-9af4-54ce8a3a82d1_end-->
 
-
-
 <!--6885dc91-c4d1-4695-be6f-f64be575769f_begin-->
 
 #### Migrate Standard HDD OS Disks to SSD  
@@ -737,8 +641,6 @@ Recommendation ID: f49d7356-7251-4e15-a577-a3398527f3fd
 Subcategory: undefined
 
 <!--f49d7356-7251-4e15-a577-a3398527f3fd_end-->
-
-
 
 <!--69e994b4-9b84-4581-930b-edcf9cc81582_begin-->
 
@@ -793,8 +695,6 @@ Recommendation ID: c6199b8a-db76-4a4f-b45b-ef5e9d2be09c
 Subcategory: undefined
 
 <!--c6199b8a-db76-4a4f-b45b-ef5e9d2be09c_end-->
-
-
 
 <!--ac992ddf-2bbf-4049-b142-a30d6236291e_begin-->
 

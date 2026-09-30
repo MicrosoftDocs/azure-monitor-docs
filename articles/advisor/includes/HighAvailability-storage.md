@@ -12,27 +12,6 @@ ms.custom: HighAvailability Storage
   
 ## Storage
 
-<!--8ef907f4-f8e3-4bf1-962d-27e005a7d82d_begin-->
-
-#### Configure blob backup  
-  
-Azure blob backup helps protect data from accidental or malicious deletion. We recommend that you configure blob backup.  
-  
-**Potential benefits**: Protect data from accidental or malicious deletion  
-
-**Impact:** Medium
-  
-For more information, see [Overview of Azure Blobs backup - Azure Backup ](/azure/backup/blob-backup-overview)  
-
-ResourceType: microsoft.storage/storageaccounts  
-Recommendation ID: 8ef907f4-f8e3-4bf1-962d-27e005a7d82d  
-Subcategory: DisasterRecovery
-
-<!--8ef907f4-f8e3-4bf1-962d-27e005a7d82d_end-->
-
-
-
-
 <!--4c10f447-fc3d-48b5-931d-23cea8486023_begin-->
 
 #### Enable zone redundancy for storage accounts to improve high availability and resiliency  
@@ -176,8 +155,6 @@ Recommendation ID: ced5fa9f-b5bf-4982-9f25-8190fb36dfca
 Subcategory: undefined
 
 <!--ced5fa9f-b5bf-4982-9f25-8190fb36dfca_end-->
-
-
 
 <!--7be41487-135c-4bee-901f-b4e8cd5e9180_begin-->
 

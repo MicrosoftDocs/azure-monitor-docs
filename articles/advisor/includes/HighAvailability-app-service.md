@@ -30,42 +30,6 @@ Subcategory: Other
 
 <!--b9b84818-1e7c-45af-8918-a0d280911ca6_end-->
 
-<!--45cfc38d-3ffd-4088-bb15-e4d0e1e160fe_begin-->
-
-#### Scale out your App Service plan  
-  
-Consider scaling out your App Service Plan to at least two instances to avoid cold start delays and service interruptions during routine maintenance.  
-  
-**Potential benefits**: Optimize user experience and availability  
-
-**Impact:** Medium
-  
-For more information, see [The Ultimate Guide to Running Healthy Apps in the Cloud - Azure App Service](https://aka.ms/appsvcnuminstances)  
-
-ResourceType: microsoft.web/serverfarms  
-Recommendation ID: 45cfc38d-3ffd-4088-bb15-e4d0e1e160fe  
-Subcategory: Scalability
-
-<!--45cfc38d-3ffd-4088-bb15-e4d0e1e160fe_end-->
-
-<!--1294987d-c97d-41d0-8fd8-cb6eab52d87b_begin-->
-
-#### Scale out your App Service plan to avoid CPU exhaustion  
-  
-High CPU utilization can lead to runtime issues with applications. Your application exceeded 90% CPU over the last couple of days. To reduce CPU usage and avoid runtime issues, scale out the application.  
-  
-**Potential benefits**: Keep your app healthy  
-
-**Impact:** High
-  
-  
-
-ResourceType: microsoft.web/sites  
-Recommendation ID: 1294987d-c97d-41d0-8fd8-cb6eab52d87b  
-Subcategory: Scalability
-
-<!--1294987d-c97d-41d0-8fd8-cb6eab52d87b_end-->
-
 <!--a85f5f1c-c01f-4926-84ec-700b7624af8c_begin-->
 
 #### Check your app's service health issues  
@@ -84,42 +48,6 @@ Subcategory: Other
 
 <!--a85f5f1c-c01f-4926-84ec-700b7624af8c_end-->
 
-<!--b30897cc-2c2e-4677-a2a1-107ae982ff49_begin-->
-
-#### Fix the backup database settings of your App Service resource  
-  
-When an application has an invalid database configuration, its backups fail. For details, see your application's backup history on your app management page.  
-  
-**Potential benefits**: Ensure business continuity  
-
-**Impact:** High
-  
-  
-
-ResourceType: microsoft.web/sites  
-Recommendation ID: b30897cc-2c2e-4677-a2a1-107ae982ff49  
-Subcategory: DisasterRecovery
-
-<!--b30897cc-2c2e-4677-a2a1-107ae982ff49_end-->
-
-<!--66d3137a-c4da-4c8a-b6b8-e03f5dfba66e_begin-->
-
-#### Scale up your App Service plan SKU to avoid memory problems  
-  
-The App Service Plan containing your application exceeded 85% memory allocation. High memory consumption can lead to runtime issues your applications. Find the problem application and  scale it up to a higher plan with more memory resources.  
-  
-**Potential benefits**: Keep your app healthy  
-
-**Impact:** High
-  
-  
-
-ResourceType: microsoft.web/sites  
-Recommendation ID: 66d3137a-c4da-4c8a-b6b8-e03f5dfba66e  
-Subcategory: Scalability
-
-<!--66d3137a-c4da-4c8a-b6b8-e03f5dfba66e_end-->
-
 <!--3e35f804-52cb-4ebf-84d5-d15b3ab85dfc_begin-->
 
 #### Fix application code, a worker process crashed due to an unhandled exception  
@@ -137,60 +65,6 @@ Recommendation ID: 3e35f804-52cb-4ebf-84d5-d15b3ab85dfc
 Subcategory: Other
 
 <!--3e35f804-52cb-4ebf-84d5-d15b3ab85dfc_end-->
-
-<!--78c5ab69-858a-43ca-a5ac-4ca6f9cdc30d_begin-->
-
-#### Upgrade your App Service to a Standard plan to avoid request rejects  
-  
-When an application is part of a shared App Service plan and meets its quota multiple times, incoming requests might be rejected. Your web application can't accept incoming requests after meeting a quota. To remove the quota, upgrade to a Standard plan.  
-  
-**Potential benefits**: Keep your app healthy  
-
-**Impact:** High
-  
-  
-
-ResourceType: microsoft.web/sites  
-Recommendation ID: 78c5ab69-858a-43ca-a5ac-4ca6f9cdc30d  
-Subcategory: Scalability
-
-<!--78c5ab69-858a-43ca-a5ac-4ca6f9cdc30d_end-->
-
-<!--59a83512-d885-4f09-8e4f-c796c71c686e_begin-->
-
-#### Move your App Service resource to Standard or higher and use deployment slots  
-  
-When an application is deployed multiple times in a week, problems might occur. You deployed your application multiple times last week. To help you reduce deployment impact to your production web application, move your App Service resource to the Standard (or higher) plan, and use deployment slots.  
-  
-**Potential benefits**: Keep your app healthy while updating  
-
-**Impact:** High
-  
-  
-
-ResourceType: microsoft.web/sites  
-Recommendation ID: 59a83512-d885-4f09-8e4f-c796c71c686e  
-Subcategory: Other
-
-<!--59a83512-d885-4f09-8e4f-c796c71c686e_end-->
-
-<!--0dc165fd-69bf-468a-aa04-a69377b6feb0_begin-->
-
-#### Use deployment slots for your App Service resource  
-  
-When an application is deployed multiple times in a week, problems might occur. You deployed your application multiple times over the last week. To help you manage changes and help reduce deployment impact to your production web application, use deployment slots.  
-  
-**Potential benefits**: Keep your app healthy while updating  
-
-**Impact:** High
-  
-  
-
-ResourceType: microsoft.web/sites  
-Recommendation ID: 0dc165fd-69bf-468a-aa04-a69377b6feb0  
-Subcategory: Other
-
-<!--0dc165fd-69bf-468a-aa04-a69377b6feb0_end-->
 
 <!--8be322ab-e38b-4391-a5f3-421f2270d825_begin-->
 
@@ -227,7 +101,6 @@ Recommendation ID: dc3edeee-f0ab-44ae-b612-605a0a739612
 Subcategory: undefined
 
 <!--dc3edeee-f0ab-44ae-b612-605a0a739612_end-->
-
 
 <!--dc298556-8232-4aa8-bfe0-5204c5017be0_begin-->
 
@@ -319,25 +192,6 @@ Subcategory: HighAvailability
 
 <!--fac3022a-eda5-44b9-b54d-cb500d1d01dd_end-->
 
-
-<!--bb557466-3ab7-44c3-87ac-d95759b9bfe3_begin-->
-
-#### Action Required: App Service Managed Certificates Impacted by MPIC Compliance  
-  
-To meet updated compliance standards, DigiCert has adopted Multi-Perspective Issuance Corroboration (MPIC) for certificate validation. As a result, App Service Managed Certificates can no longer be issued or renewed for apps that aren't publicly accessible starting July 28, 2025.  
-  
-**Potential benefits**: Maintain SSL continuity and avoid renewal failures  
-
-**Impact:** High
-  
-For more information, see [App Service Managed Certificate (ASMC) Changes – July 28, 2025 - Azure App Service](/azure/app-service/app-service-managed-certificate-changes-july-2025)  
-
-ResourceType: microsoft.web/sites  
-Recommendation ID: bb557466-3ab7-44c3-87ac-d95759b9bfe3  
-Subcategory: undefined
-
-<!--bb557466-3ab7-44c3-87ac-d95759b9bfe3_end-->
-
 <!--7ca9b77c-53ea-402a-a1c9-085efd569ef4_begin-->
 
 #### App Service Managed Certificates: trafficmanager.net domains are no longer supported  
@@ -410,28 +264,6 @@ Subcategory: undefined
 
 <!--6f2c6ba6-3fd4-4786-af01-d10b127ee031_end-->
 
-
-
-<!--9545c3d7-f0cd-4e37-8b15-2d4bb89f9659_begin-->
-
-#### Migrate away from Azure Static Web Apps database connection  
-  
-The database connections feature of Static Web Apps (currently in public preview), is getting deprecated. To avoid issues in deployments using the feature, refactor applications to a self-hosted instance of the Data API Builder and deploy it to Azure Container Apps.  
-  
-**Potential benefits**: Avoid service disruption  
-
-**Impact:** High
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500848)  
-
-ResourceType: microsoft.web/staticsites  
-Recommendation ID: 9545c3d7-f0cd-4e37-8b15-2d4bb89f9659  
-Subcategory: undefined
-
-<!--9545c3d7-f0cd-4e37-8b15-2d4bb89f9659_end-->
-
-
-
 <!--81c8903e-2d50-4e57-9c3b-7049b5a9d0e8_begin-->
 
 #### Upgrade Node.js for Azure Functions apps to version 22 or later  
@@ -449,8 +281,6 @@ Recommendation ID: 81c8903e-2d50-4e57-9c3b-7049b5a9d0e8
 Subcategory: undefined
 
 <!--81c8903e-2d50-4e57-9c3b-7049b5a9d0e8_end-->
-
-
 
 <!--14f2b661-8b62-4e1e-9020-6ae63ce9e354_begin-->
 
@@ -488,8 +318,6 @@ Subcategory: ServiceUpgradeAndRetirement
 
 <!--3d5765c2-e25e-47ca-988a-cf11535a592d_end-->
 
-
-
 <!--271b07b4-c9f6-450a-ac0b-68124c0faa63_begin-->
 
 #### Transition to native backup and restore tools  
@@ -525,7 +353,6 @@ Recommendation ID: b5ff4db4-4032-4380-a0fb-2db4f37b4027
 Subcategory: undefined
 
 <!--b5ff4db4-4032-4380-a0fb-2db4f37b4027_end-->
-
 
 <!--970c8068-7d7d-470f-93f1-0840d6f63ba2_begin-->
 
@@ -598,24 +425,6 @@ Recommendation ID: 55a560ff-1039-4a49-b6da-6f272dc52db6
 Subcategory: undefined
 
 <!--55a560ff-1039-4a49-b6da-6f272dc52db6_end-->
-
-<!--1e5918be-a282-454f-8744-bb266a2f3987_begin-->
-
-#### The Docker Compose public preview feature is being retired  
-  
-After the retirement date, unless migrated to sidecar containers, Docker Compose applications face disruptions resulting in errors for HTTP status code of 5xx.  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** Medium
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485167)  
-
-ResourceType: microsoft.web/sites  
-Recommendation ID: 1e5918be-a282-454f-8744-bb266a2f3987  
-Subcategory: ServiceUpgradeAndRetirement
-
-<!--1e5918be-a282-454f-8744-bb266a2f3987_end-->
 
 <!--18745007-438b-4c68-bfa3-b6576d85a831_begin-->
 

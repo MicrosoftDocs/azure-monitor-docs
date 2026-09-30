@@ -30,24 +30,6 @@ Subcategory: Other
 
 <!--8962964c-a6d6-4c3d-918a-2777f7fbdca7_end-->
 
-<!--6124b23c-0d97-4098-9009-79e8c56cbf8c_begin-->
-
-#### The legacy portal was deprecated 3 years ago and retired in October 2023. However, we are seeing active usage of the portal which may cause service disruption soon when we disable it.  
-  
-We highly recommend that you migrate to the new developer portal as soon as possible to continue enjoying our services and take advantage of the new features and improvements.  
-  
-**Potential benefits**: Ensure business continuity  
-
-**Impact:** High
-  
-For more information, see [Migrate to the new developer portal from the legacy developer portal - Azure API Management ](/previous-versions/azure/api-management/developer-portal-deprecated-migration)  
-
-ResourceType: microsoft.apimanagement/service  
-Recommendation ID: 6124b23c-0d97-4098-9009-79e8c56cbf8c  
-Subcategory: undefined
-
-<!--6124b23c-0d97-4098-9009-79e8c56cbf8c_end-->
-
 <!--53fd1359-ace2-4712-911c-1fc420dd23e8_begin-->
 
 #### Dependency network status check failed  
@@ -65,24 +47,6 @@ Recommendation ID: 53fd1359-ace2-4712-911c-1fc420dd23e8
 Subcategory: Other
 
 <!--53fd1359-ace2-4712-911c-1fc420dd23e8_end-->
-
-<!--b7316772-5c8f-421f-bed0-d86b0f128e25_begin-->
-
-#### SSL/TLS renegotiation blocked  
-  
-SSL/TLS renegotiation attempt blocked; secure communication might fail. To support client certificate authentication scenarios, enable 'Negotiate client certificate' on listed hostnames. For browser-based clients, this option might result in a certificate prompt being presented to the client.  
-  
-**Potential benefits**: Ensure service availability  
-
-**Impact:** Medium
-  
-For more information, see [Secure APIs using client certificate authentication in API Management - Azure API Management ](/azure/api-management/api-management-howto-mutual-certificates-for-clients)  
-
-ResourceType: microsoft.apimanagement/service  
-Recommendation ID: b7316772-5c8f-421f-bed0-d86b0f128e25  
-Subcategory: Other
-
-<!--b7316772-5c8f-421f-bed0-d86b0f128e25_end-->
 
 <!--2e4d65a3-1e77-4759-bcaa-13009484a97e_begin-->
 
@@ -102,7 +66,6 @@ Subcategory: undefined
 
 <!--2e4d65a3-1e77-4759-bcaa-13009484a97e_end-->
 
-
 <!--f4c48f42-74f2-41bf-bf99-14e2f9ea9ac9_begin-->
 
 #### Enable and configure autoscale for API Management instance on production workloads.  
@@ -120,24 +83,6 @@ Recommendation ID: f4c48f42-74f2-41bf-bf99-14e2f9ea9ac9
 Subcategory: Scalability
 
 <!--f4c48f42-74f2-41bf-bf99-14e2f9ea9ac9_end-->
-
-<!--4f130398-8c13-4e84-bdef-bed40c438992_begin-->
-
-#### Upgrade to Premium and have the API Management instance deployed across multiple zones  
-  
-Update the gateway and the control plane of your API Management instance to be replicated across two or more physically separated zones within an Azure region.  
-  
-**Potential benefits**: Enhances service uptime and reliability  
-
-**Impact:** High
-  
-For more information, see [Azure API Management - Overview and key concepts](https://aka.ms/learnmore_api_management_service)  
-
-ResourceType: microsoft.apimanagement/service  
-Recommendation ID: 4f130398-8c13-4e84-bdef-bed40c438992  
-Subcategory: HighAvailability
-
-<!--4f130398-8c13-4e84-bdef-bed40c438992_end-->
 
 <!--18d79d0b-6a10-49f7-a0e4-f6b3b6f9c9b1_begin-->
 

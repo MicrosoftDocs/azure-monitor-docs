@@ -48,7 +48,6 @@ Subcategory: undefined
 
 <!--c9e4a27c-79e6-4e4c-904f-b6612b6cd892_end-->
 
-
 <!--1a0a309c-54f0-4cb0-a839-2cee5912ba62_begin-->
 
 #### Enable zone redundancy for Redis  
@@ -84,24 +83,6 @@ Recommendation ID: 08cff11d-aa10-44a1-a92f-a76a19e63f7d
 Subcategory: HighAvailability
 
 <!--08cff11d-aa10-44a1-a92f-a76a19e63f7d_end-->
-
-<!--4ea9775d-8a8e-481c-8594-5aabd8214431_begin-->
-
-#### Contoso recommendation - R4  
-  
-Contoso recommendation - R4  
-  
-**Potential benefits**: Test Potential Benefits  
-
-**Impact:** Low
-  
-  
-
-ResourceType: microsoft.cache/redis  
-Recommendation ID: 4ea9775d-8a8e-481c-8594-5aabd8214431  
-Subcategory: undefined
-
-<!--4ea9775d-8a8e-481c-8594-5aabd8214431_end-->
 
 <!--f3aded79-f9ff-4ce4-99e3-2ffcf11161a4_begin-->
 

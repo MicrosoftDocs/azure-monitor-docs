@@ -12,25 +12,6 @@ ms.custom: HighAvailability Azure NetApp Files
   
 ## Azure NetApp Files  
   
-<!--2e795f35-fce6-48dc-a5ac-6860cb9a0442_begin-->
-
-#### Configure AD DS Site for Azure Netapp Files AD Connector  
-  
-If Azure NetApp Files can't reach assigned AD DS site domain controllers, the domain controller discovery process queries all domain controllers. Unreachable domain controllers may be used, causing issues with volume creation, client queries, authentication, and AD connection modifications.  
-  
-**Potential benefits**: Optimize DNS Connectivity with Azure Netapp Files  
-
-**Impact:** High
-  
-For more information, see [Understand guidelines for Active Directory Domain Services site design and planning ](https://aka.ms/anfsitescoping)  
-
-ResourceType: microsoft.netapp/netappaccounts  
-Recommendation ID: 2e795f35-fce6-48dc-a5ac-6860cb9a0442  
-Subcategory: Other
-
-<!--2e795f35-fce6-48dc-a5ac-6860cb9a0442_end-->
-
-
 
 <!--8754f0ed-c82a-497e-be31-c9d701c976e1_begin-->
 
@@ -50,7 +31,6 @@ Subcategory: undefined
 
 <!--8754f0ed-c82a-497e-be31-c9d701c976e1_end-->
 
-
 <!--cda11061-35a8-4ca3-aa03-b242dcdf7319_begin-->
 
 #### Configure a snapshot for the Azure NetApp Files volume  
@@ -68,12 +48,6 @@ Recommendation ID: cda11061-35a8-4ca3-aa03-b242dcdf7319
 Subcategory: undefined
 
 <!--cda11061-35a8-4ca3-aa03-b242dcdf7319_end-->
-
-
-
-
-
-
 
 <!--e4bebd74-387a-4a74-b757-475d2d1b4e3e_begin-->
 
@@ -93,7 +67,6 @@ Subcategory: undefined
 
 <!--e4bebd74-387a-4a74-b757-475d2d1b4e3e_end-->
 
-
 <!--c70fc854-2814-4b03-9b93-8ad7b918bfcf_begin-->
 
 #### Configure a backup for the Azure NetApp Files volume  
@@ -111,9 +84,6 @@ Recommendation ID: c70fc854-2814-4b03-9b93-8ad7b918bfcf
 Subcategory: undefined
 
 <!--c70fc854-2814-4b03-9b93-8ad7b918bfcf_end-->
-
-
-
 
 <!--26f91380-cb68-4642-bb6f-1bce3c64c55e_begin-->
 
@@ -133,7 +103,6 @@ Subcategory: DisasterRecovery
 
 <!--26f91380-cb68-4642-bb6f-1bce3c64c55e_end-->
 
-
 <!--7a48f43e-8615-4ce0-8039-83b9d24f945a_begin-->
 
 #### Create a cross-zone replication relationship from the Azure NetApp Files volume to another volume  
@@ -152,7 +121,6 @@ Subcategory: DisasterRecovery
 
 <!--7a48f43e-8615-4ce0-8039-83b9d24f945a_end-->
 
-
 <!--64936c6e-8236-4875-8234-109ab34576fe_begin-->
 
 #### New volume creation with Standard networking only  
@@ -170,8 +138,6 @@ Recommendation ID: 64936c6e-8236-4875-8234-109ab34576fe
 Subcategory: ServiceUpgradeAndRetirement
 
 <!--64936c6e-8236-4875-8234-109ab34576fe_end-->
-
-
 
 <!--2c3230cf-e6a3-4479-8a82-b8031b991b24_begin-->
 

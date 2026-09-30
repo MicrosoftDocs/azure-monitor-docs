@@ -66,24 +66,6 @@ Subcategory: undefined
 
 <!--41853861-bc9a-42b9-8ffc-f34dbaf07c00_end-->
 
-<!--49949bb6-679f-44cc-adc7-205078543df4_begin-->
-
-#### Migrate service to a region that supports availability zones  
-  
-Migrate service to a region that supports availability zones for increased resiliency.  
-  
-**Potential benefits**: Ensures high availability during zone outages  
-
-**Impact:** High
-  
-For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
-
-ResourceType: microsoft.cognitiveservices/accounts  
-Recommendation ID: 49949bb6-679f-44cc-adc7-205078543df4  
-Subcategory: HighAvailability
-
-<!--49949bb6-679f-44cc-adc7-205078543df4_end-->
-
 <!--d5da3480-071a-49d8-b4ce-06a196d844c9_begin-->
 
 #### Migrate away from Azure Custom Vision  
@@ -155,8 +137,6 @@ Recommendation ID: 2b8347d8-bd08-4046-892d-8844f741b8b2
 Subcategory: undefined
 
 <!--2b8347d8-bd08-4046-892d-8844f741b8b2_end-->
-
-
 
 <!--8523d119-bfd8-4f91-b17d-13d6b34338c4_begin-->
 

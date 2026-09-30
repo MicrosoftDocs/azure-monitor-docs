@@ -12,41 +12,6 @@ ms.custom: HighAvailability Application Gateway
   
 ## Application Gateway  
   
-<!--6a2b1e70-bd4c-4163-86de-5243d7ac05ee_begin-->
-
-#### Upgrade your SKU or add more instances  
-  
-Deploying two or more medium or large sized instances ensures business continuity (fault tolerance) during outages caused by planned or unplanned maintenance.  
-  
-**Potential benefits**: Ensure business continuity through application gateway resilience  
-
-**Impact:** Medium
-  
-For more information, see [Multi-region load balancing - Azure Reference Architectures ](https://aka.ms/aa_gatewayrec_learnmore)  
-
-ResourceType: microsoft.network/applicationgateways  
-Recommendation ID: 6a2b1e70-bd4c-4163-86de-5243d7ac05ee  
-Subcategory: BusinessContinuity
-
-<!--6a2b1e70-bd4c-4163-86de-5243d7ac05ee_end-->
-
-<!--52a9d0a7-efe1-4512-9716-394abd4e0ab1_begin-->
-
-#### Avoid hostname override to ensure site integrity  
-  
-Avoid overriding the hostname when configuring Application Gateway. Having a domain on the frontend of Application Gateway different than the one used to access the backend, can lead to broken cookies or redirect URLs. Make sure the backend is able to deal with the domain difference, or update the Application Gateway configuration so the hostname doesn't need to be overwritten towards the backend. When used with App Service, attach a custom domain name to the Web App and avoid use of the *.azurewebsites.net host name towards the backend. Note that a different frontend domain isn't a problem in all situations, and certain categories of backends like REST APIs, are less sensitive in general.  
-  
-**Potential benefits**: Ensure site integrity and avoid broken cookies or redirect urls through a resilient Application Gateway configuration.  
-
-**Impact:** Medium
-  
-For more information, see [Troubleshoot redirection to App Service URL - Azure Application Gateway ](https://aka.ms/appgw-advisor-usecustomdomain)  
-
-ResourceType: microsoft.network/applicationgateways  
-Recommendation ID: 52a9d0a7-efe1-4512-9716-394abd4e0ab1  
-Subcategory: Other
-
-<!--52a9d0a7-efe1-4512-9716-394abd4e0ab1_end-->
 
 <!--511a9f7b-7b5e-4713-b18d-0b7464a84d1f_begin-->
 
@@ -66,26 +31,6 @@ Subcategory: undefined
 
 <!--511a9f7b-7b5e-4713-b18d-0b7464a84d1f_end-->
 
-
-<!--5c488377-be3e-4365-92e8-09d1e8d9038c_begin-->
-
-#### Deploy your Application Gateway across Availability Zones  
-  
-Achieve zone redundancy by deploying Application Gateway across Availability Zones. Zone redundancy boosts resilience by enabling Application Gateway to survive various outages. Zone redundancy ensures continuity even if one zone is affected and enhances overall reliability.  
-  
-**Potential benefits**: Availability zones add resiliency for Application Gateways  
-
-**Impact:** High
-  
-For more information, see [Scaling and Zone-redundant Application Gateway v2](https://aka.ms/appgw/az)  
-
-ResourceType: microsoft.network/applicationgateways  
-Recommendation ID: 5c488377-be3e-4365-92e8-09d1e8d9038c  
-Subcategory: undefined
-
-<!--5c488377-be3e-4365-92e8-09d1e8d9038c_end-->
-
-
 <!--6cc8be07-8c03-4bd7-ad9b-c2985b261e01_begin-->
 
 #### Update VNet permission of Application Gateway users  
@@ -104,26 +49,6 @@ Subcategory: undefined
 
 <!--6cc8be07-8c03-4bd7-ad9b-c2985b261e01_end-->
 
-
-
-<!--c9c9750b-9ddb-436f-b19a-9c725539a0b5_begin-->
-
-#### Ensure autoscaling is used for increased performance and resiliency  
-  
-When configuring the Application Gateway, it's recommended to provision autoscaling to scale in and out in response to changes in demand. This helps to minimize the effects of a single failing component.  
-  
-**Potential benefits**: Increase performance and resiliency.  
-
-**Impact:** Medium
-  
-For more information, see [Scaling and Zone-redundant Application Gateway v2 ](/azure/application-gateway/application-gateway-autoscaling-zone-redundant)  
-
-ResourceType: microsoft.network/applicationgateways  
-Recommendation ID: c9c9750b-9ddb-436f-b19a-9c725539a0b5  
-Subcategory: Scalability
-
-<!--c9c9750b-9ddb-436f-b19a-9c725539a0b5_end-->
-
 <!--df989782-82d1-420d-b354-71956bd9379c_begin-->
 
 #### Change subnet of V1 gateway named GatewaySubnet as it's reserved for VPN/Express Route  
@@ -141,43 +66,6 @@ Recommendation ID: df989782-82d1-420d-b354-71956bd9379c
 Subcategory: undefined
 
 <!--df989782-82d1-420d-b354-71956bd9379c_end-->
-
-
-<!--fa44bc92-1747-4cef-9f78-7861be4c0db9_begin-->
-
-#### Reactivate the Subscription to unblock internal upgrade for V1 gateway  
-  
-Your Application Gateway is at risk of deletion after October 2024 due to a failed internal upgrade. This is because the subscription is set to a state other than Active. To fix this, please activate the subscription. Allow a day for this message to disappear once the issue is fixed.  
-  
-**Potential benefits**: Avoid disruption in management of Application Gateway V1 resource  
-
-**Impact:** High
-  
-For more information, see [Reactivate a disabled Azure subscription - Microsoft Cost Management ](/azure/cost-management-billing/manage/subscription-disabled)  
-
-ResourceType: microsoft.network/applicationgateways  
-Recommendation ID: fa44bc92-1747-4cef-9f78-7861be4c0db9  
-Subcategory: BusinessContinuity
-
-<!--fa44bc92-1747-4cef-9f78-7861be4c0db9_end-->
-
-<!--17454550-1543-4068-bdaf-f3ed7cdd3d86_begin-->
-
-#### Implement ExpressRoute Monitor on Network Performance Monitor  
-  
-When ExpressRoute circuit isn't monitored by ExpressRoute Monitor on Network Performance, you miss notifications of loss, latency, and performance of on-premises to Azure resources, and Azure to on-premises resources. For end-to-end monitoring, implement ExpressRoute Monitor on Network Performance.  
-  
-**Potential benefits**: Improve time-to-detect and time-to-mitigate issues in your network and provide insights on your network path via ExpressRoute  
-
-**Impact:** Medium
-  
-For more information, see [Azure ExpressRoute: Configure NPM for circuits ](/azure/expressroute/how-to-npm)  
-
-ResourceType: microsoft.network/expressroutecircuits  
-Recommendation ID: 17454550-1543-4068-bdaf-f3ed7cdd3d86  
-Subcategory: MonitoringAndAlerting
-
-<!--17454550-1543-4068-bdaf-f3ed7cdd3d86_end-->
 
 <!--5185d64e-46fd-4ed2-8633-6d81f5e3ca59_begin-->
 
@@ -245,9 +133,6 @@ For more information, see [Best practices for Front Door](https://aka.ms/afd-avo
 
 <!--825ff735-ed9a-4335-b132-321df86b0e81_end-->
 
-
-
-
 <!--5db013ba-e657-4b80-93f7-8c5b5f9e780a_begin-->
 
 #### Resolve issues for private endpoint not in succeeded state  
@@ -265,10 +150,6 @@ Recommendation ID: 5db013ba-e657-4b80-93f7-8c5b5f9e780a
 Subcategory: BusinessContinuity
 
 <!--5db013ba-e657-4b80-93f7-8c5b5f9e780a_end-->
-
-
-
-
 
 <!--6cd70072-c45c-4716-bf7b-b35c18e46e72_begin-->
 
@@ -288,7 +169,6 @@ Subcategory: undefined
 
 <!--6cd70072-c45c-4716-bf7b-b35c18e46e72_end-->
 
-
 <!--0bbe0a49-3c63-49d3-ab4a-aa24198f03f7_begin-->
 
 #### Add an endpoint configured to All (World)  
@@ -306,25 +186,6 @@ Recommendation ID: 0bbe0a49-3c63-49d3-ab4a-aa24198f03f7
 Subcategory: undefined
 
 <!--0bbe0a49-3c63-49d3-ab4a-aa24198f03f7_end-->
-
-
-<!--0db76759-6d22-4262-93f0-2f989ba2b58e_begin-->
-
-#### Add or move one endpoint to another Azure region  
-  
-All endpoints associated to this proximity profile are in the same region. Users from other regions may experience long latency when attempting to connect. Adding or moving an endpoint to another region will improve overall performance for proximity routing and provide better availability if all endpoints in one region fail.  
-  
-**Potential benefits**: Improve resiliency by allowing failover to another region  
-
-**Impact:** Medium
-  
-For more information, see [Configure performance traffic routing method using Azure Traffic Manager ](https://aka.ms/Ldkkdb)  
-
-ResourceType: microsoft.network/trafficmanagerprofiles  
-Recommendation ID: 0db76759-6d22-4262-93f0-2f989ba2b58e  
-Subcategory: BusinessContinuity
-
-<!--0db76759-6d22-4262-93f0-2f989ba2b58e_end-->
 
 <!--e3489565-d891-406e-91d1-44f476563850_begin-->
 
@@ -344,25 +205,6 @@ Subcategory: undefined
 
 <!--e3489565-d891-406e-91d1-44f476563850_end-->
 
-
-<!--e070c4bf-afaf-413e-bc00-e476b89c5f3d_begin-->
-
-#### Move to production gateway SKUs from Basic gateways  
-  
-The Basic VPN SKU is for development or testing scenarios. If you're using the VPN gateway for production, move to a production SKU, which offers higher numbers of tunnels, Border Gateway Protocol (BGP), active-active configuration, custom IPsec/IKE policy, and increased stability and availability.  
-  
-**Potential benefits**: Additional available features and higher stability and availability  
-
-**Impact:** Medium
-  
-For more information, see [Azure VPN Gateway configuration settings ](https://aka.ms/aa_basicvpngateway_learnmore)  
-
-ResourceType: microsoft.network/virtualnetworkgateways  
-Recommendation ID: e070c4bf-afaf-413e-bc00-e476b89c5f3d  
-Subcategory: HighAvailability
-
-<!--e070c4bf-afaf-413e-bc00-e476b89c5f3d_end-->
-
 <!--c249dc0e-9a17-423e-838a-d72719e8c5dd_begin-->
 
 #### Enable Active-Active gateways for redundancy  
@@ -380,7 +222,6 @@ Recommendation ID: c249dc0e-9a17-423e-838a-d72719e8c5dd
 Subcategory: BusinessContinuity
 
 <!--c249dc0e-9a17-423e-838a-d72719e8c5dd_end-->
-
 
 <!--8d61a7d4-5405-4f43-81e3-8c6239b844a6_begin-->
 
@@ -400,7 +241,6 @@ Subcategory: HighAvailability
 
 <!--8d61a7d4-5405-4f43-81e3-8c6239b844a6_end-->
 
-
 <!--c9af1ef6-55bc-48af-bfe4-2c80490159f8_begin-->
 
 #### Implement Zone Redundant ExpressRoute Gateways  
@@ -418,7 +258,6 @@ Recommendation ID: c9af1ef6-55bc-48af-bfe4-2c80490159f8
 Subcategory: undefined
 
 <!--c9af1ef6-55bc-48af-bfe4-2c80490159f8_end-->
-
 
 <!--56f0c458-521d-4b8b-a704-c0a099483d19_begin-->
 
@@ -438,7 +277,6 @@ Subcategory: undefined
 
 <!--56f0c458-521d-4b8b-a704-c0a099483d19_end-->
 
-
 <!--01c0dcd3-d6f7-4d50-a98b-4e15f9486a32_begin-->
 
 #### Use a health probe for monitoring the health of servers  
@@ -456,9 +294,6 @@ Recommendation ID: 01c0dcd3-d6f7-4d50-a98b-4e15f9486a32
 Subcategory: undefined
 
 <!--01c0dcd3-d6f7-4d50-a98b-4e15f9486a32_end-->
-
-
-
 
 <!--1afa00b3-bb4c-496d-99e5-b7bda59a057c_begin-->
 
@@ -604,7 +439,6 @@ Subcategory: undefined
 
 <!--20f2ff6a-3940-4cc9-8f14-909466c4ddd0_end-->
 
-
 <!--80415aba-c979-4199-b093-873d3a31fec0_begin-->
 
 #### Monitor health for Virtual WAN point-to-site VPN gateways  
@@ -640,9 +474,6 @@ Recommendation ID: c7b5d99f-9759-4a04-9e86-ff6a41e0902f
 Subcategory: undefined
 
 <!--c7b5d99f-9759-4a04-9e86-ff6a41e0902f_end-->
-
-
-
 
 <!--96e232d0-9b01-4e96-8c24-f9160ba3535a_begin-->
 
@@ -751,7 +582,6 @@ Recommendation ID: 374b21de-e7ec-409a-9961-93e789e27536
 Subcategory: undefined
 
 <!--374b21de-e7ec-409a-9961-93e789e27536_end-->
-
 
 <!--1e97d137-7812-474d-af09-6d5b3e2a1508_begin-->
 
