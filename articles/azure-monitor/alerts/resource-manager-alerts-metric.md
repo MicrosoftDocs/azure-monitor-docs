@@ -14,10 +14,10 @@ This article provides samples of using [Azure Resource Manager templates](/azure
 
 The samples define complete resources for their illustrated scenarios. When adapting a sample to an existing alert:
 
-- Retain its resource name, tags, enabled state, and other settings that you don't want to change.
-- Include all required `scopes`, `criteria.allOf`, dimensions, and `actions` entries. Arrays describe the complete intended configuration, not entries to append automatically.
-- For an availability test, also retain the required locations, test configuration, and resource links.
-- Review the full Bicep or ARM definition before redeploying. [Incremental deployments](/azure/azure-resource-manager/templates/deployment-modes#incremental-mode) reapply resource properties; they aren't partial patches.
+* Retain its resource name, tags, enabled state, and other settings that you don't want to change.
+* Include all required `scopes`, `criteria.allOf`, dimensions, and `actions` entries. Arrays describe the complete intended configuration, not entries to append automatically.
+* For an availability test, also retain the required locations, test configuration, and resource links.
+* Review the full Bicep or ARM definition before redeploying. [Incremental deployments](/azure/azure-resource-manager/templates/deployment-modes#incremental-mode) reapply resource properties; they aren't partial patches.
 
 [!INCLUDE [azure-monitor-samples](../fundamentals/includes/azure-monitor-resource-manager-samples.md)]
 
@@ -791,11 +791,11 @@ Metric alerts support alerting on multi-dimensional metrics and up to 5 criteria
 
 The following constraints apply when using dimensions in an alert rule that contains multiple criteria:
 
-- You can only select one value per dimension within each criterion.
-- You cannot use "\*" as a dimension value.
-- When metrics that are configured in different criteria support the same dimension, then a configured dimension value must be explicitly set in the same way for all of those metrics in the relevant criteria.
+* You can only select one value per dimension within each criterion.
+* You cannot use "\*" as a dimension value.
+* When metrics that are configured in different criteria support the same dimension, then a configured dimension value must be explicitly set in the same way for all of those metrics in the relevant criteria.
 
-  - In the example below, because both the **Transactions** and **SuccessE2ELatency** metrics have an **ApiName** dimension, and *criterion1* specifies the *"GetBlob"* value for the **ApiName** dimension, then *criterion2* must also set a *"GetBlob"* value for the **ApiName** dimension.
+  * In the example below, because both the **Transactions** and **SuccessE2ELatency** metrics have an **ApiName** dimension, and *criterion1* specifies the *"GetBlob"* value for the **ApiName** dimension, then *criterion2* must also set a *"GetBlob"* value for the **ApiName** dimension.
 
 ### Template file
 
@@ -1123,10 +1123,10 @@ In this sample, the alert rule monitors the dimensions value combinations of the
 
 For example, a few of the potential time series that are monitored by this alert rule are:
 
-- Metric = *Transactions*, ResponseType = *Success*, ApiName = *GetBlob*
-- Metric = *Transactions*, ResponseType = *Success*, ApiName = *PutBlob*
-- Metric = *Transactions*, ResponseType = *Server Timeout*, ApiName = *GetBlob*
-- Metric = *Transactions*, ResponseType = *Server Timeout*, ApiName = *PutBlob*
+* Metric = *Transactions*, ResponseType = *Success*, ApiName = *GetBlob*
+* Metric = *Transactions*, ResponseType = *Success*, ApiName = *PutBlob*
+* Metric = *Transactions*, ResponseType = *Server Timeout*, ApiName = *GetBlob*
+* Metric = *Transactions*, ResponseType = *Server Timeout*, ApiName = *PutBlob*
 
 ### Template file
 
@@ -1429,10 +1429,10 @@ In this sample, the alert rule monitors the dimensions value combinations of the
 
 For example, a few of the potential time series that are monitored by this alert rule are:
 
-- Metric = *Transactions*, ResponseType = *Success*, ApiName = *GetBlob*
-- Metric = *Transactions*, ResponseType = *Success*, ApiName = *PutBlob*
-- Metric = *Transactions*, ResponseType = *Server Timeout*, ApiName = *GetBlob*
-- Metric = *Transactions*, ResponseType = *Server Timeout*, ApiName = *PutBlob*
+* Metric = *Transactions*, ResponseType = *Success*, ApiName = *GetBlob*
+* Metric = *Transactions*, ResponseType = *Success*, ApiName = *PutBlob*
+* Metric = *Transactions*, ResponseType = *Server Timeout*, ApiName = *GetBlob*
+* Metric = *Transactions*, ResponseType = *Server Timeout*, ApiName = *PutBlob*
 
 >[!NOTE]
 > Multiple criteria are not currently supported for metric alert rules that use dynamic thresholds.
@@ -2100,14 +2100,14 @@ Dynamic Thresholds alerts rule can also help create tailored thresholds for hund
 
 This section will describe Azure Resource Manager templates for three scenarios to monitor multiple resources with a single rule.
 
-- Monitoring all virtual machines (in one Azure region) in one or more resource groups.
-- Monitoring all virtual machines (in one Azure region) in a subscription.
-- Monitoring a list of virtual machines (in one Azure region) in a subscription.
+* Monitoring all virtual machines (in one Azure region) in one or more resource groups.
+* Monitoring all virtual machines (in one Azure region) in a subscription.
+* Monitoring a list of virtual machines (in one Azure region) in a subscription.
 
 > [!NOTE]
 >
-> - In a metric alert rule that monitors multiple resources, only one condition is allowed.
-> - If you are creating a metric alert for a single resource, the template uses the `ResourceId` of the target resource. If you are creating a metric alert for multiple resources, the template uses the `scope`, `TargetResourceType`, and `TargetResourceRegion` for the target resources.
+> * In a metric alert rule that monitors multiple resources, only one condition is allowed.
+> * If you are creating a metric alert for a single resource, the template uses the `ResourceId` of the target resource. If you are creating a metric alert for multiple resources, the template uses the `scope`, `TargetResourceType`, and `TargetResourceRegion` for the target resources.
 
 ### Static threshold alert on all virtual machines in one or more resource groups
 
@@ -5373,6 +5373,6 @@ Additional configuration of the content-match `pingText` parameter is controlled
 
 ## Next steps
 
-- [Get other sample templates for Azure Monitor](../fundamentals/resource-manager-samples.md).
-- [Learn more about alerts](./alerts-overview.md).
-- [Get a sample to create an action group with Resource Manager template](resource-manager-action-groups.md)
+* [Get other sample templates for Azure Monitor](../fundamentals/resource-manager-samples.md).
+* [Learn more about alerts](./alerts-overview.md).
+* [Get a sample to create an action group with Resource Manager template](resource-manager-action-groups.md)
