@@ -14,7 +14,7 @@ ms.custom: HighAvailability Azure Arc-enabled servers
   
 <!--9d5717d2-4708-4e3f-bdda-93b3e6f1715b_begin-->
 
-#### Upgrade to the latest version of the Azure Connected Machine agent  
+#### Upgrade the Azure Connected Machine agent  
   
 The Azure Connected Machine agent is updated regularly with bug fixes, stability enhancements, and new functionality. For the best Azure Arc experience, upgrade your agent to the latest version.  
   
