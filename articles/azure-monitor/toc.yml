@@ -321,7 +321,7 @@ items:
           displayName: virtual machine scale set, VMSS
           href: vm/tutorial-scale-set-alerts.md
       - name: Collect guest logs
-        displayName: virtual machine, VM 
+        displayName: virtual machine, VM
         href: vm/tutorial-collect-logs.md
     - name: Enable monitoring
       items:
@@ -731,14 +731,6 @@ items:
       href: fundamentals/migrate-from-system-center-operations-manager.md
     - name: Convert management packs into data collection rules
       href: fundamentals/convert-management-packs-into-data-collection-rules.md
-  - name: Migrate from SCOM Managed Instance
-    items:
-    - name: Overview
-      href: scom-manage-instance/migration-overview.md
-    - name: Migrate to Azure Monitor
-      href: scom-manage-instance/migrate-to-azure-monitor.md
-    - name: Migration FAQs
-      href: scom-manage-instance/migration-faq-scom-manage-instance.yml
   - name: Monitoring coverage
     href: fundamentals/monitoring-coverage.md
   - name: Service level indicators
@@ -1045,43 +1037,43 @@ items:
       href: data-collection/stream-monitoring-data-event-hubs.md
   - name: Azure Monitor pipeline
     items:
-      - name: Overview
-        href: data-collection/pipeline-overview.md
-      - name: FAQ
-        href: data-collection/pipeline-faq.yml
-      - name: Configure
-        items:
-        - name: Configure Azure Monitor pipeline
-          displayName: Azure Monitor pipeline
-          href: data-collection/pipeline-configure.md
-        - name: Configure with the Azure portal
-          displayName: Azure Monitor pipeline
-          href: data-collection/pipeline-configure-portal.md
-        - name: Configure with CLI or ARM templates
-          displayName: Azure Monitor pipeline
-          href: data-collection/pipeline-configure-cli.md
-      - name: Transformations
-        href: data-collection/pipeline-transformations.md
-      - name: Configure a Kubernetes gateway
-        displayName: Sample gateway setup
-        href: data-collection/pipeline-kubernetes-gateway.md
-      - name: Transport Layer Security (TLS)
-        items:
-        - name: Configure TLS
-          href: data-collection/pipeline-tls.md
-        - name: Automated certificate management (default TLS)
-          href: data-collection/pipeline-tls-automated.md
-        - name: Customer-managed certificates (BYOC)
-          href: data-collection/pipeline-tls-custom.md
-      - name: Sizing best practices
-        href: data-collection/pipeline-sizing.md
-      - name: Pod placement
-        href: data-collection/pipeline-pod-placement.md
-      - name: Extension versions
-        displayName: Azure Monitor pipeline extension versions
-        href: data-collection/pipeline-extension-versions.md
-      - name: Troubleshoot
-        href: data-collection/pipeline-troubleshoot.md
+    - name: Overview
+      href: data-collection/pipeline-overview.md
+    - name: FAQ
+      href: data-collection/pipeline-faq.yml
+    - name: Configure
+      items:
+      - name: Configure Azure Monitor pipeline
+        displayName: Azure Monitor pipeline
+        href: data-collection/pipeline-configure.md
+      - name: Configure with the Azure portal
+        displayName: Azure Monitor pipeline
+        href: data-collection/pipeline-configure-portal.md
+      - name: Configure with CLI or ARM templates
+        displayName: Azure Monitor pipeline
+        href: data-collection/pipeline-configure-cli.md
+    - name: Transformations
+      href: data-collection/pipeline-transformations.md
+    - name: Configure a Kubernetes gateway
+      displayName: Sample gateway setup
+      href: data-collection/pipeline-kubernetes-gateway.md
+    - name: Transport Layer Security (TLS)
+      items:
+      - name: Configure TLS
+        href: data-collection/pipeline-tls.md
+      - name: Automated certificate management (default TLS)
+        href: data-collection/pipeline-tls-automated.md
+      - name: Customer-managed certificates (BYOC)
+        href: data-collection/pipeline-tls-custom.md
+    - name: Sizing best practices
+      href: data-collection/pipeline-sizing.md
+    - name: Pod placement
+      href: data-collection/pipeline-pod-placement.md
+    - name: Extension versions
+      displayName: Azure Monitor pipeline extension versions
+      href: data-collection/pipeline-extension-versions.md
+    - name: Troubleshoot
+      href: data-collection/pipeline-troubleshoot.md
   - name: Custom metrics in Azure Monitor (preview)
     href: metrics/metrics-custom-overview.md
   - name: Custom metrics ingestion using REST
