@@ -28,10 +28,10 @@ In this tutorial, you learn to:
 ## Prerequisites
 To complete this tutorial, you need the following:
 
-- Log Analytics workspace where you have at least [contributor rights](manage-access.md#azure-rbac).
-- [Permissions to create Data Collection Rule objects](../essentials/data-collection-rule-create-edit.md#permissions) in the workspace.
-- The table must already have some data.
-- The table can't already be linked to the [workspace transformation DCR](../essentials/data-collection-transformations.md#workspace-transformation-dcr).
+* Log Analytics workspace where you have at least [contributor rights](manage-access.md#azure-rbac).
+* [Permissions to create Data Collection Rule objects](../essentials/data-collection-rule-create-edit.md#permissions) in the workspace.
+* The table must already have some data.
+* The table can't already be linked to the [workspace transformation DCR](../essentials/data-collection-transformations.md#workspace-transformation-dcr).
 
 ## Overview
 
@@ -56,8 +56,8 @@ You need to enable [query auditing](query-audit.md) for your workspace to create
 ## Update table schema
 Before you can create the transformation, the following two changes must be made to the table:
 
-- The table must be enabled for workspace transformation. This is required for any table that will have a transformation, even if the transformation doesn't modify the table's schema.
-- Any additional columns populated by the transformation must be added to the table.
+* The table must be enabled for workspace transformation. This is required for any table that will have a transformation, even if the transformation doesn't modify the table's schema.
+* Any additional columns populated by the transformation must be added to the table.
 
 Use the [Tables](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation to configure the table with the following PowerShell code. Calling the API enables the table for workspace transformations, whether or not you define custom columns. In this sample, it includes a custom column named *Resources_CF* that the transformation query populates.
 
@@ -124,9 +124,9 @@ Use Log Analytics to test the transformation query before adding it to a data co
     ```
     This makes the following changes:
 
-   - Drop rows related to querying the `LAQueryLogs` table itself to save space since these log entries aren't useful.
-   - Add a column for the name of the workspace that was queried.
-   - Remove data from the `RequestContext` column to save space.
+   * Drop rows related to querying the `LAQueryLogs` table itself to save space since these log entries aren't useful.
+   * Add a column for the name of the workspace that was queried.
+   * Remove data from the `RequestContext` column to save space.
 
 
     :::image type="content" source="media/tutorial-workspace-transformations-portal/modified-query.png" lightbox="media/tutorial-workspace-transformations-portal/modified-query.png" alt-text="Screenshot of modified query in Log Analytics.":::
@@ -134,9 +134,9 @@ Use Log Analytics to test the transformation query before adding it to a data co
 
 1. Make the following changes to the query to use it in the transformation:
 
-   - Instead of specifying a table name (`LAQueryLogs` in this case) as the source of data for this query, use the `source` keyword. This is a virtual table that always represents the incoming data in a transformation query.
-   - Remove any operators that aren't supported by transform queries. See [Supported KQL features](/azure/azure-monitor/essentials/data-collection-transformations-structure) for a detail list of operators that are supported.
-   - Flatten the query to a single line so that it can fit into the DCR JSON.
+   * Instead of specifying a table name (`LAQueryLogs` in this case) as the source of data for this query, use the `source` keyword. This is a virtual table that always represents the incoming data in a transformation query.
+   * Remove any operators that aren't supported by transform queries. See [Supported KQL features](/azure/azure-monitor/essentials/data-collection-transformations-structure) for a detail list of operators that are supported.
+   * Flatten the query to a single line so that it can fit into the DCR JSON.
 
    Following is the query that you will use in the transformation after  these modifications:
 
@@ -149,9 +149,9 @@ Since this is the first transformation in the workspace, you need to create a [w
 
 The following template creates a new DCR for this tutorial. If your workspace already has a transformation DCR:
 
-- Add the `Microsoft-Table-LAQueryLogs` flow to that DCR's `properties.dataFlows` array instead of replacing the DCR with this example.
-- Retain all other data flows, destination entries, and resource settings. The flow's destination name must match the existing workspace destination.
-- Review the complete resource definition before redeploying it. An [incremental template deployment](/azure/azure-resource-manager/templates/deployment-modes#incremental-mode) isn't a property-level patch.
+* Add the `Microsoft-Table-LAQueryLogs` flow to that DCR's `properties.dataFlows` array instead of replacing the DCR with this example.
+* Retain all other data flows, destination entries, and resource settings. The flow's destination name must match the existing workspace destination.
+* Review the complete resource definition before redeploying it. An [incremental template deployment](/azure/azure-resource-manager/templates/deployment-modes#incremental-mode) isn't a property-level patch.
 
 1. In the Azure portal's search box, type in *template* and then select **Deploy a custom template**.
 
@@ -297,6 +297,6 @@ There is currently a known issue affecting dynamic columns. A temporary workarou
 
 ## Related content
 
-- [Read more about transformations](../essentials/data-collection-transformations.md)
-- [Tables that support workspace transformations](../reference/tables-features.md)
-- [Learn more about writing transformation queries](../essentials/data-collection-transformations-structure.md)
+* [Read more about transformations](../essentials/data-collection-transformations.md)
+* [Tables that support workspace transformations](../reference/tables-features.md)
+* [Learn more about writing transformation queries](../essentials/data-collection-transformations-structure.md)

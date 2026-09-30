@@ -208,8 +208,8 @@ The following Azure CLI examples use the [`az monitor log-analytics workspace ta
 
     The `my-dcr.json` file is a resource request body for the preceding command, not an ARM deployment template. When adapting an existing DCR:
 
-    - Add the table's stream declaration under `properties.streamDeclarations` and its route under `properties.dataFlows`.
-    - Reuse or add the workspace destination under `properties.destinations.logAnalytics`. Keep all other streams, destination entries, data flows, and resource settings.
+    * Add the table's stream declaration under `properties.streamDeclarations` and its route under `properties.dataFlows`.
+    * Reuse or add the workspace destination under `properties.destinations.logAnalytics`. Keep all other streams, destination entries, data flows, and resource settings.
 
     <br>
     <details>
@@ -416,8 +416,8 @@ The following Azure PowerShell examples use the [`New-AzOperationalInsightsTable
 
     The `my-dcr.json` file is a resource request body for the preceding command, not an ARM deployment template. When adapting an existing DCR:
 
-    - Add the table's stream declaration under `properties.streamDeclarations` and its route under `properties.dataFlows`.
-    - Reuse or add the workspace destination under `properties.destinations.logAnalytics`. Keep all other streams, destination entries, data flows, and resource settings.
+    * Add the table's stream declaration under `properties.streamDeclarations` and its route under `properties.dataFlows`.
+    * Reuse or add the workspace destination under `properties.destinations.logAnalytics`. Keep all other streams, destination entries, data flows, and resource settings.
 
     <br>
     <details>
