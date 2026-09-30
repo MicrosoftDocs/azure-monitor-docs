@@ -1119,7 +1119,7 @@ A single alert rule can monitor multiple metric time series at a time, which res
 In this sample, the alert rule monitors the dimensions value combinations of the **ResponseType** and **ApiName** dimensions for the **Transactions** metric:
 
 1. **ResponseType** - The use of the "\*" wildcard means that for each value of the **ResponseType** dimension, including future values, a different time series is monitored individually.
-2. **ApiName** - A different time series is monitored only for the **GetBlob** and **PutBlob** dimension values.
+1. **ApiName** - A different time series is monitored only for the **GetBlob** and **PutBlob** dimension values.
 
 For example, a few of the potential time series that are monitored by this alert rule are:
 
@@ -1425,7 +1425,7 @@ A single dynamic thresholds alert rule can create tailored thresholds for hundre
 In this sample, the alert rule monitors the dimensions value combinations of the **ResponseType** and **ApiName** dimensions for the **Transactions** metric:
 
 1. **ResponseType** - For each value of the **ResponseType** dimension, including future values, a different time series is monitored individually.
-2. **ApiName** - A different time series is monitored only for the **GetBlob** and **PutBlob** dimension values.
+1. **ApiName** - A different time series is monitored only for the **GetBlob** and **PutBlob** dimension values.
 
 For example, a few of the potential time series that are monitored by this alert rule are:
 
