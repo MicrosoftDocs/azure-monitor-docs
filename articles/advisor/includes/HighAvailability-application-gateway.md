@@ -37,7 +37,7 @@ Subcategory: undefined
   
 To improve security and provide a more consistent experience across Azure, all users must pass a permission check to create or update an Application Gateway in a Virtual Network. The users or service principals minimum permission required is Microsoft.Network/virtualNetworks/subnets/join/action.  
   
-**Potential benefits**: Avoid disruptions in management of Application Gateway resource  
+**Potential benefits**: Ensure access to Application Gateway V1 resource management  
 
 **Impact:** High
   
@@ -55,7 +55,7 @@ Subcategory: undefined
   
 Your Application Gateway is at risk of deletion after October 2024 due to a failed internal upgrade. This is due to subnet named Gatewaysubnet, which is reserved for VPN/ExpressRoute. To resolve, please change the subnet or migrate to V2. Allow a day for the message to disappear once fixed  
   
-**Potential benefits**: Avoid disruption in management of Application Gateway V1 resource  
+**Potential benefits**: Ensure access to Application Gateway V1 resource management  
 
 **Impact:** High
   
@@ -129,6 +129,8 @@ Using Traffic Manager as one of the origins for Front Door isn't recommended, as
   
 **Potential benefits**: Increase your workload resiliency  
 
+**Impact:** Medium
+  
 For more information, see [Best practices for Front Door](https://aka.ms/afd-avoid-tm-frontdoor)  
 
 <!--825ff735-ed9a-4335-b132-321df86b0e81_end-->
@@ -153,7 +155,7 @@ Subcategory: BusinessContinuity
 
 <!--6cd70072-c45c-4716-bf7b-b35c18e46e72_begin-->
 
-#### Add at least one more endpoint to the profile, preferably in another Azure region  
+#### Add Endpoint  
   
 Profiles need more than one endpoint to ensure availability if one of the endpoints fails. We also recommend that endpoints be in different regions.  
   
@@ -171,7 +173,7 @@ Subcategory: undefined
 
 <!--0bbe0a49-3c63-49d3-ab4a-aa24198f03f7_begin-->
 
-#### Add an endpoint configured to All (World)  
+#### Add Endpoint  
   
 For geographic routing, traffic is routed to endpoints in defined regions. When a region fails, there is no pre-defined failover. Having an endpoint where the Regional Grouping is configured to All (World) for geographic profiles avoids traffic black holing and guarantees service availability.  
   
@@ -483,7 +485,7 @@ Basic SKU public IP addresses are retiring. The Standard and High-Performance SK
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates?id=standard-and-highperformance-vpn-gateway-skus-will-be-retired-on-30-september-2025)  
 
