@@ -20,7 +20,7 @@ Azure Monitor ContainerLog table will be retired. Customers should migrate to th
   
 **Potential benefits**: Maintain observability  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Configure the ContainerLogV2 schema for Container Insights - Azure Monitor](/azure/azure-monitor/containers/container-insights-logs-schema)  
 
@@ -38,7 +38,7 @@ Azure Activity Logs Legacy solution will be retired and replaced by Diagnostic S
   
 **Potential benefits**: Ensure automation continuity  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates?id=azure-activity-logs-legacy-solution-is-replaced-by-diagnostic-settings)  
 
