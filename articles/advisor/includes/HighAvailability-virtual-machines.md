@@ -214,9 +214,9 @@ Subcategory: BusinessContinuity
 
 #### Upgrade your VMSS to alternative image version  
   
-VMSS in your subscription are running on images that have been scheduled for deprecation. Once the image is deprecated, your VMSS workloads would no longer scale out. Upgrade to newer version of the image to prevent disruption to your workload.  
+VMSS in your subscription are running on images that are scheduled for deprecation. When the image is deprecated, your VMSS workloads stop scaling out. Upgrade to a newer version of the image to prevent disruption to your workload.
   
-**Potential benefits**: Minimize any potential disruptions to your VMSS workloads  
+**Potential benefits**: Minimize any potential disruptions to your VMSS workloads.
 
 **Impact:** High
   
@@ -232,9 +232,9 @@ Subcategory: undefined
 
 #### Upgrade your VMSS to alternative image offer  
   
-VMSS in your subscription are running on images that have been scheduled for deprecation. Once the image is deprecated, your VMSS workloads would no longer scale out. To prevent disruption to your workload, upgrade to newer offer of the image.  
+VMSS in your subscription are running on images that are scheduled for deprecation. When the image is deprecated, your VMSS workloads stop scaling out. To prevent disruption to your workload, upgrade to a newer offer of the image.
   
-**Potential benefits**: Minimize any potential disruptions to your VMSS workloads  
+**Potential benefits**: Minimize any potential disruptions to your VMSS workloads.
 
 **Impact:** High
   
@@ -250,9 +250,9 @@ Subcategory: ServiceUpgradeAndRetirement
 
 #### Upgrade your VMSS to alternative image SKU  
   
-VMSS in your subscription are running on images that have been scheduled for deprecation. Once the image is deprecated, your VMSS workloads would no longer scale out. To prevent disruption to your workload, upgrade to newer SKU of the image.  
+VMSS in your subscription are running on images that are scheduled for deprecation. When the image is deprecated, your VMSS workloads stop scaling out. To prevent disruption to your workload, upgrade to a newer SKU of the image.
   
-**Potential benefits**: Minimize any potential disruptions to your VMSS workloads  
+**Potential benefits**: Minimize any potential disruptions to your VMSS workloads.
 
 **Impact:** High
   
