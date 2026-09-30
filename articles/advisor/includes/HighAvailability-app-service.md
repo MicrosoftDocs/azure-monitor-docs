@@ -34,7 +34,7 @@ Subcategory: Other
 
 #### Check your app's service health issues  
   
-We have a recommendation related to your app's service health. Open the Azure portal, go to the app, click the Diagnose and Solve to see more details.  
+We have a recommendation related to your app's service health. Please open the Azure Portal, go to the app, click the Diagnose and Solve to see more details.  
   
 **Potential benefits**: Keep your app healthy  
 
@@ -344,7 +344,7 @@ In alignment with the end of community support, support for Python 3.10 in Azure
   
 **Potential benefits**: Avoid service interruption  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=545771)  
 
@@ -362,7 +362,7 @@ Applications hosted on App Service continue to run. Future security updates and 
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485077)  
 
@@ -380,7 +380,7 @@ Applications hosted on Azure Functions continue to run. Future security updates 
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=489428)  
 
@@ -416,7 +416,7 @@ Support for .NET 8 (LTS) is ending. Apps that are hosted on App Service will con
   
 **Potential benefits**: Avoid service disruption  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=558033)  
 
@@ -434,7 +434,7 @@ Extended support for PHP 8.2 is ending. Apps hosted on App Service continue to r
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates?id=php-82-app-svc)  
 
