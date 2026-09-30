@@ -8,7 +8,7 @@ ms.custom:
   - devx-track-azurepowershell, devx-track-azurecli
   - references_regions
   - sfi-ropc-nochange
-  - cbo-v1.5
+  - cbo-v1.6
 ---
 
 # Create and configure Application Insights resources
@@ -211,6 +211,10 @@ resource applicationInsightsComponent 'Microsoft.Insights/components@<ApiVersion
 
 The following ARM (JSON) example uses the [Microsoft.Insights/components](/azure/templates/microsoft.insights/components?pivots=deployment-language-arm-template) resource type.
 
+<br>
+<details>
+<summary>Create an Application Insights resource</summary>
+
 ```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
@@ -256,6 +260,8 @@ The following ARM (JSON) example uses the [Microsoft.Insights/components](/azure
 }
 ```
 
+</details>
+
 ---
 <!--
 | Variable | Placeholder | Purpose |
@@ -275,7 +281,7 @@ After creating an Application Insights resource, you configure monitoring.
 
 The [connection string](./connection-strings.md?tabs=net) identifies the resource that you want to associate your telemetry data with. You can also use it to modify the endpoints your resource uses as a destination for your telemetry. You must copy the connection string and add it to your application's code or to an environment variable.
 
-# [Portal](#tab/portal)
+# [Portal](#tab/portal-2)
 
 To get the connection string of your Application Insights resource:
 
@@ -283,7 +289,7 @@ To get the connection string of your Application Insights resource:
 1. On the **Overview** pane in the **Essentials** section, look for **Connection string**.
 1. If you hover over the connection string, an icon appears which allows you to copy it to your clipboard.
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/cli-2)
 
 The following Azure CLI example uses the [az monitor app-insights component show](/cli/azure/monitor/app-insights/component) command.
 
@@ -300,7 +306,7 @@ az monitor app-insights component show \
 
 Look for the `connectionString` field in the JSON response.
 
-# [Azure PowerShell](#tab/powershell)
+# [Azure PowerShell](#tab/powershell-2)
 
 The following Azure PowerShell example uses the [Get-AzApplicationInsights](/powershell/module/az.applicationinsights/get-azapplicationinsights) cmdlet.
 
@@ -321,7 +327,7 @@ Get-AzApplicationInsights @getAzApplicationInsightsParams
 
 Look for the `ConnectionString` property in the output.
 
-# [REST](#tab/rest)
+# [REST](#tab/rest-2)
 
 The following REST example uses the [Components](../fundamentals/azure-monitor-rest-api-index.md#op-appinsights-components) REST API operation.
 
@@ -331,14 +337,6 @@ Authorization: Bearer {accessToken}
 ```
 
 Look for the `properties.connectionString` field in the JSON response.
-
-# [Bicep](#tab/bicep)
-
-Not applicable to Bicep templates.
-
-# [ARM template](#tab/arm)
-
-Not applicable to ARM templates.
 
 ---
 <!--
@@ -455,6 +453,13 @@ Content-Type: application/json
 
 The following Bicep example uses the [Microsoft.Insights components](/azure/templates/microsoft.insights/components?pivots=deployment-language-bicep) resource type.
 
+Before updating an existing component:
+
+* Combine the illustrated `properties.WorkspaceResourceId` change with its complete resource definition.
+* Retain its existing `kind`, `Application_Type`, tags, and all other configured properties.
+
+The template isn't a partial patch.
+
 ```bicep
 param subscriptionId string = '<SubscriptionId>'
 param resourceGroupName string = '<ResourceGroupName>'
@@ -478,6 +483,17 @@ resource applicationInsightsComponent 'Microsoft.Insights/components@<ApiVersion
 # [ARM template](#tab/arm)
 
 The following ARM (JSON) example uses the [Microsoft.Insights components](/azure/templates/microsoft.insights/components?pivots=deployment-language-arm-template) resource type.
+
+Before updating an existing component:
+
+* Combine the illustrated `properties.WorkspaceResourceId` change with its complete resource definition.
+* Retain its existing `kind`, `Application_Type`, tags, and all other configured properties.
+
+The template isn't a partial patch.
+
+<br>
+<details>
+<summary>Modify the associated workspace</summary>
 
 ```json
 {
@@ -523,6 +539,8 @@ The following ARM (JSON) example uses the [Microsoft.Insights components](/azure
   ]
 }
 ```
+
+</details>
 
 ---
 <!--
@@ -599,13 +617,9 @@ $resourceId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/
 $storageAccountId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageAccountName"
 
 # Create log and metric settings objects
-$log = New-AzDiagnosticSettingLogSettingsObject `
-  -Category 'AppRequests' `
-  -Enabled $true
+$log = New-AzDiagnosticSettingLogSettingsObject -Category 'AppRequests' -Enabled $true
 
-$metric = New-AzDiagnosticSettingMetricSettingsObject `
-  -Category 'AllMetrics' `
-  -Enabled $true
+$metric = New-AzDiagnosticSettingMetricSettingsObject -Category 'AllMetrics' -Enabled $true
 
 # Define parameters for New-AzDiagnosticSetting
 $newAzDiagnosticSettingParams = @{
@@ -690,6 +704,10 @@ resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@<ApiVersion>' 
 
 The following ARM template example uses the [Microsoft.Insights diagnosticSettings](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-template) resource type. It creates a diagnostic setting that sends logs and metrics from an Application Insights resource to a storage account.
 
+<br>
+<details>
+<summary>Export telemetry</summary>
+
 ```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
@@ -744,6 +762,8 @@ The following ARM template example uses the [Microsoft.Insights diagnosticSettin
 }
 ```
 
+</details>
+
 ---
 <!--
 | Variable | Placeholder | Purpose |
@@ -756,6 +776,12 @@ The following ARM template example uses the [Microsoft.Insights diagnosticSettin
 | apiVersion | 2021-05-01-preview | [Reference](/rest/api/monitor/diagnostic-settings/create-or-update) |
 -->
 ### Set the data retention
+
+For template-based workspace updates in this and the following sections:
+
+* Apply the illustrated setting within your complete `Microsoft.OperationalInsights/workspaces` resource definition.
+* Retain the existing SKU, retention, daily cap, identity, features, and all other configured properties or array entries that you aren't changing.
+* Review the complete definition before redeploying. An [incremental template deployment](/azure/azure-resource-manager/templates/deployment-modes#incremental-mode) isn't a property-level patch.
 
 # [Portal](#tab/portal)
 
@@ -788,7 +814,7 @@ The following Bicep example uses the [Microsoft.OperationalInsights workspaces](
 ```bicep
 param workspaceName string = '<WorkspaceName>'
 param azureRegion string = '<AzureRegion>'
-param retentionInDays int = <RetentionInDays>
+param retentionInDays int
 
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@<ApiVersion>' = {
   name: workspaceName
@@ -817,8 +843,7 @@ The following ARM (JSON) example uses the [Microsoft.OperationalInsights workspa
       "defaultValue": "<AzureRegion>"
     },
     "retentionInDays": {
-      "type": "int",
-      "defaultValue": <RetentionInDays>
+      "type": "int"
     }
   },
   "resources": [
@@ -1048,7 +1073,7 @@ workspaceName="<WorkspaceName>"
 az monitor log-analytics workspace update \
   --resource-group "$resourceGroupName" \
   --workspace-name "$workspaceName" \
-  --set PerGB2018
+  --sku PerGB2018
 ```
 
 **Commitment tier:**
@@ -1063,7 +1088,7 @@ capacityReservationInGb="<CapacityReservationInGb>"
 az monitor log-analytics workspace update \
   --resource-group "$resourceGroupName" \
   --workspace-name "$workspaceName" \
-  --set CapacityReservation \
+  --sku CapacityReservation \
   --level "$capacityReservationInGb"
 ```
 
@@ -1327,6 +1352,10 @@ az monitor app-insights web-test create \
 
 The following Azure PowerShell example uses the [New-AzApplicationInsightsWebTest](/powershell/module/az.applicationinsights/new-azapplicationinsightswebtest) cmdlet. It creates a standard availability test with default settings.
 
+<br>
+<details>
+<summary>Create an availability test</summary>
+
 ```powershell
 # Set variables
 $resourceGroupName = "<ResourceGroupName>"
@@ -1371,6 +1400,8 @@ $newAzApplicationInsightsWebTestParams = @{
 # Create a standard availability test
 New-AzApplicationInsightsWebTest @newAzApplicationInsightsWebTestParams
 ```
+
+</details>
 
 > [!NOTE]
 > The web test region (`-Location`) is different from the geographic location (`-GeoLocation`) of which multiple can be selected. `-Location` refers to the Azure region where the web test is created and hosted, while `-GeoLocation` refers to the geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
@@ -1475,6 +1506,10 @@ For more information about creating availability tests using Bicep, see [Microso
 
 The following ARM (JSON) example uses the [Microsoft.Insights webtests](/azure/templates/microsoft.insights/webtests?pivots=deployment-language-arm-template) resource type. It creates a standard availability test with default settings.
 
+<br>
+<details>
+<summary>Create an availability test</summary>
+
 ```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
@@ -1543,6 +1578,8 @@ The following ARM (JSON) example uses the [Microsoft.Insights webtests](/azure/t
   ]
 }
 ```
+
+</details>
 
 > [!NOTE]
 > The web test region (`location`) is different from the geographic location (`Locations`) of which multiple can be selected. `location` refers to the Azure region where the web test is created and hosted, while `Locations` refers to the geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
