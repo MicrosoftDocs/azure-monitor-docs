@@ -99,9 +99,9 @@ Subcategory: undefined
 
 <!--fac2ad84-1421-4dd3-8477-9d6e605392b4_begin-->
 
-#### Clusters having node pools using non-recommended B-Series  
+#### Clusters with node pools using nonrecommended B-series
   
-When a cluster has one or more node pools using a non-recommended burstable VM SKU, full vCPU capability 100% is unguaranteed. Ensure B-series VM's are not used in production environments.  
+When a cluster has one or more node pools that use a nonrecommended burstable VM SKU, the cluster doesn't guarantee full vCPU capability at 100%. Ensure B-series VMs aren't used in production environments.
   
 **Potential benefits**: Best practice for consistent performance  
 
