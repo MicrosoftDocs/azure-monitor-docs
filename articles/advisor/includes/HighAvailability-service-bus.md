@@ -80,7 +80,7 @@ Older Azure Service Bus SDK libraries (WindowsAzure.ServiceBus, Microsoft.Azure.
   
 **Potential benefits**: Maintain security & performance  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates?id=retirement-notice-update-your-azure-service-bus-sdk-libraries-by-30-september-2026)  
 
