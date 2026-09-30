@@ -1,17 +1,18 @@
 ---
-title: Enhance resilience by replicating your Log Analytics workspace across regions
+title: Enhance Resilience by Replicating Your Log Analytics Workspace Across Regions
 description: Use the workspace replication feature in Log Analytics to create copies of a workspace in different regions for data resiliency.
 ms.topic: how-to
 ms.reviewer: noakuper
 ms.date: 05/12/2026
-ms.custom: references_regions 
+ms.custom: references_regions, cbo-v1.6
+ai-usage: ai-assisted
 
 # Customer intent: As a Log Analytics workspace administrator, I want to replicate my workspace across regions to protect and continue to access my log data in the event of a regional failure.
 ---
 
 # Enhance resilience by replicating your Log Analytics workspace across regions
 
-Replicating your Log Analytics workspace across regions enhances resilience by letting you switch over to the replicated workspace and continue operations if there's a regional failure. This article explains how Log Analytics workspace replication works, how to replicate your workspace, how to switch over and back, and how to decide when to switch between your replicated workspaces. 
+Replicating your Log Analytics workspace across regions enhances resilience by letting you switch over to the replicated workspace and continue operations if there's a regional failure. This article explains how Log Analytics workspace replication works, how to replicate your workspace, how to switch over and back, and how to decide when to switch between your replicated workspaces.
 
 Workspace replication is a paid, configurable feature that protects against region-wide incidents. It complements [availability zones](availability-zones.md), the transparent in-region protection against datacenter failures. For a comprehensive overview of all resiliency options, see [Reliability in Azure Monitor Logs](/azure/reliability/reliability-monitor-logs).
 
@@ -20,17 +21,17 @@ Here's a video that provides a quick overview of how Log Analytics workspace rep
 >[!VIDEO https://www.youtube.com/embed/9t7T7D4oVMk?cc_load_policy=1&cc_lang_pref=auto]
 
 > [!IMPORTANT]
-> Although we sometimes use the term failover, for example in the API call, failover is also commonly used to describe an automatic process. Therefore, this article uses the term switchover to emphasize that the switch to the replicated workspace is an action you trigger manually. 
+> Although we sometimes use the term failover, for example in the API call, failover is also commonly used to describe an automatic process. Therefore, this article uses the term switchover to emphasize that the switch to the replicated workspace is an action you trigger manually.
 
 ## How Log Analytics workspace replication works
 
 Your original workspace and region are referred to as the **primary**. The replicated workspace and alternate region are referred to as the **secondary**.
 
-The workspace replication process creates an instance of your workspace in the secondary region. The process creates the secondary workspace with the same configuration as your primary workspace, and Azure Monitor automatically updates the secondary workspace with any future changes you make to your primary workspace configuration. 
+The workspace replication process creates an instance of your workspace in the secondary region. The process creates the secondary workspace with the same configuration as your primary workspace, and Azure Monitor automatically updates the secondary workspace with any future changes you make to your primary workspace configuration.
 
 The secondary workspace is a "shadow" workspace for resilience purposes only. You can't see the secondary workspace in the Azure portal, and you can't manage or access it directly.
 
-When you enable workspace replication, Azure Monitor sends new logs ingested to your primary workspace to your secondary region also. Logs you ingest to the workspace before you enable workspace replication aren't copied over. 
+When you enable workspace replication, Azure Monitor sends new logs ingested to your primary workspace to your secondary region also. Logs you ingest to the workspace before you enable workspace replication aren't copied over.
 
 > [!NOTE]
 > Workspace replication fully replicates all table schemas, but only sends **new** logs ingested since replication was activated. Logs ingested to the workspace before you enable workspace replication aren't copied over.
@@ -46,13 +47,13 @@ When you switch over, the secondary workspace becomes active and your primary be
 
 #### Protection against loss of data in transit during a regional failure
 
-Azure Monitor has several mechanisms to ensure that data in transit isn't lost when there's a failure in the primary region. 
+Azure Monitor has several mechanisms to ensure that data in transit isn't lost when there's a failure in the primary region.
 
 Azure Monitor protects data that reaches the primary region's ingestion endpoint when the primary region's pipeline is unavailable to process the data. When the pipeline becomes available, it continues to process data in transit, and Azure Monitor ingests and replicates the data to the secondary region.
 
 If the primary region's ingestion endpoint isn't available, Azure Monitor Agent regularly retries sending log data to the endpoint. The data ingestion endpoint in the secondary region starts to receive data from agents a few minutes after you trigger switchover.
 
-If you write your own client to send log data to your Log Analytics workspace, ensure that the client handles failed ingestion requests. 
+If you write your own client to send log data to your Log Analytics workspace, ensure that the client handles failed ingestion requests.
 
 ## Deployment considerations
 
@@ -90,7 +91,7 @@ If you write your own client to send log data to your Log Analytics workspace, e
 
 ### Supported regions
 
-Workspace replication is currently supported for workspaces in a limited set of regions, organized by region groups (groups of geographically adjacent regions). When you enable replication, select a secondary location from the list of supported regions in the same region group as the workspace primary location. For example, a workspace in West Europe can be replicated in North Europe, but not in West US 2, since these regions are in different region groups. 
+Workspace replication currently supports workspaces in a limited set of regions, organized by region groups (groups of geographically adjacent regions). When you enable replication, select a secondary location from the list of supported regions in the same region group as the workspace primary location. For example, a workspace in West Europe can be replicated in North Europe, but not in West US 2, since these regions are in different region groups.
 
 These region groups and regions are currently supported:
 
@@ -122,7 +123,7 @@ Some Azure Monitor experiences, including Application Insights and VM Insights, 
 
 ## Pricing model
 
-When you enable workspace replication, you pay for the replication of all data you ingest to your workspace, except data with [_IsBillable](log-standard-columns.md#_isbillable-column) = false. 
+When you enable workspace replication, you pay for the replication of all data you ingest to your workspace, except data with [_IsBillable](log-standard-columns.md#_isbillable-column) = false.
 
 > [!IMPORTANT]
 > If you send data to your workspace using the Azure Monitor Agent, the Logs Ingestion API, Azure Event Hubs, or other data sources that use data collection rules, make sure you [associate your data collection rules with your workspace's data collection endpoint](#associate-data-collection-rules-with-the-workspace-data-collection-endpoint). This association ensures that the data you ingest is replicated to your secondary workspace. If you don't associate your data collection rules with the workspace data collection endpoint, you're still charged for all the data you ingest to your workspace, even though the data isn't replicated.
@@ -131,9 +132,9 @@ When you enable workspace replication, you pay for the replication of all data y
 
 | Action | Permissions required |
 |--------|----------------------|
-| Enable workspace replication | `Microsoft.OperationalInsights/workspaces/write` and `Microsoft.Insights/dataCollectionEndpoints/write` permissions, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
-| Switch over and switch back (trigger failover and failback) | `Microsoft.OperationalInsights/locations/workspaces/failover`, `Microsoft.OperationalInsights/workspaces/failback`, `Microsoft.Insights/dataCollectionEndpoints/triggerFailover/action`, and `Microsoft.Insights/dataCollectionEndpoints/triggerFailback/action` permissions, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
-| Check workspace state | `Microsoft.OperationalInsights/workspaces/read` permissions to the Log Analytics workspace, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
+| Enable workspace replication | `Microsoft.OperationalInsights/workspaces/write` and `Microsoft.Insights/dataCollectionEndpoints/write` permissions, as provided by the [Monitoring Contributor built-in role](../fundamentals/roles-permissions-security.md#monitoring-contributor), for example |
+| Switch over and switch back (trigger failover and failback) | `Microsoft.OperationalInsights/locations/workspaces/failover`, `Microsoft.OperationalInsights/workspaces/failback`, `Microsoft.Insights/dataCollectionEndpoints/triggerFailover/action`, and `Microsoft.Insights/dataCollectionEndpoints/triggerFailback/action` permissions, as provided by the [Monitoring Contributor built-in role](../fundamentals/roles-permissions-security.md#monitoring-contributor), for example |
+| Check workspace state | `Microsoft.OperationalInsights/workspaces/read` permissions to the Log Analytics workspace, as provided by the [Monitoring Contributor built-in role](../fundamentals/roles-permissions-security.md#monitoring-contributor), for example |
 
 ## Enable and disable workspace replication
 
@@ -149,86 +150,188 @@ Once cross-region replication is enabled, proceed to enable replication for one 
 
 To enable replication on your dedicated cluster, use the following command. Enabling replication on the cluster is a long running operation which might take time to complete, and you can track its exact state as explained in [Check cluster provisioning state](#check-cluster-provisioning-state).
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/cli)
 
-To enable cluster replication, use the [az rest](/cli/azure/use-azure-cli-rest-command) Azure CLI command to invoke the Azure Resource Manager REST API:
+The following Azure CLI example uses [`az rest`](/cli/azure/reference-index#az-rest) to call the [`Clusters - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-clusters) REST API operation.
 
-```azurecli
-az rest --method put \
-  --uri "/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/clusters/<cluster_name>?api-version=2025-02-01" \
-  --body '{
-    "properties": {
-      "replication": {
-        "enabled": true,
-        "location": "<secondary_region>"
-      }
-    },
-    "location": "<primary_region>"
-  }'
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+clusterName="<ClusterName>"
+apiVersion="<ApiVersion>"
+
+# Get the subscription ID from the current Azure CLI context
+subscriptionId=$(az account show --query id --output tsv)
+
+# Build request URL
+apiEndpoint="https://management.azure.com"
+path="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+provider="Microsoft.OperationalInsights/clusters/$clusterName"
+queryString="?api-version=$apiVersion"
+url="$apiEndpoint$path/providers/$provider$queryString"
+
+# Send request
+az rest --method put --url "$url" --body @body.json
 ```
 
-# [REST API](#tab/rest-api)
+Save the following request body as **body.json**. Use the cluster's existing region for `location` and retain any other settings required by its configuration.
 
-To enable cluster replication, use this `PUT` command: 
-
-```http
-PUT 
-
-https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/clusters/<cluster_name>?api-version=2025-02-01
-
-body:
+```json
 {
+  "location": "<PrimaryRegion>",
   "properties": {
     "replication": {
       "enabled": true,
-      "location": "<secondary_region>"
+      "location": "<SecondaryRegion>"
     }
-  },
-  "location": "<primary_region>"
+  }
 }
 ```
 
+# [Azure PowerShell](#tab/powershell)
+
+The following Azure PowerShell example uses [`Invoke-AzRestMethod`](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Clusters - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-clusters) REST API operation.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$clusterName = "<ClusterName>"
+$primaryRegion = "<PrimaryRegion>"
+$secondaryRegion = "<SecondaryRegion>"
+$apiVersion = "<ApiVersion>"
+
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
+
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$provider = "Microsoft.OperationalInsights/clusters/$clusterName"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider$queryString"
+
+# Build request body
+$body = @{
+    location = $primaryRegion
+    properties = @{
+        replication = @{
+            enabled = $true
+            location = $secondaryRegion
+        }
+    }
+} | ConvertTo-Json -Depth 4
+
+# Send request
+Invoke-AzRestMethod -Method PUT -Uri $url -Payload $body
+```
+
+Use the cluster's existing region for `primaryRegion` and retain any other settings required by its configuration in the request body.
+
+# [REST](#tab/rest)
+
+The following REST example uses the [`Clusters - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-clusters) REST API operation. Use the cluster's existing region for `location` and retain any other settings required by its configuration.
+
+```REST
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/clusters/{clusterName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+Content-Type: application/json
+
+{
+  "location": "<PrimaryRegion>",
+  "properties": {
+    "replication": {
+      "enabled": true,
+      "location": "<SecondaryRegion>"
+    }
+  }
+}
+```
+
+# [Bicep](#tab/bicep)
+
+> [!NOTE]
+> Template deployments create or update the cluster; they aren't partial PATCH operations. Keep the existing identity, key, SKU, billing, and other settings in the template.
+
+Use the [`Microsoft.OperationalInsights/clusters`](/azure/templates/microsoft.operationalinsights/clusters?pivots=deployment-language-bicep) resource type in your existing Bicep template:
+
+* Declare `param secondaryRegion string = '<SecondaryRegion>'`.
+* Set `properties.replication.enabled` to `true`.
+* Set `properties.replication.location` to `secondaryRegion`.
+* Keep the resource's `location` set to its primary region.
+
+Then redeploy the complete configuration.
+
+# [ARM template](#tab/arm)
+
+> [!NOTE]
+> Template deployments create or update the cluster; they aren't partial PATCH operations. Keep the existing identity, key, SKU, billing, and other settings in the template.
+
+Use the [`Microsoft.OperationalInsights/clusters`](/azure/templates/microsoft.operationalinsights/clusters?pivots=deployment-language-arm-template) resource type in your existing ARM template:
+
+* Add a string parameter named `secondaryRegion` with `defaultValue` set to `"<SecondaryRegion>"`.
+* Set `properties.replication.enabled` to `true`.
+* Set `properties.replication.location` to `"[parameters('secondaryRegion')]"`.
+* Keep the resource's `location` set to its primary region.
+
+Then redeploy the complete configuration.
+
 ---
-
-Where:
-
-* `<subscription_id>`: The subscription ID related to your cluster
-* `<resourcegroup_name>` : The resource group that contains your Log Analytics cluster resource
-* `<cluster_name>`: The name of your dedicated cluster
-* `<primary_region>`: The primary region for your Log Analytics dedicated cluster
-* `<secondary_region>`: The region in which Azure Monitor creates the secondary dedicated cluster
 
 ### Check cluster provisioning state
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/cli-2)
 
-To check the provisioning state of your cluster, use the [az monitor log-analytics cluster show](/cli/azure/monitor/log-analytics/cluster#az-monitor-log-analytics-cluster-show) Azure CLI command:
+The following Azure CLI example uses the [`az monitor log-analytics cluster show`](/cli/azure/monitor/log-analytics/cluster#az-monitor-log-analytics-cluster-show) command.
 
-```azurecli
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+clusterName="<ClusterName>"
+
+# Retrieve the replication state
 az monitor log-analytics cluster show \
-  --resource-group <resourcegroup_name> \
-  --cluster-name <cluster_name> \
+  --resource-group "$resourceGroupName" --name "$clusterName" \
   --query "replication.provisioningState"
 ```
 
-# [REST API](#tab/rest-api)
+[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
-To check the provisioning state of your cluster, run this `GET` command:
+# [Azure PowerShell](#tab/powershell-2)
 
-```http
-GET
+The following Azure PowerShell example uses [`Invoke-AzRestMethod`](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Clusters - Get`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-clusters) REST API operation.
 
-https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/clusters/<cluster_name>?api-version=2025-02-01
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$clusterName = "<ClusterName>"
+$apiVersion = "<ApiVersion>"
+
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
+
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$provider = "Microsoft.OperationalInsights/clusters/$clusterName"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider$queryString"
+
+# Retrieve the replication state
+$response = Invoke-AzRestMethod -Method GET -Uri $url
+($response.Content | ConvertFrom-Json).properties.replication.provisioningState
+```
+
+# [REST](#tab/rest-2)
+
+The following REST example uses the [`Clusters - Get`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-clusters) REST API operation. Check `properties.replication.provisioningState` in the response.
+
+```REST
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/clusters/{clusterName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 ```
 
 ---
 
-Where:
-
-* `<subscription_id>`: The subscription ID related to your cluster
-* `<resourcegroup_name>`: The resource group that contains your Log Analytics cluster resource
-* `<cluster_name>`: The name of your Log Analytics cluster
- 
 Use the command to verify that the cluster provisioning state changes from `Updating` to `Succeeded`, and the secondary region is set as expected.
 
 > [!NOTE]
@@ -236,54 +339,132 @@ Use the command to verify that the cluster provisioning state changes from `Upda
 
 ### Enable workspace replication
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/cli)
 
-To enable replication on your Log Analytics workspace, use the [az rest](/cli/azure/use-azure-cli-rest-command) Azure CLI command to invoke the Azure Resource Manager REST API:
+The following Azure CLI example uses [`az rest`](/cli/azure/reference-index#az-rest) to call the [`Workspaces - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation.
 
-```azurecli
-az rest --method put \
-  --uri "/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>?api-version=2025-02-01" \
-  --body '{
-    "properties": {
-      "replication": {
-        "enabled": true,
-        "location": "<secondary_region>"
-      }
-    },
-    "location": "<primary_region>"
-  }'
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+apiVersion="<ApiVersion>"
+
+# Get the subscription ID from the current Azure CLI context
+subscriptionId=$(az account show --query id --output tsv)
+
+# Build request URL
+apiEndpoint="https://management.azure.com"
+path="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+provider="Microsoft.OperationalInsights/workspaces/$workspaceName"
+queryString="?api-version=$apiVersion"
+url="$apiEndpoint$path/providers/$provider$queryString"
+
+# Send request
+az rest --method put --url "$url" --body @body.json
 ```
 
-# [REST API](#tab/rest-api)
+Save the following request body as **body.json**. Use the workspace's existing region for `location` and retain any other settings required by its configuration.
 
-To enable replication on your Log Analytics workspace, use this `PUT` command:
-
-```http
-PUT 
-
-https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>?api-version=2025-02-01
-
-body:
+```json
 {
+  "location": "<PrimaryRegion>",
   "properties": {
     "replication": {
       "enabled": true,
-      "location": "<secondary_region>"
+      "location": "<SecondaryRegion>"
     }
-  },
-  "location": "<primary_region>"
+  }
 }
 ```
 
+# [Azure PowerShell](#tab/powershell)
+
+The following Azure PowerShell example uses [`Invoke-AzRestMethod`](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Workspaces - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$primaryRegion = "<PrimaryRegion>"
+$secondaryRegion = "<SecondaryRegion>"
+$apiVersion = "<ApiVersion>"
+
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
+
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$provider = "Microsoft.OperationalInsights/workspaces/$workspaceName"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider$queryString"
+
+# Build request body
+$body = @{
+    location = $primaryRegion
+    properties = @{
+        replication = @{
+            enabled = $true
+            location = $secondaryRegion
+        }
+    }
+} | ConvertTo-Json -Depth 4
+
+# Send request
+Invoke-AzRestMethod -Method PUT -Uri $url -Payload $body
+```
+
+Use the workspace's existing region for `primaryRegion` and retain any other settings required by its configuration in the request body.
+
+# [REST](#tab/rest)
+
+The following REST example uses the [`Workspaces - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation. Use the workspace's existing region for `location` and retain any other settings required by its configuration.
+
+```REST
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+Content-Type: application/json
+
+{
+  "location": "<PrimaryRegion>",
+  "properties": {
+    "replication": {
+      "enabled": true,
+      "location": "<SecondaryRegion>"
+    }
+  }
+}
+```
+
+# [Bicep](#tab/bicep)
+
+> [!NOTE]
+> Template deployments create or update the workspace; they aren't partial PATCH operations. Keep the existing identity, SKU, retention, networking, and other settings in the template.
+
+Use the [`Microsoft.OperationalInsights/workspaces`](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-bicep) resource type in your existing Bicep template:
+
+* Declare `param secondaryRegion string = '<SecondaryRegion>'`.
+* Set `properties.replication.enabled` to `true`.
+* Set `properties.replication.location` to `secondaryRegion`.
+* Keep the resource's `location` set to its primary region.
+
+Then redeploy the complete configuration.
+
+# [ARM template](#tab/arm)
+
+> [!NOTE]
+> Template deployments create or update the workspace; they aren't partial PATCH operations. Keep the existing identity, SKU, retention, networking, and other settings in the template.
+
+Use the [`Microsoft.OperationalInsights/workspaces`](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-arm-template) resource type in your existing ARM template:
+
+* Add a string parameter named `secondaryRegion` with `defaultValue` set to `"<SecondaryRegion>"`.
+* Set `properties.replication.enabled` to `true`.
+* Set `properties.replication.location` to `"[parameters('secondaryRegion')]"`.
+* Keep the resource's `location` set to its primary region.
+
+Then redeploy the complete configuration.
+
 ---
-
-Where:
-
-* `<subscription_id>`: The subscription ID related to your workspace
-* `<resourcegroup_name>` : The resource group that contains your Log Analytics workspace resource
-* `<workspace_name>`: The name of your workspace
-* `<primary_region>`: The primary region for your Log Analytics workspace
-* `<secondary_region>`: The region in which Azure Monitor creates the secondary workspace
 
 For the supported region values, see [Supported regions](#supported-regions).
 
@@ -294,35 +475,59 @@ The enable workspace replication command is a long running operation that can ta
 
 ### Check workspace provisioning state
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/cli-2)
 
-To check the provisioning state of your workspace, use the [az monitor log-analytics workspace show](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-show) Azure CLI command:
+The following Azure CLI example uses the [`az monitor log-analytics workspace show`](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-show) command.
 
-```azurecli
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+
+# Retrieve the replication state
 az monitor log-analytics workspace show \
-  --resource-group <resourcegroup_name> \
-  --workspace-name <workspace_name> \
+  --resource-group "$resourceGroupName" --workspace-name "$workspaceName" \
   --query "replication.provisioningState"
 ```
 
-# [REST API](#tab/rest-api)
+[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
-To check the provisioning state of your workspace, run this `GET` command:
+# [Azure PowerShell](#tab/powershell-2)
 
-```http
-GET
+The following Azure PowerShell example uses [`Invoke-AzRestMethod`](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Workspaces - Get`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation.
 
-https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/workspaces/<workspace_name>?api-version=2025-02-01
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$apiVersion = "<ApiVersion>"
+
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
+
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$provider = "Microsoft.OperationalInsights/workspaces/$workspaceName"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider$queryString"
+
+# Retrieve the replication state
+$response = Invoke-AzRestMethod -Method GET -Uri $url
+($response.Content | ConvertFrom-Json).properties.replication.provisioningState
+```
+
+# [REST](#tab/rest-2)
+
+The following REST example uses the [`Workspaces - Get`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation. Check `properties.replication.provisioningState` in the response.
+
+```REST
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 ```
 
 ---
 
-Where:
-
-* `<subscription_id>`: The subscription ID related to your workspace.
-* `<resourcegroup_name>`: The resource group that contains your Log Analytics workspace resource.
-* `<workspace_name>`: The name of your Log Analytics workspace.
- 
 Use the command to verify that the workspace provisioning state changes from `Updating` to `Succeeded`, and the secondary region is set as expected.
 
 > [!NOTE]
@@ -342,7 +547,7 @@ The same **Essentials** section has a **JSON View** that displays the replicatio
 
 Azure Monitor Agent, the Logs Ingestion API, and Azure Event Hubs collect data and send it to the destination you specify based on how you set up your [data collection rules (DCR)](../data-collection/data-collection-rule-overview.md).
 
-If you have data collection rules that send data to your primary workspace, you need to associate the rules to a system [data collection endpoint (DCE)](../data-collection/data-collection-endpoint-overview.md), which Azure Monitor creates when you enable workspace replication. The name of the workspace data collection endpoint is identical to your workspace ID. Only data collection rules you associate to the workspace data collection endpoint ensure ingestion continues during a failover. This behavior lets you specify the set of log streams to replicate, which helps you control your replication costs.
+If you have data collection rules that send data to your primary workspace, you need to associate the rules to a system [data collection endpoint (DCE)](../data-collection/data-collection-endpoint-overview.md), which Azure Monitor creates when you enable workspace replication. The system data collection endpoint's property `properties.metadata.provisionedByResourceId` identifies the owning workspace. Only data collection rules you associate to the workspace data collection endpoint ensure ingestion continues during a failover. This behavior lets you specify the set of log streams to replicate, which helps you control your replication costs.
 
 To replicate data you collect using data collection rules, associate your data collection rules to the workspace data collection endpoint:
 
@@ -352,18 +557,18 @@ To replicate data you collect using data collection rules, associate your data c
 
     :::image type="content" source="media/workspace-replication/configure-dce.png" lightbox="media/workspace-replication/configure-dce.png" alt-text="Screenshot that shows how to configure a data collection endpoint for an existing data collection rule in the Azure portal.":::
 
-    For details about the System DCE, check the workspace object properties.
+    To verify that the endpoint belongs to your workspace, check that its `properties.metadata.provisionedByResourceId` value matches the workspace's Azure resource ID.
 
 > [!IMPORTANT]
 > Data collection rules connected to a workspace data collection endpoint can target only that specific workspace. The data collection rules **must not** target other destinations, such as other workspaces or Azure Storage accounts.
 
 ### What to check if workspace replication fails
 
-* Is the workspace linked to a dedicated cluster? 
-    * Replication must be enabled on the cluster before it can be enabled on the workspace. 
+* Is the workspace linked to a dedicated cluster?
+  * You must enable replication on the cluster before you can enable it on the workspace.
     * Both cluster and workspace replication must be set to the same secondary location. For example, if the cluster is replicated to North Europe, the workspaces linked to it can only be replicated to North Europe too.
 * Did you use the REST API to enable replication?
-    * Verify you used API version 2025-02-01 or later.
+  * Use the API version in the [Workspaces REST API reference](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces).
 * Is the primary workspace located in East US, East US 2, or South Central US?
     * East US, East US 2, and South Central US can't replicate to one another.
 * Where is the primary workspace located and where is the secondary? Both locations must be in the same region group. For example, workspaces located in US regions can't have a replication (secondary region) in Europe, and vice versa. For the list of region groups, see [Supported regions](#supported-regions).
@@ -379,45 +584,104 @@ To replicate data you collect using data collection rules, associate your data c
 
 ### Disable workspace replication
 
-# [Azure CLI](#tab/azure-cli)
+Wait at least one hour after enabling workspace replication before disabling it. Azure Monitor rejects disable requests during this period, even if replication provisioning has completed.
 
-To disable replication for a workspace, use the [az monitor log-analytics workspace update](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-update) Azure CLI command:
+# [Azure CLI](#tab/cli)
 
-```azurecli
+The following Azure CLI example uses the [`az monitor log-analytics workspace update`](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-update) command. It disables replication by using the `--replication-enabled` parameter.
+
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+
+# Disable workspace replication
 az monitor log-analytics workspace update \
-  --resource-group <resourcegroup_name> \
-  --workspace-name <workspace_name> \
+  --resource-group "$resourceGroupName" --workspace-name "$workspaceName" \
   --replication-enabled false
 ```
 
-# [REST API](#tab/rest-api)
+[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
-To disable replication for a workspace, use this `PUT` command:
+# [Azure PowerShell](#tab/powershell)
 
-```http
-PUT 
+The following Azure PowerShell example uses [`Invoke-AzRestMethod`](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Workspaces - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation. Use the workspace's existing primary region and retain any other settings required by its configuration in the request body.
 
-https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>?api-version=2025-02-01
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$primaryRegion = "<PrimaryRegion>"
+$apiVersion = "<ApiVersion>"
 
-body:
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
+
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$provider = "Microsoft.OperationalInsights/workspaces/$workspaceName"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider$queryString"
+
+# Build request body
+$body = @{
+    location = $primaryRegion
+    properties = @{
+        replication = @{
+            enabled = $false
+        }
+    }
+} | ConvertTo-Json -Depth 4
+
+# Send request
+Invoke-AzRestMethod -Method PUT -Uri $url -Payload $body
+```
+
+# [REST](#tab/rest)
+
+The following REST example uses the [`Workspaces - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation. Use the workspace's existing region for `location` and retain any other settings required by its configuration.
+
+```REST
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+Content-Type: application/json
+
 {
+  "location": "<PrimaryRegion>",
   "properties": {
     "replication": {
       "enabled": false
     }
-  },
-  "location": "<primary_region>"
+  }
 }
 ```
 
+# [Bicep](#tab/bicep)
+
+> [!NOTE]
+> Template deployments create or update the workspace; they aren't partial PATCH operations. Keep the existing identity, SKU, retention, networking, and other settings in the template.
+
+Use the [`Microsoft.OperationalInsights/workspaces`](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-bicep) resource type in your existing Bicep template:
+
+* Set `properties.replication.enabled` to `false`.
+* Remove `properties.replication.location`.
+
+Then redeploy the complete configuration.
+
+# [ARM template](#tab/arm)
+
+> [!NOTE]
+> Template deployments create or update the workspace; they aren't partial PATCH operations. Keep the existing identity, SKU, retention, networking, and other settings in the template.
+
+Use the [`Microsoft.OperationalInsights/workspaces`](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-arm-template) resource type in your existing ARM template:
+
+* Set `"enabled": false` in `properties.replication`.
+* Remove its `location` property.
+
+Then redeploy the complete configuration.
+
 ---
-
-Where:
-
-* `<subscription_id>`: The subscription ID related to your workspace.
-* `<resourcegroup_name>` : The resource group that contains your workspace resource.
-* `<workspace_name>`: The name of your workspace.
-* `<primary_region>`: The primary region for your workspace.
 
 The disable replication command is a long running operation that can take some time to complete. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
@@ -428,45 +692,102 @@ The disable replication command is a long running operation that can take some t
 
 Disabling cluster replication can be done only after disabling replication for all workspaces linked to this cluster (if previously enabled).
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/cli)
 
-To disable replication for a cluster, use the [az monitor log-analytics cluster update](/cli/azure/monitor/log-analytics/cluster#az-monitor-log-analytics-cluster-update) Azure CLI command:
+The following Azure CLI example uses the [`az monitor log-analytics cluster update`](/cli/azure/monitor/log-analytics/cluster#az-monitor-log-analytics-cluster-update) command. It disables replication by using the `--replication-enabled` parameter.
 
-```azurecli
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+clusterName="<ClusterName>"
+
+# Disable cluster replication
 az monitor log-analytics cluster update \
-  --resource-group <resourcegroup_name> \
-  --cluster-name <cluster_name> \
+  --resource-group "$resourceGroupName" --name "$clusterName" \
   --replication-enabled false
 ```
 
-# [REST API](#tab/rest-api)
+[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
-To disable replication for a cluster, use this `PUT` command:
+# [Azure PowerShell](#tab/powershell)
 
-```http
-PUT 
+The following Azure PowerShell example uses [`Invoke-AzRestMethod`](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Clusters - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-clusters) REST API operation. Use the cluster's existing primary region and retain any other settings required by its configuration in the request body.
 
-https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/clusters/<cluster_name>?api-version=2025-02-01
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$clusterName = "<ClusterName>"
+$primaryRegion = "<PrimaryRegion>"
+$apiVersion = "<ApiVersion>"
 
-body:
-{
-    "properties": {
-        "replication": {
-            "enabled": false
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
+
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$provider = "Microsoft.OperationalInsights/clusters/$clusterName"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider$queryString"
+
+# Build request body
+$body = @{
+    location = $primaryRegion
+    properties = @{
+        replication = @{
+            enabled = $false
         }
-    },
-    "location": "<primary_region>"
+    }
+} | ConvertTo-Json -Depth 4
+
+# Send request
+Invoke-AzRestMethod -Method PUT -Uri $url -Payload $body
+```
+
+# [REST](#tab/rest)
+
+The following REST example uses the [`Clusters - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-clusters) REST API operation. Use the cluster's existing region for `location` and retain any other settings required by its configuration.
+
+```REST
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/clusters/{clusterName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+Content-Type: application/json
+
+{
+  "location": "<PrimaryRegion>",
+  "properties": {
+    "replication": {
+      "enabled": false
+    }
+  }
 }
 ```
 
+# [Bicep](#tab/bicep)
+
+> [!NOTE]
+> Template deployments create or update the cluster; they aren't partial PATCH operations. Keep the existing identity, key, SKU, billing, and other settings in the template.
+
+Use the [`Microsoft.OperationalInsights/clusters`](/azure/templates/microsoft.operationalinsights/clusters?pivots=deployment-language-bicep) resource type in your existing Bicep template:
+
+* Set `properties.replication.enabled` to `false`.
+* Remove `properties.replication.location`.
+
+Then redeploy the complete configuration.
+
+# [ARM template](#tab/arm)
+
+> [!NOTE]
+> Template deployments create or update the cluster; they aren't partial PATCH operations. Keep the existing identity, key, SKU, billing, and other settings in the template.
+
+Use the [`Microsoft.OperationalInsights/clusters`](/azure/templates/microsoft.operationalinsights/clusters?pivots=deployment-language-arm-template) resource type in your existing ARM template:
+
+* Set `"enabled": false` in `properties.replication`.
+* Remove its `location` property.
+
+Then redeploy the complete configuration.
+
 ---
-
-Where:
-
-* `<subscription_id>`: The subscription ID related to your cluster.
-* `<resourcegroup_name>` : The resource group that contains your cluster resource.
-* `<workspace_name>`: The name of your cluster.
-* `<primary_region>`: The primary region for your cluster.
 
 The command is a long running operation that can take some time to complete. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
@@ -503,7 +824,7 @@ During switchover, most operations work the same as when you use the primary wor
 
 ### When should I switch over?
 
-You decide when to switch over to your secondary workspace and switch back to your primary workspace based on ongoing performance and health monitoring and your system standards and requirements. 
+You decide when to switch over to your secondary workspace and switch back to your primary workspace based on ongoing performance and health monitoring and your system standards and requirements.
 
 There are several points to consider in your plan for switchover, as described in the following subsections.
 
@@ -530,48 +851,75 @@ Before you switch regions during switchover, your secondary workspace needs to c
 
 ### Trigger switchover
 
-Before you switch over, [confirm that the workspace replication operation completed successfully](#check-workspace-provisioning-state). Switchover only succeeds when the secondary workspace is configured correctly. 
+Before you switch over, wait at least 24 hours after enabling workspace replication and [confirm that the replication operation completed successfully](#check-workspace-provisioning-state). Azure Monitor rejects earlier switchover requests even if replication provisioning has completed.
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/cli-2)
 
-To switch over to your secondary workspace, use the [az monitor log-analytics workspace failover](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-failover) Azure CLI command:
+The following Azure CLI example uses the [`az monitor log-analytics workspace failover`](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-failover) command.
 
-```azurecli
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+secondaryRegion="<SecondaryRegion>"
+
+# Switch over to the secondary region
 az monitor log-analytics workspace failover \
-  --resource-group <resourcegroup_name> \
-  --workspace-name <workspace_name> \
-  --location <secondary_region>
+  --resource-group "$resourceGroupName" --workspace-name "$workspaceName" \
+  --location "$secondaryRegion"
 ```
 
-# [REST API](#tab/rest-api)
+[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
-To switch over to your secondary workspace, use this `POST` command:
+# [Azure PowerShell](#tab/powershell-2)
 
-```http
-POST 
-https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/locations/<secondary_region>/workspaces/<workspace_name>/failover?api-version=2025-02-01
+The following Azure PowerShell example uses [`Invoke-AzRestMethod`](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Workspaces - Failover`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$secondaryRegion = "<SecondaryRegion>"
+$apiVersion = "<ApiVersion>"
+
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
+
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$provider = "Microsoft.OperationalInsights/locations/$secondaryRegion"
+$provider += "/workspaces/$workspaceName/failover"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider$queryString"
+
+# Send request
+Invoke-AzRestMethod -Method POST -Uri $url
 ```
+
+# [REST](#tab/rest-2)
+
+The following REST example uses the [`Workspaces - Failover`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation.
+
+```REST
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/locations/{secondaryRegion}/workspaces/{workspaceName}/failover?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+```
+
 ---
-
-Where:
-
-* `<subscription_id>`: The subscription ID related to your workspace.
-* `<resourcegroup_name>` : The resource group that contains your workspace resource.
-* `<secondary_region>`: The region to switch to during switchover.
-* `<workspace_name>`: The name of the workspace to switch to during switchover.
 
 The command is a long running operation that can take some time to complete. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 ### What to check if switchover (failover) fails
 
 * Did you use the REST API to trigger switchover (failover)?
-    * Verify you used API version 2025-02-01 or later.
+  * Use the API version in the [Workspaces REST API reference](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces).
     * Verify the secondary location provided in the failover command is the secondary location set for this workspace. This information is available in the Azure portal view of the workspace, and over API.
 * Switching regions requires a Log Analytics Contributor role **on the resource group of the workspace**, and not just on the workspace itself.
 
 ## Switch back to your primary workspace
 
-The switchback process cancels the rerouting of queries and log ingestion requests to the secondary workspace. When you switch back, Azure Monitor goes back to routing queries and log ingestion requests to your primary workspace. 
+The switchback process cancels the rerouting of queries and log ingestion requests to the secondary workspace. When you switch back, Azure Monitor goes back to routing queries and log ingestion requests to your primary workspace.
 
 When you switch over to your secondary region, Azure Monitor replicates logs from your secondary workspace to your primary workspace. If an outage impacts the log ingestion process in the primary region, it can take time for Azure Monitor to complete the ingestion of the replicated logs to your primary workspace.
 
@@ -596,37 +944,60 @@ For examples of how to query your primary workspace when your secondary workspac
 
 ### Trigger switchback
 
-Before you switch back, confirm the [Primary workspace health](#primary-workspace-health) and complete [replication of logs](#log-replication-state). 
+Before you switch back, confirm the [Primary workspace health](#primary-workspace-health) and complete [replication of logs](#log-replication-state).
 
 The switchback process updates your DNS records. After the DNS records update, it can take time for all clients to receive the updated DNS settings and resume routing to the primary workspace.
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/cli-2)
 
-To switch back to your primary workspace, use the [az monitor log-analytics workspace failback](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-failback) Azure CLI command:
+The following Azure CLI example uses the [`az monitor log-analytics workspace failback`](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-failback) command.
 
-```azurecli
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+
+# Switch back to the primary region
 az monitor log-analytics workspace failback \
-  --resource-group <resourcegroup_name> \
-  --workspace-name <workspace_name>
+  --resource-group "$resourceGroupName" --workspace-name "$workspaceName"
 ```
 
-# [REST API](#tab/rest-api)
+[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
-To switch back to your primary workspace, use this `POST` command:
+# [Azure PowerShell](#tab/powershell-2)
 
-```http
-POST
+The following Azure PowerShell example uses [`Invoke-AzRestMethod`](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Workspaces - Failback`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation.
 
-https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/workspaces/<workspace_name>/failback?api-version=2025-02-01
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$apiVersion = "<ApiVersion>"
+
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
+
+# Build request URL
+$apiEndpoint = "https://management.azure.com"
+$path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$provider = "Microsoft.OperationalInsights/workspaces/$workspaceName/failback"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider$queryString"
+
+# Send request
+Invoke-AzRestMethod -Method POST -Uri $url
+```
+
+# [REST](#tab/rest-2)
+
+The following REST example uses the [`Workspaces - Failback`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation.
+
+```REST
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/failback?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 ```
 
 ---
-
-Where:
-
-* `<subscription_id>`: The subscription ID related to your workspace.
-* `<resourcegroup_name>` : The resource group that contains your workspace resource.
-* `<workspace_name>`: The name of the workspace to switch to during switchback.
 
 The command is a long running operation that can take some time to complete. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
@@ -642,20 +1013,18 @@ To interact with the inactive region, you need to use the Azure Monitor Log Anal
 
 ### Query inactive region
 
-To query log data in the inactive region, use this GET command:
+The following REST example uses the [`Query - Get`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-query) REST API operation. Set `overrideWorkspaceRegion` to `primary` or `secondary` to select the region. URL-encode the query and timespan values.
 
-```http
-GET
-
-api.loganalytics.azure.com/v1/workspaces/<workspace id>/query?query=<query>&timespan=<timespan-in-ISO8601-format>&overrideWorkspaceRegion=<primary|secondary>
+```REST
+GET https://api.loganalytics.azure.com/v1/workspaces/{workspaceId}/query?query={query}&timespan={timespan}&overrideWorkspaceRegion={workspaceRegion}
+Authorization: Bearer {accessToken}
 ```
 
 For example, to run a short query like `Perf | count` for the past day in your secondary region, use:
 
-```http
-GET
-
-api.loganalytics.azure.com/v1/workspaces/<workspace id>/query?query=Perf%20|%20count&timespan=P1D&overrideWorkspaceRegion=secondary
+```REST
+GET https://api.loganalytics.azure.com/v1/workspaces/{workspaceId}/query?query=Perf%20%7C%20count&timespan=P1D&overrideWorkspaceRegion=secondary
+Authorization: Bearer {accessToken}
 ```
 
 You can confirm that Azure Monitor runs your query in the intended region by checking these fields in the `LAQueryLogs` table, which is created when you [enable query auditing in your Log Analytics workspace](query-audit.md):
@@ -680,21 +1049,21 @@ Ingestion latency measures the time it takes to ingest logs to the workspace. Th
 
 Different data types have different ingestion latency. You can measure ingestion for each data type separately, or create a generic query for all types, and a more fine-grained query for specific types that are of higher importance to you. We suggest you measure the 90th percentile of the ingestion latency, which is more sensitive to change than the average or the 50th percentile (median).
 
-The following sections show how to use queries to check the ingestion latency for your workspace. 
+The following sections show how to use queries to check the ingestion latency for your workspace.
 
 #### Evaluate baseline ingestion latency of specific tables
 
 Begin by determining the baseline latency of specific tables over several days.
 
-This example query creates a chart of the 90th percentile of ingestion latency on the Perf table: 
+This example query creates a chart of the 90th percentile of ingestion latency on the Perf table:
 
 ```kusto
 // Assess the ingestion latency baseline for a specific data type
 Perf
-| where TimeGenerated > ago(3d) 
-| project TimeGenerated, 
+| where TimeGenerated > ago(3d)
+| project TimeGenerated,
 IngestionDurationSeconds = (ingestion_time()-TimeGenerated)/1s
-| summarize LatencyIngestion90Percentile=percentile(IngestionDurationSeconds, 90) by bin(TimeGenerated, 1h) 
+| summarize LatencyIngestion90Percentile=percentile(IngestionDurationSeconds, 90) by bin(TimeGenerated, 1h)
 | render timechart
 ```
 
@@ -704,19 +1073,19 @@ After you run the query, review the results and rendered chart to determine the 
 
 After you establish the baseline ingestion latency for a specific table, [create a log search alert rule](../alerts/alerts-create-log-alert-rule.md) for the table based on changes in latency over a short period of time.
 
-This query calculates ingestion latency over the past 20 minutes: 
+This query calculates ingestion latency over the past 20 minutes:
 
 ```kusto
 // Track the recent ingestion latency (in seconds) of a specific table
 Perf
-| where TimeGenerated > ago(20m) 
+| where TimeGenerated > ago(20m)
 | extend IngestionDurationSeconds = (ingestion_time()-TimeGenerated)/1s
 | summarize Ingestion90Percent_seconds=percentile(IngestionDurationSeconds, 90)
 ```
 
 Because you can expect some fluctuations, create an alert rule condition to check if the query returns a value significantly greater than the baseline.
 
-#### Determine the source of ingestion latency 
+#### Determine the source of ingestion latency
 
 When you notice your total ingestion latency is going up, you can use queries to determine whether the source of the latency is the agents or the ingestion pipeline.
 
@@ -725,7 +1094,7 @@ This query charts the 90th percentile latency of the agents and of the pipeline,
 ```kusto
 // Assess agent and pipeline (backend) latency
 Perf
-| where TimeGenerated > ago(1h) 
+| where TimeGenerated > ago(1h)
 | extend AgentLatencySeconds = (_TimeReceived-TimeGenerated)/1s,
     PipelineLatencySeconds=(ingestion_time()-_TimeReceived)/1s
 | summarize percentile(AgentLatencySeconds,90), percentile(PipelineLatencySeconds,90) by bin(TimeGenerated,5m)
@@ -743,18 +1112,18 @@ Ingestion volume measurements can help identify unexpected changes to the total 
 * Constant ingestion volume (standstill)
 * Ingestion anomalies - spikes and dips in ingestion volume
 
-The following sections show how to use queries to check the ingestion volume for your workspace. 
+The following sections show how to use queries to check the ingestion volume for your workspace.
 
 #### Monitor total ingestion volume per table
 
-You can define a query to monitor the ingestion volume per table in your workspace. The query can include an alert that checks for unexpected changes to the total or table-specific volumes. 
+You can define a query to monitor the ingestion volume per table in your workspace. The query can include an alert that checks for unexpected changes to the total or table-specific volumes.
 
 This query calculates the total ingestion volume over the past hour per table in megabytes per second (MBs):
 
 ```kusto
 // Calculate total ingestion volume over the past hour per table
-Usage 
-| where TimeGenerated > ago(1h) 
+Usage
+| where TimeGenerated > ago(1h)
 | summarize BillableDataMB = sum(_BilledSize)/1.E6 by bin(TimeGenerated,1h), DataType
 ```
 
@@ -766,14 +1135,14 @@ The following query checks the agent heartbeat to detect connectivity issues:
 
 ```kusto
 // Count agent heartbeats in the last ten minutes
-Heartbeat 
-| where TimeGenerated>ago(10m) 
+Heartbeat
+| where TimeGenerated>ago(10m)
 | count
 ```
 
 #### Monitor ingestion anomalies
 
-You can identify spikes and dips in your workspace ingestion volume data in various ways. Use the [series_decompose_anomalies()](/azure/data-explorer/kusto/query/series-decompose-anomaliesfunction) function to extract anomalies from the ingestion volumes you monitor in your workspace, or create your own anomaly detector to support your unique workspace scenarios. 
+You can identify spikes and dips in your workspace ingestion volume data in various ways. Use the [series_decompose_anomalies()](/azure/data-explorer/kusto/query/series-decompose-anomaliesfunction) function to extract anomalies from the ingestion volumes you monitor in your workspace, or create your own anomaly detector to support your unique workspace scenarios.
 
 ##### Identify anomalies using series_decompose_anomalies
 
@@ -799,7 +1168,7 @@ Usage
 | where series_decompose_anomalies_IngestionVolumeMB_ad_flag != 0
 ```
 
-For more information about how to use `series_decompose_anomalies()` to detect anomalies in log data, see [Detect and analyze anomalies using KQL machine learning capabilities in Azure Monitor](kql-machine-learning-azure-monitor.md). 
+For more information about how to use `series_decompose_anomalies()` to detect anomalies in log data, see [Detect and analyze anomalies using KQL machine learning capabilities in Azure Monitor](kql-machine-learning-azure-monitor.md).
 
 ##### Create your own anomaly detector
 
@@ -862,8 +1231,8 @@ This query counts how many queries returned a server error code:
 
 ```kusto
 // Count query errors
-LAQueryLogs 
-| where ResponseCode>=500 and ResponseCode<600 
+LAQueryLogs
+| where ResponseCode>=500 and ResponseCode<600
 | count
 ```
 
