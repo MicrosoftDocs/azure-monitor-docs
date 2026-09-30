@@ -18,7 +18,7 @@ ms.custom: HighAvailability Azure Data Explorer
   
 Service failed to install or resume due to virtual network (VNet) issues. To resolve this issue, follow the steps in the troubleshooting guide.   
   
-**Potential benefits**: Improve reliability, availability, performance, and new feature capabilities  
+**Potential benefits**: Fix connectivity problems for private endpoints.  
 
 **Impact:** High
   
