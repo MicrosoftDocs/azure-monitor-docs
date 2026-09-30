@@ -795,7 +795,7 @@ The following constraints apply when using dimensions in an alert rule that cont
 * You can't use "\*" as a dimension value.
 * When metrics that you configure in different criteria support the same dimension, you must explicitly set a configured dimension value in the same way for all of those metrics in the relevant criteria.
 
-  * In the following example, because both the **Transactions** and **SuccessE2ELatency** metrics have an **ApiName** dimension, and *criterion1* specifies the *"GetBlob"* value for the **ApiName** dimension, *criterion2* must also set a *"GetBlob"* value for the **ApiName** dimension.
+In the following example, because both the **Transactions** and **SuccessE2ELatency** metrics have an **ApiName** dimension, and *criterion1* specifies the *"GetBlob"* value for the **ApiName** dimension, *criterion2* must also set a *"GetBlob"* value for the **ApiName** dimension.
 
 ### Template file
 
