@@ -212,11 +212,11 @@ Subcategory: BusinessContinuity
 
 <!--3b739bd1-c193-4bb6-a953-1362ee3b03b2_begin-->
 
-#### Upgrade your Virtual Machine Scale Set to alternative image version  
+#### Upgrade your VMSS to alternative image version  
   
-VMSS in your subscription are running on images that have been scheduled for deprecation. Once the image is deprecated, your Virtual Machine Scale Set workloads would no longer scale out. Upgrade to newer version of the image to prevent disruption to your workload.  
+VMSS in your subscription are running on images that have been scheduled for deprecation. Once the image is deprecated, your VMSS workloads would no longer scale out. Upgrade to newer version of the image to prevent disruption to your workload.  
   
-**Potential benefits**: Minimize any potential disruptions to your Virtual Machine Scale Set workloads  
+**Potential benefits**: Minimize any potential disruptions to your VMSS workloads  
 
 **Impact:** High
   
@@ -230,11 +230,11 @@ Subcategory: undefined
 
 <!--3d18d7cd-bdec-4c68-9160-16a677d0f86a_begin-->
 
-#### Upgrade your Virtual Machine Scale Set to alternative image offer  
+#### Upgrade your VMSS to alternative image offer  
   
-VMSS in your subscription are running on images that have been scheduled for deprecation. Once the image is deprecated, your Virtual Machine Scale Set workloads would no longer scale out. To prevent disruption to your workload, upgrade to newer offer of the image.  
+VMSS in your subscription are running on images that have been scheduled for deprecation. Once the image is deprecated, your VMSS workloads would no longer scale out. To prevent disruption to your workload, upgrade to newer offer of the image.  
   
-**Potential benefits**: Minimize any potential disruptions to your Virtual Machine Scale Set workloads  
+**Potential benefits**: Minimize any potential disruptions to your VMSS workloads  
 
 **Impact:** High
   
@@ -248,11 +248,11 @@ Subcategory: ServiceUpgradeAndRetirement
 
 <!--44abb62e-7789-4f2f-8001-fa9624cb3eb3_begin-->
 
-#### Upgrade your Virtual Machine Scale Set to alternative image SKU  
+#### Upgrade your VMSS to alternative image SKU  
   
-VMSS in your subscription are running on images that have been scheduled for deprecation. Once the image is deprecated, your Virtual Machine Scale Set workloads would no longer scale out. To prevent disruption to your workload, upgrade to newer SKU of the image.  
+VMSS in your subscription are running on images that have been scheduled for deprecation. Once the image is deprecated, your VMSS workloads would no longer scale out. To prevent disruption to your workload, upgrade to newer SKU of the image.  
   
-**Potential benefits**: Minimize any potential disruptions to your Virtual Machine Scale Set workloads  
+**Potential benefits**: Minimize any potential disruptions to your VMSS workloads  
 
 **Impact:** High
   
@@ -266,7 +266,7 @@ Subcategory: ServiceUpgradeAndRetirement
 
 <!--b4d988a9-85e6-4179-b69c-549bdd8a55bb_begin-->
 
-#### Enable automatic repair policy on Azure Virtual Machine Scale Sets (VMSS)  
+#### Enable Automatic Repair Policy on Azure Virtual Machine Scale Sets  
   
 Enabling automatic instance repairs helps achieve high availability by maintaining a set of healthy instances. If an unhealthy instance is found by the Application Health extension or load balancer health probe, automatic instance repairs attempt to recover the instance by triggering repair actions.  
   
@@ -302,7 +302,7 @@ Subcategory: undefined
 
 <!--7f71b153-c0b7-4e99-a23e-db8179183ec9_begin-->
 
-#### Migrate workload to D-series or better virtual machine  
+#### Migrate workload on A-series or B-series virtual machine (VM) to D-series or better VM  
   
 Migrate production workload from A-series or B-series virtual machine (VM) to D-series or better VM. A-series and B-series VMs are designed for entry-level workloads.  
   
@@ -338,7 +338,7 @@ Subcategory: HighAvailability
 
 <!--39fb2718-a2ae-4662-a8c9-cd8df23f01eb_begin-->
 
-#### Migrate to Virtual Machine Scale Sets Flex  
+#### Migrate virtual machine using availability sets to Virtual Machine Scale Sets Flex  
   
 Migrate workloads from virtual machine (VM) to Virtual Machine Scale Sets Flex for deployment across zones or within the same zone across different fault domains.  
   
@@ -506,7 +506,7 @@ To avoid service disruptions, migrate workloads to the Azure NVadsA10_v5-series 
   
 **Potential benefits**: Avoid service disruptions and loss of functionality  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500573)  
 
@@ -524,7 +524,7 @@ To avoid service disruptions, migrate workloads to Azure NVads_V710_v5-series vi
   
 **Potential benefits**: Avoid service disruptions and loss of functionality  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500578)  
 
@@ -791,7 +791,7 @@ Subcategory: undefined
 
 #### Add and enable LegacyVMNVA tag on VM Scale Set with NVAs  
   
-The VMs in Virtual Machine Scale Set use a VM series that is eligible to be deployed on MANA-capable hardware. If the VMs aren't MANA ready, apply and enable the 'LegacyVMNVA' tag on the Virtual Machine Scale Set to temporarily avoid deployment on MANA-capable hardware until 5/31/2027. Migrate to a MANA supported OS or VM series by then.  
+The VMs in VMSS use a VM series that is eligible to be deployed on MANA-capable hardware. If the VMs are not MANA ready, apply and enable the 'LegacyVMNVA' tag on the VMSS to temporarily avoid deployment on MANA-capable hardware until 5/31/2027. Migrate to a MANA supported OS or VM series by then.  
   
 **Potential benefits**: Reduce network performance risk due to MANA incompatibility.  
 
@@ -809,7 +809,7 @@ Subcategory: undefined
 
 #### Enable LegacyVMNVA tag for VM Scale Set Uniform  
   
-The VMs in Virtual Machine Scale Set use a VM series that is eligible to be deployed on MANA-capable hardware. If the VMs aren't MANA ready, enable the 'LegacyVMNVA' tag on the Virtual Machine Scale Set to temporarily avoid deployment on MANA-capable hardware until 5/31/2027. Migrate to a MANA supported OS or VM series by then.  
+The VMs in VMSS use a VM series that is eligible to be deployed on MANA-capable hardware. If the VMs are not MANA ready, enable the 'LegacyVMNVA' tag on the VMSS to temporarily avoid deployment on MANA-capable hardware until 5/31/2027. Migrate to a MANA supported OS or VM series by then.  
   
 **Potential benefits**: Reduce network performance risk due to MANA incompatibility.  
 
@@ -827,7 +827,7 @@ Subcategory: undefined
 
 #### Enable LegacyVMNVA tag for NVAs in VM Scale Set Uniform  
   
-The VM uses a VM series that is eligible to be deployed on MANA-capable hardware. The Virtual Machine Scale Set has the LegacyVMNVA tag but the tag needs to be enabled for the VM. Enabling the tag will temporarily avoid deployment on MANA-capable hardware until 5/31/2027. Migrate to a supported OS or VM series by then.  
+The VM uses a VM series that is eligible to be deployed on MANA-capable hardware. The VMSS has the LegacyVMNVA tag but the tag needs to be enabled for the VM. Enabling the tag will temporarily avoid deployment on MANA-capable hardware until 5/31/2027. Migrate to a supported OS or VM series by then.  
   
 **Potential benefits**: Reduce network performance risk due to MANA incompatibility.  
 
