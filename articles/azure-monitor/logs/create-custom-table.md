@@ -136,7 +136,7 @@ The following Azure CLI examples use the [`az monitor log-analytics workspace ta
 
     <br>
     <details>
-    <summary>Expand to view the my-table.json file.</summary>
+    <summary>Define the Auxiliary table schema and retention settings</summary>
     
     ```json
     {
@@ -213,7 +213,7 @@ The following Azure CLI examples use the [`az monitor log-analytics workspace ta
 
     <br>
     <details>
-    <summary>Expand to view the my-dcr.json file.</summary>
+    <summary>Define the ingestion stream, workspace destination, and data flow</summary>
 
     ```json
     {
@@ -345,7 +345,7 @@ The following Azure PowerShell examples use the [`New-AzOperationalInsightsTable
 
     <br>
     <details>
-    <summary>Expand to view the my-table.json file.</summary>
+    <summary>Define the Auxiliary table schema and retention settings</summary>
     
     ```json
     {
@@ -421,7 +421,7 @@ The following Azure PowerShell examples use the [`New-AzOperationalInsightsTable
 
     <br>
     <details>
-    <summary>Expand to view the my-dcr.json file.</summary>
+    <summary>Define the ingestion stream, workspace destination, and data flow</summary>
 
     ```json
     {
@@ -543,7 +543,7 @@ The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-
 
     <br>
     <details>
-    <summary>Create a custom table</summary>
+    <summary>Create a DCR to route Logs Ingestion API data to the table</summary>
 
     ```REST
     PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dataCollectionRuleName}?api-version={apiVersion}
@@ -627,7 +627,7 @@ The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-
 
     <br>
     <details>
-    <summary>Create a custom table</summary>
+    <summary>Create an Auxiliary table with a custom column schema</summary>
 
     ```bicep
     param workspaceName string = '<WorkspaceName>'
@@ -690,7 +690,7 @@ The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-
 
     <br>
     <details>
-    <summary>Create a custom table</summary>
+    <summary>Create a DCR to route Logs Ingestion API data to the table</summary>
 
     ```bicep
     @description('Specifies the name of the data collection rule to create.')
@@ -796,7 +796,7 @@ The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-
 
     <br>
     <details>
-    <summary>Create a custom table</summary>
+    <summary>Create an Auxiliary table with a custom column schema</summary>
 
     ```json
     {
@@ -869,7 +869,7 @@ The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-
 
     <br>
     <details>
-    <summary>Create a custom table</summary>
+    <summary>Create a DCR to route Logs Ingestion API data to the table</summary>
 
     ```json
     {
