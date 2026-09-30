@@ -98,7 +98,6 @@ For more information, see [Pricing – Static Web Apps](https://azure.microsoft.
 
 ResourceType: microsoft.web/staticsites  
 Recommendation ID: dc3edeee-f0ab-44ae-b612-605a0a739612  
-Subcategory: undefined
 
 <!--dc3edeee-f0ab-44ae-b612-605a0a739612_end-->
 
@@ -206,7 +205,6 @@ For more information, see [App Service Managed Certificate (ASMC) Changes – Ju
 
 ResourceType: microsoft.web/sites  
 Recommendation ID: 7ca9b77c-53ea-402a-a1c9-085efd569ef4  
-Subcategory: undefined
 
 <!--7ca9b77c-53ea-402a-a1c9-085efd569ef4_end-->
 
@@ -224,7 +222,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.web/sites  
 Recommendation ID: 42702f7a-06af-4cca-80b6-6b058e22b12f  
-Subcategory: undefined
 
 <!--42702f7a-06af-4cca-80b6-6b058e22b12f_end-->
 
@@ -242,7 +239,6 @@ For more information, see [Configure an App Service App - Azure App Service](/az
 
 ResourceType: microsoft.web/sites  
 Recommendation ID: b5666e83-63e6-420d-acd2-c1924f1f060e  
-Subcategory: undefined
 
 <!--b5666e83-63e6-420d-acd2-c1924f1f060e_end-->
 
@@ -260,7 +256,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.web/sites  
 Recommendation ID: 6f2c6ba6-3fd4-4786-af01-d10b127ee031  
-Subcategory: undefined
 
 <!--6f2c6ba6-3fd4-4786-af01-d10b127ee031_end-->
 
@@ -278,7 +273,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.web/sites  
 Recommendation ID: 81c8903e-2d50-4e57-9c3b-7049b5a9d0e8  
-Subcategory: undefined
 
 <!--81c8903e-2d50-4e57-9c3b-7049b5a9d0e8_end-->
 
@@ -296,7 +290,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/v2
 
 ResourceType: microsoft.web/sites  
 Recommendation ID: 14f2b661-8b62-4e1e-9020-6ae63ce9e354  
-Subcategory: undefined
 
 <!--14f2b661-8b62-4e1e-9020-6ae63ce9e354_end-->
 
@@ -332,7 +325,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.web/sites  
 Recommendation ID: 271b07b4-c9f6-450a-ac0b-68124c0faa63  
-Subcategory: undefined
 
 <!--271b07b4-c9f6-450a-ac0b-68124c0faa63_end-->
 
@@ -350,7 +342,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.web/sites  
 Recommendation ID: b5ff4db4-4032-4380-a0fb-2db4f37b4027  
-Subcategory: undefined
 
 <!--b5ff4db4-4032-4380-a0fb-2db4f37b4027_end-->
 
@@ -404,7 +395,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.web/sites  
 Recommendation ID: 7d26ab34-5f6a-495e-91e3-781a1c578c3f  
-Subcategory: undefined
 
 <!--7d26ab34-5f6a-495e-91e3-781a1c578c3f_end-->
 
@@ -422,7 +412,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.web/sites  
 Recommendation ID: 55a560ff-1039-4a49-b6da-6f272dc52db6  
-Subcategory: undefined
 
 <!--55a560ff-1039-4a49-b6da-6f272dc52db6_end-->
 
@@ -440,7 +429,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.web/sites  
 Recommendation ID: 18745007-438b-4c68-bfa3-b6576d85a831  
-Subcategory: undefined
 
 <!--18745007-438b-4c68-bfa3-b6576d85a831_end-->
 

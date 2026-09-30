@@ -26,7 +26,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.batch/batchaccounts  
 Recommendation ID: bdc11098-207d-4e5f-9d00-ec506a407464  
-Subcategory: undefined
 
 <!--bdc11098-207d-4e5f-9d00-ec506a407464_end-->
 
@@ -44,7 +43,6 @@ For more information, see [Retired VM Sizes Migration Guide - Azure Virtual Mach
 
 ResourceType: microsoft.batch/batchaccounts  
 Recommendation ID: c081d84e-3811-478b-b083-c8bb09b99ed7  
-Subcategory: undefined
 
 <!--c081d84e-3811-478b-b083-c8bb09b99ed7_end-->
 
@@ -62,7 +60,6 @@ For more information, see [Migrate from Azure Disk Encryption to encryption at h
 
 ResourceType: microsoft.batch/batchaccounts  
 Recommendation ID: 6c4cd580-41fb-4f20-977b-3be3cbead46e  
-Subcategory: undefined
 
 <!--6c4cd580-41fb-4f20-977b-3be3cbead46e_end-->
 

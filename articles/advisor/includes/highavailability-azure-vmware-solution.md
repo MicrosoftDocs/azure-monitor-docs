@@ -26,7 +26,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.avs/privateclouds  
 Recommendation ID: 42be4c34-135c-4ec7-b3a6-dd3b8ed7b049  
-Subcategory: undefined
 
 <!--42be4c34-135c-4ec7-b3a6-dd3b8ed7b049_end-->
 

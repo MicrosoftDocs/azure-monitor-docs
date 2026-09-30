@@ -44,7 +44,6 @@ For more information, see [Best practices for high availability with Azure VMs a
 
 ResourceType: microsoft.compute/disks  
 Recommendation ID: d4102c0f-ebe3-4b22-8fe0-e488866a87af  
-Subcategory: undefined
 
 <!--d4102c0f-ebe3-4b22-8fe0-e488866a87af_end-->
 
@@ -62,7 +61,6 @@ For more information, see [Set up Azure VM disaster recovery to a secondary regi
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: ed651749-cd37-4fd5-9897-01b416926745  
-Subcategory: undefined
 
 <!--ed651749-cd37-4fd5-9897-01b416926745_end-->
 
@@ -152,7 +150,6 @@ For more information, see [Move Azure single-instance virtual machines from regi
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 066a047a-9ace-45f4-ac50-6325840a6b00  
-Subcategory: undefined
 
 <!--066a047a-9ace-45f4-ac50-6325840a6b00_end-->
 
@@ -224,7 +221,6 @@ For more information, see [Deprecated Azure Marketplace images - Azure Virtual M
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: 3b739bd1-c193-4bb6-a953-1362ee3b03b2  
-Subcategory: undefined
 
 <!--3b739bd1-c193-4bb6-a953-1362ee3b03b2_end-->
 
@@ -296,7 +292,6 @@ For more information, see [Migrate Standard HDD OS disks by September 08, 2028 -
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 3c03549b-9c0a-4c13-bed4-def3c7e34ddd  
-Subcategory: undefined
 
 <!--3c03549b-9c0a-4c13-bed4-def3c7e34ddd_end-->
 
@@ -314,7 +309,6 @@ For more information, see [Virtual machine sizes overview - Azure Virtual Machin
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 7f71b153-c0b7-4e99-a23e-db8179183ec9  
-Subcategory: undefined
 
 <!--7f71b153-c0b7-4e99-a23e-db8179183ec9_end-->
 
@@ -368,7 +362,6 @@ For more information, see [Use Application Health extension with Azure Virtual M
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: 3b587048-b04b-4f81-aaed-e43793652b0f  
-Subcategory: undefined
 
 <!--3b587048-b04b-4f81-aaed-e43793652b0f_end-->
 
@@ -386,7 +379,6 @@ For more information, see [Tutorial to run an Azure VM disaster recovery drill w
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 01c715f6-426a-47d3-87be-9f26e2ab2d8e  
-Subcategory: undefined
 
 <!--01c715f6-426a-47d3-87be-9f26e2ab2d8e_end-->
 
@@ -440,7 +432,6 @@ For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/re
 
 ResourceType: microsoft.compute/cloudservices  
 Recommendation ID: 71c69a25-0953-41d6-bf3a-1db323cd70b0  
-Subcategory: undefined
 
 <!--71c69a25-0953-41d6-bf3a-1db323cd70b0_end-->
 
@@ -458,7 +449,6 @@ For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/re
 
 ResourceType: microsoft.compute/hostgroups  
 Recommendation ID: 61bd0aa3-f2b0-485f-8e5e-95d02ac3483a  
-Subcategory: undefined
 
 <!--61bd0aa3-f2b0-485f-8e5e-95d02ac3483a_end-->
 
@@ -476,7 +466,6 @@ For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/re
 
 ResourceType: microsoft.compute/proximityplacementgroups  
 Recommendation ID: 3742247e-ea02-4202-bfef-a8a6be51fa4c  
-Subcategory: undefined
 
 <!--3742247e-ea02-4202-bfef-a8a6be51fa4c_end-->
 
@@ -494,7 +483,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 13cea0f1-c3f7-4c66-8b3b-9928a0f07cea  
-Subcategory: undefined
 
 <!--13cea0f1-c3f7-4c66-8b3b-9928a0f07cea_end-->
 
@@ -512,7 +500,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 0e68ab45-c2c8-4d1f-9873-908dc5828252  
-Subcategory: undefined
 
 <!--0e68ab45-c2c8-4d1f-9873-908dc5828252_end-->
 
@@ -530,7 +517,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: cfeba225-ca14-48fe-83ba-50d24f60f84e  
-Subcategory: undefined
 
 <!--cfeba225-ca14-48fe-83ba-50d24f60f84e_end-->
 
@@ -548,7 +534,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: d7d26cea-dca8-4033-9e7f-d8e8a7a08cf1  
-Subcategory: undefined
 
 <!--d7d26cea-dca8-4033-9e7f-d8e8a7a08cf1_end-->
 
@@ -566,7 +551,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 779dbd8a-6102-47d0-b36c-75eb070b86d6  
-Subcategory: undefined
 
 <!--779dbd8a-6102-47d0-b36c-75eb070b86d6_end-->
 
@@ -584,7 +568,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/st
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 81076cd9-e656-4b1a-862b-63f2f40caa87  
-Subcategory: undefined
 
 <!--81076cd9-e656-4b1a-862b-63f2f40caa87_end-->
 
@@ -602,7 +585,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/ak
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: 98680ff0-2723-4c8b-9af4-54ce8a3a82d1  
-Subcategory: undefined
 
 <!--98680ff0-2723-4c8b-9af4-54ce8a3a82d1_end-->
 
@@ -620,7 +602,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/disks  
 Recommendation ID: 6885dc91-c4d1-4695-be6f-f64be575769f  
-Subcategory: undefined
 
 <!--6885dc91-c4d1-4695-be6f-f64be575769f_end-->
 
@@ -638,7 +619,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: f49d7356-7251-4e15-a577-a3398527f3fd  
-Subcategory: undefined
 
 <!--f49d7356-7251-4e15-a577-a3398527f3fd_end-->
 
@@ -674,7 +654,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 851ac46b-6ac2-4074-9ba2-447bb8754cb6  
-Subcategory: undefined
 
 <!--851ac46b-6ac2-4074-9ba2-447bb8754cb6_end-->
 
@@ -692,7 +671,6 @@ HC-series virtual machine sizes are retiring. To ensure continuity and improved 
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: c6199b8a-db76-4a4f-b45b-ef5e9d2be09c  
-Subcategory: undefined
 
 <!--c6199b8a-db76-4a4f-b45b-ef5e9d2be09c_end-->
 
@@ -711,7 +689,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: ac992ddf-2bbf-4049-b142-a30d6236291e  
-Subcategory: undefined
 
 <!--ac992ddf-2bbf-4049-b142-a30d6236291e_end-->
 
@@ -729,7 +706,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: b131ddbe-5439-4c87-95bc-6999b0648252  
-Subcategory: undefined
 
 <!--b131ddbe-5439-4c87-95bc-6999b0648252_end-->
 
@@ -747,7 +723,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: 2ae93784-84f0-4f3a-8a9c-4ee4f8549cd4  
-Subcategory: undefined
 
 <!--2ae93784-84f0-4f3a-8a9c-4ee4f8549cd4_end-->
 
@@ -765,7 +740,6 @@ For more information, see [MANA support for Network Virtual Appliances (NVAs) - 
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 40df4452-9b9f-47d7-921c-638e6cac6333  
-Subcategory: undefined
 
 <!--40df4452-9b9f-47d7-921c-638e6cac6333_end-->
 
@@ -783,7 +757,6 @@ For more information, see [MANA support for Network Virtual Appliances (NVAs) - 
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 53f3eb12-bd32-4e63-8241-234ae2b58615  
-Subcategory: undefined
 
 <!--53f3eb12-bd32-4e63-8241-234ae2b58615_end-->
 
@@ -801,7 +774,6 @@ For more information, see [MANA support for Network Virtual Appliances (NVAs) - 
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: 2a126a9d-b0ec-4352-bb39-863cb8fafdcf  
-Subcategory: undefined
 
 <!--2a126a9d-b0ec-4352-bb39-863cb8fafdcf_end-->
 
@@ -819,7 +791,6 @@ For more information, see [MANA support for Network Virtual Appliances (NVAs) - 
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: b70fccd9-37c8-435a-8868-7b5b2ec759f7  
-Subcategory: undefined
 
 <!--b70fccd9-37c8-435a-8868-7b5b2ec759f7_end-->
 
@@ -837,7 +808,6 @@ For more information, see [MANA support for Network Virtual Appliances (NVAs) - 
 
 ResourceType: microsoft.compute/virtualmachinescalesets/virtualmachines  
 Recommendation ID: dcca165d-ffec-43e4-a21d-bc41b7812e09  
-Subcategory: undefined
 
 <!--dcca165d-ffec-43e4-a21d-bc41b7812e09_end-->
 
@@ -855,7 +825,6 @@ For more information, see [VM Insights Map and Dependency Agent retirement guida
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: 5d4bb790-d34a-4b45-81d7-4dd060e59853  
-Subcategory: undefined
 
 <!--5d4bb790-d34a-4b45-81d7-4dd060e59853_end-->
 

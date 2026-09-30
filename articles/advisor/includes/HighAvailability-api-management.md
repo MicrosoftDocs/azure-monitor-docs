@@ -62,7 +62,6 @@ For more information, see [Deploy an Azure API Management Instance to Multiple A
 
 ResourceType: microsoft.apimanagement/service  
 Recommendation ID: 2e4d65a3-1e77-4759-bcaa-13009484a97e  
-Subcategory: undefined
 
 <!--2e4d65a3-1e77-4759-bcaa-13009484a97e_end-->
 
@@ -98,7 +97,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/az
 
 ResourceType: microsoft.apimanagement/service  
 Recommendation ID: 18d79d0b-6a10-49f7-a0e4-f6b3b6f9c9b1  
-Subcategory: undefined
 
 <!--18d79d0b-6a10-49f7-a0e4-f6b3b6f9c9b1_end-->
 

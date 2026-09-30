@@ -62,7 +62,6 @@ For more information, see [Azure Event Hubs: Data streaming platform with Kafka 
 
 ResourceType: microsoft.eventhub/clusters  
 Recommendation ID: 508f935c-bd6c-4bd0-a788-78f2c611fa44  
-Subcategory: undefined
 
 <!--508f935c-bd6c-4bd0-a788-78f2c611fa44_end-->
 

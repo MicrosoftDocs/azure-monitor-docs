@@ -26,7 +26,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.databricks/workspaces  
 Recommendation ID: 99db65bb-fdb3-4bc8-b015-341fba99865c  
-Subcategory: undefined
 
 <!--99db65bb-fdb3-4bc8-b015-341fba99865c_end-->
 

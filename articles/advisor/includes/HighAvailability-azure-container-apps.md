@@ -116,7 +116,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.app/containerapps  
 Recommendation ID: ce97546e-2d8f-4534-99dd-c5bbb584d568  
-Subcategory: undefined
 
 <!--ce97546e-2d8f-4534-99dd-c5bbb584d568_end-->
 
@@ -152,7 +151,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.app/containerapps  
 Recommendation ID: ea0bf0e5-dc1b-446f-a1e8-eff1b913eb31  
-Subcategory: undefined
 
 <!--ea0bf0e5-dc1b-446f-a1e8-eff1b913eb31_end-->
 

@@ -44,7 +44,6 @@ For more information, see [Configure passive geo-replication for Premium Azure C
 
 ResourceType: microsoft.cache/redis  
 Recommendation ID: c9e4a27c-79e6-4e4c-904f-b6612b6cd892  
-Subcategory: undefined
 
 <!--c9e4a27c-79e6-4e4c-904f-b6612b6cd892_end-->
 
@@ -98,7 +97,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.cache/redis  
 Recommendation ID: f3aded79-f9ff-4ce4-99e3-2ffcf11161a4  
-Subcategory: undefined
 
 <!--f3aded79-f9ff-4ce4-99e3-2ffcf11161a4_end-->
 
@@ -116,7 +114,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.cache/redisenterprise  
 Recommendation ID: b498df1b-749b-4fdb-a7a1-28551cef6a82  
-Subcategory: undefined
 
 <!--b498df1b-749b-4fdb-a7a1-28551cef6a82_end-->
 

@@ -27,7 +27,6 @@ For more information, see [Frequently asked questions about Application Gateway]
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: 511a9f7b-7b5e-4713-b18d-0b7464a84d1f  
-Subcategory: undefined
 
 <!--511a9f7b-7b5e-4713-b18d-0b7464a84d1f_end-->
 
@@ -45,7 +44,6 @@ For more information, see [Azure Application Gateway infrastructure configuratio
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: 6cc8be07-8c03-4bd7-ad9b-c2985b261e01  
-Subcategory: undefined
 
 <!--6cc8be07-8c03-4bd7-ad9b-c2985b261e01_end-->
 
@@ -63,7 +61,6 @@ For more information, see [Frequently asked questions about Application Gateway]
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: df989782-82d1-420d-b354-71956bd9379c  
-Subcategory: undefined
 
 <!--df989782-82d1-420d-b354-71956bd9379c_end-->
 
@@ -165,7 +162,6 @@ For more information, see [Traffic Manager Endpoint Types](https://aka.ms/AA1o0x
 
 ResourceType: microsoft.network/trafficmanagerprofiles  
 Recommendation ID: 6cd70072-c45c-4716-bf7b-b35c18e46e72  
-Subcategory: undefined
 
 <!--6cd70072-c45c-4716-bf7b-b35c18e46e72_end-->
 
@@ -183,7 +179,6 @@ For more information, see [Manage endpoints in Azure Traffic Manager](https://ak
 
 ResourceType: microsoft.network/trafficmanagerprofiles  
 Recommendation ID: 0bbe0a49-3c63-49d3-ab4a-aa24198f03f7  
-Subcategory: undefined
 
 <!--0bbe0a49-3c63-49d3-ab4a-aa24198f03f7_end-->
 
@@ -201,7 +196,6 @@ For more information, see [Azure Virtual WAN FAQ](https://aka.ms/mseeprefixtrack
 
 ResourceType: microsoft.network/virtualhubs  
 Recommendation ID: e3489565-d891-406e-91d1-44f476563850  
-Subcategory: undefined
 
 <!--e3489565-d891-406e-91d1-44f476563850_end-->
 
@@ -255,7 +249,6 @@ For more information, see [Create a zone-redundant virtual network gateway in Az
 
 ResourceType: microsoft.network/virtualnetworkgateways  
 Recommendation ID: c9af1ef6-55bc-48af-bfe4-2c80490159f8  
-Subcategory: undefined
 
 <!--c9af1ef6-55bc-48af-bfe4-2c80490159f8_end-->
 
@@ -273,7 +266,6 @@ For more information, see [What Is Azure NAT Gateway?](/azure/nat-gateway/nat-ov
 
 ResourceType: microsoft.network/virtualnetworks  
 Recommendation ID: 56f0c458-521d-4b8b-a704-c0a099483d19  
-Subcategory: undefined
 
 <!--56f0c458-521d-4b8b-a704-c0a099483d19_end-->
 
@@ -291,7 +283,6 @@ For more information, see [Health monitoring overview for Azure Application Gate
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: 01c0dcd3-d6f7-4d50-a98b-4e15f9486a32  
-Subcategory: undefined
 
 <!--01c0dcd3-d6f7-4d50-a98b-4e15f9486a32_end-->
 
@@ -435,7 +426,6 @@ For more information, see [Azure Traffic Manager endpoint monitoring](/azure/tra
 
 ResourceType: microsoft.network/trafficmanagerprofiles  
 Recommendation ID: 20f2ff6a-3940-4cc9-8f14-909466c4ddd0  
-Subcategory: undefined
 
 <!--20f2ff6a-3940-4cc9-8f14-909466c4ddd0_end-->
 
@@ -453,7 +443,6 @@ For more information, see [Monitor Azure Virtual WAN](/azure/virtual-wan/monitor
 
 ResourceType: microsoft.network/p2svpngateways  
 Recommendation ID: 80415aba-c979-4199-b093-873d3a31fec0  
-Subcategory: undefined
 
 <!--80415aba-c979-4199-b093-873d3a31fec0_end-->
 
@@ -471,7 +460,6 @@ For more information, see [TLS termination with Azure Key Vault certificates](ht
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: c7b5d99f-9759-4a04-9e86-ff6a41e0902f  
-Subcategory: undefined
 
 <!--c7b5d99f-9759-4a04-9e86-ff6a41e0902f_end-->
 
@@ -489,7 +477,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.network/virtualnetworkgateways  
 Recommendation ID: 96e232d0-9b01-4e96-8c24-f9160ba3535a  
-Subcategory: undefined
 
 <!--96e232d0-9b01-4e96-8c24-f9160ba3535a_end-->
 
@@ -507,7 +494,6 @@ For more information, see [Azure Monitor activity log - Azure Monitor](/azure/az
 
 ResourceType: microsoft.network/routetables  
 Recommendation ID: 830e326a-d280-4d4e-887a-884d7d8994ce  
-Subcategory: undefined
 
 <!--830e326a-d280-4d4e-887a-884d7d8994ce_end-->
 
@@ -525,7 +511,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/v2
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: a7ecaaaa-dc86-444b-8aad-e0773d5c2324  
-Subcategory: undefined
 
 <!--a7ecaaaa-dc86-444b-8aad-e0773d5c2324_end-->
 
@@ -543,7 +528,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/v2
 
 ResourceType: microsoft.network/networkwatchers/flowlogs  
 Recommendation ID: 954daefb-e247-4e27-85c6-a212f9df5a53  
-Subcategory: undefined
 
 <!--954daefb-e247-4e27-85c6-a212f9df5a53_end-->
 
@@ -561,7 +545,6 @@ For more information, see [Architecture Best Practices for Azure Application Gat
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: 6012b4f4-b19a-4d6e-ae25-4289c228428e  
-Subcategory: undefined
 
 <!--6012b4f4-b19a-4d6e-ae25-4289c228428e_end-->
 
@@ -579,7 +562,6 @@ For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/re
 
 ResourceType: microsoft.network/natgateways  
 Recommendation ID: 374b21de-e7ec-409a-9961-93e789e27536  
-Subcategory: undefined
 
 <!--374b21de-e7ec-409a-9961-93e789e27536_end-->
 
@@ -597,7 +579,6 @@ For more information, see [Migrate from Inbound NAT rules version 1 to version 2
 
 ResourceType: microsoft.network/loadbalancers  
 Recommendation ID: 1e97d137-7812-474d-af09-6d5b3e2a1508  
-Subcategory: undefined
 
 <!--1e97d137-7812-474d-af09-6d5b3e2a1508_end-->
 

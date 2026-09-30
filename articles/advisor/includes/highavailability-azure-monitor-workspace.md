@@ -26,7 +26,6 @@ For more information, see [Configure the ContainerLogV2 schema for Container Ins
 
 ResourceType: microsoft.monitor/accounts  
 Recommendation ID: 8c051878-a1ba-42e3-88b7-3533772f295e  
-Subcategory: undefined
 
 <!--8c051878-a1ba-42e3-88b7-3533772f295e_end-->
 
@@ -44,7 +43,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.monitor/accounts  
 Recommendation ID: 68da57f8-4582-4d1c-b5a2-4a114a3b2f1a  
-Subcategory: undefined
 
 <!--68da57f8-4582-4d1c-b5a2-4a114a3b2f1a_end-->
 

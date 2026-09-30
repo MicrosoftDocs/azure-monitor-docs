@@ -45,7 +45,6 @@ For more information, see [Azure Service Bus - Automatically update messaging un
 
 ResourceType: microsoft.servicebus/namespaces  
 Recommendation ID: 68e62f5c-4ed1-4b78-a2a0-4d9a4cebf106  
-Subcategory: undefined
 
 <!--68e62f5c-4ed1-4b78-a2a0-4d9a4cebf106_end-->
 
@@ -86,7 +85,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.servicebus/namespaces  
 Recommendation ID: 55bd2c8e-da67-4e38-9af7-eb2123b0ca5e  
-Subcategory: undefined
 
 <!--55bd2c8e-da67-4e38-9af7-eb2123b0ca5e_end-->
 

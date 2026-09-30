@@ -26,7 +26,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.synapse/workspaces/bigdatapools  
 Recommendation ID: 5202f09f-6886-4daf-a2e2-21fea2672973  
-Subcategory: undefined
 
 <!--5202f09f-6886-4daf-a2e2-21fea2672973_end-->
 

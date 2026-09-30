@@ -44,7 +44,6 @@ For more information, see [Performance Tips for .NET SDK V2 - Azure Cosmos DB](/
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: bdb595a4-e148-41f9-98e8-68ec92d1932e  
-Subcategory: undefined
 
 <!--bdb595a4-e148-41f9-98e8-68ec92d1932e_end-->
 
@@ -98,7 +97,6 @@ For more information, see [SQL Async Java API, SDK and Resources - Azure Cosmos 
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: bc9e5110-a220-4ab9-8bc9-53f92d3eef70  
-Subcategory: undefined
 
 <!--bc9e5110-a220-4ab9-8bc9-53f92d3eef70_end-->
 
@@ -116,7 +114,6 @@ For more information, see [Java SDK V4 for API for Nosql Release Notes and Resou
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 38942ae5-3154-4e0b-98d9-23aa061c334b  
-Subcategory: undefined
 
 <!--38942ae5-3154-4e0b-98d9-23aa061c334b_end-->
 
@@ -170,7 +167,6 @@ For more information, see [Prevent rate-limiting errors for Azure Cosmos DB for 
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: ec6fe20c-08d6-43da-ac18-84ac83756a88  
-Subcategory: undefined
 
 <!--ec6fe20c-08d6-43da-ac18-84ac83756a88_end-->
 
@@ -224,7 +220,6 @@ For more information, see [Azure Cosmos DB documentation - Azure Cosmos DB](/azu
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 60a55165-9ccd-4536-81f6-e8dc6246d3d2  
-Subcategory: undefined
 
 <!--60a55165-9ccd-4536-81f6-e8dc6246d3d2_end-->
 
@@ -314,7 +309,6 @@ For more information, see [Configure Multi-Region Writes](/azure/cosmos-db/nosql
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: a2002089-9dd1-46b6-881c-d0f349515230  
-Subcategory: undefined
 
 <!--a2002089-9dd1-46b6-881c-d0f349515230_end-->
 
@@ -332,7 +326,6 @@ For more information, see [High Availability (Reliability) in Azure Cosmos DB fo
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 687f83d3-db01-4ab1-a77b-b31e99f16d33  
-Subcategory: undefined
 
 <!--687f83d3-db01-4ab1-a77b-b31e99f16d33_end-->
 
@@ -350,7 +343,6 @@ PPAF is a new Azure Cosmos DB preview feature that boosts availability for singl
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 36b07167-9b19-4725-81bc-54e8e0510a0c  
-Subcategory: undefined
 
 <!--36b07167-9b19-4725-81bc-54e8e0510a0c_end-->
 
@@ -368,7 +360,6 @@ For more information, see [About Azure Cosmos DB backup - Azure Backup](https://
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 649fd0b8-0bf0-43fe-bfa1-c408f6d33200  
-Subcategory: undefined
 
 <!--649fd0b8-0bf0-43fe-bfa1-c408f6d33200_end-->
 
