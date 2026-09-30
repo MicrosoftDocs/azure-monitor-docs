@@ -20,7 +20,7 @@ Standard tier workspaces are retiring. Upgrade to Premium tier prior to retireme
   
 **Potential benefits**: Access to enhanced capabilities  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=502623)  
 
