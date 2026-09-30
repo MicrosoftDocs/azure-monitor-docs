@@ -99,9 +99,9 @@ Subcategory: undefined
 
 <!--fac2ad84-1421-4dd3-8477-9d6e605392b4_begin-->
 
-#### Ensure B-series Virtual Machine's (VMs) aren't used in production environments  
+#### Clusters having node pools using non-recommended B-Series  
   
-When a cluster has one or more node pools using a non-recommended burstable VM SKU, full vCPU capability 100% is unguaranteed. Ensure B-series VMs aren't used in production environments.  
+When a cluster has one or more node pools using a non-recommended burstable VM SKU, full vCPU capability 100% is unguaranteed. Ensure B-series VM's are not used in production environments.  
   
 **Potential benefits**: Best practice for consistent performance  
 
@@ -141,7 +141,7 @@ To avoid service disruptions, scaling restrictions, and remain supported; upgrad
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485172)  
 
@@ -159,7 +159,7 @@ Migrate to Container insights managed identity authentication before the retirem
   
 **Potential benefits**: Avoid service disruption and gain enhanced features  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500853)  
 
@@ -197,7 +197,7 @@ Microsoft encourages identifying the best approach for your environment before t
   
 **Potential benefits**: Ensure secure traffic control on Windows-based AKS clusters  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500273)  
 
@@ -253,7 +253,7 @@ Managed NGINX Ingress via the AKS Application Routing add-on is retiring. Plan m
   
 **Potential benefits**: Avoid service interruption  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=555839)  
 
@@ -271,7 +271,7 @@ Standard_HC44rs, Standard_HC44-16rs, and Standard_HC44-32rs virtual machine size
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Migrate your HC-series virtual machines by May 31, 2027 - Azure Virtual Machines](/azure/virtual-machines/sizes/retirement/hc-series-retirement)  
 
