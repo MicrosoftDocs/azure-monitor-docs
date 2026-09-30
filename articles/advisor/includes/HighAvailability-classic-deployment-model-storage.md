@@ -39,7 +39,7 @@ The modern version of the Azure Storage Data Movement Library offers important u
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485106)  
 

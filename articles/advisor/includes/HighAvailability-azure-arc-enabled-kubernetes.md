@@ -56,7 +56,7 @@ Windows Server 2022 image support is retiring, upgrade to the latest version to 
   
 **Potential benefits**: Take advantage of fixes, improvements, and new functionality  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=499906)  
 
