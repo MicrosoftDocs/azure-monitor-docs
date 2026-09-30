@@ -792,10 +792,10 @@ Metric alerts support alerting on multi-dimensional metrics and up to 5 criteria
 The following constraints apply when using dimensions in an alert rule that contains multiple criteria:
 
 * You can only select one value per dimension within each criterion.
-* You cannot use "\*" as a dimension value.
-* When metrics that are configured in different criteria support the same dimension, then a configured dimension value must be explicitly set in the same way for all of those metrics in the relevant criteria.
+* You can't use "\*" as a dimension value.
+* When metrics that you configure in different criteria support the same dimension, you must explicitly set a configured dimension value in the same way for all of those metrics in the relevant criteria.
 
-  * In the example below, because both the **Transactions** and **SuccessE2ELatency** metrics have an **ApiName** dimension, and *criterion1* specifies the *"GetBlob"* value for the **ApiName** dimension, then *criterion2* must also set a *"GetBlob"* value for the **ApiName** dimension.
+  * In the following example, because both the **Transactions** and **SuccessE2ELatency** metrics have an **ApiName** dimension, and *criterion1* specifies the *"GetBlob"* value for the **ApiName** dimension, *criterion2* must also set a *"GetBlob"* value for the **ApiName** dimension.
 
 ### Template file
 
@@ -2107,7 +2107,7 @@ This section will describe Azure Resource Manager templates for three scenarios 
 > [!NOTE]
 >
 > * In a metric alert rule that monitors multiple resources, only one condition is allowed.
-> * If you are creating a metric alert for a single resource, the template uses the `ResourceId` of the target resource. If you are creating a metric alert for multiple resources, the template uses the `scope`, `TargetResourceType`, and `TargetResourceRegion` for the target resources.
+> * If you're creating a metric alert for a single resource, the template uses the `ResourceId` of the target resource. If you're creating a metric alert for multiple resources, the template uses the `scope`, `TargetResourceType`, and `TargetResourceRegion` for the target resources.
 
 ### Static threshold alert on all virtual machines in one or more resource groups
 
