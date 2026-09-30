@@ -34,7 +34,7 @@ Subcategory: Other
 
 #### An issue has been detected that is preventing the renewal of your Managed Certificate.  
   
-We detected the managed certificate used by the Container App has failed to auto renew. Please follow the documentation link to make sure that the DNS settings of your custom domain are correct.  
+The managed certificate used by the Container App didn't renew automatically. Check the DNS settings for your custom domain to ensure they're correct.
   
 **Potential benefits**: Avoid downtime due to an expired certificate.  
 
@@ -124,7 +124,7 @@ Subcategory: undefined
 
 #### The public preview add-ons feature in Container Apps are being retired  
   
-Container Apps running add-ons are going to be deleted along with associated application data. Transition to Azure-managed services, such as Azure Cache for Redis or Azure Database for PostgreSQL if you�re ready to use a production-level service.  
+Container Apps running add-ons are going to be deleted along with associated application data. Transition to Azure-managed services, such as Azure Cache for Redis or Azure Database for PostgreSQL if you're ready to use a production-level service.  
   
 **Potential benefits**: Avoid potential disruptions  
 
@@ -142,7 +142,7 @@ Subcategory: ServiceUpgradeAndRetirement
 
 #### Transition to Azure managed services or open-source quick starts  
   
-The public preview add-ons feature in Azure Container Apps is retiring. Move to Azure managed services (e.g., Azure Cache for Redis, Azure Database for PostgreSQL) or use open source quickstarts for dev/test purposes.  
+The public preview add-ons feature in Azure Container Apps is retiring. Move to Azure managed services (for example, Azure Cache for Redis, Azure Database for PostgreSQL) or use open-source quickstarts for dev/test purposes.  
   
 **Potential benefits**: Avoid service disruption  
 
