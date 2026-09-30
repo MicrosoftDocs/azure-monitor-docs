@@ -14,7 +14,7 @@ This article provides samples of using [Azure Resource Manager templates](/azure
 
 The samples define complete resources for their illustrated scenarios. When adapting a sample to an existing alert:
 
-- Retain its resource name, tags, enabled state, and other settings that aren't part of the intended change.
+- Retain its resource name, tags, enabled state, and other settings that you don't want to change.
 - Include all required `scopes`, `criteria.allOf`, dimensions, and `actions` entries. Arrays describe the complete intended configuration, not entries to append automatically.
 - For an availability test, also retain the required locations, test configuration, and resource links.
 - Review the full Bicep or ARM definition before redeploying. [Incremental deployments](/azure/azure-resource-manager/templates/deployment-modes#incremental-mode) reapply resource properties; they aren't partial patches.
@@ -2127,7 +2127,7 @@ The following Bicep example uses the [`Microsoft.Insights/metricAlerts`](/azure/
 
 <br>
 <details>
-<summary>Create the resource-group static-threshold alert</summary>
+<summary>Create the resource group static-threshold alert</summary>
 
 ```bicep
 @description('Name of the alert')
@@ -2305,7 +2305,7 @@ The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](
 
 <br>
 <details>
-<summary>Create the resource-group static-threshold alert</summary>
+<summary>Create the resource group static-threshold alert</summary>
 
 ```json
 {
@@ -2608,7 +2608,7 @@ The following Bicep example uses the [`Microsoft.Insights/metricAlerts`](/azure/
 
 <br>
 <details>
-<summary>Create the resource-group dynamic-threshold alert</summary>
+<summary>Create the resource group dynamic-threshold alert</summary>
 
 ```bicep
 @description('Name of the alert')
@@ -3051,7 +3051,7 @@ The following ARM template example uses the [`Microsoft.Insights/metricAlerts`](
 
 <br>
 <details>
-<summary>Set parameters for the resource-group dynamic-threshold alert</summary>
+<summary>Set parameters for the resource group dynamic-threshold alert</summary>
 
 ```json
 {
