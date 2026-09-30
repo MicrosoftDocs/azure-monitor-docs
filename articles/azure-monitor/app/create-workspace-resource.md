@@ -453,7 +453,12 @@ Content-Type: application/json
 
 The following Bicep example uses the [Microsoft.Insights components](/azure/templates/microsoft.insights/components?pivots=deployment-language-bicep) resource type.
 
-Before updating an existing component, combine the illustrated `properties.WorkspaceResourceId` change with its complete resource definition. Retain its existing `kind`, `Application_Type`, tags, and all other configured properties. The template isn't a partial patch.
+Before updating an existing component:
+
+- Combine the illustrated `properties.WorkspaceResourceId` change with its complete resource definition.
+- Retain its existing `kind`, `Application_Type`, tags, and all other configured properties.
+
+The template isn't a partial patch.
 
 ```bicep
 param subscriptionId string = '<SubscriptionId>'
@@ -479,7 +484,12 @@ resource applicationInsightsComponent 'Microsoft.Insights/components@<ApiVersion
 
 The following ARM (JSON) example uses the [Microsoft.Insights components](/azure/templates/microsoft.insights/components?pivots=deployment-language-arm-template) resource type.
 
-Before updating an existing component, combine the illustrated `properties.WorkspaceResourceId` change with its complete resource definition. Retain its existing `kind`, `Application_Type`, tags, and all other configured properties. The template isn't a partial patch.
+Before updating an existing component:
+
+- Combine the illustrated `properties.WorkspaceResourceId` change with its complete resource definition.
+- Retain its existing `kind`, `Application_Type`, tags, and all other configured properties.
+
+The template isn't a partial patch.
 
 <br>
 <details>
