@@ -371,9 +371,30 @@ If you save the preceding JSON as *metricfromLogsAlertStatic.json*, you can coup
 
 </details>
 
-Assuming that you saved the preceding parameter file as *metricfromLogsAlertStatic.parameters.json*, you can create metric alerts for logs by using the [Resource Manager template for creation in the Azure portal](/azure/azure-resource-manager/templates/deploy-portal).
+Save the preceding parameter file as *metricfromLogsAlertStatic.parameters.json*, and then choose a deployment method.
 
-Alternatively, you can use this Azure PowerShell command:
+# [Portal](#tab/portal)
+
+You can create metric alerts for logs by using the [Resource Manager template for creation in the Azure portal](/azure/azure-resource-manager/templates/deploy-portal).
+
+# [Azure CLI](#tab/cli)
+
+The following Azure CLI example uses the [`az deployment group create`](/cli/azure/deployment/group#az-deployment-group-create) command.
+
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+
+# Deploy the metric alert and log-to-metric rule
+az deployment group create \
+    --resource-group "$resourceGroupName" \
+    --template-file metricfromLogsAlertStatic.json \
+    --parameters @metricfromLogsAlertStatic.parameters.json
+```
+
+# [Azure PowerShell](#tab/powershell)
+
+The following Azure PowerShell example uses the [`New-AzResourceGroupDeployment`](/powershell/module/az.resources/new-azresourcegroupdeployment) cmdlet.
 
 ```powershell
 # Set variables
@@ -390,18 +411,7 @@ $newAzResourceGroupDeploymentParams = @{
 New-AzResourceGroupDeployment @newAzResourceGroupDeploymentParams
 ```
 
-Or, you can deploy the Resource Manager template by using the Azure CLI:
-
-```bash
-# Set variables
-resourceGroupName="<ResourceGroupName>"
-
-# Deploy the metric alert and log-to-metric rule
-az deployment group create \
-    --resource-group "$resourceGroupName" \
-    --template-file metricfromLogsAlertStatic.json \
-    --parameters @metricfromLogsAlertStatic.parameters.json
-```
+---
 
 ### Metric alert for logs with dynamic thresholds
 
@@ -717,9 +727,30 @@ If you save the preceding JSON as *metricfromLogsAlertDynamic.json*, you can cou
 
 </details>
 
-Assuming that you saved the preceding parameter file as *metricfromLogsAlertDynamic.parameters.json*, you can create metric alerts for logs by using the [Resource Manager template for creation in the Azure portal](/azure/azure-resource-manager/templates/deploy-portal).
+Save the preceding parameter file as *metricfromLogsAlertDynamic.parameters.json*, and then choose a deployment method.
 
-Alternatively, you can use this Azure PowerShell command:
+# [Portal](#tab/portal)
+
+You can create metric alerts for logs by using the [Resource Manager template for creation in the Azure portal](/azure/azure-resource-manager/templates/deploy-portal).
+
+# [Azure CLI](#tab/cli)
+
+The following Azure CLI example uses the [`az deployment group create`](/cli/azure/deployment/group#az-deployment-group-create) command.
+
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+
+# Deploy the metric alert and log-to-metric rule
+az deployment group create \
+    --resource-group "$resourceGroupName" \
+    --template-file metricfromLogsAlertDynamic.json \
+    --parameters @metricfromLogsAlertDynamic.parameters.json
+```
+
+# [Azure PowerShell](#tab/powershell)
+
+The following Azure PowerShell example uses the [`New-AzResourceGroupDeployment`](/powershell/module/az.resources/new-azresourcegroupdeployment) cmdlet.
 
 ```powershell
 # Set variables
@@ -736,18 +767,7 @@ $newAzResourceGroupDeploymentParams = @{
 New-AzResourceGroupDeployment @newAzResourceGroupDeploymentParams
 ```
 
-Or, you can deploy the Resource Manager template by using the Azure CLI:
-
-```bash
-# Set variables
-resourceGroupName="<ResourceGroupName>"
-
-# Deploy the metric alert and log-to-metric rule
-az deployment group create \
-    --resource-group "$resourceGroupName" \
-    --template-file metricfromLogsAlertDynamic.json \
-    --parameters @metricfromLogsAlertDynamic.parameters.json
-```
+---
 
 ## Related content
 
