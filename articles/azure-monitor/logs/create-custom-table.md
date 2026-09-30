@@ -133,7 +133,7 @@ The following Azure CLI examples use the [`az monitor log-analytics workspace ta
     
     > [!NOTE]
     > This sample lists all the supported column data types except `guid`. Log Analytics stores and queries GUIDs as `string` types even if you define the column as `guid`.
-    
+
     <br>
     <details>
     <summary>Expand to view the my-table.json file.</summary>
@@ -793,7 +793,7 @@ The following REST examples use the [Tables](../fundamentals/azure-monitor-rest-
 
     > [!NOTE]
     > This sample lists all the supported column data types except `guid`. Log Analytics stores and queries GUIDs as `string` types even if you define the column as `guid`.
-    
+
     <br>
     <details>
     <summary>Create a custom table</summary>

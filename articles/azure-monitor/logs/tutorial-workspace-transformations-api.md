@@ -165,7 +165,6 @@ The following template creates a new DCR for this tutorial. If your workspace al
 
     :::image type="content" source="media/tutorial-workspace-transformations-api/edit-template.png" lightbox="media/tutorial-workspace-transformations-api/edit-template.png" alt-text="Screenshot to edit Resource Manager template.":::
 
-
     <br>
     <details>
     <summary>Create the workspace transformation data collection rule</summary>
