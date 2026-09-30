@@ -5,6 +5,10 @@
    "redirect_url": "/azure/azure-monitor/fundamentals/activity-log-schema"
   },
   {
+   "source_path": "articles/azure-monitor/scom-managed-instance/convert-management-packs-into-data-collection-rules.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/convert-management-packs-into-data-collection-rules"
+  },
+  {
    "source_path": "articles/azure-monitor/platform/activity-log.md",
    "redirect_url": "/azure/azure-monitor/fundamentals/activity-log"
   },

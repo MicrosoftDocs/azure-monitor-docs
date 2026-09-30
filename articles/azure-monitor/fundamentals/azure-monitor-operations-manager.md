@@ -2,7 +2,7 @@
 title: Migrate from System Center Operations Manager (SCOM) to Azure Monitor
 description: Guidance for existing users of System Center Operations Manager to transition monitoring of workloads to Azure Monitor as part of a transition to the cloud.
 ms.topic: upgrade-and-migration-article
-ms.date: 08/28/2025
+ms.date: 09/30/2026
 ms.reviewer:
 
 ---
@@ -69,6 +69,8 @@ Continue to use management packs for functionality that isn't provided by other 
 
 There are no migration tools to convert SCOM management packs to Azure Monitor because their logic is fundamentally different than Azure Monitor data collection. Migrating management pack logic typically focuses on analyzing the data collected by System Center Operations Manager and identifying those monitoring scenarios that can be replicated by Azure Monitor. As you customize Azure Monitor to meet your requirements for different applications and components, then you can start to retire different management packs and legacy agents in System Center Operations Manager.
 
+To migrate applicable rules and monitors from existing management packs, see [Convert System Center Operations Manager management packs into data collection rules](/azure/azure-monitor/scom-manage-instance/convert-management-packs-into-data-collection-rules).
+
 Management packs in System Center Operations Manager contain rules and monitors that combine collection of data and the resulting alert into a single end-to-end workflow. Data already collected by System Center Operations Manager is rarely used for alerting. Azure Monitor separates data collection and alerts into separate processes. Alert rules access data from Azure Monitor Logs and Azure Monitor Metrics collected from agents. Also, rules and monitors are typically focused on specific data such as a particular event or performance counter. Data collection rules in Azure Monitor are typically more broad collecting multiple sets of events and performance counters in a single DCR.
 
 See the following content for guidance on creating data collection and alerting for common monitoring scenarios:
@@ -101,3 +103,4 @@ Management packs often make use of synthetic transactions that connect to an app
 * Read more about [monitoring Azure virtual machines in Azure Monitor](../vm/monitor-vm-azure.md).
 * Read more about [VM insights](../vm/vminsights-overview.md).
 * Read more about [Application Insights](../app/app-insights-overview.md).
+
