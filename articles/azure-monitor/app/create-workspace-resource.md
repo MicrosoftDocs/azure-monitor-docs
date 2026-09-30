@@ -455,8 +455,8 @@ The following Bicep example uses the [Microsoft.Insights components](/azure/temp
 
 Before updating an existing component:
 
-- Combine the illustrated `properties.WorkspaceResourceId` change with its complete resource definition.
-- Retain its existing `kind`, `Application_Type`, tags, and all other configured properties.
+* Combine the illustrated `properties.WorkspaceResourceId` change with its complete resource definition.
+* Retain its existing `kind`, `Application_Type`, tags, and all other configured properties.
 
 The template isn't a partial patch.
 
@@ -486,8 +486,8 @@ The following ARM (JSON) example uses the [Microsoft.Insights components](/azure
 
 Before updating an existing component:
 
-- Combine the illustrated `properties.WorkspaceResourceId` change with its complete resource definition.
-- Retain its existing `kind`, `Application_Type`, tags, and all other configured properties.
+* Combine the illustrated `properties.WorkspaceResourceId` change with its complete resource definition.
+* Retain its existing `kind`, `Application_Type`, tags, and all other configured properties.
 
 The template isn't a partial patch.
 
@@ -779,9 +779,9 @@ The following ARM template example uses the [Microsoft.Insights diagnosticSettin
 
 For template-based workspace updates in this and the following sections:
 
-- Apply the illustrated setting within your complete `Microsoft.OperationalInsights/workspaces` resource definition.
-- Retain the existing SKU, retention, daily cap, identity, features, and all other configured properties or array entries that you aren't changing.
-- Review the complete definition before redeploying. An [incremental template deployment](/azure/azure-resource-manager/templates/deployment-modes#incremental-mode) isn't a property-level patch.
+* Apply the illustrated setting within your complete `Microsoft.OperationalInsights/workspaces` resource definition.
+* Retain the existing SKU, retention, daily cap, identity, features, and all other configured properties or array entries that you aren't changing.
+* Review the complete definition before redeploying. An [incremental template deployment](/azure/azure-resource-manager/templates/deployment-modes#incremental-mode) isn't a property-level patch.
 
 # [Portal](#tab/portal)
 
