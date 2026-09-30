@@ -34,7 +34,7 @@ Subcategory: Other
 
 #### Check your app's service health issues  
   
-We have a recommendation related to your app's service health. Please open the Azure Portal, go to the app, click the Diagnose and Solve to see more details.  
+We have a recommendation related to your app's service health. Open the Azure portal, go to the app, and select **Diagnose and solve** to see more details.
   
 **Potential benefits**: Keep your app healthy  
 
