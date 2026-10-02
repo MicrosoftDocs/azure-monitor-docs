@@ -448,8 +448,7 @@ Azure Kubernetes Service retires 1.32 LTS Kubernetes version. To stay within s
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** High
-  
+**Impact:** Medium
 For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
 
 ResourceType: microsoft.containerservice/managedclusters  
@@ -533,8 +532,7 @@ Azure Kubernetes Service retires 1.35 Kubernetes Official version. To stay withi
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** High
-  
+**Impact:** Medium
 For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
 
 ResourceType: microsoft.containerservice/managedclusters  
