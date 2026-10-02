@@ -142,4 +142,21 @@ Recommendation ID: c317d906-e24a-4f6d-8cd7-389bd6bc602c
 
 <!--c317d906-e24a-4f6d-8cd7-389bd6bc602c_end-->
 
+<!--99565ce4-6382-4ab9-a3ae-48b7df76fdb3_begin-->
+
+#### MySQL v5.7 is being retired  
+  
+MySQL v5.7 is being retired.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Version support policy - Azure Database for MySQL](/azure/mysql/concepts-version-policy#what-will-happen-to-azure-database-for-mysql-service-after-mysql-community-version-is-retired-in-october-2023)  
+
+ResourceType: microsoft.dbformysql/flexibleservers  
+Recommendation ID: 99565ce4-6382-4ab9-a3ae-48b7df76fdb3  
+
+<!--99565ce4-6382-4ab9-a3ae-48b7df76fdb3_end-->
+
 <!--articleBody-->

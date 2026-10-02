@@ -174,4 +174,21 @@ Recommendation ID: 600a3187-48dd-495b-a9e8-320f83571b01
 
 <!--600a3187-48dd-495b-a9e8-320f83571b01_end-->
 
+<!--52ff3019-62b0-4905-b016-da35fa6bbddc_begin-->
+
+#### Azure CDN Standard from Microsoft (classic) is retiring
+  
+To avoid service disruptions, migrate to Azure Front Door Standard or Premium.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=Azure-CDN-Standard-from-Microsoft-classic-will-be-retired-on-30-September-2027)  
+
+ResourceType: microsoft.cdn/profiles  
+Recommendation ID: 52ff3019-62b0-4905-b016-da35fa6bbddc  
+
+<!--52ff3019-62b0-4905-b016-da35fa6bbddc_end-->
+
 <!--articleBody-->

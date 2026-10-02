@@ -100,4 +100,21 @@ Recommendation ID: 18d79d0b-6a10-49f7-a0e4-f6b3b6f9c9b1
 
 <!--18d79d0b-6a10-49f7-a0e4-f6b3b6f9c9b1_end-->
 
+<!--4d793750-3bdf-42e0-aab0-7883c5e296ee_begin-->
+
+#### Built-in Analytics (API Management) is retiring  
+  
+The analytics dashboards that are built in to Azure API Management are retiring. You need to transition to using the new Azure Monitor based dashboards that use Log Analytics workbooks.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/begin-using-azure-monitor-based-dashboards-in-azure-api-management-before-the-builtin-analytics-dashboards-are-retired-on-15/)  
+
+ResourceType: microsoft.apimanagement/service  
+Recommendation ID: 4d793750-3bdf-42e0-aab0-7883c5e296ee  
+
+<!--4d793750-3bdf-42e0-aab0-7883c5e296ee_end-->
+
 <!--articleBody-->
