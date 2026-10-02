@@ -85,7 +85,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Containe
 > [!IMPORTANT]
 > The `pod` dimension for the AKS platform metrics `kube_pod_status_ready` and
 > `kube_pod_status_phase` will be retired on September 30, 2027. To continue
-> using the `pod` dimension in these metrics, use
+> using the `pod` dimension in these metrics after the retirement date, use
 > [Azure Monitor managed service for Prometheus](/azure/azure-monitor/metrics/prometheus-metrics-overview).
 
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
