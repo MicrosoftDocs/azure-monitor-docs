@@ -167,15 +167,15 @@ For a list of all available fields, see [AppGenAIContent](../reference/tables/ap
 
 ### Migration to the dedicated genAIContent table
 
-Before September 30, 2026, Application Insights routes these seven attributes to both the existing telemetry tables (`AppDependencies`, `AppTraces`, and `AppEvents`) and `AppGenAIContent`. Starting September 30, 2026, Application Insights stops routing the attribute values to the existing tables for newly ingested data. The attribute keys remain in the existing tables, but their values are replaced with a short pointer to `AppGenAIContent`. Read the values from `AppGenAIContent` instead.
+Before October 31, 2026, Application Insights routes these seven attributes to both the existing telemetry tables (`AppDependencies`, `AppTraces`, and `AppEvents`) and `AppGenAIContent`. Starting October 31, 2026, Application Insights stops routing the attribute values to the existing tables for newly ingested data. The attribute keys remain in the existing tables, but their values are replaced with a short pointer to `AppGenAIContent`. Read the values from `AppGenAIContent` instead.
 
-This change only affects data ingested on or after September 30, 2026. Data ingested before that date remains in its existing tables and stays queryable as before. Built-in Application Insights and Azure AI Foundry experiences continue to work automatically. Update any custom queries, alert rules, dashboards, workbooks, or reports that read the affected attribute values from `AppDependencies`, `AppTraces`, or `AppEvents`.
+This change only affects data ingested on or after October 31, 2026. Data ingested before that date remains in its existing tables and stays queryable as before. Built-in Application Insights and Azure AI Foundry experiences continue to work automatically. Update any custom queries, alert rules, dashboards, workbooks, or reports that read the affected attribute values from `AppDependencies`, `AppTraces`, or `AppEvents`.
 
 ### Control routing with preview feature flags
 
 Two Azure preview feature flags control when generative AI content stops flowing to the existing telemetry tables. Register and unregister these flags on your subscription by using the standard preview feature process. For the portal, Azure CLI, and Azure PowerShell steps, see [Set up preview features in Azure subscription](/azure/azure-resource-manager/management/preview-features#register-preview-feature). Registering a preview feature requires the `Microsoft.Features/*` actions, which the Contributor and Owner built-in roles grant.
 
-To enable the dedicated table behavior before the September 30, 2026 migration date, register the `protectGenAISensitiveData` feature flag. Early enablement routes sensitive content only to the `AppGenAIContent` table and improves your security posture ahead of the deadline when coupled with its configuration as a protected table.
+To enable the dedicated table behavior before the October 31, 2026 migration date, register the `protectGenAISensitiveData` feature flag. Early enablement routes sensitive content only to the `AppGenAIContent` table and improves your security posture ahead of the deadline when coupled with its configuration as a protected table.
 
 ```azurecli
 az feature register --namespace Microsoft.Insights --name protectGenAISensitiveData
@@ -187,7 +187,7 @@ If you need more time to update custom queries and related assets after the migr
 az feature register --namespace Microsoft.Insights --name optOutProtectGenAISensitiveData
 ```
 
-This opt-out is temporary and is discontinued on September 30, 2027. After that date, Application Insights routes generative AI content only to `AppGenAIContent`, regardless of the flag. To return to the dedicated table behavior sooner, unregister the flag.
+This opt-out is temporary and is discontinued on October 31, 2027. After that date, Application Insights routes generative AI content only to `AppGenAIContent`, regardless of the flag. To return to the dedicated table behavior sooner, unregister the flag.
 
 ```azurecli
 az feature unregister --namespace Microsoft.Insights --name optOutProtectGenAISensitiveData
