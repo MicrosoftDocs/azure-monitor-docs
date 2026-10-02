@@ -88,4 +88,21 @@ Recommendation ID: 55bd2c8e-da67-4e38-9af7-eb2123b0ca5e
 
 <!--55bd2c8e-da67-4e38-9af7-eb2123b0ca5e_end-->
 
+<!--15ac3f22-d7eb-4d19-b5bc-7e4a2e4eeefe_begin-->
+
+#### Use ARM API version 2021-11-01 or later for Azure Service Bus namespaces  
+  
+Azure Resource Manager (ARM) API versions 2014-09-01, 2015-08-01, and 2016-07-01 for Azure Service Bus retire on 30 September 2026. After that date, requests that use those versions fail and namespace management breaks. Move templates, scripts, and SDKs to API version 2021-11-01 or later.
+  
+**Potential benefits**: Ensure reliable Service Bus namespace management  
+
+**Impact:** High
+  
+For more information, see [Steps to upgrade control plane API references for Azure Service Bus, Event Hubs, and Relay](https://techcommunity.microsoft.com/blog/messagingonazureblog/steps-to-upgrade-control-plane-api-references-for-azure-service-bus-event-hubs-a/3940126)  
+
+ResourceType: microsoft.servicebus/namespaces  
+Recommendation ID: 15ac3f22-d7eb-4d19-b5bc-7e4a2e4eeefe  
+
+<!--15ac3f22-d7eb-4d19-b5bc-7e4a2e4eeefe_end-->
+
 <!--articleBody-->

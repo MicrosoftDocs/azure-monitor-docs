@@ -828,4 +828,242 @@ Recommendation ID: 5d4bb790-d34a-4b45-81d7-4dd060e59853
 
 <!--5d4bb790-d34a-4b45-81d7-4dd060e59853_end-->
 
+<!--8db086d4-6f1e-4459-86c1-7e83e4c436a9_begin-->
+
+#### Azure Diagnostic Extensions are retiring  
+  
+Microsoft is retiring Azure Diagnostic Extensions for Windows and Linux (WAD/LAD) and will no longer support them. This retirement also includes the collection of diagnostic extension data from Azure Storage accounts imported into Log Analytics workspaces.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/Azure-Diagnostics-Extensions-retiring-march-31-2026)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 8db086d4-6f1e-4459-86c1-7e83e4c436a9  
+
+<!--8db086d4-6f1e-4459-86c1-7e83e4c436a9_end-->
+
+<!--ad6df2a0-827c-493f-8307-d9d553bb5531_begin-->
+
+#### Azure Virtual Machines DCsv2-series are retiring  
+  
+You can't use Virtual Machines DCsv2-series anymore. Review changes to the VMs billing after changing SKUs.
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=496104)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: ad6df2a0-827c-493f-8307-d9d553bb5531  
+
+<!--ad6df2a0-827c-493f-8307-d9d553bb5531_end-->
+
+<!--2d1f43c1-9d8d-46be-873c-6ddda75636ee_begin-->
+
+#### Azure unmanaged disks are being retired  
+  
+Migrate your data from Azure unmanaged disk storage to managed disks.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities.
+
+**Impact:** High
+  
+For more information, see [Unmanaged disks have been retired - Azure Virtual Machines](/azure/virtual-machines/unmanaged-disks-deprecation).  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 2d1f43c1-9d8d-46be-873c-6ddda75636ee  
+
+<!--2d1f43c1-9d8d-46be-873c-6ddda75636ee_end-->
+
+<!--990f7204-592d-49e4-8ddf-251a056dada0_begin-->
+
+#### Configure your node pool worker virtual machines across availability zones to improve availability.  
+  
+Your Azure Red Hat OpenShift node pool runs worker virtual machines in a single availability zone. Create node pools across availability zones to improve availability for your applications.  
+  
+**Potential benefits**: Improve application availability across availability zones.  
+
+**Impact:** High
+  
+For more information, see [What are Azure Availability Zones?](/azure/reliability/availability-zones-overview)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 990f7204-592d-49e4-8ddf-251a056dada0  
+
+<!--990f7204-592d-49e4-8ddf-251a056dada0_end-->
+
+<!--e3a21ba5-e34b-4614-a718-131670d51e3f_begin-->
+
+#### Default outbound access connectivity for virtual machines in Azure is retiring.  
+  
+Default outbound access connectivity for virtual machines in Azure is retiring.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/default-outbound-access-for-vms-in-azure-will-be-retired-transition-to-a-new-method-of-internet-access/)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: e3a21ba5-e34b-4614-a718-131670d51e3f  
+
+<!--e3a21ba5-e34b-4614-a718-131670d51e3f_end-->
+
+<!--beae2503-c504-47b1-8ca4-d0e708559af9_begin-->
+
+#### Desired State Configuration Extension for Azure Virtual Machines is retiring
+  
+After the retirement date, Azure won't support the Desired State Configuration Extension for Azure Virtual Machines.
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485828)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: beae2503-c504-47b1-8ca4-d0e708559af9  
+
+<!--beae2503-c504-47b1-8ca4-d0e708559af9_end-->
+
+<!--8e73c079-f841-49c6-9fca-cd552930efb8_begin-->
+
+#### Migrate ccV5 to general purpose virtual machines  
+  
+The cc_v5 confidential VM series is retiring, and DCas_cc_v5, DCads_cc_v5, ECas_cc_v5, and ECads_cc_v5 are no longer available for use or purchase. Migrate your workloads to general-purpose VM series.
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=568661)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 8e73c079-f841-49c6-9fca-cd552930efb8  
+
+<!--8e73c079-f841-49c6-9fca-cd552930efb8_end-->
+
+<!--475ee3a1-e973-4a80-9f41-7f5fafc48e93_begin-->
+
+#### NCv3 VM Family Support - Azure Batch is being retired  
+  
+Microsoft Azure is retiring support for NCv3-series VMs, including Standard_NC24rs_v3, Standard_NC6s_v3, Standard_NC12s_v3, and Standard_NC24s_v3. Azure Batch follows Microsoft Azure support retirement dates for NCv3-series VM support in Batch pools.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/NCv3-series-VM-family-support-in-azure-batch-pools-retirement)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 475ee3a1-e973-4a80-9f41-7f5fafc48e93  
+
+<!--475ee3a1-e973-4a80-9f41-7f5fafc48e93_end-->
+
+<!--e1c591d0-5ccb-4aca-91d7-b41b6924da8c_begin-->
+
+#### Standard_M192idms_v2 is being retired.  
+  
+Workloads running Standard_M192idms_v2 are deleted and associated application data is lost.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities.
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=support-for-standardm192idmsv2-will-be-retired-on-31-march-2027)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: e1c591d0-5ccb-4aca-91d7-b41b6924da8c  
+
+<!--e1c591d0-5ccb-4aca-91d7-b41b6924da8c_end-->
+
+<!--06e322e4-61bd-4399-8074-09eef9272950_begin-->
+
+#### Standard_M192ids_v2 is being retired  
+  
+Workloads running Standard_M192ids_v2 are deleted and associated application data is lost.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities.
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=community-support-for-standardm192idsv2-is-ending-on-31-march-2027)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 06e322e4-61bd-4399-8074-09eef9272950  
+
+<!--06e322e4-61bd-4399-8074-09eef9272950_end-->
+
+<!--321a6b2e-ff3a-4319-95a2-312953015781_begin-->
+
+#### Standard_M192ims_v2 is being retired.  
+  
+Workloads running Standard_M192ims_v2 are deleted and associated application data is lost.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities.
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=community-support-for-standardm192imsv2-is-ending-on-31-march-2027)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 321a6b2e-ff3a-4319-95a2-312953015781  
+
+<!--321a6b2e-ff3a-4319-95a2-312953015781_end-->
+
+<!--046927b3-bbf7-460d-86fc-d2b10f7f5f00_begin-->
+
+#### Standard_M192is_v2 is being retired.  
+  
+Workloads running Standard_M192is_v2 are deleted and associated application data is lost.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities.
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=community-support-for-standardm192isv2-is-ending-on-31-march-2027)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 046927b3-bbf7-460d-86fc-d2b10f7f5f00  
+
+<!--046927b3-bbf7-460d-86fc-d2b10f7f5f00_end-->
+
+<!--604fb48f-017f-4239-9a9c-e46d6c48132e_begin-->
+
+#### Test Azure Virtual Machine Scale Sets Resiliency with a Chaos Experiment  
+  
+Run an S3 Compute Zone Down chaos experiment to validate zonal resiliency of your VMSS Scale Sets. Chaos experiments inject failures and might affect targeted resources. Start with non-production environments and use approved maintenance windows for production workloads.
+  
+**Potential benefits**: Improve outage readiness and validate zone resilience.
+
+**Impact:** High
+  
+For more information, see [Scenarios and outage templates for Chaos Studio Workspaces - Azure Chaos Studio](/azure/chaos-studio/chaos-studio-scenarios)  
+
+ResourceType: microsoft.compute/virtualmachinescalesets  
+Recommendation ID: 604fb48f-017f-4239-9a9c-e46d6c48132e  
+
+<!--604fb48f-017f-4239-9a9c-e46d6c48132e_end-->
+
+<!--1c5fb9ab-77aa-4298-9caf-2a38f9feecdb_begin-->
+
+#### Virtual machines in NCv3-series are retiring
+  
+To avoid any disruption to your service, change the VM sizing for your workloads from the current NCv3-series VMs to the newer VM series in the same NC product line.
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities.
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=standardnc6sv3-standardnc12sv3-and-standardnc24sv3-azure-virtual-machines-will-be-retired-on-september-30-2025).  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 1c5fb9ab-77aa-4298-9caf-2a38f9feecdb  
+
+<!--1c5fb9ab-77aa-4298-9caf-2a38f9feecdb_end-->
+
 <!--articleBody-->
