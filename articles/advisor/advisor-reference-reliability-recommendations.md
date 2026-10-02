@@ -45,6 +45,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-data-explorer.md](./includes/HighAvailability-azure-data-explorer.md)]
 
+[!INCLUDE [highavailability-azure-database-for-mariadb.md](./includes/highavailability-azure-database-for-mariadb.md)]
+
 [!INCLUDE [HighAvailability-azure-database-for-mysql.md](./includes/HighAvailability-azure-database-for-mysql.md)]
 
 [!INCLUDE [HighAvailability-azure-database-for-postgresql.md](./includes/HighAvailability-azure-database-for-postgresql.md)]
