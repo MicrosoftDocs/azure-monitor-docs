@@ -69,6 +69,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-netapp-files.md](./includes/HighAvailability-azure-netapp-files.md)]
 
+[!INCLUDE [highavailability-azure-relay.md](./includes/highavailability-azure-relay.md)]
+
 [!INCLUDE [HighAvailability-azure-signalr-service.md](./includes/HighAvailability-azure-signalr-service.md)]
 
 [!INCLUDE [HighAvailability-azure-site-recovery.md](./includes/HighAvailability-azure-site-recovery.md)]
