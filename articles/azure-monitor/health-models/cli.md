@@ -661,10 +661,6 @@ az monitor health-models signal-definition create -g "$resourceGroupName" \
 
 The following Azure CLI example uses the [`az monitor health-models signal-definition create`](/cli/azure/monitor/health-models/signal-definition#az-monitor-health-models-signal-definition-create) command.
 
-<br>
-<details>
-<summary>Create the request-failure signal definition</summary>
-
 ```powershell
 # Build the metric definition and the evaluation rules
 $azureResourceMetric = @{
@@ -712,8 +708,6 @@ $azMonitorHealthModelsSignalDefinitionCreateArgs = @(
 )
 az @azMonitorHealthModelsSignalDefinitionCreateArgs
 ```
-
-</details>
 
 [!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
