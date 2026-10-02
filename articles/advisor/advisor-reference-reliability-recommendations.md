@@ -103,6 +103,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-content-delivery-network.md](./includes/HighAvailability-content-delivery-network.md)]
 
+[!INCLUDE [highavailability-data-factory.md](./includes/highavailability-data-factory.md)]
+
 [!INCLUDE [HighAvailability-entra-domain-services.md](./includes/HighAvailability-entra-domain-services.md)]
 
 [!INCLUDE [HighAvailability-event-hubs.md](./includes/HighAvailability-event-hubs.md)]
