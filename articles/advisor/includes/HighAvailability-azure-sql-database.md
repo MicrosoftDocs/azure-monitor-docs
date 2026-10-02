@@ -184,4 +184,55 @@ Recommendation ID: 46cc1fcd-f1eb-4558-a7fb-22ba33f9e8e9
 
 <!--46cc1fcd-f1eb-4558-a7fb-22ba33f9e8e9_end-->
 
+<!--f3d3e057-d647-40e4-9905-f085e4a70ff7_begin-->
+
+#### Data Sync (Azure SQL) is being retired  
+  
+Data Sync (Azure SQL) is being retired. Consider migrating to alternative data replication or synchronization solutions.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/SQL-Data-Sync-Retirement)  
+
+ResourceType: microsoft.sql/servers/databases  
+Recommendation ID: f3d3e057-d647-40e4-9905-f085e4a70ff7  
+
+<!--f3d3e057-d647-40e4-9905-f085e4a70ff7_end-->
+
+<!--9d190e63-71f2-4732-994f-bb6074b91e5d_begin-->
+
+#### Microsoft.SQL 2014-04-01 stable APIs are retiring  
+  
+Microsoft.SQL 2014-04-01 stable APIs are retiring.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure SQL Database REST API 2014-04-01 Retirement Notice](/rest/api/sql/retirement)  
+
+ResourceType: microsoft.sql/servers  
+Recommendation ID: 9d190e63-71f2-4732-994f-bb6074b91e5d  
+
+<!--9d190e63-71f2-4732-994f-bb6074b91e5d_end-->
+
+<!--2ed2b058-8bf0-459d-9674-6fdf8e39e11a_begin-->
+
+#### Support for TLS 1.0 and TLS 1.1 in Azure SQL Managed Instance is ending  
+  
+Upgrade TLS to the latest version. Support for TLS 1.0 and TLS 1.1 in Azure SQL Managed Instance is ending.
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Configure Minimal TLS Version - SQL Managed Instance - Azure SQL Managed Instance](/azure/azure-sql/managed-instance/minimal-tls-version-configure?view=azuresql&preserve-view=true)  
+
+ResourceType: microsoft.sql/managedinstances  
+Recommendation ID: 2ed2b058-8bf0-459d-9674-6fdf8e39e11a  
+
+<!--2ed2b058-8bf0-459d-9674-6fdf8e39e11a_end-->
+
 <!--articleBody-->

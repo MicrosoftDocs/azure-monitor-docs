@@ -81,4 +81,55 @@ Recommendation ID: ee99b379-18e9-467c-9b91-2bc8925fa45b
 
 <!--ee99b379-18e9-467c-9b91-2bc8925fa45b_end-->
 
+<!--21cd3357-484c-40e7-9714-ec74661c96c5_begin-->
+
+#### Azure Kubernetes Service on Windows Server 2019 and Windows Server 2022 is retiring
+  
+You can't deploy, upgrade, or scale Azure Kubernetes Service on Windows Server 2019 and Windows Server 2022.
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?filters=%5B%22Retirements%22%5D)  
+
+ResourceType: microsoft.kubernetes/connectedclusters  
+Recommendation ID: 21cd3357-484c-40e7-9714-ec74661c96c5  
+
+<!--21cd3357-484c-40e7-9714-ec74661c96c5_end-->
+
+<!--eca2a85b-2fe3-4b16-b5f5-35acebb15830_begin-->
+
+#### Open Service Mesh (Azure Kubernetes Service) add-on is being retired  
+  
+Open Service Mesh (Azure Kubernetes Service) add-on is being retired.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/open-service-mesh-extension-for-aks-retirement)  
+
+ResourceType: microsoft.kubernetes/connectedclusters  
+Recommendation ID: eca2a85b-2fe3-4b16-b5f5-35acebb15830  
+
+<!--eca2a85b-2fe3-4b16-b5f5-35acebb15830_end-->
+
+<!--a61b0026-fe7a-49d9-8dbb-91fec640dee6_begin-->
+
+#### Windows Server 2019 on AKS hybrid is being retired  
+  
+Windows Server 2019 on AKS hybrid is being retired.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Announcing the 3-year retirement of Windows Server 2019 on AKS and AKS hybrid](https://techcommunity.microsoft.com/t5/containers/announcing-the-3-year-retirement-of-windows-server-2019-on-azure/ba-p/3777341)  
+
+ResourceType: microsoft.kubernetes/connectedclusters  
+Recommendation ID: a61b0026-fe7a-49d9-8dbb-91fec640dee6  
+
+<!--a61b0026-fe7a-49d9-8dbb-91fec640dee6_end-->
+
 <!--articleBody-->

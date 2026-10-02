@@ -363,4 +363,38 @@ Recommendation ID: 649fd0b8-0bf0-43fe-bfa1-c408f6d33200
 
 <!--649fd0b8-0bf0-43fe-bfa1-c408f6d33200_end-->
 
+<!--3086bd6c-a257-4577-9401-fa9d1e0ce48a_begin-->
+
+#### Azure Cosmos DB requires using TLS 1.2 or later  
+  
+All Cosmos DB database accounts must use Transport Layer Security (TLS) 1.2 or higher.
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Self-Serve Minimum TLS Version Enforcement - Azure Cosmos DB](/azure/cosmos-db/self-serve-minimum-tls-enforcement)  
+
+ResourceType: microsoft.documentdb/databaseaccounts  
+Recommendation ID: 3086bd6c-a257-4577-9401-fa9d1e0ce48a  
+
+<!--3086bd6c-a257-4577-9401-fa9d1e0ce48a_end-->
+
+<!--0082c3b0-5b9c-4157-bb43-29307b6f882e_begin-->
+
+#### Migrate Cosmos DB Synapse Link (NoSQL) to Fabric mirroring
+  
+Azure Synapse Link for Azure Cosmos DB NoSQL will be retired on March 31, 2029. Customers using this feature should migrate analytical workloads to Cosmos DB mirroring in Microsoft Fabric, the recommended replacement solution, before the retirement date to avoid service disruption and potential loss.
+  
+**Potential benefits**: Prevent disruption to Cosmos DB analytics workloads.
+
+**Impact:** Medium
+  
+For more information, see [Migrate from Azure Synapse Link to Azure Cosmos DB mirroring in Microsoft Fabric - Microsoft Fabric](https://aka.ms/CosmosMirrorSynapseMigration)  
+
+ResourceType: microsoft.documentdb/databaseaccounts  
+Recommendation ID: 0082c3b0-5b9c-4157-bb43-29307b6f882e  
+
+<!--0082c3b0-5b9c-4157-bb43-29307b6f882e_end-->
+
 <!--articleBody-->
