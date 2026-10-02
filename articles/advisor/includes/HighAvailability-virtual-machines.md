@@ -1070,7 +1070,7 @@ Recommendation ID: 1c5fb9ab-77aa-4298-9caf-2a38f9feecdb
 
 #### Migrate from DCsv3, DCdsv3 series to DCesv6, ECesv6 virtual machines  
   
-DCsv3 and DCdsv3-series Virtual Machines are being retired. Migrate to DCesv6, ECesv6 virtual machines.  
+DCsv3 and DCdsv3-series virtual machines are retiring. Migrate to DCesv6, ECesv6 virtual machines.  
   
 **Potential benefits**: Avoid service disruption  
 
