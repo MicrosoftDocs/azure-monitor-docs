@@ -1066,4 +1066,21 @@ Recommendation ID: 1c5fb9ab-77aa-4298-9caf-2a38f9feecdb
 
 <!--1c5fb9ab-77aa-4298-9caf-2a38f9feecdb_end-->
 
+<!--3455290f-894b-45cf-b441-f28861424c5e_begin-->
+
+#### Migrate from DCsv3, DCdsv3 series to DCesv6, ECesv6 virtual machines  
+  
+DCsv3 and DCdsv3-series Virtual Machines are being retired. Migrate to DCesv6, ECesv6 virtual machines.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [DCsv3-series and DCdsv3-series retirement - Azure Virtual Machines](https://aka.ms/dcsv3-dcdsv3-series-retirement)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 3455290f-894b-45cf-b441-f28861424c5e  
+
+<!--3455290f-894b-45cf-b441-f28861424c5e_end-->
+
 <!--articleBody-->
