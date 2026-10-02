@@ -81,6 +81,13 @@ For a list of supported logs, see [Supported log categories - Microsoft.Containe
 |**Network Out Bytes**<br><br>Network transmitted bytes |`node_network_out_bytes` | No | Bytes |Maximum, Average |`node`, `nodepool`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |Yes|
 
 ### Category: Pods
+
+> [!IMPORTANT]
+> The `pod` dimension for the AKS platform metrics `kube_pod_status_ready` and
+> `kube_pod_status_phase` will be retired on September 30, 2027. To continue
+> using the `pod` dimension in these metrics, use
+> [Azure Monitor managed service for Prometheus](/azure/azure-monitor/metrics/prometheus-metrics-overview).
+
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**Number of pods by phase**<br><br>Number of pods by phase |`kube_pod_status_phase` | No | Count |Total (Sum), Average |`phase`, `namespace`, `pod`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
