@@ -37,6 +37,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-cache-for-redis.md](./includes/HighAvailability-azure-cache-for-redis.md)]
 
+[!INCLUDE [highavailability-azure-communication-services.md](./includes/highavailability-azure-communication-services.md)]
+
 [!INCLUDE [HighAvailability-azure-container-apps.md](./includes/HighAvailability-azure-container-apps.md)]
 
 [!INCLUDE [HighAvailability-azure-cosmos-db.md](./includes/HighAvailability-azure-cosmos-db.md)]
