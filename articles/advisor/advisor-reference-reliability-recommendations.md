@@ -119,6 +119,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-service-fabric.md](./includes/HighAvailability-service-fabric.md)]
 
+[!INCLUDE [highavailability-service-map.md](./includes/highavailability-service-map.md)]
+
 [!INCLUDE [HighAvailability-sql-server-on-azure-virtual-machines.md](./includes/HighAvailability-sql-server-on-azure-virtual-machines.md)]
 
 [!INCLUDE [HighAvailability-storage.md](./includes/HighAvailability-storage.md)]
