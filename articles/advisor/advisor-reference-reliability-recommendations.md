@@ -51,6 +51,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-databricks.md](./includes/HighAvailability-azure-databricks.md)]
 
+[!INCLUDE [highavailability-azure-health-data-services.md](./includes/highavailability-azure-health-data-services.md)]
+
 [!INCLUDE [HighAvailability-azure-iot-hub.md](./includes/HighAvailability-azure-iot-hub.md)]
 
 [!INCLUDE [HighAvailability-azure-kubernetes-service-(aks).md](./includes/HighAvailability-azure-kubernetes-service-(aks).md)]
