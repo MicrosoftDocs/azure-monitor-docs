@@ -37,11 +37,15 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-cache-for-redis.md](./includes/HighAvailability-azure-cache-for-redis.md)]
 
+[!INCLUDE [highavailability-azure-communication-services.md](./includes/highavailability-azure-communication-services.md)]
+
 [!INCLUDE [HighAvailability-azure-container-apps.md](./includes/HighAvailability-azure-container-apps.md)]
 
 [!INCLUDE [HighAvailability-azure-cosmos-db.md](./includes/HighAvailability-azure-cosmos-db.md)]
 
 [!INCLUDE [HighAvailability-azure-data-explorer.md](./includes/HighAvailability-azure-data-explorer.md)]
+
+[!INCLUDE [highavailability-azure-database-for-mariadb.md](./includes/highavailability-azure-database-for-mariadb.md)]
 
 [!INCLUDE [HighAvailability-azure-database-for-mysql.md](./includes/HighAvailability-azure-database-for-mysql.md)]
 
@@ -49,7 +53,11 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-databricks.md](./includes/HighAvailability-azure-databricks.md)]
 
+[!INCLUDE [highavailability-azure-health-data-services.md](./includes/highavailability-azure-health-data-services.md)]
+
 [!INCLUDE [HighAvailability-azure-iot-hub.md](./includes/HighAvailability-azure-iot-hub.md)]
+
+[!INCLUDE [highavailability-azure-lab-services.md](./includes/highavailability-azure-lab-services.md)]
 
 [!INCLUDE [HighAvailability-azure-kubernetes-service-(aks).md](./includes/HighAvailability-azure-kubernetes-service-(aks).md)]
 
@@ -66,6 +74,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 [!INCLUDE [HighAvailability-azure-monitor.md](./includes/HighAvailability-azure-monitor.md)]
 
 [!INCLUDE [HighAvailability-azure-netapp-files.md](./includes/HighAvailability-azure-netapp-files.md)]
+
+[!INCLUDE [highavailability-azure-relay.md](./includes/highavailability-azure-relay.md)]
 
 [!INCLUDE [HighAvailability-azure-signalr-service.md](./includes/HighAvailability-azure-signalr-service.md)]
 
@@ -95,7 +105,11 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-content-delivery-network.md](./includes/HighAvailability-content-delivery-network.md)]
 
+[!INCLUDE [highavailability-data-factory.md](./includes/highavailability-data-factory.md)]
+
 [!INCLUDE [HighAvailability-entra-domain-services.md](./includes/HighAvailability-entra-domain-services.md)]
+
+[!INCLUDE [highavailability-event-grid.md](./includes/highavailability-event-grid.md)]
 
 [!INCLUDE [HighAvailability-event-hubs.md](./includes/HighAvailability-event-hubs.md)]
 
@@ -105,9 +119,13 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-key-vault.md](./includes/HighAvailability-key-vault.md)]
 
+[!INCLUDE [highavailability-log-analytics.md](./includes/highavailability-log-analytics.md)]
+
 [!INCLUDE [HighAvailability-media-services.md](./includes/HighAvailability-media-services.md)]
 
 [!INCLUDE [HighAvailability-microsoft.fileshares.md](./includes/HighAvailability-microsoft-fileshares.md)]
+
+[!INCLUDE [highavailability-microsoft-sentinel.md](./includes/highavailability-microsoft-sentinel.md)]
 
 [!INCLUDE [HighAvailability-playwright-testing.md](./includes/HighAvailability-playwright-testing.md)]
 
@@ -116,6 +134,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 [!INCLUDE [HighAvailability-service-bus.md](./includes/HighAvailability-service-bus.md)]
 
 [!INCLUDE [HighAvailability-service-fabric.md](./includes/HighAvailability-service-fabric.md)]
+
+[!INCLUDE [highavailability-service-map.md](./includes/highavailability-service-map.md)]
 
 [!INCLUDE [HighAvailability-sql-server-on-azure-virtual-machines.md](./includes/HighAvailability-sql-server-on-azure-virtual-machines.md)]
 
