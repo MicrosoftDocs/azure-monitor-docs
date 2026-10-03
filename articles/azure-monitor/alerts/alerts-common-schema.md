@@ -347,7 +347,7 @@ For sample alerts that use the common schema, see [Sample alert payloads](alerts
       ],
       "dataSources": [
         {
-          "resourceId": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourcegroups/test/providers/microsoft.operationalinsights/workspaces/test",
+          "resourceId": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourcegroups/test/providers/microsoft.operationalinsights/workspaces/test",
           "tables": [
             "Heartbeat"
           ]
@@ -418,7 +418,7 @@ For sample alerts that use the common schema, see [Sample alert payloads](alerts
       ],
       "dataSources": [
         {
-          "resourceId": "/subscriptions/cccc2c2c-dd3d-ee4e-ff5f-aaaaaa6a6a6a/resourcegroups/test/providers/microsoft.operationalinsights/workspaces/test",
+          "resourceId": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourcegroups/test/providers/microsoft.operationalinsights/workspaces/test",
           "tables": [
             "Heartbeat"
           ]

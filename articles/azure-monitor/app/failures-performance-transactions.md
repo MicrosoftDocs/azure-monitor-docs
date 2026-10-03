@@ -453,7 +453,7 @@ Call the script and pass values for the parameters. The `-releaseProperties` par
 
 | Argument | Definition | Note |
 |----------|------------|------|
-| `aiResourceId` | Resource ID of the target Application Insights resource. | Example: `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyRGName/providers/microsoft.insights/components/MyResourceName` |
+| `aiResourceId` | Resource ID of the target Application Insights resource. | Example: `/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/MyRGName/providers/microsoft.insights/components/MyResourceName` |
 | `releaseName` | Name of the new release annotation. | |
 | `releaseProperties` | Custom metadata to attach to the annotation. | Optional |
 
@@ -638,7 +638,7 @@ If all calls were instrumented, in process is the likely root cause for the time
 
 #### What if I see the message ***Error retrieving data*** while navigating Application Insights in the Azure portal?
 
-This error message indicates that the browser can't call a required API or the API returns a failure response. To troubleshoot the problem, open a browser [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2) and [disable any browser extensions](https://support.microsoft.com/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-9c0ec68c-2fbc-2f2c-9ff0-bdc76f46b026) that are running. Then, check if you can still reproduce the portal behavior. If the portal error still occurs, try testing with other browsers or other machines. From the client machine where the API calls fail, investigate DNS or other network-related issues. If the portal error continues and needs further investigation, [collect a browser network trace](/azure/azure-portal/capture-browser-trace#capture-a-browser-trace-for-troubleshooting) while reproducing the unexpected portal behavior. Then, open a support case from the Azure portal.
+This error message indicates that the browser can't call a required API or the API returns a failure response. To troubleshoot the problem, open a browser [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-aaaabbbb-0000-cccc-1111-dddd2222eeee) and [disable any browser extensions](https://support.microsoft.com/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-bbbbcccc-1111-dddd-2222-eeee3333ffff) that are running. Then, check if you can still reproduce the portal behavior. If the portal error still occurs, try testing with other browsers or other machines. From the client machine where the API calls fail, investigate DNS or other network-related issues. If the portal error continues and needs further investigation, [collect a browser network trace](/azure/azure-portal/capture-browser-trace#capture-a-browser-trace-for-troubleshooting) while reproducing the unexpected portal behavior. Then, open a support case from the Azure portal.
 -->
 
 ## Next steps

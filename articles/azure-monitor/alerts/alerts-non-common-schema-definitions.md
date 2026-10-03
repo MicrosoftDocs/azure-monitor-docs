@@ -64,7 +64,7 @@ See sample values for metric alerts.
       "resourceGroupName": "test-RG",
       "resourceName": "test-storageAccount",
       "resourceType": "Microsoft.Storage/storageAccounts",
-      "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/test-RG/providers/Microsoft.Storage/storageAccounts/test-storageAccount",
+      "resourceId": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/test-RG/providers/Microsoft.Storage/storageAccounts/test-storageAccount",
       "portalLink": "https://portal.azure.com/#resource/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/test-RG/providers/Microsoft.Storage/storageAccounts/test-storageAccount"
     }
   }
@@ -117,7 +117,7 @@ See sample values for metric alerts.
             "resourceGroupName": "test-RG",
             "resourceName": "test-storageAccount",
             "resourceType": "Microsoft.Storage/storageAccounts",
-            "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/test-RG/providers/Microsoft.Storage/storageAccounts/test-storageAccount",
+            "resourceId": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/test-RG/providers/Microsoft.Storage/storageAccounts/test-storageAccount",
             "portalLink": "https://portal.azure.com/#resource/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/test-RG/providers/Microsoft.Storage/storageAccounts/test-storageAccount"
         }
     }
@@ -145,8 +145,8 @@ See sample values for log search alerts.
   "SearchIntervalInSeconds": 86400,
   "LinkToSearchResults": "https://portal.azure.com#@aaaabbbb-0000-cccc-1111-dddd2222eeee/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2Faaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHi%2BWqaBcDeFgHiMqsSlVwTE8vSk1PLElNCUvMKU2aBcDeFgHiaBcDeFgHiaBcDeFgHiaBcDeFgHiaBcDeFgHi/prettify/1/timespan/2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
   "LinkToFilteredSearchResultsUI": "https://portal.azure.com#@aaaabbbb-0000-cccc-1111-dddd2222eeee/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2Faaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHiaBcDeFgHiaBcDeFgHiTP1DtWhcTfIApUfTx0dp%2BOPOhDKsHR%2FFeJXsaBcDeFgHiaBcDeFgHiaBcDeFgHiaBcDeFgHiaBcDeFgHiaBcDeFgHiRI9mhc%3D/prettify/1/timespan/2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
-  "LinkToSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2/query?query=Heartbeat%20%0A%7C%20summarize%20AggregatedValue%3Dcount%28%29%20by%20bin%28TimeGenerated%2C%205m%29&timespan=2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
-  "LinkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2/query?query=Heartbeat%20%0A%7C%20summarize%20AggregatedValue%3Dcount%28%29%20by%20bin%28TimeGenerated%2C%205m%29%7C%20where%20todouble%28AggregatedValue%29%20%3E%200&timespan=2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
+  "LinkToSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/query?query=Heartbeat%20%0A%7C%20summarize%20AggregatedValue%3Dcount%28%29%20by%20bin%28TimeGenerated%2C%205m%29&timespan=2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
+  "LinkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/query?query=Heartbeat%20%0A%7C%20summarize%20AggregatedValue%3Dcount%28%29%20by%20bin%28TimeGenerated%2C%205m%29%7C%20where%20todouble%28AggregatedValue%29%20%3E%200&timespan=2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
   "Description": "Alert rule description",
   "Severity": "3",
   "SearchResult": {
@@ -177,7 +177,7 @@ See sample values for log search alerts.
     ],
     "dataSources": [
       {
-        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace",
+        "resourceId": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace",
         "region": "eastus",
         "tables": [
           "Heartbeat"
@@ -186,7 +186,7 @@ See sample values for log search alerts.
     ]
   },
   "WorkspaceId": "b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2",
-  "ResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/test-RG/providers/Microsoft.OperationalInsights/workspaces/test-logAnalyticsWorkspace",
+  "ResourceId": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/test-RG/providers/Microsoft.OperationalInsights/workspaces/test-logAnalyticsWorkspace",
   "AlertType": "Metric measurement",
   "Dimensions": []
 }
@@ -209,8 +209,8 @@ See sample values for log search alerts.
     "SearchIntervalInSeconds": 86400,
     "LinkToSearchResults": "https://portal.azure.com#@aaaabbbb-0000-cccc-1111-dddd2222eeee/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2Faaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHi%2ABCDE%3D%3D/prettify/1/timespan/2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
     "LinkToFilteredSearchResultsUI": "https://portal.azure.com#@aaaabbbb-0000-cccc-1111-dddd2222eeee/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2Faaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHi%2ABCDE%3D%3D/prettify/1/timespan/2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
-    "LinkToSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2/query?query=Heartbeat%0A&timespan=2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
-    "LinkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2/query?query=Heartbeat%0A&timespan=2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
+    "LinkToSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/query?query=Heartbeat%0A&timespan=2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
+    "LinkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/query?query=Heartbeat%0A&timespan=2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
     "Description": "Alert rule description",
     "Severity": "3",
     "SearchResult": {
@@ -242,7 +242,7 @@ See sample values for log search alerts.
         ],
         "dataSources": [
             {
-                "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace",
+                "resourceId": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace",
                 "region": "eastus",
                 "tables": [
                     "Heartbeat"
@@ -251,7 +251,7 @@ See sample values for log search alerts.
         ]
     },
     "WorkspaceId": "b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2",
-    "ResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/test-RG/providers/Microsoft.OperationalInsights/workspaces/test-logAnalyticsWorkspace",
+    "ResourceId": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/test-RG/providers/Microsoft.OperationalInsights/workspaces/test-logAnalyticsWorkspace",
     "AlertType": "Number of results"
 }
 ```
@@ -292,7 +292,7 @@ See sample values for four activity log alerts.
                     "message": "Microsoft.Compute/virtualMachines/restart/action",
                     "hierarchy": "22222222-2222-2222-2222-222222222222/CnAIOrchestrationServicePublicCorpprod/33333333-3333-3333-3333-3333333303333/44444444-4444-4444-4444-444444444444/55555555-5555-5555-5555-555555555555/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
                 },
-                "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/test-RG/providers/Microsoft.Compute/virtualMachines/test-VM",
+                "resourceId": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/test-RG/providers/Microsoft.Compute/virtualMachines/test-VM",
                 "resourceGroupName": "test-RG",
                 "resourceProviderName": "Microsoft.Compute",
                 "status": "Succeeded",
@@ -390,7 +390,7 @@ See sample values for four activity log alerts.
                     "type": "Downtime",
                     "cause": "UserInitiated"
                 },
-                "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/test-RG/providers/Microsoft.Compute/virtualMachines/test-VM",
+                "resourceId": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/test-RG/providers/Microsoft.Compute/virtualMachines/test-VM",
                 "resourceGroupName": "test-RG",
                 "resourceProviderName": "Microsoft.Resourcehealth/healthevent/action",
                 "status": "Active",
