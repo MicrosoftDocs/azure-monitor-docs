@@ -16,8 +16,8 @@ Container insights stores log data it collects in a table called *ContainerLogV2
 
 *ContainerLogV2* is the default schema for CLI version 2.54.0 and greater. This schema is the default table for customers who onboard Container insights with managed identity authentication. Enable ContainerLogV2 explicitly through CLI version 2.51.0 or higher by using data collection settings.
 
->[!IMPORTANT]
-> Support for the *ContainerLog* table retires on 30 September 2026. After that date, the legacy table stops receiving data. Migrate to *ContainerLogV2* before then to avoid gaps in log collection. To switch tables, see [Enable the ContainerLogV2 schema](#enable-the-containerlogv2-schema).
+> [!IMPORTANT]
+> Support for the ContainerLog table retires on September 30, 2026. Customers should migrate to ContainerLogV2 before this date. Following retirement, Microsoft might continue accepting data for a limited transition period to reduce disruption for existing customers; however, the retired experience no longer receives support, bug fixes, or new investments. Customers should not rely on the transition period and should complete migration as soon as possible. To switch tables, see [Enable the ContainerLogV2 schema](#enable-the-containerlogv2-schema).
 
 The following table highlights the key differences between using ContainerLogV2 and ContainerLog schema.
 

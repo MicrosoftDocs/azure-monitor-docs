@@ -2,7 +2,7 @@
 title: Supported metrics - microsoft.kubernetesconfiguration/extensions
 description: Reference for microsoft.kubernetesconfiguration/extensions metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 10/05/2026
 ms.custom: microsoft.kubernetesconfiguration/extensions, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -38,20 +38,26 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 ### Category: Latency
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Api Request Duration in Seconds**<br><br>Histogram of request durations |`ApiRequestDurationSeconds` | No | Seconds |Average |`AppName`, `GpuEnabled`, `Method`, `Route`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Ingestion Time**<br><br>Total ingestion time in minutes |`IngestionTimeMinutes` | No | Seconds |Average |`AppName`, `GpuEnabled`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Input Preprocessing Time (Milliseconds)**<br><br>Input preprocessing time in milliseconds |`InputPreprocessingTimeMilliseconds` | No | Milliseconds |Average |`GpuEnabled`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Call LLM Total Time in Seconds**<br><br>Total call_llm time in seconds |`TotalCallLLMTimeSeconds` | No | Seconds |Average |`AppName`, `GpuEnabled`, `LLMProvider`, `OutputLength`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Embedding Generation Total Time in Seconds**<br><br>Total time taken to generate embeddings from local model |`TotalGenerateEmbeddingsTimeSeconds` | No | Seconds |Average |`AppName`, `GpuEnabled`, `InputLength`, `OutputLength`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Hybrid Search Embedding Generation Total Time in Seconds**<br><br>Total time taken to generate Hybrid Search embeddings from local model |`TotalGenerateHybridSearchEmbeddingsTimeSeconds` | No | Seconds |Average |`AppName`, `GpuEnabled`, `InputLength`, `OutputLength`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Reranking Generation Total Time in Seconds**<br><br>Total time taken to generate Reranking |`TotalGenerateRerankingTimeSeconds` | No | Seconds |Average |`AppName`, `GpuEnabled`, `InputLength`, `OutputLength`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Get Chat History Summary Total Time in Milliseconds**<br><br>Total get_chat_history_summary time in milliseconds |`TotalGetChatHistorySummaryTimeMilliseconds` | No | Milliseconds |Average |`AppName`, `GpuEnabled`, `InputHistoryPairs`, `LLMProvider`, `MaxTokens`, `OutputLength`, `Temperature`, `TopP`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Get LLM Payload Total Time in Milliseconds**<br><br>Total get_llm_payload time in milliseconds |`TotalGetLLMPayloadTimeMilliseconds` | No | Milliseconds |Average |`AppName`, `DiversityPenalty`, `GpuEnabled`, `LengthPenalty`, `LLMProvider`, `MaxTokens`, `RepetitionPenalty`, `Temperature`, `TopP`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Get Hybrid Search Total Time in Milliseconds**<br><br>Total hybrid search time in milliseconds |`TotalHybridSearchTimeMilliseconds` | No | Milliseconds |Average |`AppName`, `ChunkMinScore`, `GpuEnabled`, `IndexType`, `InputLength`, `MetricType`, `TopK`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Inference Total Time in Seconds**<br><br>Total inference time in seconds |`TotalInferenceTimeSeconds` | No | Seconds |Average |`AppName`, `DiversityPenalty`, `GpuEnabled`, `InputLength`, `LLMProvider`, `MaxTokens`, `OutputLength`, `RepetitionPenalty`, `Temperature`, `TopK`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Chunks Search Total Time in Milliseconds**<br><br>Total search chunks time in milliseconds |`TotalSearchChunksTimeMilliseconds` | No | Milliseconds |Average |`AppName`, `EmbeddingIndexName`, `GpuEnabled`, `InputLength`, `OutputChunks`, `TopK`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Search Total Time in Milliseconds**<br><br>Total time taken to search |`TotalSearchTimeMilliseconds` | No | Milliseconds |Average |`AppName`, `ChunkMinScore`, `GpuEnabled`, `InputLength`, `QueryType`, `TopK`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Similarity Search Total Time in Milliseconds**<br><br>Total time taken to search for similar documents |`TotalSimilaritySearchTimeMilliseconds` | No | Milliseconds |Average |`AppName`, `GpuEnabled`, `InputLength`, `ChunkMinScore`, `IndexType`, `MetricType`, `TopK`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
+|**Agent API Duration**<br><br>Latency of agent application operations in milliseconds |`AgentApiDuration` | No | Milliseconds |Average |`AppId`, `Operation`, `ResultType`, `Result`, `AgentId`, `ToolName`|PT1M |No|
+|**Api Request Duration in Seconds**<br><br>Histogram of request durations |`ApiRequestDurationSeconds` | No | Seconds |Average |`AppName`, `GpuEnabled`, `Method`, `Route`|PT1M |No|
+|**Ingestion Time**<br><br>Total ingestion time in minutes |`IngestionTimeMinutes` | No | Seconds |Average |`AppName`, `GpuEnabled`|PT1M |No|
+|**Input Preprocessing Time (Milliseconds)**<br><br>Input preprocessing time in milliseconds |`InputPreprocessingTimeMilliseconds` | No | Milliseconds |Average |`GpuEnabled`|PT1M |No|
+|**Knowledge API Duration**<br><br>Latency of RAG backend operations in milliseconds |`KnowledgeApiDuration` | No | Milliseconds |Average |`AppId`, `Operation`, `ResultType`, `Result`, `CollectionName`|PT1M |No|
+|**Knowledge Embedding Duration**<br><br>Embedding generation latency in milliseconds |`KnowledgeEmbeddingDuration` | No | Milliseconds |Average |`AppId`, `Operation`, `ResultType`, `Result`|PT1M |No|
+|**Knowledge File Transfer Duration**<br><br>File transfer and download latency in milliseconds |`KnowledgeFileDuration` | No | Milliseconds |Average |`AppId`, `Operation`, `FileType`, `ResultType`, `Result`, `CollectionName`|PT1M |No|
+|**Knowledge Insert Duration**<br><br>Bulk vector insertion latency in milliseconds |`KnowledgeInsertDuration` | No | Milliseconds |Average |`AppId`, `Operation`, `ResultType`, `Result`, `CollectionName`, `EntityType`, `EmbeddingModel`|PT1M |No|
+|**Knowledge Search Duration**<br><br>Vector, text, and image search latency in milliseconds |`KnowledgeSearchDuration` | No | Milliseconds |Average |`AppId`, `Operation`, `SearchType`, `ResultType`, `Result`, `CollectionName`, `TopK`|PT1M |No|
+|**Call LLM Total Time in Seconds**<br><br>Total call_llm time in seconds |`TotalCallLLMTimeSeconds` | No | Seconds |Average |`AppName`, `GpuEnabled`, `LLMProvider`, `OutputLength`|PT1M |No|
+|**Embedding Generation Total Time in Seconds**<br><br>Total time taken to generate embeddings from local model |`TotalGenerateEmbeddingsTimeSeconds` | No | Seconds |Average |`AppName`, `GpuEnabled`, `InputLength`, `OutputLength`|PT1M |No|
+|**Hybrid Search Embedding Generation Total Time in Seconds**<br><br>Total time taken to generate Hybrid Search embeddings from local model |`TotalGenerateHybridSearchEmbeddingsTimeSeconds` | No | Seconds |Average |`AppName`, `GpuEnabled`, `InputLength`, `OutputLength`|PT1M |No|
+|**Reranking Generation Total Time in Seconds**<br><br>Total time taken to generate Reranking |`TotalGenerateRerankingTimeSeconds` | No | Seconds |Average |`AppName`, `GpuEnabled`, `InputLength`, `OutputLength`|PT1M |No|
+|**Get Chat History Summary Total Time in Milliseconds**<br><br>Total get_chat_history_summary time in milliseconds |`TotalGetChatHistorySummaryTimeMilliseconds` | No | Milliseconds |Average |`AppName`, `GpuEnabled`, `InputHistoryPairs`, `LLMProvider`, `MaxTokens`, `OutputLength`, `Temperature`, `TopP`|PT1M |No|
+|**Get LLM Payload Total Time in Milliseconds**<br><br>Total get_llm_payload time in milliseconds |`TotalGetLLMPayloadTimeMilliseconds` | No | Milliseconds |Average |`AppName`, `DiversityPenalty`, `GpuEnabled`, `LengthPenalty`, `LLMProvider`, `MaxTokens`, `RepetitionPenalty`, `Temperature`, `TopP`|PT1M |No|
+|**Get Hybrid Search Total Time in Milliseconds**<br><br>Total hybrid search time in milliseconds |`TotalHybridSearchTimeMilliseconds` | No | Milliseconds |Average |`AppName`, `ChunkMinScore`, `GpuEnabled`, `IndexType`, `InputLength`, `MetricType`, `TopK`|PT1M |No|
+|**Inference Total Time in Seconds**<br><br>Total inference time in seconds |`TotalInferenceTimeSeconds` | No | Seconds |Average |`AppName`, `DiversityPenalty`, `GpuEnabled`, `InputLength`, `LLMProvider`, `MaxTokens`, `OutputLength`, `RepetitionPenalty`, `Temperature`, `TopK`|PT1M |No|
+|**Chunks Search Total Time in Milliseconds**<br><br>Total search chunks time in milliseconds |`TotalSearchChunksTimeMilliseconds` | No | Milliseconds |Average |`AppName`, `EmbeddingIndexName`, `GpuEnabled`, `InputLength`, `OutputChunks`, `TopK`|PT1M |No|
+|**Search Total Time in Milliseconds**<br><br>Total time taken to search |`TotalSearchTimeMilliseconds` | No | Milliseconds |Average |`AppName`, `ChunkMinScore`, `GpuEnabled`, `InputLength`, `QueryType`, `TopK`|PT1M |No|
+|**Similarity Search Total Time in Milliseconds**<br><br>Total time taken to search for similar documents |`TotalSimilaritySearchTimeMilliseconds` | No | Milliseconds |Average |`AppName`, `GpuEnabled`, `InputLength`, `ChunkMinScore`, `IndexType`, `MetricType`, `TopK`|PT1M |No|
 
 ### Category: Saturation
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
@@ -64,25 +70,29 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**Active PDU Sessions**<br><br>Number of Active PDU Sessions |`ActiveSessionCount` | No | Count |Total (Sum) |`3gppGen`, `PccpId`, `SiteId`|PT1M |No|
-|**API Failure Count**<br><br>Count of failed API requests |`ApiFailureCount` | No | Count |Count |`EndpointName`, `GpuEnabled`, `StatusCode`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**API Request Count**<br><br>Total number of API requests |`ApiRequestCount` | No | Count |Count |`AppName`, `GpuEnabled`, `Method`, `Route`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**API Success Count**<br><br>Count of successful API requests |`ApiSuccessCount` | No | Count |Count |`EndpointName`, `GpuEnabled`, `StatusCode`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
+|**Agent Concurrent Runs**<br><br>Number of currently active agent runs |`AgentConcurrentRuns` | No | Count |Average |`AppId`, `AgentId`|PT1M |No|
+|**Agent LLM Token Consumption**<br><br>Total LLM tokens consumed by agent operations |`AgentLlmTokens` | No | Count |Total (Sum) |`ResultType`, `Result`, `AgentId`|PT1M |No|
+|**Agent Tool Invocations**<br><br>Number of tool invocations per agent |`AgentToolsInvocationCount` | No | Count |Count |`AppId`, `Operation`, `AgentId`, `ToolName`, `ResultType`, `Result`|PT1M |No|
+|**API Failure Count**<br><br>Count of failed API requests |`ApiFailureCount` | No | Count |Count |`EndpointName`, `GpuEnabled`, `StatusCode`|PT1M |No|
+|**API Request Count**<br><br>Total number of API requests |`ApiRequestCount` | No | Count |Count |`AppName`, `GpuEnabled`, `Method`, `Route`|PT1M |No|
+|**API Success Count**<br><br>Count of successful API requests |`ApiSuccessCount` | No | Count |Count |`EndpointName`, `GpuEnabled`, `StatusCode`|PT1M |No|
 |**Authentication Attempts**<br><br>Authentication attempts rate (per minute) |`AuthAttempt` | No | Count |Total (Sum) |`3gppGen`, `PccpId`, `SiteId`|PT1M |Yes|
 |**Authentication Failures**<br><br>Authentication failure rate (per minute) |`AuthFailure` | No | Count |Total (Sum) |`3gppGen`, `PccpId`, `SiteId`, `Result`|PT1M |Yes|
 |**Authentication Successes**<br><br>Authentication success rate (per minute) |`AuthSuccess` | No | Count |Total (Sum) |`3gppGen`, `PccpId`, `SiteId`|PT1M |Yes|
 |**Connected NodeBs**<br><br>Number of connected gNodeBs or eNodeBs |`ConnectedNodebs` | No | Count |Total (Sum) |`3gppGen`, `PccpId`, `SiteId`|PT1M |Yes|
 |**DeRegistration Attempts**<br><br>UE deregistration attempts rate (per minute) |`DeRegistrationAttempt` | No | Count |Total (Sum) |`3gppGen`, `PccpId`, `SiteId`|PT1M |Yes|
 |**DeRegistration Successes**<br><br>UE deregistration success rate (per minute) |`DeRegistrationSuccess` | No | Count |Total (Sum) |`3gppGen`, `PccpId`, `SiteId`|PT1M |Yes|
-|**Evaluation API Request Count**<br><br>Total number of Evaluation API requests |`EvaluationApiRequestCount` | No | Count |Count |`AppName`, `Method`, `Route`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Failed Skipped Count**<br><br>Count of failed or skipped files |`FailedSkippedCount` | No | Count |Count |`Category`, `GpuEnabled`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**File Ingestion Rate**<br><br>Total files ingested per Job |`FileIngestionRate` | No | Count |Total (Sum) |`AppName`, `GpuEnabled`, `FileType`, `JobID`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
+|**Evaluation API Request Count**<br><br>Total number of Evaluation API requests |`EvaluationApiRequestCount` | No | Count |Count |`AppName`, `Method`, `Route`|PT1M |No|
+|**Failed Skipped Count**<br><br>Count of failed or skipped files |`FailedSkippedCount` | No | Count |Count |`Category`, `GpuEnabled`|PT1M |No|
+|**File Ingestion Rate**<br><br>Total files ingested per Job |`FileIngestionRate` | No | Count |Total (Sum) |`AppName`, `GpuEnabled`, `FileType`, `JobID`|PT1M |No|
 |**File Sync Count**<br><br>Number of files successfully synchronized |`FileSyncCount` | No | Count |Total (Sum), Average, Count |`volume_name`, `subvolume_name`, `transfer_mode`|PT1M |No|
-|**Hybrid Search Model API Request Count**<br><br>Total number of Hybrid Search Model API requests |`HybridSearchModelApiRequestCount` | No | Count |Count |`AppName`, `Method`, `Route`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Inference Answer Feedback**<br><br>Inference Answer Feedback |`InferenceAnswerFeedback` | No | Count |Count |`AppName`, `ChunkMinScore`, `ChunkScores`, `GpuEnabled`, `LLMProvider`, `RunId`, `Thumb`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Inference API Request Count**<br><br>Number of Inference API requests |`InferenceApiRequestCount` | No | Count |Count |`AppName`, `Method`, `Route`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Ingestion API Request Count**<br><br>Number of Ingestion API requests |`IngestionApiRequestCount` | No | Count |Count |`AppName`, `Method`, `Route`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Number of Evaluations**<br><br>Number of Evaluations |`NumberOfEvaluations` | No | Count |Count |`AppName`, `GpuEnabled`, `Method`, `Route`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
-|**Number of Jobs**<br><br>Number of jobs |`NumberOfJobs` | No | Count |Count |`AppName`, `GpuEnabled`, `Method`, `Route`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
+|**Hybrid Search Model API Request Count**<br><br>Total number of Hybrid Search Model API requests |`HybridSearchModelApiRequestCount` | No | Count |Count |`AppName`, `Method`, `Route`|PT1M |No|
+|**Inference Answer Feedback**<br><br>Inference Answer Feedback |`InferenceAnswerFeedback` | No | Count |Count |`AppName`, `ChunkMinScore`, `ChunkScores`, `GpuEnabled`, `LLMProvider`, `RunId`, `Thumb`|PT1M |No|
+|**Inference API Request Count**<br><br>Number of Inference API requests |`InferenceApiRequestCount` | No | Count |Count |`AppName`, `Method`, `Route`|PT1M |No|
+|**Ingestion API Request Count**<br><br>Number of Ingestion API requests |`IngestionApiRequestCount` | No | Count |Count |`AppName`, `Method`, `Route`|PT1M |No|
+|**Knowledge Ingestion Queue Size**<br><br>Number of ingestion jobs waiting in the queue |`KnowledgeIngestionQueueSize` | No | Count |Average |`AppId`, `CollectionName`|PT1M |No|
+|**Number of Evaluations**<br><br>Number of Evaluations |`NumberOfEvaluations` | No | Count |Count |`AppName`, `GpuEnabled`, `Method`, `Route`|PT1M |No|
+|**Number of Jobs**<br><br>Number of jobs |`NumberOfJobs` | No | Count |Count |`AppName`, `GpuEnabled`, `Method`, `Route`|PT1M |No|
 |**Paging Attempts**<br><br>Paging attempts rate (per minute) |`PagingAttempt` | No | Count |Total (Sum) |`3gppGen`, `PccpId`, `SiteId`|PT1M |Yes|
 |**Paging Failures**<br><br>Paging failure rate (per minute) |`PagingFailure` | No | Count |Total (Sum) |`3gppGen`, `PccpId`, `SiteId`|PT1M |Yes|
 |**Provisioned Subscribers**<br><br>Number of provisioned subscribers |`ProvisionedSubscribers` | No | Count |Total (Sum) |`PccpId`, `SiteId`|PT1M |No|
@@ -108,7 +118,7 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |**User Plane Bandwidth**<br><br>User plane bandwidth in bits/second. |`UserPlaneBandwidth` | No | BitsPerSecond |Total (Sum) |`PcdpId`, `SiteId`, `Direction`, `Interface`|PT1M |No|
 |**User Plane Packet Drop Rate**<br><br>User plane packet drop rate (packets/sec) |`UserPlanePacketDropRate` | No | CountPerSecond |Total (Sum) |`PcdpId`, `SiteId`, `Cause`, `Direction`, `Interface`|PT1M |No|
 |**User Plane Packet Rate**<br><br>User plane packet rate (packets/sec) |`UserPlanePacketRate` | No | CountPerSecond |Total (Sum) |`PcdpId`, `SiteId`, `Direction`, `Interface`|PT1M |No|
-|**VectorDB API Request Count**<br><br>Total number of API requests to VectorDB |`VectorDbApiRequestCount` | No | Count |Count |`AppName`, `Method`, `Route`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
+|**VectorDB API Request Count**<br><br>Total number of API requests to VectorDB |`VectorDbApiRequestCount` | No | Count |Count |`AppName`, `Method`, `Route`|PT1M |No|
 |**Xn Handover Attempts**<br><br>Handover attempts rate (per minute) |`XnHandoverAttempt` | No | Count |Total (Sum) |`3gppGen`, `PccpId`, `SiteId`|PT1M |Yes|
 |**Xn Handover Failures**<br><br>Handover failure rate (per minute) |`XnHandoverFailure` | No | Count |Total (Sum) |`3gppGen`, `PccpId`, `SiteId`|PT1M |Yes|
 |**Xn Handover Successes**<br><br>Handover success rate (per minute) |`XnHandoverSuccess` | No | Count |Total (Sum) |`3gppGen`, `PccpId`, `SiteId`|PT1M |Yes|
