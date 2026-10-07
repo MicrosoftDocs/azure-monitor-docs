@@ -20,7 +20,7 @@ Automatic pause releases and shuts down unused compute resources after a set idl
   
 **Impact:** Low
   
-For more information, see [Plan to manage costs for Azure Synapse Analytics - Azure Synapse Analytics](/azure/synapse-analytics/plan-manage-costs#serverless-apache-spark-pool)  
+For more information, see [Manage costs for Azure Synapse Analytics](/azure/synapse-analytics/plan-manage-costs#serverless-apache-spark-pool)  
 
 ResourceType: microsoft.synapse/workspaces  
 Recommendation ID: afdf4c1a-e46b-4817-a5d6-4b9909f58e2a  
