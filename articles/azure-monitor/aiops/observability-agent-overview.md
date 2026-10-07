@@ -7,6 +7,7 @@ ms.collection: ce-skilling-ai-copilot
 ms.reviewer: yalavi, ronitauber
 ms.date: 06/04/2026
 ms.custom: references_regions
+ai-usage: ai-assisted
 # Customer intent: As an Azure Monitor user, I want to understand what the Azure Copilot Observability Agent is, how it fits into Azure Monitor workflows, and how to use it for data exploration and issue investigation.
 ---
 
@@ -87,57 +88,19 @@ The Observability Agent is currently available in the following Azure regions. S
 
 :::row:::
     :::column:::
-        - Australia Central
         - Australia East
-        - Australia Southeast
-        - Brazil South
         - Canada Central
-        - Canada East
-        - Central India
         - Central US
-        - Chile Central
+    :::column-end:::
+    :::column:::
         - East Asia
         - East US
-        - East US 2
-    :::column-end:::
-    :::column:::
-        - East US 2 EUAP
-        - France Central
-        - Germany West Central
-        - Indonesia Central
-        - Israel Central
-        - Italy North
-        - Japan East
-        - Japan West
-        - Korea Central
-        - Korea South
-        - Malaysia West
-    :::column-end:::
-    :::column:::
-        - Mexico Central
-        - New Zealand North
-        - North Central US
-        - North Europe
-        - Norway East
-        - Poland Central
-        - South Africa North
         - South Central US
-        - South India
-        - Southeast Asia
-        - Spain Central
     :::column-end:::
     :::column:::
-        - Sweden Central
-        - Sweden South
-        - Switzerland North
-        - UAE North
         - UK South
-        - UK West
         - West Central US
         - West Europe
-        - West US
-        - West US 2
-        - West US 3
     :::column-end:::
 :::row-end:::
 
