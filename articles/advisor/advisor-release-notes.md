@@ -2,12 +2,28 @@
 title: What's new in Azure Advisor
 description: Learn about what's new and what's changed in Azure Advisor with information from release notes, videos, and blog posts.
 ms.topic: reference
-ms.date: 03/29/2026
+ms.date: 10/06/2026
 ---
 
 # New in Azure Advisor
 
 Learn about the latest updates and changes in Azure Advisor with the items in this article. The updates and changes include release notes, videos, blog posts, and other types of information. Bookmark this article to stay up to date with the service.
+
+## September 2026
+
+### New cost recommendations for unused resources
+
+Azure Advisor continues to expand its cost optimization coverage. Two new recommendations help you find and remove idle networking resources:
+
+* [(Preview) Delete or provision ExpressRoute circuits in a not-provisioned state](advisor-reference-cost-recommendations.md#preview-delete-or-provision-expressroute-circuits-in-a-not-provisioned-state)
+* [(Preview) Delete Azure virtual network gateways with no connections](advisor-reference-cost-recommendations.md#preview-delete-azure-virtual-network-gateways-with-no-connections)
+
+They join two existing recommendations:
+
+* [(Preview) Unused or empty App Service plan](advisor-reference-cost-recommendations.md#preview-unused-or-empty-app-service-plan)
+* [(Preview) Review disks that aren't attached to a VM and evaluate if you still need the disks](advisor-reference-cost-recommendations.md#preview-review-disks-that-arent-attached-to-a-vm-and-evaluate-if-you-still-need-the-disks)
+
+All four are available in preview. To view them, go to **Advisor** > **Recommendations** > **Cost**.
 
 ## April 2026
 
