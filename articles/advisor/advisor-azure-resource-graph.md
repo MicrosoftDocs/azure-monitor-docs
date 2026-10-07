@@ -1,11 +1,11 @@
 ---
-title: Advisor data in Azure Resource Graph
-description: Make queries for Advisor data in Azure Resource Graph
+title: Get Advisor recommendations in Azure Resource Graph
+description: Query for Azure Advisor recommendations in Azure Resource Graph
 ms.topic: concept-article
 ms.date: 07/24/2026
 ---
 
-# Query for Advisor data in Azure Resource Graph
+# Get Advisor recommendations in Azure Resource Graph
 
 You can find Advisor data in [Azure Resource Graph](https://azure.microsoft.com/features/resource-graph/), a service that lets you explore your Azure resources by using fast, at-scale queries across subscriptions. Use it to:
 
