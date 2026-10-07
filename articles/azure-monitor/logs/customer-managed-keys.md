@@ -149,9 +149,9 @@ For example, add the following values in the request body for creating a cluster
 > [!NOTE]
 > You can change the identity type after creating the cluster without interrupting ingestion or queries, with the following considerations:
 >
-> * You can't update the identity and key simultaneously for a cluster. Update them in two consecutive operations.
+> * Don't change the identity and key identifier details in the same operation. You can include an unchanged system-assigned identity that already has the required Key Vault permissions when updating key details.
 > * When updating `SystemAssigned` to `UserAssigned`, [grant `UserAssigned` identity](#grant-key-vault-permissions-to-the-managed-identity) in Key Vault, then update `identity` in the dedicated cluster.
-> * When updating `UserAssigned` to `SystemAssigned`, [grant `SystemAssigned` identity](#grant-key-vault-permissions-to-the-managed-identity) in Key Vault, then update `identity` in the dedicated cluster.
+> * When changing from `UserAssigned` to `SystemAssigned`, follow [Change managed identity type](./logs-dedicated-clusters.md#change-managed-identity-type).
 
 For more information about creating a dedicated cluster, see [Create and manage a dedicated cluster](./logs-dedicated-clusters.md#create-a-dedicated-cluster).
 
@@ -192,7 +192,8 @@ This step updates dedicated cluster storage with the key and version to use for 
 
 > [!IMPORTANT]
 > * Key rotation can be automatic or per explicit key version. See [Key rotation](#key-rotation) to determine a suitable approach before updating the key identifier details in dedicated cluster.
-> * Dedicated cluster updates must not include both identity and key identifier details in the same operation. If you need to update both, the update must be in two consecutive operations.
+> * For a new system-assigned identity, first configure the identity, [grant it the required Key Vault permissions](#grant-key-vault-permissions-to-the-managed-identity), and then update the key details. Configuring the identity and key together fails because the new identity doesn't yet have Key Vault access.
+> * If the cluster already uses that identity and it has the required Key Vault permissions, an update can include both the unchanged `identity.type: SystemAssigned` and `properties.keyVaultProperties`.
 
 :::image type="content" source="media/customer-managed-keys/key-identifier-8bit.png" lightbox="media/customer-managed-keys/key-identifier-8bit.png" alt-text="Screenshot of Grant Key Vault permissions.":::
 
@@ -298,7 +299,7 @@ This template includes the cluster resource declaration and key settings. Before
 * Set `keyVersion` to an empty string to enable automatic rotation.
 * Retain all other members from your maintained cluster definition, including the existing SKU, capacity, location, tags, and other properties. Keep the existing identity unchanged.
 * Don't deploy this example unchanged over an existing cluster. It shows the key settings, not your cluster's complete configuration.
-* Don't include identity and key identifier details in the same update.
+* Don't change the identity and key identifier details in the same deployment. An unchanged system-assigned identity with the required Key Vault permissions can be included with the key details.
 * For a key-only update, use the Azure CLI, Azure PowerShell, or REST tab.
 
 ```bicep
@@ -336,7 +337,7 @@ This template includes the cluster resource declaration and key settings. Before
 * Set `keyVersion` to an empty string to enable automatic rotation.
 * Retain all other members from your maintained cluster definition, including the existing SKU, capacity, location, tags, and other properties. Keep the existing identity unchanged.
 * Don't deploy this example unchanged over an existing cluster. It shows the key settings, not your cluster's complete configuration.
-* Don't include identity and key identifier details in the same update.
+* Don't change the identity and key identifier details in the same deployment. An unchanged system-assigned identity with the required Key Vault permissions can be included with the key details.
 * For a key-only update, use the Azure CLI, Azure PowerShell, or REST tab.
 
 ```json
@@ -905,7 +906,7 @@ To learn more, see [Customer Lockbox for Microsoft Azure](/azure/security/fundam
 * You can link up to 1,000 Log Analytics workspaces to a cluster.
 * You can perform up to two workspace link operations on a particular workspace in a 30-day period.
 * Moving a cluster to another resource group or subscription isn't currently supported.
-* Cluster updates shouldn't include both identity and key identifier details in the same operation. To update both, use two consecutive operations.
+* Don't change the managed identity and key identifier details in the same operation. An update can include an unchanged system-assigned identity that already has the required Key Vault permissions together with the key details.
 * Lockbox isn't available in China currently.
 * Lockbox doesn't apply to tables with the [Auxiliary table plan](data-platform-logs.md#table-plans).
 * [Double encryption](/azure/storage/common/storage-service-encryption#doubly-encrypt-data-with-infrastructure-encryption) is configured automatically for clusters created from October 2020 in supported regions. You can verify if your cluster is configured for double encryption by sending a `GET` request on the cluster and observing that the `isDoubleEncryptionEnabled` value is `true` for clusters with double encryption enabled.
