@@ -25,7 +25,7 @@ Data collected by Application Insights models this typical application execution
 
 ## Types of telemetry
 
-The following types of telemetry are used to monitor the execution of your application. The [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and [Application Insights JavaScript SDK](javascript-sdk.md) collect:
+Use the following types of telemetry to monitor the execution of your application. Collection depends on the language and instrumentation: the [Microsoft OpenTelemetry Distro](opentelemetry-enable.md) for .NET, Node.js, and Python, the Azure Monitor OpenTelemetry Distro for Java, or the [Application Insights JavaScript SDK](javascript-sdk.md) for browsers.
 
 | Telemetry type | Table name<br>(Application Insights) | Table name<br>(Log Analytics) | Description |
 |----------------|--------------------------------------|-------------------------------|-------------|
@@ -402,7 +402,7 @@ Every telemetry item might have a strongly typed context field. Every field enab
 
 * Review frequently asked questions (FAQ): [Telemetry data model FAQ](application-insights-faq.yml#telemetry-data-model)
 * Check out [platforms](app-insights-overview.md#getting-started) supported by Application Insights.
-* Learn how to [collect custom telemetry using the Azure Monitor OpenTelemetry Distro](opentelemetry-add-modify.md#collect-custom-telemetry).
+* Learn how to [collect custom telemetry using the Microsoft OpenTelemetry Distro](opentelemetry-add-modify.md#collect-custom-telemetry) for .NET, Node.js, and Python, or the Azure Monitor OpenTelemetry Distro for Java.
 * Learn how to [collect custom telemetry](opentelemetry-add-modify.md#collect-custom-telemetry).
 * Learn how to [modify telemetry](opentelemetry-add-modify.md#modify-telemetry).
 * Learn how to use [OpenTelemetry sampling](opentelemetry-sampling.md) to minimize telemetry volume.
