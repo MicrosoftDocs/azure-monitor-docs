@@ -2,12 +2,18 @@
 title: Sampling in Azure Application Insights with OpenTelemetry
 description: Learn how OpenTelemetry sampling in Application Insights reduces telemetry volume, controls costs, and preserves key diagnostic data.
 ms.topic: how-to
-ms.date: 12/10/2025
+ms.custom: cbo-v1.6
+ms.date: 09/11/2026
+ai-usage: ai-assisted
 ---
 
 # Sampling in Azure Monitor Application Insights with OpenTelemetry
 
+[!INCLUDE [Choose an OpenTelemetry onboarding path](includes/opentelemetry-onboarding-paths.md)]
+
 [Application Insights](./app-insights-overview.md) includes a custom sampler and integrates with [OpenTelemetry](./opentelemetry-enable.md) to reduce telemetry volume, lower costs, and retain the diagnostic data you care about.
+
+For .NET, Node.js, and Python, this article applies to the Microsoft OpenTelemetry Distro with Azure Monitor export enabled. Java continues to use the Azure Monitor OpenTelemetry Distro. Use the language-specific [sampling configuration](opentelemetry-configuration.md#enable-sampling) for your distro.
 
 ## Prerequisites
 
@@ -21,14 +27,14 @@ ms.date: 12/10/2025
 
 Sampling is essential for applications generating large amounts of telemetry. Without sampling, excessive data ingestion can increase storage and processing costs, and cause Application Insights to throttle telemetry. Effective sampling keeps enough data for meaningful diagnostics while controlling cost.
 
-The Application Insights OpenTelemetry distros include a default sampler. The specific sampler and its rate depend on the language and distro version. For per-language defaults and how to configure sampling, see [Enable sampling](opentelemetry-configuration.md#enable-sampling).
+The Microsoft OpenTelemetry Distro for .NET, Node.js, and Python defaults to rate-limited sampling at five traces per second for Azure Monitor export. Java agent and Java native settings are documented separately. For defaults, overrides, and supported sampling options, see [Enable sampling](opentelemetry-configuration.md#enable-sampling).
 
 > [!NOTE]
 > If you're seeing unexpected charges or high costs in Application Insights, this guide can help. It covers common causes like high telemetry volume, data ingestion spikes, and misconfigured sampling. It's especially useful if you're troubleshooting issues related to cost spikes, telemetry volume, sampling not working, data caps, high ingestion, or unexpected billing. To get started, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
 
 ## Application Insights custom sampler
 
-The Azure Monitor OpenTelemetry-based distro includes a custom sampler.
+The Microsoft OpenTelemetry Distro's Azure Monitor integration and the Azure Monitor Java agent include an Application Insights-compatible sampler. The distro name doesn't change the Azure Monitor telemetry destination or the sampler's role.
 
 * Application Insights relies on this sampler to show you complete traces and avoid broken ones.
 * Live Metrics requires the Azure Monitor sampler for compatibility.
@@ -45,7 +51,7 @@ Application Insights supports two sampling strategies:
 
     Example: `0.5` ≈ one trace every two seconds; `5.0` = five traces per second.
 
-An optional [trace‑based sampling for logs](opentelemetry-configuration.md#configure-trace-based-sampling-for-logs) feature is available for supported languages, which drops logs tied to unsampled traces. The default depends on the language and distro version. For per-language defaults and configuration, see [Configure trace-based sampling for logs](opentelemetry-configuration.md#configure-trace-based-sampling-for-logs).
+An optional [trace-based sampling for logs](opentelemetry-configuration.md#configure-trace-based-sampling-for-logs) feature drops logs tied to unsampled traces. The Microsoft OpenTelemetry Distro for .NET enables it by default; the Node.js and Python versions of the Microsoft OpenTelemetry Distro disable it by default. For Java behavior and configuration, see [Configure trace-based sampling for logs](opentelemetry-configuration.md#configure-trace-based-sampling-for-logs).
 
 To configure sampling, refer to [Enable Sampling in Application Insights with OpenTelemetry](./opentelemetry-configuration.md#enable-sampling).
 
