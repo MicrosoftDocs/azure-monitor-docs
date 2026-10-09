@@ -23,7 +23,7 @@ Use the agent to move from raw signals toward explanation and next steps. In the
 - **Investigate issues** — Investigate an active incident across application, infrastructure, and Azure platform signals, then preserve findings in Azure Monitor issues.
 - **Run autonomous operations (preview)** — Let the agent correlate alerts in the background, apply custom instructions about your environment and business context, and create issues for your on-call team to review through a controlled-autonomy model where humans stay in control of decisions and actions.
 
-:::image type="content" source="../fundamentals/media/overview/overview.png" alt-text="Azure Monitor architecture showing data sources, metrics, logs, traces, and Observability Agent features." border="false" lightbox="../fundamentals/media/overview/overview.png":::
+:::image type="content" source="../fundamentals/media/overview/overview.svg" alt-text="Azure Monitor architecture showing data sources, metrics, logs, traces, and Observability Agent features." border="false" lightbox="../fundamentals/media/overview/overview.svg":::
 
 ## Work with the Observability Agent
 
