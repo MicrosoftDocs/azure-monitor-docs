@@ -81,7 +81,7 @@ To access the API, you register a client app with Microsoft Entra ID and request
 
     :::image type="content" source="../media/api-register-app/request-api-permissions.png" alt-text="A screenshot that shows the Request API permissions page.":::
 
-1. Select **Delegated permissions**.
+1. Select either **Delegated permissions** for Authorization Code flow, or **Application permissions** for Client Credentials flow.
 
 1. Select the **Data.Read** checkbox.
 
@@ -127,11 +127,13 @@ Before you begin, make sure you have all the values required to make the request
 
 The Log Analytics API supports Microsoft Entra authentication with three different [Microsoft Entra ID OAuth2](/azure/active-directory/develop/active-directory-protocols-oauth-code) flows:
 
-* Client credentials
-* Authorization code
-* Implicit
+* Client credentials (Application permissions)
+* Authorization code (Delegated permissions)
+* Implicit (Delegated permissions)
 
 ### Client credentials flow
+
+The Log Analytics API supports the OAuth2 [client credentials flow](/entra/identity-platform/v2-oauth2-client-creds-grant-flow). This flow is suitable for service-to-service calls where no user identity is involved.
 
 In the client credentials flow, the token is used with the Log Analytics endpoint. A single request is made to receive a token by using the credentials provided for your app in the previous step when you [register an app in Microsoft Entra ID](register-app-for-token.md).
 
@@ -271,35 +273,6 @@ client_id=<app-client-id>
     "refresh_token": "eyJ0esdfiJKV1ljhgYF.....Az"
 }
 ```
-
-### Client credentials flow
-
-The Log Analytics API supports the OAuth2 [client credentials flow](/entra/identity-platform/v2-oauth2-client-creds-grant-flow). This flow is suitable for service-to-service calls where no user interaction is required.
-
-#### Client credentials token request
-
-```http
-POST https://login.microsoftonline.com/YOUR_AAD_TENANT/oauth2/v2.0/token HTTP/1.1
-Host: login.microsoftonline.com
-Content-Type: application/x-www-form-urlencoded
-
-client_id=<app-client-id>
-&scope=https://api.loganalytics.io/.default
-&client_secret=<app-client-secret>
-&grant_type=client_credentials
-```
-
-**Example response:**
-
-```http
-{
-    "token_type": "Bearer",
-    "expires_in": 3599,
-    "access_token": "eyJ0eXAiOiJKV1QiLCJ.....Ax"
-}
-```
-
-This access\_token can be used as the `Authorization: Bearer` header value when it's passed to the Log Analytics API to authorize requests.
 
 ## More information
 
