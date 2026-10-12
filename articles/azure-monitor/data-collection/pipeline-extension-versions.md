@@ -2,8 +2,9 @@
 title: Azure Monitor pipeline extension versions
 description: Extension versions and release notes for Azure Monitor pipeline. 
 ms.topic: how-to
-ms.date: 09/21/2026
+ms.date: 10/08/2026
 ms.custom: references_regions, devx-track-azurecli
+ai-usage: ai-assisted
 ---
 
 # Azure Monitor pipeline extension versions
@@ -15,6 +16,17 @@ This article describes the version details for the Azure Monitor pipeline Arc-en
 - You can manually install the release once it's available in your region.
 
 ## Version details
+
+### Version 1.8.0 - October 5, 2026
+
+> [!WARNING]
+> When you upgrade to version 1.8.0, durable buffering uses a new storage directory for each pipeline and exporter pair. Previously buffered data isn't migrated and won't be forwarded after the upgrade. Allow durable buffers to drain before upgrading. Old directories aren't automatically removed or managed by the new buffers' retention limits. Remove them only after confirming that their data is no longer needed.
+
+- **Updated naming requirements for durable buffering** — for components that use durable buffering, pipeline and exporter names must be nonempty, must not be exactly `.` or `..`, and must not contain `/`, `\`, `$`, or control characters. Rename affected components and update their references before upgrading.
+- **Isolated durable buffers** — each pipeline and exporter pair now uses its own buffer directory, preventing pipelines that share an exporter from conflicting over buffered data.
+- **OpenShift deployment reliability** — fixed collector startup failures by configuring its service account and pod security settings to use the OpenShift `anyuid` security context constraint (SCC). Review this permission requirement against your cluster security policies.
+- **Faster server certificate rotation** — reduced the receiver server certificate reload interval from 15 minutes to 5 minutes.
+- **More reliable mutual TLS certificate rotation** — fixed receiver client certificate authority (CA) reloads when Kubernetes updates mounted Secrets or ConfigMaps, so receivers can pick up the updated client CA without a restart.
 
 ### Version 1.7.0 - September 16, 2026
 
