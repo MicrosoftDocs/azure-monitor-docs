@@ -1,8 +1,8 @@
 ---
-title: Data Collection Rule (DCR) Structure in Azure Monitor
+title: Structure of a data collection rule (DCR) in Azure Monitor
 description: Learn how data collection rule (DCR) kinds and properties define data sources, streams, transformations, and destinations in Azure Monitor.
 ms.topic: reference
-ms.date: 09/14/2026
+ms.date: 10/12/2026
 ms.reviewer: msundaram
 ai-usage: ai-assisted
 ---
@@ -88,7 +88,7 @@ For example, events and performance data collected from a VM by using the Azure 
 
 #### Common data source parameters
 
-All data source types share the following common parameters.
+The following parameters describe data source naming, streams, and transformations. The `transform` property is available only for data sources supported by multi-stage transformations.
 
 | Parameter | Description |
 |:----------|:------------|

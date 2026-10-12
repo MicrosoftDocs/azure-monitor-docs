@@ -2,14 +2,14 @@
 title: Transformations in Azure Monitor
 description: Use transformations in a data collection rule in Azure Monitor to filter and modify incoming data, including multi-stage transformations with processors.
 ms.topic: concept-article
-ms.date: 05/15/2026
+ms.date: 10/12/2026
 ms.reviewer: nikeist
 ai-usage: ai-assisted
 ---
 
 # Transformations in Azure Monitor
 
-Transformations in Azure Monitor filter or modify incoming data before it's sent to a Log Analytics workspace. Transformations run after the data source delivers the data and before it's sent to the destination. They're defined in a [data collection rule (DCR)](data-collection-rule-overview.md).
+Transformations in Azure Monitor filter or modify incoming data before ingestion into a Log Analytics workspace. Ingestion-time transformations process data after the data source delivers it to Azure Monitor and before Azure Monitor sends it to the destination. Multi-stage transformations can also process data on the agent before the agent sends it to Azure Monitor. You define transformations in a [data collection rule (DCR)](data-collection-rule-overview.md).
 
 Standard transformations use a [Kusto Query Language (KQL) statement](data-collection-transformations-kql.md) applied individually to each entry in the incoming data. [Multi-stage transformations](#multi-stage-transformations-preview) extend this model with a pipeline of declarative processors, where a KQL query is one of many available processor types in the transformation chain.
 
@@ -120,9 +120,9 @@ For example, the [Event](../reference/tables/event.md) table is used to store ev
 
 Azure Monitor ingestion-time transformations are run after the data is received by Azure Monitor but before it's ingested in the Log Analytics workspace. Azure Monitor pipeline transformations are applied earlier in the data flow, allowing for data shaping and filtering before the data is sent to Azure Monitor. This makes pipeline transformations useful for reducing data volume and network bandwidth when sending data from edge or multicloud environments.
 
-The following table summarizes the key differences between Azure Monitor pipeline transformations and Azure Monitor ingestion-timetransformations:
+The following table summarizes the key differences between Azure Monitor pipeline transformations and standard Azure Monitor ingestion-time transformations. Multi-stage transformations also support an aggregation processor during preview.
 
-| Feature | Azure Monitor Pipeline Transformations | Azure Monitor Ingestion-time Transformations |
+| Feature | Azure Monitor pipeline transformations | Standard Azure Monitor ingestion-time transformations |
 |:---|:---|:---|
 | When applied | Before data is sent to Azure Monitor | After data is received by Azure Monitor.<br>Before it's stored in Log Analytics workspace |
 | Definition | Defined in data flows in Azure Monitor pipeline | Defined in Data Collection Rules (DCRs) in Azure Monitor |
