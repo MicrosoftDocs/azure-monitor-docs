@@ -269,4 +269,106 @@ Recommendation ID: 134edfc1-8479-4792-b19b-b47ac18a58ac
 
 <!--134edfc1-8479-4792-b19b-b47ac18a58ac_end-->
 
+<!--5046219d-e79f-46bf-a68f-0ccb5166f5fd_begin-->
+
+#### Azure QnAMaker is being retired.  
+  
+Beginning October 1, 2022, you aren't be able to create new QnA Maker resources or knowledge bases. All QnA Maker resources and knowledge bases created before that date are supported until the retirement date.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=azure-qna-maker-will-be-retired-on-31-march-2025)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 5046219d-e79f-46bf-a68f-0ccb5166f5fd  
+
+<!--5046219d-e79f-46bf-a68f-0ccb5166f5fd_end-->
+
+<!--7e42bc25-4cf7-47fc-a125-ef619cf7c6aa_begin-->
+
+#### Long audio API is being retired  
+  
+The Long Audio API of Azure AI Speech is being retired.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/long-audio-api-will-be-retired-on-31-march-2027-migrate-to-the-new-batch-synthesis-api/)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 7e42bc25-4cf7-47fc-a125-ef619cf7c6aa  
+
+<!--7e42bc25-4cf7-47fc-a125-ef619cf7c6aa_end-->
+
+<!--627cfbef-2bd0-4f15-8394-65b1f720ba78_begin-->
+
+#### S2, S3, and S4 price instances are being retired  
+  
+Azure AI Translator S2-S4 billing instances are retiring.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/azure-ai-translator-s2s4-billing-instances-will-be-retired-on-1-october-2026-transition-to-commitment-tiers-for-discounted-pr/)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 627cfbef-2bd0-4f15-8394-65b1f720ba78  
+
+<!--627cfbef-2bd0-4f15-8394-65b1f720ba78_end-->
+
+<!--ed76767e-3113-4540-872e-0e80fcd3f8d9_begin-->
+
+#### Speech-to-text REST preview API v3.1-preview.1 is being retired  
+  
+Speech-to-text REST preview API v3.1-preview.1 is being retired.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/were-retiring-speechtotext-rest-preview-api-v31preview1-on-may-12-2023/)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: ed76767e-3113-4540-872e-0e80fcd3f8d9  
+
+<!--ed76767e-3113-4540-872e-0e80fcd3f8d9_end-->
+
+<!--b7c8556a-5977-49f2-8db0-b3a0e4252f5c_begin-->
+
+#### Studio v2.1 (Azure Document Intelligence) is being retired  
+  
+The Document Intelligence GA API v2.1 is being retired and  you need to migrate to a newer GA API version of Document Intelligence.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/Azure-Docuement-Intelligence-V2-retirement)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: b7c8556a-5977-49f2-8db0-b3a0e4252f5c  
+
+<!--b7c8556a-5977-49f2-8db0-b3a0e4252f5c_end-->
+
+<!--28eea5a8-16a5-4e1a-94ef-3c967983e932_begin-->
+
+#### Transition to Azure AI Document Intelligence v3.1 API  
+  
+Azure AI Document Intelligence v2.0 API is retiring. Transition to Azure AI Document Intelligence v3.1 API.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/retirement-azure-ai-document-intelligence-v20-api-will-be-retired-on-31-august-2026/)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 28eea5a8-16a5-4e1a-94ef-3c967983e932  
+
+<!--28eea5a8-16a5-4e1a-94ef-3c967983e932_end-->
+
 <!--articleBody-->

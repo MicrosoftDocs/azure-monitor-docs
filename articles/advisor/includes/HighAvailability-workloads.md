@@ -1002,4 +1002,293 @@ Subcategory: HighAvailability
 
 <!--b27248cd-67dc-4824-b162-4563adaa6d70_end-->
 
+<!--38ac2342-ae5f-4086-b152-3d2044ae891a_begin-->
+
+#### Deploy your Electronic Health Record (EHR) workload components across Availability Zones.  
+  
+Deploy the virtual machines that support your Electronic Health Record (EHR) workload across Availability Zones to improve availability and isolate faults across physically separate data centers in your region.  
+  
+**Potential benefits**: High availability and fault isolation within the region.  
+
+**Impact:** High
+  
+For more information, see [Availability options for Azure Virtual Machines - Azure Virtual Machines](/azure/virtual-machines/availability#availability-zones)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 38ac2342-ae5f-4086-b152-3d2044ae891a  
+
+<!--38ac2342-ae5f-4086-b152-3d2044ae891a_end-->
+
+<!--230678ae-6682-4972-b3da-0854156e3ddc_begin-->
+
+#### Disable TCP Reset in Azure Load Balancer for high availability (HA) setup in SAP workloads  
+  
+Disabling TCP Reset on Azure Load Balancer for high availability (HA) setup ensures no TCP reset packets are sent to instances, maintaining stable connections during failover scenarios.  
+  
+**Potential benefits**: Reliability of high availability (HA) setup in SAP workloads  
+
+**Impact:** Medium
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability#:~:text=To%20set%20up%20standard%20load%20balancer%2C%20follow%20these%20configuration%20steps)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 230678ae-6682-4972-b3da-0854156e3ddc  
+
+<!--230678ae-6682-4972-b3da-0854156e3ddc_end-->
+
+<!--866884c7-ede2-40e2-a09b-eb58ba3d35fd_begin-->
+
+#### Enable Floating IP in Azure Load Balancer for HA in SAP workloads  
+  
+To ensure port reuse and improved high availability, enable Floating IP in the load balancing rules of your Azure Load Balancer for SAP HA setups. In the Azure portal, go to your load balancer, select **Load balancing rules**, and add or edit a rule to enable Floating IP.
+  
+**Potential benefits**: Enhances reliability and failover for SAP HA workloads  
+
+**Impact:** Medium
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability#:~:text=To%20set%20up%20standard%20load%20balancer%2C%20follow%20these%20configuration%20steps)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 866884c7-ede2-40e2-a09b-eb58ba3d35fd  
+
+<!--866884c7-ede2-40e2-a09b-eb58ba3d35fd_end-->
+
+<!--c3ccd660-1e0c-4c7b-bac2-8b33f12d077e_begin-->
+
+#### Enable high availability (HA) ports in Azure Load Balancer for HA setup in SAP workloads  
+  
+For port reuse and improved high availability, enable high availability (HA) ports in the load balancing rules for your SAP workloads. This setting ensures traffic is distributed across all configured ports for better fault tolerance.
+  
+**Potential benefits**: Reliability of HA setup in SAP workloads  
+
+**Impact:** Medium
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability#:~:text=To%20set%20up%20standard%20load%20balancer%2C%20follow%20these%20configuration%20steps)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: c3ccd660-1e0c-4c7b-bac2-8b33f12d077e  
+
+<!--c3ccd660-1e0c-4c7b-bac2-8b33f12d077e_end-->
+
+<!--600720f1-fe59-48eb-9d29-0c261bb44ac3_begin-->
+
+#### Ensure PREFER_SITE_TAKEOVER is set to true for high availability (HA) SAP on RHEL  
+  
+The PREFER_SITE_TAKEOVER parameter in SAP HANA defines if the HANA system replication (SR) resource agent prefers to take over the secondary instance instead of restarting the failed primary locally. For reliable function of HANA DB high availability (HA) setup, set PREFER_SITE_TAKEOVER to true.
+  
+**Potential benefits**: Reliability of high availability (HA) setup in SAP workloads  
+
+**Impact:** High
+  
+For more information, see [High availability of SAP HANA on Azure VMs on RHEL](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel).  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 600720f1-fe59-48eb-9d29-0c261bb44ac3  
+
+<!--600720f1-fe59-48eb-9d29-0c261bb44ac3_end-->
+
+<!--98dd295e-59d5-40f7-a0aa-5cbedfe627b0_begin-->
+
+#### Ensure STONITH is enabled in the high availability (HA) configuration for SAP on RHEL  
+  
+In a Pacemaker cluster, the implementation of node level fencing is done using STONITH (Shoot The Other Node in the Head) resource. To help manage failed nodes, ensure that 'stonith-enable' is set to 'true' in the high availability (HA) cluster configuration of your SAP workload.  
+  
+**Potential benefits**: Reliability of high availability (HA) setup in SAP workloads  
+
+**Impact:** High
+  
+For more information, see [High availability of SAP HANA on Azure VMs on RHEL](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel).  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 98dd295e-59d5-40f7-a0aa-5cbedfe627b0  
+
+<!--98dd295e-59d5-40f7-a0aa-5cbedfe627b0_end-->
+
+<!--74b5f9b6-5297-4ead-b50e-e520efc5bb70_begin-->
+
+#### Ensure corosync join is set to 60 for high availability (HA) SAP workloads on SUSE  
+  
+The corosync join timeout specifies how long to wait for join messages when a new node joins the cluster. Set this value to 60 in the Pacemaker cluster configuration for high availability (HA) SAP on SUSE.
+  
+**Potential benefits**: Reliability of high availability (HA) setup in SAP workloads  
+
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES](/azure/virtual-machines/workloads/sap/sap-hana-high-availability).  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 74b5f9b6-5297-4ead-b50e-e520efc5bb70  
+
+<!--74b5f9b6-5297-4ead-b50e-e520efc5bb70_end-->
+
+<!--8a866318-ccb6-41da-a742-4553d0a68c92_begin-->
+
+#### Ensure corosync max_messages is set to 20 for high availability (HA) SAP on SUSE  
+  
+The corosync max_messages setting specifies the maximum number of messages a processor can send when it receives a token. Set it to 20 for efficient communication in high availability (HA) SAP clusters on SUSE.
+  
+**Potential benefits**: Reliability of high availability (HA) setup in SAP workloads  
+
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES](/azure/virtual-machines/workloads/sap/sap-hana-high-availability).  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 8a866318-ccb6-41da-a742-4553d0a68c92  
+
+<!--8a866318-ccb6-41da-a742-4553d0a68c92_end-->
+
+<!--106abf77-dab9-4e01-b0e5-31779e982030_begin-->
+
+#### Ensure corosync token is set to 30000 for high availability (HA) SAP on RHEL  
+  
+The corosync token setting determines the timeout that the system uses directly, or as a base, for real token timeout calculation in high availability (HA) clusters. To allow memory-preserving maintenance, set the corosync token to 30000 for SAP on Azure with RHEL.
+  
+**Potential benefits**: Reliability of HA setup in SAP workloads  
+
+**Impact:** High
+  
+For more information, see [High availability of SAP HANA on Azure VMs on RHEL](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel).  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 106abf77-dab9-4e01-b0e5-31779e982030  
+
+<!--106abf77-dab9-4e01-b0e5-31779e982030_end-->
+
+<!--0ebd80ff-24c6-47f1-8e8a-2a0a368259b2_begin-->
+
+#### Ensure expected votes is set to 2 for high availability (HA) SAP workloads on RHEL  
+  
+For a two-node high availability (HA) cluster, set the quorum votes to 2 as recommended for SAP on Azure to ensure a proper quorum, resilience, and data consistency.
+  
+**Potential benefits**: Reliability of high availability (HA) setup in SAP workloads  
+
+**Impact:** High
+  
+For more information, see [High availability of SAP HANA on Azure VMs on RHEL](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel).  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 0ebd80ff-24c6-47f1-8e8a-2a0a368259b2  
+
+<!--0ebd80ff-24c6-47f1-8e8a-2a0a368259b2_end-->
+
+<!--938e467d-cdf4-40d2-9ef2-1e359abdd185_begin-->
+
+#### Ensure high availability for SAP by distributing VMs across availability zones  
+  
+Ensure that each production workload has high availability (HA) with compute instances spread across multiple availability zones (VMs) within the same region to minimize the risk of a single point of failure by distributing VMs across different zones.  
+  
+**Potential benefits**: Reliability of HA setup in SAP workloads  
+
+**Impact:** High
+  
+For more information, see [SAP workload configurations with Azure Availability Zones](/azure/sap/workloads/high-availability-zones).  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 938e467d-cdf4-40d2-9ef2-1e359abdd185  
+
+<!--938e467d-cdf4-40d2-9ef2-1e359abdd185_end-->
+
+<!--f8681e63-15d2-4e50-8bc4-2443c1713052_begin-->
+
+#### Monitor your Oracle Database@Azure Exadata Infrastructure lifecycle state to keep it available.  
+  
+Your Oracle Database@Azure Exadata Infrastructure includes a lifecycle state property, such as provisioning, updating, maintenance, failing, and terminating.  
+  
+**Potential benefits**: You improve the reliability of your database operations.  
+
+**Impact:** High
+  
+For more information, see [Manage Exadata Cloud Infrastructure](https://docs.oracle.com/iaas/exadatacloud/doc/ecs-manage-infrastructure.html)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: f8681e63-15d2-4e50-8bc4-2443c1713052  
+
+<!--f8681e63-15d2-4e50-8bc4-2443c1713052_end-->
+
+<!--a96a02ff-a80d-4b16-a166-1e4236b8ec4e_begin-->
+
+#### Set Health Probe Threshold to recommended value in Azure Load Balancer for SAP HA Workloads  
+  
+Set Health Probe Threshold to recommended value so the load balancer marks backend instances unhealthy after two consecutive failures, enabling quick identification and isolation of unhealthy instances.  
+  
+**Potential benefits**: Reliability of HA setup in SAP workloads  
+
+**Impact:** Medium
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability#:~:text=To%20set%20up%20standard%20load%20balancer%2C%20follow%20these%20configuration%20steps)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: a96a02ff-a80d-4b16-a166-1e4236b8ec4e  
+
+<!--a96a02ff-a80d-4b16-a166-1e4236b8ec4e_end-->
+
+<!--b428f425-5a24-4fb5-bb1d-c6f31c770869_begin-->
+
+#### Spread Azure Virtual Machines of the same stock-keeping unit (SKU) across availability zones.  
+  
+Spread your Azure Virtual Machines of the same stock-keeping unit (SKU) across multiple availability zones in a high-availability setup to improve the resilience and fault tolerance of your SAP workloads.  
+  
+**Potential benefits**: Reliability of HA setup in SAP workloads.  
+
+**Impact:** High
+  
+For more information, see [Move Azure single-instance virtual machines from regional to zonal availability - Azure Virtual Machines](/azure/virtual-machines/move-virtual-machines-regional-zonal-portal)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: b428f425-5a24-4fb5-bb1d-c6f31c770869  
+
+<!--b428f425-5a24-4fb5-bb1d-c6f31c770869_end-->
+
+<!--262d0cbf-2054-4091-a003-09b42525bcde_begin-->
+
+#### Use Premium or Ultra Disk for single server VM to maximize Azure's single VM SLA in SAP roles  
+  
+For single-instance VMs in SAP workload roles, use Premium Storage or Ultra Disks to achieve the highest Azure single VM SLA. This configuration ensures optimal performance and availability for critical SAP systems without HA configuration, providing better uptime guarantees.
+  
+**Potential benefits**: Maximize the Azure single VM SLA  
+
+**Impact:** High
+  
+For more information, see [Azure VMs HA architecture and scenarios for SAP NetWeaver](/azure/sap/workloads/sap-high-availability-architecture-scenarios).  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 262d0cbf-2054-4091-a003-09b42525bcde  
+
+<!--262d0cbf-2054-4091-a003-09b42525bcde_end-->
+
+<!--182c769e-d361-4f85-a905-a468451e13fd_begin-->
+
+#### Use ZRS for SAP shared file systems to ensure high availability  
+  
+SAP shared file systems such as `/sapmnt`, `/usr/sap/trans`, and interface directories should use Zone-Redundant Storage (ZRS) or Geo-Zone-Redundant Storage (GZRS) for high availability across availability zones.
+  
+**Potential benefits**: Higher availability and resilience for SAP shared storage  
+
+**Impact:** High
+  
+For more information, see [Data Redundancy in Azure Files](/azure/storage/files/files-redundancy?tabs=azure-portal)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 182c769e-d361-4f85-a905-a468451e13fd  
+
+<!--182c769e-d361-4f85-a905-a468451e13fd_end-->
+
+<!--2b3c3748-77ef-49ea-85d4-bb81e251d7bd_begin-->
+
+#### Use rolling patching mode for your Oracle Database@Azure Exadata Infrastructure.  
+  
+Oracle Database on Azure Exadata Infrastructure supports rolling and non-rolling patching modes. Use rolling patching mode to maintain availability during automatic maintenance.
+  
+**Potential benefits**: Maintain availability during patching.  
+
+**Impact:** Medium
+  
+For more information, see [Configure Oracle-Managed Infrastructure](https://docs.oracle.com/iaas/exadatacloud/doc/exa-conf-oracle-man-infra.html)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 2b3c3748-77ef-49ea-85d4-bb81e251d7bd  
+
+<!--2b3c3748-77ef-49ea-85d4-bb81e251d7bd_end-->
+
 <!--articleBody-->

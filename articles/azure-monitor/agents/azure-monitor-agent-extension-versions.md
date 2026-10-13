@@ -2,7 +2,7 @@
 title: Azure Monitor Agent extension versions
 description: Release notes and version history for the Azure Monitor Agent virtual machine extension, including Windows, Linux, and metrics updates.
 ms.topic: release-notes
-ms.date: 09/21/2026
+ms.date: 10/06/2026
 ms.custom: references_region
 ms.reviewer: shseth, nmangum
 ai-usage: ai-assisted
@@ -47,6 +47,8 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 | Month | Windows | Linux | Metrics | Highlights |
 |---|---|---|---|---|
+| [October 2026](#october-2026) | 1.46.1 | — | 2.2026.921.1606 | Custom-log ingestion fix, Delos Cloud support, security updates |
+| [September 2026](#september-2026) | — | 1.45.0, 1.45.1 | 2.2026.807.1915, 2.2026.921.1606 | Guest-metric hotfix, log-data reliability fixes, protected-settings security fix |
 | [Aug 2026](#aug-2026) | 1.45 | 1.44 | 2.2026.703.954 | Windows data-integrity and reliability fixes, Linux distribution support, OTLP metrics improvements |
 | [July 2026](#july-2026) | 1.44 | 1.43 | 2.2026.617.1755 | CEF parsing improvements, CentOS 7 support removal, OpenSSL 3.6.3 |
 | [June 2026](#june-2026) | — | 1.42 | — | Performance improvements, SUSE 16 support, CVE and memory leak fixes |
@@ -63,6 +65,77 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 | [January 2025](#january-2025) | 1.32.0 | 1.33.4 | — | Disk quota tuning |
 | [Older versions (Unsupported)](#older-versions-unsupported) |  
 
+
+## October 2026
+
+**Versions:** Windows 1.46.1
+
+### Windows 1.46.1 (Rollout start date: Oct 2, 2026)
+
+**Customer action:** Upgrade to Windows 1.46.1 to receive these changes, including the fix for unexpected spikes in custom-log ingestion volume.
+
+#### Security
+
+- Updated the OpenSSL library bundled with Metrics Extension to 3.6.4.
+- Updated the bundled OpenTelemetry Collector to 1.20260911.163436, which includes OpenTelemetry Collector 0.160.0 and Go 1.27.1. This update addresses the following gRPC-Go vulnerabilities:
+  - [CVE-2026-84445](https://www.cve.org/CVERecord?id=CVE-2026-84445): xDS server crash caused by missing request headers.
+  - [CVE-2026-84303](https://www.cve.org/CVERecord?id=CVE-2026-84303): Authorization bypass through mixed-case headers in xDS.
+  - [CVE-2026-84304](https://www.cve.org/CVERecord?id=CVE-2026-84304): Memory exhaustion from fragmented HTTP/2 data frames.
+- Updated the bundled `System.Security.Cryptography.Xml` library to version 8.0.4, addressing [CVE-2026-47302](https://github.com/dotnet/announcements/issues/410), [CVE-2026-47304](https://github.com/dotnet/announcements/issues/412), [CVE-2026-50525](https://github.com/dotnet/announcements/issues/414), [CVE-2026-50527](https://github.com/dotnet/announcements/issues/416), and [CVE-2026-50648](https://github.com/dotnet/announcements/issues/419).
+
+#### New features
+
+- Added AMA support for Delos Cloud.
+
+#### Improvements
+
+- Updated Metrics Extension to 2.2026.921.1606.
+
+#### Fixes
+
+- Fixed an issue that could cause unexpected spikes in custom-log ingestion volume after an agent upgrade.
+
+## September 2026
+
+**Versions:** Linux 1.45.0, 1.45.1
+
+### Linux 1.45.1 (Rollout start date: Sep 26, 2026)
+
+**Customer action:** Upgrade to Linux 1.45.1 when it becomes available in your region, particularly if Linux 1.45.0 reports incorrect guest performance metrics.
+
+#### Improvements
+
+- Updated Metrics Extension to 2.2026.921.1606.
+- Updated the bundled OpenTelemetry Collector to 1.20260911.163436, which includes OpenTelemetry Collector 0.160.0 and Go 1.27.1.
+
+#### Fixes
+
+- Fixed a regression in Linux 1.45.0 that could report extremely large, incorrect values for some guest performance metrics sent to Azure Monitor Metrics.
+
+### Linux 1.45.0 (Rollout start date: Sep 5, 2026)
+
+> [!IMPORTANT]
+> Rollout of this version was paused on Sep 16, 2026. Linux 1.45.1 includes the fix for the guest performance metrics regression.
+
+**Customer action:** Upgrade to Linux 1.45.1 when it becomes available in your region to receive these changes together with the guest performance metrics fix.
+
+#### Security
+
+- Fixed an issue that could expose decrypted protected settings in extension logs when settings decoding failed.
+
+#### Improvements
+
+- Updated Metrics Extension to 2.2026.807.1915.
+- Updated the bundled OpenTelemetry Collector to 1.20260811.124908, which includes OpenTelemetry Collector 0.158.0 and Go 1.26.5.
+- Updated AMA troubleshooter checks to recognize Ubuntu 26.04, AlmaLinux 10, and Oracle Linux 10 on x86_64 and Arm64, and SUSE Linux Enterprise Server 12 SP5 on x86_64.
+
+#### Fixes
+
+- Fixed log-data loss that could occur when large events produced oversized transformation batches.
+- Fixed corruption of large integer values during log-data serialization.
+- Fixed accumulation of zombie child processes that could affect agent reliability.
+- Fixed a crash that could occur during agent shutdown.
+- Fixed installation failures when the log-rotation configuration directory was missing.
 
 ## Aug 2026
 
@@ -405,7 +478,7 @@ The `CommonSecurityLog` table is unaffected in both versions.
 
 ### Windows
 
-- Added the ability to tune the disk quota for the windows agent. Customers can use the agent settings DCR to change the quota between 4,000MB and 1,000,000MB. The default is 10,000MB.
+- Added the ability to tune the disk quota for the Windows agent. Customers can use the agent settings DCR to change the quota between 4,000MB and 1,000,000MB. The default is 10,000MB.
 
 ### Linux
 

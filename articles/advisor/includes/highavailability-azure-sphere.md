@@ -29,4 +29,21 @@ Recommendation ID: ee60d00e-823e-439d-971f-644fce1f1cb4
 
 <!--ee60d00e-823e-439d-971f-644fce1f1cb4_end-->
 
+<!--d76f2201-475e-4397-a654-43390f545dd4_begin-->
+
+#### Public API (Azure Sphere) is retiring  
+  
+Azure Sphere Legacy service interfaces, including the Azure Sphere (Legacy) API (also known as PAPI), and the Azure Sphere (Legacy) CLI (also known as azsphere), are retiring.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/Azure-Sphere-Legacy-Interface-Retirement)  
+
+ResourceType: microsoft.azuresphere/catalogs  
+Recommendation ID: d76f2201-475e-4397-a654-43390f545dd4  
+
+<!--d76f2201-475e-4397-a654-43390f545dd4_end-->
+
 <!--articleBody-->

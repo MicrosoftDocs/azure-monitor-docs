@@ -765,7 +765,9 @@ After you create your cluster resource and it's fully provisioned, you can edit 
   * **Workspaces** - The costs for your cluster are attributed proportionately to the workspaces in the Cluster, with the cluster resource being billed some of the usage if the total ingested data for the day is under the commitment tier. See [Log Analytics Dedicated Clusters](./cost-logs.md#dedicated-clusters) to learn more about the cluster pricing model.
 
 >[!IMPORTANT]
->A single cluster update shouldn't include both identity and key identifier details in the same operation. If you need to update both, make the update in two consecutive operations.
+>Don't enable a new system-assigned managed identity and configure a customer-managed key in the same operation. First configure the identity, [grant it the required Key Vault permissions](./customer-managed-keys.md#grant-key-vault-permissions-to-the-managed-identity), and then update the key details.
+>
+>If the cluster already uses that identity and it has the required Key Vault permissions, an update can include both the unchanged `identity.type: SystemAssigned` and `properties.keyVaultProperties`.
 
 # [Azure CLI](#tab/cli-3)
 
@@ -827,8 +829,8 @@ Content-Type: application/json
 > Template deployments create or update the resource; they aren't partial PATCH operations.
 >
 > * Retain the cluster's existing settings.
-> * Configure its system-assigned identity before updating key details.
-> * Don't change the identity and key in the same deployment.
+> * Configure its system-assigned identity and [grant it the required Key Vault permissions](./customer-managed-keys.md#grant-key-vault-permissions-to-the-managed-identity) before updating key details.
+> * Keep the existing identity unchanged. The template can include its existing `identity.type: SystemAssigned` value together with `properties.keyVaultProperties`.
 
 The following Bicep example uses the [`Microsoft.OperationalInsights/clusters`](/azure/templates/microsoft.operationalinsights/clusters?pivots=deployment-language-bicep) resource type. To update billing attribution, set `billingType` in the template from [Create a dedicated cluster](#create-a-dedicated-cluster). The following example also configures a customer-managed key on a cluster with an existing system-assigned identity.
 
@@ -904,8 +906,8 @@ Use the cluster's existing commitment tier and billing type. Set `keyVersion` to
 > Template deployments create or update the resource; they aren't partial PATCH operations.
 >
 > * Retain the cluster's existing settings.
-> * Configure its system-assigned identity before updating key details.
-> * Don't change the identity and key in the same deployment.
+> * Configure its system-assigned identity and [grant it the required Key Vault permissions](./customer-managed-keys.md#grant-key-vault-permissions-to-the-managed-identity) before updating key details.
+> * Keep the existing identity unchanged. The template can include its existing `identity.type: SystemAssigned` value together with `properties.keyVaultProperties`.
 
 The following ARM template example uses the [`Microsoft.OperationalInsights/clusters`](/azure/templates/microsoft.operationalinsights/clusters?pivots=deployment-language-arm-template) resource type. To update billing attribution, set `billingType` in the template from [Create a dedicated cluster](#create-a-dedicated-cluster). The following example also configures a customer-managed key on a cluster with an existing system-assigned identity.
 
@@ -1401,7 +1403,7 @@ You can change the identity type after creating the cluster without interrupting
 
 * You can't move a cluster to another region.
 
-* You shouldn't include both identity and key identifier details in the same operation when updating a cluster. If you need to update both, make two consecutive update operations.
+* Don't change the managed identity and key identifier details in the same operation. An update can include an unchanged system-assigned identity that already has the required Key Vault permissions together with the key details.
 
 * Lockbox isn't currently available in China.
 

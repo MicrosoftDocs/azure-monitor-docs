@@ -29,4 +29,21 @@ Recommendation ID: b76a9063-460e-437f-b939-da4f322293da
 
 <!--b76a9063-460e-437f-b939-da4f322293da_end-->
 
+<!--83357e9d-cc5b-46c3-ac81-6709cf07965e_begin-->
+
+#### Upgrade to X2 for more memory and reliable performance  
+  
+Grafana workspaces under high load can encounter out‑of‑memory (OOM) issues, which might cause service instability. Scaling to the X2 size increases memory resources, enabling workspaces to sustain peak usage while delivering more consistent performance and higher availability.
+  
+**Potential benefits**: Enhance reliability by scaling to X2, which has higher memory.
+
+**Impact:** Medium
+  
+For more information, see [What is Azure Managed Grafana?](https://aka.ms/ags/x2-intro)  
+
+ResourceType: microsoft.dashboard/grafana  
+Recommendation ID: 83357e9d-cc5b-46c3-ac81-6709cf07965e  
+
+<!--83357e9d-cc5b-46c3-ac81-6709cf07965e_end-->
+
 <!--articleBody-->

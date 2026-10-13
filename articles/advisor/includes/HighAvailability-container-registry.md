@@ -52,4 +52,38 @@ Recommendation ID: dcfa2602-227e-4b6c-a60d-7b1f6514e690
 
 
 
+<!--a5c46a88-2122-498c-a3c6-00d333698e2c_begin-->
+
+#### 2017-01-01-(GA) API (Azure Container Registry) is being retired  
+  
+The 2017-01-01-(GA) API (Azure Container Registry) is being retired.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/we-re-ending-support-for-the-20170301ga-api/).  
+
+ResourceType: microsoft.containerregistry/registries  
+Recommendation ID: a5c46a88-2122-498c-a3c6-00d333698e2c  
+
+<!--a5c46a88-2122-498c-a3c6-00d333698e2c_end-->
+
+<!--1ce751c6-35b8-4468-ac4b-d3052a1ae511_begin-->
+
+#### Docker Content Trust (DCT) is retiring and no longer available in Container Registry  
+  
+Docker Content Trust (DCT) no longer meets the requirements of modern supply chain security for containers. As a result, DCT is retiring and is no longer available in Container Registry.
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485241)  
+
+ResourceType: microsoft.containerregistry/registries  
+Recommendation ID: 1ce751c6-35b8-4468-ac4b-d3052a1ae511  
+
+<!--1ce751c6-35b8-4468-ac4b-d3052a1ae511_end-->
+
 <!--articleBody-->

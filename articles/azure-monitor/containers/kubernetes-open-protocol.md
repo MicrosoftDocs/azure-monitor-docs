@@ -17,14 +17,14 @@ OpenTelemetry provides a standardized way to emit traces, logs, and metrics. Azu
 > For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 > [!TIP]
-> For a conceptual overview of OpenTelemetry options in Azure Monitor — native OTLP ingestion, the Microsoft OpenTelemetry distro, and end-to-end observability experiences — see [OpenTelemetry with Azure Monitor](opentelemetry-options.md).
+> For a conceptual overview of OpenTelemetry options in Azure Monitor — native OTLP ingestion, the Microsoft OpenTelemetry Distro, and end-to-end observability experiences — see [OpenTelemetry with Azure Monitor](opentelemetry-options.md).
 
 ## Key capabilities
 
 - Enable cluster-level monitoring to install Azure Monitor components on the AKS cluster.
 - Create an Application Insights resource with OTLP ingestion enabled.
 - Onboard applications at the namespace or deployment scope by using either:
-  - **Autoinstrumentation** with the Azure Monitor OpenTelemetry distribution.
+  - **Autoinstrumentation** with language-specific OpenTelemetry instrumentation.
   - **Autoconfiguration** for applications already instrumented with the open-source OpenTelemetry Software Development Kits (SDKs).
     - Autoconfiguration applies only to applications that are already instrumented with OpenTelemetry. When you select autoconfiguration, Azure Monitor doesn't add instrumentation to your application. Instead, it sets environment variables at the platform level so existing OpenTelemetry SDKs export telemetry to Application Insights. You're responsible for instrumenting the application (for example, by using OpenTelemetry SDKs or annotations) before you enable autoconfiguration.
 
@@ -148,9 +148,9 @@ If you don't enable OTLP, Application Insights only uses Azure Monitor autoinstr
     - **User-configured instrumentation per deployment**
       - Autoconfiguration sets environment variables so existing SDKs export telemetry to Application Insights
       - Each deployment must already have autoinstrumentation annotations or manual instrumentation. For more information, see [Per deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding).
-    - **Java autoinstrumentation for all deployments** for automatic injection of the Azure Monitor OpenTelemetry distribution into Java applications.  
+    - **Java autoinstrumentation for all deployments** for automatic injection of the Azure Monitor OpenTelemetry Distro into Java applications.
       - All deployments in the namespace use Java autoinstrumentation by default. Use annotations to change the language or exclude a deployment. For more information, see [Automatic instrumentation](../app/codeless-overview.md) and [Per deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding).
-    - **NodeJs autoinstrumentation for all deployments** for automatic injection of the Azure Monitor OpenTelemetry distribution into Node.js applications.  
+    - **NodeJs autoinstrumentation for all deployments** for automatic injection of OpenTelemetry instrumentation into Node.js applications.
        - All deployments in the namespace use Node.js autoinstrumentation by default. Use annotations to change the language or exclude a deployment. For more information, see [Automatic instrumentation](../app/codeless-overview.md) and [Per deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding).
     > [!NOTE]
     > The Azure portal only allows you to apply autoinstrumentation OR autoconfiguration to a single namespace. If you need to use both options within a single namespace, see [per-deployment onboarding options](kubernetes-codeless.md#onboard-deployments).
@@ -204,7 +204,7 @@ Use the Kubernetes custom resources when you need more control. For more informa
 
 ### Autoinstrumentation (Java, Node.js)
 
-Follow the **namespace-wide** or **per-deployment** onboarding guidance in the article linked earlier to inject the Azure Monitor OpenTelemetry distribution into your pods.
+Follow the **namespace-wide** or **per-deployment** onboarding guidance in the article linked earlier to inject language-specific OpenTelemetry instrumentation into your pods. Java uses the Azure Monitor OpenTelemetry Distro. For manual Node.js instrumentation, use the [Microsoft OpenTelemetry Distro](../app/opentelemetry-enable.md?tabs=nodejs).
 
 > [!NOTE]
 > To participate in the limited public preview of Autoinstrumentation for .NET or Python, see [Enable AKS autoinstrumentation for Python and .NET (limited preview)](kubernetes-codeless-python-net.md).

@@ -349,7 +349,7 @@ Look for the `properties.connectionString` field in the JSON response.
 -->
 ### Application monitoring with OpenTelemetry
 
-For application monitoring with OpenTelemetry, install the appropriate Azure Monitor OpenTelemetry Distro and point the connection string to your newly created resource.
+For application monitoring with OpenTelemetry, install the Microsoft OpenTelemetry Distro for .NET, Node.js, and Python, or the Azure Monitor OpenTelemetry Distro for Java. Point the connection string to your newly created resource.
 
 For information on how to set up application monitoring with OpenTelemetry, see the following language-specific documentation:
 

@@ -30,4 +30,21 @@ Recommendation ID: 43b6411e-c197-4e3d-9295-af1b84e552cf
 
 <!--43b6411e-c197-4e3d-9295-af1b84e552cf_end-->
 
+<!--605bf72e-f058-46a5-a077-ca91692d0bc4_begin-->
+
+#### Update your Microsoft Entra token audience  
+  
+For Azure Database for MySQL Flexible Servers that use Microsoft Entra authentication, Microsoft is moving from legacy JWT-based validation to Microsoft Identity Service Essentials (MISE). MISE enforces stricter audience validation, so connections that use tokens with unsupported audiences fail.  
+  
+**Potential benefits**: Compatibility with security and service enhancements  
+
+**Impact:** High
+  
+For more information, see [Set up Microsoft Entra Authentication - Azure Database for MySQL](/azure/mysql/security/security-how-to-entra#use-the-recommended-microsoft-entra-token-audience)  
+
+ResourceType: microsoft.dbformysql/flexibleservers  
+Recommendation ID: 605bf72e-f058-46a5-a077-ca91692d0bc4  
+
+<!--605bf72e-f058-46a5-a077-ca91692d0bc4_end-->
+
 <!--articleBody-->

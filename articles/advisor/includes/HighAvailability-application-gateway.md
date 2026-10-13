@@ -584,4 +584,123 @@ Recommendation ID: 1e97d137-7812-474d-af09-6d5b3e2a1508
 
 <!--1e97d137-7812-474d-af09-6d5b3e2a1508_end-->
 
+<!--a62f1141-8da0-4e23-a953-eaaa7b8bc475_begin-->
+
+#### Application Gateway V1 is being retired.  
+  
+The platform encourages you to switch to Application Gateway V2 to avoid potential disruptions.
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities.
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=application-gateway-v1-will-be-retired-on-28-april-2026-transition-to-application-gateway-v2).  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: a62f1141-8da0-4e23-a953-eaaa7b8bc475  
+
+<!--a62f1141-8da0-4e23-a953-eaaa7b8bc475_end-->
+
+<!--13d4b9e9-e144-4fa6-8d03-38b1c9f2b4a3_begin-->
+
+#### Application Gateway Web Application Firewall v2 configuration is retiring  
+  
+To continue using the service, migrate to Application Gateway WAF v2 Policy before the retirement date.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities.
+
+**Impact:** Medium
+  
+For more information, see [Upgrade to Azure Application Gateway WAF Policy](/azure/web-application-firewall/ag/upgrade-ag-waf-policy?tabs=portal#upgrade-waf-v2-with-legacy-waf-configuration-to-waf-policy)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: 13d4b9e9-e144-4fa6-8d03-38b1c9f2b4a3  
+
+<!--13d4b9e9-e144-4fa6-8d03-38b1c9f2b4a3_end-->
+
+<!--332e07de-da0d-4ee7-b1c4-ca9016005e1d_begin-->
+
+#### Azure Basic Load Balancer is retiring
+  
+To keep the workloads appropriately distributed, upgrade to Standard Load Balancer.
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities.
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=azure-basic-load-balancer-will-be-retired-on-30-september-2025-upgrade-to-standard-load-balancer)  
+
+ResourceType: microsoft.network/loadbalancers  
+Recommendation ID: 332e07de-da0d-4ee7-b1c4-ca9016005e1d  
+
+<!--332e07de-da0d-4ee7-b1c4-ca9016005e1d_end-->
+
+<!--557fc33a-46a3-4688-9f09-0aa6ae3d38d7_begin-->
+
+#### Basic SKU retirement
+  
+If you have any Basic SKU public IP addresses deployed in Azure Cloud Services (extended support), those deployments aren't affected by this retirement and you don't need to take any action for them.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities.
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=upgrade-to-standard-sku-public-ip-addresses-in-azure-by-30-september-2025-basic-sku-will-be-retired)  
+
+ResourceType: microsoft.network/publicipaddresses  
+Recommendation ID: 557fc33a-46a3-4688-9f09-0aa6ae3d38d7  
+
+<!--557fc33a-46a3-4688-9f09-0aa6ae3d38d7_end-->
+
+<!--f0d2449d-99ce-4037-86b4-a1e1ace2a6ff_begin-->
+
+#### Classic (Azure Front Door) is being retired  
+  
+Classic (Azure Front Door) is being retired. Migrate to Front Door Standard or Premium.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/azure-front-door-classic-will-be-retired-on-31-march-2027/)  
+
+ResourceType: microsoft.network/frontdoorwebapplicationfirewallpolicies  
+Recommendation ID: f0d2449d-99ce-4037-86b4-a1e1ace2a6ff  
+
+<!--f0d2449d-99ce-4037-86b4-a1e1ace2a6ff_end-->
+
+<!--666322e5-95e9-4ac4-8c5d-9323f0052b18_begin-->
+
+#### Manual VPN clients for point-to-site connections with Microsoft Entra ID authentication are retiring
+  
+To improve security, the platform only supports Microsoft-registered VPN clients for point-to-site connections with Microsoft Entra ID authentication.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485535)  
+
+ResourceType: microsoft.network/virtualnetworkgateways  
+Recommendation ID: 666322e5-95e9-4ac4-8c5d-9323f0052b18  
+
+<!--666322e5-95e9-4ac4-8c5d-9323f0052b18_end-->
+
+<!--4d9ee0c5-6fbd-41d3-864f-b9251c92eebc_begin-->
+
+#### VpnGw1-5 (non-availability zone SKUs) is retiring
+  
+Due to the lack of redundancy, lower availability, and potential higher costs associated with other failover solution; the platform is transitioning all SKUs without availability zones to SKUs with availability zones.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=vpngw1-5-non-az-skus-will-be-retired-on-30-september-2026)  
+
+ResourceType: microsoft.network/virtualnetworkgateways  
+Recommendation ID: 4d9ee0c5-6fbd-41d3-864f-b9251c92eebc  
+
+<!--4d9ee0c5-6fbd-41d3-864f-b9251c92eebc_end-->
+
 <!--articleBody-->

@@ -118,4 +118,38 @@ Recommendation ID: bbce2e96-97d6-406e-bb16-07fda2759879
 
 <!--bbce2e96-97d6-406e-bb16-07fda2759879_end-->
 
+<!--aeab15f5-b474-46f5-892e-8d60f874d769_begin-->
+
+#### Azure Database for PostgreSQL Single Server is retiring.
+  
+Use the migration tool to migrate to Azure Database for PostgreSQL Flexible Server.
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities.
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=azure-database-for-postgresql-single-server-will-be-retired-migrate-to-flexible-server-by-28-march-2025)  
+
+ResourceType: microsoft.dbforpostgresql/servers  
+Recommendation ID: aeab15f5-b474-46f5-892e-8d60f874d769  
+
+<!--aeab15f5-b474-46f5-892e-8d60f874d769_end-->
+
+<!--49b73d1f-caf4-47ca-899e-5214af89827c_begin-->
+
+#### PostgreSQL 11 on Azure Database for PostgreSQL flexible server instances is retiring  
+  
+Upgrade Azure Database for PostgreSQL flexible server instances to PostgreSQL version 13 or later.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Version Policy - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/concepts-version-policy#postgresql-11-support)  
+
+ResourceType: microsoft.dbforpostgresql/flexibleservers  
+Recommendation ID: 49b73d1f-caf4-47ca-899e-5214af89827c  
+
+<!--49b73d1f-caf4-47ca-899e-5214af89827c_end-->
+
 <!--articleBody-->

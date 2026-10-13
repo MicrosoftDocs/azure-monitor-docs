@@ -65,4 +65,21 @@ Recommendation ID: 508f935c-bd6c-4bd0-a788-78f2c611fa44
 
 <!--508f935c-bd6c-4bd0-a788-78f2c611fa44_end-->
 
+<!--bee1c54b-36cb-4409-bf42-f5dd57ef3406_begin-->
+
+#### Migrate Azure Event Hubs deployments to ARM API version 2021-11-01 or later  
+  
+Using ARM API version 2021-11-01 or later for Azure Event Hubs improves deployment compatibility and reliability, and provides access to current platform capabilities. Update templates, scripts, and SDKs to standardize deployments across environments.  
+  
+**Potential benefits**: Ensures reliable Event Hubs deployments  
+
+**Impact:** High
+  
+For more information, see [Steps to upgrade control plane API references for Azure Service Bus, Event Hubs, and Relay](https://techcommunity.microsoft.com/blog/messagingonazureblog/steps-to-upgrade-control-plane-api-references-for-azure-service-bus-event-hubs-a/3940126)  
+
+ResourceType: microsoft.eventhub/namespaces  
+Recommendation ID: bee1c54b-36cb-4409-bf42-f5dd57ef3406  
+
+<!--bee1c54b-36cb-4409-bf42-f5dd57ef3406_end-->
+
 <!--articleBody-->

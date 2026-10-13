@@ -432,4 +432,157 @@ Recommendation ID: 18745007-438b-4c68-bfa3-b6576d85a831
 
 <!--18745007-438b-4c68-bfa3-b6576d85a831_end-->
 
+<!--dcf3c6e4-27b3-44d4-9b70-bb9e18a7184a_begin-->
+
+#### Community support for Node 20 LTS is ending, so the platform is retiring support on App Service  
+  
+Extended support for Node 20 LTS is ending. The apps hosted on App Service continue to run, but security updates are no longer available and the platform no longer provides customer service for Node 20 LTS.
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485072)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: dcf3c6e4-27b3-44d4-9b70-bb9e18a7184a  
+
+<!--dcf3c6e4-27b3-44d4-9b70-bb9e18a7184a_end-->
+
+<!--060218a1-bf04-43a9-a967-2a507b69904b_begin-->
+
+#### Extended support for Node 18 LTS is ending  
+  
+Extended support for Node 18 LTS is ending. Apps hosted on App Service continue to run. Future security updates are no longer available. The platform no longer provides customer service for Node 18 LTS.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=action-required-upgrade-your-app-service-apps-to-node-20-lts-by-30-april-2025)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 060218a1-bf04-43a9-a967-2a507b69904b  
+
+<!--060218a1-bf04-43a9-a967-2a507b69904b_end-->
+
+<!--154820bc-8d6f-44c8-b9ad-c214f16968ad_begin-->
+
+#### In-process model is being retired  
+  
+The platform no longer supports the in-process model for .NET apps in Azure Functions. To ensure that your apps that use this model continue being supported, you need to transition to the isolated worker model by that date.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/retirement-support-for-the-inprocess-model-for-net-apps-in-azure-functions-ends-10-november-2026/)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 154820bc-8d6f-44c8-b9ad-c214f16968ad  
+
+<!--154820bc-8d6f-44c8-b9ad-c214f16968ad_end-->
+
+<!--92b2f593-b118-4655-9dcb-20137b13f790_begin-->
+
+#### Migrate to Static Web Apps Standard pricing plan or to Azure Container Apps  
+  
+The Static Web Apps Dedicated pricing plan is retiring. Migrate deployments that use the Dedicated pricing plan to the Static Web Apps Standard pricing plan or to Azure Container Apps.
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure Static Web Apps hosting plans](/azure/static-web-apps/plans)  
+
+ResourceType: microsoft.web/staticsites  
+Recommendation ID: 92b2f593-b118-4655-9dcb-20137b13f790  
+
+<!--92b2f593-b118-4655-9dcb-20137b13f790_end-->
+
+<!--4bf50b72-9c8d-48cb-b78a-b9bc8acdaba7_begin-->
+
+#### Migrate to TLS 1.2 or later for App Service
+  
+App Service will no longer accept connections using TLS 1.0 or TLS 1.1. Any client, application, or service that continues to use these legacy TLS versions will be unable to connect to these services. Migrate to TLS 1.2 or later.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=557852)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 4bf50b72-9c8d-48cb-b78a-b9bc8acdaba7  
+
+<!--4bf50b72-9c8d-48cb-b78a-b9bc8acdaba7_end-->
+
+<!--de15ab5e-80bd-405f-a709-47cb3e8c7819_begin-->
+
+#### Migrate to TLS 1.2 or later for Functions  
+  
+Functions will no longer accept connections using TLS 1.0 or TLS 1.1. Any client, application, or service that continues to use these legacy TLS versions will be unable to connect to these services. Migrate to TLS 1.2 or later.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=557852)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: de15ab5e-80bd-405f-a709-47cb3e8c7819  
+
+<!--de15ab5e-80bd-405f-a709-47cb3e8c7819_end-->
+
+<!--969227e6-d5c5-40db-9f4c-44f526a1cf26_begin-->
+
+#### Migrate to TLS 1.2 or later for Logic Apps  
+  
+Logic Apps will no longer accept connections using TLS 1.0 or TLS 1.1. Any client, application, or service that continues to use these legacy TLS versions will be unable to connect to these services. Migrate to TLS 1.2 or later.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=557852)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 969227e6-d5c5-40db-9f4c-44f526a1cf26  
+
+<!--969227e6-d5c5-40db-9f4c-44f526a1cf26_end-->
+
+<!--bf624ee9-0fd3-4802-b7fa-99b171d2898e_begin-->
+
+#### Upgrade App Service apps to Python 3.11  
+  
+Extended support for Python 3.10 is retiring. Apps that are hosted on App Service will continue to run, but security updates and customer support won't be available.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=509686)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: bf624ee9-0fd3-4802-b7fa-99b171d2898e  
+
+<!--bf624ee9-0fd3-4802-b7fa-99b171d2898e_end-->
+
+<!--6e427a59-6f55-474a-8104-0ef6fe48059c_begin-->
+
+#### Version 1.x runtime is retiring  
+  
+Support for version 1.x of the Azure Functions runtime is ending.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/support-for-the-1x-version-of-azure-functions-ends-14-september-2026/)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 6e427a59-6f55-474a-8104-0ef6fe48059c  
+
+<!--6e427a59-6f55-474a-8104-0ef6fe48059c_end-->
+
 <!--articleBody-->
