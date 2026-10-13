@@ -1,17 +1,20 @@
 ---
-title: Set up App Insights for a Chaos Studio agent-based experiment
-description: Understand the steps to connect App Insights to your Chaos Studio Agent-Based Experiment
+title: Send agent telemetry to Application Insights (classic)
+description: Send Azure Chaos Studio agent fault events to Application Insights for Experiments (classic) to track fault timing, types, and affected resources.
 services: chaos-studio
 author: nikhilkaul-msft
 ms.topic: how-to
-ms.date: 10/14/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.reviewer: nikhilkaul
 ms.custom: ignite-fall-2023
 ---
 
-# How-to: Configure your experiment to emit Experiment Fault Events to App Insights
+# Send agent telemetry to Application Insights (classic)
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+Configure Application Insights telemetry for Azure Chaos Studio agent-based Experiments (classic) with this guide. For current-model tests, start with [Chaos Studio Scenario reports](chaos-studio-scenario-reports.md) and pair run details with your application monitoring.
 
 In this guide, we'll show you the steps needed to configure a Chaos Studio **Agent-based** Experiment to emit telemetry to App Insights. These events show the start and stop of each fault as well as the type of fault executed and the resource the fault was executed against. App Insights is the primary recommended logging solution for **Agent-based** experiments in Chaos Studio.
 

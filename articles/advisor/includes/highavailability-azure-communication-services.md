@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 08/11/2026
+ms.date: 10/01/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Communication Services
@@ -12,22 +12,21 @@ ms.custom: HighAvailability Azure Communication Services
   
 ## Azure Communication Services  
   
-<!--1db75baa-27cb-4eba-8657-23c87a6bc6ab_begin-->
+<!--71c92f71-e32f-40c1-abe5-deb2dbfc2c45_begin-->
 
-#### Migrate from standalone ACS offerings  
+#### Prepare for Azure Communication Services breaking changes and service retirement by September 30, 2028  
   
-Several standalone Azure Communication Services (ACS) offerings are retiring. Update applications to the latest SDKs e.g. Voice/Video Calling SDK, Call Diagnostics, Call Automation, etc.  
+Your resources are using services that will be retired or experience breaking changes effective September 30, 2028. Services with breaking changes will require integration with Microsoft Teams aligned services for continued support. Retired services will be completely removed from availability.  
   
-**Potential benefits**: Avoid service disruption  
+**Potential benefits**: Action is required before September 30, 2028, to avoid disruption.  
 
 **Impact:** Medium
   
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=557117)  
+For more information, see [Retirement and breaking changes guide for Azure Communication Services](https://aka.ms/acs-retirement-and-breaking-changes-guide).  
 
 ResourceType: microsoft.communication/communicationservices  
-Recommendation ID: 1db75baa-27cb-4eba-8657-23c87a6bc6ab  
-Subcategory: undefined
+Recommendation ID: 71c92f71-e32f-40c1-abe5-deb2dbfc2c45  
 
-<!--1db75baa-27cb-4eba-8657-23c87a6bc6ab_end-->
+<!--71c92f71-e32f-40c1-abe5-deb2dbfc2c45_end-->
 
 <!--articleBody-->

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 05/26/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Cognitive Services
@@ -32,7 +32,7 @@ Subcategory: ServiceUpgradeAndRetirement
 
 <!--3f83aee8-222d-445c-9a46-2af5fe5b4777_begin-->
 
-#### Quota exceeded for this resource, wait or upgrade to unblock  
+#### Quota exceeded for this resource
   
 If the quota for your resource is exceeded your resource becomes blocked. You can wait for the quota to automatically get replenished soon, or, to use the resource again now, upgrade it to a paid SKU.  
   
@@ -52,7 +52,7 @@ Subcategory: Scalability
 
 #### Migrate to named entity recognition  
   
-Entity linking in Azure Language in Foundry Tools is retiring. Consider a replacement solution such as named entity recognition in Language that supports entity and doesn't provide a link to a public page.  
+Entity linking in Azure AI Language is retiring. Consider a replacement solution such as named entity recognition in Azure AI Language that supports entities but doesn't provide a link to a public page.
   
 **Potential benefits**: Maintain entity identification capabilities  
 
@@ -62,27 +62,8 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 41853861-bc9a-42b9-8ffc-f34dbaf07c00  
-Subcategory: undefined
 
 <!--41853861-bc9a-42b9-8ffc-f34dbaf07c00_end-->
-
-<!--49949bb6-679f-44cc-adc7-205078543df4_begin-->
-
-#### Migrate service to a region that supports availability zones  
-  
-Migrate service to a region that supports availability zones for increased resiliency.  
-  
-**Potential benefits**: Ensures high availability during zone outages  
-
-**Impact:** High
-  
-For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
-
-ResourceType: microsoft.cognitiveservices/accounts  
-Recommendation ID: 49949bb6-679f-44cc-adc7-205078543df4  
-Subcategory: HighAvailability
-
-<!--49949bb6-679f-44cc-adc7-205078543df4_end-->
 
 <!--d5da3480-071a-49d8-b4ce-06a196d844c9_begin-->
 
@@ -98,15 +79,14 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: d5da3480-071a-49d8-b4ce-06a196d844c9  
-Subcategory: undefined
 
 <!--d5da3480-071a-49d8-b4ce-06a196d844c9_end-->
 
 <!--85c750a4-a0cb-4610-a2df-074a5e775ddc_begin-->
 
-#### Migrate away from Azure Vision in Foundry Tools - Image Analysis API  
+#### Migrate away from Azure AI Vision - Image Analysis API  
   
-The Vision - Image Analysis API is retiring. Full support for all existing Image Analysis customers continues until retirement. To ensure business continuity and minimize disruption, customers should plan for migration to alternative solutions.  
+The Azure AI Vision - Image Analysis API is retiring. Full support for all existing Image Analysis customers continues until retirement. To ensure business continuity and minimize disruption, customers should plan for migration to alternative solutions.  
   
 **Potential benefits**: Avoid service disruptions  
 
@@ -116,7 +96,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 85c750a4-a0cb-4610-a2df-074a5e775ddc  
-Subcategory: undefined
 
 <!--85c750a4-a0cb-4610-a2df-074a5e775ddc_end-->
 
@@ -134,7 +113,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 35c12ad3-0e52-45cd-bf53-16777b0f6a34  
-Subcategory: undefined
 
 <!--35c12ad3-0e52-45cd-bf53-16777b0f6a34_end-->
 
@@ -142,7 +120,7 @@ Subcategory: undefined
 
 #### Migrate to conversational language understanding  
   
-Language Understanding (LUIS) is retiring. Migrate to conversational language understanding, a capability of Azure Language in Foundry Tools.  
+Language Understanding (LUIS) is retiring. Migrate to conversational language understanding, a capability of Azure AI Service for Language.  
   
 **Potential benefits**: Avoid service disruption  
 
@@ -152,11 +130,8 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/la
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 2b8347d8-bd08-4046-892d-8844f741b8b2  
-Subcategory: undefined
 
 <!--2b8347d8-bd08-4046-892d-8844f741b8b2_end-->
-
-
 
 <!--8523d119-bfd8-4f91-b17d-13d6b34338c4_begin-->
 
@@ -172,7 +147,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 8523d119-bfd8-4f91-b17d-13d6b34338c4  
-Subcategory: undefined
 
 <!--8523d119-bfd8-4f91-b17d-13d6b34338c4_end-->
 
@@ -184,13 +158,12 @@ Computer Vision v1.0, v2.0, v2.1, v3.0, and v3.1 APIs are retiring.  You need to
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/computer-vision-api-retirements-13-9-2026/)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 4d9bed4d-22e3-4dae-8eb3-ceb1bdd8c577  
-Subcategory: undefined
 
 <!--4d9bed4d-22e3-4dae-8eb3-ceb1bdd8c577_end-->
 
@@ -202,13 +175,12 @@ Until the retirement date, continue use of AI Services Anomaly Detector resource
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates?id=ai-services-anomaly-detector-will-be-retired-on-1-october-2026)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: e0e84b83-8be3-48d6-91bf-730d1d5fd745  
-Subcategory: undefined
 
 <!--e0e84b83-8be3-48d6-91bf-730d1d5fd745_end-->
 
@@ -220,13 +192,12 @@ After the retirement date, you can no longer use AI Services Metrics Advisor wit
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates?id=ai-services-metrics-advisor-will-be-retired-on-1-october-2026)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 8dca8881-92ae-480a-aa8c-0933efdf9e02  
-Subcategory: undefined
 
 <!--8dca8881-92ae-480a-aa8c-0933efdf9e02_end-->
 
@@ -238,13 +209,12 @@ You can no longer use AI Services Personalizer with the applications after the r
   
 **Potential benefits**: Avoid potential disruptions for the applications  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates?id=ai-services-personalizer-will-be-retired-on-1-october-2026)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: d4f522ba-0646-4c73-8ca6-7636f7ad119c  
-Subcategory: undefined
 
 <!--d4f522ba-0646-4c73-8ca6-7636f7ad119c_end-->
 
@@ -256,13 +226,12 @@ The platform encourages users to explore our new offering Azure AI Content Safet
   
 **Potential benefits**: Avoid potential disruptions and use new capabilities  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates?id=azure-content-moderator-retirement)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: e30a6464-0e05-4d48-b604-741074db3aa3  
-Subcategory: undefined
 
 <!--e30a6464-0e05-4d48-b604-741074db3aa3_end-->
 
@@ -280,7 +249,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 46a2ac77-9b96-4741-a036-76155cc3616c  
-Subcategory: undefined
 
 <!--46a2ac77-9b96-4741-a036-76155cc3616c_end-->
 
@@ -298,26 +266,109 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 134edfc1-8479-4792-b19b-b47ac18a58ac  
-Subcategory: undefined
 
 <!--134edfc1-8479-4792-b19b-b47ac18a58ac_end-->
 
-<!--6483482f-c248-40b8-90a1-a7138e3b4ef0_begin-->
+<!--5046219d-e79f-46bf-a68f-0ccb5166f5fd_begin-->
 
-#### Migrate to authoring workflows from Foundry workflows UI and workflows API  
+#### Azure QnAMaker is being retired.  
   
-Foundry workflows UI and workflows API are being retired.  
+Beginning October 1, 2022, you aren't be able to create new QnA Maker resources or knowledge bases. All QnA Maker resources and knowledge bases created before that date are supported until the retirement date.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=azure-qna-maker-will-be-retired-on-31-march-2025)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 5046219d-e79f-46bf-a68f-0ccb5166f5fd  
+
+<!--5046219d-e79f-46bf-a68f-0ccb5166f5fd_end-->
+
+<!--7e42bc25-4cf7-47fc-a125-ef619cf7c6aa_begin-->
+
+#### Long audio API is being retired  
+  
+The Long Audio API of Azure AI Speech is being retired.  
   
 **Potential benefits**: Avoid potential disruptions  
 
 **Impact:** Medium
   
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=561143)  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/long-audio-api-will-be-retired-on-31-march-2027-migrate-to-the-new-batch-synthesis-api/)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
-Recommendation ID: 6483482f-c248-40b8-90a1-a7138e3b4ef0  
-Subcategory: undefined
+Recommendation ID: 7e42bc25-4cf7-47fc-a125-ef619cf7c6aa  
 
-<!--6483482f-c248-40b8-90a1-a7138e3b4ef0_end-->
+<!--7e42bc25-4cf7-47fc-a125-ef619cf7c6aa_end-->
+
+<!--627cfbef-2bd0-4f15-8394-65b1f720ba78_begin-->
+
+#### S2, S3, and S4 price instances are being retired  
+  
+Azure AI Translator S2-S4 billing instances are retiring.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/azure-ai-translator-s2s4-billing-instances-will-be-retired-on-1-october-2026-transition-to-commitment-tiers-for-discounted-pr/)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 627cfbef-2bd0-4f15-8394-65b1f720ba78  
+
+<!--627cfbef-2bd0-4f15-8394-65b1f720ba78_end-->
+
+<!--ed76767e-3113-4540-872e-0e80fcd3f8d9_begin-->
+
+#### Speech-to-text REST preview API v3.1-preview.1 is being retired  
+  
+Speech-to-text REST preview API v3.1-preview.1 is being retired.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/were-retiring-speechtotext-rest-preview-api-v31preview1-on-may-12-2023/)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: ed76767e-3113-4540-872e-0e80fcd3f8d9  
+
+<!--ed76767e-3113-4540-872e-0e80fcd3f8d9_end-->
+
+<!--b7c8556a-5977-49f2-8db0-b3a0e4252f5c_begin-->
+
+#### Studio v2.1 (Azure Document Intelligence) is being retired  
+  
+The Document Intelligence GA API v2.1 is being retired and  you need to migrate to a newer GA API version of Document Intelligence.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/Azure-Docuement-Intelligence-V2-retirement)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: b7c8556a-5977-49f2-8db0-b3a0e4252f5c  
+
+<!--b7c8556a-5977-49f2-8db0-b3a0e4252f5c_end-->
+
+<!--28eea5a8-16a5-4e1a-94ef-3c967983e932_begin-->
+
+#### Transition to Azure AI Document Intelligence v3.1 API  
+  
+Azure AI Document Intelligence v2.0 API is retiring. Transition to Azure AI Document Intelligence v3.1 API.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/retirement-azure-ai-document-intelligence-v20-api-will-be-retired-on-31-august-2026/)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 28eea5a8-16a5-4e1a-94ef-3c967983e932  
+
+<!--28eea5a8-16a5-4e1a-94ef-3c967983e932_end-->
 
 <!--articleBody-->

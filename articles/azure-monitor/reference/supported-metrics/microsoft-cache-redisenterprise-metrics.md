@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Cache/redisEnterprise
 description: Reference for Microsoft.Cache/redisEnterprise metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 08/21/2026
+ms.date: 09/08/2026
 ms.custom: Microsoft.Cache/redisEnterprise, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -35,8 +35,8 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |**Cache Hits**<br><br>Rate of read operations accessing an existing key, in operations per second. |`cachehits` | No | Count |Average |\<none\>|PT1M |Yes|
 |**Cache Latency**<br><br>The average latency of requests on the node, in microseconds. |`cacheLatency` | No | Count |Average |`InstanceId`|PT1M |Yes|
 |**Cache Misses**<br><br>Rate of read operations accessing a non-existing key, in operations per second. |`cachemisses` | No | Count |Average |\<none\>|PT1M |Yes|
-|**Cache Read**<br><br>The amount of data read from the cache in megabytes per second (MB/s). |`cacheRead` | No | BytesPerSecond |Maximum |`InstanceId`|PT1M |Yes|
-|**Cache Write**<br><br>The amount of data written to the cache in megabytes per second (MB/s). |`cacheWrite` | No | BytesPerSecond |Maximum |`InstanceId`|PT1M |Yes|
+|**Cache Read**<br><br>The amount of data the cache has read from the network, in bytes per second (ingress). |`cacheRead` | No | BytesPerSecond |Maximum |`InstanceId`|PT1M |Yes|
+|**Cache Write**<br><br>The amount of data the cache has sent out to the network, in bytes per second (egress). |`cacheWrite` | No | BytesPerSecond |Maximum |`InstanceId`|PT1M |Yes|
 |**Connected Clients**<br><br>The number of client connections to the cache. |`connectedclients` | No | Count |Maximum |`InstanceId`|PT1M |Yes|
 |**Evicted Keys**<br><br>The rate of key evictions from the cache, in evictions per second. |`evictedkeys` | No | Count |Average |\<none\>|PT1M |Yes|
 |**Expired Keys**<br><br>The rate of key expirations from the cache, in expirations per second. |`expiredkeys` | No | Count |Average |\<none\>|PT1M |Yes|

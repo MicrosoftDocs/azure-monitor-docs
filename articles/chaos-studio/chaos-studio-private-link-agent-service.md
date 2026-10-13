@@ -1,17 +1,20 @@
 ---
-title: Set up Private Link for a Chaos Studio agent-based experiment (preview)
-description: Understand the steps to set up a chaos experiment by using Azure Private Link for agent-based experiments.
+title: Configure agent Private Link for Experiments (classic)
+description: Configure Azure Private Link in preview for Azure Chaos Studio agent-based Experiments (classic), including endpoints and network requirements.
 services: chaos-studio
 author: nikhilkaul-msft
 ms.topic: how-to
-ms.date: 12/04/2023
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.reviewer: nikhilkaul
 ms.custom: ignite-fall-2023
 ---
 
-# Configure Private Link for agent-based experiments (preview)
+# Configure agent Private Link for Experiments (classic)
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This Azure Private Link preview setup applies to Azure Chaos Studio agent-based Experiments (classic). For the current model, review [Chaos Studio Workspaces private-networking limitations](chaos-studio-workspaces-limitations.md#limitations); Workspaces agent-based Scenarios require public outbound connectivity.
 
 This article explains the steps needed to configure Azure Private Link for an Azure Chaos Studio agent-based experiment (preview). The current user experience is based on the private endpoints support that's enabled as part of the public preview of the private endpoints feature. Expect this experience to evolve with time as the feature is enhanced to general availability (GA) quality. It's currently in preview.
 

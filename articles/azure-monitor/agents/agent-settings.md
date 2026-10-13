@@ -2,7 +2,7 @@
 title: Azure Monitor Agent Configuration
 description: Learn how to change Azure Monitor Agent configuration settings, including proxy, performance, and logging options on Azure VMs and Arc-enabled servers.
 ms.topic: install-set-up-deploy
-ms.date: 04/07/2026
+ms.date: 09/21/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: shseth, nmangum
 
@@ -28,10 +28,22 @@ When you work with the Agent Settings DCR:
 
 The Agent Settings DCR supports the following parameters:
 
-| Parameter | Description | Valid values |
-| --------- | ----------- | ----------- |
-| MaxDiskQuotaInMB | Disk space (in MB) used by the Azure Monitor Agent's local cache. The cache grows if cloud connectivity is lost, and data is sent once reconnected. Data exceeding the cache limit is lost. | 4,000 to 1,000,000 <br> Default is 10,000|
-| UseTimeReceivedForForwardedEvents | Control the behavior of the TimeGenerated column in the Microsoft Sentinel Windows Event Forwarding (WEF) table. | 0 = TimeGenerated <br> 1 = TimeReceived |
+These settings configure the Azure Monitor Agent and are organized by telemetry type. In the DCR JSON, add each setting to either the `properties.agentSettings.logs` or `properties.agentSettings.metrics` collection, as indicated in the following table.
+
+| Telemetry type | Agent Settings collection | Setting name | Supported values and validation | Description |
+|:---|:---|:---|:---|:---|
+| General | `logs` | `MaxDiskQuotaInMB` | Integer from 4,000 through 1,000,000. Default is 10,000 MB. | Maximum disk space used by the Azure Monitor Agent local cache. The cache grows if cloud connectivity is lost, and the agent sends data after connectivity is restored. The agent loses data that exceeds the cache limit. |
+| Logs | `logs` | `UseTimeReceivedForForwardedEvents` | `0` or `1`. `0` uses `TimeGenerated`; `1` uses `TimeReceived`. | Controls the timestamp behavior for Microsoft Sentinel Windows Event Forwarding (WEF) data. |
+| General | `logs` | `Tags` | Any non-empty string. The service doesn't validate the format or delimiter. | User-defined tags associated with the agent configuration. |
+| General | `logs` | `DiskQuotaUsageInPercent` | Integer from 50 through 100. | Percentage of the configured disk quota at which the agent's quota behavior is controlled. |
+| Logs and traces | `logs` | `OtlpGrpcLogsTracesPort` | Integer TCP port from 1,024 through 65,535. Must be unique across all OTLP port settings in the DCR. | Overrides the OTLP gRPC listener port for logs and traces. |
+| Logs and traces | `logs` | `OtlpHttpProtobufLogsTracesPort` | Integer TCP port from 1,024 through 65,535. Must be unique across all OTLP port settings in the DCR. | Overrides the OTLP HTTP/Protobuf listener port for logs and traces. |
+| Metrics | `metrics` | `OtlpGrpcMetricsPort` | Integer TCP port from 1,024 through 65,535. Must be unique across all OTLP port settings in the DCR. | Overrides the OTLP gRPC listener port for metrics. |
+| Metrics | `metrics` | `OtlpHttpProtobufMetricsPort` | Integer TCP port from 1,024 through 65,535. Must be unique across all OTLP port settings in the DCR. | Overrides the OTLP HTTP/Protobuf listener port for metrics. |
+| Metrics | `metrics` | `OtlpGrpcPrometheusMetricsPort` | Integer TCP port from 1,024 through 65,535. Must be unique across all OTLP port settings in the DCR. | Overrides the OTLP gRPC listener port for Prometheus metrics. |
+
+> [!NOTE]
+> OTLP port settings require DCR API version `2025-05-11` or later. OTLP metrics port settings require Azure Monitor Agent Linux 1.44, Windows 1.45, or later.
 
 ### Create an Agent Settings DCR
 
@@ -53,7 +65,7 @@ Currently not supported.
 
 1. Create the Agent Settings DCR.
 
-The following example steps set the maximum amount of disk space used by the Azure Monitor Agent cache to 5 GB.
+The following example shows settings in both the `logs` and `metrics` categories, including overrides for all OTLP listener ports.
 
 **Step 1** - Use the search bar to find the **Deploy a custom template** option.
 
@@ -85,6 +97,38 @@ Here's example JSON code to create the Agent Settings DCR:
         "maxDiskQuota": {
             "defaultValue": "5000",
             "type": "string"
+        },
+        "useTimeReceivedForForwardedEvents": {
+            "defaultValue": "0",
+            "type": "string"
+        },
+        "tags": {
+            "defaultValue": "environment=production",
+            "type": "string"
+        },
+        "diskQuotaUsageInPercent": {
+            "defaultValue": "80",
+            "type": "string"
+        },
+        "otlpGrpcLogsTracesPort": {
+            "defaultValue": "14319",
+            "type": "string"
+        },
+        "otlpHttpProtobufLogsTracesPort": {
+            "defaultValue": "14320",
+            "type": "string"
+        },
+        "otlpGrpcMetricsPort": {
+            "defaultValue": "15317",
+            "type": "string"
+        },
+        "otlpHttpProtobufMetricsPort": {
+            "defaultValue": "15318",
+            "type": "string"
+        },
+        "otlpGrpcPrometheusMetricsPort": {
+            "defaultValue": "15316",
+            "type": "string"
         }
     },
     "resources": [
@@ -94,7 +138,7 @@ Here's example JSON code to create the Agent Settings DCR:
             "kind": "AgentSettings",
             "location": "[parameters('region')]",
             "name": "[parameters('dcrName')]",
-            "apiVersion": "2023-03-11",
+            "apiVersion": "2025-05-11",
             "properties": {
                 "description": "Simple agent settings",
                 "agentSettings": {
@@ -102,6 +146,40 @@ Here's example JSON code to create the Agent Settings DCR:
                         {
                             "name": "MaxDiskQuotaInMB",
                             "value": "[parameters('maxDiskQuota')]"
+                        },
+                        {
+                            "name": "UseTimeReceivedForForwardedEvents",
+                            "value": "[parameters('useTimeReceivedForForwardedEvents')]"
+                        },
+                        {
+                            "name": "Tags",
+                            "value": "[parameters('tags')]"
+                        },
+                        {
+                            "name": "DiskQuotaUsageInPercent",
+                            "value": "[parameters('diskQuotaUsageInPercent')]"
+                        },
+                        {
+                            "name": "OtlpGrpcLogsTracesPort",
+                            "value": "[parameters('otlpGrpcLogsTracesPort')]"
+                        },
+                        {
+                            "name": "OtlpHttpProtobufLogsTracesPort",
+                            "value": "[parameters('otlpHttpProtobufLogsTracesPort')]"
+                        }
+                    ],
+                    "metrics": [
+                        {
+                            "name": "OtlpGrpcMetricsPort",
+                            "value": "[parameters('otlpGrpcMetricsPort')]"
+                        },
+                        {
+                            "name": "OtlpHttpProtobufMetricsPort",
+                            "value": "[parameters('otlpHttpProtobufMetricsPort')]"
+                        },
+                        {
+                            "name": "OtlpGrpcPrometheusMetricsPort",
+                            "value": "[parameters('otlpGrpcPrometheusMetricsPort')]"
                         }
                     ]
                 }

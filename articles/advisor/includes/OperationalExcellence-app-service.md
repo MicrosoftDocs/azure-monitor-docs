@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 07/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence App Service
@@ -18,7 +18,7 @@ ms.custom: OperationalExcellence App Service
   
 We have identified API calls from outdated Service Connector API for resources under this subscription. We recommend switching to the latest Service Connector API version. You need to update your existing code or tools to use the latest API version.  
   
-**Potential benefits**: Latest Service Connector API contains latest fixes, performance improvements, and new feature capabilities.  
+**Potential benefits**: The latest version contains fixes and improvements.  
 
 **Impact:** Low
   
@@ -26,7 +26,6 @@ For more information, see [Service Connector documentation](/azure/service-conne
 
 ResourceType: microsoft.web/sites  
 Recommendation ID: 511c0f88-60dd-4178-9c48-36e9d61f6c85  
-
 
 <!--511c0f88-60dd-4178-9c48-36e9d61f6c85_end-->
 
@@ -36,7 +35,7 @@ Recommendation ID: 511c0f88-60dd-4178-9c48-36e9d61f6c85
   
 We have identified API calls from an outdated Service Connector SDK. We recommend upgrading to the latest version for the latest fixes, performance improvements, and new feature capabilities.  
   
-**Potential benefits**: Improve reliability, performance, and new feature capabilites.  
+**Potential benefits**: Improve reliability, performance, and feature availability.  
 
 **Impact:** Low
   
@@ -45,25 +44,6 @@ For more information, see [Service Connector documentation](/azure/service-conne
 ResourceType: microsoft.web/sites  
 Recommendation ID: abe69199-cad8-4eb8-a915-15bcf58ff369  
 
-
 <!--abe69199-cad8-4eb8-a915-15bcf58ff369_end-->
-
-<!--b414fddb-cc29-43ec-8649-771e3cdf8d5c_begin-->
-
-#### Turn on profiler to collect code level performance recommendations  
-  
-Turn on profiler to collect code level performance recommendations  
-  
-**Potential benefits**: Improve performance of the apps.  
-
-**Impact:** Low
-  
-For more information, see [Monitor and analyze runtime behavior with Code Optimizations - Azure Monitor](https://aka.ms/codeoptimizations/docs)  
-
-ResourceType: microsoft.web/sites  
-Recommendation ID: b414fddb-cc29-43ec-8649-771e3cdf8d5c  
-
-
-<!--b414fddb-cc29-43ec-8649-771e3cdf8d5c_end-->
 
 <!--articleBody-->

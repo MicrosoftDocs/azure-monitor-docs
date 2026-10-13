@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Content Delivery Network
@@ -26,7 +26,6 @@ For more information, see [Configure HTTPS for your custom domain - Azure Front 
 
 ResourceType: microsoft.cdn/profiles  
 Recommendation ID: 4e1c2077-7c73-4ace-b4aa-f11b36c28290  
-Subcategory: undefined
 
 <!--4e1c2077-7c73-4ace-b4aa-f11b36c28290_end-->
 
@@ -45,7 +44,6 @@ For more information, see [How to add a custom domain - Azure Front Door](/azure
 
 ResourceType: microsoft.cdn/profiles  
 Recommendation ID: bfe85fd2-ee53-4c35-8781-7790da2107e1  
-Subcategory: undefined
 
 <!--bfe85fd2-ee53-4c35-8781-7790da2107e1_end-->
 
@@ -82,7 +80,6 @@ For more information, see [How to add a custom domain - Azure Front Door](/azure
 
 ResourceType: microsoft.cdn/profiles  
 Recommendation ID: 9411bc9f-d181-497c-b519-4154ae04fb00  
-Subcategory: undefined
 
 <!--9411bc9f-d181-497c-b519-4154ae04fb00_end-->
 
@@ -174,28 +171,24 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.cdn/profiles  
 Recommendation ID: 600a3187-48dd-495b-a9e8-320f83571b01  
-Subcategory: undefined
 
 <!--600a3187-48dd-495b-a9e8-320f83571b01_end-->
 
-<!--82414842-53d0-4f37-b036-ccce163e9300_begin-->
+<!--52ff3019-62b0-4905-b016-da35fa6bbddc_begin-->
 
-#### Azure Front Door and CDN profiles will end support for DHE cipher suites on 1 April 2026  
+#### Azure CDN Standard from Microsoft (classic) is retiring
   
-To ensure uninterrupted service and maintain strong encryption standards, take the following actions:
-1.	Update your origins to disable DHE ciphers and use the recommended cipher suites
-2.	Inform your clients to only use the recommended ciphers while connecting to your domains. If you own any of the  
+To avoid service disruptions, migrate to Azure Front Door Standard or Premium.  
   
-**Potential benefits**: Reliability and security  
+**Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Low
+**Impact:** Medium
   
-For more information, see [DHE ciphers - Azure Front Door](/azure/frontdoor/diffie-hellman-ciphers)  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=Azure-CDN-Standard-from-Microsoft-classic-will-be-retired-on-30-September-2027)  
 
 ResourceType: microsoft.cdn/profiles  
-Recommendation ID: 82414842-53d0-4f37-b036-ccce163e9300  
-Subcategory: undefined
+Recommendation ID: 52ff3019-62b0-4905-b016-da35fa6bbddc  
 
-<!--82414842-53d0-4f37-b036-ccce163e9300_end-->
+<!--52ff3019-62b0-4905-b016-da35fa6bbddc_end-->
 
 <!--articleBody-->

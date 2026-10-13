@@ -1,27 +1,30 @@
 ---
-title: Troubleshoot Experiments (classic) in Azure Chaos Studio
-description: Learn to troubleshoot common problems with Experiments (classic), including targets, capabilities, experiment runs, and the Chaos Studio agent.
+title: Troubleshoot Experiments (classic)
+description: Troubleshoot Azure Chaos Studio Experiments (classic), including target onboarding, capabilities, experiment runs, agent errors, and permissions.
 author: c-ashton
 ms.reviewer: nikhilkaul
-ms.topic: troubleshooting
-ms.date: 08/31/2026
+ms.topic: troubleshooting-general
+ms.date: 09/25/2026
 ms.custom: template-troubleshooting
 ai-usage: ai-assisted
 ---
 
-# Troubleshoot Experiments (classic) in Azure Chaos Studio
+# Troubleshoot Experiments (classic)
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 
+Use this Azure Chaos Studio troubleshooting guide for Experiments (classic), targets, capabilities, and agents. For the current model, use [Chaos Studio Workspaces and Scenarios troubleshooting](troubleshoot-workspaces-scenarios.md), which covers discovery, permissions, failed runs, and skipped Actions.
+
 As you use Experiments (classic), you might encounter problems with targets, capabilities, experiment runs, or the Chaos Studio agent. This article explains common problems and troubleshooting steps.
 
-> [!TIP]
-> For issues with Workspaces and Scenarios (preview), see [Troubleshoot Workspaces and Scenarios in Azure Chaos Studio](troubleshoot-workspaces-scenarios.md).
+## Confirm that you're using Experiments (classic)
+
+This article covers `Microsoft.Chaos/experiments` and `Microsoft.Chaos/targets` resources. If your resource type is `Microsoft.Chaos/workspaces` or `Microsoft.Chaos/workspaces/scenarios`, use [Troubleshoot Chaos Studio Workspaces and Scenarios](troubleshoot-workspaces-scenarios.md) instead. That guide also applies if you run tests from **Chaos Studio** > **Workspaces** in the Azure portal. To compare the models, see [Identify which resource model you use](chaos-studio-migrate-from-classic.md#identify-which-resource-model-you-use).
 
 ## General troubleshooting tips
 
 The following sources are useful when you troubleshoot problems with Chaos Studio:
-- **Activity log**: The [Azure activity log](../azure-monitor/essentials/activity-log.md) has a record of all create, update, and delete operations in a subscription. These records include Chaos Studio operations like enabling a target or capabilities, installing the agent, and creating or running an experiment. Failures in the activity log indicate that a user action essential to using Chaos Studio might have failed to complete. Most service-direct faults also inject faults by executing an Azure Resource Manager operation, so the activity log also has the record of faults that were injected during an experiment for some service-direct faults.
+- **Activity log**: The [Azure activity log](../azure-monitor/fundamentals/activity-log.md) has a record of all create, update, and delete operations in a subscription. These records include Chaos Studio operations like enabling a target or capabilities, installing the agent, and creating or running an experiment. Failures in the activity log indicate that a user action essential to using Chaos Studio might have failed to complete. Most service-direct faults also inject faults by executing an Azure Resource Manager operation, so the activity log also has the record of faults that were injected during an experiment for some service-direct faults.
 - **Experiment details**: Experiment execution details show the status and errors of an individual experiment run. Opening a specific fault in experiment details shows the resources that failed and the error messages for a failure. Learn more about how to [access experiment details](chaos-studio-run-experiment.md#view-experiment-history-and-details).
 - **Agent logs**: If you're using an agent-based fault, you might need to RDP or SSH in to the virtual machine (VM) to understand why the agent failed to run a fault. The instructions for accessing agent logs depend on the operating system:
     * **Chaos Windows agent**: Agent logs are in the Windows Event Log in the Application category with the source `AzureChaosAgent`. The agent adds fault activity and regular health check (ability to authenticate to and communicate with the Chaos Studio agent service) events to this log.
@@ -57,7 +60,7 @@ Some problems are caused by missing prerequisites.
 
 ### Agent-based faults fail on a virtual machine
 Agent-based faults might fail for various reasons related to missing prerequisites:
-* On Linux VMs, the [CPU Pressure](chaos-studio-fault-library.md#cpu-pressure), [Physical Memory Pressure](chaos-studio-fault-library.md#physical-memory-pressure), [Disk I/O pressure](chaos-studio-fault-library.md#linux-disk-io-pressure), and [Arbitrary Stress-ng Stress](chaos-studio-fault-library.md#arbitrary-stress-ng-stressor) faults all require that the [stress-ng utility](https://wiki.ubuntu.com/Kernel/Reference/stress-ng) is installed on your VM. For more information on how to install stress-ng, see the fault prerequisite sections.
+* On Linux VMs, the [CPU Pressure](chaos-studio-fault-library.md#cpu-pressure), [Physical Memory Pressure](chaos-studio-fault-library.md#physical-memory-pressure), [Disk I/O pressure](chaos-studio-fault-library.md#linux-disk-io-pressure), and [Arbitrary Stress-ng Stress](chaos-studio-fault-library.md#arbitrary-stress-ng-stressor) faults all require that the [stress-ng utility](https://github.com/ColinIanKing/stress-ng) is installed on your VM. For more information on how to install stress-ng, see the fault prerequisite sections.
 * On either Linux or Windows VMs, the user-assigned managed identity provided during agent-based target enablement must also be added to the VM.
 * On either Linux or Windows VMs, the system-assigned managed identity for the experiment must be granted the Reader role on the VM. (Seemingly elevated roles like Virtual Machine Contributor don't include the \*/Read operation that's necessary for the Chaos Studio agent to read the microsoft-agent target proxy resource on the VM.)
 

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 08/11/2026
+ms.date: 04/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure Kubernetes Service (AKS)
@@ -27,14 +27,13 @@ For more information, see [Azure Load Balancer SKUs](/azure/load-balancer/skus)
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 0b341a36-99c1-41be-b9fb-71efd8029d31  
 
-
 <!--0b341a36-99c1-41be-b9fb-71efd8029d31_end-->
 
 <!--37a054b6-21dc-4f5c-bdfe-360c0827205f_begin-->
 
 #### Deprecated Kubernetes APIs are found. Avoid using deprecated API.  
   
-The cluster has been detected using deprecated Kubernetes APIs. Using these APIs can cause operations failures such as cluster upgrade, resulting in performance issues. Follow the Kubernetes deprecated API migration guide to remove these APIs.  
+The cluster has been detected using deprecated Kubernetes APIs. Using these APIs can cause operations failures such as cluster upgrade, resulting in performance issues. Please follow the Kubernetes deprecated API migration guide to remove these APIs.  
   
 **Potential benefits**: Best practice for consistent performance  
 
@@ -45,12 +44,7 @@ For more information, see [Deprecated API Migration Guide](https://kubernetes.io
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 37a054b6-21dc-4f5c-bdfe-360c0827205f  
 
-
 <!--37a054b6-21dc-4f5c-bdfe-360c0827205f_end-->
-
-
-
-
 
 <!--deb97441-d830-49f6-b9a5-9d04306abde9_begin-->
 
@@ -66,7 +60,6 @@ For more information, see [Dpsv5 size series - Azure Virtual Machines](/azure/vi
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: deb97441-d830-49f6-b9a5-9d04306abde9  
-
 
 <!--deb97441-d830-49f6-b9a5-9d04306abde9_end-->
 
@@ -85,15 +78,13 @@ For more information, see [Azure Kubernetes Service (AKS) Free, Standard, and Pr
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: e32c5e70-515f-45aa-90e7-94fb4fdb1b6c  
 
-
 <!--e32c5e70-515f-45aa-90e7-94fb4fdb1b6c_end-->
-
 
 <!--c2f34a5d-2742-4c3d-9247-e0a8b85c3e51_begin-->
 
 #### Configure the Cluster Autoscaler  
   
-The cluster autoscaler isn't configured in the cluster. The cluster can't automatically adapt to changing load conditions unless it's scaling another way.  
+The cluster autoscaler isn't configured in the cluster. The cluster can't automatically adapt to changing load conditions unless it is scaling another way.  
   
 **Potential benefits**: Optimized scaling for cost and performance  
 
@@ -104,14 +95,13 @@ For more information, see [Use the cluster autoscaler in Azure Kubernetes Servic
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: c2f34a5d-2742-4c3d-9247-e0a8b85c3e51  
 
-
 <!--c2f34a5d-2742-4c3d-9247-e0a8b85c3e51_end-->
 
 <!--79dd48e7-cd34-4f35-a8be-a7d483353c1c_begin-->
 
 #### Use Ephemeral OS disk  
   
-This cluster isn't using ephemeral OS disks which can provide lower read/write latency, along with faster node scaling and cluster upgrades  
+This cluster is not using ephemeral OS disks which can provide lower read/write latency, along with faster node scaling and cluster upgrades  
   
 **Potential benefits**: Faster scaling, upgrades & I/O  
 
@@ -122,9 +112,7 @@ This cluster isn't using ephemeral OS disks which can provide lower read/write l
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 79dd48e7-cd34-4f35-a8be-a7d483353c1c  
 
-
 <!--79dd48e7-cd34-4f35-a8be-a7d483353c1c_end-->
-
 
 <!--d1e9f4a0-926e-4480-a4e4-3ea94877370c_begin-->
 
@@ -140,7 +128,6 @@ For more information, see [Kubernetes monitoring in Azure Monitor - Azure Monito
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: d1e9f4a0-926e-4480-a4e4-3ea94877370c  
-
 
 <!--d1e9f4a0-926e-4480-a4e4-3ea94877370c_end-->
 
@@ -159,7 +146,6 @@ For more information, see [Azure Kubernetes Fleet Manager](https://aka.ms/kubern
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: cc62fec4-24e5-4fc4-bf99-2b83d0702549  
 
-
 <!--cc62fec4-24e5-4fc4-bf99-2b83d0702549_end-->
 
 <!--89e238d9-56e5-4f05-bd9a-295ebd55711d_begin-->
@@ -177,67 +163,23 @@ For more information, see [Automate Upgrades of Kubernetes and Node Images Acros
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 89e238d9-56e5-4f05-bd9a-295ebd55711d  
 
-
 <!--89e238d9-56e5-4f05-bd9a-295ebd55711d_end-->
 
+<!--478c34be-baee-415c-b0a0-b2210f1bf400_begin-->
 
-
-<!--8b4d2e9e-8999-4677-8dfd-71911a6282bd_begin-->
-
-#### Simplify multi-cluster management with Azure Kubernetes Fleet Manager  
+#### Outdated Azure OS SKUs found for Azure Linux (Mariner)  
   
-Use Azure Kubernetes Fleet Manager to centralize and simplify management of any Kubernetes cluster in any Azure Subscription associated with a single Entra ID Tenant.  
+Found outdated Azure Linux (Mariner) OS SKUs. The `CBL-Mariner` SKU isn't supported. The `Mariner` SKU is equivalent to `AzureLinux`, but it's advisable to switch to `AzureLinux` SKU for future updates and support, as `AzureLinux` is the generally available version.
   
-**Potential benefits**: Simplify multi-cluster Kubernetes management  
+**Potential benefits**: Avoid using deprecated Azure Linux OS SKU  
 
 **Impact:** Medium
   
-For more information, see [Azure Kubernetes Fleet Manager](https://aka.ms/kubernetes-fleet/)  
+For more information, see [Troubleshoot common issues for Azure Linux Container Host for AKS - Azure](https://aka.ms/AzureLinuxOSSKU)  
 
 ResourceType: microsoft.containerservice/managedclusters  
-Recommendation ID: 8b4d2e9e-8999-4677-8dfd-71911a6282bd  
+Recommendation ID: 478c34be-baee-415c-b0a0-b2210f1bf400  
 
-
-<!--8b4d2e9e-8999-4677-8dfd-71911a6282bd_end-->
-
-<!--1d259bad-88f0-46d5-b40b-ce5825dc0914_begin-->
-
-#### Azure Kubernetes Fleet Manager simplifies multi-cluster management  
-  
-Use Azure Kubernetes Fleet Manager to simplify and centralize multi-cluster management of Kubernetes clusters in any Subscription associated with a single Entra Tenant.  
-  
-**Potential benefits**: Simplify and centralize multi-cluster management  
-
-**Impact:** Medium
-  
-For more information, see [Azure Kubernetes Fleet Manager](https://aka.ms/kubernetes-fleet/)  
-
-ResourceType: microsoft.containerservice/managedclusters  
-Recommendation ID: 1d259bad-88f0-46d5-b40b-ce5825dc0914  
-
-
-<!--1d259bad-88f0-46d5-b40b-ce5825dc0914_end-->
-
-
-
-<!--2f568da2-1934-419c-b299-c038ccea1ea0_begin-->
-
-#### Ensure your Istio service mesh add-on revision is up to date  
-  
-Unsupported Istio service mesh add-on revision is detected. Upgrading to a supported revision will allow receiving critical security patches and official support for the add-on.  
-  
-**Potential benefits**: Upgrade for receiving security patches and continued support  
-
-**Impact:** High
-  
-For more information, see [Upgrade Istio-based service mesh add-on for Azure Kubernetes Service - Azure Kubernetes Service](https://aka.ms/asm-aks-upgrade-docs)  
-
-ResourceType: microsoft.containerservice/managedclusters  
-Recommendation ID: 2f568da2-1934-419c-b299-c038ccea1ea0  
-
-
-<!--2f568da2-1934-419c-b299-c038ccea1ea0_end-->
-
-
+<!--478c34be-baee-415c-b0a0-b2210f1bf400_end-->
 
 <!--articleBody-->

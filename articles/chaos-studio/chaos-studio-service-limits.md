@@ -1,9 +1,9 @@
 ---
 title: Service limits for Experiments (classic)
-description: Review throttling, resource, duration, and retention limits for Experiments (classic) in Azure Chaos Studio.
+description: Check Azure Chaos Studio service limits for Experiments (classic), including resource counts, run duration, throttling, and history retention.
 author: prasha-microsoft 
 ms.reviewer: prashabora
-ms.date: 08/31/2026
+ms.date: 09/05/2026
 ms.topic: reference
 ai-usage: ai-assisted
 ---
@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 # Service limits for Experiments (classic)
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+These Azure Chaos Studio service limits apply to Experiments (classic). For current-model constraints, use [Chaos Studio Workspaces limitations](chaos-studio-workspaces-limitations.md) and [Scenario requirements](chaos-studio-scenarios.md). Don't apply the classic experiment and target quotas to Workspaces.
 
 This article provides service limits for Experiments (classic). For more information about Azure-wide service limits and quotas, see [Azure subscription and service limits, quotas, and constraints](/azure/azure-resource-manager/management/azure-subscription-service-limits).
 

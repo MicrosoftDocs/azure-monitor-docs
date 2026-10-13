@@ -1,17 +1,20 @@
 ---
-title: "Agent Concepts"
-description: "Agent Concepts – In-depth concepts for the Chaos Agent, including how it works, network access requirements, identities, and dependencies."
+title: Agent concepts for Experiments (classic)
+description: Understand Azure Chaos Studio agent networking, identity, and dependencies for Experiments (classic), and distinguish Workspaces agent requirements.
 services: chaos-studio
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 03/02/2025
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.reviewer: nikhilkaul
 ms.custom: 
 ---
 
-# Agent Concepts
+# Agent concepts for Experiments (classic)
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+These Azure Chaos Studio agent concepts apply to Experiments (classic). For current-model tests, use [Chaos Studio Workspaces agent-based Scenario requirements](chaos-studio-scenarios.md#agent-based-scenario-requirements), not the classic agent installation and private-networking configuration.
 
 This document provides a deep dive into the **Chaos Agent** within Azure Chaos Studio. It explains how the agent works, its network access requirements, dependencies, and security considerations, ensuring that you have the information needed to properly deploy and maintain the agent in your environment.
 
@@ -97,4 +100,3 @@ The agent attempts to install itself and its dependencies in the following filep
 ## Maintenance and Updates
 
 - Keep the agent and its dependencies up-to-date to benefit from performance improvements and security patches. This can be done from the [verify agent status page](chaos-agent-verify-status.md). The Chaos agent does not support auto-update at this time. 
-

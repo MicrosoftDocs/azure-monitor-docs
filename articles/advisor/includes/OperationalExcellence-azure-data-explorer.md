@@ -14,9 +14,9 @@ ms.custom: OperationalExcellence Azure Data Explorer
   
 <!--9a3ea211-a282-4ab6-a63b-81024975b796_begin-->
 
-#### Reduce the cache policy on your Data Explorer tables  
+#### Reduce the cache in the cache policy  
   
-Based on your actual usage during the last month, update the cache policy to reduce the hot cache for the table. The number of instances in your cluster is determined by the CPU and ingestion load, not by the amount of data held in the hot cache and may change based on your usage. Based on current usage, changing the cache isn't enough to reduce the number of instances, we recommend further optimizations,such as changing the SKU, reducing the CPU load, and enabling autoscale to scale in efficiently.   
+Based on usage over the past month, update the cache policy to reduce the hot cache for the table. The number of instances in the cluster is determined using CPU and ingestion load, rather than the amount of data in the hot cache, and varies based on your usage. Given the current usage, simply changing the cache isn't sufficient to reduce the number of instances. The platform recommends other optimizations like reducing CPU load, changing the SKU, and enabling autoscale to efficiently scale in.  
   
 **Potential benefits**: Cache reduction  
 
@@ -26,7 +26,6 @@ For more information, see [Caching policy (hot and cold cache) - Kusto](https://
 
 ResourceType: microsoft.kusto/clusters  
 Recommendation ID: 9a3ea211-a282-4ab6-a63b-81024975b796  
-
 
 <!--9a3ea211-a282-4ab6-a63b-81024975b796_end-->
 

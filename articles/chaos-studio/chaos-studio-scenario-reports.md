@@ -1,15 +1,15 @@
 ---
-title: Scenario reports in Azure Chaos Studio
-description: Understand the Scenario report generated after each Scenario run in Azure Chaos Studio Workspaces. Learn what each section contains and how to use reports for compliance and retrospectives.
+title: Scenario reports in Chaos Studio Workspaces
+description: Read Azure Chaos Studio Scenario reports to review Action status, timing, and affected resources. Pair reports with monitoring to assess recovery.
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 07/17/2026
+ms.date: 09/05/2026
 ai-usage: ai-assisted
 ---
 
-# Scenario reports in Azure Chaos Studio
+# Scenario reports in Chaos Studio Workspaces
 
-Every time a Scenario runs in a [Workspace](chaos-studio-workspaces-overview.md), Azure Chaos Studio generates a Scenario report. The report is a structured record of exactly what happened during the run: which Actions executed, which were skipped, how long each took, and whether the overall run succeeded. You can view reports in the Azure portal, download them, and share them with stakeholders.
+Azure Chaos Studio Scenario reports record what happened during each Scenario run in [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md): Action status, duration, affected resources, and overall run status. View or download a report to document your resilience test, then pair it with application monitoring to assess recovery. A successful run alone doesn't prove that your application recovered.
 
 [!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
@@ -60,20 +60,20 @@ Actions with a **Skipped** status are normal in many Scenarios. A Zone Down Scen
 
 The action timeline is a visual representation of when each Action started and ended relative to the overall run. Actions that run in parallel appear on the same time axis; sequential Actions appear in order.
 
-The timeline helps you understand the temporal relationship between Actions. In a Compute Zone Down Scenario, for example, you can see whether the Azure Virtual Machine Scale Sets shutdown and the load balancer backend removal happened simultaneously or sequentially, and how much total time the combined disruption lasted.
+The timeline helps you understand the temporal relationship between Actions. In a [Compute Zone Down Scenario](chaos-studio-scenarios.md#compute-zone-down), for example, you can compare the virtual machine and virtual machine scale set shutdown Actions and see how long the combined disruption lasted.
 
 ### Execution flow
 
 The execution flow section shows the run's step and branch structure as a diagram. Each node represents a step or branch, annotated with its status and duration. This view is most useful for complex Scenarios that compose many Actions across parallel branches.
 
-## Viewing reports
+## View reports
 
 You can access Scenario reports in two ways:
 
 - **From the Workspace**: Select **Reports** in the Workspace left navigation to see all completed runs across all Scenarios in that Workspace.
 - **From a Scenario**: Open a Scenario and select a completed run to view its report directly.
 
-## Downloading and sharing reports
+## Download and share reports
 
 Select **Download** on the report page to save a copy. Downloaded reports can be shared with team members, attached to incident tickets, or archived for compliance records.
 

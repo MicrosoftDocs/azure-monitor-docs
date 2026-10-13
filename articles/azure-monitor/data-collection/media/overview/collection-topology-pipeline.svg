@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="1180" viewBox="0 0 1680 1180" role="img" aria-labelledby="title desc">
+<title id="title">Azure Monitor pipeline data collection topology</title>
+<desc id="desc">The Azure Monitor pipeline path is highlighted. Agents, applications, services, network and security sources, and edge and multicloud sources fan into a shared off-source pipeline, which sends to Azure Monitor cloud ingestion. Other topology choices remain visible but dimmed for context.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#000000"/></marker>
+<marker id="blue-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#0078d4"/></marker>
+<mask id="focus-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1680" height="1180">
+<rect width="1680" height="1180" fill="#ffffff"/>
+<rect x="18" y="20" width="1640" height="180" fill="#000000"/>
+<rect x="756" y="321" width="258" height="35" rx="8" fill="#000000"/>
+<rect x="300" y="430" width="270" height="225" rx="8" fill="#000000"/>
+<rect x="42" y="685" width="545" height="130" rx="8" fill="#000000"/>
+<rect x="42" y="845" width="545" height="150" rx="8" fill="#000000"/>
+<rect x="620" y="405" width="530" height="560" rx="10" fill="#000000"/>
+<polyline points="1015,160 1015,579" fill="none" stroke="#000000" stroke-width="24" stroke-linejoin="round"/>
+<polyline points="555,535 620,535 620,610 680,610" fill="none" stroke="#000000" stroke-width="24" stroke-linejoin="round"/>
+<polyline points="587,777 610,777 610,650 680,650" fill="none" stroke="#000000" stroke-width="24" stroke-linejoin="round"/>
+<polyline points="139,990 610,990 610,690 680,690" fill="none" stroke="#000000" stroke-width="24" stroke-linejoin="round"/>
+<polyline points="1090,675 1170,675 1170,430 1220,430" fill="none" stroke="#000000" stroke-width="24" stroke-linejoin="round"/>
+<rect x="1205" y="205" width="260" height="740" rx="8" fill="#000000"/>
+</mask>
+</defs>
+<rect width="1680" height="1180" fill="#ffffff"/>
+<g font-family="Segoe UI, Arial, sans-serif">
+<rect x="18" y="20" width="1640" height="140" rx="5" fill="transparent" stroke="#0078d4" stroke-width="1.5"/>
+<text x="40" y="53" font-size="23" font-weight="600" text-anchor="start" fill="#000000">Common Azure control plane</text>
+<text x="40" y="91" font-size="21" font-weight="600" text-anchor="start" fill="#000000">Data collection rules (DCRs)</text>
+<text x="390" y="91" font-size="19" font-weight="400" text-anchor="start" fill="#000000">Collection • schema • processing • destinations</text>
+<text x="255" y="135" font-size="16" font-weight="400" text-anchor="middle" fill="#000000">Direct: where supported</text>
+<text x="655" y="135" font-size="16" font-weight="400" text-anchor="middle" fill="#000000">AMA: DCR associations</text>
+<text x="1015" y="135" font-size="16" font-weight="400" text-anchor="middle" fill="#000000">Pipeline: dataflows + DCR</text>
+<text x="1450" y="135" font-size="16" font-weight="400" text-anchor="middle" fill="#000000">Cloud: DCR processing</text>
+<polyline points="655,160 655,389" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#blue-arrow)"/>
+<polyline points="1015,160 1015,579" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#blue-arrow)"/>
+<polyline points="1265,160 1265,356" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#blue-arrow)"/>
+<polyline points="22,190 66,190" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#blue-arrow)"/>
+<text x="80" y="196" font-size="16" font-weight="400" text-anchor="start" fill="#000000">Configuration—not telemetry</text>
+<text x="1230" y="238" font-size="22" font-weight="600" text-anchor="start" fill="#000000">Azure Monitor</text>
+<text x="1575" y="238" font-size="20" font-weight="600" text-anchor="middle" fill="#000000">Connected experiences</text>
+<rect x="18" y="252" width="1175" height="780" rx="8" fill="transparent" stroke="#a6a6a6" stroke-width="1.5" stroke-dasharray="9 5 2 5"/>
+<text x="42" y="286" font-size="22" font-weight="600" text-anchor="start" fill="#000000">Customer environment</text>
+<rect x="42" y="305" width="180" height="28" rx="14" fill="#eef8ed" stroke="#107c10" stroke-width="1.5"/>
+<text x="132" y="325" font-size="14" font-weight="600" text-anchor="middle" fill="#000000">Direct collection</text>
+<text x="240" y="323" font-size="16" font-weight="600" text-anchor="start" fill="#000000">SDK / API direct to cloud</text>
+<text x="240" y="348" font-size="15" font-weight="400" text-anchor="start" fill="#000000">Source retry • no collector</text>
+<rect x="760" y="324" width="250" height="28" rx="14" fill="#eef8ed" stroke="#107c10" stroke-width="1.5"/>
+<text x="885" y="344" font-size="14" font-weight="600" text-anchor="middle" fill="#000000">Collector-based collection</text>
+<polyline points="239,469 260,469 260,355 500,355 500,318 1180,318 1180,430 1220,430" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="42" y="360" width="545" height="295" rx="5" fill="transparent" stroke="#a6a6a6" stroke-width="1.5"/>
+<text x="62" y="389" font-size="20" font-weight="600" text-anchor="start" fill="#000000">Host / guest A</text>
+<text x="62" y="414" font-size="15" font-weight="400" text-anchor="start" fill="#000000">On-box collection boundary</text>
+<rect x="64" y="445" width="175" height="48" rx="5" fill="#ffffff" stroke="#d2d2d2" stroke-width="1.5"/>
+<rect x="77" y="456" width="34" height="27" rx="2" fill="#eaf4fc" stroke="#0078d4" stroke-width="1.5"/>
+<polyline points="89,463 83,469 89,476" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="99,463 105,469 99,476" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<text x="171" y="476" font-size="17" font-weight="600" text-anchor="middle" fill="#000000">Apps + SDKs</text>
+<rect x="64" y="515" width="175" height="48" rx="5" fill="#ffffff" stroke="#d2d2d2" stroke-width="1.5"/>
+<rect x="79" y="525" width="30" height="28" rx="2" fill="#eaf4fc" stroke="#0078d4" stroke-width="1.5"/>
+<polyline points="85,533 103,533" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="85,540 103,540" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="85,547 103,547" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<text x="159" y="546" font-size="17" font-weight="600" text-anchor="middle" fill="#000000">Guest OS</text>
+<polyline points="239,469 285,469" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="239,539 285,539" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="285,469 285,539" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="285,504 320,504" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="320" y="438" width="235" height="195" rx="5" fill="#eaf4fc" stroke="#a6a6a6" stroke-width="1.5"/>
+<rect x="420" y="490" width="34" height="23" rx="1" fill="#eaf4fc" stroke="#0078d4" stroke-width="1.5"/>
+<polyline points="425,506 431,506 436,497 441,503 449,496" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="437,513 437,520" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="427,520 447,520" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<text x="437" y="552" font-size="20" font-weight="600" text-anchor="middle" fill="#000000">Azure Monitor agent</text>
+<text x="437" y="580" font-size="16" font-weight="400" text-anchor="middle" fill="#000000">On-host • one per host</text>
+<text x="437" y="608" font-size="15" font-weight="400" text-anchor="middle" fill="#000000">Local filtering • buffer</text>
+<rect x="42" y="685" width="545" height="130" rx="5" fill="transparent" stroke="#a6a6a6" stroke-width="1.5"/>
+<text x="62" y="714" font-size="19" font-weight="600" text-anchor="start" fill="#000000">Additional machines / Kubernetes clusters</text>
+<text x="62" y="740" font-size="15" font-weight="400" text-anchor="start" fill="#000000">Azure Monitor agent collection, repeated</text>
+<rect x="65" y="759" width="125" height="36" rx="5" fill="#eaf4fc" stroke="#d2d2d2" stroke-width="1.5"/>
+<text x="127.5" y="783" font-size="15" font-weight="600" text-anchor="middle" fill="#000000">AMA 2</text>
+<rect x="210" y="759" width="125" height="36" rx="5" fill="#eaf4fc" stroke="#d2d2d2" stroke-width="1.5"/>
+<text x="272.5" y="783" font-size="12" font-weight="600" text-anchor="middle" fill="#000000">Kubernetes AMA</text>
+<rect x="355" y="759" width="125" height="36" rx="5" fill="#eaf4fc" stroke="#d2d2d2" stroke-width="1.5"/>
+<text x="417.5" y="783" font-size="15" font-weight="600" text-anchor="middle" fill="#000000">… AMA N</text>
+<rect x="42" y="845" width="545" height="150" rx="5" fill="transparent" stroke="#a6a6a6" stroke-width="1.5"/>
+<text x="62" y="875" font-size="19" font-weight="600" text-anchor="start" fill="#000000">Edge / multicloud and other producers</text>
+<rect x="64" y="900" width="150" height="62" rx="5" fill="#ffffff" stroke="#d2d2d2" stroke-width="1.5"/>
+<rect x="74" y="916" width="34" height="27" rx="2" fill="#eaf4fc" stroke="#0078d4" stroke-width="1.5"/>
+<polyline points="86,923 80,929 86,936" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="96,923 102,929 96,936" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<text x="164" y="938" font-size="12" font-weight="600" text-anchor="middle" fill="#000000">Apps / services</text>
+<rect x="235" y="900" width="150" height="62" rx="5" fill="#ffffff" stroke="#d2d2d2" stroke-width="1.5"/>
+<rect x="245" y="916" width="30" height="28" rx="2" fill="#eaf4fc" stroke="#0078d4" stroke-width="1.5"/>
+<polyline points="251,924 269,924" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="251,931 269,931" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="251,938 269,938" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<text x="335" y="938" font-size="12" font-weight="600" text-anchor="middle" fill="#000000">Network / security</text>
+<rect x="406" y="900" width="150" height="62" rx="5" fill="#ffffff" stroke="#d2d2d2" stroke-width="1.5"/>
+<rect x="416" y="916" width="30" height="28" rx="2" fill="#eaf4fc" stroke="#0078d4" stroke-width="1.5"/>
+<polyline points="422,924 440,924" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="422,931 440,931" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="422,938 440,938" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<text x="506" y="938" font-size="12" font-weight="600" text-anchor="middle" fill="#000000">Edge / multicloud</text>
+<rect x="635" y="420" width="500" height="530" rx="8" fill="transparent" stroke="#a6a6a6" stroke-width="1.5" stroke-dasharray="9 5 2 5"/>
+<text x="655" y="450" font-size="20" font-weight="600" text-anchor="start" fill="#000000">Centralized collection infrastructure</text>
+<text x="655" y="475" font-size="16" font-weight="400" text-anchor="start" fill="#000000">Off-box • site / network scope</text>
+<polyline points="555,535 620,535 620,610 680,610" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="587,777 610,777 610,650 680,650" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="139,962 139,990" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="310,962 310,990" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="481,962 481,990" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="139,990 610,990 610,690 680,690" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="680" y="525" width="410" height="300" rx="5" fill="#eaf4fc" stroke="#a6a6a6" stroke-width="1.5"/>
+<rect x="868" y="587" width="9" height="7" rx="0" fill="#eaf4fc" stroke="#0078d4" stroke-width="1.5"/>
+<rect x="868" y="598" width="9" height="7" rx="0" fill="#eaf4fc" stroke="#0078d4" stroke-width="1.5"/>
+<rect x="868" y="609" width="9" height="7" rx="0" fill="#eaf4fc" stroke="#0078d4" stroke-width="1.5"/>
+<polyline points="877,590 885,590 885,612 877,612" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="885,601 893,601" fill="none" stroke="#0078d4" stroke-width="2" stroke-linejoin="round"/>
+<rect x="893" y="596" width="10" height="10" rx="0" fill="#0078d4" stroke="#0078d4" stroke-width="1.5"/>
+<text x="885" y="650" font-size="24" font-weight="600" text-anchor="middle" fill="#000000">Azure Monitor pipeline</text>
+<text x="885" y="682" font-size="17" font-weight="400" text-anchor="middle" fill="#000000">Off source</text>
+<text x="885" y="730" font-size="16" font-weight="400" text-anchor="middle" fill="#000000">Filtering • persistent buffer</text>
+<text x="885" y="770" font-size="15" font-weight="400" text-anchor="middle" fill="#000000">Site / network scope</text>
+<polyline points="555,595 600,595 600,382 1170,382 1170,430 1220,430" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="763" y="374" font-size="14" font-weight="400" text-anchor="start" fill="#000000">AMA may send directly to cloud</text>
+<polyline points="1090,675 1170,675 1170,430" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="1170,430 1220,430" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="1220" y="280" width="225" height="650" rx="5" fill="transparent" stroke="#a6a6a6" stroke-width="1.5"/>
+<text x="1332.5" y="315" font-size="20" font-weight="600" text-anchor="middle" fill="#000000">Cloud data path</text>
+<rect x="1237" y="350" width="191" height="110" rx="5" fill="#eaf4fc" stroke="#a6a6a6" stroke-width="1.5"/>
+<text x="1332.5" y="397" font-size="21" font-weight="600" text-anchor="middle" fill="#000000">Cloud ingestion</text>
+<text x="1332.5" y="430" font-size="14" font-weight="400" text-anchor="middle" fill="#000000">Common entry point</text>
+<polyline points="1332,460 1332,500" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="1237" y="500" width="191" height="135" rx="5" fill="#eaf4fc" stroke="#a6a6a6" stroke-width="1.5"/>
+<text x="1332.5" y="545" font-size="20" font-weight="600" text-anchor="middle" fill="#000000">Ingest-time</text>
+<text x="1332.5" y="574" font-size="20" font-weight="600" text-anchor="middle" fill="#000000">transformations</text>
+<text x="1332.5" y="608" font-size="14" font-weight="400" text-anchor="middle" fill="#000000">Before storage</text>
+<polyline points="1332,635 1332,675" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="1237" y="675" width="191" height="145" rx="5" fill="#eaf4fc" stroke="#a6a6a6" stroke-width="1.5"/>
+<text x="1332.5" y="718" font-size="18" font-weight="600" text-anchor="middle" fill="#000000">Azure Monitor storage</text>
+<text x="1332.5" y="750" font-size="15" font-weight="400" text-anchor="middle" fill="#000000">Log Analytics workspace</text>
+<text x="1332.5" y="885" font-size="12" font-weight="400" text-anchor="middle" fill="#000000">Processing varies by signal and path.</text>
+<polyline points="1428,750 1490,750" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="1490" y="670" width="170" height="140" rx="5" fill="transparent" stroke="#a6a6a6" stroke-width="1.5"/>
+<text x="1575" y="710" font-size="19" font-weight="600" text-anchor="middle" fill="#000000">Microsoft Sentinel</text>
+<text x="1575" y="742" font-size="15" font-weight="400" text-anchor="middle" fill="#000000">Security analytics</text>
+<text x="1575" y="774" font-size="13" font-weight="400" text-anchor="middle" fill="#000000">Sentinel-enabled</text>
+<text x="1575" y="794" font-size="13" font-weight="400" text-anchor="middle" fill="#000000">workspace</text>
+<polyline points="1428,750 1470,750 1470,895 1490,895" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+<rect x="1490" y="845" width="170" height="120" rx="5" fill="transparent" stroke="#a6a6a6" stroke-width="1.5"/>
+<text x="1575" y="886" font-size="19" font-weight="600" text-anchor="middle" fill="#000000">Microsoft Fabric</text>
+<text x="1575" y="917" font-size="15" font-weight="400" text-anchor="middle" fill="#000000">Mirror Azure Monitor</text>
+<text x="1575" y="945" font-size="12" font-weight="400" text-anchor="middle" fill="#000000">No data copy [1]</text>
+<rect x="42" y="1045" width="1080" height="72" rx="5" fill="#f5f5f5" stroke="#d2d2d2" stroke-width="1.5"/>
+<text x="62" y="1072" font-size="16" font-weight="600" text-anchor="start" fill="#000000">Progressive value (where supported)</text>
+<text x="62" y="1100" font-size="15" font-weight="400" text-anchor="start" fill="#000000">SDK / API: no collector → Agent: local buffer → Pipeline: persistent buffer at site / network scope</text>
+<text x="42" y="1140" font-size="15" font-weight="600" text-anchor="start" fill="#000000">Choose the lightest supported path that meets reliability, cost, scale, and topology needs.</text>
+<text x="42" y="1165" font-size="13" font-weight="400" text-anchor="start" fill="#000000">[1] Mirror Azure Monitor exposes Log Analytics tables in Microsoft Fabric while the data remains in Azure Monitor.</text>
+<rect width="1680" height="1180" fill="#ffffff" opacity="0.78" mask="url(#focus-mask)"/>
+</g></svg>

@@ -14,7 +14,7 @@ ms.custom: Performance Content Delivery Network
   
 <!--e607041e-3194-42ad-9994-b6ea5ec12f5e_begin-->
 
-#### Upgrade SDK version recommendation  
+#### Upgrade Azure Front Door Standard and Premium SDK version  
   
 The latest version of Azure Front Door Standard and Premium Client Library or SDK contains fixes to issues reported by customers and proactively identified through our QA process. The latest version also carries reliability and performance optimization in addition to new features that can improve your overall experience using Azure Front Door Standard and Premium.  
   

@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.EventGrid/namespaces
 description: Reference for Microsoft.EventGrid/namespaces in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 08/21/2026
+ms.date: 09/21/2026
 ms.custom: Microsoft.EventGrid/namespaces, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -18,6 +18,7 @@ For a list of supported metrics, see [Supported metrics - Microsoft.EventGrid/na
 
 |Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
 |---|---|---|---|---|---|
+|AutoscaleLogs|Yes||No|No||
 |FailedHttpDataPlaneOperations|Yes|[EGNFailedHttpDataPlaneOperations](/azure/azure-monitor/reference/tables/egnfailedhttpdataplaneoperations)<p>Log for failed HTTP data plane requests to an Event Grid namespace. It can be used for auditing purposes.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/egnfailedhttpdataplaneoperations)|
 |FailedMqttConnections|Yes|[EGNFailedMqttConnections](/azure/azure-monitor/reference/tables/egnfailedmqttconnections)<p>Log for failed MQTT connections to an Event Grid namespace.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/egnfailedmqttconnections)|
 |FailedMqttPublishedMessages|Yes|[EGNFailedMqttPublishedMessages](/azure/azure-monitor/reference/tables/egnfailedmqttpublishedmessages)<p>Log for failed MQTT published messages to an Event Grid namespace.|No|Yes||

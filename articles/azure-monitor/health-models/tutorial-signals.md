@@ -2,7 +2,7 @@
 title: Configure signals in an Azure Monitor health model (preview)
 description: Learn how to configure Azure resource metric signals, Log Analytics workspace signals, and Azure Monitor workspace PromQL signals for entities in Azure Monitor health models.
 ms.topic: tutorial
-ms.date: 07/20/2026
+ms.date: 09/01/2026
 ai-usage: ai-assisted
 ---
 
@@ -47,24 +47,20 @@ When you add a signal assignment, you can choose one of these options:
 
 Use an Azure resource signal to evaluate platform metrics from the resource represented by the entity, such as CPU percentage, request count, or availability.
 
-1. In the entity editor, under **Azure resource**, select **Add signal assignment** and then **Create new**.
-
+1. In the entity editor, in the Azure resource data source select **Add Azure resource**.
+1. Choose the **Azure resource**.
+1. Under **Signals**, select **Add metric signal** and then **Create new**.
 1. Select a metric from the available list.
-
 1. Configure threshold logic for **Degraded** and **Unhealthy**.
-
 1. Optional: If available for the metric, apply suggested thresholds, or set **Threshold type** to **Dynamic** to enable dynamic thresholds.
 
    Dynamic thresholds adapt to the metric's normal patterns and seasonal variance instead of using a fixed value. Set the **Sensitivity** to tune how the signal learns normal behavior. During warm-up or sparse-data periods, health evaluation temporarily relies on available in-place statistics until enough history is collected. For more information, see [Dynamic thresholds](./concepts.md#dynamic-thresholds).
 
 1. Select one of the following actions:
-
    - **Add to entity** to save this signal only on the current entity.
    - **Save as new signal definition** to create a reusable definition for other entities in the same health model.
 
 1. Select **Save**.
-
-:::image type="content" source="media/signals/azure-resource-signals.png" lightbox="media/signals/azure-resource-signals.png" alt-text="Screenshot of Azure resource signal settings in the entity editor.":::
 
 > [!NOTE]
 > A metric signal shows as **Unknown** when no traffic is visible on the resource. It resolves once traffic begins to flow. The metric charts reflect the same behavior, so they can look misleading until enough data is collected.
@@ -73,29 +69,21 @@ Use an Azure resource signal to evaluate platform metrics from the resource repr
 
 Use a Log Analytics workspace signal when health depends on log-based conditions, such as error rates, failed requests, or custom operational events.
 
-1. In the entity editor, select **Add Log Analytics signals**.
-
-1. Select **Log Analytics workspace**, choose the workspace resource, and select **Select resources**.
-
-1. Set **Authentication setting** if needed, and then select **Add signal**.
-
+1. In the entity editor, select **Add Log Analytics workspace**.
+1. Choose the workspace resource, and select **Select resources**.
+1. Set **Authentication setting** if needed, and then select **Add log query signal** and then **Create new**.
 1. Enter a display name.
-
-1. Select **Edit query**, then write or select a KQL query that returns a single numeric value.
-
+1. Select **Edit query**, then write or select a KQL query that returns a single numeric value. Select **Run** before confirming with **Done**.
 1. Configure **Degraded** and **Unhealthy** thresholds.
-
 1. Select **Add to entity** or **Save as new signal definition**, and then select **Save**.
-
-:::image type="content" source="media/signals/log-signals.png" lightbox="media/signals/log-signals.png" alt-text="Screenshot of Log Analytics workspace signal settings in the entity editor.":::
 
 ## Add an Azure Monitor workspace signal (PromQL)
 
 Use an Azure Monitor workspace signal to evaluate Prometheus metrics by using PromQL, such as Kubernetes workload and infrastructure signals.
 
-1. In the entity editor, select **Add Azure Monitor workspace signals**.
-1. Select **Azure Monitor workspace**, choose the workspace resource, and select **Select resources**.
-1. Set **Authentication setting** if needed, and then select **Add signal**.
+1. In the entity editor, select **Add Azure Monitor workspace**.
+1. Choose the workspace resource, and select **Select resources**.
+1. Set **Authentication setting** if needed, and then select **Add Prometheus signal**.
 1. Enter a display name and provide a PromQL query that returns a single numeric value.
 1. Configure **Degraded** and **Unhealthy** thresholds for the expected operating range.
 1. Select **Add to entity** or **Save as new signal definition**, and then select **Save**.
@@ -107,7 +95,7 @@ For detailed property guidance, see [Create and configure signals in Azure Monit
 To apply an existing signal definition to another entity:
 
 1. Open the target entity in **Designer** and go to **Signals**.
-1. Select **Add signal assignment** and then **Signal definitions**.
+1. Select **Add metric**, **log query**, or **Prometheus signal**, and then select **Signal definitions**.
 1. Select a definition that isn't already assigned to the entity.
 1. Select **Select**, and then select **Save**.
 

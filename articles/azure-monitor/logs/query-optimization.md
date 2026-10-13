@@ -3,7 +3,7 @@ title: Optimize log queries in Azure Monitor
 description: Best practices for optimizing log queries in Azure Monitor.
 ms.topic: how-to
 ms.reviewer: MeirMen
-ms.date: 02/03/2026
+ms.date: 09/21/2026
 
 
 ---
@@ -14,7 +14,7 @@ Azure Monitor Logs is a fully managed, cloud‑scale service designed to automat
 
 Azure Monitor Logs uses [Azure Data Explorer](/azure/data-explorer/) as part of its underlying engine to store log data and run queries for analyzing that data. It creates, manages, and maintains the Azure Data Explorer clusters for you, and optimizes them for your log analysis workloads. When you run a query, the service optimizes it and routes it to the appropriate Azure Data Explorer cluster that stores the workspace data. 
 
-Azure Monitor Logs and Azure Data Explorer use many automatic query optimization mechanisms. As with any large analytical system, running queries across very large datasets requires extra compute resources and might impact query performance. Although automatic optimizations provide a significant boost, you can dramatically improve your query performance in some cases. This article explains the performance considerations and several techniques to fix them.
+Azure Monitor Logs and Azure Data Explorer use many automatic query optimization mechanisms. As with any large analytical system, running queries across very large datasets requires extra compute resources and might impact query performance. Efficient query design can further improve performance. This article explains the performance considerations and several techniques to address them.
 
 Most of the techniques are common to queries that are run directly on Azure Data Explorer and Azure Monitor Logs. Several unique Azure Monitor Logs considerations are also discussed. For more Azure Data Explorer optimization tips, see [Query best practices](/azure/kusto/query/best-practices).
 
@@ -514,6 +514,12 @@ A query that spans more than five workspaces consumes excessive resources. Queri
 > - Cross workspace queries with an explicit identifier, such as a workspace ID or workspace Azure Resource ID, consume fewer resources and perform better. 
 
 For more information, see [Query across resources](cross-workspace-query.md).
+
+## Table plans
+
+Analytics, Basic, and Auxiliary table plans support full Kusto Query Language (KQL), but query performance differs by plan. Analytics and Basic tables provide optimized query performance. Queries of Auxiliary tables are unoptimized and might take longer to return results.
+
+Account for the source tables' plans when investigating a slow query. Query tuning doesn't remove the Auxiliary plan's performance trade-off. For more information, see [Auxiliary log query performance](basic-logs-query.md#auxiliary-log-query-performance).
 
 ## Parallelism
 Azure Monitor Logs uses large clusters of Azure Data Explorer to run queries. These clusters vary in scale and can include up to dozens of compute nodes. The system automatically scales the clusters according to workspace placement logic and capacity.

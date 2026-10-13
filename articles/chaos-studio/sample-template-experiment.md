@@ -1,17 +1,20 @@
 ---
-title: Azure Resource Manager template samples for chaos experiments
-description: Sample Azure Resource Manager templates to create Azure Chaos Studio experiments.
+title: ARM template samples for Experiments (classic)
+description: Deploy Azure Chaos Studio Experiments (classic) with ARM template and parameter samples that define a CPU pressure fault against a target resource.
 services: chaos-studio
 author: prasha-microsoft 
 ms.topic: sample
-ms.date: 10/14/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.reviewer: prashabora
 ms.custom: devx-track-arm-template
 ---
 
-# ARM template samples for experiments in Azure Chaos Studio
+# ARM template samples for Experiments (classic)
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+These ARM templates deploy Azure Chaos Studio Experiments (classic). For the current model, see [custom Scenario structure in Chaos Studio Workspaces](chaos-studio-scenarios.md#how-a-custom-scenario-is-structured) and its resource schema. Classic experiment templates don't define Workspaces Scenarios.
 
 This article includes sample [Azure Resource Manager templates (ARM templates)](/azure/azure-resource-manager/templates/syntax) to create a [chaos experiment](chaos-studio-chaos-experiments.md) in Azure Chaos Studio. Each sample includes a template file and a parameters file with sample values to provide to the template.
 

@@ -3,7 +3,7 @@ title: Configure Azure Monitor pipeline with CLI or ARM templates
 description: Learn how to configure Azure Monitor pipeline with CLI or ARM templates for automation and advanced scenarios.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 03/20/2026
+ms.date: 09/21/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
@@ -115,7 +115,7 @@ An [Azure custom location](/azure/azure-arc/kubernetes/custom-locations) lets Az
 az customlocation create --name <custom-location-name> --resource-group <resource-group-name> --namespace <name of namespace> --host-resource-id <connectedClusterId> --cluster-extension-ids <extensionId>
 
 ## Example
-az customlocation create --name my-cluster-custom-location --resource-group my-resource-group --namespace my-cluster-custom-location --host-resource-id /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster --cluster-extension-ids /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster/providers/Microsoft.KubernetesConfiguration/extensions/my-cluster
+az customlocation create --name my-cluster-custom-location --resource-group my-resource-group --namespace my-cluster-custom-location --host-resource-id /subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster --cluster-extension-ids /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster/providers/Microsoft.KubernetesConfiguration/extensions/my-cluster
 ```
 
 ### [ARM](#tab/arm)
@@ -1383,6 +1383,9 @@ Edge devices in some environments might experience intermittent connectivity due
 | persistence.MaxStorageUsage (optional) | no limit (in GB)  | no max |
 
 After you create the volume in the appropriate namespace, configure it by using parameters in the pipeline configuration file. The pipeline reads data from persistent storage by using first-in-first-out (FIFO). The pipeline discards any data that's older than the maximum retention period.
+
+> [!WARNING]
+> When upgrading from a pipeline version earlier than 1.5, data already stored in a durable buffer remains under the previous storage path and isn't forwarded after the upgrade. Allow the durable buffer to drain before upgrading.
 
 > [!CAUTION]
 > Each replica of the pipeline stores data in a location in the persistent volume specific to that replica. Decreasing the number of replicas while the cluster is disconnected from the cloud prevents that data from being backfilled when connectivity is restored.

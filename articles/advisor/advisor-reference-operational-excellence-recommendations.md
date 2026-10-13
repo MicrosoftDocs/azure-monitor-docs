@@ -4,7 +4,7 @@ description: Operational excellence recommendations
 ms.topic: article
 author: kanika1894
 ms.author: kapasrij
-ms.date: 07/28/2026
+ms.date: 04/14/2026
 ---
 
 # Operational Excellence recommendations
@@ -37,9 +37,9 @@ You can get these recommendations on the **Operational Excellence** tab of the A
 
 [!INCLUDE [OperationalExcellence-azure-arc-enabled-kubernetes.md](./includes/OperationalExcellence-azure-arc-enabled-kubernetes.md)]
 
-[!INCLUDE [OperationalExcellence-azure-cache-for-redis.md](./includes/OperationalExcellence-azure-cache-for-redis.md)]
+[!INCLUDE [operationalexcellence-azure-arc-enabled-servers.md](./includes/operationalexcellence-azure-arc-enabled-servers.md)]
 
-[!INCLUDE [OperationalExcellence-azure-communication-services.md](./includes/OperationalExcellence-azure-communication-services.md)]
+[!INCLUDE [OperationalExcellence-azure-cache-for-redis.md](./includes/OperationalExcellence-azure-cache-for-redis.md)]
 
 [!INCLUDE [OperationalExcellence-azure-container-apps.md](./includes/OperationalExcellence-azure-container-apps.md)]
 
@@ -77,9 +77,9 @@ You can get these recommendations on the **Operational Excellence** tab of the A
 
 [!INCLUDE [OperationalExcellence-event-hubs.md](./includes/OperationalExcellence-event-hubs.md)]
 
-[!INCLUDE [OperationalExcellence-key-vault.md](./includes/OperationalExcellence-key-vault.md)]
+[!INCLUDE [operationalexcellence-hdinsight.md](./includes/operationalexcellence-hdinsight.md)]
 
-[!INCLUDE [OperationalExcellence-media-services.md](./includes/OperationalExcellence-media-services.md)]
+[!INCLUDE [OperationalExcellence-key-vault.md](./includes/OperationalExcellence-key-vault.md)]
 
 [!INCLUDE [OperationalExcellence-microsoft.apicenter.md](./includes/OperationalExcellence-microsoft.apicenter.md)]
 

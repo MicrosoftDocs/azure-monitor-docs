@@ -30,22 +30,21 @@ Subcategory: Other
 
 <!--39d862c8-445c-40c6-ba59-0e86134df606_end-->
 
-<!--eb6696fd-8e19-45c7-8679-7b40c398f07b_begin-->
+<!--bc36b547-2461-4f0d-8063-c9a6a2b19dfc_begin-->
 
-#### Azure Spring Apps is being retired.  
+#### Azure Spring Apps, including Basic, Standard and Enterprise plans, are being retired.  
   
-New customers are no longer be able to sign up for the service, existing customers remain operational until the plans are retired.  
+Azure Spring Apps is retiring, and you can no longer access Azure Spring Apps instances.
   
-**Potential benefits**: Avoid potential disruptions for the applications  
+**Potential benefits**: Avoid potential disruptions  
 
-**Impact:** High
+**Impact:** Medium
   
-For more information, see [Azure updates](https://azure.microsoft.com/updates?id=Azure-Spring-Apps-will-be-retired-on-March-31-2028)  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485865).  
 
 ResourceType: microsoft.appplatform/spring  
-Recommendation ID: eb6696fd-8e19-45c7-8679-7b40c398f07b  
-Subcategory: undefined
+Recommendation ID: bc36b547-2461-4f0d-8063-c9a6a2b19dfc  
 
-<!--eb6696fd-8e19-45c7-8679-7b40c398f07b_end-->
+<!--bc36b547-2461-4f0d-8063-c9a6a2b19dfc_end-->
 
 <!--articleBody-->

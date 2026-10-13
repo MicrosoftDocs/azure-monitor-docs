@@ -2,8 +2,9 @@
 title: Use Azure Monitor Dashboards with Grafana
 description: Explains how to use Azure Monitor dashboards with Grafana.
 ms.topic: how-to
+ms.custom: cbo-v1.5
 ms.reviewer: kayodeprinceMS
-ms.date: 08/03/2026
+ms.date: 08/27/2026
 ai-usage: ai-assisted
 ---
 
@@ -201,15 +202,224 @@ Dashboards created or saved from the context of an Azure Kubernetes Service clus
 
 You can export a dashboard as JSON which can be saved, imported and re-used across any Grafana instance.
 
-1. In the dashboard screen, select **Export** then **JSON**.
+1. In the dashboard screen, select **Export** > **Export as JSON**.
 1. Save the file.
 
-## Export a dashboard ARM template
+## Manage a dashboard as an ARM template
 
-You can export a dashboard as an ARM template that contains the JSON for the dashboard.
+Export a dashboard as an Azure Resource Manager (ARM) template. Use this template to deploy the same dashboard to another subscription or resource group and to maintain your dashboards as code.
 
-1. In the dashboard screen, select **Export** then **Export as ARM template**.
+### Export a dashboard as an ARM template
+
+1. Open the dashboard in view mode.
+1. Select **Export** > **Export as ARM Template**. The ARM template editor opens and shows the deployment template for the dashboard.
+1. Review the template and edit any values that you want to change, such as the default dashboard name.
 1. Select **Download** and save the file.
+
+To close the editor without downloading the template, select **Back to dashboard**. The editor also provides **Help** and **Feedback**.
+
+> [!NOTE]
+> If the dashboard contains links to other dashboards, such as drill-down links, the editor displays a notice that the linked dashboards must be available in the target instance. Deploy the linked dashboards to the target subscription or resource group so that the links resolve. For more information, see [Link from one dashboard to another](#link-from-one-dashboard-to-another).
+
+### Understand the exported template
+
+The exported template is a standard ARM deployment template with two resources. The following example also takes the API version as a parameter, so you can set it at deployment time instead of editing the template.
+
+| Element | Description |
+|:--|:--|
+| `dashboardName` parameter | The name of the dashboard to create. The default value comes from the name of the dashboard that you exported. Change this value to deploy the dashboard under a different name. |
+| `resourceTags` parameter | The Azure tags applied to the dashboard. The tags include `sourceDashboardId`, which records the identifier of the dashboard that the template was exported from. |
+| `apiVersion` parameter | The API version that both dashboard resources use. Pass the version that you want at deployment time. |
+| `Microsoft.Dashboard/dashboards` resource | The dashboard resource. Its `location` is set to `[resourceGroup().location]`, so the dashboard is created in the region of the resource group that you deploy to. |
+| `Microsoft.Dashboard/dashboards/dashboardDefinitions` resource | A child resource whose `serializedData` property holds the Grafana dashboard definition, including panels, queries, and variables. |
+
+Because `dashboardName` is a parameter and `location` follows the target resource group, you can deploy the same template to a different subscription, resource group, or region without editing the dashboard definition.
+
+The template deploys `Microsoft.Dashboard/dashboards` and `Microsoft.Dashboard/dashboards/dashboardDefinitions`, which support different API versions. The `dashboardDefinitions` resource type was introduced in `2025-09-01-preview`, so earlier versions don't include it. Run the following command to list the versions that each type supports, and then pass a version that appears in both lists.
+
+```bash
+az provider show --namespace Microsoft.Dashboard --query "resourceTypes[?contains(resourceType, 'dashboards')].{Type:resourceType, Versions:join(', ', apiVersions)}" --output table
+```
+
+The following example shows the structure of an exported template. The `serializedData` value is truncated.
+
+<br>
+<details>
+<summary><b>Expand to view the exported template</b></summary>
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "dashboardName": {
+      "type": "string",
+      "defaultValue": "<DashboardName>"
+    },
+    "resourceTags": {
+      "type": "object",
+      "defaultValue": {
+        "sourceDashboardId": "<SourceDashboardId>"
+      }
+    },
+    "apiVersion": {
+      "type": "string",
+      "defaultValue": "<ApiVersion>"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Dashboard/dashboards",
+      "apiVersion": "[parameters('apiVersion')]",
+      "name": "[parameters('dashboardName')]",
+      "location": "[resourceGroup().location]",
+      "tags": "[parameters('resourceTags')]",
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.Dashboard/dashboards/dashboardDefinitions",
+      "apiVersion": "[parameters('apiVersion')]",
+      "name": "[format('{0}/default', parameters('dashboardName'))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Dashboard/dashboards', parameters('dashboardName'))]"
+      ],
+      "properties": {
+        "serializedData": "{\"panels\": [...]}"
+      }
+    }
+  ]
+}
+```
+
+</details>
+
+For the full property reference, see [Microsoft.Dashboard/dashboards](/azure/templates/microsoft.dashboard/dashboards) and [Microsoft.Dashboard/dashboards/dashboardDefinitions](/azure/templates/microsoft.dashboard/dashboards/dashboarddefinitions).
+
+### Deploy the template to another subscription or resource group
+
+Deploy the downloaded template by using any Resource Manager deployment method. Because the dashboard resource name must be unique within the target resource group, enter a `dashboardName` value if a dashboard with the same name already exists there.
+
+#### Prerequisites
+
+You need the **Contributor** role on the target resource group, or a role that grants the `Microsoft.Dashboard/dashboards/write` and `Microsoft.Dashboard/dashboards/dashboardDefinitions/write` permissions. Grant the dashboard's viewers access to the data sources that its panels query. For more information, see [Share links to dashboards](#share-links-to-dashboards).
+
+#### Deploy the template
+
+# [Portal](#tab/portal)
+
+1. In the Azure portal, search for and select **Deploy a custom template**.
+1. Select **Build your own template in the editor**.
+1. Select **Load file** and load the downloaded template file.
+1. Select **Save**.
+1. On the **Basics** tab, select the target **Subscription**, **Resource group**, and **Region**, and then set **Dashboard Name**.
+1. Select **Review + create**.
+
+For more information, see [Deploy resources from a custom template](/azure/azure-resource-manager/templates/deploy-portal#deploy-resources-from-custom-template).
+
+# [Azure CLI](#tab/cli)
+
+The following Azure CLI example uses the [`az deployment group create`](/cli/azure/deployment/group#az-deployment-group-create) command.
+
+```bash
+# Set variables
+subscriptionId="<TargetSubscriptionId>"
+resourceGroupName="<TargetResourceGroupName>"
+dashboardName="<DashboardName>"
+templateFile="./template-file.json"
+
+# Deploy the dashboard to the target subscription and resource group
+az deployment group create \
+  --subscription "$subscriptionId" \
+  --resource-group "$resourceGroupName" \
+  --template-file "$templateFile" \
+  --parameters dashboardName="$dashboardName"
+```
+
+# [Azure PowerShell](#tab/powershell)
+
+The following Azure PowerShell example uses the [`New-AzResourceGroupDeployment`](/powershell/module/az.resources/new-azresourcegroupdeployment) cmdlet.
+
+```powershell
+# Set variables
+$subscriptionId = "<TargetSubscriptionId>"
+$resourceGroupName = "<TargetResourceGroupName>"
+$dashboardName = "<DashboardName>"
+$templateFile = "./template-file.json"
+
+# Set the target subscription context
+Set-AzContext -Subscription $subscriptionId
+
+# Define parameters for New-AzResourceGroupDeployment
+$newAzResourceGroupDeploymentParams = @{
+    ResourceGroupName       = $resourceGroupName
+    TemplateFile            = $templateFile
+    TemplateParameterObject = @{ dashboardName = $dashboardName }
+}
+
+# Deploy the dashboard to the target resource group
+New-AzResourceGroupDeployment @newAzResourceGroupDeploymentParams
+```
+
+# [REST](#tab/rest)
+
+The following REST example uses the [Deployments - Create Or Update](/rest/api/resources/deployments/create-or-update) REST API operation. In the request body, set the `template` property to the contents of the downloaded template file.
+
+```REST
+PUT https://management.azure.com/subscriptions/{targetSubscriptionId}/resourceGroups/{targetResourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+Content-Type: application/json
+
+{
+  "properties": {
+    "mode": "Incremental",
+    "template": { },
+    "parameters": {
+      "dashboardName": {
+        "value": "<DashboardName>"
+      }
+    }
+  }
+}
+```
+
+---
+
+### Maintain dashboards as code
+
+Store the exported template in source control and deploy changes through your existing pipeline instead of editing the dashboard in the portal. This approach lets you review dashboard changes in pull requests, roll back to an earlier version, and keep the same dashboard consistent across your development, test, and production environments.
+
+The exported template embeds the whole dashboard definition in `serializedData`. Keep the template unchanged and vary the values in a parameters file for each environment.
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "dashboardName": {
+      "value": "<DashboardName>"
+    }
+  }
+}
+```
+
+Commit one parameters file per environment next to the template, and then pass the file that matches the environment you're deploying to.
+
+```bash
+# Set variables
+resourceGroupName="<TargetResourceGroupName>"
+templateFile="./template-file.json"
+parametersFile="./parameters-file.json"
+
+# Deploy the dashboard by using the environment's parameters file
+az deployment group create \
+  --resource-group "$resourceGroupName" \
+  --template-file "$templateFile" \
+  --parameters "@$parametersFile"
+```
+
+For more information, see [Create parameters files for ARM template deployment](/azure/azure-resource-manager/templates/parameter-files).
+
+To track when a dashboard is updated to a new version or restored to a previous one, see [Add diagnostic settings](#add-diagnostic-settings).
 
 ## Add diagnostic settings
 

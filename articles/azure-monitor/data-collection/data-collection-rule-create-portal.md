@@ -2,7 +2,6 @@
 title: Create data collection rules (DCRs) using the Azure portal
 description: Create data collection rules (DCRs) using the Azure portal for different data collection scenarios in Azure Monitor.
 ms.topic: how-to
-ms.custom: cbo-v1.5
 ms.date: 08/27/2026
 ms.reviewer: nikeist
 ---

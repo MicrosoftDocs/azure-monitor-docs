@@ -2,7 +2,7 @@
 title: Best practices for Azure Monitor Logs
 description: Provides a template for a Well-Architected Framework (WAF) article specific to Log Analytics workspaces in Azure Monitor.
 ms.topic: best-practice
-ms.date: 02/03/2026
+ms.date: 09/21/2026
 ---
 
 # Best practices for Azure Monitor Logs

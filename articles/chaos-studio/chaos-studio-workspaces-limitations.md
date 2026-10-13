@@ -1,21 +1,21 @@
 ---
-title: Limitations and known issues in Chaos Studio Workspaces (preview)
-description: Review limitations and known issues in the Chaos Studio Workspaces public preview and identify capabilities that require Experiments (classic).
+title: Chaos Studio Workspaces limitations (preview)
+description: Review Chaos Studio Workspaces limitations for Scenarios, AKS, agents, private networking, and automation before choosing a resilience test.
 author: nikhilkaul-msft
 ms.topic: troubleshooting-known-issue
-ms.date: 08/31/2026
+ms.date: 09/29/2026
 ai-usage: ai-assisted
 ---
 
-# Limitations and known issues in Chaos Studio Workspaces (preview)
+# Chaos Studio Workspaces limitations (preview)
 
-This article lists limitations and known issues in the [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) public preview. For limitations of the Experiments (classic) model, see [Limitations and known issues for Experiments (classic)](chaos-studio-limitations.md).
+Review [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) limitations before you select a Scenario or scope a resilience test. This page covers public preview constraints for Scenario coverage, AKS node infrastructure, agent-based Actions, private networking, and automation. The separate [Experiments (classic) limitations](chaos-studio-limitations.md) don't define Workspaces support.
 
 [!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
 ## Limitations
 
-- **Curated Scenario catalog.** Workspaces run [Scenario templates](chaos-studio-scenarios.md) and custom Scenarios built from them in the designer. The [fault and action library for Experiments (classic)](chaos-studio-fault-library.md), [dynamic targeting](chaos-studio-tutorial-dynamic-target-portal.md), and [scheduled experiment runs](tutorial-schedule.md) aren't available in Workspaces. Use Experiments (classic) for these capabilities. For a full comparison, see [Choose between Chaos Studio Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md).
+- **Curated Scenario catalog.** Workspaces run [Scenario templates](chaos-studio-scenarios.md) and custom Scenarios built from the Actions in those templates and the [Actions available for custom Scenarios](chaos-studio-scenarios.md#actions-available-for-custom-scenarios). The Workspace rejects Actions it doesn't recognize. The full [fault and action library for Experiments (classic)](chaos-studio-fault-library.md), [dynamic targeting](chaos-studio-tutorial-dynamic-target-portal.md), and [scheduled experiment runs](tutorial-schedule.md) aren't available in Workspaces. Use Experiments (classic) for these capabilities. For a full comparison, see [Choose between Chaos Studio Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md).
 
 - **Limited agent-based fault injection.** CPU Pressure and Physical Memory Pressure are the only agent-based Scenarios in the Workspaces preview. They support standalone Windows and Linux virtual machines with a managed identity; virtual machine scale sets and VM sizes that use Arm-based processors aren't supported yet, and the target VM needs public outbound connectivity to the Chaos Studio service. In the Azure portal, these Scenarios appear under **My scenarios** rather than in the recommended Scenarios list. For details, see [Agent-based Scenario requirements](chaos-studio-scenarios.md#agent-based-scenario-requirements). All other in-guest faults, such as network faults and disk pressure, aren't available in Workspaces; for those faults, use [the Chaos Studio agent with Experiments (classic)](chaos-agent-overview.md).
 

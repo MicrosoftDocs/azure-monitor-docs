@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 02/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure NetApp Files
@@ -47,23 +47,5 @@ Recommendation ID: 08bf438b-8464-41df-8148-d6fb109f11db
 
 
 <!--08bf438b-8464-41df-8148-d6fb109f11db_end-->
-
-<!--4e8eae65-6c4f-4ebb-bd49-f1a9410d531f_begin-->
-
-#### Optimize Azure NetApp Files volume performance  
-  
-Optimize volume performance for Azure NetApp Files by using Auto-QoS or Manual-QoS to meet your volume performance requirements  
-  
-**Potential benefits**: Optimize volume performance for Azure NetApp Files  
-
-**Impact:** Medium
-  
-For more information, see [General performance considerations for Azure NetApp Files](/azure/azure-netapp-files/azure-netapp-files-performance-considerations)  
-
-ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
-Recommendation ID: 4e8eae65-6c4f-4ebb-bd49-f1a9410d531f  
-
-
-<!--4e8eae65-6c4f-4ebb-bd49-f1a9410d531f_end-->
 
 <!--articleBody-->

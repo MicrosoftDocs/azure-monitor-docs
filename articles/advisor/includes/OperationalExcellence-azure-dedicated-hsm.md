@@ -27,7 +27,6 @@ For more information, see [GitHub - microsoft/MicrosoftAzureCloudHSM: Azure Clou
 ResourceType: microsoft.hardwaresecuritymodules/cloudhsmclusters  
 Recommendation ID: 5def6158-6b43-44af-9744-681ce65b0248  
 
-
 <!--5def6158-6b43-44af-9744-681ce65b0248_end-->
 
 <!--articleBody-->

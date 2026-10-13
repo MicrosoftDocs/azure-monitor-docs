@@ -16,7 +16,7 @@ ms.custom: OperationalExcellence Azure Managed Workspace for Grafana
 
 #### Update Azure Managed Grafana SDK Version  
   
-We have identified that an older SDK version has been used to manage or access your Grafana workspace. To get access to all the latest functionality, it's recommended that you switch to use the latest SDK version.  
+We have identified that an older SDK version has been used to manage or access your Grafana workspace. To get access to all the latest functionality, it is recommended that you switch to use the latest SDK version.  
   
 **Potential benefits**: Latest Azure Managed Grafana SDK contains latest fixes and feature capabilities.  
 
@@ -26,7 +26,6 @@ For more information, see [What is Azure Managed Grafana?](https://aka.ms/Grafan
 
 ResourceType: microsoft.dashboard/grafana  
 Recommendation ID: c324c9de-e88a-4074-9727-c775a0b169b2  
-
 
 <!--c324c9de-e88a-4074-9727-c775a0b169b2_end-->
 

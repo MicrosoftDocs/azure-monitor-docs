@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 08/11/2026
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure VMware Solution
@@ -12,40 +12,55 @@ ms.custom: HighAvailability Azure VMware Solution
   
 ## Azure VMware Solution  
   
-<!--a066eddb-adbe-4e68-ae1a-55fb3ae7332d_begin-->
+<!--42be4c34-135c-4ec7-b3a6-dd3b8ed7b049_begin-->
 
-#### Monitor when Azure VMware Solution Private Cloud is reaching the capacity limit  
+#### Migrate AV36P nodes to a new Azure VMware Solution node type  
   
-Set an alert for when the node count in Azure VMware Solution Private Cloud hits or exceeds 90 hosts, enabling timely planning for a new private cloud.  
+AV36P node type is retiring. Migrate from AV36P nodes to a new Azure VMware Solution node type before the end of current AV36P reserved instance term.  
   
-**Potential benefits**: Proactive capacity planning  
+**Potential benefits**: Avoid potential disruptions  
 
 **Impact:** Medium
   
-For more information, see [Azure Well-Architected Framework workloads - Microsoft Azure Well-Architected Framework](/azure/well-architected/azure-vmware/monitoring#configure-and-streamline-alerts)  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=557094)  
 
 ResourceType: microsoft.avs/privateclouds  
-Recommendation ID: a066eddb-adbe-4e68-ae1a-55fb3ae7332d  
-Subcategory: undefined
+Recommendation ID: 42be4c34-135c-4ec7-b3a6-dd3b8ed7b049  
 
-<!--a066eddb-adbe-4e68-ae1a-55fb3ae7332d_end-->
+<!--42be4c34-135c-4ec7-b3a6-dd3b8ed7b049_end-->
 
-<!--33cf174f-fb0e-4f1d-8e86-e4ca69e7ea69_begin-->
+<!--0601549e-0144-4144-9a25-a2644fdf5f22_begin-->
 
-#### Private Cloud has customer actionable blocker  
+#### Migrate AV36 nodes to a new Azure VMware Solution node type  
   
-Private Cloud has customer actionable blocker  
+The AV36 node type is retiring. Migrate from AV36 nodes to a new Azure VMware Solution node type before the end of the current AV36 reserved instance term.
   
-**Potential benefits**: Meeting SLA  
+**Potential benefits**: Avoid service disruption  
 
-**Impact:** High
+**Impact:** Medium
   
-For more information, see [Private Cloud Maintenance - Azure VMware Solution](/azure/azure-vmware/azure-vmware-solution-private-cloud-maintenance-best-practices#alert-codes-and-remediation-table)  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=503883)  
 
 ResourceType: microsoft.avs/privateclouds  
-Recommendation ID: 33cf174f-fb0e-4f1d-8e86-e4ca69e7ea69  
-Subcategory: undefined
+Recommendation ID: 0601549e-0144-4144-9a25-a2644fdf5f22  
 
-<!--33cf174f-fb0e-4f1d-8e86-e4ca69e7ea69_end-->
+<!--0601549e-0144-4144-9a25-a2644fdf5f22_end-->
+
+<!--afa137b9-4f71-42bb-92f9-e24a1e3d42df_begin-->
+
+#### Migrate AV52 nodes to a new Azure VMware Solution node type  
+  
+The AV52 node type is retiring. Migrate from AV52 nodes to a new Azure VMware Solution node type before the end of the current AV52 reserved instance term.
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=557094)  
+
+ResourceType: microsoft.avs/privateclouds  
+Recommendation ID: afa137b9-4f71-42bb-92f9-e24a1e3d42df  
+
+<!--afa137b9-4f71-42bb-92f9-e24a1e3d42df_end-->
 
 <!--articleBody-->

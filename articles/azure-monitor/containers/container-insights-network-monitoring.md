@@ -102,7 +102,7 @@ These are available in the [Bicep onboarding folder](https://github.com/microsof
 | workspaceResourceId                     | Azure Resource ID of the Azure Log Analytics Workspace                                                                 |
 | workspaceRegion                         | Azure Region of the Azure Log Analytics Workspace                                                                      |
 | enableContainerLogV2                    | Flag to indicate whether to use ContainerLogV2 or not.                                                                 |
-| enableRetinaNetworkFlowLogs             | Flag to indicate whether to enable Retina Network Flow Logs or not. This MUST be true                                  |
+| enableContainerNetworkLogs             | Flag to indicate whether to enable Container Network Logs or not. This MUST be true                                  |
 | enableSyslog                            | Flag to indicate to enable Syslog collection or not.                                                                   |
 | syslogLevels                            | Log levels for Syslog collection                                                                                       |
 | syslogFacilities                        | Facilities for Syslog collection                                                                                       |
@@ -110,7 +110,7 @@ These are available in the [Bicep onboarding folder](https://github.com/microsof
 | dataCollectionInterval                  | Data collection interval for applicable inventory and perf data collection. Default is 1m                              |
 | namespaceFilteringModeForDataCollection | Data collection namespace filtering mode for applicable inventory and perf data collection. Default is off             |
 | namespacesForDataCollection             | Namespaces for data collection for applicable for inventory and perf data collection.                                  |
-| streams                                 | Streams for data collection.  For retina networkflow logs feature, include "Microsoft-RetinaNetworkFlowLogs"           |
+| streams                                 | Streams for data collection.  For container network logs feature, include "Microsoft-ContainerNetworkLogs"           |
 | useAzureMonitorPrivateLinkScope         | Flag to indicate whether to configure Azure Monitor Private Link Scope or not.                                         |
 | azureMonitorPrivateLinkScopeResourceId  |  Azure Resource ID of the Azure Monitor Private Link Scope.                                                            |
 
@@ -135,7 +135,7 @@ Container Network Logs requires a Customer Resource Definition (CRD) to be appli
 
 #### Change table plan
 
-Container Flow Logs are ingested to the `RetinaNetworkFlowLogs` table in Log Analytics. The table currently supports the Analytics and Basic table plans. To change the table plan for the `RetinaNetworkFlowLogs`, see the [instructions here](/azure/azure-monitor/logs/logs-table-plans?tabs=portal-1#set-the-table-plan).
+Container Flow Logs ingest to the `ContainerNetworkLogs` table in Log Analytics. The table currently supports the Analytics and Basic table plans. To change the table plan for the `ContainerNetworkLogs`, see the [instructions here](/azure/azure-monitor/logs/logs-table-plans?tabs=portal-1#set-the-table-plan).
 
 #### Throttling  
 

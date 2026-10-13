@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Database for PostgreSQL
@@ -222,14 +222,13 @@ Your server's autovacuum parameter setting is OFF and the Bloat ratio (dead tupl
 
 **Impact:** High
   
-For more information, see [Autovacuum Tuning - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-autovacuum-tuning)  
+For more information, see [Autovacuum Tuning](/azure/postgresql/flexible-server/how-to-autovacuum-tuning)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: dfecf01a-aac2-4429-bc03-7de5756e8bc8  
 
 
 <!--dfecf01a-aac2-4429-bc03-7de5756e8bc8_end-->
-
 
 
 
@@ -262,7 +261,7 @@ Your server has orphaned prepared transactions. Rollback or commit the orphaned 
 
 **Impact:** High
   
-For more information, see [Autovacuum Tuning - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#prepared-statements)  
+For more information, see [Autovacuum Tuning](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#prepared-statements)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: eecd0096-23c1-4ad6-9a8d-fc55d9e8cc40  
@@ -272,14 +271,13 @@ Recommendation ID: eecd0096-23c1-4ad6-9a8d-fc55d9e8cc40
 
 
 
-
 <!--b26edab6-a8dc-4903-b29f-d3b7fb9e0f9c_begin-->
 
-#### Increase the storage limit for Hyperscale (Citus) server group  
+#### Increase the storage limit for Hyperscale (Citus) Server Group  
   
-Our internal telemetry shows that one or more nodes in the server group may be constrained because they are approaching limits for the currently provisioned storage values. This may result in degraded performance or in the server being moved to read-only mode. To ensure continued performance, we recommend increasing the provisioned disk space.  
+One or more nodes in the server group are approaching limits for the currently provisioned storage values. When a node reaches the limit, it potentially experiences degraded performance or the server is moved to read-only mode. To ensure continued performance, increase the provisioned disk space.  
   
-**Potential benefits**: Improve server performance by increasing the storage and continue to use server in read-write mode.  
+**Potential benefits**: Improved server performance  
 
 **Impact:** High
   
@@ -315,9 +313,9 @@ Recommendation ID: 6772abda-0192-4e70-bfeb-409c7e7cf73c
 
 #### Review the server for enable_indexonlyscan turned off  
   
-The enable_indexonlyscan setting is turned off for the server. Turn on the enable_indexonlyscan setting for an optimized query performance.  
+Your server has enable_indexonlyscan turned off. Turn on the enable_indexonlyscan setting to optimize query performance.  
   
-**Potential benefits**: Turn on enable_indexonlyscan for improved query performance.  
+**Potential benefits**: Turn on enable_indexonlyscan to improve query performance.  
 
 **Impact:** Medium
   

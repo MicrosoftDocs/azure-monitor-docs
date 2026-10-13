@@ -30,8 +30,6 @@ Subcategory: DisasterRecovery
 
 <!--36901a23-7263-44cb-9986-d60513ad97af_end-->
 
-
-
 <!--e1e0d94e-4805-42e6-b6b4-3bbcb4909c78_begin-->
 
 #### Enable auto-inflate on Event Hubs Standard tier  
@@ -64,26 +62,24 @@ For more information, see [Azure Event Hubs: Data streaming platform with Kafka 
 
 ResourceType: microsoft.eventhub/clusters  
 Recommendation ID: 508f935c-bd6c-4bd0-a788-78f2c611fa44  
-Subcategory: undefined
 
 <!--508f935c-bd6c-4bd0-a788-78f2c611fa44_end-->
 
-<!--4b26f946-3626-4655-b9c9-b3ae6cbbdb71_begin-->
+<!--bee1c54b-36cb-4409-bf42-f5dd57ef3406_begin-->
 
-#### Use services in regions that support availability zones  
+#### Migrate Azure Event Hubs deployments to ARM API version 2021-11-01 or later  
   
-Use regions that support availability zones for higher availability in a region. Provide redundancy across regions using geo-replication for higher availability.  
+Using ARM API version 2021-11-01 or later for Azure Event Hubs improves deployment compatibility and reliability, and provides access to current platform capabilities. Update templates, scripts, and SDKs to standardize deployments across environments.  
   
-**Potential benefits**: Zone-redundant services prevent data loss  
+**Potential benefits**: Ensures reliable Event Hubs deployments  
 
 **Impact:** High
   
-For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
+For more information, see [Steps to upgrade control plane API references for Azure Service Bus, Event Hubs, and Relay](https://techcommunity.microsoft.com/blog/messagingonazureblog/steps-to-upgrade-control-plane-api-references-for-azure-service-bus-event-hubs-a/3940126)  
 
 ResourceType: microsoft.eventhub/namespaces  
-Recommendation ID: 4b26f946-3626-4655-b9c9-b3ae6cbbdb71  
-Subcategory: undefined
+Recommendation ID: bee1c54b-36cb-4409-bf42-f5dd57ef3406  
 
-<!--4b26f946-3626-4655-b9c9-b3ae6cbbdb71_end-->
+<!--bee1c54b-36cb-4409-bf42-f5dd57ef3406_end-->
 
 <!--articleBody-->

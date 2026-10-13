@@ -1,0 +1,1301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2328" height="1104" viewBox="0 0 2328 1104" role="img" aria-labelledby="diagram-title diagram-description">
+  <title id="diagram-title">Azure Monitor overview with health models</title>
+  <desc id="diagram-description">Apps and workloads, infrastructure, the Azure platform, and custom sources send metrics, logs, and traces to Azure Monitor. Azure Monitor provides insights, visualization, analysis, and response capabilities. Health Models detect, evaluate, and triage health. The observability agent explores, investigates, and automates.</desc>
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI Semibold', 'Segoe UI', sans-serif; fill: #000; }
+      .heading { font-size: 28px; }
+      .label { font-size: 24px; text-anchor: middle; }
+      .source-label { font-size: 28px; text-anchor: middle; }
+      .panel { fill: #e6e6e6; stroke: #d8d8d8; stroke-width: 3; }
+      .data-panel { fill: #d8d8d8; }
+      .connector { fill: none; stroke: #a5a5a5; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+	#icon-metrics .st61, #icon-logs .st61 { fill: none; }
+    </style>
+    <linearGradient id="health-blue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#78b4f5"></stop>
+      <stop offset="1" stop-color="#4385d6"></stop>
+    </linearGradient>
+    <linearGradient id="health-green" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9bd66c"></stop>
+      <stop offset="1" stop-color="#5eaa35"></stop>
+    </linearGradient>
+    <linearGradient id="agent-purple" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c95f4"></stop>
+      <stop offset="1" stop-color="#7650d4"></stop>
+    </linearGradient>
+    <g id="icon-health-models">
+      <path fill="url(#health-blue)" d="M50 91C39 80 5 59 5 32C5 8 35 0 50 20C65 0 95 8 95 32C95 59 61 80 50 91Z"></path>
+      <path fill="none" stroke="#e6e6e6" stroke-width="7" stroke-linejoin="miter" d="M8 60H24L33 42L44 65L55 34L67 56L77 42H94"></path>
+      <path fill="none" stroke="#a5a5a5" stroke-width="3" d="M80 74V86M62 104V86H98V104M80 86V104"></path>
+      <g fill="url(#health-green)" stroke="#e6e6e6" stroke-width="2">
+        <circle cx="80" cy="70" r="9"></circle>
+        <circle cx="62" cy="105" r="8"></circle>
+        <circle cx="80" cy="105" r="8"></circle>
+        <circle cx="98" cy="105" r="8"></circle>
+      </g>
+    </g>
+		<linearGradient id="current-icon-blue" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#5ea0ef"/>
+			<stop offset="1" stop-color="#0078d4"/>
+		</linearGradient>
+		<linearGradient id="current-dashboard-warm" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#ff6336"/>
+			<stop offset="1" stop-color="#ffc000"/>
+		</linearGradient>
+		<linearGradient id="current-issue-cyan" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#50e6ff"/>
+			<stop offset="1" stop-color="#198ab3"/>
+		</linearGradient>
+		<g id="icon-current-dashboards">
+			<rect width="70" height="50" rx="2" fill="url(#current-dashboard-warm)"/>
+			<path d="M11 26L19 16L29 24L37 9" fill="none" stroke="#fff" stroke-width="3"/>
+			<g fill="#fff"><circle cx="11" cy="26" r="3.5"/><circle cx="19" cy="16" r="3.5"/><circle cx="29" cy="24" r="3.5"/><circle cx="37" cy="9" r="3.5"/></g>
+			<path d="M48 6V42M60 21V42" fill="none" stroke="#fff" stroke-width="6"/>
+			<path d="M7 39H39" fill="none" stroke="#fff" stroke-opacity="0.7" stroke-width="7"/>
+		</g>
+		<g id="icon-current-grafana">
+			<rect width="69" height="53" rx="2" fill="url(#current-icon-blue)"/>
+			<path fill="#fff" d="M31 6H39L42 12L49 15L53 22L50 28L51 36L45 41L39 41L34 47L27 44L25 38L18 35L17 28L21 22L20 15L27 12Z"/>
+			<circle cx="35" cy="27" r="13" fill="url(#current-icon-blue)"/>
+			<path d="M43 31C43 19 27 18 27 28C27 37 39 38 40 30C41 24 32 22 32 28" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+		</g>
+		<g id="icon-current-actions">
+			<rect width="64" height="47" rx="2" fill="url(#current-icon-blue)"/>
+			<path d="M9 11H54M9 22H37M9 33H32" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+			<path d="M48 21H58L48 35H57L38 54L45 39H38Z" fill="#ffbd02"/>
+		</g>
+		<g id="icon-current-issues">
+			<rect x="6" width="38" height="43" rx="3" fill="#5ea0ef"/>
+			<path d="M45 5H48V39" fill="none" stroke="#0078d4" stroke-width="3"/>
+			<path d="M0 28Q0 23 5 23H19L28 31H51V50Q51 54 47 54H4Q0 54 0 50Z" fill="url(#current-issue-cyan)"/>
+			<path d="M49 40L62 52" stroke="#198ab3" stroke-width="4" stroke-linecap="round"/>
+			<circle cx="44" cy="35" r="12" fill="#76bc2d"/>
+			<circle cx="44" cy="35" r="9.5" fill="#fff" stroke="#50e6ff" stroke-width="1.5"/>
+			<path d="M34 35L40 29L43 39L47 26L51 33L63 22" fill="none" stroke="#f04049" stroke-width="1.5"/>
+			<path d="M33 38L26 45L29 35Z" fill="#ffc000"/>
+		</g>
+		<g id="icon-observability-agent">
+      <rect width="80" height="80" rx="22" fill="url(#agent-purple)"></rect>
+      <path d="M53 61H17C13 61 10 58 10 54V18C10 14 13 11 17 11H53C57 11 60 14 60 18V42" fill="none" stroke="#fff" stroke-width="4"></path>
+      <path d="M23 47V29M34 47V38M45 42V24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"></path>
+      <ellipse cx="53" cy="57" rx="19" ry="14" fill="url(#agent-purple)"></ellipse>
+      <path d="M35 57C40 49 46 44 53 44S66 49 71 57C66 65 60 70 53 70S40 65 35 57Z" fill="none" stroke="#fff" stroke-width="4"></path>
+      <circle cx="53" cy="57" r="5" fill="#fff"></circle>
+    </g>
+    <style type="text/css">
+
+		.st1 {fill:#ffffff;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st2 {fill:none;stroke:#0078d7;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st3 {fill:#e6e6e6;stroke:#d8d8d8;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.25}
+		.st4 {fill:#000000;font-family:Segoe UI Semibold;font-size:1.75001em}
+		.st5 {fill:#cecece;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st6 {fill:url(#grad3-16);stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st7 {fill:url(#grad0-20);stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st8 {fill:#999999;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st9 {fill:none;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st10 {fill:#000000;font-family:Segoe UI Semibold;font-size:1.5em;font-weight:bold}
+		.st11 {fill:#198ab3;stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st12 {fill:url(#grad6-39);stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st13 {fill:#50e6ff;stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st14 {fill:#ffffff;stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st15 {fill:#76bc2d;stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st16 {fill:url(#grad0-56);stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st17 {fill:#c3f1ff;stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st18 {fill:#9cebff;stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st19 {fill:url(#grad0-70);stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st20 {fill:#000000;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.24}
+		.st21 {fill:url(#grad0-87);stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st22 {fill:none;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st23 {fill:#341a6e;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st24 {font-size:1em}
+		.st25 {fill:#b796f9;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st26 {fill:url(#grad0-140);stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st27 {fill:#0078d4;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st28 {fill:#005ba1;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st29 {fill:#5ea0ef;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st30 {fill:url(#grad0-170);stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st31 {fill:url(#grad0-174);stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st32 {fill:url(#grad0-178);stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st33 {fill:url(#grad0-182);stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st34 {fill:#0078d4;stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st35 {fill:url(#grad0-198);stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st36 {fill:url(#grad0-202);stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st37 {fill:#ffffff;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st38 {fill:url(#grad0-219);stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st39 {fill:url(#grad0-223);stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st40 {fill:url(#grad0-227);stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st41 {fill:url(#grad0-236);stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st42 {fill:#ffffff;fill-opacity:0.9;stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st43 {fill:#ffffff;fill-opacity:0.6;stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st44 {fill:#7f7f7f;font-size:1em}
+		.st45 {fill:url(#grad0-265);stroke:none;stroke-linecap:butt;stroke-width:5.04864}
+		.st46 {fill:url(#grad0-272);stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st47 {fill:url(#grad0-276);stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st48 {fill:url(#grad0-280);stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st49 {fill:#0070c0;font-family:Segoe UI Semibold;font-size:2.50001em;font-weight:bold}
+		.st50 {fill:url(#grad1-293);stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st51 {fill:#9cebff;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st52 {fill:#32bedd;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st53 {fill:#50e6ff;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st54 {fill:#f04049;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st55 {fill:url(#grad7-311);stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st56 {fill:#000000;font-family:Segoe UI Semibold;font-size:2.50001em;font-weight:bold}
+		.st57 {fill:#d8d8d8;stroke:#d8d8d8;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.25}
+		.st58 {fill:#000000;font-family:Segoe UI Semibold;font-size:1.5em}
+		.st59 {fill:url(#grad0-330);stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st60 {fill:#e6e6e6}
+		.st61 {stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st62 {fill:#198ab3;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st63 {fill:#00b0f0;stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st64 {fill:#ffffff;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st65 {fill:#da4e31;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st66 {fill:none}
+		.st67 {stroke:#a5a5a5;stroke-linecap:butt;stroke-width:2.25}
+		.st68 {marker-end:url(#mrkr3-485);stroke:#a5a5a5;stroke-linecap:round;stroke-linejoin:round;stroke-width:2}
+		.st69 {fill:#a5a5a5;fill-opacity:1;stroke:#a5a5a5;stroke-opacity:1;stroke-width:0.44247787610619}
+		.st70 {fill:#ffffff;stroke:#e6e6e6;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.25}
+		.st71 {fill:#000000;font-family:Segoe UI Semibold;font-size:1.75001em;font-weight:bold}
+		.st72 {fill:#76bc2d;stroke:none;stroke-width:34}
+		.st73 {fill:#86d633;stroke:none;stroke-width:34}
+		.st74 {fill:#999999;stroke:none;stroke-width:34}
+		.st75 {fill:#999999;fill-opacity:0.5;stroke:none;stroke-width:34}
+		.st76 {fill:#949494;stroke:none;stroke-width:34}
+		.st77 {fill:#0c0c0c;font-family:Segoe UI Semibold;font-size:1.5em}
+		.st78 {fill:#3e3e3e;stroke:none;stroke-linecap:butt;stroke-width:0.750002}
+		.st79 {fill:#b8d432;stroke:none;stroke-linecap:butt;stroke-width:0.750002}
+		.st80 {fill:#804998;stroke:none;stroke-linecap:butt;stroke-width:0.750002}
+		.st81 {fill:#59b4d9;stroke:none;stroke-linecap:butt;stroke-width:0.750002}
+		.st82 {fill:#ffffff;fill-opacity:0.25;stroke:none;stroke-linecap:butt;stroke-width:0.750002}
+		.st83 {fill:#ffffff;fill-opacity:0.2;stroke:none;stroke-linecap:butt;stroke-width:0.750002}
+		.st84 {fill:#ffffff;fill-opacity:0.4;stroke:none;stroke-linecap:butt;stroke-width:0.750002}
+		.st85 {fill:#ffffff;fill-opacity:0.15;stroke:none;stroke-linecap:butt;stroke-width:0.750002}
+		.st86 {fill:#a3a3a3;stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st87 {fill:#767676;stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st88 {fill:#32bedd;stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st89 {fill:url(#grad0-604);stroke:none;stroke-linecap:butt;stroke-width:34}
+		.st90 {fill:url(#grad0-611);stroke:none;stroke-width:34}
+		.st91 {fill:url(#grad0-615);stroke:none;stroke-width:34}
+		.st92 {fill:#000000;font-size:1em;font-weight:bold}
+		.st93 {fill:#59b4d9;stroke:none;stroke-width:12.24}
+		.st94 {fill:#57a300;stroke:none;stroke-width:12.24}
+		.st95 {fill:#0072c6;stroke:none;stroke-width:12.24}
+		.st96 {fill:#50e6ff;stroke:none;stroke-width:34}
+		.st97 {fill:#1490df;stroke:none;stroke-width:34}
+		.st98 {fill:url(#grad0-656);stroke:none;stroke-width:34}
+		.st99 {fill:#0070c0;stroke:none;stroke-linecap:butt;stroke-width:15.3}
+		.st100 {fill:#24292f;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st101 {fill:#c3f1ff;stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st102 {fill:url(#grad0-56);stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st103 {fill:url(#grad0-70);stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st104 {fill:url(#grad0-729);stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st105 {fill:url(#grad0-739);stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st106 {fill:url(#grad0-743);stroke:none;stroke-linecap:butt;stroke-width:0.75}
+		.st107 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+
+	</style>
+
+		<radialGradient id="grad3-16" cx="0.5" cy="0.5" r="0.73">
+			<stop offset="0" stop-color="#b77af4" stop-opacity="1"></stop>
+			<stop offset="0.21" stop-color="#b378f2" stop-opacity="1"></stop>
+			<stop offset="0.43" stop-color="#a672ed" stop-opacity="1"></stop>
+			<stop offset="0.65" stop-color="#9267e4" stop-opacity="1"></stop>
+			<stop offset="0.88" stop-color="#7559d8" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#624fd0" stop-opacity="1"></stop>
+		</radialGradient>
+		<linearGradient id="grad0-20" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(89.445837686356 0.5 0.5)">
+			<stop offset="0" stop-color="#f2f2f2" stop-opacity="1"></stop>
+			<stop offset="0.23" stop-color="#f1f1f2" stop-opacity="1"></stop>
+			<stop offset="0.37" stop-color="#ededf1" stop-opacity="1"></stop>
+			<stop offset="0.48" stop-color="#e7e5f0" stop-opacity="1"></stop>
+			<stop offset="0.58" stop-color="#dedbee" stop-opacity="1"></stop>
+			<stop offset="0.67" stop-color="#d3ceeb" stop-opacity="1"></stop>
+			<stop offset="0.76" stop-color="#c4bee8" stop-opacity="1"></stop>
+			<stop offset="0.84" stop-color="#b4abe5" stop-opacity="1"></stop>
+			<stop offset="0.92" stop-color="#a095e1" stop-opacity="1"></stop>
+			<stop offset="0.99" stop-color="#8b7ddc" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#897bdc" stop-opacity="1"></stop>
+		</linearGradient>
+		<radialGradient id="grad6-39" cx="1" cy="0" r="1.4">
+			<stop offset="0" stop-color="#5ea0ef" stop-opacity="1"></stop>
+			<stop offset="0.28" stop-color="#5b9fee" stop-opacity="1"></stop>
+			<stop offset="0.47" stop-color="#529bec" stop-opacity="1"></stop>
+			<stop offset="0.64" stop-color="#4394e7" stop-opacity="1"></stop>
+			<stop offset="0.79" stop-color="#2d8be1" stop-opacity="1"></stop>
+			<stop offset="0.93" stop-color="#117fd9" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#0078d4" stop-opacity="1"></stop>
+		</radialGradient>
+		<linearGradient id="grad0-56" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(-90 0.5 0.5)">
+			<stop offset="0" stop-color="#0078d4" stop-opacity="1"></stop>
+			<stop offset="0.82" stop-color="#5ea0ef" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-70" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(-90 0.5 0.5)">
+			<stop offset="0.15" stop-color="#cccccc" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#707070" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-87" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(0 0.5 0.5)">
+			<stop offset="0" stop-color="#b77af4" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#773adc" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-140" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(-90 0.5 0.5)">
+			<stop offset="0" stop-color="#773adc" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#b77af4" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-170" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(-84.6 0.5 0.5)">
+			<stop offset="0" stop-color="#5e9624" stop-opacity="1"></stop>
+			<stop offset="0.82" stop-color="#86d633" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-174" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(-89.369771843738 0.5 0.5)">
+			<stop offset="0" stop-color="#5e9624" stop-opacity="1"></stop>
+			<stop offset="0.82" stop-color="#86d633" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-178" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(-84.784845544421 0.5 0.5)">
+			<stop offset="0" stop-color="#5e9624" stop-opacity="1"></stop>
+			<stop offset="0.82" stop-color="#86d633" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-182" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(-84.784845544421 0.5 0.5)">
+			<stop offset="0" stop-color="#5e9624" stop-opacity="1"></stop>
+			<stop offset="0.82" stop-color="#86d633" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-198" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(-90 0.5 0.5)">
+			<stop offset="0" stop-color="#1988d9" stop-opacity="1"></stop>
+			<stop offset="0.9" stop-color="#54aef0" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-202" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(-90 0.5 0.5)">
+			<stop offset="0" stop-color="#198ab3" stop-opacity="1"></stop>
+			<stop offset="0.01" stop-color="#198bb4" stop-opacity="1"></stop>
+			<stop offset="0.44" stop-color="#27b2d7" stop-opacity="1"></stop>
+			<stop offset="0.79" stop-color="#2fcbed" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#32d4f5" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-219" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(-121.48146355827 0.5 0.5)">
+			<stop offset="0" stop-color="#0078d4" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#289bf2" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-223" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(65.416554844273 0.5 0.5)">
+			<stop offset="0" stop-color="#00ccf9" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#0095e6" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-227" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(75.680747519145 0.5 0.5)">
+			<stop offset="0" stop-color="#7cecff" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#50e6ff" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-236" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(90 0.5 0.5)">
+			<stop offset="0" stop-color="#6cc6b9" stop-opacity="1"></stop>
+			<stop offset="0.46" stop-color="#6ac4b7" stop-opacity="1"></stop>
+			<stop offset="0.64" stop-color="#62bdb0" stop-opacity="1"></stop>
+			<stop offset="0.77" stop-color="#56b1a4" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#258277" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-265" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(90 0.5 0.5)">
+			<stop offset="0" stop-color="#f05a28" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#fbca0a" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-272" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(36.921321580807 0.5 0.5)">
+			<stop offset="0" stop-color="#e6ad10" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#c87e0e" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-276" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(42.510447078001 0.5 0.5)">
+			<stop offset="0" stop-color="#f6d751" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#e6ad10" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-280" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(59.241604819117 0.5 0.5)">
+			<stop offset="0" stop-color="#f9e589" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#f6d751" stop-opacity="1"></stop>
+		</linearGradient>
+		<radialGradient id="grad1-293" cx="1" cy="1" r="1.4">
+			<stop offset="0.18" stop-color="#5ea0ef" stop-opacity="1"></stop>
+			<stop offset="0.56" stop-color="#5c9fee" stop-opacity="1"></stop>
+			<stop offset="0.69" stop-color="#559ced" stop-opacity="1"></stop>
+			<stop offset="0.78" stop-color="#4a97e9" stop-opacity="1"></stop>
+			<stop offset="0.86" stop-color="#3990e4" stop-opacity="1"></stop>
+			<stop offset="0.93" stop-color="#2387de" stop-opacity="1"></stop>
+			<stop offset="0.99" stop-color="#087bd6" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#0078d4" stop-opacity="1"></stop>
+		</radialGradient>
+		<radialGradient id="grad7-311" cx="0" cy="0" r="1.4">
+			<stop offset="0.19" stop-color="#8c8e90" stop-opacity="1"></stop>
+			<stop offset="0.35" stop-color="#848688" stop-opacity="1"></stop>
+			<stop offset="0.6" stop-color="#6e7071" stop-opacity="1"></stop>
+			<stop offset="0.91" stop-color="#4a4b4c" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#3e3f3f" stop-opacity="1"></stop>
+		</radialGradient>
+		<linearGradient id="grad0-330" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(0.12781289921392 0.5 0.5)">
+			<stop offset="0" stop-color="#005ba1" stop-opacity="1"></stop>
+			<stop offset="0.07" stop-color="#0060a9" stop-opacity="1"></stop>
+			<stop offset="0.355" stop-color="#0071c8" stop-opacity="1"></stop>
+			<stop offset="0.515" stop-color="#0078d4" stop-opacity="1"></stop>
+			<stop offset="0.64" stop-color="#0074cd" stop-opacity="1"></stop>
+			<stop offset="0.82" stop-color="#006abb" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#005ba1" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-604" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(-90 0.5 0.5)">
+			<stop offset="0" stop-color="#cccccc" stop-opacity="1"></stop>
+			<stop offset="0.15" stop-color="#dadada" stop-opacity="1"></stop>
+			<stop offset="0.44" stop-color="#eeeeee" stop-opacity="1"></stop>
+			<stop offset="0.725" stop-color="#fbfbfb" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#ffffff" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-611" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(-90 0.5 0.5)">
+			<stop offset="0" stop-color="#198ab3" stop-opacity="1"></stop>
+			<stop offset="0.09" stop-color="#1f9dc4" stop-opacity="1"></stop>
+			<stop offset="0.24" stop-color="#28b5d9" stop-opacity="1"></stop>
+			<stop offset="0.4" stop-color="#2dc6e9" stop-opacity="1"></stop>
+			<stop offset="0.57" stop-color="#31d1f2" stop-opacity="1"></stop>
+			<stop offset="0.78" stop-color="#32d4f5" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-615" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(90 0.5 0.5)">
+			<stop offset="0" stop-color="#c69aeb" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#6f4bb2" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-656" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(-90 0.5 0.5)">
+			<stop offset="0" stop-color="#fea11b" stop-opacity="1"></stop>
+			<stop offset="0.285" stop-color="#fea51a" stop-opacity="1"></stop>
+			<stop offset="0.545" stop-color="#feb018" stop-opacity="1"></stop>
+			<stop offset="0.8" stop-color="#ffc314" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#ffd70f" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-729" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(-90 0.5 0.5)">
+			<stop offset="0" stop-color="#5e9624" stop-opacity="1"></stop>
+			<stop offset="0.18" stop-color="#629c25" stop-opacity="1"></stop>
+			<stop offset="0.44" stop-color="#6dae2a" stop-opacity="1"></stop>
+			<stop offset="0.73" stop-color="#7fcb30" stop-opacity="1"></stop>
+			<stop offset="0.82" stop-color="#86d633" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-739" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(90 0.5 0.5)">
+			<stop offset="0" stop-color="#32d4f5" stop-opacity="1"></stop>
+			<stop offset="0.425" stop-color="#32ceef" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#32bedd" stop-opacity="1"></stop>
+		</linearGradient>
+		<linearGradient id="grad0-743" x1="0" y1="0" x2="1" y2="0" gradientTransform="rotate(-90 0.5 0.5)">
+			<stop offset="0" stop-color="#0078d4" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#5ea0ef" stop-opacity="1"></stop>
+		</linearGradient>
+
+
+
+
+
+<g id="icon-monitor">
+
+				<g>
+
+					<ellipse cx="23.7514" cy="1144.62" rx="23.7514" ry="23.6676" class="st50"></ellipse>
+				</g>
+				<g transform="translate(3.07371,-3.07371)">
+
+					<ellipse cx="20.6777" cy="1147.69" rx="20.6777" ry="20.5939" class="st37"></ellipse>
+				</g>
+				<g transform="translate(6.20331,-11.261)">
+
+					<path d="M0 1157.11 A17.4363 17.4363 -180 0 0 5.09 1168.28 L10.67 1162.69 A9.86382 9.86382 0 0 1 7.88 1157.11
+								 L0 1157.11 Z" class="st51"></path>
+				</g>
+				<g transform="translate(24.9809,-31.4077)">
+
+					<path d="M10.31 1162.81 A17.4643 17.4643 -180 0 0 -0 1158.53 L0 1166.33 A9.5285 9.5285 0 0 1 4.78 1168.28 L10.31
+								 1162.81 Z" class="st52"></path>
+				</g>
+				<g transform="translate(12.211,-31.296)">
+
+					<path d="M0 1162.69 L5.59 1168.28 A9.5285 9.5285 0 0 1 10.37 1166.33 L10.37 1158.42 A17.4643 17.4643 -180 0 0
+								 -0 1162.69 Z" class="st52"></path>
+				</g>
+				<g transform="translate(31.5195,-24.8971)">
+
+					<path d="M0 1163.51 A10.0594 10.0594 0 0 1 1.98 1168.28 L9.78 1168.28 A17.2128 17.2128 -180 0 0 5.5 1158.03 L0
+								 1163.51 Z" class="st52"></path>
+				</g>
+				<g transform="translate(6.20331,-24.8971)">
+
+					<path d="M9.78 1163.51 L4.19 1157.92 A17.2128 17.2128 -180 0 0 0 1168.28 L7.8 1168.28 A10.0594 10.0594 0 0 1
+								 9.78 1163.51 Z" class="st53"></path>
+				</g>
+				<g transform="translate(25.0088,-23.0528)">
+
+					<path d="M13.11 1162.08 A1.25743 1.25743 -180 0 0 11.51 1161.38 L0 1166.02 L0.89 1168.28 L12.41 1163.73 A1.22948
+								 1.22948 -180 0 0 13.11 1162.08 Z" class="st54"></path>
+				</g>
+				<g transform="translate(20.3983,-20.3144)">
+
+					<ellipse cx="3.35314" cy="1164.93" rx="3.35314" ry="3.35314" class="st55"></ellipse>
+				</g>
+			</g>
+<g id="icon-application">
+
+					<g transform="translate(9.72691,0)">
+
+						<path d="M8.04 1167.99 L10.05 1165.67 L10.05 1159.49 L0 1159.49 L0 1165.67 L2.02 1167.99 a0.796064 0.852472
+									 -180 0 0 0.472663 0.293037 L7.46 1168.28 a0.796064 0.852472 -180 0 0 0.572171 -0.293037 Z" class="st5"></path>
+					</g>
+					<g transform="translate(0,-8.79112)">
+
+						<path d="M14.7 1131.79 A14.6526 15.6908 -180 0 0 -0 1149.29 C0.67 1155.87 6.52 1158.93 8.18 1167.27 A1.21897
+									 1.30535 -180 0 0 9.35 1168.28 L20.05 1168.28 A1.21897 1.30535 -180 0 0 21.22 1167.27 C22.89
+									 1158.93 28.68 1155.87 29.4 1149.29 A14.6526 15.6908 -180 0 0 14.7 1131.79 Z" class="st6"></path>
+					</g>
+					<g transform="translate(5.34856,-11.8813)">
+
+						<path d="M15.47 1143.64 A3.48278 3.72957 -180 0 0 12.12 1147.48 L12.12 1149.53 L6.87 1149.53 L6.87 1147.48
+									 A3.50766 3.75621 -180 0 0 3.36 1143.64 A3.48278 3.72957 -180 0 0 0 1147.48 A3.50766 3.75621
+									 -180 0 0 3.36 1151.34 L4.95 1151.34 L4.95 1167.32 a0.895572 0.959031 -180 0 0 1.79114 0 L6.74
+									 1151.34 L12.12 1151.34 L12.12 1167.32 a0.895572 0.959031 -180 1 0 1.79114 0 L13.91 1151.34 L15.47
+									 1151.34 A3.48278 3.72957 -180 0 0 18.83 1147.48 A3.48278 3.72957 -180 0 0 15.47 1143.64 ZM4.95
+									 1149.53 L3.26 1149.53 A1.8409 1.97134 0 0 1 1.57 1147.48 A1.8409 1.97134 0 0 1 3.26 1145.43
+									 A1.8409 1.97134 0 0 1 4.95 1147.48 L4.95 1149.53 ZM15.6 1149.53 L13.91 1149.53 L13.91 1147.37
+									 A1.69164 1.8115 0 1 1 17.26 1147.37 A1.81602 1.9447 0 0 1 15.6 1149.53 Z" class="st7"></path>
+					</g>
+					<g transform="translate(9.6274,-4.52876)">
+
+						<path d="M0 1168.28 L10.15 1166.18 L10.15 1164.98 L0 1167.11 L0 1168.28 Z" class="st8"></path>
+					</g>
+					<g transform="translate(9.6274,-1.70494)">
+
+						<path d="M10.15 1166.29 L10.15 1165.11 L0 1167.27 L0 1167.38 L0.77 1168.28 L10.15 1166.29 Z" class="st8"></path>
+					</g>
+				</g>
+<g id="icon-kubernetes">
+
+					<g transform="translate(7.32236,-28.9645)">
+
+						<path d="M7.12 1154.84 L0 1156.25 L0 1166.66 L7.12 1168.28 L14.27 1165.22 L14.27 1157.46 L7.12 1154.84 Z" class="st21"></path>
+					</g>
+					<g transform="translate(7.47179,-29.0933)">
+
+						<path d="M7.25 1168.25 L13.77 1165.43 a0.498119 0.533415 -180 0 0 0.298872 -0.373391 L14.07 1158.01 a0.523025
+									 0.560086 -180 0 0 -0.323778 -0.480074 L7.15 1155.13 L6.85 1155.13 L0.37 1156.41 a0.498119 0.533415
+									 -180 0 0 -0.37359 0.480074 L0 1166.31 a0.473213 0.506745 -180 0 0 0.37359 0.506745 L6.92 1168.28
+									 a0.796991 0.853465 -180 0 0 0.323778 -0.0266708 Z" class="st22"></path>
+					</g>
+					<g transform="translate(7.32236,-28.9645)">
+
+						<path d="M0 1156.25 L0 1166.66 L7.2 1168.28 L7.2 1154.95 L0 1156.25 ZM3.04 1165.86 L1.02 1165.43 L1.02 1157.43
+									 L3.04 1157.08 L3.04 1165.86 ZM6.18 1166.47 L3.86 1166.07 L3.86 1156.92 L6.18 1156.5 L6.18 1166.47
+									 Z" class="st23"></path>
+					</g>
+					<g transform="translate(22.7392,-28.8311)">
+
+						<path d="M7.12 1154.84 L0 1156.25 L0 1166.66 L7.12 1168.28 L14.25 1165.19 L14.25 1157.46 L7.12 1154.84 Z" class="st21"></path>
+					</g>
+					<g transform="translate(22.7392,-28.8311)">
+
+						<path d="M0 1156.25 L0 1166.66 L7.15 1168.28 L7.15 1154.95 L0 1156.25 ZM3.01 1165.86 L1 1165.43 L1 1157.43
+									 L3.01 1157.08 L3.01 1165.86 ZM6.15 1166.47 L3.84 1166.07 L3.84 1156.92 L6.15 1156.47 L6.15 1166.47
+									 Z" class="st23"></path>
+					</g>
+					<g transform="translate(0.024906,-14.6156)">
+
+						<path d="M7.12 1154.84 L0 1156.25 L0 1166.66 L7.12 1168.28 L14.27 1165.22 L14.27 1157.46 L7.12 1154.84 Z" class="st21"></path>
+					</g>
+					<g transform="translate(4.54636E-14,-14.6956)">
+
+						<path d="M0 1156.34 L0 1166.66 L7.2 1168.28 L7.2 1154.95 L0 1156.34 ZM3.01 1165.96 L1 1165.51 L1 1157.51
+									 L3.01 1157.14 L3.01 1165.96 ZM6.18 1166.66 L3.86 1166.26 L3.86 1157 L6.18 1156.58 L6.18 1166.66
+									 Z" class="st23"></path>
+					</g>
+					<g transform="translate(15.3919,-14.6956)">
+
+						<path d="M7.12 1154.81 L0 1156.23 L0 1166.63 L7.12 1168.28 L14.25 1165.19 L14.25 1157.43 L7.12 1154.81 Z" class="st21"></path>
+					</g>
+					<g transform="translate(15.3919,-14.6956)">
+
+						<path d="M0 1156.23 L0 1166.66 L7.17 1168.28 L7.17 1154.95 L0 1156.23 ZM3.01 1165.86 L1 1165.4 L1 1157.4
+									 L3.01 1157.03 L3.01 1165.86 ZM6.15 1166.44 L3.84 1166.04 L3.84 1156.9 L6.15 1156.47 L6.15 1166.44
+									 Z" class="st23"></path>
+					</g>
+					<g transform="translate(30.7589,-14.5889)">
+
+						<path d="M7.12 1154.84 L0 1156.25 L0 1166.66 L7.12 1168.28 L14.27 1165.22 L14.27 1157.46 L7.12 1154.84 Z" class="st21"></path>
+					</g>
+					<g transform="translate(30.7589,-14.6956)">
+
+						<path d="M0 1156.36 L0 1166.66 L7.2 1168.28 L7.2 1154.95 L0 1156.36 ZM3.04 1165.99 L1.02 1165.54 L1.02 1157.54
+									 L3.04 1157.16 L3.04 1165.99 ZM6.18 1166.58 L3.86 1166.18 L3.86 1157.03 L6.18 1156.6 L6.18 1166.58
+									 Z" class="st23"></path>
+					</g>
+					<g transform="translate(7.14801,-0.106683)">
+
+						<path d="M7.12 1154.84 L0 1156.23 L0 1166.63 L7.12 1168.28 L14.27 1165.19 L14.27 1157.46 L7.12 1154.84 Z" class="st21"></path>
+					</g>
+					<g transform="translate(7.27254,-0.290949)">
+
+						<path d="M7.27 1168.25 L13.77 1165.59 a0.448308 0.480074 -180 0 0 0.298872 -0.480074 L14.07 1158.17 a0.498119
+									 0.533415 -180 0 0 -0.323778 -0.586757 L7.17 1155.19 a0.423402 0.453403 -180 0 0 -0.298872 0
+									 L0.4 1156.44 a0.473213 0.506745 -180 0 0 -0.398496 0.506745 L0 1166.39 a0.473213 0.506745 -180
+									 0 0 0.37359 0.506745 L6.92 1168.25 a0.572837 0.613428 -180 0 0 0.348684 0 Z" class="st22"></path>
+					</g>
+					<g transform="translate(7.14801,-0.106683)">
+
+						<path d="M0 1156.23 L0 1166.63 L7.2 1168.28 L7.2 1154.73 L0 1156.23 ZM3.04 1165.86 L1.02 1165.4 L1.02 1157.4
+									 L3.04 1157.03 L3.04 1165.86 ZM6.18 1166.47 L3.86 1166.07 L3.86 1156.9 L6.18 1156.47 L6.18 1166.47
+									 Z" class="st23"></path>
+					</g>
+					<g transform="translate(22.5399,-2.27374E-13)">
+
+						<path d="M7.12 1154.84 L0 1156.25 L0 1166.66 L7.12 1168.28 L14.27 1165.22 L14.27 1157.46 L7.12 1154.84 Z" class="st21"></path>
+					</g>
+					<g transform="translate(22.5399,-2.27374E-13)">
+
+						<path d="M0 1156.25 L0 1166.66 L7.2 1168.28 L7.2 1154.95 L0 1156.25 ZM3.04 1165.88 L1.02 1165.43 L1.02 1157.43
+									 L3.04 1157.06 L3.04 1165.88 ZM6.18 1166.47 L3.86 1166.07 L3.86 1156.92 L6.18 1156.5 L6.18 1166.47
+									 Z" class="st23"></path>
+					</g>
+				</g>
+<g id="icon-vm">
+
+					<g>
+
+						<g transform="translate(0,-11.0007)">
+
+							<path d="M0 1166.86 A1.33128 1.42561 -180 0 0 1.33 1168.28 L38.61 1168.28 A1.33128 1.42561 -180 0 0 39.94
+										 1166.86 L39.94 1141.2 A1.33128 1.42561 -180 0 0 38.61 1139.77 L1.33 1139.77 A1.33128 1.42561
+										 -180 0 0 0 1141.2 L0 1166.86 Z" class="st16"></path>
+						</g>
+						<g transform="translate(19.9687,-16.9406)">
+
+							<path d="M6.66 1155.81 L6.66 1164.1 L0 1168.28 L0 1159.97 L6.66 1155.81 Z" class="st13"></path>
+						</g>
+						<g transform="translate(13.3125,-25.2327)">
+
+							<path d="M13.31 1164.1 L6.66 1168.28 L0 1164.1 L6.66 1159.94 L13.31 1164.1 Z" class="st17"></path>
+						</g>
+						<g transform="translate(13.3125,-16.9406)">
+
+							<path d="M6.66 1159.99 L6.66 1168.28 L0 1164.1 L0 1155.81 L6.66 1159.99 Z" class="st18"></path>
+						</g>
+						<g transform="translate(13.3125,-16.9406)">
+
+							<path d="M0 1164.1 L6.66 1159.97 L6.66 1168.28 L0 1164.1 Z" class="st17"></path>
+						</g>
+						<g transform="translate(19.9687,-16.9406)">
+
+							<path d="M6.66 1164.1 L0 1159.97 L0 1168.28 L6.66 1164.1 Z" class="st18"></path>
+						</g>
+						<g transform="translate(9.98436,0)">
+
+							<path d="M17.99 1165.91 C14.04 1165.24 13.89 1162.2 13.89 1157.28 L6.06 1157.28 C6.06 1162.2 5.92 1165.24
+										 1.97 1165.91 A2.21875 2.37596 -180 0 0 0 1168.28 L19.97 1168.28 A2.21875 2.37596 -180 0
+										 0 17.99 1165.91 Z" class="st19"></path>
+						</g>
+					</g>
+				</g>
+<g id="icon-network">
+
+					<g>
+
+						<g transform="translate(-823.812,341.838) rotate(-45)">
+
+							<path d="M0 1166.71 A1.47019 1.57437 -180 0 0 1.47 1168.28 L12.27 1168.28 A1.47019 1.57437 -180 0 0 13.74
+										 1166.71 L13.74 1166.51 A1.47019 1.57437 -180 0 0 12.27 1164.93 L1.47 1164.93 A1.47019 1.57437
+										 -180 0 0 -0 1166.51 L0 1166.71 Z" class="st11"></path>
+						</g>
+						<g transform="translate(11.3693,-12.3299)">
+
+							<path d="M27.75 1147.11 A15.0283 16.0932 -180 0 0 26 1143.73 A14.5616 15.5934 -180 0 0 5.6 1140.63 L5.46
+										 1140.76 A14.4215 15.4434 -180 0 0 0.3 1149.08 C0.3 1149.63 0.07 1150.18 0 1150.73 A14.5849
+										 15.6184 -180 0 0 4.41 1164.37 A4.87719 5.22278 -180 0 0 4.92 1164.87 L5.44 1165.32 A13.4414
+										 14.3939 -180 0 0 7.63 1166.82 L7.86 1166.97 L8.26 1167.15 L8.59 1167.32 L8.94 1167.47 L9.31
+										 1167.62 L9.64 1167.75 L10.1 1167.9 L10.36 1167.9 L11.04 1168.1 L11.78 1168.27 L11.97 1168.27
+										 A4.43381 4.74798 -180 0 0 12.55 1168.27 L16.1 1168.27 A11.9013 12.7446 -180 0 0 17.88 1167.9
+										 A14.4682 15.4934 -180 0 0 23.03 1165.15 A14.8416 15.8932 -180 0 0 25.67 1162.33 A14.6549
+										 15.6933 -180 0 0 27.75 1147.11 ZM24.36 1144.78 L21.52 1144.78 A13.8148 14.7937 -180 0 0
+										 19.46 1140.63 A12.4613 13.3443 0 0 1 24.43 1144.78 L24.36 1144.78 ZM15.24 1139.79 A7.63082
+										 8.17152 0 0 1 19.44 1144.78 L15.24 1144.78 L15.24 1139.79 ZM15.24 1146.88 L20.07 1146.88
+										 A21.539 23.0652 0 0 1 20.84 1152.16 L15.24 1152.16 L15.24 1146.88 ZM15.24 1154.15 L20.84
+										 1154.15 A21.539 23.0652 0 0 1 20.07 1159.45 L15.31 1159.45 L15.31 1154.05 L15.24 1154.15
+										 ZM7.96 1150.58 A20.3722 21.8157 0 0 1 8.61 1146.78 L13.44 1146.78 L13.44 1152.06 L7.86 1152.06
+										 C7.89 1151.56 7.91 1151.06 7.96 1150.58 ZM13.44 1139.69 L13.44 1144.68 L9.26 1144.68 A7.53747
+										 8.07156 0 0 1 13.44 1139.69 ZM6.6 1142.33 A13.6048 14.5688 0 0 1 9.17 1140.73 A14.2815 15.2935
+										 -180 0 0 7.12 1144.91 L4.41 1144.91 A13.2547 14.194 0 0 1 6.6 1142.33 ZM3.13 1146.78 L6.74
+										 1146.78 A21.2589 22.7653 -180 0 0 6.18 1150.13 C6.18 1150.76 6.07 1151.41 6.07 1152.06 L1.73
+										 1152.06 A15.0749 16.1431 0 0 1 2.08 1150.18 A14.0015 14.9936 0 0 1 3.13 1146.78 ZM1.73 1154.05
+										 L6 1154.05 A21.819 23.3651 -180 0 0 6.74 1159.35 L3.13 1159.35 A12.508 13.3943 0 0 1 1.73
+										 1154.05 ZM4.41 1161.4 L7.23 1161.4 A13.8148 14.7937 -180 0 0 9.29 1165.55 A12.3913 13.2694
+										 0 0 1 4.41 1161.4 ZM13.49 1166.4 A7.53747 8.07156 0 0 1 9.31 1161.4 L13.49 1161.4 L13.49
+										 1166.4 ZM13.49 1159.3 L8.61 1159.3 A21.5623 23.0902 0 0 1 7.86 1154 L13.44 1154 L13.44 1159.35
+										 L13.49 1159.3 ZM17.06 1165.35 A4.66717 4.99787 0 0 1 15.35 1166.4 L15.35 1161.4 L19.56 1161.4
+										 A10.3611 11.0953 0 0 1 17.01 1165.4 L17.06 1165.35 ZM22.15 1163.73 A12.1113 12.9695 0 0
+										 1 19.46 1165.42 A13.8148 14.7937 -180 0 0 21.52 1161.28 L24.43 1161.28 A12.4847 13.3693
+										 0 0 1 22.15 1163.73 ZM25.6 1159.28 L22.1 1159.28 A24.8293 26.5887 -180 0 0 22.78 1153.98
+										 L27 1153.98 A12.298 13.1694 0 0 1 25.6 1159.35 L25.6 1159.28 ZM22.78 1152.06 A24.8293 26.5887
+										 -180 0 0 22.1 1146.78 L25.62 1146.78 A12.928 13.8441 0 0 1 27.02 1152.06 L22.78 1152.06
+										 Z" class="st12"></path>
+						</g>
+						<g transform="translate(4.85856,-6.94252)">
+
+							<ellipse cx="9.42767" cy="1158.19" rx="9.42767" ry="10.0957" class="st13"></ellipse>
+						</g>
+						<g transform="translate(6.86545,-9.29152)">
+
+							<ellipse cx="7.39746" cy="1160.36" rx="7.39746" ry="7.92163" class="st14"></ellipse>
+						</g>
+						<g transform="translate(7.49551,-12.3902)">
+
+							<path d="M2.96 1163.64 L4.83 1168.28 L6.72 1162.31 L8.28 1165.71 L10.22 1162.21 L13.23 1162.21 A8.33089
+										 8.9212 -180 0 0 12.95 1161.04 L9.71 1161.04 L8.45 1163.31 L6.51 1159.36 L4.71 1165.03 L3.08
+										 1161.01 L1.07 1164.93 L0 1164.93 A5.99731 6.42227 -180 0 0 0.35 1166.11 L1.7 1166.11 L2.96
+										 1163.64 Z" class="st15"></path>
+						</g>
+					</g>
+				</g>
+<g id="icon-metrics">
+
+
+					<g>
+
+						<g>
+
+							<path d="M16.13 1137.13 C7.25 1137.11 0.07 1134.47 0.08 1131.24 L0 1162.37 C0 1165.57 7.06 1168.2 15.83
+										 1168.26 L16.05 1168.26 C24.92 1168.28 32.12 1165.68 32.13 1162.45 L32.21 1131.32 C32.2 1134.55
+										 25 1137.15 16.13 1137.13 Z" class="st59"></path>
+						</g>
+						<g transform="translate(0.0715424,-31.1368)">
+
+							<path d="M32.14 1162.45 C32.14 1165.69 24.93 1168.28 16.06 1168.26 C7.19 1168.25 0 1165.6 0.01 1162.37
+										 C0.02 1159.14 7.22 1156.54 16.09 1156.56 C24.96 1156.59 32.14 1159.21 32.13 1162.45 L32.14
+										 1162.45 Z" class="st60"></path>
+							<path d="M32.14 1162.45 C32.14 1165.69 24.93 1168.28 16.06 1168.26 C7.19 1168.25 0 1165.6 0.01 1162.37
+										 C0.02 1159.14 7.22 1156.54 16.09 1156.56 C24.96 1156.59 32.14 1159.21 32.13 1162.45" class="st61"></path>
+						</g>
+						<g transform="translate(3.82354,-33.7389)">
+
+							<path d="M24.63 1164.57 C24.63 1166.63 19.11 1168.28 12.31 1168.26 C5.51 1168.24 0 1166.57 0.01 1164.51
+										 C0.01 1162.45 5.53 1160.8 12.33 1160.82 C19.13 1160.84 24.64 1162.52 24.63 1164.57 Z" class="st53"></path>
+						</g>
+						<g transform="translate(6.38317,-33.7601)">
+
+							<path d="M9.76 1165.42 A29.6265 29.6265 -180 0 0 -0 1166.81 A28.617 28.617 -180 0 0 9.75 1168.28 A28.6541
+										 28.6541 -180 0 0 19.51 1166.87 A29.6133 29.6133 -180 0 0 9.76 1165.42 Z" class="st62"></path>
+						</g>
+					</g>
+					<g transform="translate(5.71561,-5.47175)">
+
+						<g transform="translate(1.28066,-8.83122)">
+
+							<path d="M16.76 1155.93 L11.43 1165.4 L5.8 1159.67 L0 1167.19 L1.36 1168.26 L5.96 1162.32 L11.81 1168.28
+										 L18.26 1156.8 L16.76 1155.93 Z" class="st25"></path>
+						</g>
+						<g transform="translate(4.96256,-13.9272)">
+
+							<ellipse cx="2.18779" cy="1166.08" rx="2.18779" ry="2.20113" class="st26"></ellipse>
+						</g>
+						<g transform="translate(10.899,-8.47103)">
+
+							<ellipse cx="2.18779" cy="1166.08" rx="2.18779" ry="2.20113" class="st26"></ellipse>
+						</g>
+						<g transform="translate(16.4085,-18.2761)">
+
+							<ellipse cx="2.18779" cy="1166.08" rx="2.18779" ry="2.20113" class="st26"></ellipse>
+						</g>
+						<g transform="translate(1.03667E-13,-7.51054)">
+
+							<ellipse cx="2.18779" cy="1166.08" rx="2.18779" ry="2.20113" class="st26"></ellipse>
+						</g>
+						<g transform="translate(5.94973,0)">
+
+							<path d="M0 1167.91 a0.373535 0.373535 -180 0 0 0.373526 0.373526 L3.07 1168.28 a0.373535 0.373535 -180
+										 0 0 0.373526 -0.373526 L3.44 1158.55 a0.373535 0.373535 -180 0 0 -0.373526 -0.373526 L0.37
+										 1158.17 a0.373535 0.373535 -180 0 0 -0.373526 0.373526 L0 1167.91 Z" class="st29"></path>
+						</g>
+						<g transform="translate(11.4326,0)">
+
+							<path d="M0 1167.91 a0.373535 0.373535 -180 0 0 0.373526 0.373526 L3.07 1168.28 a0.373535 0.373535 -180
+										 0 0 0.373526 -0.373526 L3.44 1162.04 a0.373535 0.373535 -180 0 0 -0.373526 -0.373526 L0.37
+										 1161.67 a0.373535 0.373535 -180 0 0 -0.373526 0.373526 L0 1167.91 Z" class="st29"></path>
+						</g>
+						<g transform="translate(16.9154,0)">
+
+							<path d="M0 1167.91 a0.373535 0.373535 -180 0 0 0.373526 0.373526 L3.07 1168.28 a0.373535 0.373535 -180
+										 0 0 0.373526 -0.373526 L3.44 1155.16 a0.373535 0.373535 -180 0 0 -0.373526 -0.373526 L0.37
+										 1154.78 a0.373535 0.373535 -180 0 0 -0.373526 0.373526 L0 1167.91 Z" class="st29"></path>
+						</g>
+						<g transform="translate(0.466907,0)">
+
+							<path d="M0 1167.91 a0.373535 0.373535 -180 0 0 0.373526 0.373526 L3.07 1168.28 a0.373535 0.373535 -180
+										 0 0 0.373526 -0.373526 L3.44 1162.04 a0.373535 0.373535 -180 0 0 -0.373526 -0.373526 L0.37
+										 1161.67 a0.373535 0.373535 -180 0 0 -0.373526 0.373526 L0 1167.91 Z" class="st29"></path>
+						</g>
+					</g>
+				</g>
+<g id="icon-logs">
+
+
+					<g>
+
+						<g>
+
+							<path d="M16.13 1137.13 C7.25 1137.11 0.07 1134.47 0.08 1131.24 L0 1162.37 C0 1165.57 7.06 1168.2 15.83
+										 1168.26 L16.05 1168.26 C24.92 1168.28 32.12 1165.68 32.13 1162.45 L32.21 1131.32 C32.2 1134.55
+										 25 1137.15 16.13 1137.13 Z" class="st59"></path>
+						</g>
+						<g transform="translate(0.0715424,-31.1368)">
+
+							<path d="M32.14 1162.45 C32.14 1165.69 24.93 1168.28 16.06 1168.26 C7.19 1168.25 0 1165.6 0.01 1162.37
+										 C0.02 1159.14 7.22 1156.54 16.09 1156.56 C24.96 1156.59 32.14 1159.21 32.13 1162.45 L32.14
+										 1162.45 Z" class="st60"></path>
+							<path d="M32.14 1162.45 C32.14 1165.69 24.93 1168.28 16.06 1168.26 C7.19 1168.25 0 1165.6 0.01 1162.37
+										 C0.02 1159.14 7.22 1156.54 16.09 1156.56 C24.96 1156.59 32.14 1159.21 32.13 1162.45" class="st61"></path>
+						</g>
+						<g transform="translate(3.82354,-33.7389)">
+
+							<path d="M24.63 1164.57 C24.63 1166.63 19.11 1168.28 12.31 1168.26 C5.51 1168.24 0 1166.57 0.01 1164.51
+										 C0.01 1162.45 5.53 1160.8 12.33 1160.82 C19.13 1160.84 24.64 1162.52 24.63 1164.57 Z" class="st53"></path>
+						</g>
+						<g transform="translate(6.38317,-33.7601)">
+
+							<path d="M9.76 1165.42 A29.6265 29.6265 -180 0 0 -0 1166.81 A28.617 28.617 -180 0 0 9.75 1168.28 A28.6541
+										 28.6541 -180 0 0 19.51 1166.87 A29.6133 29.6133 -180 0 0 9.76 1165.42 Z" class="st62"></path>
+						</g>
+					</g>
+					<g transform="translate(2.99782,-1.43783)">
+
+						<g transform="translate(0,-1.83573)">
+
+							<g>
+
+								<path d="M8.09 1161.35 L15.03 1161.35 L15.03 1168.28 L8.09 1168.28 L8.09 1161.35 ZM0.96 1168.28 L6.94
+											 1168.28 L6.94 1161.35 L0 1161.35 L0 1167.32 a0.963517 0.963517 -180 0 0 0.963517 0.963517
+											 ZM0 1160.25 L6.94 1160.25 L6.94 1153.25 L0 1153.25 L0 1160.25 Z" class="st35"></path>
+							</g>
+							<g transform="translate(8.02931,-7.94901)">
+
+								<path d="M9.55 1149.09 A9.45852 9.45852 0 0 1 19.11 1158.73 A9.45852 9.45852 0 0 1 9.55 1168.28 L0
+											 1168.28 L0 1158.65 A9.45852 9.45852 0 0 1 9.55 1149.09 Z" class="st36"></path>
+							</g>
+							<g transform="translate(11.3053,-12.3972)">
+
+								<rect x="0" y="1161.73" width="2.18397" height="6.55191" class="st37"></rect>
+							</g>
+							<g transform="translate(15.6732,-12.3972)">
+
+								<rect x="0" y="1163.92" width="2.18397" height="4.36794" class="st37"></rect>
+							</g>
+							<g transform="translate(20.0411,-12.3972)">
+
+								<rect x="0" y="1159.55" width="2.18397" height="8.73588" class="st37"></rect>
+							</g>
+						</g>
+					</g>
+				</g>
+<g id="icon-workbooks">
+
+					<g>
+
+						<g>
+
+							<path d="M16.96 1137.04 L0 1154 L0 1164.71 A3.5724 3.5724 -180 0 0 3.57 1168.28 L35.71 1168.28 A3.5724
+										 3.5724 -180 0 0 39.28 1164.71 L39.28 1132.57 A3.5724 3.5724 -180 0 0 35.71 1129 L33.92 1129
+										 L21.43 1141.5 L16.96 1137.04 Z" class="st38"></path>
+						</g>
+						<g transform="translate(0.362466,-2.27374E-13)">
+
+							<path d="M16.6 1147.75 L0.92 1163.43 A2.60565 2.60565 -180 0 0 0.08 1166.44 A3.56804 3.56804 -180 0 0
+										 3.21 1168.28 L35.35 1168.28 A3.5724 3.5724 -180 0 0 38.92 1164.71 L38.92 1134.36 L21.06
+										 1152.21 L16.6 1147.75 Z" class="st39"></path>
+						</g>
+						<g transform="translate(1.93845E-13,-14.2831)">
+
+							<path d="M21.43 1155.78 L33.92 1143.29 L3.57 1143.29 A3.5724 3.5724 -180 0 0 0 1146.86 L0 1168.28 L16.96
+										 1151.32 L21.43 1155.78 Z" class="st40"></path>
+						</g>
+					</g>
+				</g>
+<g id="icon-dashboards">
+
+					<g>
+
+						<path d="M1.61 1130.9 L51.29 1130.9 A1.52162 1.52162 0 0 1 52.87 1132.33 L52.87 1166.85 A1.52162 1.52162
+									 0 0 1 51.29 1168.28 L1.61 1168.28 A1.551 1.551 0 0 1 0 1166.85 L0 1132.39 A1.55394 1.55394 0
+									 0 1 1.61 1130.9 L1.61 1130.9 Z" class="st41"></path>
+					</g>
+					<g transform="translate(36.5983,-5.31394)">
+
+						<path d="M0 1167.85 a0.431822 0.431822 -180 0 0 0.431812 0.431812 L4.07 1168.28 a0.431822 0.431822 -180 0
+									 0 0.431812 -0.431812 L4.5 1141.25 a0.431822 0.431822 -180 0 0 -0.431812 -0.431812 L0.43 1140.82
+									 a0.431822 0.431822 -180 0 0 -0.431812 0.431812 L0 1167.85 Z" class="st42"></path>
+					</g>
+					<g transform="translate(4.78225,-5.28162)">
+
+						<path d="M-0 1167.82 a0.467073 0.467073 -180 0 0 0.467062 0.467062 L24.71 1168.28 a0.467073 0.467073 -180
+									 0 0 0.467062 -0.467062 L25.18 1163.06 a0.467073 0.467073 -180 0 0 -0.467062 -0.467062 L0.47
+									 1162.59 a0.467073 0.467073 -180 0 0 -0.467062 0.467062 L0 1167.82 Z" class="st43"></path>
+					</g>
+					<g transform="translate(43.4985,-5.31394)">
+
+						<path d="M-0 1167.95 a0.331945 0.331945 -180 0 0 0.331937 0.331937 L4.17 1168.28 a0.331945 0.331945 -180
+									 0 0 0.331937 -0.331937 L4.5 1152.39 a0.331945 0.331945 -180 0 0 -0.331937 -0.331937 L0.33 1152.06
+									 a0.331945 0.331945 -180 0 0 -0.331937 0.331937 L0 1167.95 Z" class="st42"></path>
+					</g>
+					<g transform="translate(7.08525,-16.5939)">
+
+						<path d="M19.7 1153.76 L13.44 1164.9 L6.82 1158.16 L0 1167 L1.6 1168.25 L7.01 1161.27 L13.88 1168.28 L21.47
+									 1154.78 L19.7 1153.76 Z" class="st14"></path>
+					</g>
+					<g transform="translate(11.4122,-22.5835)">
+
+						<ellipse cx="2.57325" cy="1165.7" rx="2.57325" ry="2.58794" class="st14"></ellipse>
+					</g>
+					<g transform="translate(18.3887,-16.168)">
+
+						<ellipse cx="2.57325" cy="1165.7" rx="2.57325" ry="2.58794" class="st14"></ellipse>
+					</g>
+					<g transform="translate(24.8659,-27.6947)">
+
+						<ellipse cx="2.57325" cy="1165.7" rx="2.57325" ry="2.58794" class="st14"></ellipse>
+					</g>
+					<g transform="translate(5.57831,-15.04)">
+
+						<ellipse cx="2.57325" cy="1165.7" rx="2.57325" ry="2.58794" class="st14"></ellipse>
+					</g>
+				</g>
+<g id="icon-grafana">
+
+					<g>
+
+						<path d="M45.2 1140.8 C45.12 1139.97 44.98 1139.02 44.71 1137.96 C44.44 1136.92 44.03 1135.77 43.44 1134.58
+									 C42.84 1133.38 42.07 1132.15 41.07 1130.94 C40.67 1130.47 40.24 1130.01 39.78 1129.56 C40.47
+									 1126.81 38.94 1124.43 38.94 1124.43 C36.3 1124.26 34.61 1125.25 33.99 1125.7 C33.88 1125.66
+									 33.79 1125.6 33.68 1125.56 C33.23 1125.39 32.77 1125.21 32.28 1125.06 C31.81 1124.91 31.32 1124.78
+									 30.82 1124.66 C30.32 1124.53 29.82 1124.44 29.3 1124.36 C29.21 1124.34 29.13 1124.33 29.03 1124.32
+									 C27.88 1120.63 24.57 1119.09 24.57 1119.09 C20.87 1121.43 20.18 1124.71 20.18 1124.71 C20.18
+									 1124.71 20.17 1124.78 20.14 1124.9 C19.94 1124.95 19.73 1125.02 19.53 1125.08 C19.25 1125.16
+									 18.96 1125.27 18.69 1125.37 C18.41 1125.48 18.13 1125.59 17.85 1125.71 C17.29 1125.96 16.74
+									 1126.23 16.2 1126.53 C15.67 1126.82 15.15 1127.15 14.65 1127.49 L14.52 1127.43 C9.39 1125.48
+									 4.85 1127.83 4.85 1127.83 C4.43 1133.28 6.9 1136.7 7.39 1137.33 C7.26 1137.67 7.16 1138.01 7.05
+									 1138.34 C6.67 1139.58 6.38 1140.84 6.21 1142.15 C6.18 1142.34 6.15 1142.53 6.14 1142.72 C1.4
+									 1145.07 0 1149.85 0 1149.85 C3.94 1154.39 8.55 1154.68 8.55 1154.68 L8.57 1154.66 C9.15 1155.71
+									 9.83 1156.7 10.59 1157.63 C10.91 1158.02 11.24 1158.39 11.59 1158.76 C10.15 1162.88 11.79 1166.29
+									 11.79 1166.29 C16.18 1166.45 19.07 1164.37 19.68 1163.89 C20.11 1164.04 20.56 1164.18 21.01
+									 1164.29 C22.36 1164.64 23.75 1164.84 25.13 1164.9 C25.47 1164.91 25.82 1164.92 26.16 1164.91
+									 L26.65 1164.91 L26.86 1164.9 L26.86 1164.91 C28.94 1167.86 32.57 1168.28 32.57 1168.28 C35.16
+									 1165.56 35.31 1162.85 35.31 1162.27 L35.31 1162.23 L35.31 1162.14 L35.31 1162.02 C35.85 1161.64
+									 36.36 1161.24 36.85 1160.79 C37.88 1159.85 38.79 1158.78 39.55 1157.63 L39.75 1157.31 C42.68
+									 1157.47 44.75 1155.49 44.75 1155.49 C44.26 1152.44 42.53 1150.95 42.16 1150.66 C41.8 1150.38
+									 42.15 1150.65 42.12 1150.64 C42.1 1150.62 42.1 1150.61 42.1 1150.61 C42.08 1150.6 42.06 1150.58
+									 42.03 1150.57 C42.04 1150.38 42.06 1150.2 42.07 1150.01 C42.1 1149.69 42.1 1149.35 42.1 1149.02
+									 L42.1 1148.59 L42.1 1148.51 L42.08 1148.31 L42.07 1148.03 C42.07 1147.94 42.06 1147.86 42.04
+									 1147.78 C42.03 1147.7 42.03 1147.6 42.02 1147.52 L41.99 1147.26 L41.95 1147 C41.89 1146.67 41.84
+									 1146.34 41.76 1146 C41.45 1144.69 40.93 1143.44 40.27 1142.32 C39.59 1141.19 38.75 1140.2 37.79
+									 1139.36 C36.84 1138.52 35.77 1137.84 34.66 1137.34 C33.53 1136.84 32.37 1136.51 31.2 1136.37
+									 C30.62 1136.28 30.03 1136.26 29.45 1136.27 L29.02 1136.27 L28.8 1136.28 C28.72 1136.28 28.64
+									 1136.3 28.57 1136.3 C28.27 1136.32 27.97 1136.37 27.69 1136.42 C26.52 1136.64 25.43 1137.06
+									 24.46 1137.64 C23.5 1138.22 22.66 1138.94 21.98 1139.75 C21.31 1140.57 20.78 1141.48 20.41 1142.41
+									 C20.05 1143.35 19.84 1144.32 19.79 1145.26 C19.77 1145.49 19.77 1145.73 19.77 1145.96 L19.77
+									 1146.14 L19.79 1146.33 C19.8 1146.44 19.8 1146.56 19.81 1146.67 C19.86 1147.14 19.95 1147.6
+									 20.07 1148.03 C20.33 1148.92 20.74 1149.72 21.24 1150.39 C21.74 1151.07 22.35 1151.63 22.99
+									 1152.07 C23.62 1152.51 24.31 1152.82 24.99 1153.02 C25.67 1153.23 26.35 1153.31 26.98 1153.31
+									 L27.34 1153.31 C27.38 1153.31 27.42 1153.31 27.46 1153.29 C27.53 1153.29 27.59 1153.28 27.66
+									 1153.28 C27.68 1153.28 27.7 1153.28 27.72 1153.27 L27.78 1153.25 C27.82 1153.25 27.87 1153.24
+									 27.91 1153.24 C27.99 1153.23 28.06 1153.21 28.14 1153.2 C28.22 1153.19 28.29 1153.17 28.35 1153.14
+									 C28.5 1153.12 28.64 1153.06 28.77 1153.02 C29.04 1152.93 29.32 1152.82 29.55 1152.7 C29.79 1152.58
+									 30.01 1152.43 30.22 1152.29 C30.28 1152.25 30.35 1152.21 30.4 1152.16 C30.62 1151.98 30.66 1151.65
+									 30.48 1151.44 C30.33 1151.25 30.06 1151.19 29.84 1151.31 L29.68 1151.4 C29.49 1151.49 29.3 1151.57
+									 29.1 1151.64 C28.9 1151.71 28.68 1151.76 28.46 1151.8 C28.35 1151.82 28.24 1151.83 28.12 1151.84
+									 C28.07 1151.84 28.01 1151.86 27.95 1151.86 L27.62 1151.86 C27.55 1151.86 27.49 1151.86 27.42
+									 1151.84 L27.34 1151.84 C27.31 1151.84 27.27 1151.84 27.24 1151.83 C27.17 1151.82 27.12 1151.82
+									 27.05 1151.8 C26.55 1151.74 26.05 1151.59 25.57 1151.37 C25.09 1151.15 24.63 1150.85 24.21 1150.47
+									 C23.79 1150.1 23.42 1149.65 23.14 1149.13 C22.85 1148.62 22.65 1148.05 22.55 1147.45 C22.51
+									 1147.15 22.48 1146.84 22.5 1146.54 C22.5 1146.46 22.51 1146.38 22.51 1146.3 L22.51 1146.19 C22.51
+									 1146.15 22.53 1146.11 22.53 1146.07 C22.54 1145.91 22.57 1145.74 22.59 1145.58 C22.82 1144.28
+									 23.47 1143.01 24.48 1142.04 C24.73 1141.8 25.01 1141.58 25.29 1141.38 C25.57 1141.18 25.89 1141
+									 26.21 1140.85 C26.54 1140.7 26.86 1140.58 27.21 1140.49 C27.55 1140.39 27.91 1140.34 28.27 1140.3
+									 C28.45 1140.28 28.62 1140.27 28.81 1140.27 L29.23 1140.27 L29.38 1140.28 C29.78 1140.31 30.16
+									 1140.36 30.54 1140.46 C31.29 1140.62 32.04 1140.91 32.73 1141.29 C34.11 1142.06 35.29 1143.25
+									 36.01 1144.69 C36.38 1145.41 36.63 1146.18 36.76 1146.98 C36.78 1147.18 36.81 1147.38 36.82
+									 1147.59 L36.84 1147.74 L36.85 1147.89 L36.85 1148.47 C36.85 1148.56 36.84 1148.73 36.84 1148.82
+									 C36.82 1149.04 36.8 1149.27 36.77 1149.49 C36.74 1149.7 36.7 1149.92 36.66 1150.14 C36.62 1150.35
+									 36.57 1150.57 36.51 1150.77 C36.4 1151.19 36.27 1151.61 36.11 1152.03 C35.78 1152.85 35.35 1153.63
+									 34.83 1154.35 C33.79 1155.79 32.37 1156.95 30.74 1157.7 C29.93 1158.06 29.07 1158.34 28.19 1158.47
+									 C27.76 1158.55 27.31 1158.59 26.86 1158.61 L26.18 1158.61 C25.94 1158.61 25.71 1158.59 25.47
+									 1158.57 C24.52 1158.5 23.58 1158.32 22.66 1158.06 C21.75 1157.81 20.87 1157.44 20.03 1157.01
+									 C18.36 1156.11 16.86 1154.89 15.69 1153.42 C15.11 1152.68 14.6 1151.88 14.18 1151.06 C13.76
+									 1150.23 13.42 1149.35 13.17 1148.47 C12.93 1147.57 12.78 1146.67 12.71 1145.74 L12.7 1145.57
+									 L12.7 1144.8 L12.7 1144.7 L12.7 1144.36 C12.71 1143.91 12.75 1143.44 12.81 1142.98 C12.86 1142.52
+									 12.94 1142.04 13.04 1141.58 C13.13 1141.12 13.24 1140.66 13.38 1140.2 C13.63 1139.29 13.96 1138.41
+									 14.34 1137.59 C15.11 1135.93 16.11 1134.45 17.32 1133.28 C17.62 1132.98 17.93 1132.71 18.26
+									 1132.44 C18.58 1132.18 18.92 1131.93 19.27 1131.7 C19.61 1131.47 19.98 1131.27 20.34 1131.08
+									 C20.52 1130.98 20.71 1130.89 20.9 1130.81 L21.18 1130.69 L21.47 1130.56 C21.85 1130.4 22.24
+									 1130.27 22.65 1130.14 C22.74 1130.12 22.85 1130.09 22.95 1130.05 C23.04 1130.02 23.15 1130 23.24
+									 1129.97 C23.45 1129.91 23.65 1129.86 23.85 1129.82 C23.95 1129.79 24.06 1129.78 24.17 1129.75
+									 C24.27 1129.72 24.37 1129.71 24.48 1129.68 C24.59 1129.67 24.68 1129.64 24.79 1129.63 L24.94
+									 1129.6 L25.1 1129.58 C25.21 1129.56 25.3 1129.55 25.41 1129.53 C25.53 1129.52 25.64 1129.51
+									 25.76 1129.49 C25.86 1129.48 26.02 1129.47 26.12 1129.45 C26.18 1129.44 26.27 1129.44 26.33
+									 1129.43 L26.48 1129.41 L26.55 1129.4 L26.63 1129.4 C26.75 1129.39 26.86 1129.39 26.98 1129.37
+									 L27.16 1129.36 L27.3 1129.36 C27.39 1129.36 27.5 1129.35 27.59 1129.35 C27.99 1129.33 28.39
+									 1129.33 28.79 1129.35 C29.57 1129.37 30.35 1129.47 31.09 1129.6 C32.6 1129.89 34.01 1130.36
+									 35.29 1131 C36.58 1131.62 37.72 1132.39 38.72 1133.23 C38.79 1133.29 38.84 1133.34 38.91 1133.4
+									 C38.97 1133.45 39.03 1133.51 39.09 1133.56 C39.21 1133.67 39.32 1133.78 39.44 1133.89 C39.56
+									 1133.99 39.67 1134.1 39.78 1134.21 C39.89 1134.32 40 1134.43 40.1 1134.55 C40.52 1135 40.92
+									 1135.44 41.27 1135.9 C41.97 1136.81 42.54 1137.73 42.99 1138.6 L43.07 1138.76 L43.15 1138.93
+									 C43.21 1139.04 43.26 1139.14 43.3 1139.25 C43.36 1139.36 43.4 1139.46 43.45 1139.56 C43.49 1139.67
+									 43.55 1139.77 43.59 1139.88 C43.75 1140.28 43.91 1140.68 44.03 1141.04 C44.24 1141.64 44.39
+									 1142.17 44.51 1142.63 C44.55 1142.82 44.73 1142.94 44.92 1142.91 C45.12 1142.9 45.27 1142.74
+									 45.27 1142.53 C45.28 1142.04 45.27 1141.46 45.2 1140.8 Z" class="st45"></path>
+					</g>
+				</g>
+<g id="icon-power-bi">
+
+					<g>
+
+						<g transform="translate(19.8047,0)">
+
+							<path d="M16.76 1121.57 L16.76 1166.25 C16.76 1167.37 15.85 1168.28 14.72 1168.28 L2.03 1168.28 C0.91
+										 1168.28 0 1167.37 0 1166.25 L0 1121.57 C0 1120.44 0.91 1119.53 2.03 1119.53 L14.72 1119.53
+										 C15.85 1119.53 16.76 1120.44 16.76 1121.57 Z" class="st46"></path>
+						</g>
+						<g transform="translate(9.90233,0)">
+
+							<path d="M16.76 1133.75 L16.76 1168.28 L0 1168.28 L0 1133.75 C0 1132.63 0.91 1131.72 2.03 1131.72 L14.73
+										 1131.72 C15.85 1131.72 16.76 1132.63 16.76 1133.75 Z" class="st47"></path>
+						</g>
+						<g>
+
+							<path d="M0 1145.94 L0 1166.25 C0 1167.37 0.91 1168.28 2.03 1168.28 L16.76 1168.28 L16.76 1145.94 C16.76
+										 1144.82 15.85 1143.91 14.73 1143.91 L2.03 1143.91 C0.91 1143.91 0 1144.82 0 1145.94 Z" class="st48"></path>
+						</g>
+					</g>
+				</g>
+<g id="icon-metric-explorer">
+
+					<g transform="translate(2.21823,-15.2965)">
+
+						<path d="M29.02 1146.89 L19.8 1163.29 L10.05 1153.36 L0 1166.39 L2.36 1168.24 L10.33 1157.95 L20.45 1168.28
+									 L31.63 1148.39 L29.02 1146.89 Z" class="st25"></path>
+					</g>
+					<g transform="translate(8.59564,-24.1232)">
+
+						<ellipse cx="3.78947" cy="1164.47" rx="3.78947" ry="3.81258" class="st26"></ellipse>
+					</g>
+					<g transform="translate(18.878,-14.6727)">
+
+						<ellipse cx="3.78947" cy="1164.47" rx="3.78947" ry="3.81258" class="st26"></ellipse>
+					</g>
+					<g transform="translate(28.4211,-31.656)">
+
+						<ellipse cx="3.78947" cy="1164.47" rx="3.78947" ry="3.81258" class="st26"></ellipse>
+					</g>
+					<g transform="translate(1.80356E-13,-13.009)">
+
+						<ellipse cx="3.78947" cy="1164.47" rx="3.78947" ry="3.81258" class="st26"></ellipse>
+					</g>
+					<g transform="translate(10.3055,0)">
+
+						<path d="M0 1167.64 a0.646998 0.646998 -180 0 0 0.646983 0.646983 L5.31 1168.28 a0.646998 0.646998 -180 0
+									 0 0.646983 -0.646983 L5.96 1151.42 a0.646998 0.646998 -180 0 0 -0.646983 -0.646983 L0.65 1150.77
+									 a0.646998 0.646998 -180 0 0 -0.646983 0.646983 L0 1167.64 Z" class="st27"></path>
+					</g>
+					<g transform="translate(19.8023,-2.27374E-13)">
+
+						<path d="M0 1167.64 a0.646998 0.646998 -180 0 0 0.646983 0.646983 L5.31 1168.28 a0.646998 0.646998 -180 0
+									 0 0.646983 -0.646983 L5.96 1157.47 a0.646998 0.646998 -180 0 0 -0.646983 -0.646983 L0.65 1156.82
+									 a0.646998 0.646998 -180 0 0 -0.646983 0.646983 L0 1167.64 Z" class="st28"></path>
+					</g>
+					<g transform="translate(29.2991,0)">
+
+						<path d="M0 1167.64 a0.646998 0.646998 -180 0 0 0.646983 0.646983 L5.31 1168.28 a0.646998 0.646998 -180 0
+									 0 0.646983 -0.646983 L5.96 1145.55 a0.646998 0.646998 -180 0 0 -0.646983 -0.646983 L0.65 1144.9
+									 a0.646998 0.646998 -180 0 0 -0.646983 0.646983 L0 1167.64 Z" class="st28"></path>
+					</g>
+					<g transform="translate(0.808729,-2.27374E-13)">
+
+						<path d="M0 1167.64 a0.646998 0.646998 -180 0 0 0.646983 0.646983 L5.31 1168.28 a0.646998 0.646998 -180 0
+									 0 0.646983 -0.646983 L5.96 1157.47 a0.646998 0.646998 -180 0 0 -0.646983 -0.646983 L0.65 1156.82
+									 a0.646998 0.646998 -180 0 0 -0.646983 0.646983 L0 1167.64 Z" class="st29"></path>
+					</g>
+				</g>
+<g id="icon-log-analytics">
+
+
+					<g transform="translate(0.830613,-4.09532)">
+
+
+					</g>
+					<g>
+
+
+						<g>
+
+							<path d="M14.44 1155.91 L26.82 1155.91 L26.82 1168.28 L14.44 1168.28 L14.44 1155.91 ZM1.72 1168.28 L12.38
+										 1168.28 L12.38 1155.91 L0 1155.91 L0 1166.56 A1.71908 1.71908 -180 0 0 1.72 1168.28 ZM0
+										 1153.96 L12.38 1153.96 L12.38 1141.47 L0 1141.47 L0 1153.96 Z" class="st35"></path>
+						</g>
+						<g transform="translate(14.3257,-14.1824)">
+
+							<path d="M17.05 1134.05 A16.8757 16.8757 0 0 1 34.1 1151.24 A16.8757 16.8757 0 0 1 17.05 1168.28 L0 1168.28
+										 L0 1151.09 A16.8757 16.8757 0 0 1 17.05 1134.05 Z" class="st36"></path>
+						</g>
+						<g transform="translate(20.1706,-22.1189)">
+
+							<rect x="0" y="1156.59" width="3.89659" height="11.6898" class="st37"></rect>
+						</g>
+						<g transform="translate(27.9637,-22.1189)">
+
+							<rect x="0" y="1160.49" width="3.89659" height="7.79317" class="st37"></rect>
+						</g>
+						<g transform="translate(35.7569,-22.1189)">
+
+							<rect x="0" y="1152.7" width="3.89659" height="15.5863" class="st37"></rect>
+						</g>
+					</g>
+				</g>
+<g id="icon-alerts">
+
+					<g>
+
+						<g>
+
+							<path d="M36 1139.57 L36 1162.51 A1.22824 1.22824 0 0 1 34.77 1163.74 L25.2 1163.74 a0.317647 0.317647
+										 -180 0 0 -0.317647 0.296471 L24.88 1167.74 a0.592941 0.592941 0 0 1 -0.952941 0.487059 L18.17
+										 1163.8 L17.98 1163.8 L1.23 1163.8 A1.22824 1.22824 0 0 1 -0 1162.57 L0 1139.57 A1.22824
+										 1.22824 0 0 1 1.23 1138.33 L34.77 1138.33 A1.22824 1.22824 0 0 1 36 1139.57 Z" class="st104"></path>
+						</g>
+						<g transform="translate(15.4588,-13.6099)">
+
+							<path d="M3.68 1168.28 L1.23 1168.28 a0.762353 0.762353 0 0 1 -0.804706 -0.72 L0 1155.15 a0.741176 0.741176
+										 0 0 1 0.741176 -0.762353 L4.34 1154.39 a0.741176 0.741176 0 0 1 0.741176 0.783529 L4.43
+										 1167.58 a0.741176 0.741176 0 0 1 -0.741176 0.698824 Z" class="st37"></path>
+						</g>
+						<g transform="translate(16.1576,-7.93464)">
+
+							<path d="M0 1166.99 A1.29179 1.29179 -180 0 0 1.29 1168.28 L2.29 1168.28 A1.29179 1.29179 -180 0 0 3.58
+										 1166.99 L3.58 1166 A1.29179 1.29179 -180 0 0 2.29 1164.7 L1.29 1164.7 A1.29179 1.29179 -180
+										 0 0 0 1166 L0 1166.99 Z" class="st37"></path>
+						</g>
+					</g>
+				</g>
+<g id="icon-actions">
+
+					<g transform="translate(0,-26.9063)">
+
+						<path d="M0 1167.39 a0.892524 0.892524 -180 0 0 0.892503 0.892503 L25.65 1168.28 a0.892524 0.892524 -180
+									 0 0 0.892503 -0.892503 L26.54 1151.46 a0.892524 0.892524 -180 0 0 -0.892503 -0.892503 L0.89
+									 1150.56 a0.892524 0.892524 -180 0 0 -0.892503 0.892503 L0 1167.39 Z" class="st28"></path>
+					</g>
+					<g transform="translate(13.2825,-30.6076)">
+
+						<path d="M4.41 1160.54 L4.41 1165.71 L0 1168.28 L0 1163.14 L4.41 1160.54 Z" class="st53"></path>
+					</g>
+					<g transform="translate(8.84628,-35.7526)">
+
+						<path d="M8.85 1165.68 L4.44 1168.28 L0 1165.68 L4.44 1163.09 L8.85 1165.68 Z" class="st101"></path>
+					</g>
+					<g transform="translate(8.84628,-30.6076)">
+
+						<path d="M4.44 1163.14 L4.44 1168.28 L0 1165.71 L0 1160.54 L4.44 1163.14 Z" class="st51"></path>
+					</g>
+					<g transform="translate(10.4213,-16.7476)">
+
+						<path d="M0 1167.39 a0.892524 0.892524 -180 0 0 0.892503 0.892503 L25.65 1168.28 a0.892524 0.892524 -180
+									 0 0 0.892503 -0.892503 L26.54 1151.46 a0.892524 0.892524 -180 0 0 -0.892503 -0.892503 L0.89
+									 1150.56 a0.892524 0.892524 -180 0 0 -0.892503 0.892503 L0 1167.39 Z" class="st27"></path>
+					</g>
+					<g transform="translate(23.7038,-20.4226)">
+
+						<path d="M4.41 1160.54 L4.41 1165.68 L0 1168.28 L0 1163.11 L4.41 1160.54 Z" class="st53"></path>
+					</g>
+					<g transform="translate(19.2676,-25.5938)">
+
+						<path d="M8.85 1165.71 L4.44 1168.28 L0 1165.71 L4.44 1163.11 L8.85 1165.71 Z" class="st101"></path>
+					</g>
+					<g transform="translate(19.2676,-20.4226)">
+
+						<path d="M4.44 1163.11 L4.44 1168.28 L0 1165.68 L0 1160.54 L4.44 1163.11 Z" class="st51"></path>
+					</g>
+					<g transform="translate(18.0863,-6.87752)">
+
+						<path d="M0 1167.39 a0.892524 0.892524 -180 0 0 0.892503 0.892503 L25.65 1168.28 a0.892524 0.892524 -180
+									 0 0 0.892503 -0.892503 L26.54 1151.46 a0.892524 0.892524 -180 0 0 -0.892503 -0.892503 L0.89
+									 1150.56 a0.892524 0.892524 -180 0 0 -0.892503 0.892503 L0 1167.39 Z" class="st102"></path>
+					</g>
+					<g transform="translate(31.3689,-10.5525)">
+
+						<path d="M4.41 1160.54 L4.41 1165.68 L0 1168.28 L0 1163.11 L4.41 1160.54 Z" class="st53"></path>
+					</g>
+					<g transform="translate(26.9326,-15.6976)">
+
+						<path d="M8.85 1165.68 L4.44 1168.28 L0 1165.68 L4.44 1163.09 L8.85 1165.68 Z" class="st101"></path>
+					</g>
+					<g transform="translate(26.9326,-10.5525)">
+
+						<path d="M4.44 1163.14 L4.44 1168.28 L0 1165.68 L0 1160.54 L4.44 1163.14 Z" class="st51"></path>
+					</g>
+					<g transform="translate(26.9326,-10.5525)">
+
+						<path d="M0 1165.68 L4.44 1163.11 L4.44 1168.28 L0 1165.68 Z" class="st101"></path>
+					</g>
+					<g transform="translate(31.3689,-10.5525)">
+
+						<path d="M4.41 1165.68 L0 1163.11 L0 1168.28 L4.41 1165.68 Z" class="st51"></path>
+					</g>
+					<g transform="translate(24.8588,0)">
+
+						<path d="M11.81 1166.79 C9.19 1166.37 9.19 1164.48 9.19 1161.54 L3.94 1161.54 C3.94 1164.58 3.94 1166.47
+									 1.31 1166.79 A1.54876 1.54876 -180 0 0 0 1168.28 L13.13 1168.28 A1.54876 1.54876 -180 0 0 11.81
+									 1166.79 Z" class="st103"></path>
+					</g>
+				</g>
+<g id="icon-issues">
+
+
+					<g transform="translate(21.9683,-2.27374E-13)">
+
+						<path d="M20.73 1159.02 L20.73 1156.66 L20.4 1156.54 L17.87 1155.71 L17.21 1154.1 L18.49 1151.36 L16.82 1149.7
+									 L16.49 1149.86 L14.13 1151.05 L12.52 1150.39 L11.48 1147.53 L9.12 1147.53 L9 1147.86 L8.17 1150.42
+									 L6.56 1151.08 L3.86 1149.79 L2.2 1151.46 L2.36 1151.79 L3.57 1154.15 L2.9 1155.76 L0 1156.8
+									 L0 1159.16 L0.33 1159.29 L2.86 1160.12 L3.53 1161.73 L2.25 1164.45 L3.92 1166.12 L4.25 1165.96
+									 L6.61 1164.77 L8.22 1165.43 L9.26 1168.28 L11.62 1168.28 L11.75 1167.95 L12.58 1165.42 L14.19
+									 1164.76 L16.92 1166.04 L18.59 1164.38 L18.4 1164.03 L17.21 1161.67 L17.88 1160.06 L20.73 1159.02
+									 ZM10.38 1162.45 C7.87 1162.45 5.84 1160.41 5.84 1157.9 C5.84 1155.39 7.87 1153.36 10.38 1153.36
+									 C12.89 1153.36 14.93 1155.39 14.93 1157.9 C14.93 1160.41 12.89 1162.45 10.38 1162.45 C10.38
+									 1162.45 10.38 1162.45 10.38 1162.45 L10.38 1162.45 Z" class="st105"></path>
+					</g>
+					<g transform="translate(2.07834E-13,-7.33542)">
+
+						<path d="M20.97 1167.86 L20.97 1164.85 C20.68 1164.64 20.41 1164.4 20.16 1164.13 C19.75 1163.71 19.44 1163.27
+									 19.24 1162.92 C19.14 1162.74 19.07 1162.6 19.03 1162.51 L19.02 1162.48 L19.02 1159.44 L20.15
+									 1159.44 C21.19 1159.44 22.16 1159.13 22.96 1158.59 L23.46 1158.09 L24.34 1157.21 C24.88 1156.41
+									 25.19 1155.44 25.19 1154.4 L25.19 1151.22 C26.49 1150.69 27.41 1149.42 27.41 1147.94 C27.41
+									 1145.98 25.82 1144.4 23.87 1144.4 C21.91 1144.4 20.33 1145.98 20.33 1147.94 C20.33 1149.42 21.24
+									 1150.69 22.54 1151.22 L22.54 1154.4 C22.54 1155.72 21.47 1156.79 20.15 1156.79 L19.03 1156.79
+									 L19.03 1138.58 C19.03 1138.56 19.03 1138.52 19.03 1138.48 C19.04 1138.39 19.05 1138.25 19.07
+									 1138.08 C19.11 1137.73 19.19 1137.3 19.35 1136.88 C19.51 1136.46 19.72 1136.12 19.96 1135.91
+									 C20.18 1135.71 20.48 1135.56 20.97 1135.56 C22.33 1135.56 23.67 1136.02 24.65 1136.78 C25.61
+									 1137.53 26.18 1138.53 26.18 1139.68 C26.18 1140.11 26.39 1140.51 26.73 1140.76 C27.08 1141.01
+									 27.52 1141.08 27.93 1140.94 C28.17 1140.86 28.43 1140.88 28.8 1141.23 C29.21 1141.61 29.62 1142.31
+									 29.92 1143.24 C30.22 1144.16 30.36 1145.2 30.32 1146.17 C30.28 1147.16 30.04 1147.97 29.67 1148.53
+									 C29.4 1148.94 29.38 1149.46 29.61 1149.89 C29.84 1150.32 30.29 1150.59 30.78 1150.59 C31.19
+									 1150.59 31.46 1150.65 31.64 1150.74 C31.8 1150.82 31.95 1150.94 32.1 1151.17 C32.38 1151.62
+									 32.61 1152.44 32.69 1153.87 L35.35 1153.87 C35.35 1153.87 35.11 1150.98 34.35 1149.77 C33.96
+									 1149.13 33.43 1148.65 32.77 1148.34 C32.73 1148.32 32.69 1148.3 32.66 1148.28 C32.84 1147.63
+									 32.94 1146.96 32.97 1146.29 C33.03 1144.99 32.83 1143.63 32.45 1142.43 C32.07 1141.24 31.46
+									 1140.09 30.61 1139.29 C30.08 1138.79 29.42 1138.41 28.67 1138.29 C28.32 1136.8 27.42 1135.57
+									 26.28 1134.68 C24.81 1133.54 22.88 1132.9 20.97 1132.9 C19.82 1132.9 18.9 1133.3 18.19 1133.92
+									 C18 1134.09 17.84 1134.27 17.69 1134.46 C17.54 1134.27 17.37 1134.09 17.18 1133.92 C16.48 1133.3
+									 15.55 1132.9 14.41 1132.9 C12.49 1132.9 10.56 1133.54 9.09 1134.68 C7.95 1135.58 7.05 1136.8
+									 6.7 1138.29 C5.96 1138.41 5.3 1138.79 4.76 1139.29 C3.91 1140.09 3.3 1141.25 2.93 1142.43 C2.54
+									 1143.64 2.34 1144.99 2.4 1146.29 C2.43 1146.96 2.53 1147.64 2.72 1148.29 C2.68 1148.3 2.64 1148.32
+									 2.6 1148.34 C1.95 1148.65 1.42 1149.13 1.02 1149.77 C0.27 1150.99 0 1152.73 0 1154.96 C0 1157.52
+									 0.98 1159.25 2.23 1160.33 C2.96 1160.96 3.77 1161.34 4.48 1161.55 C4.73 1162.77 5.34 1164.16
+									 6.28 1165.33 C7.56 1166.93 9.55 1168.28 12.23 1168.28 C14.37 1168.28 16.06 1167.1 17.14 1165.96
+									 C17.34 1165.75 17.52 1165.54 17.69 1165.33 C17.86 1165.55 18.04 1165.76 18.24 1165.96 C19.32
+									 1167.1 20.98 1167.86 20.98 1167.86 L20.97 1167.86 ZM23.87 1147.05 C24.36 1147.05 24.75 1147.45
+									 24.75 1147.94 C24.75 1148.42 24.36 1148.82 23.87 1148.82 C23.38 1148.82 22.98 1148.42 22.98
+									 1147.94 C22.98 1147.45 23.38 1147.05 23.87 1147.05 ZM16.35 1143.07 L14.76 1143.07 C14.24 1141.77
+									 12.97 1140.85 11.48 1140.85 C9.52 1140.85 7.94 1142.44 7.94 1144.39 C7.94 1146.35 9.52 1147.93
+									 11.48 1147.93 C12.96 1147.93 14.23 1147.02 14.76 1145.72 L16.35 1145.72 L16.35 1158.09 C16.35
+									 1158.09 16.35 1158.1 16.35 1158.11 C16.35 1158.12 16.35 1158.12 16.35 1158.13 L16.35 1162.48
+									 L16.34 1162.5 C16.3 1162.6 16.23 1162.74 16.13 1162.92 C15.93 1163.27 15.62 1163.71 15.21 1164.13
+									 C14.39 1164.99 13.35 1165.63 12.22 1165.63 C10.54 1165.63 9.26 1164.8 8.36 1163.67 C7.42 1162.5
+									 7.01 1161.15 7.01 1160.41 C7.01 1159.68 6.42 1159.08 5.68 1159.08 C5.46 1159.08 4.67 1158.92
+									 3.96 1158.31 C3.31 1157.75 2.65 1156.76 2.65 1154.95 C2.65 1153.15 2.85 1152.09 3.11 1151.47
+									 C3.13 1151.47 3.14 1151.47 3.16 1151.47 L7.76 1151.47 C8.96 1151.47 9.96 1152.36 10.13 1153.51
+									 C8.84 1154.04 7.94 1155.31 7.94 1156.78 C7.94 1158.74 9.52 1160.32 11.48 1160.32 C13.43 1160.32
+									 15.02 1158.74 15.02 1156.78 C15.02 1155.29 14.1 1154.02 12.79 1153.49 C12.6 1150.88 10.42 1148.82
+									 7.76 1148.82 L5.85 1148.82 C5.81 1148.72 5.76 1148.62 5.7 1148.52 C5.33 1147.97 5.1 1147.16
+									 5.05 1146.17 C5.01 1145.2 5.16 1144.15 5.45 1143.24 C5.75 1142.3 6.17 1141.61 6.58 1141.22 C6.95
+									 1140.88 7.2 1140.86 7.44 1140.94 C7.85 1141.07 8.29 1141.01 8.64 1140.76 C8.99 1140.51 9.19
+									 1140.11 9.19 1139.68 C9.19 1138.53 9.76 1137.53 10.72 1136.77 C11.7 1136.01 13.05 1135.55 14.4
+									 1135.55 C14.89 1135.55 15.19 1135.71 15.41 1135.9 C15.66 1136.12 15.86 1136.45 16.02 1136.88
+									 C16.18 1137.29 16.26 1137.73 16.3 1138.07 C16.32 1138.24 16.33 1138.38 16.34 1138.47 C16.34
+									 1138.52 16.34 1138.56 16.34 1138.57 L16.34 1138.59 C16.34 1138.59 16.34 1143.07 16.34 1143.07
+									 L16.35 1143.07 ZM12.36 1144.4 C12.36 1144.88 11.97 1145.28 11.48 1145.28 C10.99 1145.28 10.59
+									 1144.88 10.59 1144.4 C10.59 1143.91 10.99 1143.51 11.48 1143.51 C11.97 1143.51 12.36 1143.91
+									 12.36 1144.4 ZM10.59 1156.79 C10.59 1156.3 10.99 1155.9 11.48 1155.9 C11.97 1155.9 12.36 1156.3
+									 12.36 1156.79 C12.36 1157.28 11.97 1157.67 11.48 1157.67 C10.99 1157.67 10.59 1157.28 10.59
+									 1156.79 Z" class="st106"></path>
+					</g>
+				</g>
+  </defs>
+	<rect width="2328" height="1104" fill="#fff"></rect>
+	<rect x="432" y="24" width="1872" height="1056" rx="18" fill="none" stroke="#0078d7"></rect>
+	<svg x="480" y="48" width="64" height="64" viewBox="0 1120.952392578125 47.50279998779297 47.335205078125"><use xlink:href="#icon-monitor"></use></svg>
+	<text x="560" y="96" font-size="40" fill="#0070c0" style="fill:#0070c0">Azure Monitor</text>
+  <g id="data-sources">
+		<rect class="panel" x="24" y="444" width="328" height="64" rx="14"></rect>
+		<rect class="panel" x="24" y="524" width="328" height="64" rx="14"></rect>
+		<rect class="panel" x="24" y="604" width="328" height="64" rx="14"></rect>
+		<rect x="24" y="684" width="328" height="64" rx="14" fill="#fff" stroke="#e6e6e6" stroke-width="3"></rect>
+		<text class="source-label" x="188" y="486">Apps / Workloads</text>
+		<text class="source-label" x="188" y="566">Infrastructure</text>
+		<text class="source-label" x="188" y="646">Azure Platform</text>
+		<text class="source-label" x="188" y="726">Custom Sources</text>
+		<path class="connector" d="M368 428Q384 428 384 444V748Q384 764 368 764M384 596H480M469 590L480 596L469 602"></path>
+  </g>
+  <g id="telemetry">
+		<rect class="panel" x="480" y="368" width="184" height="456" rx="14"></rect>
+		<rect class="data-panel" x="504" y="392" width="136" height="120" rx="9"></rect>
+		<rect class="data-panel" x="504" y="536" width="136" height="120" rx="9"></rect>
+		<rect class="data-panel" x="504" y="680" width="136" height="120" rx="9"></rect>
+		<text class="label" x="572" y="424">Metrics</text>
+		<text class="label" x="572" y="568">Logs</text>
+		<text class="label" x="572" y="712">Traces</text>
+		<svg x="544" y="436" width="56" height="64" viewBox="0 1125.423095703125 32.211544036865234 42.8370361328125"><use xlink:href="#icon-metrics"></use></svg>
+		<svg x="544" y="580" width="56" height="64" viewBox="0 1125.423095703125 32.211544036865234 42.8370361328125"><use xlink:href="#icon-logs"></use></svg>
+		<svg x="544" y="724" width="56" height="64" viewBox="0 1125.423095703125 32.211544036865234 42.8370361328125"><use xlink:href="#icon-logs"></use></svg>
+		<path class="connector" d="M664 596H728M717 590L728 596L717 602"></path>
+  </g>
+	<path class="connector" d="M744 144Q728 144 728 160V1032Q728 1048 744 1048M1960 144Q1976 144 1976 160V1032Q1976 1048 1960 1048"></path>
+  <g id="insights">
+		<rect class="panel" x="768" y="144" width="896" height="208" rx="14"></rect>
+		<text class="heading" x="800" y="188">Insights</text>
+		<svg x="844" y="216" width="72" height="72" viewBox="-0.09781593829393387 1122.998046875 29.59563446044922 45.2850341796875"><use xlink:href="#icon-application"></use></svg>
+		<svg x="1044" y="216" width="72" height="72" viewBox="4.546359897708227e-14 1125.87548828125 45.028900146484375 42.404541015625"><use xlink:href="#icon-kubernetes"></use></svg>
+		<svg x="1244" y="216" width="72" height="72" viewBox="-0.00000620671880824375 1128.769287109375 39.94001388549805 39.5107421875"><use xlink:href="#icon-vm"></use></svg>
+		<svg x="1444" y="216" width="72" height="72" viewBox="-0.08211454004049301 1125.1676025390625 40.17665100097656 42.7691650390625"><use xlink:href="#icon-network"></use></svg>
+		<text class="label" x="880" y="324">Application</text>
+		<text class="label" x="1080" y="324">Kubernetes</text>
+		<text class="label" x="1280" y="324">VM</text>
+		<text class="label" x="1480" y="324">Network</text>
+		<g id="additional-insights" fill="#000" aria-label="Additional insights services"><circle cx="1580" cy="252" r="4"></circle><circle cx="1596" cy="252" r="4"></circle><circle cx="1612" cy="252" r="4"></circle></g>
+  </g>
+  <g id="visualize">
+		<rect class="panel" x="768" y="376" width="896" height="208" rx="14"></rect>
+		<text class="heading" x="800" y="420">Visualize</text>
+		<svg x="880" y="448" width="72" height="72" viewBox="0 1129 39.28246307373047 39.280029296875"><use xlink:href="#icon-workbooks"></use></svg>
+		<svg x="1080" y="448" width="72" height="72" viewBox="0 0 70 50"><use xlink:href="#icon-current-dashboards"/></svg>
+		<svg x="1280" y="448" width="72" height="72" viewBox="0 0 69 53"><use xlink:href="#icon-current-grafana"/></svg>
+		<svg x="1480" y="448" width="72" height="72" viewBox="0 1119.530029296875 36.564701080322266 48.75"><use xlink:href="#icon-power-bi"></use></svg>
+		<text class="label" x="916" y="556">Workbooks</text>
+		<text class="label" x="1116" y="556">Dashboards</text>
+		<text class="label" x="1316" y="556">Grafana</text>
+		<text class="label" x="1516" y="556">Power BI</text>
+  </g>
+  <g id="analyze">
+		<rect class="panel" x="768" y="608" width="896" height="208" rx="14"></rect>
+		<text class="heading" x="800" y="652">Analyze</text>
+		<svg x="1080" y="680" width="72" height="72" viewBox="1.8035601495342696e-13 1129.0013427734375 36.00004196166992 39.28564453125"><use xlink:href="#icon-metric-explorer"></use></svg>
+		<svg x="1280" y="680" width="72" height="72" viewBox="-2.5936481051758165e-7 1119.86669921875 48.42864227294922 48.413330078125"><use xlink:href="#icon-log-analytics"></use></svg>
+		<text class="label" x="1116" y="788">Metric Explorer</text>
+		<text class="label" x="1316" y="788">Log Analytics</text>
+  </g>
+  <g id="respond">
+		<rect class="panel" x="768" y="840" width="896" height="208" rx="14"></rect>
+		<text class="heading" x="800" y="884">Respond</text>
+		<svg x="980" y="912" width="72" height="72" viewBox="-0.00005710660479962826 1138.3299560546875 36.00011444091797 30.01904296875"><use xlink:href="#icon-alerts"></use></svg>
+		<svg x="1180" y="912" width="72" height="72" viewBox="0 0 64 54"><use xlink:href="#icon-current-actions"/></svg>
+		<svg x="1380" y="912" width="72" height="72" viewBox="0 0 64 54"><use xlink:href="#icon-current-issues"/></svg>
+		<text class="label" x="1016" y="1020">Alerts</text>
+		<text class="label" x="1216" y="1020">Actions</text>
+		<text class="label" x="1416" y="1020">Issues</text>
+  </g>
+  <g id="health-models">
+		<rect class="panel" x="1696" y="144" width="240" height="904" rx="14"></rect>
+		<text class="heading" text-anchor="middle" x="1816" y="472">Health</text>
+		<text class="heading" text-anchor="middle" x="1816" y="504">Models</text>
+		<svg x="1768" y="536" width="96" height="96" viewBox="0 0 108 115"><use xlink:href="#icon-health-models"></use></svg>
+		<text class="label" x="1816" y="680">Detect</text>
+		<text class="label" x="1816" y="712">Evaluate</text>
+		<text class="label" x="1816" y="744">Triage</text>
+  </g>
+  <g id="observability-agent">
+		<rect class="panel" x="2032" y="144" width="240" height="904" rx="14"></rect>
+		<text class="heading" text-anchor="middle" x="2152" y="472">Observability</text>
+		<text class="heading" text-anchor="middle" x="2152" y="504">agent</text>
+		<svg x="2104" y="536" width="96" height="96" viewBox="-8 -8 96 96"><use xlink:href="#icon-observability-agent"></use></svg>
+		<text class="label" x="2152" y="680">Explore</text>
+		<text class="label" x="2152" y="712">Investigate</text>
+		<text class="label" x="2152" y="744">Automate</text>
+		<path class="connector" d="M2032 596H1976M1987 590L1976 596L1987 602"></path>
+  </g>
+</svg>

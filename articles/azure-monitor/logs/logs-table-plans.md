@@ -3,7 +3,7 @@ title: Configure a Table Plan in a Log Analytics Workspace
 description: Use the Auxiliary, Basic, and Analytics Logs plans to reduce costs and take advantage of advanced analytics capabilities in Azure Monitor Logs.
 ms.reviewer: adi.biran
 ms.topic: how-to
-ms.date: 05/25/2026
+ms.date: 09/21/2026
 ai-usage: ai-assisted
 
 # Customer intent: As a Log Analytics workspace administrator, I want to configure the tables in my Log Analytics workspace so that I pay less for data I use less frequently.
@@ -13,10 +13,10 @@ ai-usage: ai-assisted
 
 Log Analytics workspaces store any type of log for any purpose. They support three types of table plans to accomplish this goal: 
 
-| Table plan | Example purpose     |
-|:-----------|:------------------|
-| **Analytics**  | High-performance analytics and complex queries |
-| **Basic**     | Cost-effective storage for less frequently accessed data |
+| Table plan | Example purpose |
+|:-----------|:----------------|
+| **Analytics** | Continuous monitoring and latency-sensitive analysis | 
+| **Basic** | Troubleshooting and incident response |
 | **Auxiliary / Lake** | High-volume, verbose data for long-term, inexpensive storage and aggregated data trends |
 
 <br>
@@ -139,7 +139,7 @@ Changing a table plan requires new access behavior to data ingested after the ch
 | Table plan change | Data access behavior |
 |----|----|
 | Analytics to Auxiliary | Data ingested during the Analytics plan before the table plan change is available in the interactive query experience. A single interactive query might get the following warning if it spans the date when Auxiliary / Lake data became available:<br><br>  *"message: Table '{TableName}' has Auxiliary / Lake data starting from {TimeDate}. Query spanning this date may return partial results. Please adjust your query time range to either before or after this date."* |
-| Auxiliary to Analytics | Data ingested under the Auxiliary plan before the table plan change isn't available in the interactive query experience. To access the data ingested before the change, run a [search job](search-jobs.md#run-a-search-job) or use the [`search` REST API](basic-logs-query.md#run-a-query-on-a-basic-or-auxiliary-table). Data ingested after the change is fully available for interactive queries. |
+| Auxiliary to Analytics | Data ingested under the Auxiliary plan before the table plan change isn't available in the interactive query experience. To access the data ingested before the change, run a [search job](search-jobs.md#run-a-search-job) or use the [`search` REST API](basic-logs-query.md#run-a-query-that-includes-basic-or-auxiliary-tables). Data ingested after the change is fully available for interactive queries. |
 
 ## Related content
 

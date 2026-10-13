@@ -3,7 +3,7 @@ title: What is Azure Monitor pipeline?
 description: Learn what Azure Monitor pipeline is, when to use it, and the recommended setup sequence for edge and multicloud data collection.
 ai-usage: ai-assisted
 ms.topic: overview
-ms.date: 03/20/2026
+ms.date: 09/22/2026
 ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 ---
 
@@ -72,18 +72,19 @@ A typical deployment is shown in the preceding image and includes the following 
 
 Azure Monitor pipeline and [Azure Monitor agent (AMA)](/azure/azure-monitor/agents/azure-monitor-agent-overview) serve different purposes and are often deployed together.
 
-AMA runs on individual resources and collects telemetry directly from those resources. It's the right choice when you can install an agent on each data source and send data directly to Azure.
+Azure Monitor agent runs on each monitored machine, or as a containerized agent in a monitored Kubernetes cluster. It collects guest operating system, workload, and Kubernetes infrastructure telemetry close to the resource.
 
-Azure Monitor pipeline runs centrally and receives telemetry from any source. It's the right choice when data sources can't run an agent (for example, third-party appliances where installing software would void the warranty, network devices, or IoT hardware), or when you need centralized filtering, aggregation, and transformation before cloud ingestion.
+Azure Monitor pipeline runs off the monitored resources as centralized collection infrastructure. It receives supported telemetry over the network and fans in data from many producers before sending it to Azure Monitor.
 
 | Aspect | Azure Monitor agent | Azure Monitor pipeline |
 |:---|:---|:---|
-| Where it runs | On each individual resource (VM, server) | Centrally on an Arc-enabled Kubernetes cluster |
-| How it gets data | Collects from the resource where the agent is installed | Receives from any client that can send data over the network |
-| Best for | Resources where you can install and manage an agent | Sources that can't run an agent, or scenarios that need centralized filtering, aggregation, and transformation |
-| Scale approach | One agent per resource | Deploy on a single Arc-enabled Kubernetes cluster and [scale horizontally](./pipeline-sizing.md) by running multiple replicas to serve thousands of sources. |
+| Deployment scope | On each monitored machine or Kubernetes cluster | Centrally on an Arc-enabled Kubernetes cluster |
+| Collection pattern | Collects locally from the monitored resource | Receives supported telemetry over the network from many producers |
+| Use when | You need data from inside each resource or per-resource collection and resilience | You need centralized governance, high-volume fan-in, processing, or persistent buffering |
 
-Many architectures use both together. AMA handles per-resource collection for supported Azure and Arc-enabled resources, while Azure Monitor pipeline provides a central ingestion point for sources that can't run an agent or scenarios that need centralized filtering, aggregation, and transformation before data reaches Azure.
+Use Azure Monitor pipeline when centralized collection is the right architecture for governance, scale, processing, cost control, or resilience. It also supports sources that can't run an agent, such as network devices and appliances. Combine Azure Monitor agent and pipeline where supported when you need collection close to individual resources and centralized processing across a site or network.
+
+For guidance on selecting a collection architecture, see [Choose a topology for your operational needs](data-collection-overview.md#3-choose-a-topology-for-your-operational-needs).
 
 ## Supported configurations
 

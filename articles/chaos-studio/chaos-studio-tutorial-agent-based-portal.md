@@ -1,16 +1,19 @@
 ---
-title: Create an experiment using an agent-based fault with the portal
-description: Create an experiment that uses an agent-based fault and configure the chaos agent with the portal.
+title: Create agent-based faults in the portal (classic)
+description: Enable agent-based targets in the portal, configure a CPU pressure fault, and assign permissions for Azure Chaos Studio Experiments (classic).
 author: prasha-microsoft
 ms.topic: how-to
-ms.date: 10/14/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.reviewer: prashabora
 ms.custom: template-how-to
 ---
 
-# Create a chaos experiment that uses an agent-based fault with the Azure portal
+# Create agent-based faults in the portal (classic)
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This portal guide creates agent-based faults with Azure Chaos Studio Experiments (classic). For current-model tests, use the [CPU Pressure Scenario in Chaos Studio Workspaces](chaos-studio-scenarios.md#cpu-pressure), where the Scenario manages agent installation for supported virtual machines.
 
 You can use a chaos experiment to verify that your application is resilient to failures by causing those failures in a controlled environment. In this article, you cause a high % of CPU utilization event on a Linux virtual machine (VM) by using a chaos experiment and Azure Chaos Studio. Running this experiment can help you defend against an application from becoming resource starved.
 
@@ -95,7 +98,7 @@ When you create a chaos experiment, Chaos Studio creates a system-assigned manag
 1. Select **Review + assign** > **Review + assign**.
 
 ## Run your experiment
-You're now ready to run your experiment. To see the impact, we recommend that you open an [Azure Monitor metrics chart](../azure-monitor/essentials/tutorial-metrics.md) with your VM's CPU pressure in a separate browser tab.
+You're now ready to run your experiment. To see the impact, we recommend that you open an [Azure Monitor metrics chart](../azure-monitor/metrics/tutorial-metrics.md) with your VM's CPU pressure in a separate browser tab.
 
 1. In the **Experiments** view, select your experiment. Select **Start** > **OK**.
 

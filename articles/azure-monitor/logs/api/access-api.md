@@ -59,7 +59,7 @@ The query is passed in the request body.
 For example:
 
 ```
-https://api.loganalytics.azure.com/v1/workspaces/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
+https://api.loganalytics.azure.com/v1/workspaces/aaaabbbb-0000-cccc-1111-dddd2222eeee
 
 Body:
 {

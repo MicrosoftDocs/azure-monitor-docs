@@ -1,56 +1,68 @@
 ---
-title: Create a new Azure Monitor health model (preview)
-description: Learn how to create a new Azure Monitor health model.
-ms.topic: how-to
-ms.date: 05/25/2026
+title: Azure Monitor health model portal quickstart (preview)
+description: In this quickstart, create an Azure Monitor health model in the Azure portal, configure its managed identity, and verify the deployment.
+ms.topic: quickstart
+ms.date: 08/26/2026
 ai-usage: ai-assisted
+#customer intent: As an Azure user, I want to create my first health model in the Azure portal so that I can begin modeling my workload health.
 ---
 
-# Create a new Azure Monitor health model (preview)
+# Quickstart: Create an Azure Monitor health model in the Azure portal (preview)
 
-[Azure Monitor health models](./overview.md) help you define and track the health of your Azure workloads and the resources they depend on. Before you create a model, define the customer commitments and workload outcomes that it represents. For guidance, see [Health modeling with Azure Monitor health models](./health-modeling.md). This article describes how to create a health model in the Azure portal.
+In this quickstart, you create an Azure Monitor health model in the Azure portal, configure its managed identity, and verify that the model is ready for configuration.
 
 ## Prerequisites
-Before you create a health model, make sure you have:
 
-- Access to an Azure subscription where you can create a health model resource.
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - At least one Azure resource that you want to monitor.
 - Required monitoring data available for the signals you plan to configure.
+- At least the **Contributor** role on the resource group or inherited from the subscription.
+- The **Role Based Access Control Administrator** or **Owner** role to assign required permissions to the health model's managed identities.
 
 ## Permissions required
 
-- To create a health model, you must have at least **Contributor** role on the resource group or inherited from the subscription
-- To manage an existing health model, you must have at least **Monitoring Contributor** role on the health model.
-- To view an existing health model, you must have at least **Monitoring Reader** role on the health model.
+To manage the health model after deployment, you need at least the **Contributor** role on the model. To view it, you need at least the **Reader** role.
+
+The model's managed identity needs the **Reader** role on represented Azure resources. It needs the **Monitoring Reader** role on any Log Analytics or Azure Monitor workspaces that its signals query. Azure doesn't assign these roles automatically. Assign the required roles to each system-assigned or user-assigned identity that the model uses.
 
 ## Create a health model
-From the **Health Models** menu in the Azure portal, select **Create**.
 
-:::image type="content" source="media/create/create-from-health-model.png" lightbox="media/create/create-from-health-model.png" alt-text="Screenshot creating health model from health model menu.":::
+1. In the [Azure portal](https://portal.azure.com), search for and select **Health models**.
+1. Select **Create**.
 
-Provide the details for the new health model in the following table.
+   :::image type="content" source="media/create/create-from-health-model.png" lightbox="media/create/create-from-health-model.png" alt-text="Screenshot of the Health models page with the Create command highlighted." border="true":::
 
-| Tab | Description |
-|:---|:---|
-| **Basics** | Select the subscription, resource group, and region for the health model in addition to a descriptive name. The Azure resources don't need to be in the same subscription or resource group as the health model. |
-| **Identity** | Configure the identity that the health model uses to discover entities and access telemetry. This identity is also used by default for Azure resource entities, although you can later configure different authentication settings for specific entities. See [Permissions required](#permissions-required). |
-| **Tags** | Add any [tags](/azure/azure-resource-manager/management/tag-resources) to help categorize the health model in your environment. |
+1. On the **Basics** tab, select a subscription and resource group, enter a name for the health model, and select a supported region.
+1. On the **Identity** tab, keep the system-assigned managed identity enabled. Optionally, add a user-assigned managed identity.
+1. On the **Tags** tab, optionally add tags to categorize the health model.
+1. Select **Review + create**, and then select **Create** after validation succeeds.
 
-:::image type="content" source="media/create/create-health-model-basics.png" lightbox="media/create/create-health-model-basics.png" alt-text="Screenshot of the Basics tab for creating a new health model in the Azure portal.":::
+   :::image type="content" source="media/create/create-health-model-basics.png" lightbox="media/create/create-health-model-basics.png" alt-text="Screenshot of the Basics tab for creating a new health model in the Azure portal." border="true":::
+
+The deployment typically finishes in less than a minute.
 
 ## Identity
-Health models require one or more managed identities to access monitoring data for the resources monitored in the model and for running discoveries. On the **Identity** tab when you create the health model, you can select whether to enable a system identity and add one or more user assigned managed identities to use for the health model. These identities are available for use in the health model after creation, and you can manage them from the **Authentication settings** view in the designer.
 
-Any managed identities that you add to the health model require the following permissions. For a system assigned managed identity, these permissions are automatically assigned. For a user assigned managed identity, you must assign the following permissions.
+The managed identities you select during deployment appear under **Authentication settings** in the designer. Add an identity to the resource's **Identity** page before you create an authentication setting for it. Use authentication settings to select which managed identity accesses telemetry for specific entities.
 
-- **Monitoring Reader** on Azure resources represented by entities in the model.
-- **Monitoring Reader** on the Log Analytics workspace and Azure Monitor workspace if you create those signals.
+## Verify the health model
 
-If you don't add the identities when the health model is created, you can add them later from the designer. First add them to the **Identity** tab and then create an authentication setting that references the new identity from the **Authentication settings** view.
+1. Select **Go to resource** when the deployment finishes.
+1. On the health model **Overview** page, verify that **Provisioning state** is **Succeeded**.
+1. Under **Health**, select **Designer**. Verify that the designer contains the root entity for the new model.
 
-:::image type="content" source="media/create/authentication-settings.png" lightbox="media/create/authentication-settings.png" alt-text="Screenshot of authentication settings view.":::
+The health model is now ready for entities, relationships, and signals.
 
-## Next steps
-- [Configure a health model using the designer](./designer.md).
-- [Create a health model by using Bicep](./tutorial-bicep.md).
-- [Understand the concepts of health models](./concepts.md).
+## Clean up resources
+
+If you don't plan to continue configuring the health model, delete it to avoid retaining an unused resource.
+
+1. On the health model **Overview** page, select **Delete**.
+1. Enter the health model name, and then select **Delete**.
+
+Deleting the health model removes its entities, relationships, signals, and configuration. It doesn't delete the Azure resources that the model monitored.
+
+## Next step
+
+> [!div class="nextstepaction"]
+> [Configure a health model using the designer](./designer.md)

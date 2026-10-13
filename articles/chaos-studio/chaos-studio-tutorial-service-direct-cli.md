@@ -1,17 +1,20 @@
 ---
-title: Create an experiment using a service-direct fault with Azure CLI
-description: Create an experiment that uses a service-direct fault with the Azure CLI.
+title: Create service-direct faults with Azure CLI (classic)
+description: Script an Azure Cosmos DB failover with Azure CLI and REST requests for Azure Chaos Studio Experiments (classic), then start and inspect a run.
 author: prasha-microsoft
 ms.reviewer: prashabora
 ms.topic: how-to
-ms.date: 10/14/2024
+ai-usage: ai-assisted
+ms.date: 09/05/2026
 ms.custom: template-how-to, devx-track-azurecli
 ms.devlang: azurecli
 ---
 
-# Create a chaos experiment that uses a service-direct fault with the Azure CLI
+# Create service-direct faults with Azure CLI (classic)
 
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This Azure CLI guide tests Azure Cosmos DB failover with Azure Chaos Studio Experiments (classic). For current-model tests, check the [Chaos Studio Workspaces Scenario catalog](chaos-studio-scenarios.md) and [Workspaces CLI workflow](chaos-studio-manage-cli.md). Choose a Scenario only if its Actions cover your required outage pattern.
 
 You can use a chaos experiment to verify that your application is resilient to failures by causing those failures in a controlled environment. In this article, you cause a multi-read, single-write Azure Cosmos DB failover by using a chaos experiment and Azure Chaos Studio. Running this experiment can help you defend against data loss when a failover event occurs.
 

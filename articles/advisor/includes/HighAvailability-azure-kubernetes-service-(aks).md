@@ -53,7 +53,6 @@ For more information, see [Use the cluster autoscaler in Azure Kubernetes Servic
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 70829b1a-272b-4728-b418-8f1a56432d33  
-Subcategory: undefined
 
 <!--70829b1a-272b-4728-b418-8f1a56432d33_end-->
 
@@ -72,7 +71,6 @@ For more information, see [Use system node pools in Azure Kubernetes Service (AK
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: a9228ae7-4386-41be-b527-acd59fad3c79  
-Subcategory: undefined
 
 <!--a9228ae7-4386-41be-b527-acd59fad3c79_end-->
 
@@ -91,7 +89,6 @@ For more information, see [Use system node pools in Azure Kubernetes Service (AK
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: f31832f1-7e87-499d-a52a-120f610aba98  
-Subcategory: undefined
 
 <!--f31832f1-7e87-499d-a52a-120f610aba98_end-->
 
@@ -99,9 +96,9 @@ Subcategory: undefined
 
 <!--fac2ad84-1421-4dd3-8477-9d6e605392b4_begin-->
 
-#### Ensure B-series Virtual Machine's (VMs) aren't used in production environments  
+#### Clusters with node pools using nonrecommended B-series
   
-When a cluster has one or more node pools using a non-recommended burstable VM SKU, full vCPU capability 100% is unguaranteed. Ensure B-series VMs aren't used in production environments.  
+When a cluster has one or more node pools that use a nonrecommended burstable VM SKU, the cluster doesn't guarantee full vCPU capability at 100%. Ensure B-series VMs aren't used in production environments.
   
 **Potential benefits**: Best practice for consistent performance  
 
@@ -141,13 +138,12 @@ To avoid service disruptions, scaling restrictions, and remain supported; upgrad
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485172)  
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 863d09bd-e767-472b-9980-f32709414ade  
-Subcategory: undefined
 
 <!--863d09bd-e767-472b-9980-f32709414ade_end-->
 
@@ -159,13 +155,12 @@ Migrate to Container insights managed identity authentication before the retirem
   
 **Potential benefits**: Avoid service disruption and gain enhanced features  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500853)  
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: b005ecf0-23e2-4279-9ca2-718d1518c9fb  
-Subcategory: undefined
 
 <!--b005ecf0-23e2-4279-9ca2-718d1518c9fb_end-->
 
@@ -183,7 +178,6 @@ For more information, see [Automate upgrades of Kubernetes and node images acros
 
 ResourceType: microsoft.containerservice/fleets  
 Recommendation ID: 8aad9adb-cb6a-4ddc-b659-12d1c6ca186a  
-Subcategory: undefined
 
 <!--8aad9adb-cb6a-4ddc-b659-12d1c6ca186a_end-->
 
@@ -197,13 +191,12 @@ Microsoft encourages identifying the best approach for your environment before t
   
 **Potential benefits**: Ensure secure traffic control on Windows-based AKS clusters  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500273)  
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: ec938125-62ef-4dc5-b7b1-257eb8d006d9  
-Subcategory: undefined
 
 <!--ec938125-62ef-4dc5-b7b1-257eb8d006d9_end-->
 
@@ -221,7 +214,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 0e15044d-e326-4281-bbe1-1e35b32308ec  
-Subcategory: undefined
 
 <!--0e15044d-e326-4281-bbe1-1e35b32308ec_end-->
 
@@ -241,7 +233,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 91594754-953c-4eda-ac71-7b8e2e9b0e74  
-Subcategory: undefined
 
 <!--91594754-953c-4eda-ac71-7b8e2e9b0e74_end-->
 
@@ -253,13 +244,12 @@ Managed NGINX Ingress via the AKS Application Routing add-on is retiring. Plan m
   
 **Potential benefits**: Avoid service interruption  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=555839)  
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 40985a2e-6876-4a4c-902e-c85d06272935  
-Subcategory: undefined
 
 <!--40985a2e-6876-4a4c-902e-c85d06272935_end-->
 
@@ -271,13 +261,12 @@ Standard_HC44rs, Standard_HC44-16rs, and Standard_HC44-32rs virtual machine size
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Migrate your HC-series virtual machines by May 31, 2027 - Azure Virtual Machines](/azure/virtual-machines/sizes/retirement/hc-series-retirement)  
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: c7507a57-0abf-47af-81bb-819a675bc956  
-Subcategory: undefined
 
 <!--c7507a57-0abf-47af-81bb-819a675bc956_end-->
 
@@ -295,7 +284,6 @@ For more information, see [Migrate your HBv2-series virtual machines by May 31, 
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 10378caa-f4fe-48f3-9893-6bdec79687b2  
-Subcategory: undefined
 
 <!--10378caa-f4fe-48f3-9893-6bdec79687b2_end-->
 
@@ -313,7 +301,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 00dbcc9d-50d4-44ef-bc21-c15785cddf42  
-Subcategory: undefined
 
 <!--00dbcc9d-50d4-44ef-bc21-c15785cddf42_end-->
 
@@ -331,8 +318,311 @@ For more information, see [Migrate your NP-series virtual machines by May 31, 20
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 1f0dbe45-11b2-44e5-a6e6-676f599f786f  
-Subcategory: undefined
 
 <!--1f0dbe45-11b2-44e5-a6e6-676f599f786f_end-->
+
+<!--4686c4de-4652-475b-95a5-08f6518424a9_begin-->
+
+#### Kubenet networking for Azure Kubernetes Service (AKS) is retiring  
+  
+After the retirement date, workloads running on kubenet networking for AKS aren't supported.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485172)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 4686c4de-4652-475b-95a5-08f6518424a9  
+
+<!--4686c4de-4652-475b-95a5-08f6518424a9_end-->
+
+<!--73d80d39-3c2c-4baa-908c-82d76027ab14_begin-->
+
+#### Kubernetes workloads is stopping support of Windows Server 2019  
+  
+Windows Server 2019 retires when Kubernetes 1.32 reaches the end of platform support. On Kubernetes 1.33 and later, creation of new Windows Server 2019 node pools is blocked.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Upgrade the Operating System (OS) Version for your Azure Kubernetes Service (AKS) Windows Workloads - Azure Kubernetes Service](/azure/aks/upgrade-windows-os)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 73d80d39-3c2c-4baa-908c-82d76027ab14  
+
+<!--73d80d39-3c2c-4baa-908c-82d76027ab14_end-->
+
+<!--2c717abc-d6b0-4588-aa10-8ecaec0a33b4_begin-->
+
+#### Migrate Windows Server 2022 to a supported version for Kubernetes workloads  
+  
+Windows Server 2022 retires when Kubernetes 1.34 reaches the end of platform support. On Kubernetes 1.35 and later, creation of new Windows Server 2022 node pools is blocked.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Upgrade the Operating System (OS) Version for your Azure Kubernetes Service (AKS) Windows Workloads - Azure Kubernetes Service](/azure/aks/upgrade-windows-os)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 2c717abc-d6b0-4588-aa10-8ecaec0a33b4  
+
+<!--2c717abc-d6b0-4588-aa10-8ecaec0a33b4_end-->
+
+<!--66e6be23-79fa-464a-b1b6-dfce922075c3_begin-->
+
+#### Ubuntu 18.04 on Azure Kubernetes Service is being retired  
+  
+To avoid service disruptions, scaling restrictions, and remain supported, upgrade to a supported Kubernetes version.
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485790)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 66e6be23-79fa-464a-b1b6-dfce922075c3  
+
+<!--66e6be23-79fa-464a-b1b6-dfce922075c3_end-->
+
+<!--7c4f5f17-03a6-4bc7-b59d-4e565f8dba87_begin-->
+
+#### Ubuntu 20.04 LTS support is being retired  
+  
+Ubuntu 20.04 LTS support is being retired.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/support-for-ubuntu-2004-lts-for-batch-pools-will-be-retired-on-23-april-2025/)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 7c4f5f17-03a6-4bc7-b59d-4e565f8dba87  
+
+<!--7c4f5f17-03a6-4bc7-b59d-4e565f8dba87_end-->
+
+<!--b85966b5-4c36-475f-b230-d8a6e31c1375_begin-->
+
+#### Upgrade your AKS cluster from 1.31 LTS Kubernetes version  
+  
+Azure Kubernetes Service retires 1.31 LTS Kubernetes version. To stay within supported versions and service-level agreements (SLA), upgrade to a supported version within 30 days after Azure removes version 1.31 LTS Kubernetes version.
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: b85966b5-4c36-475f-b230-d8a6e31c1375  
+
+<!--b85966b5-4c36-475f-b230-d8a6e31c1375_end-->
+
+<!--7dcef62e-792c-49dc-b36a-1938829c449c_begin-->
+
+#### Upgrade your AKS cluster from 1.32 Kubernetes Official version  
+  
+Azure Kubernetes Service retires 1.32 Kubernetes Official version. To stay within supported versions and service-level agreements (SLA), upgrade to a supported version within 30 days after Azure removes version 1.32 Kubernetes Official version.
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 7dcef62e-792c-49dc-b36a-1938829c449c  
+
+<!--7dcef62e-792c-49dc-b36a-1938829c449c_end-->
+
+<!--11112bf2-7226-486c-94b3-cff3ea6b59e2_begin-->
+
+#### Upgrade your AKS cluster from 1.32 LTS Kubernetes version  
+  
+Azure Kubernetes Service retires 1.32 LTS Kubernetes version. To stay within supported versions and service-level agreements (SLA), upgrade to a supported version within 30 days after Azure removes version 1.32 LTS Kubernetes version.
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 11112bf2-7226-486c-94b3-cff3ea6b59e2  
+
+<!--11112bf2-7226-486c-94b3-cff3ea6b59e2_end-->
+
+<!--cf2add1a-e133-4562-92a0-4bd39b2f659b_begin-->
+
+#### Upgrade your AKS cluster from 1.33 Kubernetes Official version  
+  
+Azure Kubernetes Service retires 1.33 Kubernetes Official version. To stay within supported versions and service-level agreements (SLA), upgrade to a supported version within 30 days after Azure removes version 1.33 Kubernetes Official version.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: cf2add1a-e133-4562-92a0-4bd39b2f659b  
+
+<!--cf2add1a-e133-4562-92a0-4bd39b2f659b_end-->
+
+<!--56b606bb-1363-4fc0-91ef-b26127579d38_begin-->
+
+#### Upgrade your AKS cluster from 1.33 LTS Kubernetes version  
+  
+Azure Kubernetes Service retires 1.33 LTS Kubernetes version. To stay within supported versions and service-level agreements (SLA), upgrade to a supported version within 30 days after Azure removes version 1.33 LTS Kubernetes version.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 56b606bb-1363-4fc0-91ef-b26127579d38  
+
+<!--56b606bb-1363-4fc0-91ef-b26127579d38_end-->
+
+<!--0b1bf3f1-eb3e-4855-b9a5-06cde224c60d_begin-->
+
+#### Upgrade your AKS cluster from 1.34 Kubernetes Official version  
+  
+Azure Kubernetes Service retires 1.34 Kubernetes Official version. To stay within supported versions and service-level agreements (SLA), upgrade to a supported version within 30 days after Azure removes version 1.34 Kubernetes Official version.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 0b1bf3f1-eb3e-4855-b9a5-06cde224c60d  
+
+<!--0b1bf3f1-eb3e-4855-b9a5-06cde224c60d_end-->
+
+<!--997ec7aa-2f8d-4268-9ac0-4e8147cbe9d7_begin-->
+
+#### Upgrade your AKS cluster from 1.34 LTS Kubernetes version  
+  
+Azure Kubernetes Service retires 1.34 LTS Kubernetes version. To stay within supported versions and service-level agreements (SLA), upgrade to a supported version within 30 days after Azure removes version 1.34 LTS Kubernetes version.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 997ec7aa-2f8d-4268-9ac0-4e8147cbe9d7  
+
+<!--997ec7aa-2f8d-4268-9ac0-4e8147cbe9d7_end-->
+
+<!--e228c486-197f-415c-8b93-5e2b07458c17_begin-->
+
+#### Upgrade your AKS cluster from 1.35 Kubernetes Official version  
+  
+Azure Kubernetes Service retires 1.35 Kubernetes Official version. To stay within supported versions and service-level agreements (SLA), upgrade to a supported version within 30 days after Azure removes version 1.35 Kubernetes Official version.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: e228c486-197f-415c-8b93-5e2b07458c17  
+
+<!--e228c486-197f-415c-8b93-5e2b07458c17_end-->
+
+<!--af3198f6-7691-4d61-8e30-da79088eb579_begin-->
+
+#### Upgrade your AKS cluster from 1.35 LTS Kubernetes version  
+  
+Azure Kubernetes Service retires 1.35 LTS Kubernetes version. To stay within supported versions and service-level agreements (SLA), upgrade to a supported version within 30 days after Azure removes version 1.35 LTS Kubernetes version.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: af3198f6-7691-4d61-8e30-da79088eb579  
+
+<!--af3198f6-7691-4d61-8e30-da79088eb579_end-->
+
+<!--e828d5b8-b7bd-47b8-ac15-30e825ccdcfe_begin-->
+
+#### Upgrade your AKS cluster from 1.36 Kubernetes Official version  
+  
+Azure Kubernetes Service retires 1.36 Kubernetes Official version. To stay within supported versions and service-level agreements (SLA), upgrade to a supported version within 30 days after Azure removes version 1.36 Kubernetes Official version.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: e828d5b8-b7bd-47b8-ac15-30e825ccdcfe  
+
+<!--e828d5b8-b7bd-47b8-ac15-30e825ccdcfe_end-->
+
+<!--c540fc0a-d78a-4b6a-84df-c97dae512b2d_begin-->
+
+#### Upgrade your AKS cluster from 1.37 Kubernetes Official version  
+  
+Azure Kubernetes Service retires 1.37 Kubernetes Official version. To stay within supported versions and service-level agreements (SLA), upgrade to a supported version within 30 days after Azure removes version 1.37 Kubernetes Official version.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: c540fc0a-d78a-4b6a-84df-c97dae512b2d  
+
+<!--c540fc0a-d78a-4b6a-84df-c97dae512b2d_end-->
+
+<!--cc60a05a-1e40-403f-9790-28f310d54249_begin-->
+
+#### Upgrade your AKS cluster from 1.37 LTS Kubernetes version  
+  
+Azure Kubernetes Service retires 1.37 LTS Kubernetes version. To stay within supported versions and service-level agreements (SLA), upgrade to a supported version within 30 days after Azure removes version 1.37 LTS Kubernetes version.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: cc60a05a-1e40-403f-9790-28f310d54249  
+
+<!--cc60a05a-1e40-403f-9790-28f310d54249_end-->
+
+<!--3afd0e0e-36bd-444b-97d7-d1e85d44066d_begin-->
+
+#### Upgrade your AKS cluster to a supported long-term support (LTS) version  
+  
+Azure Kubernetes Service retires 1.30 LTS version. To stay within supported versions and service-level agreements (SLA), upgrade to a supported version within 30 days after Azure removes version 1.30 LTS.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 3afd0e0e-36bd-444b-97d7-d1e85d44066d  
+
+<!--3afd0e0e-36bd-444b-97d7-d1e85d44066d_end-->
 
 <!--articleBody-->

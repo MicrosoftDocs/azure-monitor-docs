@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Compute/virtualMachines
 description: Reference for Microsoft.Compute/virtualMachines metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 09/08/2026
 ms.custom: Microsoft.Compute/virtualMachines, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -99,6 +99,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Compute/
 |**VM Uncached Bandwidth Consumed Percentage**<br><br>Percentage of uncached disk bandwidth consumed by the VM. Only available on VM series that support premium storage. |`VM Uncached Bandwidth Consumed Percentage` | No | Percent |Average |\<none\>|PT1M |Yes|
 |**VM Uncached IOPS Consumed Percentage**<br><br>Percentage of uncached disk IOPS consumed by the VM. Only available on VM series that support premium storage. |`VM Uncached IOPS Consumed Percentage` | No | Percent |Average |\<none\>|PT1M |Yes|
 |**VM Availability Metric**<br><br>Measure of availability of virtual machines over time. |`VmAvailabilityMetric` | No | Count |Average, Minimum, Maximum |`Context`|PT1M |Yes|
+|**VM Time Offset**<br><br>Time offset (drift) of the VM's clock compared to the Azure time source, in nanoseconds. |`VMTimeOffset` | No | Count |Average, Minimum, Maximum |`CompliantFlag`|PT1M |Yes|
 
 ## Next steps
 

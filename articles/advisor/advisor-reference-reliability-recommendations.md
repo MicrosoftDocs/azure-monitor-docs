@@ -4,7 +4,7 @@ description: Full list of available reliability recommendations in Advisor.
 author: kanika1894
 ms.author: kapasrij
 ms.topic: article
-ms.date: 08/11/2026
+ms.date: 05/26/2026
 ---
 
 # Reliability recommendations
@@ -17,16 +17,11 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 1. On the **Advisor** dashboard, select the **Reliability** tab.
 
-
-[!INCLUDE [HighAvailability-agfood-platform.md](./includes/HighAvailability-agfood-platform.md)]
-
 [!INCLUDE [HighAvailability-api-management.md](./includes/HighAvailability-api-management.md)]
 
 [!INCLUDE [HighAvailability-app-service-certificates.md](./includes/HighAvailability-app-service-certificates.md)]
 
 [!INCLUDE [HighAvailability-app-service.md](./includes/HighAvailability-app-service.md)]
-
-[!INCLUDE [HighAvailability-application-gateway-for-containers.md](./includes/HighAvailability-application-gateway-for-containers.md)]
 
 [!INCLUDE [HighAvailability-application-gateway.md](./includes/HighAvailability-application-gateway.md)]
 
@@ -40,11 +35,9 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-arc-enabled-servers.md](./includes/HighAvailability-azure-arc-enabled-servers.md)]
 
-[!INCLUDE [HighAvailability-azure-blueprints.md](./includes/HighAvailability-azure-blueprints.md)]
-
 [!INCLUDE [HighAvailability-azure-cache-for-redis.md](./includes/HighAvailability-azure-cache-for-redis.md)]
 
-[!INCLUDE [HighAvailability-azure-communication-services.md](./includes/HighAvailability-azure-communication-services.md)]
+[!INCLUDE [highavailability-azure-communication-services.md](./includes/highavailability-azure-communication-services.md)]
 
 [!INCLUDE [HighAvailability-azure-container-apps.md](./includes/HighAvailability-azure-container-apps.md)]
 
@@ -52,13 +45,21 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-data-explorer.md](./includes/HighAvailability-azure-data-explorer.md)]
 
+[!INCLUDE [highavailability-azure-database-for-mariadb.md](./includes/highavailability-azure-database-for-mariadb.md)]
+
 [!INCLUDE [HighAvailability-azure-database-for-mysql.md](./includes/HighAvailability-azure-database-for-mysql.md)]
 
 [!INCLUDE [HighAvailability-azure-database-for-postgresql.md](./includes/HighAvailability-azure-database-for-postgresql.md)]
 
 [!INCLUDE [HighAvailability-azure-databricks.md](./includes/HighAvailability-azure-databricks.md)]
 
+[!INCLUDE [highavailability-azure-health-data-services.md](./includes/highavailability-azure-health-data-services.md)]
+
+[!INCLUDE [highavailability-azure-hpc-cache.md](./includes/highavailability-azure-hpc-cache.md)]
+
 [!INCLUDE [HighAvailability-azure-iot-hub.md](./includes/HighAvailability-azure-iot-hub.md)]
+
+[!INCLUDE [highavailability-azure-lab-services.md](./includes/highavailability-azure-lab-services.md)]
 
 [!INCLUDE [HighAvailability-azure-kubernetes-service-(aks).md](./includes/HighAvailability-azure-kubernetes-service-(aks).md)]
 
@@ -76,7 +77,7 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-netapp-files.md](./includes/HighAvailability-azure-netapp-files.md)]
 
-[!INCLUDE [HighAvailability-azure-relay.md](./includes/HighAvailability-azure-relay.md)]
+[!INCLUDE [highavailability-azure-relay.md](./includes/highavailability-azure-relay.md)]
 
 [!INCLUDE [HighAvailability-azure-signalr-service.md](./includes/HighAvailability-azure-signalr-service.md)]
 
@@ -106,11 +107,11 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-content-delivery-network.md](./includes/HighAvailability-content-delivery-network.md)]
 
-[!INCLUDE [HighAvailability-data-factory.md](./includes/HighAvailability-data-factory.md)]
+[!INCLUDE [highavailability-data-factory.md](./includes/highavailability-data-factory.md)]
 
 [!INCLUDE [HighAvailability-entra-domain-services.md](./includes/HighAvailability-entra-domain-services.md)]
 
-[!INCLUDE [HighAvailability-event-grid.md](./includes/HighAvailability-event-grid.md)]
+[!INCLUDE [highavailability-event-grid.md](./includes/highavailability-event-grid.md)]
 
 [!INCLUDE [HighAvailability-event-hubs.md](./includes/HighAvailability-event-hubs.md)]
 
@@ -120,17 +121,13 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-key-vault.md](./includes/HighAvailability-key-vault.md)]
 
-[!INCLUDE [HighAvailability-management-groups.md](./includes/HighAvailability-management-groups.md)]
+[!INCLUDE [highavailability-log-analytics.md](./includes/highavailability-log-analytics.md)]
 
 [!INCLUDE [HighAvailability-media-services.md](./includes/HighAvailability-media-services.md)]
 
-[!INCLUDE [HighAvailability-microsoft.baremetalinfrastructure.md](./includes/HighAvailability-microsoft-baremetalinfrastructure.md)]
-
-[!INCLUDE [HighAvailability-microsoft.bingsearch.md](./includes/HighAvailability-microsoft-bingsearch.md)]
-
 [!INCLUDE [HighAvailability-microsoft.fileshares.md](./includes/HighAvailability-microsoft-fileshares.md)]
 
-[!INCLUDE [HighAvailability-microsoft.iotsecurity.md](./includes/HighAvailability-microsoft-iotsecurity.md)]
+[!INCLUDE [highavailability-microsoft-sentinel.md](./includes/highavailability-microsoft-sentinel.md)]
 
 [!INCLUDE [HighAvailability-playwright-testing.md](./includes/HighAvailability-playwright-testing.md)]
 
@@ -139,6 +136,10 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 [!INCLUDE [HighAvailability-service-bus.md](./includes/HighAvailability-service-bus.md)]
 
 [!INCLUDE [HighAvailability-service-fabric.md](./includes/HighAvailability-service-fabric.md)]
+
+[!INCLUDE [highavailability-service-groups.md](./includes/highavailability-service-groups.md)]
+
+[!INCLUDE [highavailability-service-map.md](./includes/highavailability-service-map.md)]
 
 [!INCLUDE [HighAvailability-sql-server-on-azure-virtual-machines.md](./includes/HighAvailability-sql-server-on-azure-virtual-machines.md)]
 

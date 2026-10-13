@@ -67,14 +67,14 @@ Azure Monitor automatically performs the following data collection without requi
 Platform metrics for Azure virtual machines include important host metrics such as CPU, network, and disk utilization. They can be:
 
 * Viewed on the [Overview page](monitor-virtual-machine-analyze.md#single-machine-experience).
-* Analyzed with [metrics explorer](../platform/tutorial-metrics.md) for the machine in the Azure portal.
+* Analyzed with [metrics explorer](../metrics/tutorial-metrics.md) for the machine in the Azure portal.
 * Used for [metric alerts](tutorial-monitor-vm-alert-recommended.md).
 
 ### Activity log
 
-The [activity log](../platform/activity-log.md) is collected automatically. It includes the recent activity of the machine, such as any configuration changes and when it was stopped and started. You can view the platform metrics and activity log collected for each virtual machine host in the Azure portal.
+The [activity log](../fundamentals/activity-log.md) is collected automatically. It includes the recent activity of the machine, such as any configuration changes and when it was stopped and started. You can view the platform metrics and activity log collected for each virtual machine host in the Azure portal.
 
-You can [view the activity log](../platform/activity-log-insights.md#view-the-activity-log) for an individual machine or for all resources in a subscription. [Create a diagnostic setting](../platform/diagnostic-settings.md) to send this data into the same Log Analytics workspace used by Azure Monitor Agent to analyze it with the other monitoring data collected for the virtual machine. There's no cost for ingestion or retention of activity log data.
+You can [view the activity log](../platform/activity-log-insights.md#view-the-activity-log) for an individual machine or for all resources in a subscription. [Create a diagnostic setting](../data-collection/diagnostic-settings.md) to send this data into the same Log Analytics workspace used by Azure Monitor Agent to analyze it with the other monitoring data collected for the virtual machine. There's no cost for ingestion or retention of activity log data.
 
 ### VM availability information in Azure Resource Graph
 

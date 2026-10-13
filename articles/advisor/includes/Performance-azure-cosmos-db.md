@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 04/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Cosmos DB
@@ -22,14 +22,13 @@ Your Azure Cosmos DB containers are using the default indexing policy, which ind
 
 **Impact:** Medium
   
-For more information, see [Indexing policies - Azure Cosmos DB](/azure/cosmos-db/index-policy)  
+For more information, see [Azure Cosmos DB indexing policies](/azure/cosmos-db/index-policy)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 683b5e32-48aa-4b46-a822-4e22a20ee244  
 
 
 <!--683b5e32-48aa-4b46-a822-4e22a20ee244_end-->
-
 
 <!--75c8c891-46d2-41fa-a81c-84e870a139a9_begin-->
 
@@ -54,7 +53,7 @@ Recommendation ID: 75c8c891-46d2-41fa-a81c-84e870a139a9
 
 #### Use hierarchical partition keys for optimal data distribution  
   
-This account has a custom setting that allows the logical partition size in a container to exceed the limit of 20 GB. This setting was applied by the Azure Cosmos DB team as a temporary measure to give you time to architect your application again with a different partition key. It's not recommended as a long-term solution, as SLA guarantees aren't honored when the limit is increased. You can now use hierarchical partition keys (preview) to architect your application again. The feature allows you to exceed the limit of 20 GB by setting up to three partition keys, ideal for multi-tenant scenarios or workloads that use synthetic keys.  
+This account has a custom setting that allows the logical partition size in a container to exceed the limit of 20 GB. The Azure Cosmos DB team applied this setting as a temporary measure to give you time to architect your application again with a different partition key. It's not recommended as a long-term solution, as SLA guarantees aren't honored when the limit is increased. You can now use hierarchical partition keys (preview) to architect your application again. This feature allows you to exceed the limit of 20 GB by setting up to three partition keys. It's ideal for multitenant scenarios or workloads that use synthetic keys.
   
 **Potential benefits**: Optimize data distribution and performance  
 
@@ -126,7 +125,7 @@ Recommendation ID: 4391ebb6-9519-4563-97c8-85f40cb92a63
 
 <!--b633adb4-0c3c-4ab6-ab52-a9d752c6ac52_begin-->
 
-#### PerformanceBoostervCore  
+#### Get notified when usage exceeds 90% within 12 hours  
   
 When CPU usage surpasses 90% within a 12-hour timeframe, users are notified about the high usage. Additionally it advises them to scale up to a higher tier to get a better performance.  
   
@@ -134,12 +133,27 @@ When CPU usage surpasses 90% within a 12-hour timeframe, users are notified abou
 
 **Impact:** Medium
   
-For more information, see [Scale or configure a cluster - Azure Cosmos DB for MongoDB vCore](/azure/documentdb/how-to-scale-cluster)  
-
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: b633adb4-0c3c-4ab6-ab52-a9d752c6ac52  
 
 
 <!--b633adb4-0c3c-4ab6-ab52-a9d752c6ac52_end-->
+
+<!--ed6c74bd-af73-477b-b149-e6c741632b06_begin-->
+
+#### Review compute capacity for sustained primary CPU pressure  
+  
+Sustained CPU pressure on the primary node can slow your cluster. Review workload demand and scale compute when validated pressure persists beyond the available capacity.  
+  
+**Potential benefits**: Improve performance during sustained demand  
+
+**Impact:** Medium
+  
+For more information, see [Compute and Storage Configurations - Azure DocumentDB](/azure/documentdb/compute-storage)  
+
+ResourceType: microsoft.documentdb/mongoclusters  
+Recommendation ID: ed6c74bd-af73-477b-b149-e6c741632b06  
+
+<!--ed6c74bd-af73-477b-b149-e6c741632b06_end-->
 
 <!--articleBody-->

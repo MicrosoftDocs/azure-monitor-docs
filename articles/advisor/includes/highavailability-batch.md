@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 08/11/2026
+ms.date: 06/09/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Batch
@@ -12,119 +12,96 @@ ms.custom: HighAvailability Batch
   
 ## Batch  
   
-<!--aa137cec-e89e-4e49-9c24-ce72272f7141_begin-->
+<!--bdc11098-207d-4e5f-9d00-ec506a407464_begin-->
 
-#### The ability to allocate low-priority compute nodes in Azure Batch pools is being retired.  
+#### Migrate Azure Batch Pools from Av2, F, Fs, Fsv2, G, Gs, Lsv2  
   
-Migrate your Batch pools with low-priority compute nodes to compute nodes based on Spot instances.  
+Av2-series, F-series, Fs-series, Fsv2-series, G-series, Gs-series, and Lsv2-series Virtual Machines for Azure Batch pools are being retired. Need to migrate to Dsv5/Ddsv5/Dasv5 (general purpose/compute); Lsv3/Lasv3 (storage/memory optimized); Dlsv6/Falsv6 (compute optimized).  
   
 **Potential benefits**: Avoid potential disruptions  
 
 **Impact:** Medium
   
-For more information, see [Azure updates](https://azure.microsoft.com/updates?id=azure-batch-low-priority-vms-will-be-retired-on-30-september-2025)  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=500682)  
 
 ResourceType: microsoft.batch/batchaccounts  
-Recommendation ID: aa137cec-e89e-4e49-9c24-ce72272f7141  
-Subcategory: ServiceUpgradeAndRetirement
+Recommendation ID: bdc11098-207d-4e5f-9d00-ec506a407464  
 
-<!--aa137cec-e89e-4e49-9c24-ce72272f7141_end-->
+<!--bdc11098-207d-4e5f-9d00-ec506a407464_end-->
 
-<!--a0c7e2c5-1e3c-42bf-8261-e0fa32802b23_begin-->
+<!--c081d84e-3811-478b-b083-c8bb09b99ed7_begin-->
 
-#### Azure Batch classic compute node communication model is being retired  
+#### Migrate Azure Batch Pools from D, Ds, Dv2, Dsv2, Ls Virtual Machines  
   
-The simplified compute node communication model replaces the classic compute node communication model  
+Dsv2-series, and Ls-series Virtual Machines for Azure Batch pools are being retired.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Retired VM Sizes Migration Guide - Azure Virtual Machines](/azure/virtual-machines/migration/sizes/d-ds-dv2-dsv2-ls-series-migration-guide)  
+
+ResourceType: microsoft.batch/batchaccounts  
+Recommendation ID: c081d84e-3811-478b-b083-c8bb09b99ed7  
+
+<!--c081d84e-3811-478b-b083-c8bb09b99ed7_end-->
+
+<!--6c4cd580-41fb-4f20-977b-3be3cbead46e_begin-->
+
+#### Migrate Azure Batch Pools to VMs that support encryption at host  
+  
+Azure Disk Encryption (ADE) for Azure Virtual Machines and Virtual Machine Scale Sets are being retired.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Migrate from Azure Disk Encryption to encryption at host - Azure Virtual Machines](/azure/virtual-machines/disk-encryption-migrate?tabs=CLI%2CCLI2%2CCLI3%2CCLI4%2CCLI5%2CCLI-cleanup)  
+
+ResourceType: microsoft.batch/batchaccounts  
+Recommendation ID: 6c4cd580-41fb-4f20-977b-3be3cbead46e  
+
+<!--6c4cd580-41fb-4f20-977b-3be3cbead46e_end-->
+
+<!--5c23301a-1a3c-46c5-b4e5-c0bb2b91b36c_begin-->
+
+#### Availability in select regions is retiring  
+  
+Azure Batch is retiring in the following regions: India West, China North 1, China East 1, USDoD East, and USDoD Central. Azure Batch isn't retiring in any other regions. This notification is strictly for the regions mentioned.  
   
 **Potential benefits**: Avoid potential disruptions  
 
 **Impact:** High
   
-For more information, see [Azure updates](https://aka.ms/batchclassiccomputenoderetirement)  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/batch-service-in-select-regions-will-be-retired-on-31-march-2026/)  
 
 ResourceType: microsoft.batch/batchaccounts  
-Recommendation ID: a0c7e2c5-1e3c-42bf-8261-e0fa32802b23  
-Subcategory: ServiceUpgradeAndRetirement
+Recommendation ID: 5c23301a-1a3c-46c5-b4e5-c0bb2b91b36c  
 
-<!--a0c7e2c5-1e3c-42bf-8261-e0fa32802b23_end-->
+<!--5c23301a-1a3c-46c5-b4e5-c0bb2b91b36c_end-->
 
-<!--f899b06d-e069-475d-abb3-292aa803db11_begin-->
+<!--2a857ec5-3fa1-4e25-8959-05147ffaa66a_begin-->
 
-#### Azure Batch is being retired in select regions  
+#### Classic compute node communication model is retiring  
   
-The ability to allocate low-priority compute nodes in Azure Batch pools is being retired.  
+The classic compute node communication model is retiring.  
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
-For more information, see [Azure updates](https://aka.ms/batchregion1retirement)  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/azure-batch-classic-compute-node-communication-model-will-be-retired-on-31-march-2026/)  
 
 ResourceType: microsoft.batch/batchaccounts  
-Recommendation ID: f899b06d-e069-475d-abb3-292aa803db11  
-Subcategory: ServiceUpgradeAndRetirement
+Recommendation ID: 2a857ec5-3fa1-4e25-8959-05147ffaa66a  
 
-<!--f899b06d-e069-475d-abb3-292aa803db11_end-->
-
-<!--9203ac17-27f9-4457-81d7-deb45ad0ce60_begin-->
-
-#### Azure Batch custom image pools using VHD or managed images are being retired  
-  
-Azure Batch is retiring support for custom image pools using VHD blobs in Azure Storage and Azure Managed Images  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** Medium
-  
-For more information, see [Azure updates](https://aka.ms/batchcipvhdretirement)  
-
-ResourceType: microsoft.batch/batchaccounts  
-Recommendation ID: 9203ac17-27f9-4457-81d7-deb45ad0ce60  
-Subcategory: ServiceUpgradeAndRetirement
-
-<!--9203ac17-27f9-4457-81d7-deb45ad0ce60_end-->
-
-<!--22fee21a-ecbc-4662-be2f-4611290bcabe_begin-->
-
-#### Default outbound access connectivity for VMs in Azure is being retired  
-  
-If you are currently relying on default Internet outbound access, add an explicit outbound access mechanism for your Batch pools without public IP addresses  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** Medium
-  
-For more information, see [Azure updates](https://aka.ms/batchdoaretirement)  
-
-ResourceType: microsoft.batch/batchaccounts  
-Recommendation ID: 22fee21a-ecbc-4662-be2f-4611290bcabe  
-Subcategory: ServiceUpgradeAndRetirement
-
-<!--22fee21a-ecbc-4662-be2f-4611290bcabe_end-->
-
-<!--42447382-5a3f-4da4-88e3-0ee174ab7764_begin-->
-
-#### Ubuntu 22.04 LTS support ends for Azure Batch pools  
-  
-Ubuntu 22.04 LTS is reaching the end of standard support life. Batch pools with Ubuntu 22.04 LTS VM images will no longer be supported in Batch. Migrate Batch pools to a newer VM image.  
-  
-**Potential benefits**: Avoid service disruption  
-
-**Impact:** Medium
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=558365)  
-
-ResourceType: microsoft.batch/batchaccounts  
-Recommendation ID: 42447382-5a3f-4da4-88e3-0ee174ab7764  
-Subcategory: undefined
-
-<!--42447382-5a3f-4da4-88e3-0ee174ab7764_end-->
+<!--2a857ec5-3fa1-4e25-8959-05147ffaa66a_end-->
 
 <!--bdb3cf17-47a1-4727-ab02-98856925e50f_begin-->
 
 #### Migrate batch pools from HBv2 to newer virtual machine SKUs  
   
-HBv2-series virtual machine (VMs) sizes are retiring. To ensure continuity and improved performance, transition to one of the current‑generation Azure HPC VM families, Azure HBv5‑series or Azure HX‑series.  
+HBv2-series virtual machine sizes are retiring. To ensure continuity and improved performance, transition to one of the current‑generation Azure HPC VM families, Azure HBv5‑series or Azure HX‑series.  
   
 **Potential benefits**: Avoid service disruption  
 
@@ -134,7 +111,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.batch/batchaccounts  
 Recommendation ID: bdb3cf17-47a1-4727-ab02-98856925e50f  
-Subcategory: undefined
 
 <!--bdb3cf17-47a1-4727-ab02-98856925e50f_end-->
 
@@ -142,7 +118,7 @@ Subcategory: undefined
 
 #### Migrate batch pools from HCv1 to newer virtual machine SKUs  
   
-HC-series virtual machine (VMs) sizes are retiring. To ensure continuity and improved performance, transition to one of the current‑generation Azure HPC VM families, Azure HBv5‑series or Azure HX‑series.  
+HC-series virtual machine (VM) sizes are retiring. To ensure continuity and improved performance, transition to one of the current‑generation Azure HPC VM families, Azure HBv5‑series or Azure HX‑series.
   
 **Potential benefits**: Avoid service disruption  
 
@@ -152,8 +128,41 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.batch/batchaccounts  
 Recommendation ID: 0e613505-c557-41b8-90fd-2946528db0f2  
-Subcategory: undefined
 
 <!--0e613505-c557-41b8-90fd-2946528db0f2_end-->
+
+<!--df47adb1-1b61-4091-911a-d776f85ae81c_begin-->
+
+#### Migrate workload to a supported Windows Server image  
+  
+Azure Batch is retiring support for Windows Server 2016. Migrate workload to a supported Windows Server image.  
+  
+**Potential benefits**: Avoid service disruption.
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=549077)  
+
+ResourceType: microsoft.batch/batchaccounts  
+Recommendation ID: df47adb1-1b61-4091-911a-d776f85ae81c  
+
+<!--df47adb1-1b61-4091-911a-d776f85ae81c_end-->
+
+<!--3e7bb96a-9aa8-494c-8e43-fc1108a35a9d_begin-->
+
+#### NP, HC, and HBv2-series VM family retirement in Azure Batch pools  
+  
+NP-series, HC-series, and HBv2-series virtual machines are retiring. Migrate Batch pools to a newer VM series before the retirement date.
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Update pool properties - Azure Batch](/azure/batch/batch-pool-update-properties)  
+
+ResourceType: microsoft.batch/batchaccounts  
+Recommendation ID: 3e7bb96a-9aa8-494c-8e43-fc1108a35a9d  
+
+<!--3e7bb96a-9aa8-494c-8e43-fc1108a35a9d_end-->
 
 <!--articleBody-->

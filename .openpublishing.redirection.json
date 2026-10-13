@@ -1,6 +1,21 @@
 {
   "redirections": [
     {
+      "source_path": "articles/azure-monitor/scom-manage-instance/migrate-to-azure-monitor.md",
+      "redirect_url": "/azure/azure-monitor/fundamentals/azure-monitor-operations-manager",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/migration-faq-scom-manage-instance.yml",
+      "redirect_url": "/azure/azure-monitor/fundamentals/azure-monitor-operations-manager",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/scom-manage-instance/migration-overview.md",
+      "redirect_url": "/azure/azure-monitor/fundamentals/azure-monitor-operations-manager",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/operations/index.yml",
       "redirect_url": "/azure/azure-monitor/",
       "redirect_document_id": false

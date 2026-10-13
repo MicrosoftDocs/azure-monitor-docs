@@ -2,7 +2,7 @@
 title: Query across resources with Azure Monitor  
 description: Query and correlated data from multiple Log Analytics workspaces, applications, or resources using the `workspace()`, `app()`, and `resource()` Kusto Query Language (KQL) expressions.
 ms.topic: how-to
-ms.date: 10/06/2025
+ms.date: 09/21/2026
 # Customer intent: As a data analyst, I want to write KQL queries that correlate data from multiple Log Analytics workspaces, applications, or resources, to enable my analysis.
 
 ---
@@ -90,7 +90,11 @@ applicationsScoping
 
 ## Query across Log Analytics workspaces using workspace() 
 
-Use the `workspace()` expression to retrieve data from a specific workspace in the same resource group, another resource group, or another subscription. You can use this expression to include log data in an Application Insights query and to query data across multiple workspaces in a log query.
+Use the `workspace()` expression to retrieve data from a specific workspace in the same resource group, another resource group, or another subscription. Include log data in an Application Insights query or query data across multiple workspaces in a log query.
+
+Cross-workspace queries support tables on the Analytics, Basic, and Auxiliary plans. When a query includes a Basic or Auxiliary table, set an explicit start and end time. In Log Analytics, use the time picker. In an API request, use the `timespan` parameter. A query that includes an Auxiliary table can cover the total retention period of the queried tables, up to 12 years.
+
+Unlike Analytics and Basic tables, Auxiliary tables provide unoptimized query performance. A cross-workspace query that includes Auxiliary data might take longer to return results. For more information, see [Auxiliary log query performance](basic-logs-query.md#auxiliary-log-query-performance).
 
 ### Syntax
 
@@ -103,7 +107,7 @@ Use the `workspace()` expression to retrieve data from a specific workspace in t
 | Identifier | Description | Example
 |:---|:---|:---|
 | ID | GUID of the workspace | workspace("00000000-0000-0000-0000-000000000000") |
-| Azure Resource ID | Identifier for the Azure resource | workspace("/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Contoso/providers/Microsoft.OperationalInsights/workspaces/contosoretail") |
+| Azure Resource ID | Identifier for the Azure resource | workspace("/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourcegroups/Contoso/providers/Microsoft.OperationalInsights/workspaces/contosoretail") |
 
 Other workspace identifiers that only use the workspace name or the workspace resource name aren't recommended since they result in reduced performance and possible errors when querying across workspaces.
 
@@ -141,7 +145,7 @@ Use the `app` expression to retrieve data from a specific classic Application In
 | Identifier | Description | Example
 |:---|:---|:---|
 | ID | GUID of the app | app("00000000-0000-0000-0000-000000000000") |
-| Azure Resource ID | Identifier for the Azure resource |app("/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Fabrikam/providers/microsoft.insights/components/fabrikamapp") |
+| Azure Resource ID | Identifier for the Azure resource |app("/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourcegroups/Fabrikam/providers/microsoft.insights/components/fabrikamapp") |
 
 ### Examples
 

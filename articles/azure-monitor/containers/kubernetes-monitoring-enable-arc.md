@@ -105,7 +105,7 @@ az k8s-extension create --name azuremonitor-metrics --cluster-name <cluster-name
 **Example**
 
 ```azurecli
-az k8s-extension create --name azuremonitor-metrics --cluster-name "my-cluster"--resource-group "my-resource-group" --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers.Metrics --configuration-settings azure-monitor-workspace-resource-id "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/microsoft.monitor/accounts/my-workspace" grafana-resource-id="/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Dashboard/grafana/my-workspace"
+az k8s-extension create --name azuremonitor-metrics --cluster-name "my-cluster"--resource-group "my-resource-group" --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers.Metrics --configuration-settings azure-monitor-workspace-resource-id "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/my-resource-group/providers/microsoft.monitor/accounts/my-workspace" grafana-resource-id="/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/my-resource-group/providers/Microsoft.Dashboard/grafana/my-workspace"
 ```
 
 #### Optional parameters
@@ -438,14 +438,14 @@ Check the references below for configuration requirements for particular scenari
 
 
 ## Enable control plane logs
-Control plane logs are implemented as [resource logs](../platform/resource-logs.md) in Azure Monitor. To collect these logs, create a [diagnostic setting](../platform/diagnostic-settings.md) for the cluster. Send them to the same Log Analytics workspace as your container logs.
+Control plane logs are implemented as [resource logs](../logs/resource-logs.md) in Azure Monitor. To collect these logs, create a [diagnostic setting](../data-collection/diagnostic-settings.md) for the cluster. Send them to the same Log Analytics workspace as your container logs.
 
 
 ### [CLI](#tab/cli)
 
 Use the [az monitor diagnostic-settings create](/cli/azure/monitor/diagnostic-settings#az-monitor-diagnostic-settings-create) command to create a diagnostic setting with the [Azure CLI](/cli/azure/monitor). See the documentation for this command for descriptions of its parameters.
 
-The following example creates a diagnostic setting that sends all Kubernetes categories to a Log Analytics workspace. This includes [resource-specific mode](../platform/resource-logs.md#resource-specific) to send the logs to specific tables listed in [Supported resource logs for Microsoft.ContainerService/fleets](/azure/aks/monitor-aks-reference#resource-logs).
+The following example creates a diagnostic setting that sends all Kubernetes categories to a Log Analytics workspace. This includes [resource-specific mode](../logs/resource-logs.md#resource-specific) to send the logs to specific tables listed in [Supported resource logs for Microsoft.ContainerService/fleets](/azure/aks/monitor-aks-reference#resource-logs).
 
 ```azurecli
 az monitor diagnostic-settings create \
@@ -679,4 +679,3 @@ The command will return JSON-formatted information about the solution. The `addo
 
 * If you experience issues attempting to onboard, review the [Troubleshooting guide](container-insights-troubleshoot.md).
 * Learn how to [Analyze Kubernetes monitoring data in the Azure portal](container-insights-analyze.md) Container insights.
-

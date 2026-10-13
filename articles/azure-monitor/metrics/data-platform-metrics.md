@@ -1,9 +1,9 @@
 ---
 title: Metrics in Azure Monitor
 description: Learn about metrics in Azure Monitor, which are lightweight monitoring data capable of supporting near real-time scenarios.
-ms.reviewer: priyamishra
+ms.reviewer: priyamishra, alyssaschimm, ayeshakhan
 ms.topic: concept-article
-ms.date: 08/07/2026
+ms.date: 08/21/2026
 ai-usage: ai-assisted
 ---
 
@@ -14,39 +14,38 @@ Azure Monitor Metrics is a feature of Azure Monitor that collects numeric data f
 > [!NOTE]
 > Azure Monitor Metrics is one half of the data platform that supports Azure Monitor. The other half is [Azure Monitor Logs](../logs/data-platform-logs.md), which collects and organizes log and performance data. You can analyze that data by using a rich query language.
 
-## Types of metrics
+## Metric implementations
 
-There are multiple types of metrics supported by Azure Monitor Metrics:
+Azure Monitor supports multiple metric implementations that are optimized for different sources, collection methods, and analysis tools:
 
-* Native metrics use tools in Azure Monitor for analysis and alerting.
+* **Platform metrics** are collected automatically from Azure resources. They require no configuration and have no ingestion or storage cost.
+* **[Advanced platform metrics](metrics-advanced-platform.md)** extend platform metrics with deeper, more granular data for supported resource providers. You explicitly opt in to these paid metrics at the resource level. Advanced platform metrics are currently in public preview.
+* **Metrics in an [Azure Monitor workspace](azure-monitor-workspace-overview.md)** include Prometheus and OpenTelemetry metrics from Kubernetes clusters, virtual machines, Arc-enabled servers, applications, and other sources. OpenTelemetry ingestion is in preview. Use PromQL to analyze these metrics and Grafana to visualize them.
 
-    * Platform metrics are collected from Azure resources. They require no configuration and have no cost.
-    * [Advanced platform metrics](metrics-advanced-platform.md) extend platform metrics with deeper, more granular data for supported resource providers. You explicitly opt in to these metrics at the resource level, and they're a paid feature. Advanced platform metrics are currently in preview.
-    * Custom metrics are collected from different sources that you configure including applications and agents running on virtual machines.
-
-* Azure Monitor collects Prometheus metrics from Kubernetes clusters, including Azure Kubernetes Service (AKS). Use industry-standard tools such as PromQL and Grafana to analyze the metrics and create alerts.
+> [!NOTE]
+> Native custom metrics remain available in public preview for existing implementations, but they won't become generally available. For new solutions, use the OpenTelemetry-based path described in [Custom metrics in Azure Monitor](metrics-custom-overview.md).
 
 :::image type="content" source="media/data-platform-metrics/metrics-overview.png" lightbox="media/data-platform-metrics/metrics-overview.png" alt-text="Diagram that shows sources and uses of metrics.":::
 
 The differences between each of the metrics are summarized in the following table.
 
-| Category | Native platform metrics | Native custom metrics | Prometheus metrics |
-|:---------|:------------------------|:----------------------|:-------------------|
-| Sources | Azure resources | Azure Monitor Agent<br>Application Insights<br>REST API | Azure Kubernetes Service (AKS) cluster<br>Any Kubernetes cluster through remote-write |
-| Configuration | None | Varies by source | Enable Azure Monitor managed service for Prometheus |
-| Stored | Subscription | Subscription | [Azure Monitor workspace](azure-monitor-workspace-overview.md) |
-| Cost | No charge | No charge during preview | Billed |
-| Aggregation | Pre-aggregated | Pre-aggregated | Raw data |
-| Analyze | [Metrics explorer](analyze-metrics.md) | [Metrics explorer](analyze-metrics.md) | PromQL<br>Grafana dashboards |
-| Alert | [metrics alert rule](../alerts/tutorial-metric-alert.md) | [metrics alert rule](../alerts/tutorial-metric-alert.md) | [Prometheus alert rule](prometheus-rule-groups.md) |
-| Visualize | [Workbooks](../visualize/workbooks-overview.md)<br>[Azure dashboards](../app/overview-dashboard.md#create-custom-kpi-dashboards-using-application-insights)<br>[Grafana](../visualize/visualize-grafana-overview.md) | [Workbooks](../visualize/workbooks-overview.md)<br>[Azure dashboards](../app/overview-dashboard.md#create-custom-kpi-dashboards-using-application-insights)<br>[Grafana](../visualize/visualize-grafana-overview.md) | [Grafana](/azure/managed-grafana/overview) |
-| Retrieve | Client libraries and CLIs (listed after this table) | Client libraries and CLIs (listed after this table) | [Grafana](/azure/managed-grafana/overview) |
+| Category                         | Platform metrics                                                                                                                                                                                                                                             | Advanced platform metrics                                                                                                                                                                                                                                    | Metrics in Azure Monitor workspace                                                                                                                                                   |
+| :------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Sources](#data-collection)      | Azure resources                                                                                                                                                                                                                                              | Supported Azure resources                                                                                                                                                                                                                                    | Kubernetes clusters, virtual machines, Arc-enabled servers, instrumented applications, and other OpenTelemetry sources                                                               |
+| Configuration                    | None                                                                                                                                                                                                                                                         | Opt in at the resource level                                                                                                                                                                                                                                 | Configure an Azure Monitor workspace and a Prometheus or OpenTelemetry collection pipeline                                                                                           |
+| [Storage](#retention-of-metrics) | Azure subscription                                                                                                                                                                                                                                           | Azure subscription                                                                                                                                                                                                                                           | [Azure Monitor workspace](azure-monitor-workspace-overview.md)                                                                                                                       |
+| Cost                             | No ingestion or storage charge                                                                                                                                                                                                                               | Paid                                                                                                                                                                                                                                                         | Paid                                                                                                                                                                                 |
+| Aggregation                      | Preaggregated                                                                                                                                                                                                                                                | Preaggregated                                                                                                                                                                                                                                                | Raw time-series data                                                                                                                                                                 |
+| [Analyze](#metrics-explorer)     | [Metrics explorer](analyze-metrics.md)                                                                                                                                                                                                                       | [Metrics explorer](analyze-metrics.md)                                                                                                                                                                                                                       | [PromQL](prometheus-api-promql.md)                                                                                                                                                   |
+| Alert                            | [Metric alert rules](../alerts/tutorial-metric-alert.md)                                                                                                                                                                                                     | [Metric alert rules](../alerts/tutorial-metric-alert.md)                                                                                                                                                                                                     | [Query-based metric alert rules (preview)](../alerts/alerts-query-based-metric-alerts-overview.md) and [Prometheus alert rules](prometheus-rule-groups.md)                           |
+| [Visualize](#metrics-explorer)   | [Metrics explorer](analyze-metrics.md), [Workbooks](../visualize/workbooks-overview.md), [Azure dashboards](../app/overview-dashboard.md#create-custom-kpi-dashboards-using-application-insights), and [Grafana](../visualize/visualize-grafana-overview.md) | [Metrics explorer](analyze-metrics.md), [Workbooks](../visualize/workbooks-overview.md), [Azure dashboards](../app/overview-dashboard.md#create-custom-kpi-dashboards-using-application-insights), and [Grafana](../visualize/visualize-grafana-overview.md) | [Dashboards with Grafana](../visualize/visualize-grafana-overview.md), [Azure Managed Grafana](/azure/managed-grafana/overview), and [Workbooks](../visualize/workbooks-overview.md) |
+| [Retrieve](#data-plane-apis)     | Azure Monitor Metrics data plane APIs, client libraries, and command-line tools                                                                                                                                                                              | Azure Monitor Metrics data plane APIs, client libraries, and command-line tools                                                                                                                                                                              | [Prometheus HTTP API](prometheus-api-promql.md)                                                                                                                                      |
 
-Use the following client libraries and command-line tools to retrieve native platform and native custom metrics:
+Use the following client libraries and command-line tools to retrieve platform and advanced platform metrics:
 
 * [Azure CLI](/cli/azure/monitor/metrics)
 * [Azure PowerShell cmdlets](/powershell/module/az.monitor)
-* [REST API](../platform/rest-api-walkthrough.md) or client library
+* [REST API](rest-api-walkthrough.md) or client library
 * [.NET](/dotnet/api/overview/azure/Monitor.Query-readme)
 * [Go](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/monitor/query/azmetrics)
 * [Java](/java/api/overview/azure/monitor-query-readme)
@@ -58,19 +57,19 @@ Use the following client libraries and command-line tools to retrieve native pla
 Azure Monitor collects metrics from the following sources. After these metrics are collected in the Azure Monitor metric database, they can be evaluated together regardless of their source:
 
 * **Azure resources**: Azure resources create platform metrics that give you visibility into their health and performance. Each type of resource creates a [distinct set of metrics](../reference/metrics-index.md) without any configuration required. Azure Monitor collects platform metrics from Azure resources at a one-minute frequency unless the metric's definition specifies otherwise.
-* **Applications**: Application Insights creates metrics for your monitored applications to help you detect performance issues and track trends in how your application is being used. Values include *Server response time* and *Browser exceptions*.
-* **Virtual machine agents**: Metrics are collected from the guest operating system of a virtual machine. You can enable guest OS metrics for Windows virtual machines by using the [Azure Monitor Agent](/azure/azure-monitor/agents/agents-overview). Azure Monitor Agent replaces the legacy agents - [Windows diagnostic extension](../agents/diagnostics-extension-overview.md) and the [InfluxData Telegraf agent](https://www.influxdata.com/time-series-platform/telegraf/) for Linux virtual machines.
-* **Custom metrics**: Define metrics in addition to the standard metrics that are automatically available. [Define custom metrics in an application](../app/metrics-overview.md#custom-metrics-preview) monitored by Application Insights, or create custom metrics for an Azure service by using the [custom metrics API](metrics-store-custom-rest-api.md).
-* **Kubernetes clusters**: Kubernetes clusters typically send metric data to a local Prometheus server that you must maintain. [Azure Monitor managed service for Prometheus](prometheus-metrics-overview.md) provides a managed service that collects metrics from Kubernetes clusters and stores them in Azure Monitor Metrics.
+* **Applications**: Application Insights creates metrics for your monitored applications to help you detect performance issues and track trends in how your application is being used. In preview, applications can also send OpenTelemetry metrics to an Azure Monitor workspace by using [OpenTelemetry Protocol ingestion](../containers/opentelemetry-protocol-ingestion.md).
+* **Virtual machines and Arc-enabled servers**: In preview, [Azure Monitor Agent](../containers/opentelemetry-ingest-agent.md) can receive OpenTelemetry Protocol metrics from applications and forward them to an Azure Monitor workspace. Azure Monitor Agent also collects [OpenTelemetry system metrics](../vm/metrics-opentelemetry-guest.md) from the guest operating system.
+* **Kubernetes clusters**: [Azure Monitor managed service for Prometheus](prometheus-metrics-overview.md) scrapes Prometheus metrics from Kubernetes clusters and stores them in an Azure Monitor workspace. For the metrics scraped by default, see [Default Prometheus metrics configuration](../containers/prometheus-metrics-scrape-default.md).
+* **Other OpenTelemetry sources**: In preview, an open-source OpenTelemetry Collector can send metrics directly to Azure Monitor ingestion endpoints. For configuration options, see [Ingest OpenTelemetry Protocol signals into Azure Monitor](../containers/opentelemetry-protocol-ingestion.md).
 
 > [!NOTE]
 > Metrics from different sources and collection methods might use different aggregations. For example, platform metrics are pre-aggregated and stored in a time-series database, while Prometheus metrics are stored as raw data. Resource metrics might also have a different latency than other metrics. Differences in aggregation and latency can lead to different metric values for a specific sample time. Over time when latency ceases to be an issue, and when analyzing the metrics at the same time granularity, these differences disappear. For specific latency expectations for platform metrics exported via diagnostic settings, see [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md#azure-metrics-resource-logs-activity-logs).
 
-## REST API
+## Data plane APIs
 
 Azure Monitor provides REST APIs that allow you to get data in and out of Azure Monitor Metrics.
 * **Custom metrics API** - [Custom metrics](metrics-custom-overview.md) allow you to load your own metrics into the Azure Monitor Metrics database. The same analysis tools that process Azure Monitor platform metrics can then use those metrics.
-* **Azure Monitor Metrics REST API** - Allows you to access Azure Monitor platform metrics definitions and values. For more information, see [Azure Monitor REST API](/rest/api/monitor/metrics/list). For information on how to use the API, see the [Azure monitoring REST API walkthrough](../platform/rest-api-walkthrough.md).
+* **Azure Monitor Metrics REST API** - Allows you to access Azure Monitor platform metrics definitions and values. For more information, see [Azure Monitor REST API](/rest/api/monitor/metrics/list). For information on how to use the API, see the [Azure monitoring REST API walkthrough](rest-api-walkthrough.md).
 * **Azure Monitor Metrics Batch REST API** - [Azure Monitor Metrics Batch API](/rest/api/monitor/metrics-batch/) is a high-volume API designed for customers with large volume metrics queries. It's similar to the existing standard Azure Monitor Metrics REST API, but provides the capability to retrieve metric data for up to 50 resource IDs in the same subscription and region in a single batch API call. This improves query throughput and reduces the risk of throttling.
 
 ## Security
@@ -81,7 +80,7 @@ Secure connection is established between the agent and the Azure Monitor service
 
 ## Metrics explorer
 
-Use [Metrics explorer](analyze-metrics.md) to interactively analyze the data in your metric database and chart the values of multiple metrics over time. Pin the charts to a dashboard to view them with other visualizations. Retrieve metrics by using the [Azure monitoring REST API](../platform/rest-api-walkthrough.md).
+Use [Metrics explorer](analyze-metrics.md) to interactively analyze the data in your metric database and chart the values of multiple metrics over time. Pin the charts to a dashboard to view them with other visualizations. Retrieve metrics by using the [Azure monitoring REST API](rest-api-walkthrough.md).
 <!-- convertborder later -->
 :::image type="content" source="media/data-platform-metrics/metrics-explorer.png" lightbox="media/data-platform-metrics/metrics-explorer.png" alt-text="Screenshot that shows an example graph in Metrics explorer that displays server requests, server response time, and failed requests." border="false":::
 
@@ -96,7 +95,7 @@ Data that Azure Monitor Metrics collects, is stored in a time-series database th
 * A namespace that acts like a category for the metric.
 * A metric name.
 * The value itself.
-* [Multiple dimensions](#multi-dimensional-metrics) when they're present. Custom metrics are limited to 10 dimensions.
+* [Multiple dimensions](#multi-dimensional-metrics) when they're present. Dimension limits depend on the metric implementation.
 
 ## Multi-dimensional metrics
 
@@ -151,7 +150,7 @@ Platform and custom metrics are stored for **93 days** with the following except
 * **Application Insights log-based metrics**: Behind the scenes, [log-based metrics](../app/metrics-overview.md#log-based-metrics) translate into log queries. Their retention is variable and matches the retention of events in underlying logs, which is 31 days to two years. For Application Insights resources, logs are stored for 90 days.
 
 > [!NOTE]
-> You can [send platform metrics for Azure Monitor resources to a Log Analytics workspace](../platform/diagnostic-settings.md) for long-term trending.
+> You can [send platform metrics for Azure Monitor resources to a Log Analytics workspace](../data-collection/diagnostic-settings.md) for long-term trending.
 
 While platform and custom metrics are stored for 93 days, you can only query (in the **Metrics** tile) for a maximum of 30 days' worth of data on any single chart. This limitation doesn't apply to log-based metrics. If you see a blank chart or your chart displays only part of metric data, verify that the difference between start and end dates in the time picker doesn't exceed the 30-day interval. After you've selected a 30-day interval, you can [pan](analyze-metrics.md#pan-across-metrics-data) the chart to view the full retention window.
 

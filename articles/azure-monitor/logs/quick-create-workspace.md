@@ -294,4 +294,4 @@ When you create a workspace that you deleted in the last 14 days and it's in [so
 Now that a workspace is available, configure collection of monitoring telemetry and run log searches to analyze that data. To learn more:
 
 * See [Monitor health of Log Analytics workspace in Azure Monitor](../logs/monitor-workspace.md) to create alert rules that monitor the health of your workspace.
-* See [Collect Azure resource logs](../platform/resource-logs.md) to enable data collection from Azure resources by using diagnostic settings.
+* See [Collect Azure resource logs](resource-logs.md) to enable data collection from Azure resources by using diagnostic settings.

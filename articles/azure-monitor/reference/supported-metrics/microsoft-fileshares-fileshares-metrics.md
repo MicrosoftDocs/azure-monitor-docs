@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.FileShares/fileShares
 description: Reference for Microsoft.FileShares/fileShares metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 09/08/2026
 ms.custom: Microsoft.FileShares/fileShares, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -40,6 +40,13 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |**File Share Provisioned Throughput MiB/s**<br><br>The amount of throughput provisioned on the file share. |`FileShareProvisionedThroughputMiBps` | No | CountPerSecond |Average |`FileShare`|PT1H, PT6H, PT12H, P1D |No|
 |**File Share Snapshot Count**<br><br>The number of file share snapshots of the file share. |`FileShareSnapshotCount` | No | Count |Average |`FileShare`|PT1H, PT6H, PT12H, P1D |No|
 |**File Share Snapshot Size**<br><br>The amount of differential storage used by the file share snapshots of the file share. |`FileShareSnapshotSize` | No | Bytes |Average |`FileShare`|PT1H, PT6H, PT12H, P1D |No|
+
+### Category: SLI
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Percentage File Share Bandwidth Utilization**<br><br>The percentage of the file share bandwidth that is currently used. This value is calculated as the used bandwidth divided by the provisioned bandwidth of the file share, expressed as a percentage. |`PercentFileShareBandwidthUtilization` | No | Percent |Average, Minimum, Maximum |`FileShare`|PT1H, PT6H, PT12H, P1D |Yes|
+|**Percentage File Share IOPS Utilization**<br><br>The percentage of the file share IOPS that is currently used. This value is calculated as the used IOPS divided by the provisioned IOPS of the file share, expressed as a percentage. |`PercentFileShareIOPSUtilization` | No | Percent |Average, Minimum, Maximum |`FileShare`|PT1H, PT6H, PT12H, P1D |Yes|
+|**Percentage File Share Utilization**<br><br>The percentage of the file share capacity that is currently used. This value is calculated as the used storage divided by the provisioned capacity of the file share, expressed as a percentage. |`PercentFileShareUtilization` | No | Percent |Average |`FileShare`|PT1H, PT6H, PT12H, P1D |Yes|
 
 ### Category: Transaction
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|

@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.NetworkCloud/clusters
 description: Reference for Microsoft.NetworkCloud/clusters metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 09/15/2026
 ms.custom: Microsoft.NetworkCloud/clusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -51,21 +51,21 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 ### Category: Calico
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Felix Active Local Endpoints**<br><br>Number of active endpoints on this host. |`FelixActiveLocalEndpoints` | No | Count |Average |`Host`|PT1M |No|
-|**Felix Cluster Num Host Endpoints**<br><br>Total number of host endpoints cluster-wide. |`FelixClusterNumHostEndpoints` | No | Count |Average |`Host`|PT1M |No|
-|**Felix Cluster Number of Hosts**<br><br>Total number of Calico hosts in the cluster. |`FelixClusterNumHosts` | No | Count |Average |`Host`|PT1M |No|
-|**Felix Cluster Nmbr Workload Endpoints**<br><br>Total number of workload endpoints cluster-wide. |`FelixClusterNumWorkloadEndpoints` | No | Count |Average |`Host`|PT1M |No|
-|**Felix Interface Dataplane Failures**<br><br>Number of times dataplane updates failed and will be retried. |`FelixIntDataplaneFailures` | No | Count |Average |`Host`|PT1M |No|
-|**Felix Ipset Errors**<br><br>Number of 'ipset' command failures. |`FelixIpsetErrors` | No | Count |Average |`Host`|PT1M |No|
-|**Felix Ipsets Calico**<br><br>Number of active Calico IP sets. |`FelixIpsetsCalico` | No | Count |Average |`Host`|PT1M |No|
-|**Felix IP Tables Restore Errors**<br><br>Number of 'iptables-restore' errors. |`FelixIptablesRestoreErrors` | No | Count |Average |`Host`|PT1M |No|
-|**Felix IP Tables Save Errors**<br><br>Number of 'iptables-save' errors. |`FelixIptablesSaveErrors` | No | Count |Average |`Host`|PT1M |No|
-|**Felix Resyncs Started**<br><br>Number of times Felix has started resyncing with the datastore. |`FelixResyncsStarted` | No | Count |Average |`Host`|PT1M |No|
-|**Felix Resync State**<br><br>Current datastore state. |`FelixResyncState` | No | Unspecified |Average |`Host`|PT1M |No|
-|**Typha Client Latency Secs**<br><br>Per-client latency: how far behind the current state each client is. |`TyphaClientLatencySecsCount` | No | Count |Average |`Pod Name`|PT1M |No|
-|**Typha Connections Accepted**<br><br>Total number of connections accepted over time. |`TyphaConnectionsAccepted` | No | Count |Average |`Pod Name`|PT1M |No|
-|**Typha Connections Dropped**<br><br>Total number of connections dropped due to rebalancing. |`TyphaConnectionsDropped` | No | Count |Average |`Pod Name`|PT1M |No|
-|**Typha Ping Latency**<br><br>Round-trip ping latency to client. Typha's protocol includes a regular ping keepalive to verify that the connection is still up. |`TyphaPingLatencyCount` | No | Count |Average |`Pod Name`|PT1M |No|
+|**Felix Active Local Endpoints (Deprecated)**<br><br>Number of active endpoints on this host. |`FelixActiveLocalEndpoints` | No | Count |Average |`Host`|PT1M |No|
+|**Felix Cluster Num Host Endpoints (Deprecated)**<br><br>Total number of host endpoints cluster-wide. |`FelixClusterNumHostEndpoints` | No | Count |Average |`Host`|PT1M |No|
+|**Felix Cluster Number of Hosts (Deprecated)**<br><br>Total number of Calico hosts in the cluster. |`FelixClusterNumHosts` | No | Count |Average |`Host`|PT1M |No|
+|**Felix Cluster Nmbr Workload Endpoints (Deprecated)**<br><br>Total number of workload endpoints cluster-wide. |`FelixClusterNumWorkloadEndpoints` | No | Count |Average |`Host`|PT1M |No|
+|**Felix Interface Dataplane Failures (Deprecated)**<br><br>Number of times dataplane updates failed and will be retried. |`FelixIntDataplaneFailures` | No | Count |Average |`Host`|PT1M |No|
+|**Felix Ipset Errors (Deprecated)**<br><br>Number of 'ipset' command failures. |`FelixIpsetErrors` | No | Count |Average |`Host`|PT1M |No|
+|**Felix Ipsets Calico (Deprecated)**<br><br>Number of active Calico IP sets. |`FelixIpsetsCalico` | No | Count |Average |`Host`|PT1M |No|
+|**Felix IP Tables Restore Errors (Deprecated)**<br><br>Number of 'iptables-restore' errors. |`FelixIptablesRestoreErrors` | No | Count |Average |`Host`|PT1M |No|
+|**Felix IP Tables Save Errors (Deprecated)**<br><br>Number of 'iptables-save' errors. |`FelixIptablesSaveErrors` | No | Count |Average |`Host`|PT1M |No|
+|**Felix Resyncs Started (Deprecated)**<br><br>Number of times Felix has started resyncing with the datastore. |`FelixResyncsStarted` | No | Count |Average |`Host`|PT1M |No|
+|**Felix Resync State (Deprecated)**<br><br>Current datastore state. |`FelixResyncState` | No | Unspecified |Average |`Host`|PT1M |No|
+|**Typha Client Latency Secs (Deprecated)**<br><br>Per-client latency: how far behind the current state each client is. |`TyphaClientLatencySecsCount` | No | Count |Average |`Pod Name`|PT1M |No|
+|**Typha Connections Accepted (Deprecated)**<br><br>Total number of connections accepted over time. |`TyphaConnectionsAccepted` | No | Count |Average |`Pod Name`|PT1M |No|
+|**Typha Connections Dropped (Deprecated)**<br><br>Total number of connections dropped due to rebalancing. |`TyphaConnectionsDropped` | No | Count |Average |`Pod Name`|PT1M |No|
+|**Typha Ping Latency (Deprecated)**<br><br>Round-trip ping latency to client. Typha's protocol includes a regular ping keepalive to verify that the connection is still up. |`TyphaPingLatencyCount` | No | Count |Average |`Pod Name`|PT1M |No|
 
 ### Category: Container
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
@@ -84,7 +84,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 ### Category: CoreDNS
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**CoreDNS Requests Total**<br><br>Total number of DNS requests recieved by a CoreDNS server. |`CorednsDnsRequestsTotal` | No | Count |Average |`Family`, `Pod Name`, `Proto`, `Server`, `Type`|PT1M |No|
+|**CoreDNS Requests Total**<br><br>Total number of DNS requests received by a CoreDNS server. |`CorednsDnsRequestsTotal` | No | Count |Average |`Family`, `Pod Name`, `Proto`, `Server`, `Type`|PT1M |No|
 |**CoreDNS Responses Total**<br><br>Total number of DNS responses sent by a CoreDNS server. |`CorednsDnsResponsesTotal` | No | Count |Average |`Pod Name`, `Server`, `Rcode`|PT1M |No|
 |**CoreDNS Frwd Hlthchk Broken**<br><br>Total number of times the health checks for all upstream DNS servers has failed. |`CorednsForwardHealthcheckBrokenTotal2` | No | Count |Average |`Pod Name`, `Namespace`|PT1M |No|
 |**CoreDNS Frwd Max Concurrent Rejects**<br><br>Total number of rejected queries due to concurrent queries reaching the maximum limit. |`CorednsForwardMaxConcurrentRejectsTotal2` | No | Count |Average |`Pod Name`, `Namespace`|PT1M |No|

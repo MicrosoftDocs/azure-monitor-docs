@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/28/2026
+ms.date: 06/23/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -30,7 +30,6 @@ Subcategory: HighAvailability
 
 <!--02cfb5ef-a0c1-4633-9854-031fbda09946_end-->
 
-
 <!--d4102c0f-ebe3-4b22-8fe0-e488866a87af_begin-->
 
 #### Ensure Azure Disks are in the same zone as your VM for higher resiliency and availability  
@@ -45,11 +44,8 @@ For more information, see [Best practices for high availability with Azure VMs a
 
 ResourceType: microsoft.compute/disks  
 Recommendation ID: d4102c0f-ebe3-4b22-8fe0-e488866a87af  
-Subcategory: undefined
 
 <!--d4102c0f-ebe3-4b22-8fe0-e488866a87af_end-->
-
-
 
 <!--ed651749-cd37-4fd5-9897-01b416926745_begin-->
 
@@ -65,28 +61,8 @@ For more information, see [Set up Azure VM disaster recovery to a secondary regi
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: ed651749-cd37-4fd5-9897-01b416926745  
-Subcategory: undefined
 
 <!--ed651749-cd37-4fd5-9897-01b416926745_end-->
-
-
-<!--57ecb3cd-f2b4-4cad-8b3a-232cca527a0b_begin-->
-
-#### Upgrade VM from Premium Unmanaged Disks to Managed Disks at no additional cost  
-  
-Azure Managed Disks provide higher resiliency, simplified service management, higher scale target and more choices among several disk types. Your VM is using premium unmanaged disks that can be migrated to managed disks at no additional cost through the portal in less than 5 minutes.  
-  
-**Potential benefits**: Leverage higher resiliency and other benefits of Managed Disks  
-
-**Impact:** High
-  
-For more information, see [Overview of Azure Disk Storage - Azure Virtual Machines ](https://aka.ms/md_overview)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 57ecb3cd-f2b4-4cad-8b3a-232cca527a0b  
-Subcategory: HighAvailability
-
-<!--57ecb3cd-f2b4-4cad-8b3a-232cca527a0b_end-->
 
 <!--11f04d70-5bb3-4065-b717-1f11b2e050a8_begin-->
 
@@ -174,11 +150,8 @@ For more information, see [Move Azure single-instance virtual machines from regi
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 066a047a-9ace-45f4-ac50-6325840a6b00  
-Subcategory: undefined
 
 <!--066a047a-9ace-45f4-ac50-6325840a6b00_end-->
-
-
 
 <!--2b5cf6e5-2792-49b2-9ec0-0e901be6488b_begin-->
 
@@ -197,29 +170,6 @@ Recommendation ID: 2b5cf6e5-2792-49b2-9ec0-0e901be6488b
 Subcategory: BusinessContinuity
 
 <!--2b5cf6e5-2792-49b2-9ec0-0e901be6488b_end-->
-
-
-
-
-
-<!--490262e8-313c-431f-a143-a9c2cadba41b_begin-->
-
-#### DNS Servers should be configured at the Virtual Network level  
-  
-Set the DNS Servers for the VM at the Virtual Network level to ensure consistency throughout the environment. In the configuration of the primary network interface, DNS Servers setting should be set to Inherit from virtual network.  
-  
-**Potential benefits**: Ensures consistency and reliable name resolution  
-
-**Impact:** Low
-  
-For more information, see [Azure Virtual Network Name Resolution Guide](https://aka.ms/azvnetnameres)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 490262e8-313c-431f-a143-a9c2cadba41b  
-Subcategory: Other
-
-<!--490262e8-313c-431f-a143-a9c2cadba41b_end-->
-
 
 <!--651c7925-17a3-42e5-85cd-73bd095cf27f_begin-->
 
@@ -257,17 +207,13 @@ Subcategory: BusinessContinuity
 
 <!--e5e707f2-f41f-4aa6-bccf-3fb9748e5b66_end-->
 
-
-
-
-
 <!--3b739bd1-c193-4bb6-a953-1362ee3b03b2_begin-->
 
-#### Upgrade your Virtual Machine Scale Set to alternative image version  
+#### Upgrade your VMSS to alternative image version  
   
-VMSS in your subscription are running on images that have been scheduled for deprecation. Once the image is deprecated, your Virtual Machine Scale Set workloads would no longer scale out. Upgrade to newer version of the image to prevent disruption to your workload.  
+VMSS in your subscription are running on images that are scheduled for deprecation. When the image is deprecated, your VMSS workloads stop scaling out. Upgrade to a newer version of the image to prevent disruption to your workload.
   
-**Potential benefits**: Minimize any potential disruptions to your Virtual Machine Scale Set workloads  
+**Potential benefits**: Minimize any potential disruptions to your VMSS workloads.
 
 **Impact:** High
   
@@ -275,18 +221,16 @@ For more information, see [Deprecated Azure Marketplace images - Azure Virtual M
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: 3b739bd1-c193-4bb6-a953-1362ee3b03b2  
-Subcategory: undefined
 
 <!--3b739bd1-c193-4bb6-a953-1362ee3b03b2_end-->
 
-
 <!--3d18d7cd-bdec-4c68-9160-16a677d0f86a_begin-->
 
-#### Upgrade your Virtual Machine Scale Set to alternative image offer  
+#### Upgrade your VMSS to alternative image offer  
   
-VMSS in your subscription are running on images that have been scheduled for deprecation. Once the image is deprecated, your Virtual Machine Scale Set workloads would no longer scale out. To prevent disruption to your workload, upgrade to newer offer of the image.  
+VMSS in your subscription are running on images that are scheduled for deprecation. When the image is deprecated, your VMSS workloads stop scaling out. To prevent disruption to your workload, upgrade to a newer offer of the image.
   
-**Potential benefits**: Minimize any potential disruptions to your Virtual Machine Scale Set workloads  
+**Potential benefits**: Minimize any potential disruptions to your VMSS workloads.
 
 **Impact:** High
   
@@ -300,11 +244,11 @@ Subcategory: ServiceUpgradeAndRetirement
 
 <!--44abb62e-7789-4f2f-8001-fa9624cb3eb3_begin-->
 
-#### Upgrade your Virtual Machine Scale Set to alternative image SKU  
+#### Upgrade your VMSS to alternative image SKU  
   
-VMSS in your subscription are running on images that have been scheduled for deprecation. Once the image is deprecated, your Virtual Machine Scale Set workloads would no longer scale out. To prevent disruption to your workload, upgrade to newer SKU of the image.  
+VMSS in your subscription are running on images that are scheduled for deprecation. When the image is deprecated, your VMSS workloads stop scaling out. To prevent disruption to your workload, upgrade to a newer SKU of the image.
   
-**Potential benefits**: Minimize any potential disruptions to your Virtual Machine Scale Set workloads  
+**Potential benefits**: Minimize any potential disruptions to your VMSS workloads.
 
 **Impact:** High
   
@@ -318,7 +262,7 @@ Subcategory: ServiceUpgradeAndRetirement
 
 <!--b4d988a9-85e6-4179-b69c-549bdd8a55bb_begin-->
 
-#### Enable automatic repair policy on Azure Virtual Machine Scale Sets (VMSS)  
+#### Enable Automatic Repair Policy on Azure Virtual Machine Scale Sets  
   
 Enabling automatic instance repairs helps achieve high availability by maintaining a set of healthy instances. If an unhealthy instance is found by the Application Health extension or load balancer health probe, automatic instance repairs attempt to recover the instance by triggering repair actions.  
   
@@ -334,7 +278,6 @@ Subcategory: BusinessContinuity
 
 <!--b4d988a9-85e6-4179-b69c-549bdd8a55bb_end-->
 
-
 <!--3c03549b-9c0a-4c13-bed4-def3c7e34ddd_begin-->
 
 #### Upgrade to Standard SSD OS disk  
@@ -349,19 +292,12 @@ For more information, see [Migrate Standard HDD OS disks by September 08, 2028 -
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 3c03549b-9c0a-4c13-bed4-def3c7e34ddd  
-Subcategory: undefined
 
 <!--3c03549b-9c0a-4c13-bed4-def3c7e34ddd_end-->
 
-
-
-
-
-
-
 <!--7f71b153-c0b7-4e99-a23e-db8179183ec9_begin-->
 
-#### Migrate workload to D-series or better virtual machine  
+#### Migrate workload on A-series or B-series virtual machine (VM) to D-series or better VM  
   
 Migrate production workload from A-series or B-series virtual machine (VM) to D-series or better VM. A-series and B-series VMs are designed for entry-level workloads.  
   
@@ -373,17 +309,8 @@ For more information, see [Virtual machine sizes overview - Azure Virtual Machin
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 7f71b153-c0b7-4e99-a23e-db8179183ec9  
-Subcategory: undefined
 
 <!--7f71b153-c0b7-4e99-a23e-db8179183ec9_end-->
-
-
-
-
-
-
-
-
 
 <!--5f2613df-629f-4b07-9425-2a47ea0dfad3_begin-->
 
@@ -403,10 +330,9 @@ Subcategory: HighAvailability
 
 <!--5f2613df-629f-4b07-9425-2a47ea0dfad3_end-->
 
-
 <!--39fb2718-a2ae-4662-a8c9-cd8df23f01eb_begin-->
 
-#### Migrate to Virtual Machine Scale Sets Flex  
+#### Migrate virtual machine using availability sets to Virtual Machine Scale Sets Flex  
   
 Migrate workloads from virtual machine (VM) to Virtual Machine Scale Sets Flex for deployment across zones or within the same zone across different fault domains.  
   
@@ -422,7 +348,6 @@ Subcategory: HighAvailability
 
 <!--39fb2718-a2ae-4662-a8c9-cd8df23f01eb_end-->
 
-
 <!--3b587048-b04b-4f81-aaed-e43793652b0f_begin-->
 
 #### Enable application health monitoring for Virtual Machine Scale Sets (VMSS)  
@@ -437,10 +362,8 @@ For more information, see [Use Application Health extension with Azure Virtual M
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: 3b587048-b04b-4f81-aaed-e43793652b0f  
-Subcategory: undefined
 
 <!--3b587048-b04b-4f81-aaed-e43793652b0f_end-->
-
 
 <!--01c715f6-426a-47d3-87be-9f26e2ab2d8e_begin-->
 
@@ -456,10 +379,8 @@ For more information, see [Tutorial to run an Azure VM disaster recovery drill w
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 01c715f6-426a-47d3-87be-9f26e2ab2d8e  
-Subcategory: undefined
 
 <!--01c715f6-426a-47d3-87be-9f26e2ab2d8e_end-->
-
 
 <!--4175946b-cd53-4a37-9e9a-0f8a418ef6ac_begin-->
 
@@ -497,26 +418,6 @@ Subcategory: HighAvailability
 
 <!--00e4ac6c-afa3-4578-a021-5f15e18850a2_end-->
 
-<!--42d6dc9f-3e08-4a56-959d-0fd86310035f_begin-->
-
-#### Shared disks should only be enabled in clustered servers  
-  
-Azure shared disks let you attach a disk to multiple VMs at once for deploying or migrating clustered applications, suitable only when a disk is shared among VM cluster members.  
-  
-**Potential benefits**: Enhances clustered server availability  
-
-**Impact:** Medium
-  
-For more information, see [Share an Azure managed disk across VMs - Azure Virtual Machines](/azure/virtual-machines/disks-shared)  
-
-ResourceType: microsoft.compute/disks  
-Recommendation ID: 42d6dc9f-3e08-4a56-959d-0fd86310035f  
-Subcategory: Other
-
-<!--42d6dc9f-3e08-4a56-959d-0fd86310035f_end-->
-
-
-
 <!--71c69a25-0953-41d6-bf3a-1db323cd70b0_begin-->
 
 #### Migrate to zonal aware deployment model  
@@ -531,7 +432,6 @@ For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/re
 
 ResourceType: microsoft.compute/cloudservices  
 Recommendation ID: 71c69a25-0953-41d6-bf3a-1db323cd70b0  
-Subcategory: undefined
 
 <!--71c69a25-0953-41d6-bf3a-1db323cd70b0_end-->
 
@@ -549,7 +449,6 @@ For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/re
 
 ResourceType: microsoft.compute/hostgroups  
 Recommendation ID: 61bd0aa3-f2b0-485f-8e5e-95d02ac3483a  
-Subcategory: undefined
 
 <!--61bd0aa3-f2b0-485f-8e5e-95d02ac3483a_end-->
 
@@ -567,7 +466,6 @@ For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/re
 
 ResourceType: microsoft.compute/proximityplacementgroups  
 Recommendation ID: 3742247e-ea02-4202-bfef-a8a6be51fa4c  
-Subcategory: undefined
 
 <!--3742247e-ea02-4202-bfef-a8a6be51fa4c_end-->
 
@@ -585,7 +483,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 13cea0f1-c3f7-4c66-8b3b-9928a0f07cea  
-Subcategory: undefined
 
 <!--13cea0f1-c3f7-4c66-8b3b-9928a0f07cea_end-->
 
@@ -597,13 +494,12 @@ To avoid service disruptions, migrate workloads to the Azure NVadsA10_v5-series 
   
 **Potential benefits**: Avoid service disruptions and loss of functionality  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500573)  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 0e68ab45-c2c8-4d1f-9873-908dc5828252  
-Subcategory: undefined
 
 <!--0e68ab45-c2c8-4d1f-9873-908dc5828252_end-->
 
@@ -615,17 +511,14 @@ To avoid service disruptions, migrate workloads to Azure NVads_V710_v5-series vi
   
 **Potential benefits**: Avoid service disruptions and loss of functionality  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500578)  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: cfeba225-ca14-48fe-83ba-50d24f60f84e  
-Subcategory: undefined
 
 <!--cfeba225-ca14-48fe-83ba-50d24f60f84e_end-->
-
-
 
 <!--d7d26cea-dca8-4033-9e7f-d8e8a7a08cf1_begin-->
 
@@ -641,7 +534,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: d7d26cea-dca8-4033-9e7f-d8e8a7a08cf1  
-Subcategory: undefined
 
 <!--d7d26cea-dca8-4033-9e7f-d8e8a7a08cf1_end-->
 
@@ -659,11 +551,8 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 779dbd8a-6102-47d0-b36c-75eb070b86d6  
-Subcategory: undefined
 
 <!--779dbd8a-6102-47d0-b36c-75eb070b86d6_end-->
-
-
 
 <!--81076cd9-e656-4b1a-862b-63f2f40caa87_begin-->
 
@@ -679,7 +568,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/st
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 81076cd9-e656-4b1a-862b-63f2f40caa87  
-Subcategory: undefined
 
 <!--81076cd9-e656-4b1a-862b-63f2f40caa87_end-->
 
@@ -697,11 +585,8 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/ak
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: 98680ff0-2723-4c8b-9af4-54ce8a3a82d1  
-Subcategory: undefined
 
 <!--98680ff0-2723-4c8b-9af4-54ce8a3a82d1_end-->
-
-
 
 <!--6885dc91-c4d1-4695-be6f-f64be575769f_begin-->
 
@@ -717,7 +602,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/disks  
 Recommendation ID: 6885dc91-c4d1-4695-be6f-f64be575769f  
-Subcategory: undefined
 
 <!--6885dc91-c4d1-4695-be6f-f64be575769f_end-->
 
@@ -735,11 +619,8 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates?id
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: f49d7356-7251-4e15-a577-a3398527f3fd  
-Subcategory: undefined
 
 <!--f49d7356-7251-4e15-a577-a3398527f3fd_end-->
-
-
 
 <!--69e994b4-9b84-4581-930b-edcf9cc81582_begin-->
 
@@ -773,7 +654,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 851ac46b-6ac2-4074-9ba2-447bb8754cb6  
-Subcategory: undefined
 
 <!--851ac46b-6ac2-4074-9ba2-447bb8754cb6_end-->
 
@@ -791,11 +671,8 @@ HC-series virtual machine sizes are retiring. To ensure continuity and improved 
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: c6199b8a-db76-4a4f-b45b-ef5e9d2be09c  
-Subcategory: undefined
 
 <!--c6199b8a-db76-4a4f-b45b-ef5e9d2be09c_end-->
-
-
 
 <!--ac992ddf-2bbf-4049-b142-a30d6236291e_begin-->
 
@@ -812,7 +689,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: ac992ddf-2bbf-4049-b142-a30d6236291e  
-Subcategory: undefined
 
 <!--ac992ddf-2bbf-4049-b142-a30d6236291e_end-->
 
@@ -830,7 +706,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: b131ddbe-5439-4c87-95bc-6999b0648252  
-Subcategory: undefined
 
 <!--b131ddbe-5439-4c87-95bc-6999b0648252_end-->
 
@@ -848,7 +723,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: 2ae93784-84f0-4f3a-8a9c-4ee4f8549cd4  
-Subcategory: undefined
 
 <!--2ae93784-84f0-4f3a-8a9c-4ee4f8549cd4_end-->
 
@@ -866,7 +740,6 @@ For more information, see [MANA support for Network Virtual Appliances (NVAs) - 
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 40df4452-9b9f-47d7-921c-638e6cac6333  
-Subcategory: undefined
 
 <!--40df4452-9b9f-47d7-921c-638e6cac6333_end-->
 
@@ -884,7 +757,6 @@ For more information, see [MANA support for Network Virtual Appliances (NVAs) - 
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 53f3eb12-bd32-4e63-8241-234ae2b58615  
-Subcategory: undefined
 
 <!--53f3eb12-bd32-4e63-8241-234ae2b58615_end-->
 
@@ -892,7 +764,7 @@ Subcategory: undefined
 
 #### Add and enable LegacyVMNVA tag on VM Scale Set with NVAs  
   
-The VMs in Virtual Machine Scale Set use a VM series that is eligible to be deployed on MANA-capable hardware. If the VMs aren't MANA ready, apply and enable the 'LegacyVMNVA' tag on the Virtual Machine Scale Set to temporarily avoid deployment on MANA-capable hardware until 5/31/2027. Migrate to a MANA supported OS or VM series by then.  
+The VMs in VMSS use a VM series that is eligible to be deployed on MANA-capable hardware. If the VMs are not MANA ready, apply and enable the 'LegacyVMNVA' tag on the VMSS to temporarily avoid deployment on MANA-capable hardware until 5/31/2027. Migrate to a MANA supported OS or VM series by then.  
   
 **Potential benefits**: Reduce network performance risk due to MANA incompatibility.  
 
@@ -902,7 +774,6 @@ For more information, see [MANA support for Network Virtual Appliances (NVAs) - 
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: 2a126a9d-b0ec-4352-bb39-863cb8fafdcf  
-Subcategory: undefined
 
 <!--2a126a9d-b0ec-4352-bb39-863cb8fafdcf_end-->
 
@@ -910,7 +781,7 @@ Subcategory: undefined
 
 #### Enable LegacyVMNVA tag for VM Scale Set Uniform  
   
-The VMs in Virtual Machine Scale Set use a VM series that is eligible to be deployed on MANA-capable hardware. If the VMs aren't MANA ready, enable the 'LegacyVMNVA' tag on the Virtual Machine Scale Set to temporarily avoid deployment on MANA-capable hardware until 5/31/2027. Migrate to a MANA supported OS or VM series by then.  
+The VMs in VMSS use a VM series that is eligible to be deployed on MANA-capable hardware. If the VMs are not MANA ready, enable the 'LegacyVMNVA' tag on the VMSS to temporarily avoid deployment on MANA-capable hardware until 5/31/2027. Migrate to a MANA supported OS or VM series by then.  
   
 **Potential benefits**: Reduce network performance risk due to MANA incompatibility.  
 
@@ -920,7 +791,6 @@ For more information, see [MANA support for Network Virtual Appliances (NVAs) - 
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: b70fccd9-37c8-435a-8868-7b5b2ec759f7  
-Subcategory: undefined
 
 <!--b70fccd9-37c8-435a-8868-7b5b2ec759f7_end-->
 
@@ -928,7 +798,7 @@ Subcategory: undefined
 
 #### Enable LegacyVMNVA tag for NVAs in VM Scale Set Uniform  
   
-The VM uses a VM series that is eligible to be deployed on MANA-capable hardware. The Virtual Machine Scale Set has the LegacyVMNVA tag but the tag needs to be enabled for the VM. Enabling the tag will temporarily avoid deployment on MANA-capable hardware until 5/31/2027. Migrate to a supported OS or VM series by then.  
+The VM uses a VM series that is eligible to be deployed on MANA-capable hardware. The VMSS has the LegacyVMNVA tag but the tag needs to be enabled for the VM. Enabling the tag will temporarily avoid deployment on MANA-capable hardware until 5/31/2027. Migrate to a supported OS or VM series by then.  
   
 **Potential benefits**: Reduce network performance risk due to MANA incompatibility.  
 
@@ -938,7 +808,6 @@ For more information, see [MANA support for Network Virtual Appliances (NVAs) - 
 
 ResourceType: microsoft.compute/virtualmachinescalesets/virtualmachines  
 Recommendation ID: dcca165d-ffec-43e4-a21d-bc41b7812e09  
-Subcategory: undefined
 
 <!--dcca165d-ffec-43e4-a21d-bc41b7812e09_end-->
 
@@ -956,80 +825,262 @@ For more information, see [VM Insights Map and Dependency Agent retirement guida
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: 5d4bb790-d34a-4b45-81d7-4dd060e59853  
-Subcategory: undefined
 
 <!--5d4bb790-d34a-4b45-81d7-4dd060e59853_end-->
 
-<!--8a78574f-a993-424a-b9f1-f7db72aa04b4_begin-->
+<!--8db086d4-6f1e-4459-86c1-7e83e4c436a9_begin-->
 
-#### Replace with zonal or multi-zone Virtual Machine Scale Set to survive zone outages.  
+#### Azure Diagnostic Extensions are retiring  
   
-Replace Availability Sets with zonal or zone-spanning Virtual Machine Scale Sets (VMSS) or single VMs deployed across multiple zones. Availability Sets are regional constructs and cannot provide ZR.  
+Microsoft is retiring Azure Diagnostic Extensions for Windows and Linux (WAD/LAD) and will no longer support them. This retirement also includes the collection of diagnostic extension data from Azure Storage accounts imported into Log Analytics workspaces.  
   
-**Potential benefits**: Higher uptime with zonal VM distribution  
+**Potential benefits**: Avoid potential disruptions  
 
 **Impact:** High
   
-For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
-
-ResourceType: microsoft.compute/availabilitysets  
-Recommendation ID: 8a78574f-a993-424a-b9f1-f7db72aa04b4  
-Subcategory: undefined
-
-<!--8a78574f-a993-424a-b9f1-f7db72aa04b4_end-->
-
-<!--9aa53d84-e3d4-455a-9d88-aa586dbb858d_begin-->
-
-#### Review and Migrate VM Workloads  
-  
-Azure Virtual Machine (VM) series F, Fs, Fsv2, Lsv2, G, Gs, Av2 and B are being retired. These VM series will no longer be available for use or purchase. Applications and workloads currently operating on these VM types will need to be migrated to newer VM series.  
-  
-**Potential benefits**: Avoid service disruption by proactively migrating workloads  
-
-**Impact:** High
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500682)  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/Azure-Diagnostics-Extensions-retiring-march-31-2026)  
 
 ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 9aa53d84-e3d4-455a-9d88-aa586dbb858d  
-Subcategory: undefined
+Recommendation ID: 8db086d4-6f1e-4459-86c1-7e83e4c436a9  
 
-<!--9aa53d84-e3d4-455a-9d88-aa586dbb858d_end-->
+<!--8db086d4-6f1e-4459-86c1-7e83e4c436a9_end-->
 
-<!--6003c82f-b5b8-41c5-9436-dc7ed4f7e91f_begin-->
+<!--ad6df2a0-827c-493f-8307-d9d553bb5531_begin-->
 
-#### [Test arclares] Automated recommendation  
+#### Azure Virtual Machines DCsv2-series are retiring  
   
-This is the recommendation description.  
+You can't use Virtual Machines DCsv2-series anymore. Review changes to the VMs billing after changing SKUs.
   
-**Potential benefits**: Enhanced VM resilience to failures  
+**Potential benefits**: Avoid potential disruptions  
 
 **Impact:** High
   
-For more information, see [virtualMachines](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/azure-resources/Compute/virtualMachines/#deploy-vms-across-availability-zones)  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=496104)  
 
 ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 6003c82f-b5b8-41c5-9436-dc7ed4f7e91f  
-Subcategory: undefined
+Recommendation ID: ad6df2a0-827c-493f-8307-d9d553bb5531  
 
-<!--6003c82f-b5b8-41c5-9436-dc7ed4f7e91f_end-->
+<!--ad6df2a0-827c-493f-8307-d9d553bb5531_end-->
 
-<!--9621aae9-8f79-41f6-ad8f-4101e95cbf13_begin-->
+<!--2d1f43c1-9d8d-46be-873c-6ddda75636ee_begin-->
 
-#### Migrate away from HPC pack  
+#### Azure unmanaged disks are being retired  
   
-HPC Pack will no longer receive updates or support from Microsoft. Customers should migrate to Azure native services (Azure Batch or AKS as appropriate).  
+Migrate your data from Azure unmanaged disk storage to managed disks.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities.
+
+**Impact:** High
+  
+For more information, see [Unmanaged disks have been retired - Azure Virtual Machines](/azure/virtual-machines/unmanaged-disks-deprecation).  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 2d1f43c1-9d8d-46be-873c-6ddda75636ee  
+
+<!--2d1f43c1-9d8d-46be-873c-6ddda75636ee_end-->
+
+<!--990f7204-592d-49e4-8ddf-251a056dada0_begin-->
+
+#### Configure your node pool worker virtual machines across availability zones to improve availability.  
+  
+Your Azure Red Hat OpenShift node pool runs worker virtual machines in a single availability zone. Create node pools across availability zones to improve availability for your applications.  
+  
+**Potential benefits**: Improve application availability across availability zones.  
+
+**Impact:** High
+  
+For more information, see [What are Azure Availability Zones?](/azure/reliability/availability-zones-overview)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 990f7204-592d-49e4-8ddf-251a056dada0  
+
+<!--990f7204-592d-49e4-8ddf-251a056dada0_end-->
+
+<!--e3a21ba5-e34b-4614-a718-131670d51e3f_begin-->
+
+#### Default outbound access connectivity for virtual machines in Azure is retiring.  
+  
+Default outbound access connectivity for virtual machines in Azure is retiring.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/default-outbound-access-for-vms-in-azure-will-be-retired-transition-to-a-new-method-of-internet-access/)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: e3a21ba5-e34b-4614-a718-131670d51e3f  
+
+<!--e3a21ba5-e34b-4614-a718-131670d51e3f_end-->
+
+<!--beae2503-c504-47b1-8ca4-d0e708559af9_begin-->
+
+#### Desired State Configuration Extension for Azure Virtual Machines is retiring
+  
+After the retirement date, Azure won't support the Desired State Configuration Extension for Azure Virtual Machines.
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485828)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: beae2503-c504-47b1-8ca4-d0e708559af9  
+
+<!--beae2503-c504-47b1-8ca4-d0e708559af9_end-->
+
+<!--8e73c079-f841-49c6-9fca-cd552930efb8_begin-->
+
+#### Migrate ccV5 to general purpose virtual machines  
+  
+The cc_v5 confidential VM series is retiring, and DCas_cc_v5, DCads_cc_v5, ECas_cc_v5, and ECads_cc_v5 are no longer available for use or purchase. Migrate your workloads to general-purpose VM series.
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=568661)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 8e73c079-f841-49c6-9fca-cd552930efb8  
+
+<!--8e73c079-f841-49c6-9fca-cd552930efb8_end-->
+
+<!--475ee3a1-e973-4a80-9f41-7f5fafc48e93_begin-->
+
+#### NCv3 VM Family Support - Azure Batch is being retired  
+  
+Microsoft Azure is retiring support for NCv3-series VMs, including Standard_NC24rs_v3, Standard_NC6s_v3, Standard_NC12s_v3, and Standard_NC24s_v3. Azure Batch follows Microsoft Azure support retirement dates for NCv3-series VM support in Batch pools.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/NCv3-series-VM-family-support-in-azure-batch-pools-retirement)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 475ee3a1-e973-4a80-9f41-7f5fafc48e93  
+
+<!--475ee3a1-e973-4a80-9f41-7f5fafc48e93_end-->
+
+<!--e1c591d0-5ccb-4aca-91d7-b41b6924da8c_begin-->
+
+#### Standard_M192idms_v2 is being retired.  
+  
+Workloads running Standard_M192idms_v2 are deleted and associated application data is lost.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities.
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=support-for-standardm192idmsv2-will-be-retired-on-31-march-2027)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: e1c591d0-5ccb-4aca-91d7-b41b6924da8c  
+
+<!--e1c591d0-5ccb-4aca-91d7-b41b6924da8c_end-->
+
+<!--06e322e4-61bd-4399-8074-09eef9272950_begin-->
+
+#### Standard_M192ids_v2 is being retired  
+  
+Workloads running Standard_M192ids_v2 are deleted and associated application data is lost.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities.
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=community-support-for-standardm192idsv2-is-ending-on-31-march-2027)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 06e322e4-61bd-4399-8074-09eef9272950  
+
+<!--06e322e4-61bd-4399-8074-09eef9272950_end-->
+
+<!--321a6b2e-ff3a-4319-95a2-312953015781_begin-->
+
+#### Standard_M192ims_v2 is being retired.  
+  
+Workloads running Standard_M192ims_v2 are deleted and associated application data is lost.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities.
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=community-support-for-standardm192imsv2-is-ending-on-31-march-2027)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 321a6b2e-ff3a-4319-95a2-312953015781  
+
+<!--321a6b2e-ff3a-4319-95a2-312953015781_end-->
+
+<!--046927b3-bbf7-460d-86fc-d2b10f7f5f00_begin-->
+
+#### Standard_M192is_v2 is being retired.  
+  
+Workloads running Standard_M192is_v2 are deleted and associated application data is lost.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities.
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=community-support-for-standardm192isv2-is-ending-on-31-march-2027)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 046927b3-bbf7-460d-86fc-d2b10f7f5f00  
+
+<!--046927b3-bbf7-460d-86fc-d2b10f7f5f00_end-->
+
+<!--604fb48f-017f-4239-9a9c-e46d6c48132e_begin-->
+
+#### Test Azure Virtual Machine Scale Sets Resiliency with a Chaos Experiment  
+  
+Run an S3 Compute Zone Down chaos experiment to validate zonal resiliency of your VMSS Scale Sets. Chaos experiments inject failures and might affect targeted resources. Start with non-production environments and use approved maintenance windows for production workloads.
+  
+**Potential benefits**: Improve outage readiness and validate zone resilience.
+
+**Impact:** High
+  
+For more information, see [Scenarios and outage templates for Chaos Studio Workspaces - Azure Chaos Studio](/azure/chaos-studio/chaos-studio-scenarios)  
+
+ResourceType: microsoft.compute/virtualmachinescalesets  
+Recommendation ID: 604fb48f-017f-4239-9a9c-e46d6c48132e  
+
+<!--604fb48f-017f-4239-9a9c-e46d6c48132e_end-->
+
+<!--1c5fb9ab-77aa-4298-9caf-2a38f9feecdb_begin-->
+
+#### Virtual machines in NCv3-series are retiring
+  
+To avoid any disruption to your service, change the VM sizing for your workloads from the current NCv3-series VMs to the newer VM series in the same NC product line.
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities.
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=standardnc6sv3-standardnc12sv3-and-standardnc24sv3-azure-virtual-machines-will-be-retired-on-september-30-2025).  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 1c5fb9ab-77aa-4298-9caf-2a38f9feecdb  
+
+<!--1c5fb9ab-77aa-4298-9caf-2a38f9feecdb_end-->
+
+<!--3455290f-894b-45cf-b441-f28861424c5e_begin-->
+
+#### Migrate from DCsv3, DCdsv3 series to DCesv6, ECesv6 virtual machines  
+  
+DCsv3 and DCdsv3-series virtual machines are retiring. Migrate to DCesv6, ECesv6 virtual machines.  
   
 **Potential benefits**: Avoid service disruption  
 
 **Impact:** Medium
   
-  
+For more information, see [DCsv3-series and DCdsv3-series retirement - Azure Virtual Machines](https://aka.ms/dcsv3-dcdsv3-series-retirement)  
 
 ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 9621aae9-8f79-41f6-ad8f-4101e95cbf13  
-Subcategory: undefined
+Recommendation ID: 3455290f-894b-45cf-b441-f28861424c5e  
 
-<!--9621aae9-8f79-41f6-ad8f-4101e95cbf13_end-->
+<!--3455290f-894b-45cf-b441-f28861424c5e_end-->
 
 <!--articleBody-->
