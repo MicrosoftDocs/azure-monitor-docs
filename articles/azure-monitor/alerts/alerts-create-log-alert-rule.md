@@ -179,6 +179,8 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
 [!INCLUDE [alerts-wizard-actions](includes/alerts-wizard-actions.md)]
 
+You can optionally set a custom email subject for notifications. For more information, see [Customize log search alert email subjects](../alerts-customize-email-subject-how-to.md).
+
 ## Configure alert rule details
 
 1. On the **Details** tab, under **Project details**, select the **Subscription** and **Resource group** values.
