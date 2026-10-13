@@ -107,7 +107,7 @@ Unlike Analytics and Basic tables, Auxiliary tables provide unoptimized query pe
 | Identifier | Description | Example
 |:---|:---|:---|
 | ID | GUID of the workspace | workspace("00000000-0000-0000-0000-000000000000") |
-| Azure Resource ID | Identifier for the Azure resource | workspace("/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Contoso/providers/Microsoft.OperationalInsights/workspaces/contosoretail") |
+| Azure Resource ID | Identifier for the Azure resource | workspace("/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourcegroups/Contoso/providers/Microsoft.OperationalInsights/workspaces/contosoretail") |
 
 Other workspace identifiers that only use the workspace name or the workspace resource name aren't recommended since they result in reduced performance and possible errors when querying across workspaces.
 
@@ -145,7 +145,7 @@ Use the `app` expression to retrieve data from a specific classic Application In
 | Identifier | Description | Example
 |:---|:---|:---|
 | ID | GUID of the app | app("00000000-0000-0000-0000-000000000000") |
-| Azure Resource ID | Identifier for the Azure resource |app("/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Fabrikam/providers/microsoft.insights/components/fabrikamapp") |
+| Azure Resource ID | Identifier for the Azure resource |app("/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourcegroups/Fabrikam/providers/microsoft.insights/components/fabrikamapp") |
 
 ### Examples
 
