@@ -98,7 +98,7 @@ Follow the example below to call Microsoft Entra ID and retrieve a token. Replac
 
 ```bash
 curl -X POST -H 'Content-Type: application/x-www-form-urlencoded' \
--d 'grant_type=client_credentials&client_id=<client-id>&client_secret=<client-secret>&resource=00001111-aaaa-2222-bbbb-3333cccc4444' \
+-d 'grant_type=client_credentials&client_id=<client-id>&client_secret=<client-secret>&resource=6f2d169c-08f3-4a4c-a982-bcaf2d038c45' \
 https://login.microsoftonline.com/<tenant-id>/oauth2/token
 ```
 
