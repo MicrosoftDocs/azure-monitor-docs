@@ -3,7 +3,7 @@ title: Configure Azure Monitor pipeline
 description: Learn how to prepare your cluster, install cert-manager, and choose a configuration method for Azure Monitor pipeline.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 03/20/2026
+ms.date: 09/21/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
@@ -39,6 +39,7 @@ Complete deployment of an Azure Monitor pipeline includes the following steps:
   - `Microsoft.Insights`
   - `Microsoft.Monitor`
 - [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your environment with an external IP address. To connect a cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster).
+  - For clusters that enforce the Kubernetes Pod Security `restricted` profile, including Tanzu environments, use Azure Monitor pipeline version 1.7.0 or later. These versions run the operator as a non-root user.
 - Custom locations enabled on the Arc-enabled Kubernetes cluster. See [Create and manage custom locations on Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/custom-locations#enable-custom-locations-on-your-cluster).
 - Log Analytics workspace to receive logs from the pipeline. To create a workspace, see [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md).
   - (Optional) A custom table in the Log Analytics workspace if you don't want to use the default `Syslog` or `CommonSecurityLog` tables for Syslog data. To create a custom table, see [Create a custom log table in Azure Monitor](../logs/create-custom-table.md). The workspace must be onboarded to Microsoft Sentinel for the `CommonSecurityLog` table to be available.

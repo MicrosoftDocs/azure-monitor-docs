@@ -91,7 +91,7 @@ sections:
 
       - question: Can I send telemetry to the Application Insights portal?
         answer: |
-          We recommend the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md).
+          Use the [Microsoft OpenTelemetry Distro](opentelemetry-enable.md) for .NET, Node.js, and Python. For Java, use the Azure Monitor OpenTelemetry Distro.
 
           The [ingestion schema](https://github.com/microsoft/ApplicationInsights-dotnet/tree/master/BASE/Schema/PublicSchema) and [endpoint protocol](https://github.com/MohanGsk/ApplicationInsights-Home/blob/master/EndpointSpecs/ENDPOINT-PROTOCOL.md) are available publicly.
 
@@ -158,7 +158,7 @@ sections:
         answer: |
           In many instances, Application Insights automatically collects data about product usage for Microsoft. This data is stored in a Microsoft data store and doesn't affect customers' monitoring volume and cost. Application Insights collects essential and nonessential metrics about:
 
-          * [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md)
+          * [Microsoft OpenTelemetry Distro](opentelemetry-enable.md) for .NET, Node.js, and Python, and Azure Monitor OpenTelemetry Distro for Java.
           * [Autoinstrumentation (automatic instrumentation)](codeless-overview.md)
 
           The three main purposes of this data collection are:
@@ -349,7 +349,7 @@ sections:
 
       - question: Can I enable Application Insights monitoring without changing application code?
         answer: |
-          For new application monitoring, use the Azure Monitor OpenTelemetry Distro or current autoinstrumentation paths. See [Enable OpenTelemetry with Application Insights](opentelemetry-enable.md) and [Application monitoring without code changes](codeless-overview.md).
+          For new application monitoring, use the Microsoft OpenTelemetry Distro for .NET, Node.js, and Python, the Azure Monitor OpenTelemetry Distro for Java, or current autoinstrumentation paths. See [Enable OpenTelemetry with Application Insights](opentelemetry-enable.md) and [Application monitoring without code changes](codeless-overview.md).
 
       - question: Where can I get more information about using Application Insights for ASP.NET Core applications?
         answer: For current ASP.NET Core instrumentation, see [Enable OpenTelemetry with Application Insights](../app/opentelemetry-enable.md?tabs=aspnetcore).
@@ -602,7 +602,7 @@ sections:
 
       - question: How should I send custom telemetry manually?
         answer: |
-          For current instrumentation, send custom telemetry with OpenTelemetry APIs or the Azure Monitor OpenTelemetry Distro. For examples, see [Collect custom telemetry](opentelemetry-add-modify.md#collect-custom-telemetry).
+          For current instrumentation, send custom telemetry with OpenTelemetry APIs or the Microsoft OpenTelemetry Distro for .NET, Node.js, and Python. For Java, use the Azure Monitor OpenTelemetry Distro. For examples, see [Collect custom telemetry](opentelemetry-add-modify.md#collect-custom-telemetry).
 
       - question: Where can I get more information about logging with .NET?
         answer: For current .NET instrumentation, see [Enable OpenTelemetry with Application Insights](../app/opentelemetry-enable.md?tabs=net).
@@ -898,13 +898,19 @@ sections:
         answer: |
           See [OpenTelemetry Status](https://opentelemetry.io/status/).
 
-      - question: What is the Azure Monitor OpenTelemetry Distro?
+      - question: What is the Microsoft OpenTelemetry Distro?
         answer: |
+          <a id="what-is-the-azure-monitor-opentelemetry-distro"></a>
+
           You can think of it as a thin wrapper that bundles together all the OpenTelemetry components for a first-class experience on Azure. This wrapper is also called a [distribution](https://opentelemetry.io/docs/concepts/distributions/) in OpenTelemetry.
 
-      - question: Why should I use the Azure Monitor OpenTelemetry Distro?
+          The Microsoft OpenTelemetry Distro supports .NET, Node.js, and Python. For Java, use the Azure Monitor OpenTelemetry Distro.
+
+      - question: Why should I use the Microsoft OpenTelemetry Distro?
         answer: |
-          There are several advantages to using the Azure Monitor OpenTelemetry Distro over native OpenTelemetry from the community:
+          <a id="why-should-i-use-the-azure-monitor-opentelemetry-distro"></a>
+
+          With Azure Monitor export enabled, the Microsoft OpenTelemetry Distro for .NET, Node.js, and Python provides several advantages over native OpenTelemetry from the community:
 
           * Reduces enablement effort
           * Supported by Microsoft
@@ -923,24 +929,26 @@ sections:
 
           Because the Distro provides an [OpenTelemetry distribution](https://opentelemetry.io/docs/concepts/distributions/#what-is-a-distribution), the Distro supports anything supported by OpenTelemetry. For example, you can add more telemetry processors, exporters, or instrumentation libraries, if OpenTelemetry supports them.
 
-          For languages without a supported standalone OpenTelemetry exporter, the Azure Monitor OpenTelemetry Distro is the only currently supported way to use OpenTelemetry with Azure Monitor. For languages with a supported standalone OpenTelemetry exporter, you have the option of using either the Azure Monitor OpenTelemetry Distro or the appropriate standalone OpenTelemetry exporter depending on your telemetry scenario. For more information, see [When should I use the Azure Monitor OpenTelemetry exporter?](#when-should-i-use-the-azure-monitor-opentelemetry-exporter).
+          For languages without a supported standalone OpenTelemetry exporter, use the recommended distro to send telemetry to Azure Monitor. For languages with a supported standalone OpenTelemetry exporter, you have the option of using either the Microsoft OpenTelemetry Distro for .NET, Node.js, and Python, the Azure Monitor OpenTelemetry Distro for Java, or the appropriate standalone OpenTelemetry exporter depending on your telemetry scenario. For more information, see [When should I use the Azure Monitor OpenTelemetry exporter?](#when-should-i-use-the-azure-monitor-opentelemetry-exporter).
 
       - question: Should I use OpenTelemetry for new Application Insights projects?
         answer: |
-          Yes. We recommend using the Azure Monitor OpenTelemetry Distro for new projects.
+          Yes. Use the Microsoft OpenTelemetry Distro for new .NET, Node.js, and Python projects. For Java, use the Azure Monitor OpenTelemetry Distro.
 
           If you're migrating an existing .NET or Node.js application from older Application Insights SDKs, see [Migrate from Application Insights SDKs to Azure Monitor OpenTelemetry](migrate-to-opentelemetry.md).
       - question: When should I use the Azure Monitor OpenTelemetry exporter?
         answer: |
-          For ASP.NET Core, Java, Node.js, and Python, we recommend using the Azure Monitor OpenTelemetry Distro. It's one line of code to get started.
+          For .NET, Node.js, and Python, we recommend using the Microsoft OpenTelemetry Distro. For Java, use the Azure Monitor OpenTelemetry Distro. For setup instructions, see [Enable OpenTelemetry with Application Insights](opentelemetry-enable.md).
 
-          For all other .NET scenarios, including classic ASP.NET, console apps, Windows Forms (WinForms), etc., we recommend using the .NET Azure Monitor OpenTelemetry exporter: `Azure.Monitor.OpenTelemetry.Exporter`.
+          For .NET applications that need a standalone exporter, use `Azure.Monitor.OpenTelemetry.Exporter`. This package is separate from the Microsoft OpenTelemetry Distro.
 
           For more complex Python telemetry scenarios that require advanced configuration, we recommend using the Python [Azure Monitor OpenTelemetry Exporter](/python/api/overview/azure/monitor-opentelemetry-exporter-readme?view=azure-python-preview&preserve-view=true).
 
-      - question: What's the current release state of features within the Azure Monitor OpenTelemetry Distro?
+      - question: What's the current release state of features within the Microsoft OpenTelemetry Distro?
         answer: |
-          The Azure Monitor OpenTelemetry Distro supports the current recommended Application Insights instrumentation path.
+          <a id="what-s-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro"></a>
+
+          The Microsoft OpenTelemetry Distro supports the current recommended Application Insights instrumentation path for .NET, Node.js, and Python. For Java, use the Azure Monitor OpenTelemetry Distro.
 
           For the latest details about code analysis experiences, see [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md).
 
@@ -1133,7 +1141,7 @@ sections:
 
       - question: Can I enable Application Insights monitoring without changing application code?
         answer: |
-          For new application monitoring, use the Azure Monitor OpenTelemetry Distro or current autoinstrumentation paths. See [Enable OpenTelemetry with Application Insights](opentelemetry-enable.md) and [Application monitoring without code changes](codeless-overview.md).
+          For new application monitoring, use the Microsoft OpenTelemetry Distro for .NET, Node.js, and Python, the Azure Monitor OpenTelemetry Distro for Java, or current autoinstrumentation paths. See [Enable OpenTelemetry with Application Insights](opentelemetry-enable.md) and [Application monitoring without code changes](codeless-overview.md).
 
       - question: Are all features supported if I run my application in Linux?
         answer: |

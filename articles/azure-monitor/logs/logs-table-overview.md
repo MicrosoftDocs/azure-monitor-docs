@@ -3,7 +3,7 @@ title: Tables in Azure Monitor Logs
 description: Learn how tables work in Azure Monitor Logs, including table types, table plans, retention, ingestion-time transformations, column data types, and GUID handling.
 ms.reviewer: adi.biran
 ms.topic: concept-article
-ms.date: 05/24/2026
+ms.date: 09/21/2026
 # customer intent: As a Log Analytics workspace administrator, I want to understand how tables work in Azure Monitor Logs, including schema, plans, and retention, so that I can manage my data model and costs effectively.
 ---
 
@@ -34,24 +34,24 @@ A Log Analytics workspace contains tables of several types. The table type deter
 
 | Table plan | Recommended use case |
 |------------|---------------------|
-| Analytics | Continuous monitoring, real-time detection, and performance analytics. This plan makes log data available for interactive multitable queries and use by features and services for 30 days to two years. |
-| Basic | Troubleshooting and incident response. This plan offers discounted ingestion and optimized single-table queries for 30 days. |
-| Auxiliary | Low-touch data, such as verbose logs, and data required for auditing and compliance. This plan offers low-cost ingestion with the trade-off of unoptimized single-table queries for the total retention period. |
+| Analytics | Continuous monitoring, real-time detection, and performance analytics. This plan makes log data available for high-performance queries and use by features and services for 30 days to two years. |
+| Basic | Troubleshooting and incident response. This plan offers discounted ingestion and optimized queries across tables and Log Analytics workspaces for 30 days. |
+| Auxiliary | Low-touch data, such as verbose logs, and data required for auditing and compliance. This plan offers low-cost ingestion with the trade-off of unoptimized queries across tables and Log Analytics workspaces for the total retention period. |
 
 For more details about choosing a table plan, see [Azure Monitor Logs table plans](data-platform-logs.md#table-plans).
 
 ## Retention
 
-Each table has two retention stages:
+Query availability depends on the table plan and retention stage:
 
-| Table retention stage | Description |
+| Retention concept | Description |
 |----------------------|-------------|
-| Interactive retention | The period during which data is available for queries, alerts, and other Azure Monitor features. Interactive retention ranges from 4 to 730 days for Analytics tables, and is fixed at 30 days for Basic and Auxiliary tables. |
-| Long-term retention | A low-cost extension that keeps data in your workspace for compliance or occasional investigation without making it available for continuous queries. To access data in long-term retention, [run a search job](search-jobs.md). |
+| Query window | Analytics tables are queryable during Analytics retention, which ranges from 4 to 730 days. A query that includes Analytics and Basic tables, but no Auxiliary table, can cover the past 30 days. A query that includes an Auxiliary table can cover the total retention period of all queried tables, up to 12 years. |
+| Long-term retention | A low-cost extension that keeps data in the workspace for compliance or occasional investigation. To access Analytics data after Analytics retention or Basic data older than 30 days in a query that doesn't include an Auxiliary table, [run a search job](search-jobs.md). Auxiliary data remains queryable throughout its total retention period. |
 
-Use [table-level retention settings](data-retention-configure.md) to set both stages independently per table. 
+Use [table-level retention settings](data-retention-configure.md) to configure Analytics retention and total retention where applicable.
 
-To access data in long-term retention, run a search job. Search jobs are on-demand, asynchronous queries that run against the entire dataset in a workspace, including data in long-term retention. For more information, see [Search jobs in Azure Monitor Logs](search-jobs.md).
+To access Analytics data after Analytics retention or Basic data older than 30 days in a query that doesn't include an Auxiliary table, run a search job. Search jobs are on-demand, asynchronous queries that run against the entire dataset in a workspace, including data in long-term retention. For more information, see [Search jobs in Azure Monitor Logs](search-jobs.md).
 
 ## Table schema
 

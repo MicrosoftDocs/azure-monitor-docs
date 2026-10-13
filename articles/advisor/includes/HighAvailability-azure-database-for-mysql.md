@@ -26,7 +26,6 @@ For more information, see [Troubleshoot Replication Latency - Azure Database for
 
 ResourceType: microsoft.dbformysql/flexibleservers  
 Recommendation ID: cf388b0c-2847-4ba9-8b07-54c6b23f60fb  
-Subcategory: undefined
 
 <!--cf388b0c-2847-4ba9-8b07-54c6b23f60fb_end-->
 
@@ -45,7 +44,6 @@ For more information, see [Troubleshoot Replication Latency - Azure Database for
 
 ResourceType: microsoft.dbformysql/flexibleservers  
 Recommendation ID: fb41cc05-7ac3-4b0e-a773-a39b5c1ca9e4  
-Subcategory: undefined
 
 <!--fb41cc05-7ac3-4b0e-a773-a39b5c1ca9e4_end-->
 
@@ -64,7 +62,6 @@ For more information, see [Service Tiers - Azure Database for MySQL](/azure/mysq
 
 ResourceType: microsoft.dbformysql/flexibleservers  
 Recommendation ID: 91fd3a33-3b2f-48bb-81db-a2a54cfa2d76  
-Subcategory: undefined
 
 <!--91fd3a33-3b2f-48bb-81db-a2a54cfa2d76_end-->
 
@@ -83,7 +80,6 @@ For more information, see [Networking Overview - Azure Database for MySQL](/azur
 
 ResourceType: microsoft.dbformysql/flexibleservers  
 Recommendation ID: f259e897-9924-45db-a1ea-788f768548da  
-Subcategory: undefined
 
 <!--f259e897-9924-45db-a1ea-788f768548da_end-->
 
@@ -107,7 +103,6 @@ For more information, see [Server Parameters in Azure Database for MySQL - Flexi
 
 ResourceType: microsoft.dbformysql/flexibleservers  
 Recommendation ID: f51c5bce-c771-42c0-97c8-5c6676bad17c  
-Subcategory: undefined
 
 <!--f51c5bce-c771-42c0-97c8-5c6676bad17c_end-->
 
@@ -144,8 +139,24 @@ For more information, see [Backup and Restore - Azure Database for MySQL](https:
 
 ResourceType: microsoft.dbformysql/flexibleservers  
 Recommendation ID: c317d906-e24a-4f6d-8cd7-389bd6bc602c  
-Subcategory: null
 
 <!--c317d906-e24a-4f6d-8cd7-389bd6bc602c_end-->
+
+<!--99565ce4-6382-4ab9-a3ae-48b7df76fdb3_begin-->
+
+#### MySQL v5.7 is being retired  
+  
+MySQL v5.7 is being retired.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Version support policy - Azure Database for MySQL](/azure/mysql/concepts-version-policy#what-will-happen-to-azure-database-for-mysql-service-after-mysql-community-version-is-retired-in-october-2023)  
+
+ResourceType: microsoft.dbformysql/flexibleservers  
+Recommendation ID: 99565ce4-6382-4ab9-a3ae-48b7df76fdb3  
+
+<!--99565ce4-6382-4ab9-a3ae-48b7df76fdb3_end-->
 
 <!--articleBody-->

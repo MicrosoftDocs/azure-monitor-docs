@@ -12,27 +12,6 @@ ms.custom: HighAvailability Storage
   
 ## Storage
 
-<!--8ef907f4-f8e3-4bf1-962d-27e005a7d82d_begin-->
-
-#### Configure blob backup  
-  
-Azure blob backup helps protect data from accidental or malicious deletion. We recommend that you configure blob backup.  
-  
-**Potential benefits**: Protect data from accidental or malicious deletion  
-
-**Impact:** Medium
-  
-For more information, see [Overview of Azure Blobs backup - Azure Backup ](/azure/backup/blob-backup-overview)  
-
-ResourceType: microsoft.storage/storageaccounts  
-Recommendation ID: 8ef907f4-f8e3-4bf1-962d-27e005a7d82d  
-Subcategory: DisasterRecovery
-
-<!--8ef907f4-f8e3-4bf1-962d-27e005a7d82d_end-->
-
-
-
-
 <!--4c10f447-fc3d-48b5-931d-23cea8486023_begin-->
 
 #### Enable zone redundancy for storage accounts to improve high availability and resiliency  
@@ -65,7 +44,6 @@ For more information, see [Accidental Delete Protection for Azure Files - Azure 
 
 ResourceType: microsoft.storage/storageaccounts  
 Recommendation ID: f39dc18e-4830-4027-962b-e27cb9bb1458  
-Subcategory: undefined
 
 <!--f39dc18e-4830-4027-962b-e27cb9bb1458_end-->
 
@@ -83,7 +61,6 @@ For more information, see [Change how a storage account is replicated - Azure St
 
 ResourceType: microsoft.storage/storageaccounts  
 Recommendation ID: b18744b9-2718-4617-9cdd-f6fad6cbc0cf  
-Subcategory: undefined
 
 <!--b18744b9-2718-4617-9cdd-f6fad6cbc0cf_end-->
 
@@ -101,7 +78,6 @@ For more information, see [Back up Azure Files in the Azure portal - Azure Backu
 
 ResourceType: microsoft.storage/storageaccounts  
 Recommendation ID: ebe76d14-0f9e-4fd2-b453-f04f8852dc8f  
-Subcategory: undefined
 
 <!--ebe76d14-0f9e-4fd2-b453-f04f8852dc8f_end-->
 
@@ -113,19 +89,18 @@ Migrate to general-purpose v2 storage account or specialized alternatives based 
   
 **Potential benefits**: Avoid service disruptions and gain improved performance  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=496964)  
 
 ResourceType: microsoft.storage/storageaccounts  
 Recommendation ID: 1d70919c-1a4a-4f79-8300-bb576c291e9d  
-Subcategory: undefined
 
 <!--1d70919c-1a4a-4f79-8300-bb576c291e9d_end-->
 
 <!--42dbf883-9e4b-4f84-9da4-232b87c4b5e9_begin-->
 
-#### Enable Soft Delete to protect your blob data  
+#### Enable Soft Delete  
   
 Soft Delete puts deleted data into a soft deleted state instead of permanently deleted. When data is overwritten, a soft deleted snapshot is generated to save the state of the overwritten data. You can configure the amount of time soft deleted data is recoverable before it permanently expires.  
   
@@ -137,7 +112,6 @@ For more information, see [Soft delete for blobs - Azure Storage](https://aka.ms
 
 ResourceType: microsoft.storage/storageaccounts  
 Recommendation ID: 42dbf883-9e4b-4f84-9da4-232b87c4b5e9  
-Subcategory: undefined
 
 <!--42dbf883-9e4b-4f84-9da4-232b87c4b5e9_end-->
 
@@ -149,13 +123,12 @@ Migrate BlobFuse to BlobFuse2. All future enhancements and innovations related t
   
 **Potential benefits**: Enhancements to Azure Blob Storage file system access  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=498563)  
 
 ResourceType: microsoft.storage/storageaccounts  
 Recommendation ID: 26cbb942-7c43-4f4b-af10-116f5b107acc  
-Subcategory: undefined
 
 <!--26cbb942-7c43-4f4b-af10-116f5b107acc_end-->
 
@@ -173,11 +146,8 @@ For more information, see [TLS 1.0 and 1.1 support will be removed for new & exi
 
 ResourceType: microsoft.storage/storageaccounts  
 Recommendation ID: ced5fa9f-b5bf-4982-9f25-8190fb36dfca  
-Subcategory: undefined
 
 <!--ced5fa9f-b5bf-4982-9f25-8190fb36dfca_end-->
-
-
 
 <!--7be41487-135c-4bee-901f-b4e8cd5e9180_begin-->
 
@@ -193,7 +163,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.storage/storageaccounts  
 Recommendation ID: 7be41487-135c-4bee-901f-b4e8cd5e9180  
-Subcategory: undefined
 
 <!--7be41487-135c-4bee-901f-b4e8cd5e9180_end-->
 
@@ -205,13 +174,12 @@ RC4 encryption in Azure Files Storage Accounts and Active Directory Objects is b
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Troubleshoot Encryption Changes Affecting Azure Files - Azure](/troubleshoot/azure/azure-storage/files/security/files-troubleshoot-encryption)  
 
 ResourceType: microsoft.storage/storageaccounts  
 Recommendation ID: 6015a8e7-c899-4724-b39d-4281ddcc2551  
-Subcategory: undefined
 
 <!--6015a8e7-c899-4724-b39d-4281ddcc2551_end-->
 

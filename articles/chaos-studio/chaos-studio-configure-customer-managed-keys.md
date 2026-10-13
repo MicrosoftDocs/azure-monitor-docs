@@ -12,9 +12,9 @@ ai-usage: ai-assisted
  
 # Configure customer-managed keys for Experiments (classic)
 
-Customer-managed keys for Azure Chaos Studio Experiments (classic) are in preview. Chaos Studio Workspaces doesn't support customer-managed keys; review [Workspaces limitations](chaos-studio-workspaces-limitations.md#limitations) before choosing a resource model for your encryption requirements.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+Customer-managed keys for Azure Chaos Studio Experiments (classic) are in preview. Chaos Studio Workspaces doesn't support customer-managed keys; review [Workspaces limitations](chaos-studio-workspaces-limitations.md#limitations) before choosing a resource model for your encryption requirements.
 
 Azure Chaos Studio automatically encrypts all data stored in your experiment resource with service-managed keys that Microsoft provides. As an optional feature, you can add a second layer of security by also providing your own customer-managed encryption keys. Customer-managed keys (CMKs) offer greater flexibility for controlling access and key-rotation policies.
 

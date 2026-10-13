@@ -256,6 +256,8 @@
   href: ../amlenvironmentevent.md
 - name: AmlInferencingEvent
   href: ../amlinferencingevent.md
+- name: AMLManagedNetworkEvent
+  href: ../amlmanagednetworkevent.md
 - name: AmlModelsEvent
   href: ../amlmodelsevent.md
 - name: AmlOnlineEndpointConsoleLog

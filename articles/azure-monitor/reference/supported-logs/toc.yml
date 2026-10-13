@@ -131,9 +131,6 @@ items:
 - name: Microsoft.CustomProviders/resourceproviders
   href: microsoft-customproviders-resourceproviders-logs.md
   displayName: Audit logs for MiniRP calls
-- name: Microsoft.D365CustomerInsights/instances
-  href: microsoft-d365customerinsights-instances-logs.md
-  displayName: Audit events,Operational events
 - name: Microsoft.Dashboard/dashboards
   href: microsoft-dashboard-dashboards-logs.md
   displayName: Update Events
@@ -200,6 +197,9 @@ items:
 - name: Microsoft.Devices/IotHubs
   href: microsoft-devices-iothubs-logs.md
   displayName: C2D Commands,C2D Twin Operations,Configurations,Connections,D2CTwinOperations,Device Identity Operations,Device Streams (Preview),Device Telemetry,Direct Methods,Distributed Tracing (Preview),File Upload Operations,Jobs Operations,Routes,Twin Queries
+- name: Microsoft.Devices/provisioningServices
+  href: microsoft-devices-provisioningservices-logs.md
+  displayName: Device Operations,Service Operations
 - name: Microsoft.DevOpsInfrastructure/pools
   href: microsoft-devopsinfrastructure-pools-logs.md
   displayName: Resource Provisioning Logs
@@ -235,7 +235,7 @@ items:
   displayName: Data plane operations logs,Delivery Failure Logs,Publish Failure Logs
 - name: Microsoft.EventGrid/namespaces
   href: microsoft-eventgrid-namespaces-logs.md
-  displayName: Failed HTTP data plane operations logs,Failed MQTT Connections,Failed MQTT Published Messages,Failed MQTT Subscription Operations,MQTT Disconnections,Successful HTTP data plane operations logs,Successful MQTT Connections
+  displayName: Autoscale Logs,Failed HTTP data plane operations logs,Failed MQTT Connections,Failed MQTT Published Messages,Failed MQTT Subscription Operations,MQTT Disconnections,Successful HTTP data plane operations logs,Successful MQTT Connections
 - name: Microsoft.EventGrid/partnerNamespaces
   href: microsoft-eventgrid-partnernamespaces-logs.md
   displayName: Data plane operations logs,Publish Failure Logs
@@ -422,6 +422,9 @@ items:
 - name: Microsoft.NetworkFunction/azureTrafficCollectors
   href: microsoft-networkfunction-azuretrafficcollectors-logs.md
   displayName: Express Route Circuit IPFIX Flow Records,Microsoft Peering Metadata,Private Peering Metadata
+- name: Microsoft.NetworkSecurity/agentFabrics
+  href: microsoft-networksecurity-agentfabrics-logs.md
+  displayName: Agent Fabric Flow Logs
 - name: Microsoft.NotificationHubs/namespaces
   href: microsoft-notificationhubs-namespaces-logs.md
   displayName: Operational Logs
@@ -625,4 +628,4 @@ items:
   displayName: Creation Events,Delete Events,Update Events
 - name: Oracle.Database/goldenGateDeployments
   href: oracle-database-goldengatedeployments-logs.md
-  displayName: Backup Events,Creation Events,Critical Events,Delete Events,Information Events,Maintenance Events,Restore Events,Update Events
+  displayName: Backup Events,Critical Events,Delete Events,Information Events,Maintenance Events,Update Events

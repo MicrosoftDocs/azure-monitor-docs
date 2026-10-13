@@ -58,7 +58,7 @@ Before you collect personal data, review the [Strategy for personal data handlin
 
 ### View and export personal data
 
-Use the [Log Analytics query API](/rest/api/loganalytics/dataaccess/query) to send view and export data requests. The Log Analytics query API doesn't support tables that have the [Basic and Auxiliary table plans](data-platform-logs.md#table-plans). For those tables, use the [Search API](basic-logs-query.md#run-a-query-on-a-basic-or-auxiliary-table) instead.
+Use the [Log Analytics query API](/rest/api/loganalytics/dataaccess/query) to send view and export data requests. The Log Analytics query API doesn't support tables that have the [Basic and Auxiliary table plans](data-platform-logs.md#table-plans). For those tables, use the [Search API](basic-logs-query.md#run-a-query-that-includes-basic-or-auxiliary-tables) instead.
 
 You need to implement the logic for converting the data to an appropriate format for delivery to your users. [Azure Functions](https://azure.microsoft.com/services/functions/) is a great place to host such logic.
 

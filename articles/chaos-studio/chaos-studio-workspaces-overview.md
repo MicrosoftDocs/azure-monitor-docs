@@ -3,7 +3,7 @@ title: Chaos Studio Workspaces overview
 description: Use Chaos Studio Workspaces for Azure resilience testing. Discover resources, run outage Scenarios, and review Scenario reports in public preview.
 author: nikhilkaul-msft
 ms.topic: overview
-ms.date: 09/05/2026
+ms.date: 09/25/2026
 ms.custom: references_regions
 ai-usage: ai-assisted
 ---
@@ -85,9 +85,9 @@ For a detailed walkthrough of Scenario reports, see [Scenario reports in Azure C
 
 ## Relationship to Experiments (classic)
 
-Chaos Studio Workspaces and Experiments (classic) are separate resource models. Workspaces use Scenarios that compose actions. The Experiments (classic) model uses experiments, targets, capabilities, and faults. Choose Experiments (classic) when you need a fault composition or capability that isn't available in the catalog of Scenarios.
+Experiments (classic), the legacy resource model, is being replaced by Chaos Studio Workspaces. The two models use different resources. In Workspaces, you use Scenarios that combine actions. The Experiments (classic) model uses experiments, targets, capabilities, and faults. Use Experiments (classic) only when you need a generally available resource model or when the Scenario catalog doesn't yet cover the combination of faults or capability you need.
 
-For a side-by-side comparison and guidance on when to choose each model, see [Choose between Chaos Studio Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md).
+For a side-by-side comparison, see [Choose between Chaos Studio Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md). To move your existing experiments, see [Move from Experiments (classic) to Chaos Studio Workspaces](chaos-studio-migrate-from-classic.md).
 
 ## Choose a resilience test
 

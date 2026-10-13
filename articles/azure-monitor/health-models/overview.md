@@ -56,7 +56,11 @@ Health models allow you to create alerts based on health state instead of indivi
 
 ## Next steps
 
-- [Create a new health model](./create.md).
-- [Create a health model by using Bicep](./tutorial-bicep.md).
+- [Create a health model in the Azure portal](./create.md).
+- [Create a health model with Azure CLI](./quickstart-cli.md).
+- [Create a health model with Azure PowerShell](./quickstart-powershell.md).
+- [Create a health model with Bicep](./tutorial-bicep.md).
+- [Create a health model with an ARM template](./quickstart-arm-template.md).
+- [Create a health model with Terraform](./quickstart-terraform.md).
 - [Monitor a health model](./monitoring.md).
 - [Understand the concepts of health models](./concepts.md).

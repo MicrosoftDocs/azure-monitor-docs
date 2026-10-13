@@ -17,14 +17,14 @@ OpenTelemetry provides a standardized way to emit traces, logs, and metrics. Azu
 > For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 > [!TIP]
-> For a conceptual overview of OpenTelemetry options in Azure Monitor — native OTLP ingestion, the Microsoft OpenTelemetry distro, and end-to-end observability experiences — see [OpenTelemetry with Azure Monitor](opentelemetry-options.md).
+> For a conceptual overview of OpenTelemetry options in Azure Monitor — native OTLP ingestion, the Microsoft OpenTelemetry Distro, and end-to-end observability experiences — see [OpenTelemetry with Azure Monitor](opentelemetry-options.md).
 
 ## Key capabilities
 
 - Enable cluster-level monitoring to install Azure Monitor components on the AKS cluster.
 - Create an Application Insights resource with OTLP ingestion enabled.
 - Onboard applications at the namespace or deployment scope by using either:
-  - **Autoinstrumentation** with the Azure Monitor OpenTelemetry distribution.
+  - **Autoinstrumentation** with language-specific OpenTelemetry instrumentation.
   - **Autoconfiguration** for applications already instrumented with the open-source OpenTelemetry Software Development Kits (SDKs).
     - Autoconfiguration applies only to applications that are already instrumented with OpenTelemetry. When you select autoconfiguration, Azure Monitor doesn't add instrumentation to your application. Instead, it sets environment variables at the platform level so existing OpenTelemetry SDKs export telemetry to Application Insights. You're responsible for instrumenting the application (for example, by using OpenTelemetry SDKs or annotations) before you enable autoconfiguration.
 
@@ -148,12 +148,12 @@ If you don't enable OTLP, Application Insights only uses Azure Monitor autoinstr
     - **User-configured instrumentation per deployment**
       - Autoconfiguration sets environment variables so existing SDKs export telemetry to Application Insights
       - Each deployment must already have autoinstrumentation annotations or manual instrumentation. For more information, see [Per deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding).
-    - **Java autoinstrumentation for all deployments** for automatic injection of the Azure Monitor OpenTelemetry distribution into Java applications.  
+    - **Java autoinstrumentation for all deployments** for automatic injection of the Azure Monitor OpenTelemetry Distro into Java applications.
       - All deployments in the namespace use Java autoinstrumentation by default. Use annotations to change the language or exclude a deployment. For more information, see [Automatic instrumentation](../app/codeless-overview.md) and [Per deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding).
-    - **NodeJs autoinstrumentation for all deployments** for automatic injection of the Azure Monitor OpenTelemetry distribution into Node.js applications.  
+    - **NodeJs autoinstrumentation for all deployments** for automatic injection of OpenTelemetry instrumentation into Node.js applications.
        - All deployments in the namespace use Node.js autoinstrumentation by default. Use annotations to change the language or exclude a deployment. For more information, see [Automatic instrumentation](../app/codeless-overview.md) and [Per deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding).
     > [!NOTE]
-    > The Azure portal only allows you to apply autoinstrumentation OR autoconfiguration to a single namespace. If you need to use both options, see [per-deployment onboarding options](kubernetes-codeless.md#onboard-deployments).
+    > The Azure portal only allows you to apply autoinstrumentation OR autoconfiguration to a single namespace. If you need to use both options within a single namespace, see [per-deployment onboarding options](kubernetes-codeless.md#onboard-deployments).
 1. Leave **Perform rollout restart of all deployments** unchecked. You perform the restart manually in the next step.
 1. Select **Configure**.  
   :::image type="content" source="./media/kubernetes-open-protocol/application-configuration-pane.png" lightbox="./media/kubernetes-open-protocol/application-configuration-pane.png" alt-text="A screenshot of the configuration pane for application with resource and language selections.":::
@@ -204,7 +204,7 @@ Use the Kubernetes custom resources when you need more control. For more informa
 
 ### Autoinstrumentation (Java, Node.js)
 
-Follow the **namespace-wide** or **per-deployment** onboarding guidance in the article linked earlier to inject the Azure Monitor OpenTelemetry distribution into your pods.
+Follow the **namespace-wide** or **per-deployment** onboarding guidance in the article linked earlier to inject language-specific OpenTelemetry instrumentation into your pods. Java uses the Azure Monitor OpenTelemetry Distro. For manual Node.js instrumentation, use the [Microsoft OpenTelemetry Distro](../app/opentelemetry-enable.md?tabs=nodejs).
 
 > [!NOTE]
 > To participate in the limited public preview of Autoinstrumentation for .NET or Python, see [Enable AKS autoinstrumentation for Python and .NET (limited preview)](kubernetes-codeless-python-net.md).
@@ -235,10 +235,11 @@ Autoconfiguration sets environment variables so existing SDKs export telemetry t
     template:
       metadata:
         annotations:
-          instrumentation.opentelemetry.io/inject-nodejs: "cr1"
+          instrumentation.opentelemetry.io/inject-configuration: "cr1"
   ```
 
-When you use the `inject-configuration` annotation, the `spec.settings.autoInstrumentationPlatforms` setting on the referenced custom resource is ignored and the deployment is configured to send OTLP data to the connection string defined in `applicationInsightsConnectionString`. Use the annotation value `"false"` to exclude a deployment from Autoconfiguration.
+- **Exclude deployments from a default CR**: When you use namespace-wide onboarding for user-configured instrumentation, a default custom resource is created, the `spec.settings.autoInstrumentationPlatforms` setting is left empty and all deployments are configured to send OTLP data to the connection string defined in `applicationInsightsConnectionString`. Use the annotation value `"false"` to exclude a deployment.
+  
   ```yml
   apiVersion: apps/v1
   kind: Deployment
@@ -247,8 +248,43 @@ When you use the `inject-configuration` annotation, the `spec.settings.autoInstr
     template:
       metadata:
         annotations:
-          instrumentation.opentelemetry.io/inject-nodejs: "false"
+          instrumentation.opentelemetry.io/inject-configuration: "false"
   ```
+
+- **Change protocol**: OpenTelemetry supports two main protocols to transmit and receive telemetry data: gRPC and HTTP. By default, AKS autoconfiguration uses `http/protobuf`. Use the following annotations to override the default protocol for a deployment.
+
+For gRPC, use:
+
+- gRPC: `instrumentation.opentelemetry.io/otel-protocol: "grpc"`
+
+
+```yml
+  apiVersion: apps/v1
+  kind: Deployment
+  ...
+  spec:
+    template:
+      metadata:
+        annotations:
+          instrumentation.opentelemetry.io/inject-configuration: "cr1"
+          instrumentation.opentelemetry.io/otel-protocol: "grpc"
+```
+
+For HTTP, use:
+- HTTP/Protobuf: `instrumentation.opentelemetry.io/otel-protocol: "http/protobuf"`
+
+```yml
+  apiVersion: apps/v1
+  kind: Deployment
+  ...
+  spec:
+    template:
+      metadata:
+        annotations:
+          instrumentation.opentelemetry.io/inject-configuration: "cr1"
+          instrumentation.opentelemetry.io/otel-protocol: "http/protobuf"
+```
+  
 
 ## Limitations
 

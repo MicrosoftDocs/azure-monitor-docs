@@ -12,9 +12,9 @@ ms.custom: devx-track-azurecli
 
 # Relay container image for Experiments (classic)
 
-This relay container image supports virtual network injection with Azure Chaos Studio Experiments (classic). For the current model, review [Chaos Studio Workspaces private-networking limitations](chaos-studio-workspaces-limitations.md#limitations); this relay setup isn't a Workspaces prerequisite.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This relay container image supports virtual network injection with Azure Chaos Studio Experiments (classic). For the current model, review [Chaos Studio Workspaces private-networking limitations](chaos-studio-workspaces-limitations.md#limitations); this relay setup isn't a Workspaces prerequisite.
 
 The following container image is the Relay Bridge Host for Azure Chaos Studio, available from the Microsoft Container Registry. This image is used to facilitate communication between Azure Chaos Studio and target resources when those resources are within private networks. Typically customers look for this image when doing a security review and allow listing the image Chaos Studio uses during virtual network injection. This image is a Bastion host that we use for running an experiment in a customer's subscription and hosting the Azure Relay that connects to the Chaos Studio backend during experiment execution.
 

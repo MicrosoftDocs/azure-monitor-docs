@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.AzureStackHCI/edgeMachines
 description: Reference for Microsoft.AzureStackHCI/edgeMachines metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 08/21/2026
+ms.date: 09/28/2026
 ms.custom: Microsoft.AzureStackHCI/edgeMachines, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -30,14 +30,39 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 
 
 
+### Category: Capacity
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**GPU Memory Total**<br><br>Total GPU memory reported by NVML in mebibytes. Unified-memory platforms can report zero when framebuffer memory is unavailable through NVML. |`GpuMemoryTotal` | No | Unspecified |Minimum, Maximum, Average, Total (Sum), Count |`GpuIndex`, `GpuName`, `GpuUuid`, `GpuPciAddress`, `EdgeMachineName`, `Region`|PT1M |No|
+|**GPU Memory Used**<br><br>GPU memory in use reported by NVML in mebibytes. Unified-memory platforms can report zero when framebuffer memory is unavailable through NVML. |`GpuMemoryUsed` | No | Unspecified |Minimum, Maximum, Average, Total (Sum), Count |`GpuIndex`, `GpuName`, `GpuUuid`, `GpuPciAddress`, `EdgeMachineName`, `Region`|PT1M |No|
+
 ### Category: Errors
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**Network Errors**<br><br>Count of network errors on interfaces. |`system.network.errors` | No | Count |Minimum, Maximum, Average, Total (Sum), Count |`direction`, `device`, `EdgeMachineName`, `region`|PT1M |Yes|
 
+### Category: Information
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**GPU Information**<br><br>GPU identity and driver metadata. The metric value is always one. |`GpuInfo` | No | Count |Minimum, Maximum, Average, Total (Sum), Count |`GpuIndex`, `GpuName`, `GpuUuid`, `GpuPciAddress`, `GpuDriverVersion`, `EdgeMachineName`, `Region`|PT1M |No|
+
+### Category: Performance
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**GPU Graphics Clock Speed**<br><br>Current GPU graphics clock speed in megahertz. |`GpuGraphicsClockSpeed` | No | Unspecified |Minimum, Maximum, Average, Total (Sum), Count |`GpuIndex`, `GpuName`, `GpuUuid`, `GpuPciAddress`, `EdgeMachineName`, `Region`|PT1M |No|
+|**GPU Memory Clock Speed**<br><br>Current GPU memory clock speed in megahertz. |`GpuMemoryClockSpeed` | No | Unspecified |Minimum, Maximum, Average, Total (Sum), Count |`GpuIndex`, `GpuName`, `GpuUuid`, `GpuPciAddress`, `EdgeMachineName`, `Region`|PT1M |No|
+
+### Category: Resource Utilization
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**GPU Power**<br><br>Instantaneous GPU power draw in watts. |`GpuPower` | No | Unspecified |Minimum, Maximum, Average, Total (Sum), Count |`GpuIndex`, `GpuName`, `GpuUuid`, `GpuPciAddress`, `EdgeMachineName`, `Region`|PT1M |No|
+
 ### Category: Saturation
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
+|**GPU Memory Utilization**<br><br>Percentage of GPU memory-controller or memory-bandwidth activity reported by NVML. |`GpuMemoryUtilization` | No | Percent |Minimum, Maximum, Average, Total (Sum), Count |`GpuIndex`, `GpuName`, `GpuUuid`, `GpuPciAddress`, `EdgeMachineName`, `Region`|PT1M |No|
+|**GPU Temperature**<br><br>Current GPU core temperature in degrees Celsius. |`GpuTemperature` | No | Unspecified |Minimum, Maximum, Average, Total (Sum), Count |`GpuIndex`, `GpuName`, `GpuUuid`, `GpuPciAddress`, `EdgeMachineName`, `Region`|PT1M |No|
+|**GPU Utilization**<br><br>Percentage of time the GPU was not idle. |`GpuUtilization` | No | Percent |Minimum, Maximum, Average, Total (Sum), Count |`GpuIndex`, `GpuName`, `GpuUuid`, `GpuPciAddress`, `EdgeMachineName`, `Region`|PT1M |No|
 |**Disk IO Time**<br><br>Time disk spent activated. |`system.disk.io_time` | No | Seconds |Minimum, Maximum, Average, Total (Sum), Count |`device`, `EdgeMachineName`, `region`|PT1M |Yes|
 |**Disk Operation Time**<br><br>Time spent in disk operations. |`system.disk.operation_time` | No | Seconds |Minimum, Maximum, Average, Total (Sum), Count |`direction`, `device`, `EdgeMachineName`, `region`|PT1M |Yes|
 |**Filesystem Inodes Usage**<br><br>Number of filesystem inodes used or free. |`system.filesystem.inodes.usage` | No | Count |Minimum, Maximum, Average, Total (Sum), Count |`device`, `mode`, `mountpoint`, `state`, `type`, `EdgeMachineName`, `region`|PT1M |Yes|

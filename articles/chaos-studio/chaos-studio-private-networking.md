@@ -11,9 +11,9 @@ ms.custom: devx-track-azurecli
 
 # Set up virtual network injection for Experiments (classic)
 
-Azure Chaos Studio virtual network injection configures private access for supported Experiments (classic) targets. For current-model tests, review [Chaos Studio Workspaces private-networking limitations](chaos-studio-workspaces-limitations.md#limitations). Workspaces service-direct Scenarios use the Azure Resource Manager control plane instead.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+Azure Chaos Studio virtual network injection configures private access for supported Experiments (classic) targets. For current-model tests, review [Chaos Studio Workspaces private-networking limitations](chaos-studio-workspaces-limitations.md#limitations). Workspaces service-direct Scenarios use the Azure Resource Manager control plane instead.
 
 Azure [Virtual Network](/azure/virtual-network/virtual-networks-overview) is the fundamental building block for your private network in Azure. A virtual network enables many types of Azure resources to securely communicate with each other, the internet, and on-premises networks. A virtual network is similar to a traditional network that you operate in your own datacenter. It brings other benefits of Azure's infrastructure, such as scale, availability, and isolation.
 

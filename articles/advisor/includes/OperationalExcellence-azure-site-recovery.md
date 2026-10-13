@@ -27,7 +27,6 @@ For more information, see [Backup Classic Alerts using Azure Backup - Azure Back
 ResourceType: microsoft.recoveryservices/vaults  
 Recommendation ID: 06578866-1877-41e6-9d22-3ea5122e8048  
 
-
 <!--06578866-1877-41e6-9d22-3ea5122e8048_end-->
 
 <!--articleBody-->

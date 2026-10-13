@@ -12,6 +12,8 @@
   href: microsoft-app-jobs-metrics.md
 - name: Microsoft.App/managedEnvironments
   href: microsoft-app-managedenvironments-metrics.md
+- name: Microsoft.App/sandboxgroups
+  href: microsoft-app-sandboxgroups-metrics.md
 - name: Microsoft.App/sessionpools
   href: microsoft-app-sessionpools-metrics.md
 - name: Microsoft.AppConfiguration/configurationStores
@@ -130,6 +132,8 @@
   href: microsoft-deviceregistry-namespaces-metrics.md
 - name: Microsoft.Devices/IotHubs
   href: microsoft-devices-iothubs-metrics.md
+- name: Microsoft.Devices/provisioningServices
+  href: microsoft-devices-provisioningservices-metrics.md
 - name: Microsoft.DevOpsInfrastructure/pools
   href: microsoft-devopsinfrastructure-pools-metrics.md
 - name: Microsoft.DigitalTwins/digitalTwinsInstances

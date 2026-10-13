@@ -27,26 +27,7 @@ For more information, see [Attachments - Azure Cosmos DB for NoSQL](/azure/cosmo
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 061dcd4a-2090-4ec0-b4e0-ec9eaae5cf80  
 
-
 <!--061dcd4a-2090-4ec0-b4e0-ec9eaae5cf80_end-->
-
-<!--52fef986-5897-4359-8b92-0f22749f0d73_begin-->
-
-#### Improve resiliency by migrating your Azure Cosmos DB accounts to continuous backup  
-  
-Your Azure Cosmos DB accounts are configured with periodic backup. Continuous backup with point-in-time restore is now available on these accounts. With continuous backup, you can restore your data to any point in time within the past 30 days. Continuous backup may also be more cost-effective as a single copy of your data is retained.  
-  
-**Potential benefits**: Improve the resiliency of your Azure Cosmos DB workloads  
-
-**Impact:** Medium
-  
-For more information, see [Continuous backup with point in time restore feature in Azure Cosmos DB](/azure/cosmos-db/continuous-backup-restore-introduction)  
-
-ResourceType: microsoft.documentdb/databaseaccounts  
-Recommendation ID: 52fef986-5897-4359-8b92-0f22749f0d73  
-
-
-<!--52fef986-5897-4359-8b92-0f22749f0d73_end-->
 
 <!--bf161e78-ce57-4198-82e8-a34522045518_begin-->
 
@@ -62,7 +43,6 @@ For more information, see [Merge partitions (preview) - Azure Cosmos DB](/azure/
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: bf161e78-ce57-4198-82e8-a34522045518  
-
 
 <!--bf161e78-ce57-4198-82e8-a34522045518_end-->
 
@@ -81,7 +61,6 @@ For more information, see [Microsoft Fabric Mirrored Databases From Azure Cosmos
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 54537590-fff7-4680-bdf8-5e37b5cf0c12  
 
-
 <!--54537590-fff7-4680-bdf8-5e37b5cf0c12_end-->
 
 <!--a850ac78-dcea-485d-9c86-17a5f2cf56c4_begin-->
@@ -98,7 +77,6 @@ For more information, see [Monitor data using diagnostic settings - Azure Cosmos
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: a850ac78-dcea-485d-9c86-17a5f2cf56c4  
-
 
 <!--a850ac78-dcea-485d-9c86-17a5f2cf56c4_end-->
 
@@ -117,8 +95,6 @@ For more information, see [Self-Serve Minimum TLS Version Enforcement - Azure Co
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 5c48d9ec-397c-4f11-a342-929a1208c375  
 
-
 <!--5c48d9ec-397c-4f11-a342-929a1208c375_end-->
-
 
 <!--articleBody-->

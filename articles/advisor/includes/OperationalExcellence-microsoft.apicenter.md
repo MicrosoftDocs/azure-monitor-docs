@@ -14,7 +14,7 @@ ms.custom: OperationalExcellence MICROSOFT.APICENTER
   
 <!--b64191e1-69b1-4977-be74-284a0b1ff535_begin-->
 
-#### Enable API specification static analysis to ensure compliance with your organization's API style guide.  
+#### Enable API specification static analysis  
   
 Enable linting and analysis of API definitions in your API center to detect and report violations of rules in your organization's API style guide. Rules can enforce API syntax, style, best practices, or company-specific guidelines.  
   
@@ -26,7 +26,6 @@ For more information, see [Perform API linting and analysis - Azure API Center](
 
 ResourceType: microsoft.apicenter/services  
 Recommendation ID: b64191e1-69b1-4977-be74-284a0b1ff535  
-
 
 <!--b64191e1-69b1-4977-be74-284a0b1ff535_end-->
 

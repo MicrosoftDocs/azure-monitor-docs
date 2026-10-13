@@ -11,9 +11,9 @@ ms.devlang: azurecli
 
 # Create agent-based faults with Azure CLI (classic)
 
-This Azure CLI guide creates agent-based faults with Azure Chaos Studio Experiments (classic). For current-model CPU tests, use the [Workspaces CPU Pressure Scenario](chaos-studio-scenarios.md#cpu-pressure) and [Workspaces CLI guide](chaos-studio-manage-cli.md). Check Scenario requirements before choosing a model.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This Azure CLI guide creates agent-based faults with Azure Chaos Studio Experiments (classic). For current-model CPU tests, use the [Workspaces CPU Pressure Scenario](chaos-studio-scenarios.md#cpu-pressure) and [Workspaces CLI guide](chaos-studio-manage-cli.md). Check Scenario requirements before choosing a model.
 
 You can use a chaos experiment to verify that your application is resilient to failures by causing those failures in a controlled environment. In this article, you cause a high % of CPU utilization event on a Linux virtual machine (VM) by using a chaos experiment and Azure Chaos Studio. Run this experiment to help you defend against an application from becoming resource starved.
 
@@ -272,7 +272,7 @@ az role assignment create --role "Reader" --assignee-principal-type "ServicePrin
 
 ## Run your experiment
 
-You're now ready to run your experiment. To see the effect, we recommend that you open [an Azure Monitor metrics chart](../azure-monitor/platform/tutorial-metrics.md) with your VM's CPU pressure in a separate browser tab.
+You're now ready to run your experiment. To see the effect, we recommend that you open [an Azure Monitor metrics chart](../azure-monitor/metrics/tutorial-metrics.md) with your VM's CPU pressure in a separate browser tab.
 
 1. Start the experiment by using the Azure CLI. Replace `$SUBSCRIPTION_ID`, `$RESOURCE_GROUP`, and `$EXPERIMENT_NAME` with the properties for your experiment.
 

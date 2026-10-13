@@ -11,9 +11,9 @@ ms.reviewer: prashabora
 
 # Azure Policy target samples for Experiments (classic)
 
-These Azure Policy samples onboard resources to Azure Chaos Studio Experiments (classic). For the current model, follow the [Chaos Studio Workspaces quickstart](quickstart-create-workspace.md), where discovery uses a Workspace scope rather than these classic target and capability policies.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+These Azure Policy samples onboard resources to Azure Chaos Studio Experiments (classic). For the current model, follow the [Chaos Studio Workspaces quickstart](quickstart-create-workspace.md), where discovery uses a Workspace scope rather than these classic target and capability policies.
 
 This article includes sample [Azure Policy](/azure/governance/policy/overview) definitions that create [targets and capabilities](chaos-studio-targets-capabilities.md) for a specific resource type. You can automatically add resources to Azure Chaos Studio. First, you [deploy these samples as custom policy definitions](/azure/governance/policy/tutorials/create-and-manage). Then you [assign the policy](/azure/governance/policy/assign-policy-portal) to a scope.
 

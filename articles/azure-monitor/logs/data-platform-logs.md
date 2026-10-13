@@ -2,7 +2,7 @@
 title: Azure Monitor Logs
 description: This article explains how Azure Monitor Logs works and how people with different monitoring needs and skills can use the basic and advanced capabilities that Azure Monitor Logs offers.
 ms.topic: concept-article
-ms.date: 07/29/2026
+ms.date: 09/02/2026
 
 # Customer intent: As new user or decision-maker evaluating Azure Monitor Logs, I want to understand how Azure Monitor Logs addresses my monitoring and analysis needs.
 ---
@@ -56,7 +56,7 @@ You can also configure network isolation, replicate your workspace across region
 
 ## Table plans
 
-You can use one Log Analytics workspace to store any type of log required for any purpose. For example:
+Use one Log Analytics workspace to store any type of log required for any purpose. For example:
 
 - High-volume, verbose data that requires **cheap long-term storage for audit and compliance**
 - App and resource data for **troubleshooting** by developers
@@ -70,7 +70,7 @@ This video provides an overview of how table plans enable multi-tier logging in 
 > [!VIDEO https://www.youtube.com/embed/sn5-c8wYJcw?cc_load_policy=1&cc_lang_pref=auto]
 
 
-The following diagram and table compare the Analytics, Basic, and Auxiliary table plans. For information about interactive and long-term retention, see [Manage data retention in a Log Analytics workspace](../logs/data-retention-configure.md). For information about how to select or modify a table plan, see [Select a table plan](logs-table-plans.md). 
+The following diagram and table compare the Analytics, Basic, and Auxiliary table plans. For information about query windows and retention, see [Manage data retention in a Log Analytics workspace](../logs/data-retention-configure.md). For information about how to select or modify a table plan, see [Select a table plan](logs-table-plans.md).
 
 :::image type="content" source="media/data-platform-logs/azure-monitor-logs-data-plans.png" lightbox="media/data-platform-logs/azure-monitor-logs-data-plans.png" alt-text="Diagram that presents an overview of the capabilities provided by the Analytics, Basic, and Auxiliary table plans.":::
 
@@ -84,7 +84,7 @@ The following diagram and table compare the Analytics, Basic, and Auxiliary tabl
 | Ingestion cost | Standard | Reduced | Minimal |
 | Query price included | ✅ | ❌ | ❌ |
 | Optimized query performance | ✅ | ✅ | ❌ Slower queries.<br>Good for auditing. Not optimized for real-time analysis. |
-| Query capabilities | [Full query capabilities](../logs/get-started-queries.md). | [Full Kusto Query Language (KQL) on a single table](basic-logs-query.md), which you can extend with data from an Analytics table using [lookup](/azure/data-explorer/kusto/query/lookup-operator) | [Full KQL on a single table](basic-logs-query.md), which you can extend with data from an Analytics table using [lookup](/azure/data-explorer/kusto/query/lookup-operator) |
+| Query capabilities | [Full Kusto Query Language (KQL)](../logs/get-started-queries.md). | [Full KQL](basic-logs-query.md). | [Full KQL](basic-logs-query.md). |
 | Resource query scope | ✅ Resource and Log Analytics workspace [scope](scope.md#query-scope) | ❌ [Log Analytics query scope](scope.md#query-scope) only | ❌ [Log Analytics query scope](scope.md#query-scope) only |
 | [Alerts](../alerts/alerts-overview.md) | ✅ | ✅ (Simple Log Alerts) | ❌ |
 | [Customer lockbox](/azure/security/fundamentals/customer-lockbox-overview) | ✅ | ✅ | ❌ |

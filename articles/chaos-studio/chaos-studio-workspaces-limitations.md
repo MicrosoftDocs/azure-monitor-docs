@@ -3,7 +3,7 @@ title: Chaos Studio Workspaces limitations (preview)
 description: Review Chaos Studio Workspaces limitations for Scenarios, AKS, agents, private networking, and automation before choosing a resilience test.
 author: nikhilkaul-msft
 ms.topic: troubleshooting-known-issue
-ms.date: 09/05/2026
+ms.date: 09/29/2026
 ai-usage: ai-assisted
 ---
 
@@ -15,7 +15,7 @@ Review [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) limitation
 
 ## Limitations
 
-- **Curated Scenario catalog.** Workspaces run [Scenario templates](chaos-studio-scenarios.md) and custom Scenarios built from them in the designer. The [fault and action library for Experiments (classic)](chaos-studio-fault-library.md), [dynamic targeting](chaos-studio-tutorial-dynamic-target-portal.md), and [scheduled experiment runs](tutorial-schedule.md) aren't available in Workspaces. Use Experiments (classic) for these capabilities. For a full comparison, see [Choose between Chaos Studio Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md).
+- **Curated Scenario catalog.** Workspaces run [Scenario templates](chaos-studio-scenarios.md) and custom Scenarios built from the Actions in those templates and the [Actions available for custom Scenarios](chaos-studio-scenarios.md#actions-available-for-custom-scenarios). The Workspace rejects Actions it doesn't recognize. The full [fault and action library for Experiments (classic)](chaos-studio-fault-library.md), [dynamic targeting](chaos-studio-tutorial-dynamic-target-portal.md), and [scheduled experiment runs](tutorial-schedule.md) aren't available in Workspaces. Use Experiments (classic) for these capabilities. For a full comparison, see [Choose between Chaos Studio Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md).
 
 - **Limited agent-based fault injection.** CPU Pressure and Physical Memory Pressure are the only agent-based Scenarios in the Workspaces preview. They support standalone Windows and Linux virtual machines with a managed identity; virtual machine scale sets and VM sizes that use Arm-based processors aren't supported yet, and the target VM needs public outbound connectivity to the Chaos Studio service. In the Azure portal, these Scenarios appear under **My scenarios** rather than in the recommended Scenarios list. For details, see [Agent-based Scenario requirements](chaos-studio-scenarios.md#agent-based-scenario-requirements). All other in-guest faults, such as network faults and disk pressure, aren't available in Workspaces; for those faults, use [the Chaos Studio agent with Experiments (classic)](chaos-agent-overview.md).
 

@@ -32,7 +32,7 @@ The data collection process that uses DCRs replaces other data collection method
 | Legacy method | DCR method | Description |
 |:--------------|:-----------|:------------|
 | [Log Analytics agent](../agents/log-analytics-agent.md) | [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) | Use the Azure Monitor agent to monitor virtual machines (VMs) and Kubernetes clusters that support [VM insights](../vm/vminsights-overview.md) and [Container insights](../containers/kubernetes-monitoring-overview.md). |
-| [Diagnostic settings](../platform/diagnostic-settings.md)<br>(metrics only) | [Metrics export](./metrics-export-create.md) | Diagnostic settings still collect resource logs from Azure resources. Use Metrics export to collect platform metrics. |
+| [Diagnostic settings](diagnostic-settings.md)<br>(metrics only) | [Metrics export](./metrics-export-create.md) | Diagnostic settings still collect resource logs from Azure resources. Use Metrics export to collect platform metrics. |
 | [Data Collector API](../logs/data-collector-api.md) | [Logs ingestion API](../logs/logs-ingestion-api-overview.md) | Use the Logs ingestion API to send data to a Log Analytics workspace from any REST client. It uses OAuth-based authentication (more secure than workspace keys), DCR-governed schema control and transformations, and provides improved reliability, scalability, and long-term platform support compared to the legacy HTTP Data Collector API. |
 
 ## Data collection process
@@ -80,7 +80,7 @@ For more information, see [Ingest events from Azure Event Hubs into Azure Monito
 :::image type="content" source="media/data-collection-rule-overview/data-collection-event-hubs.png" lightbox="media/data-collection-rule-overview/data-collection-event-hubs.png" alt-text="Diagram that shows basic operation for event hub data sent to Azure Monitor." border="false":::
 
 #### Platform metrics (Preview)
-Azure resources automatically collect platform metrics and send them to [Azure Monitor Metrics](../metrics/data-platform-metrics.md). The following diagram shows the process of using a DCR to send this data to a Log Analytics workspace for analysis using log queries. This process replaces the current method of using [diagnostic settings](../platform/diagnostic-settings.md) to perform this function.
+Azure resources automatically collect platform metrics and send them to [Azure Monitor Metrics](../metrics/data-platform-metrics.md). The following diagram shows the process of using a DCR to send this data to a Log Analytics workspace for analysis using log queries. This process replaces the current method of using [diagnostic settings](diagnostic-settings.md) to perform this function.
 
 When the DCR is created, it specifies the workspace and table where the data should be sent. The DCR also includes a transformation that ensures the data is in the correct format for the target table. The DCR is then associated with the resource from which the platform metrics are collected.
 

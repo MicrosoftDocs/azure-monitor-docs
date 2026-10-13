@@ -27,7 +27,6 @@ For more information, see [Best practices for securing Azure Key Vault Managed H
 ResourceType: microsoft.keyvault/managedhsms  
 Recommendation ID: 12278831-341f-4933-85e6-40560e4a3405  
 
-
 <!--12278831-341f-4933-85e6-40560e4a3405_end-->
 
 <!--articleBody-->

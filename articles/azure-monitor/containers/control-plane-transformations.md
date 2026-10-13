@@ -43,7 +43,7 @@ While these logs are valuable for security and compliance, they can quickly beco
 
 ## Enable Control Plane Logs for Ingestion
 
-Before applying ingestion-time transformations, ensure that you have a [diagnostic setting](../platform/diagnostic-settings.md) instructing your AKS cluster to send the relevant control plane logs to your Log Analytics workspace. This setup allows the transformation engine to receive and process data from tables like AKSAudit, AKSAuditAdmin, and AKSControlPlane.
+Before applying ingestion-time transformations, ensure that you have a [diagnostic setting](../data-collection/diagnostic-settings.md) instructing your AKS cluster to send the relevant control plane logs to your Log Analytics workspace. This setup allows the transformation engine to receive and process data from tables like AKSAudit, AKSAuditAdmin, and AKSControlPlane.
 
 This step is only required if you're not already collecting these logs. If your workspace is already receiving AKS control plane logs, you can skip to the next section.
 

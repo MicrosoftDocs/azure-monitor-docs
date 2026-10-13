@@ -11,9 +11,9 @@ ai-usage: ai-assisted
 
 # Supported resources for Experiments (classic)
 
-These supported resources and role assignments apply to Azure Chaos Studio Experiments (classic). For current-model resource coverage, use the [Chaos Studio Workspaces Scenario catalog](chaos-studio-scenarios.md) and [Workspace permission guidance](chaos-studio-workspace-permissions.md), not this classic target list.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+These supported resources and role assignments apply to Azure Chaos Studio Experiments (classic). For current-model resource coverage, use the [Chaos Studio Workspaces Scenario catalog](chaos-studio-scenarios.md) and [Workspace permission guidance](chaos-studio-workspace-permissions.md), not this classic target list.
 
 The following table lists the supported resource types for faults, the target types, and suggested roles to use when you give an experiment permission to a resource of that type.
 

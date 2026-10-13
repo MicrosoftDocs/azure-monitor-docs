@@ -9,5 +9,6 @@ ms.date: 02/22/2022
 | Maximum size for field values  | 64 KB | Fields longer than 64 KB are truncated. |
 | Maximum data/minute per DCR | <sup>*</sup>2 GB | Both compressed and uncompressed data. Retry after the duration listed in the `Retry-After` header in the response. |
 | Maximum requests/minute per DCR | <sup>*</sup>12,000 | Retry after the duration listed in the `Retry-After` header in the response. |
+| Nested JSON | Auxiliary table plans only support nested JSON when ingesting to `dynamic` type columns | Logs ingestion API returns HTTP status code 400 "malformed JSON" error and fails if schema isn't matched. |
 
 <sup>*</sup> Gradual increases beyond this threshold might be accommodated automatically by the system, although temporary throttling can still occur as it scales. For anticipated large or abrupt increases that significantly exceed this threshold, contact Azure support ahead of time for guidance.

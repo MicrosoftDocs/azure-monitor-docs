@@ -11,9 +11,9 @@ ms.reviewer: nikhilkaul
 
 # Agent OS support for Experiments (classic)
 
-This operating system matrix applies to the Azure Chaos Studio agent for Experiments (classic). For the current model, check [supported operating systems for Workspaces agent-based Scenarios](chaos-studio-scenarios.md#supported-operating-systems); the classic matrix doesn't define Workspaces support.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This operating system matrix applies to the Azure Chaos Studio agent for Experiments (classic). For the current model, check [supported operating systems for Workspaces agent-based Scenarios](chaos-studio-scenarios.md#supported-operating-systems); the classic matrix doesn't define Workspaces support.
 
 The following compatibility matrix outlines the officially supported operating systems for the Azure Chaos Studio Agent, along with the minimum supported version and the fault support from our agent fault library. In the fault columns, a check (✓) indicates full support, "✓ (outbound)" denotes that only outbound support is provided, and an "✗" means the fault isn't supported on that operating system.
 

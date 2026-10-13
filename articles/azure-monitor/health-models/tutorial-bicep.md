@@ -1,111 +1,153 @@
 ---
-title: Create an Azure Monitor health model by using Bicep (preview)
-description: Learn how to create an Azure Monitor health model with Bicep, including signals, entities, and relationships that roll up health across a workload.
-ms.topic: tutorial
-ms.custom: devx-track-bicep
-ms.date: 07/27/2026
+title: Azure Monitor health model Bicep quickstart (preview)
+description: In this quickstart, use Bicep to deploy and verify an Azure Monitor health model with entities, relationships, and metric signals.
+ms.topic: quickstart-bicep
+ms.custom:
+  - subject-bicepqs
+  - devx-track-bicep
+  - cbo-v1.5
+ms.date: 09/13/2026
 ai-usage: ai-assisted
+#customer intent: As an Azure user, I want to deploy a health model with Bicep so that I can automate a repeatable Health Models configuration.
 ---
 
-# Tutorial: Create an Azure Monitor health model by using Bicep (preview)
+# Quickstart: Create an Azure Monitor health model with Bicep (preview)
 
-In this tutorial, you build a small but complete health model by using [Bicep](/azure/azure-resource-manager/bicep/overview). The model contains a simple user flow that depends on an Azure Storage account and a Service Bus namespace to update a user's information stored on a website. Signals watch the storage account's availability and the Service Bus namespace's error count. That health status propagates up through the health model, so a problem in either dependency is reflected all the way at the top.
+In this quickstart, you use Bicep to deploy a self-contained Azure Monitor health model. The model represents an application that depends on a storage account and key vault. Availability signals monitor both resources and propagate their health to the application.
 
-In this tutorial, you:
+[Bicep](/azure/azure-resource-manager/bicep/overview) is a declarative language for deploying Azure resources. Use Bicep instead of JSON to author Azure Resource Manager templates.
 
-> [!div class="checklist"]
-> - Review the Bicep file.
-> - Deploy the Bicep file.
-> - Verify the deployment.
-> - Clean up resources.
+> [!IMPORTANT]
+> Azure Monitor health models are in preview and might change. Microsoft provides limited support for preview features. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to features that are in preview or otherwise not yet released into general availability.
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
-- A **resource group** to deploy into.
-- A **storage account** that you want to monitor. Note its resource ID.
-- A **Service Bus namespace** that you want to monitor. The **Basic** tier is enough. Note its resource ID.
-- A **user-assigned managed identity** that's granted the **Reader** role on the resources you want to monitor. Note its resource ID.
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- The **Contributor** role to create a resource group and resources in the subscription.
+- The **Role Based Access Control Administrator** role to assign the **Reader** role to the health model's managed identity.
 - The latest version of the [Azure CLI](/cli/azure/install-azure-cli), or use [Azure Cloud Shell](/azure/cloud-shell/overview).
 
 ## Review the Bicep file
 
-The Bicep file creates one health model with five entities (including the root entity that represents the health model itself), four relationships, and two inline signals.
+The Bicep file creates the following resources:
 
-| Resource | Purpose |
-| --- | --- |
-| `healthmodels` | The health model itself. It carries the user-assigned identity used to query your resources. |
-| `authenticationsettings` | Tells the model which managed identity to use when it reads metrics. |
-| `entities` (`app-storage`) | A **child** entity that represents the storage account, with an inline **Availability** signal that has degraded and unhealthy thresholds. |
-| `entities` (`app-servicebus`) | A second **child** entity that represents the Service Bus namespace, with an inline **UserErrors** signal that has degraded and unhealthy thresholds. |
-| `entities` (`user-info-service`) | A mid-level entity that represents a system component of the workload. It has no signal of its own; its health is derived from its children. |
-| `entities` (`update-user-info`) | The top-level **user-flow** entity. Its health rolls up from its children. |
-| `relationships` | Connects the user flow to the system component, and the application to each resource, so health propagates upward. |
+- A health model with a system-assigned managed identity.
+- A storage account and key vault represented by resource entities.
+- An abstract application entity connected to the model root and both resource entities.
+- An `Availability` metric signal on each resource entity.
+- A managed identity authentication setting and **Reader** role assignment that allow the health model to read resource metrics.
 
-Create a file named *health-model.bicep* and copy in the following content:
+The Key Vault entity has `Limited` impact. This setting represents an application that caches certificates or secrets, so a temporary Key Vault outage has less effect on overall application health.
+
+Create a file named `health-model.bicep`, and add the following content.
+
+<details>
+<summary>Create the health model and supporting resources</summary>
 
 ```bicep
-@description('Azure region for the health model.')
+@description('Azure region for the health model and supporting resources.')
 param location string = resourceGroup().location
 
 @description('Name of the health model to create.')
-param healthModelName string = 'contoso-app-health'
+param healthModelName string = 'health-model-${uniqueString(resourceGroup().id)}'
 
-@description('Resource ID of the storage account to monitor.')
-param storageAccountId string
+var suffix = uniqueString(subscription().id, resourceGroup().id)
+var readerRoleDefinitionId = subscriptionResourceId(
+  'Microsoft.Authorization/roleDefinitions',
+  'acdd72a7-3385-48ef-bd42-f606fba81ae7'
+)
 
-@description('Resource ID of the Service Bus namespace to monitor.')
-param serviceBusNamespaceId string
+resource storageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' = {
+  name: 'st${suffix}'
+  location: location
+  sku: {
+    name: 'Standard_LRS'
+  }
+  kind: 'StorageV2'
+  properties: {
+    allowBlobPublicAccess: false
+    minimumTlsVersion: 'TLS1_2'
+  }
+}
 
-@description('Resource ID of the user-assigned managed identity that already has the Reader role on the resources to monitor.')
-param managedIdentityId string
+resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' = {
+  name: 'kv-${suffix}'
+  location: location
+  properties: {
+    accessPolicies: []
+    enableRbacAuthorization: true
+    enableSoftDelete: true
+    softDeleteRetentionInDays: 7
+    sku: {
+      family: 'A'
+      name: 'standard'
+    }
+    tenantId: subscription().tenantId
+  }
+}
 
 resource healthModel 'Microsoft.CloudHealth/healthmodels@2026-05-01-preview' = {
   name: healthModelName
   location: location
   identity: {
-    type: 'UserAssigned'
-    userAssignedIdentities: {
-      '${managedIdentityId}': {}
-    }
+    type: 'SystemAssigned'
+  }
+  properties: {}
+}
+
+resource readerRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(resourceGroup().id, healthModel.id, readerRoleDefinitionId)
+  properties: {
+    principalId: healthModel.identity.principalId
+    principalType: 'ServicePrincipal'
+    roleDefinitionId: readerRoleDefinitionId
   }
 }
 
 resource authenticationSetting 'Microsoft.CloudHealth/healthmodels/authenticationsettings@2026-05-01-preview' = {
   parent: healthModel
   name: 'monitoring-identity'
+  dependsOn: [
+    readerRoleAssignment
+  ]
   properties: {
-    displayName: 'Storage monitoring identity'
     authenticationKind: 'ManagedIdentity'
-    managedIdentityName: managedIdentityId
+    displayName: 'Monitoring identity'
+    managedIdentityName: 'SystemAssigned'
+  }
+}
+
+resource applicationEntity 'Microsoft.CloudHealth/healthmodels/entities@2026-05-01-preview' = {
+  parent: healthModel
+  name: 'application'
+  properties: {
+    canvasPosition: {
+      x: 175
+      y: 200
+    }
+    displayName: 'Application'
   }
 }
 
 resource storageEntity 'Microsoft.CloudHealth/healthmodels/entities@2026-05-01-preview' = {
   parent: healthModel
-  name: 'app-storage'
+  name: 'storage'
   properties: {
-    displayName: 'User data storage'
     canvasPosition: {
       x: 0
-      y: 550
+      y: 400
     }
+    displayName: 'Storage account'
     signalGroups: {
       azureResource: {
         authenticationSetting: authenticationSetting.name
-        azureResourceId: storageAccountId
+        azureResourceId: storageAccount.id
         azureResourceKind: 'StorageV2'
         signals: [
           {
-            name: 'availability'
-            displayName: 'Storage availability (%)'
-            signalKind: 'AzureResourceMetric'
-            refreshInterval: 'PT5M'
-            dataUnit: 'Percent'
-            metricNamespace: 'Microsoft.Storage/storageAccounts'
-            metricName: 'Availability'
-            timeGrain: 'PT5M'
             aggregationType: 'Average'
+            dataUnit: 'Percent'
+            displayName: 'Storage availability (%)'
             evaluationRules: {
               degradedRule: {
                 operator: 'LessThan'
@@ -116,6 +158,12 @@ resource storageEntity 'Microsoft.CloudHealth/healthmodels/entities@2026-05-01-p
                 threshold: 99
               }
             }
+            metricName: 'Availability'
+            metricNamespace: 'Microsoft.Storage/storageAccounts'
+            name: 'availability'
+            refreshInterval: 'PT5M'
+            signalKind: 'AzureResourceMetric'
+            timeGrain: 'PT5M'
           }
         ]
       }
@@ -123,41 +171,42 @@ resource storageEntity 'Microsoft.CloudHealth/healthmodels/entities@2026-05-01-p
   }
 }
 
-resource serviceBusEntity 'Microsoft.CloudHealth/healthmodels/entities@2026-05-01-preview' = {
+resource keyVaultEntity 'Microsoft.CloudHealth/healthmodels/entities@2026-05-01-preview' = {
   parent: healthModel
-  name: 'app-servicebus'
+  name: 'key-vault'
   properties: {
-    displayName: 'Update user data message service'
     canvasPosition: {
       x: 350
-      y: 550
+      y: 400
     }
+    displayName: 'Key Vault'
+    impact: 'Limited'
     signalGroups: {
       azureResource: {
         authenticationSetting: authenticationSetting.name
-        azureResourceId: serviceBusNamespaceId
+        azureResourceId: keyVault.id
         azureResourceKind: ''
         signals: [
           {
-            name: 'user-errors'
-            displayName: 'Service Bus user errors'
-            signalKind: 'AzureResourceMetric'
-            refreshInterval: 'PT5M'
-            dataUnit: 'Count'
-            metricNamespace: 'Microsoft.ServiceBus/namespaces'
-            metricName: 'UserErrors'
-            timeGrain: 'PT5M'
-            aggregationType: 'Total'
+            aggregationType: 'Average'
+            dataUnit: 'Percent'
+            displayName: 'Key Vault availability (%)'
             evaluationRules: {
               degradedRule: {
-                operator: 'GreaterThan'
-                threshold: 10
+                operator: 'LessThan'
+                threshold: 100
               }
               unhealthyRule: {
-                operator: 'GreaterThan'
-                threshold: 50
+                operator: 'LessThan'
+                threshold: 99
               }
             }
+            metricName: 'Availability'
+            metricNamespace: 'Microsoft.KeyVault/vaults'
+            name: 'availability'
+            refreshInterval: 'PT5M'
+            signalKind: 'AzureResourceMetric'
+            timeGrain: 'PT5M'
           }
         ]
       }
@@ -165,184 +214,160 @@ resource serviceBusEntity 'Microsoft.CloudHealth/healthmodels/entities@2026-05-0
   }
 }
 
-resource applicationEntity 'Microsoft.CloudHealth/healthmodels/entities@2026-05-01-preview' = {
+resource rootToApplication 'Microsoft.CloudHealth/healthmodels/relationships@2026-05-01-preview' = {
   parent: healthModel
-  name: 'user-info-service'
+  name: 'root-to-application'
   properties: {
-    displayName: 'User info data service'
-    canvasPosition: {
-      x: 0
-      y: 400
-    }
-  }
-}
-
-resource updateUserInfoEntity 'Microsoft.CloudHealth/healthmodels/entities@2026-05-01-preview' = {
-  parent: healthModel
-  name: 'update-user-info'
-  properties: {
-    displayName: 'Update user info'
-    canvasPosition: {
-      x: 0
-      y: 200
-    }
-    icon: {
-      iconName: 'UserFlow'
-    }
-  }
-}
-
-resource applicationDependsOnStorage 'Microsoft.CloudHealth/healthmodels/relationships@2026-05-01-preview' = {
-  parent: healthModel
-  name: 'user-data-service-to-app-storage'
-  properties: {
-    parentEntityName: applicationEntity.name
-    childEntityName: storageEntity.name
-  }
-}
-
-resource applicationDependsOnServiceBus 'Microsoft.CloudHealth/healthmodels/relationships@2026-05-01-preview' = {
-  parent: healthModel
-  name: 'user-data-service-to-app-servicebus'
-  properties: {
-    parentEntityName: applicationEntity.name
-    childEntityName: serviceBusEntity.name
-  }
-}
-
-resource userFlowDependsOnApplication 'Microsoft.CloudHealth/healthmodels/relationships@2026-05-01-preview' = {
-  parent: healthModel
-  name: 'update-user-info-to-user-data-service'
-  properties: {
-    parentEntityName: updateUserInfoEntity.name
     childEntityName: applicationEntity.name
+    parentEntityName: healthModel.name
   }
 }
 
-resource healthModelDependsOnUserFlow 'Microsoft.CloudHealth/healthmodels/relationships@2026-05-01-preview' = {
+resource applicationToStorage 'Microsoft.CloudHealth/healthmodels/relationships@2026-05-01-preview' = {
   parent: healthModel
-  name: 'model-to-update-user-info'
+  name: 'application-to-storage'
   properties: {
-    parentEntityName: healthModel.name
-    childEntityName: updateUserInfoEntity.name
+    childEntityName: storageEntity.name
+    parentEntityName: applicationEntity.name
   }
 }
+
+resource applicationToKeyVault 'Microsoft.CloudHealth/healthmodels/relationships@2026-05-01-preview' = {
+  parent: healthModel
+  name: 'application-to-key-vault'
+  properties: {
+    childEntityName: keyVaultEntity.name
+    parentEntityName: applicationEntity.name
+  }
+}
+
+output healthModelName string = healthModel.name
+output keyVaultName string = keyVault.name
+output storageAccountName string = storageAccount.name
 ```
 
-### How the pieces fit together
-
-- The **signal** is defined inline on the entity and describes *what* to measure and the thresholds that turn a raw number into a health state. Here, the storage account's average availability over five minutes is `Degraded` below 100% and `Unhealthy` below 99%.
-- The **child entity** (`app-storage`) points at your real storage account (`azureResourceId`) and carries the signal directly in its `signals` array. This is the entity that's actually evaluated.
-- The **second child entity** (`app-servicebus`) works the same way, but points at the Service Bus namespace and uses an inline `UserErrors` signal.
-- The **parent entity** (`user-info-service`) has a `dependencies` signal group with `WorstOf` aggregation by default. Its health is the worst health of the entities it depends on.
-- The **relationships** wire each parent to its children. When either the storage or the Service Bus signal degrades, the application entity degrades too, and that in turn degrades the **Update user info** user flow above it (worst-of aggregation at every level).
-- The **user-flow entity** (`update-user-info`) exists to give the end-to-end journey a single health state that rolls up from everything beneath it.
-- Each entity's `canvasPosition` gives it fixed `x` and `y` coordinates on the model's graph canvas.
+</details>
 
 ## Deploy the Bicep file
 
-Deploy the file to your resource group. Pass in the storage account, Service Bus namespace, and managed identity resource IDs from the prerequisites.
+Create a dedicated resource group, and deploy the Bicep file to it.
 
-Health models are available only in certain regions. The `location` parameter defaults to the resource group's region, so if your resource group is in an unsupported region, set `location` to a supported one. The health model can be in a different region from the resources it monitors. To see the current list of supported regions, check [Azure products by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/) or the error returned if you deploy to an unsupported region.
+# [Azure CLI bash](#tab/cli-bash)
 
-# [Azure CLI (Bash)](#tab/azure-cli-bash)
+The following Azure CLI example uses the [`az deployment group create`](/cli/azure/deployment/group#az-deployment-group-create) command.
 
-> [!NOTE]
-> If deployment validation fails because Git Bash on Windows converts Azure resource IDs to Windows file paths, run `export MSYS_NO_PATHCONV=1`, and then retry the deployment.
+```bash
+# Set variables
+location="swedencentral"
+resourceGroupName="rg-health-model-bicep-$RANDOM"
 
-```azurecli
+# Create the resource group
+az group create \
+  --name "$resourceGroupName" \
+  --location "$location"
+
+# Deploy the Bicep file
 az deployment group create \
-  --resource-group "<resource-group>" \
-  --template-file health-model.bicep \
-  --parameters \
-      storageAccountId='<storage-account-resource-id>' \
-      serviceBusNamespaceId='<service-bus-namespace-resource-id>' \
-      managedIdentityId='<managed-identity-resource-id>'
+  --name "health-model-deployment" \
+  --resource-group "$resourceGroupName" \
+  --template-file "health-model.bicep"
 ```
 
-# [Azure CLI (PowerShell)](#tab/azure-cli-powershell)
+# [Azure CLI PowerShell](#tab/cli-powershell)
 
-```azurepowershell
+The following Azure CLI example uses the [`az deployment group create`](/cli/azure/deployment/group#az-deployment-group-create) command.
+
+```powershell
+# Set variables
+$location = "swedencentral"
+$resourceGroupName = "rg-health-model-bicep-$(Get-Random)"
+
+# Create the resource group
+az group create `
+  --name $resourceGroupName `
+  --location $location
+
+# Deploy the Bicep file
 az deployment group create `
-  --resource-group "<resource-group>" `
-  --template-file health-model.bicep `
-  --parameters `
-      storageAccountId='<storage-account-resource-id>' `
-      serviceBusNamespaceId='<service-bus-namespace-resource-id>' `
-      managedIdentityId='<managed-identity-resource-id>'
+  --name "health-model-deployment" `
+  --resource-group $resourceGroupName `
+  --template-file "health-model.bicep"
 ```
 
 ---
-
-The deployment takes less than a minute. When it finishes, the health model begins evaluating the signals on their refresh interval (every five minutes).
 
 ## Verify the deployment
 
-After deployment, the health model doesn't evaluate signals instantly. It typically takes a minute or two (occasionally longer) for the first evaluation cycle to run and populate values. During this window, every entity reports a health state of `Unknown`, and the metric signal shows no value yet. This behavior is expected. Wait a few minutes and recheck before you assume something is misconfigured.
+Verify that Azure created the health model with its system-assigned managed identity.
 
-### Check the health state with the Azure CLI
+# [Azure CLI bash](#tab/cli-bash)
 
-Read the application entity and inspect its `healthState`:
+The following Azure CLI example uses the [`az resource show`](/cli/azure/resource#az-resource-show) command.
 
-# [Azure CLI (Bash)](#tab/azure-cli-bash)
+```bash
+healthModelName=$(az deployment group show \
+  --name "health-model-deployment" \
+  --resource-group "$resourceGroupName" \
+  --query "properties.outputs.healthModelName.value" \
+  --output tsv)
 
-```azurecli
-az monitor health-models entity show \
-  --resource-group "<resource-group>" \
-  --health-model-name contoso-app-health \
-  --entity-name user-info-service \
-  --query "properties.healthState"
+az resource show \
+  --resource-group "$resourceGroupName" \
+  --name "$healthModelName" \
+  --resource-type "Microsoft.CloudHealth/healthmodels" \
+  --query "{name:name,state:properties.provisioningState,identity:identity.type}" \
+  --output table
 ```
 
-# [Azure CLI (PowerShell)](#tab/azure-cli-powershell)
+# [Azure CLI PowerShell](#tab/cli-powershell)
 
-```azurepowershell
-az monitor health-models entity show `
-  --resource-group "<resource-group>" `
-  --health-model-name contoso-app-health `
-  --entity-name user-info-service `
-  --query "properties.healthState"
+The following Azure CLI example uses the [`az resource show`](/cli/azure/resource#az-resource-show) command.
+
+```powershell
+$healthModelName = az deployment group show `
+  --name "health-model-deployment" `
+  --resource-group $resourceGroupName `
+  --query "properties.outputs.healthModelName.value" `
+  --output tsv
+
+az resource show `
+  --resource-group $resourceGroupName `
+  --name $healthModelName `
+  --resource-type "Microsoft.CloudHealth/healthmodels" `
+  --query "{name:name,state:properties.provisioningState,identity:identity.type}" `
+  --output table
 ```
 
 ---
 
-You can inspect any other entity the same way by replacing `user-info-service` with `update-user-info`, `app-storage`, or `app-servicebus`. On healthy resources, all four entities report `Healthy` after the first evaluation completes, and the `update-user-info` user flow reflects the worst state anywhere beneath it.
-
-### View the model in the Azure portal
-
-1. In the [Azure portal](https://portal.azure.com), go to your resource group and open the **contoso-app-health** health model.
-1. Select **Graph** under **Health** in the service menu. The visualization shows the **Update user info** user flow at the top, connected down to **User info data service**, which in turn connects to its two dependencies, **User data storage** and **Update user data message service**. Each node is colored by its current health state.
-1. Select an entity to see its signals and the values behind its health state.
-
-:::image type="content" source="media/tutorial-bicep/health-model-graph.png" lightbox="media/tutorial-bicep/health-model-graph.png" alt-text="Screenshot of the health model Graph view in the Azure portal that shows the Update user info user flow connected down through User info data service to User data storage and Update user data message service, with each entity reporting a healthy state.":::
+In the Azure portal, open the health model to inspect its entities, signals, and relationships. The root entity connects to the application entity, which connects to the Storage and Key Vault entities.
 
 ## Clean up resources
 
-When you no longer need the health model, delete it. Deleting the health model also removes its entities, signals, and relationships. It doesn't delete the real Azure resources.
+Delete the dedicated resource group when you no longer need the quickstart resources.
 
-# [Azure CLI (Bash)](#tab/azure-cli-bash)
+> [!CAUTION]
+> This command deletes all resources in the resource group. Check that the group contains only resources you want to delete.
 
-```azurecli
-az resource delete \
-  --resource-group "<resource-group>" \
-  --name contoso-app-health \
-  --resource-type Microsoft.CloudHealth/healthmodels \
-  --api-version 2026-05-01-preview
+# [Azure CLI bash](#tab/cli-bash)
+
+The following Azure CLI example uses the [`az group delete`](/cli/azure/group#az-group-delete) command.
+
+```bash
+az group delete --name "$resourceGroupName" --yes
 ```
 
-# [Azure CLI (PowerShell)](#tab/azure-cli-powershell)
+# [Azure CLI PowerShell](#tab/cli-powershell)
 
-```azurepowershell
-az resource delete `
-  --resource-group "<resource-group>" `
-  --name contoso-app-health `
-  --resource-type Microsoft.CloudHealth/healthmodels `
-  --api-version 2026-05-01-preview
+The following Azure CLI example uses the [`az group delete`](/cli/azure/group#az-group-delete) command.
+
+```powershell
+az group delete --name $resourceGroupName --yes
 ```
 
 ---
 
-To remove everything you created for this tutorial, delete the resource group.
+Deleting the resource group soft-deletes the key vault. The vault name remains reserved during the seven-day retention period.
 
 ## Next step
 

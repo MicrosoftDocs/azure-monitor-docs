@@ -3,7 +3,7 @@ title: Permissions and identity in Chaos Studio Workspaces
 description: Configure Chaos Studio Workspaces permissions with managed identities, discovery scopes, and Azure RBAC roles before you run resilience Scenarios.
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 09/05/2026
+ms.date: 09/29/2026
 ai-usage: ai-assisted
 ---
 
@@ -42,7 +42,9 @@ The Workspace's managed identity must have the roles required by each Action it 
 | VM shutdown, restart, redeploy | Virtual Machine Contributor | Target VM or resource group |
 | NSG rule injection (DNS, network Actions) | Network Contributor | Target NSG or resource group |
 | Database failover (SQL, PostgreSQL, MySQL) | Contributor | Target database resource |
-| Cosmos DB failover | Cosmos DB Operator | Target Cosmos DB account |
+| Azure Cosmos DB offline region | Cosmos DB Operator | Target Azure Cosmos DB account |
+| Service Bus topic and subscription state changes | Azure Service Bus Data Owner | Target Service Bus namespace |
+| App Service restart | Website Contributor | Target app |
 | Agent-based Actions (CPU, memory, network) | Reader | Target VM (agent authenticates separately) |
 
 For the Actions used by current Scenario templates, see [Scenarios in Azure Chaos Studio](chaos-studio-scenarios.md). To create custom roles from the permissions returned by validation, see [Least-privilege custom roles for Chaos Studio Workspaces](chaos-studio-workspaces-least-privilege-roles.md).

@@ -3,7 +3,7 @@ title: Delete Data from a Log Analytics Workspace by Using the Delete Data API
 description: Delete data from a table in your Log Analytics workspace.
 ms.service: azure-monitor
 ms.topic: how-to
-ms.custom: cbo-v1.5
+ms.custom: cbo-v1.6
 ms.reviewer: yossiy
 ms.date: 08/31/2026
 ai-usage: ai-assisted
@@ -27,7 +27,7 @@ The deletion process is final and irreversible. Therefore, before calling the AP
 
 For example, to delete data from the `AzureMetrics` table based on a `TimeGenerated` value:
 
-- You might send this filter in the body of your API call:
+* You might send this filter in the body of your API call:
 
   ```json
   {
@@ -41,7 +41,7 @@ For example, to delete data from the `AzureMetrics` table based on a `TimeGenera
   }
   ```
 
-- Check that your filter returns the entry you want to delete by running this query in your Log Analytics workspace:
+* Check that your filter returns the entry you want to delete by running this query in your Log Analytics workspace.
 
   ```kusto
   AzureMetrics
@@ -64,8 +64,8 @@ If you enable [workspace replication](workspace-replication.md) on your Log Anal
 
 ## Considerations
 
-- You can submit up to 10 Delete Data requests per hour in a single Log Analytics workspace.
-- Delete data API operates on data in Analytics plan. To delete data from a table with the Basic plan, change the plan to Analytics and then delete the data. The Auxiliary plan isn't supported.
+* You can submit up to 10 Delete Data requests per hour in a single Log Analytics workspace.
+* The Delete Data API operates on data in the Analytics plan. To delete data from a table with the Basic plan, change the plan to Analytics and then delete the data. The Auxiliary plan isn't supported.
 
 ## Call the Delete Data API to delete data from a specific table
 
@@ -120,6 +120,10 @@ Save the filters as `body.json` in the directory where you run the command:
 # [Azure PowerShell](#tab/powershell)
 
 The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Tables - Delete Data`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation. It polls the operation status until the delete reaches a terminal state.
+
+<br>
+<details>
+<summary>Delete matching records and track the operation</summary>
 
 ```powershell
 # User input variables - update values in <AngleBrackets>
@@ -188,6 +192,8 @@ if ($operationUrl) {
     $response.Content
 }
 ```
+
+</details>
 
 # [REST](#tab/rest)
 
@@ -384,6 +390,6 @@ For more information, see [Track asynchronous Azure operations](/azure/azure-res
 
 Learn how to:
 
-- [Filter data during ingestion using transformations](../data-collection/data-collection-transformations.md)
-- [Managing personal data in Azure Monitor Logs](../logs/personal-data-mgmt.md)
+* [Filter data during ingestion using transformations](../data-collection/data-collection-transformations.md)
+* [Managing personal data in Azure Monitor Logs](../logs/personal-data-mgmt.md)
 

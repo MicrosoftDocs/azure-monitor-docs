@@ -5,7 +5,7 @@ services: chaos-studio
 author: prasha-microsoft
 ms.author: nikhilkaul
 ms.topic: overview
-ms.date: 09/05/2026
+ms.date: 09/25/2026
 ms.reviewer: prashabora
 ms.custom: template-overview
 ai-usage: ai-assisted
@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 
 # What is Azure Chaos Studio?
 
-Azure Chaos Studio is a managed service for chaos engineering and Azure resilience testing. Use [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md), the current resource model, to discover resources, run Scenarios that simulate outages, and review Scenario reports. For requirements that need a generally available model or classic-only capabilities, [compare Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md).
+Azure Chaos Studio is a managed service for chaos engineering and Azure resilience testing. Use [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md), the current resource model, to discover resources, run Scenarios that simulate outages, and review Scenario reports. Workspaces is replacing Experiments (classic), the legacy resource model. If you use Experiments (classic), see [Move from Experiments (classic) to Chaos Studio Workspaces](chaos-studio-migrate-from-classic.md).
 
 [!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
@@ -31,7 +31,7 @@ To create your first Workspace and run a Scenario, see [Quickstart: Create a Wor
 
 ## Experiments (classic)
 
-Experiments (classic) is the legacy resource model. Choose it when you need a generally available model or a fault composition or capability that the Scenario catalog doesn't cover. Microsoft no longer develops features for Experiments (classic) and considers only critical fixes, such as security updates, for backport.
+Experiments (classic) is the legacy resource model being replaced by Chaos Studio Workspaces. Use it only when you need a generally available model or when the Scenario catalog doesn't yet cover the combination of faults or capability you need. To get started with the move, follow [Move from Experiments (classic) to Chaos Studio Workspaces](chaos-studio-migrate-from-classic.md). Microsoft no longer develops features for Experiments (classic) and considers only critical fixes, such as security updates, for backport.
 
 Experiments (classic) supports two types of faults:
 
@@ -76,4 +76,5 @@ The following video provides more background about Chaos Studio:
 - [Workspaces permissions and identity](chaos-studio-workspace-permissions.md).
 - [Azure Chaos Studio Scenario reports](chaos-studio-scenario-reports.md).
 - [Compare Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md).
+- [Move from Experiments (classic) to Chaos Studio Workspaces](chaos-studio-migrate-from-classic.md).
 - [Chaos engineering in Azure](chaos-studio-chaos-engineering-overview.md).

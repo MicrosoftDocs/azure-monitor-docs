@@ -21,13 +21,13 @@ Azure Monitor is based on a [common monitoring data platform](data-platform.md) 
 
 Most resources in Azure generate a standard set of monitoring data described in the following table. Some services have more collectable data, described in other sections in this article. Regardless of the services that you're monitoring, start by understanding and configuring the collection of this core data.
 
-Create diagnostic settings for each of the following data types to send them to a Log Analytics workspace, archive them to a storage account, or stream them to an event hub for ingestion by services outside of Azure. See [Create diagnostic settings in Azure Monitor](../platform/diagnostic-settings.md).
+Create diagnostic settings for each of the following data types to send them to a Log Analytics workspace, archive them to a storage account, or stream them to an event hub for ingestion by services outside of Azure. See [Create diagnostic settings in Azure Monitor](../data-collection/diagnostic-settings.md).
 
 | Data type | Description | Data collection method |
 |:----------|:------------|:-----------------------|
-| Activity log | Provides insight into subscription-level events for Azure services, including service health records and configuration changes. | Collected automatically. View in the Azure portal or create a diagnostic setting to send it to other destinations. You can collect it in a Log Analytics workspace at no charge. See [Azure Monitor activity log](../platform/activity-log.md). |
+| Activity log | Provides insight into subscription-level events for Azure services, including service health records and configuration changes. | Collected automatically. View in the Azure portal or create a diagnostic setting to send it to other destinations. You can collect it in a Log Analytics workspace at no charge. See [Azure Monitor activity log](activity-log.md). |
 | Platform metrics | Numerical values automatically collected at regular intervals for different aspects of a resource. Specific metrics vary for each type of resource. | Collected automatically and stored in [Azure Monitor Metrics](../metrics/data-platform-metrics.md). View in metrics explorer or create a diagnostic setting to send it to other destinations. See [Azure Monitor Metrics overview](../metrics/data-platform-metrics.md) and [Supported metrics with Azure Monitor](/azure/azure-monitor/reference/supported-metrics/metrics-index) for a list of metrics for different services. |
-| Resource logs | Provides insight into operations that were performed within an Azure resource. The content of resource logs varies by the Azure service and resource type. | You must create a diagnostic setting to collect resource logs. See [Azure resource logs](../platform/resource-logs.md) and [Supported services, schemas, and categories for Azure resource logs](../platform/resource-logs-schema.md) for details on each service. |
+| Resource logs | Provides insight into operations that were performed within an Azure resource. The content of resource logs varies by the Azure service and resource type. | You must create a diagnostic setting to collect resource logs. See [Azure resource logs](../logs/resource-logs.md) and [Supported services, schemas, and categories for Azure resource logs](../logs/resource-logs-schema.md) for details on each service. |
 
 ## Log data from Microsoft Entra ID
 
@@ -91,4 +91,4 @@ Custom data sources, especially those outside of Azure, require custom data coll
 
 * Learn more about the [types of monitoring data collected by Azure Monitor](data-platform.md) and how to view and analyze this data.
 * Review [Cost optimization in Azure Monitor](best-practices-cost.md) to control what you collect and retain.
-* Create [diagnostic settings in Azure Monitor](../platform/diagnostic-settings.md) to route platform logs and metrics to your destinations.
+* Create [diagnostic settings in Azure Monitor](../data-collection/diagnostic-settings.md) to route platform logs and metrics to your destinations.

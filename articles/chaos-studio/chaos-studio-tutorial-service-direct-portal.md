@@ -11,9 +11,9 @@ ms.custom: template-how-to
 
 # Create service-direct faults in the portal (classic)
 
-This portal guide tests Azure Cosmos DB failover with Azure Chaos Studio Experiments (classic). For current-model tests, check the [Chaos Studio Workspaces Scenario catalog](chaos-studio-scenarios.md) and [Workspaces quickstart](quickstart-create-workspace.md). Choose a Scenario only if its Actions cover your required outage pattern.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This portal guide tests Azure Cosmos DB failover with Azure Chaos Studio Experiments (classic). For current-model tests, check the [Chaos Studio Workspaces Scenario catalog](chaos-studio-scenarios.md) and [Workspaces quickstart](quickstart-create-workspace.md). Choose a Scenario only if its Actions cover your required outage pattern.
 
 You can use a chaos experiment to verify that your application is resilient to failures by causing those failures in a controlled environment. In this article, you cause a multi-read, single-write Azure Cosmos DB failover by using a chaos experiment and Azure Chaos Studio. Running this experiment can help you defend against data loss when a failover event occurs.
 

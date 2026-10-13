@@ -16,11 +16,11 @@ items:
   - name: Azure Monitor overview page
     href: fundamentals/overview-page.md
   - name: Monitor an Azure resource
-    href: platform/monitor-azure-resource.md
+    href: fundamentals/monitor-azure-resource.md
   - name: Analyze metric data
-    href: platform/tutorial-metrics.md
+    href: metrics/tutorial-metrics.md
   - name: Collect and view resource logs
-    href: platform/tutorial-resource-logs.md
+    href: data-collection/tutorial-resource-logs.md
 - name: Best practices
   items:
   - name: Reliability
@@ -321,7 +321,7 @@ items:
           displayName: virtual machine scale set, VMSS
           href: vm/tutorial-scale-set-alerts.md
       - name: Collect guest logs
-        displayName: virtual machine, VM 
+        displayName: virtual machine, VM
         href: vm/tutorial-collect-logs.md
     - name: Enable monitoring
       items:
@@ -663,11 +663,28 @@ items:
     - name: Health modeling
       displayName: health models, workload health, customer commitments
       href: health-models/health-modeling.md
+    - name: Quickstarts
+      items:
+      - name: Create a health model in the Azure portal
+        displayName: health models, portal
+        href: health-models/create.md
+      - name: Create a health model with Azure CLI
+        displayName: health models, Azure CLI, az monitor health-models
+        href: health-models/quickstart-cli.md
+      - name: Create a health model with Azure PowerShell
+        displayName: health models, Azure PowerShell, New-AzResourceGroupDeployment
+        href: health-models/quickstart-powershell.md
+      - name: Create a health model with Bicep
+        displayName: health models, Bicep, ARM, Resource Manager, template
+        href: health-models/tutorial-bicep.md
+      - name: Create a health model with an ARM template
+        displayName: health models, ARM, Resource Manager, template, JSON
+        href: health-models/quickstart-arm-template.md
+      - name: Create a health model with Terraform
+        displayName: health models, Terraform, AzAPI, infrastructure as code
+        href: health-models/quickstart-terraform.md
     - name: Create and configure
       items:
-      - name: Create a health model
-        displayName: health models
-        href: health-models/create.md
       - name: Use the designer
         displayName: health models
         href: health-models/designer.md
@@ -685,9 +702,6 @@ items:
         href: health-models/discoveries.md
     - name: Tutorials
       items:
-      - name: Create a health model by using Bicep
-        displayName: health models
-        href: health-models/tutorial-bicep.md
       - name: Configure signals
         displayName: health models
         href: health-models/tutorial-signals.md
@@ -710,17 +724,13 @@ items:
         href: health-models/monitoring.md
     - name: FAQ
       displayName: health models, frequently asked questions
-      href: health-models/health-models-faq.yml
-  - name: Migrate from SCOM Managed Instance
+      href: health-models/health-models-faq.md
+  - name: Migrate from System Center Operations Manager
     items:
-    - name: Overview
-      href: scom-manage-instance/migration-overview.md
     - name: Migrate to Azure Monitor
-      href: scom-manage-instance/migrate-to-azure-monitor.md
+      href: fundamentals/migrate-from-system-center-operations-manager.md
     - name: Convert management packs into data collection rules
-      href: scom-manage-instance/convert-management-packs-into-data-collection-rules.md
-    - name: Migration FAQs
-      href: scom-manage-instance/migration-faq-scom-manage-instance.yml
+      href: fundamentals/convert-management-packs-into-data-collection-rules.md
   - name: Monitoring coverage
     href: fundamentals/monitoring-coverage.md
   - name: Service level indicators
@@ -735,11 +745,14 @@ items:
     displayName: data sources, data collection
     href: fundamentals/data-sources.md
   - name: Activity logs
-    href: platform/activity-log.md
+    href: fundamentals/activity-log.md
   - name: Resource logs
-    href: platform/resource-logs.md
+    href: logs/resource-logs.md
 - name: Data collection
   items:
+  - name: Overview
+    displayName: data collection methods, collection paths, collection topology, collector-based collection, Azure Monitor agent, Azure Monitor pipeline
+    href: data-collection/data-collection-overview.md
   - name: Data collection rules (DCR)
     items:
     - name: Overview
@@ -823,20 +836,20 @@ items:
       items:
       - name: Create or edit
         displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-        href: platform/diagnostic-settings.md
+        href: data-collection/diagnostic-settings.md
       - name: Frequently asked questions
-        href: platform/diagnostic-settings-faq.md
+        href: data-collection/diagnostic-settings-faq.md
       - name: Create with Azure Policy
         items:
         - name: Use built-in policy or initiative
           displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-          href: platform/diagnostic-settings-policy-built-in.md
+          href: data-collection/diagnostic-settings-policy-built-in.md
         - name: Create custom policy
           displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-          href: platform/diagnostic-settings-policy.md
+          href: data-collection/diagnostic-settings-policy.md
       - name: Migrate storage retention
         displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-        href: platform/migrate-to-azure-storage-lifecycle-policy.md
+        href: data-collection/migrate-to-azure-storage-lifecycle-policy.md
   - name: Collect OpenTelemetry
     items:
     - name: OpenTelemetry with Azure Monitor
@@ -1021,46 +1034,46 @@ items:
     - name: Collect logs from Event Hubs
       href: logs/ingest-logs-event-hub.md
     - name: Stream monitoring data to Event Hubs
-      href: platform/stream-monitoring-data-event-hubs.md
+      href: data-collection/stream-monitoring-data-event-hubs.md
   - name: Azure Monitor pipeline
     items:
-      - name: Overview
-        href: data-collection/pipeline-overview.md
-      - name: FAQ
-        href: data-collection/pipeline-faq.yml
-      - name: Configure
-        items:
-        - name: Configure Azure Monitor pipeline
-          displayName: Azure Monitor pipeline
-          href: data-collection/pipeline-configure.md
-        - name: Configure with the Azure portal
-          displayName: Azure Monitor pipeline
-          href: data-collection/pipeline-configure-portal.md
-        - name: Configure with CLI or ARM templates
-          displayName: Azure Monitor pipeline
-          href: data-collection/pipeline-configure-cli.md
-      - name: Transformations
-        href: data-collection/pipeline-transformations.md
-      - name: Configure a Kubernetes gateway
-        displayName: Sample gateway setup
-        href: data-collection/pipeline-kubernetes-gateway.md
-      - name: Transport Layer Security (TLS)
-        items:
-        - name: Configure TLS
-          href: data-collection/pipeline-tls.md
-        - name: Automated certificate management (default TLS)
-          href: data-collection/pipeline-tls-automated.md
-        - name: Customer-managed certificates (BYOC)
-          href: data-collection/pipeline-tls-custom.md
-      - name: Sizing best practices
-        href: data-collection/pipeline-sizing.md
-      - name: Pod placement
-        href: data-collection/pipeline-pod-placement.md
-      - name: Extension versions
-        displayName: Azure Monitor pipeline extension versions
-        href: data-collection/pipeline-extension-versions.md
-      - name: Troubleshoot
-        href: data-collection/pipeline-troubleshoot.md
+    - name: Overview
+      href: data-collection/pipeline-overview.md
+    - name: FAQ
+      href: data-collection/pipeline-faq.yml
+    - name: Configure
+      items:
+      - name: Configure Azure Monitor pipeline
+        displayName: Azure Monitor pipeline
+        href: data-collection/pipeline-configure.md
+      - name: Configure with the Azure portal
+        displayName: Azure Monitor pipeline
+        href: data-collection/pipeline-configure-portal.md
+      - name: Configure with CLI or ARM templates
+        displayName: Azure Monitor pipeline
+        href: data-collection/pipeline-configure-cli.md
+    - name: Transformations
+      href: data-collection/pipeline-transformations.md
+    - name: Configure a Kubernetes gateway
+      displayName: Sample gateway setup
+      href: data-collection/pipeline-kubernetes-gateway.md
+    - name: Transport Layer Security (TLS)
+      items:
+      - name: Configure TLS
+        href: data-collection/pipeline-tls.md
+      - name: Automated certificate management (default TLS)
+        href: data-collection/pipeline-tls-automated.md
+      - name: Customer-managed certificates (BYOC)
+        href: data-collection/pipeline-tls-custom.md
+    - name: Sizing best practices
+      href: data-collection/pipeline-sizing.md
+    - name: Pod placement
+      href: data-collection/pipeline-pod-placement.md
+    - name: Extension versions
+      displayName: Azure Monitor pipeline extension versions
+      href: data-collection/pipeline-extension-versions.md
+    - name: Troubleshoot
+      href: data-collection/pipeline-troubleshoot.md
   - name: Custom metrics in Azure Monitor (preview)
     href: metrics/metrics-custom-overview.md
   - name: Custom metrics ingestion using REST
@@ -1438,7 +1451,7 @@ items:
     items:
     - name: Metrics REST API Walkthrough
       displayName: metrics, analyze
-      href: platform/rest-api-walkthrough.md
+      href: metrics/rest-api-walkthrough.md
     - name: Migrate to the metrics getBatch API
       href: metrics/migrate-to-batch-api.md
   - name: Log Analytics
@@ -1719,7 +1732,7 @@ items:
       - name: Action groups
         href: alerts/resource-manager-action-groups.md
     - name: Diagnostic settings
-      href: platform/resource-manager-diagnostic-settings.md
+      href: data-collection/resource-manager-diagnostic-settings.md
     - name: Log queries
       href: logs/resource-manager-log-queries.md
     - name: Workbooks
@@ -1759,9 +1772,9 @@ items:
     - name: Supported resource log categories
       href: /azure/azure-monitor/reference/logs-index
     - name: Resource log schemas
-      href: platform/resource-logs-schema.md
+      href: logs/resource-logs-schema.md
     - name: Activity log schema
-      href: platform/activity-log-schema.md
+      href: fundamentals/activity-log-schema.md
     - name: Azure Monitor Logs table feature support
       href: reference/tables-features.md
   - name: Windows diagnostics extension schema

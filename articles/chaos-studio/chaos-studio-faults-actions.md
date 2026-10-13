@@ -11,9 +11,9 @@ ms.custom: template-concept
 
 # Faults and actions for Experiments (classic)
 
-These fault and action concepts apply to Azure Chaos Studio Experiments (classic). For current-model tests, explore [Chaos Studio Workspaces Scenarios and Actions](chaos-studio-scenarios.md), including templates and custom Scenario composition.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+These fault and action concepts apply to Azure Chaos Studio Experiments (classic). For current-model tests, explore [Chaos Studio Workspaces Scenarios and Actions](chaos-studio-scenarios.md), including templates and custom Scenario composition.
 
 In Azure Chaos Studio, every activity that happens as part of an experiment is called an *action*. The most common type of action is a *fault*. This article describes actions and faults and the properties of each.
 

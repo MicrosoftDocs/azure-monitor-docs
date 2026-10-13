@@ -27,7 +27,6 @@ For more information, see [Configure your own key for encrypting Azure Event Hub
 ResourceType: microsoft.eventhub/namespaces  
 Recommendation ID: 927abfcb-1a85-4411-bc49-7c8a2d9fb098  
 
-
 <!--927abfcb-1a85-4411-bc49-7c8a2d9fb098_end-->
 
 <!--articleBody-->

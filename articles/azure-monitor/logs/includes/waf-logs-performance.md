@@ -1,6 +1,7 @@
 ---
 ms.topic: include
-ms.date: 02/03/2026
+ms.date: 09/21/2026
+ai-usage: ai-assisted
 ---
 
 ### Optimizing performance starts with queries
@@ -10,6 +11,7 @@ Azure Monitor Logs is a fully managed, cloud‑scale service designed to automat
 ### Design checklist
 
 > [!div class="checklist"]
+> * Select a table plan that meets your query response-time requirements.
 > * Optimize your log queries.
 > * Configure log query auditing.
 > * Use Log Analytics workspace insights to identify slow and inefficient queries.
@@ -19,8 +21,8 @@ Azure Monitor Logs is a fully managed, cloud‑scale service designed to automat
 
 | Recommendation | Benefit |
 |:---------------|:--------|
-| Optimize your log queries by following the guidance in [Optimize log queries in Azure Monitor](../query-optimization.md). | Well-optimized queries run faster and consume fewer resources, providing insights to data more quickly and are less likely to get throttled or rejected. Follow best practices for writing efficient Kusto Query Language (KQL) queries to improve performance. |
+| Select a [table plan](../logs-table-plans.md) that meets your query response-time requirements. | Analytics, Basic, and Auxiliary tables support full Kusto Query Language (KQL). Analytics and Basic tables provide optimized query performance. Auxiliary queries are unoptimized and might take longer, making Auxiliary better suited to infrequently accessed data than latency-sensitive analysis. See [Auxiliary log query performance](../basic-logs-query.md#auxiliary-log-query-performance). |
+| Optimize your log queries by following the guidance in [Optimize log queries in Azure Monitor](../query-optimization.md). | Well-optimized queries run faster and consume fewer resources, providing insights to data more quickly and are less likely to get throttled or rejected. Follow best practices for writing efficient KQL queries to improve performance. |
 | Configure log query auditing. | [Log query auditing](../query-audit.md) stores the compute time required to run each query and the time until results are returned. |
 | Use Log Analytics workspace insights to identify slow and inefficient queries. |  [Log Analytics workspace insights](../log-analytics-workspace-insights-overview.md#query-audit-tab) uses this data to list potentially inefficient queries in your workspace.|
 | Consider if your scenario is suitable for summary rules, such as month-over-month dashboards or reports over long time ranges. | Summary rules re-ingest summarized data of large datasets after a certain delay, creating summary tables. Summary tables are queried more efficiently than the original raw data. Consider [summary rules](../summary-rules.md) to create and manage summary tables in your Log Analytics workspace. |
-

@@ -3,7 +3,7 @@ title: Scenarios and outage templates for Chaos Studio Workspaces
 description: Explore Azure Chaos Studio Scenarios for zone down, DNS outages, and database failovers. Review Workspaces templates, Actions, and resource requirements.
 author: nikhilkaul-msft
 ms.topic: reference
-ms.date: 09/05/2026
+ms.date: 09/29/2026
 ai-usage: ai-assisted
 ---
 
@@ -64,6 +64,19 @@ Shuts down all discovered Azure Virtual Machine Scale Sets instances in the targ
 | Actions | Virtual Machine Scale Set Shutdown (zone filter), Azure Cache for Redis force failover (reboot primary node), optional Azure Automation runbooks |
 | Target resources | Virtual Machine Scale Sets, Azure Cache for Redis |
 | Outage category | Zone / Datacenter |
+
+#### Key Vault Public Endpoint Outage
+
+Blocks outbound access to Azure Key Vault public data-plane endpoints by applying an NSG rule that denies outbound traffic to the `AzureKeyVault` service tag. Tests whether your application tolerates losing access to secrets, keys, and certificates, including cached secret use, retry behavior, and startup failures. Chaos Studio removes the NSG rule when the run ends. You set the duration, which defaults to 15 minutes.
+
+> [!NOTE]
+> This Scenario affects only traffic that passes through the selected NSGs to Key Vault public endpoints. Key Vault private endpoints, Azure Resource Manager control-plane operations on Key Vault, and traffic that doesn't traverse a selected NSG aren't affected.
+
+| Property | Value |
+|---|---|
+| Actions | NSG ApplyNSGRule (block Azure Key Vault service tag) |
+| Target resources | Network Security Group |
+| Outage category | Networking / Dependency |
 
 ### Database Scenarios
 
@@ -174,7 +187,29 @@ Simulates a correlated outage of upstream dependencies across identity, messagin
 
 ### Compute and resource-pressure Scenarios
 
-These Scenarios simulate resource exhaustion on virtual machines.
+These Scenarios simulate virtual machine disruption, such as hibernation and routine platform maintenance, and resource exhaustion on virtual machines.
+
+#### VM Hibernate
+
+Hibernates standalone virtual machines to test how your application handles sudden loss of compute capacity. Chaos Studio automatically resumes the VMs when the Scenario completes or is canceled. You set the duration, which defaults to 15 minutes.
+
+Target VMs must support hibernation. For hibernation requirements, see [Hibernation for Azure virtual machines](/azure/virtual-machines/hibernate-resume).
+
+| Property | Value |
+|---|---|
+| Actions | VM Hibernate |
+| Target resources | Virtual Machines (standalone only) |
+| Outage category | Compute |
+
+#### VM Maintenance Reboot
+
+Restarts target virtual machines and, after the restart succeeds, redeploys them to a different host through Azure Resource Manager. Use this baseline Scenario to validate that your application survives routine platform maintenance events, such as host patching, hardware servicing, and planned migrations. This Scenario has no parameters.
+
+| Property | Value |
+|---|---|
+| Actions | VM Restart, VM Redeploy (runs after VM Restart succeeds) |
+| Target resources | Virtual Machines |
+| Outage category | Compute / Maintenance |
 
 #### CPU Pressure
 
@@ -256,7 +291,7 @@ When the supported templates don't match what you need, customize your own Scena
 
 A Scenario is a `Microsoft.Chaos/workspaces/scenarios` resource. Each Scenario has:
 
-- **Actions**: One or more Actions that define the Scenario's orchestration. Each Action references an action type by its URN (for example, `urn:csci:microsoft:compute:shutdown/1.0.0`), runs for an ISO 8601 **duration** (such as `PT30M` for 30 minutes), and takes action-specific **parameters**.
+- **Actions**: One or more Actions that define the Scenario's orchestration. Each Action references an action type by its `actionId`, either the catalog form (for example, `microsoft-compute-Restart/1.0`) or its canonical URN (for example, `urn:csci:microsoft:compute:shutdown/1.0.0`), runs for an ISO 8601 **duration** (such as `PT30M` for 30 minutes), and takes action-specific **parameters**.
 - **Parameters**: Scenario-level parameters that callers supply at run time, such as which availability zone to target. Each parameter has a name, a type (`string`, `number`, `boolean`, `array`, or `object`), an optional default, and a `required` flag. Reference a parameter inside an Action with the macro syntax `%%{parameters.<name>}%%`.
 - **Dependencies**: Use an Action's `runAfter` property to control sequencing. You specify the Actions to wait for, the lifecycle state that triggers the next Action (`Start`, `Running`, `Success`, `Failure`, `Skipped`, or `AnyTerminal`), and how multiple dependencies are evaluated (`All`, `Any`, or `AtLeastOne`). You can also set `waitBefore` to delay an Action and `timeout` to cap its execution time.
 
@@ -314,7 +349,63 @@ resource customScenario 'Microsoft.Chaos/workspaces/scenarios@2026-05-01-preview
 }
 ```
 
-Action IDs are URNs of the form `urn:csci:microsoft:{service}:{action}/{version}`. For the full resource schema, including every Action and parameter property, see the [Microsoft.Chaos/workspaces/scenarios template reference](/azure/templates/microsoft.chaos/workspaces/scenarios). Use the [supported Scenario templates](#supported-scenario-templates) and the Scenario designer to identify Workspaces Actions. The separate catalog for Experiments (classic) doesn't establish Action availability in Workspaces; see the [resource model comparison](chaos-studio-workspaces-vs-experiments.md).
+Canonical Action URNs have the form `urn:csci:microsoft:{service}:{action}/{version}`. For the full resource schema, including every Action and parameter property, see the [Microsoft.Chaos/workspaces/scenarios template reference](/azure/templates/microsoft.chaos/workspaces/scenarios). Use the [supported Scenario templates](#supported-scenario-templates), the [Actions available for custom Scenarios](#actions-available-for-custom-scenarios), and the Scenario designer to identify Workspaces Actions. The separate catalog for Experiments (classic) doesn't establish Action availability in Workspaces; see the [resource model comparison](chaos-studio-workspaces-vs-experiments.md). When you create or update a Scenario, the Workspace validates each `actionId` and rejects Actions it doesn't recognize.
+
+### Actions available for custom Scenarios
+
+In addition to the Actions used by the [supported Scenario templates](#supported-scenario-templates), you can use the following Actions in custom Scenarios that you build in the Scenario designer or define as `Microsoft.Chaos/workspaces/scenarios` resources. Each Action applies to the discovered resources of its target resource type in the Workspace scope.
+
+| Action | `actionId` | Target resource type | Key parameters | Behavior |
+|---|---|---|---|---|
+| Azure Cosmos DB offline region | `microsoft-documentdb-offlineregion/1.0` | `Microsoft.DocumentDb/databaseAccounts` | `RegionName` (required): the display name of the Azure region to take offline, such as `East US`. | Continuous. Takes the region offline for the Action's `duration`, and then brings it back online. Requires a `duration`. |
+| Service Bus change topic state | `microsoft-servicebus-changetopicstate/1.0` | `Microsoft.ServiceBus/namespaces` | `topics` (required): array of topic names. `desiredState` (required): `Active` or `Disabled`. | Discrete. Sets the state once and doesn't revert it. Add a later Action that sets `desiredState` to `Active` to re-enable the topics. |
+| Service Bus change subscription state | `microsoft-servicebus-changesubscriptionstate/1.0` | `Microsoft.ServiceBus/namespaces` | `topic` (required): topic name. `subscriptions` (required): array of subscription names. `desiredState` (required): `Active` or `Disabled`. | Discrete. Sets the state once and doesn't revert it. Add a later Action that sets `desiredState` to `Active` to re-enable the subscriptions. |
+| App Service restart | `microsoft-appService-Restart/1.0` | `Microsoft.Web/sites` | `SoftRestart` (optional): `true` applies configuration settings and restarts only if necessary. The default, `false`, always restarts and reprovisions the app. | Discrete. Restarts the app once. |
+
+The Workspace identity needs permissions for each Action. The recommended built-in roles are Cosmos DB Operator for Azure Cosmos DB offline region, Azure Service Bus Data Owner for the Service Bus Actions, and Website Contributor for App Service restart. For more information, see [Permissions and identity in Chaos Studio Workspaces](chaos-studio-workspace-permissions.md#role-assignments-the-workspace-identity-needs).
+
+### Example: Azure Cosmos DB offline region in Bicep
+
+The following Bicep defines a custom Scenario that takes an Azure Cosmos DB region offline for a parameterized duration. The `RegionName` value is the Azure region display name, such as `East US`.
+
+```bicep
+resource cosmosRegionOutage 'Microsoft.Chaos/workspaces/scenarios@2026-08-01-preview' = {
+  parent: workspace
+  name: 'cosmos-db-region-offline'
+  properties: {
+    description: 'Take an Azure Cosmos DB region offline.'
+    parameters: [
+      {
+        name: 'regionName'
+        type: 'string'
+        required: true
+        description: 'Display name of the Azure region to take offline, such as East US.'
+      }
+      {
+        name: 'duration'
+        type: 'string'
+        required: false
+        default: 'PT10M'
+        description: 'How long the region stays offline.'
+      }
+    ]
+    actions: [
+      {
+        name: 'cosmosOfflineRegion'
+        actionId: 'microsoft-documentdb-offlineregion/1.0'
+        description: 'Take the Cosmos DB region offline.'
+        duration: '%%{parameters.duration}%%'
+        parameters: [
+          {
+            key: 'RegionName'
+            value: '%%{parameters.regionName}%%'
+          }
+        ]
+      }
+    ]
+  }
+}
+```
 
 ## What determines which Scenarios appear in your Workspace
 

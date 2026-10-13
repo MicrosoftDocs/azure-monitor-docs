@@ -33,7 +33,7 @@ Recommendation ID: 2cc17306-822e-45b1-8d7f-5b0d2f2cccdb
 
 <!--d89829c9-dadf-4ddc-87d6-fd746debd5d3_begin-->
 
-#### Improve user experience and connectivity by deploying VMs closer to user's location  
+#### Deploy the VMs to an Azure region closer to the user location  
   
 We have determined that your VMs are located in a region different or far from where your users are connecting from, using Windows Virtual Desktop (WVD). This leads to prolonged connection response times and impacts overall user experience on WVD. When creating VMs for your host pools, you should attempt to use a region closer to the user. Having close proximity ensures continuing satisfaction with the WVD service and a better overall quality of experience.  
   

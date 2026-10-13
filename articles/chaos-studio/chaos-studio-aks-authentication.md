@@ -11,9 +11,9 @@ ms.author: nikhilkaul
 
 # Configure AKS authentication for Experiments (classic)
 
-This AKS authentication guide applies to Chaos Mesh faults in Azure Chaos Studio Experiments (classic). For current-model node resilience tests, use [AKS resilience testing with Chaos Studio Workspaces](chaos-studio-aks-guidance.md); that workflow targets node infrastructure rather than in-cluster pod faults.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This AKS authentication guide applies to Chaos Mesh faults in Azure Chaos Studio Experiments (classic). For current-model node resilience tests, use [AKS resilience testing with Chaos Studio Workspaces](chaos-studio-aks-guidance.md); that workflow targets node infrastructure rather than in-cluster pod faults.
 
 ## Overview
 
@@ -218,7 +218,7 @@ There are two steps to this optional configuration.
 
 Classic experiments that use Chaos Mesh faults depend on retrieving the AKS cluster admin credential through the `Microsoft.ContainerService/managedClusters/listClusterAdminCredential/action` operation. This dependency applies even when the cluster uses AKS-managed Microsoft Entra authentication and the experiment identity uses the least-privilege custom role described in this article. It has two consequences:
 
-- If the experiment identity isn't authorized to perform `listClusterAdminCredential`, the experiment fails. The cluster's [activity log](../azure-monitor/platform/activity-log.md) shows a 403 `AuthorizationFailed` error for the operation.
+- If the experiment identity isn't authorized to perform `listClusterAdminCredential`, the experiment fails. The cluster's [activity log](../azure-monitor/fundamentals/activity-log.md) shows a 403 `AuthorizationFailed` error for the operation.
 - If the cluster disables local accounts (`disableLocalAccounts` set to `true`), Chaos Mesh faults can't run on the cluster. The experiment doesn't inject faults: no Chaos Mesh resources are created in the target namespace and no events are generated there, while the Chaos Mesh pod logs show no errors.
 
 To run Chaos Mesh faults on a cluster where these constraints apply:

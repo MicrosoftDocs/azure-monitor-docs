@@ -27,14 +27,13 @@ For more information, see [In-place upgrade to Ubuntu Pro Linux images on Azure 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 4b25fc0f-b045-423b-a85a-241978696e36  
 
-
 <!--4b25fc0f-b045-423b-a85a-241978696e36_end-->
 
 <!--de7ddac0-29e6-4bff-a812-519d18184982_begin-->
 
 #### Enable Trusted Launch foundational excellence, and modern security for Existing Generation 2 VM(s)  
   
-Trusted Launch (TL) offers a modern and operational technologies for Azure virtual machines, using Secure Boot, virtual TPM, and guest attestation. This Generation 2 VM(s) have an opportunity to upgrade to Trusted Launch. Ensure this VM(s) has both an image and VM size that it's TL compatible.  
+Trusted Launch (TL) offers a modern and operational technologies for Azure virtual machines, using Secure Boot, virtual TPM, and guest attestation. This Generation 2 VM(s) have an opportunity to upgrade to Trusted Launch. Ensure this VM(s) has both an image and VM size that it is TL compatible.  
   
 **Potential benefits**: Boost Gen2 VM security by protecting against rootkits  
 
@@ -45,9 +44,7 @@ For more information, see [Trusted Launch for Azure VMs - Azure Virtual Machines
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: de7ddac0-29e6-4bff-a812-519d18184982  
 
-
 <!--de7ddac0-29e6-4bff-a812-519d18184982_end-->
-
 
 <!--acc30c87-0979-4a35-b4c4-918869897844_begin-->
 
@@ -63,7 +60,6 @@ For more information, see [Default Outbound Access in Azure - Azure Virtual Netw
 
 ResourceType: microsoft.compute/virtualmachinescalesets/virtualmachines/networkinterfaces  
 Recommendation ID: acc30c87-0979-4a35-b4c4-918869897844  
-
 
 <!--acc30c87-0979-4a35-b4c4-918869897844_end-->
 
@@ -81,7 +77,6 @@ For more information, see [Enable VM Insights - Azure Monitor](/azure/azure-moni
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 2881ca3a-070d-40fb-9471-83783ff487c0  
-
 
 <!--2881ca3a-070d-40fb-9471-83783ff487c0_end-->
 

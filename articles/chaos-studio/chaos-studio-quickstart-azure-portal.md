@@ -11,9 +11,9 @@ ms.reviewer: prashabora
 
 # Quickstart: Create and run an experiment (classic)
 
-This Azure Chaos Studio quickstart uses Experiments (classic) to shut down a virtual machine. For the current model, start with the [Chaos Studio Workspaces quickstart](quickstart-create-workspace.md), which discovers resources and runs a Scenario.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This Azure Chaos Studio quickstart uses Experiments (classic) to shut down a virtual machine. For the current model, start with the [Chaos Studio Workspaces quickstart](quickstart-create-workspace.md), which discovers resources and runs a Scenario.
 
 Get started with Azure Chaos Studio by using a virtual machine (VM) shutdown service-direct experiment to make your service more resilient to that failure in real-world scenarios.
 

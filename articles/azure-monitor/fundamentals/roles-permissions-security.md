@@ -46,7 +46,7 @@ People assigned the Monitoring Reader role can view all monitoring data in a sub
 * View alert rules defined in [Azure alerts](../alerts/alerts-overview.md).
 * Query Azure Monitor Metrics by using the [Azure Monitor REST API](/rest/api/monitor/metrics), [PowerShell cmdlets](/powershell/module/az.monitor), or [Azure CLI](/cli/azure/service-page/monitor).
 * Query the Activity log by using the portal, Azure Monitor REST API, PowerShell cmdlets, or Azure CLI.
-* View the [diagnostic settings](../platform/diagnostic-settings.md) for a resource.
+* View the [diagnostic settings](../data-collection/diagnostic-settings.md) for a resource.
 * View the [log profile](/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods) for a subscription. Log profiles are a legacy feature for routing the Activity log. Don't build new dependencies on them.
 * View autoscale settings.
 * View alert activity and settings.
@@ -62,7 +62,7 @@ People assigned the Monitoring Contributor role can view all monitoring data in 
 This role is a superset of the Monitoring Reader role. It's appropriate for members of an organization's monitoring team or managed service providers who, in addition to the permissions mentioned earlier, need to:
 
 * View monitoring dashboards in the portal and create their own private monitoring dashboards.
-* Create and edit [diagnostic settings](../platform/diagnostic-settings.md) for a resource. Creating or editing a diagnostic setting also requires the [ListKeys prerequisite](#monitoring-reader-vs-monitoring-contributor).
+* Create and edit [diagnostic settings](../data-collection/diagnostic-settings.md) for a resource. Creating or editing a diagnostic setting also requires the [ListKeys prerequisite](#monitoring-reader-vs-monitoring-contributor).
 * Set alert rule activity and settings using [Azure alerts](../alerts/alerts-overview.md).
 * List shared keys for a Log Analytics workspace.
 * Create, delete, and execute saved searches in a Log Analytics workspace.

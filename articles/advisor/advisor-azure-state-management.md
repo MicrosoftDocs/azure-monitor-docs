@@ -1,19 +1,15 @@
 ---
-# Required metadata
-# For more information, see https://learn.microsoft.com/help/platform/learn-editor-add-metadata
-# For valid values of ms.service, ms.prod, and ms.topic, see https://learn.microsoft.com/en-us/help/platform/metadata-taxonomies
-
-title: Azure Advisor recommendation state management
-description: This article describes Azure advisor recommendation state management and provides you with methods for use.
-author:      zucatihal # GitHub alias
-ms.author:   v-zucatihal # Microsoft alias
+title: Manage recommendation state
+description: Learn how to manage the state of Azure Advisor recommendations, including active, postponed, dismissed, and completed.
+author:      tiffanywang
+ms.author:   tiffanywang
 ms.service: azure-advisor
 ms.topic: how-to
 ms.date: 06/21/2026
-ms.reviewer: tiffanywang, adaga
+ms.reviewer: adaga
 ---
 
-# Azure Advisor recommendation state management
+# Manage recommendation state
 
 By using Azure Advisor recommendation state management, you can track and manage new and existing recommendation states.
 

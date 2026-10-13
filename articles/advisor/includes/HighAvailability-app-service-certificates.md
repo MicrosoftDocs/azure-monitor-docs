@@ -26,7 +26,6 @@ You have an App Service Certificate that's currently in a Pending Issuance statu
 
 ResourceType: microsoft.certificateregistration/certificateorders  
 Recommendation ID: a2385343-200c-4eba-bbe2-9252d3f1d6ea  
-Subcategory: undefined
 
 <!--a2385343-200c-4eba-bbe2-9252d3f1d6ea_end-->
 

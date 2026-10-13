@@ -3,7 +3,7 @@ title: Manage access to Log Analytics workspaces
 description: This article explains how you can manage access to data stored in a Log Analytics workspace in Azure Monitor by using resource, workspace, or table-level permissions.
 ms.topic: how-to
 ms.reviewer: MeirMen
-ms.date: 06/22/2026
+ms.date: 09/02/2026
 ms.custom: devx-track-azurepowershell
 
 ---
@@ -47,7 +47,7 @@ There are known limitations with the following resources:
 * **Computers outside of Azure**: Resource-context is only supported with [Azure Arc for servers](/azure/azure-arc/servers/).
 * **Application Insights**: Supported for resource-context only when using a [workspace-based Application Insights resource](../app/create-workspace-resource.md).
 * **Azure Service Fabric**
-* **Basic** and **Auxiliary** tables: Resource-context only supports tables in the Analytics plan. Basic and Auxiliary tables only support workspace query scope since they don't support multitable queries, which are required for resource scope queries.
+* **Basic** and **Auxiliary** tables: Resource-context only supports tables in the Analytics plan. Queries that include Basic or Auxiliary tables require a Log Analytics workspace as the scope.
 
 ### Compare access modes
 
