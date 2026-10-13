@@ -51,6 +51,10 @@ Not currently. Health models don't include a fully prebuilt template, because a 
 
 Discovery and recommended signals cover Azure resources, plus application topology if you use Application Insights, so treat the result as a starting point rather than a finished model. See [Create a new Azure Monitor health model](create.md) and [Create discovery rules for Azure Monitor health models](./discoveries.md).
 
+### How many entities, relationships, and signals can I add to a health model?
+
+Azure Monitor health models defines service limits for entities, relationships, signals, and discovery rules. For the current limits, see [Azure Monitor health models service limits](../fundamentals/service-limits.md#azure-monitor-health-models).
+
 ### Are there best practices or examples for workload versus domain models, such as landing zones?
 
 Both patterns are valid, and the choice is deliberate:
