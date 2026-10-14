@@ -1083,4 +1083,21 @@ Recommendation ID: 3455290f-894b-45cf-b441-f28861424c5e
 
 <!--3455290f-894b-45cf-b441-f28861424c5e_end-->
 
+<!--2a74beeb-d517-4ff7-9c13-39a5be5c1441_begin-->
+
+#### Migrate from DSv3, Dv3, ESv3, Ev3 series virtual machines  
+  
+DSv3, Dv3, ESv3, Ev3 series virtual machines are being retired. Identify recommended replacement VM sizes and switch to current virtual machines or resize.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Retired VM sizes modernization guide - Azure Virtual Machines](/azure/virtual-machines/sizes/lifecycle/retirement/retired-sizes-modernization-guide)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 2a74beeb-d517-4ff7-9c13-39a5be5c1441  
+
+<!--2a74beeb-d517-4ff7-9c13-39a5be5c1441_end-->
+
 <!--articleBody-->

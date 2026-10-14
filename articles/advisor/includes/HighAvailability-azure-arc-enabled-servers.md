@@ -47,4 +47,21 @@ Recommendation ID: a8ffbd6c-08e0-4a66-b1d5-249719ab9899
 
 <!--a8ffbd6c-08e0-4a66-b1d5-249719ab9899_end-->
 
+<!--02500231-6047-40b1-9cef-c9b1c1f217f8_begin-->
+
+#### Migrate from Legacy Purview access policies to access SQL databases  
+  
+Legacy Purview access policies (DevOps policies and data owner policies) for Azure SQL DB, SQL MI and Arc-enabled SQL Server 2022 are retiring. Customers can no longer use Purview access policies to manage access to their SQL databases. Migrate to fixed server roles instead.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Retirement of Microsoft Purview access policies for SQL - Azure SQL Database & Azure SQL Managed Instance & SQL Server enabled by Azure Arc](https://aka.ms/retirePurviewRBACforSQL)  
+
+ResourceType: microsoft.hybridcompute/machines  
+Recommendation ID: 02500231-6047-40b1-9cef-c9b1c1f217f8  
+
+<!--02500231-6047-40b1-9cef-c9b1c1f217f8_end-->
+
 <!--articleBody-->
