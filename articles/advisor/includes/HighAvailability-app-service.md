@@ -389,7 +389,7 @@ Python applications hosted on Azure App Service on Windows and Azure Functions o
   
 **Potential benefits**: Avoid service disruption  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=558027)  
 

@@ -609,7 +609,7 @@ To continue using the service, migrate to Application Gateway WAF v2 Policy befo
   
 **Potential benefits**: Avoid potential disruptions and use new capabilities.
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Upgrade to Azure Application Gateway WAF Policy](/azure/web-application-firewall/ag/upgrade-ag-waf-policy?tabs=portal#upgrade-waf-v2-with-legacy-waf-configuration-to-waf-policy)  
 
@@ -660,7 +660,7 @@ Classic (Azure Front Door) is being retired. Migrate to Front Door Standard or P
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/azure-front-door-classic-will-be-retired-on-31-march-2027/)  
 
