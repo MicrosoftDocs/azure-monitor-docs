@@ -157,7 +157,7 @@ AzureDnsZone endpoints (preview) for Azure Blob storage accounts is retiring. Tr
   
 **Potential benefits**: Avoid service disruption  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=558276)  
 

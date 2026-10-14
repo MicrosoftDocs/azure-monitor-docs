@@ -108,7 +108,7 @@ To avoid service disruptions, migrate workloads to Azure Managed Redis before th
   
 **Potential benefits**: Avoid service disruptions and ensure continued support  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=499606)  
 

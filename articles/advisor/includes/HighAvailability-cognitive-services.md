@@ -294,7 +294,7 @@ The Long Audio API of Azure AI Speech is being retired.
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/long-audio-api-will-be-retired-on-31-march-2027-migrate-to-the-new-batch-synthesis-api/)  
 

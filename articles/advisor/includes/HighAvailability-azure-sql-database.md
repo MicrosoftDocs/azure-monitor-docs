@@ -124,7 +124,7 @@ Elastic query using Shard_Map_Manager external data source type reaches end of s
   
 **Potential benefits**: Avoid service disruption  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=558086)  
 
