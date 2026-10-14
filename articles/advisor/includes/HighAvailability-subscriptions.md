@@ -12,23 +12,6 @@ ms.custom: HighAvailability Subscriptions
   
 ## Subscriptions
 
-<!--badb6a09-d33e-4e2a-82d8-8ed668db0aad_begin-->
-
-#### Support for TLS 1.0 and TLS 1.1 in Azure Monitor is ending  
-  
-Upgrade TLS to latest version. Support for TLS 1.0 and TLS 1.1 in Azure Monitor is ending.  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** High
-  
-For more information, see [Secure your Azure Monitor deployment - Azure Monitor](/azure/azure-monitor/fundamentals/best-practices-security?WT.mc_id=Portal-AppInsightsExtension#send-data-to-your-workspace-using-transport-layer-security-tls-12-or-higher)  
-
-ResourceType: microsoft.subscriptions/subscriptions  
-Recommendation ID: badb6a09-d33e-4e2a-82d8-8ed668db0aad  
-
-<!--badb6a09-d33e-4e2a-82d8-8ed668db0aad_end-->
-
 <!--d63e646e-752a-40c0-aa76-b744a6b6949a_begin-->
 
 #### Best Practices (Azure Automanage) are being retired  
@@ -181,22 +164,5 @@ ResourceType: microsoft.subscriptions/subscriptions
 Recommendation ID: 05a63caf-3461-44bf-98a7-2f5d7f7f2a1e  
 
 <!--05a63caf-3461-44bf-98a7-2f5d7f7f2a1e_end-->
-
-<!--b9dad077-2c94-436e-80c5-ed0e1ecd083a_begin-->
-
-#### SQL Server scenarios are being retired  
-  
-Azure Database Migration Service (classic) - SQL Server scenarios are retiring.  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** High
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/retirement-azure-database-migration-service-classic-sql-server-scenarios-deprecation/).  
-
-ResourceType: microsoft.subscriptions/subscriptions  
-Recommendation ID: b9dad077-2c94-436e-80c5-ed0e1ecd083a  
-
-<!--b9dad077-2c94-436e-80c5-ed0e1ecd083a_end-->
 
 <!--articleBody-->

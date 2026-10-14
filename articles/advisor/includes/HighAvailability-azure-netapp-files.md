@@ -117,24 +117,6 @@ Subcategory: DisasterRecovery
 
 <!--7a48f43e-8615-4ce0-8039-83b9d24f945a_end-->
 
-<!--64936c6e-8236-4875-8234-109ab34576fe_begin-->
-
-#### New volume creation with Standard networking only  
-  
-From May 31, all Azure NetApp Files volumes will be created using Standard Networking. Basic network feature will no longer be an option.  Existing volumes are unaffected and no customer action is required.  
-  
-**Potential benefits**: Increases the number of IP addresses.  
-
-**Impact:** High
-  
-For more information, see [Guidelines for Azure NetApp Files network planning](/azure/azure-netapp-files/azure-netapp-files-network-topologies#considerations)  
-
-ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
-Recommendation ID: 64936c6e-8236-4875-8234-109ab34576fe  
-Subcategory: ServiceUpgradeAndRetirement
-
-<!--64936c6e-8236-4875-8234-109ab34576fe_end-->
-
 <!--2c3230cf-e6a3-4479-8a82-b8031b991b24_begin-->
 
 #### Configure backup policy for Azure NetApp Files volume  
