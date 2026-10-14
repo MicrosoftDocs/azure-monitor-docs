@@ -131,4 +131,38 @@ Recommendation ID: 5a81adcd-918b-43c2-a9d0-f1fd9f94e1ba
 
 <!--5a81adcd-918b-43c2-a9d0-f1fd9f94e1ba_end-->
 
+<!--6119884c-ce77-403d-ae24-9761e6d0cbfe_begin-->
+
+#### Upgrade Azure NetApp Files API and SDK to maintain compatibility and support  
+  
+Azure NetApp Files API and SDK consumers: In API version 2026-07-01, PATCH for NetApp accounts uses dedicated update models, not full resource models. Update your request bodies to send only writable fields for simpler updates and fewer validation errors.  
+  
+**Potential benefits**: Improve API compatibility with Azure NetApp Files updates  
+
+**Impact:** Medium
+  
+For more information, see [Azure NetApp Files API 2026-07-01 PATCH model changes](/azure/azure-netapp-files/api-2026-07-01-update)  
+
+ResourceType: microsoft.netappfiles/netappaccounts/capacitypools/volumes  
+Recommendation ID: 6119884c-ce77-403d-ae24-9761e6d0cbfe  
+
+<!--6119884c-ce77-403d-ae24-9761e6d0cbfe_end-->
+
+<!--64936c6e-8236-4875-8234-109ab34576fe_begin-->
+
+#### Upgrade Azure NetApp Files volumes to standard networking to ensure continued support  
+  
+In October 2026, Azure NetApp Files volumes move from Basic to Standard networking. Standard applies your existing user-defined routes (UDRs) and network security group (NSG) rules. Review routes and rules, and set any custom MTU over 1500 to a supported value.  
+  
+**Potential benefits**: Improve network feature support  
+
+**Impact:** Low
+  
+For more information, see [Guidelines for Azure NetApp Files network planning](/azure/azure-netapp-files/azure-netapp-files-network-topologies#considerations)  
+
+ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
+Recommendation ID: 64936c6e-8236-4875-8234-109ab34576fe  
+
+<!--64936c6e-8236-4875-8234-109ab34576fe_end-->
+
 <!--articleBody-->
