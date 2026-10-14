@@ -24,6 +24,12 @@
       href: chaos-studio-tutorial-postgresql-failover.md
     - name: Test AKS resilience with Chaos Studio Workspaces
       href: chaos-studio-aks-guidance.md
+    - name: Chaos Studio extension for AKS (limited preview)
+      items:
+        - name: Overview
+          href: chaos-studio-aks-extension-overview.md
+        - name: Prepare and install
+          href: chaos-studio-aks-extension-install.md
     - name: Troubleshoot Chaos Studio Workspaces and Scenarios
       href: troubleshoot-workspaces-scenarios.md
     - name: Chaos Studio Workspaces limitations (preview)
