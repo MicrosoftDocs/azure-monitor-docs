@@ -48,8 +48,6 @@ The following Azure CLI example uses the [`az extension add`](/cli/azure/extensi
 az extension add --name health-models
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
 The following Azure CLI example uses the [`az extension add`](/cli/azure/extension#az-extension-add) command.
@@ -57,8 +55,6 @@ The following Azure CLI example uses the [`az extension add`](/cli/azure/extensi
 ```powershell
 az extension add --name health-models
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 ---
 
@@ -74,15 +70,14 @@ Use this prompt:
 
 ## Scenario introduction
 
-> [!NOTE]
-> Create a static App Service app. Send successful requests to the root path and failed requests to missing paths. Use the App Service `Http4xx` metric to report the failed requests in a health model.
->
-> This tutorial creates the following resources in your subscription:
->
-> * A resource group.
-> * An App Service plan that uses the Free F1 SKU.
-> * A static App Service app.
-> * A health model with a system-assigned managed identity and a **Reader** role assignment.
+Create a static App Service app. Send successful requests to the root path and failed requests to missing paths. Use the App Service `Http4xx` metric to report the failed requests in a health model.
+
+This tutorial creates the following resources in your subscription:
+
+* A resource group.
+* An App Service plan that uses the Free F1 SKU.
+* A static App Service app.
+* A health model with a system-assigned managed identity and a **Reader** role assignment.
 
 ## Settings
 
@@ -175,8 +170,6 @@ az group create -n "$resourceGroupName" -l "$location" \
   --query "{location:location,provisioningState:properties.provisioningState}" -o table
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
 The following Azure CLI example uses the [`az group create`](/cli/azure/group#az-group-create) command.
@@ -197,8 +190,6 @@ $azGroupCreateArgs = @(
 )
 az @azGroupCreateArgs
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 ---
 
@@ -233,8 +224,6 @@ export appUrl="https://$appHost"
 
 printf 'App URL: %s\n' "$appUrl"
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
@@ -345,8 +334,6 @@ Write-Output "App URL: $env:appUrl"
 
 </details>
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 ---
 
 ```output
@@ -416,8 +403,6 @@ az monitor health-models create -g "$resourceGroupName" -n "$modelName" -l "$loc
   --mi-system-assigned --query "{location:location,identity:identity.type}" -o table
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
 The following Azure CLI example uses the [`az monitor health-models create`](/cli/azure/monitor/health-models#az-monitor-health-models-create) command.
@@ -442,8 +427,6 @@ $azMonitorHealthModelsCreateArgs = @(
 )
 az @azMonitorHealthModelsCreateArgs
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 ---
 
@@ -473,8 +456,6 @@ az role assignment create --assignee-object-id "$principalId" \
   --assignee-principal-type ServicePrincipal --role "Reader" --scope "$appId" \
   --query "{role:roleDefinitionName}" -o table
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
@@ -518,8 +499,6 @@ $azRoleAssignmentCreateArgs = @(
 az @azRoleAssignmentCreateArgs
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 ---
 
 ```output
@@ -547,8 +526,6 @@ az monitor health-models authentication-setting create -g "$resourceGroupName" \
   --query "{name:name}" -o table
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
 The following Azure CLI example uses the [`az monitor health-models authentication-setting create`](/cli/azure/monitor/health-models/authentication-setting#az-monitor-health-models-authentication-setting-create) command.
@@ -575,8 +552,6 @@ $azMonitorHealthModelsAuthenticationSettingCreateArgs = @(
 )
 az @azMonitorHealthModelsAuthenticationSettingCreateArgs
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 ---
 
@@ -620,8 +595,6 @@ query+="timeGrains:join(',',metricAvailabilities[].timeGrain)}"
 az monitor metrics list-definitions --resource "$appId" --query "$query" -o table
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
 The following Azure CLI example uses the [`az monitor metrics list-definitions`](/cli/azure/monitor/metrics#az-monitor-metrics-list-definitions) command.
@@ -636,8 +609,6 @@ $query += "timeGrains:join(',',metricAvailabilities[].timeGrain)}"
 # List the metric definitions
 az monitor metrics list-definitions --resource "$env:appId" --query "$query" -o table
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 ---
 
@@ -677,8 +648,6 @@ az monitor health-models signal-definition create -g "$resourceGroupName" \
   --evaluation-rules "$evaluationRules" \
   --query "{name:name}" -o table
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
@@ -732,8 +701,6 @@ $azMonitorHealthModelsSignalDefinitionCreateArgs = @(
 az @azMonitorHealthModelsSignalDefinitionCreateArgs
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 ---
 
 ```output
@@ -776,8 +743,6 @@ az monitor health-models entity create -g "$resourceGroupName" \
   --signal-groups "$signalGroups" \
   --query "{name:name}" -o table
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
@@ -824,8 +789,6 @@ $azMonitorHealthModelsEntityCreateArgs = @(
 az @azMonitorHealthModelsEntityCreateArgs
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 ---
 
 ```output
@@ -852,8 +815,6 @@ az monitor health-models relationship create -g "$resourceGroupName" \
   --parent-entity-name "$modelName" --child-entity-name "WebApp" \
   --query "{name:name}" -o table
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
@@ -883,8 +844,6 @@ $azMonitorHealthModelsRelationshipCreateArgs = @(
 )
 az @azMonitorHealthModelsRelationshipCreateArgs
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 ---
 
@@ -952,8 +911,6 @@ az monitor metrics list --resource "$appId" \
   --query "value[].{metric:name.value,total:sum(timeseries[].data[].total)}" -o table
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
 The following Azure CLI example uses the [`az monitor metrics list`](/cli/azure/monitor/metrics#az-monitor-metrics-list) command.
@@ -983,8 +940,6 @@ $azMonitorMetricsListArgs = @(
 az @azMonitorMetricsListArgs
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 ---
 
 ```output
@@ -1012,8 +967,6 @@ query+=".{signal:name,state:status.healthState,value:status.value}"
 az monitor health-models entity show -g "$resourceGroupName" \
   --health-model-name "$modelName" -n "WebApp" --query "$query" -o table
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
@@ -1045,8 +998,6 @@ $azMonitorHealthModelsEntityShowArgs = @(
 az @azMonitorHealthModelsEntityShowArgs
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 ---
 
 ```output
@@ -1076,8 +1027,6 @@ az monitor health-models entity get-signal-history -g "$resourceGroupName" \
   --query "history[].{timestamp:occurredAt,currentState:healthState,value:value}" -o table
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
 The following Azure CLI example uses the [`az monitor health-models entity get-signal-history`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-get-signal-history) command.
@@ -1104,8 +1053,6 @@ $azMonitorHealthModelsEntityGetSignalHistoryArgs = @(
 )
 az @azMonitorHealthModelsEntityGetSignalHistoryArgs
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 ---
 
@@ -1137,8 +1084,6 @@ az monitor health-models entity get-history -g "$resourceGroupName" \
   --health-model-name "$modelName" --entity-name "WebApp" --query "$query" -o table
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
 The following Azure CLI example uses the [`az monitor health-models entity get-history`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-get-history) command.
@@ -1168,8 +1113,6 @@ $azMonitorHealthModelsEntityGetHistoryArgs = @(
 )
 az @azMonitorHealthModelsEntityGetHistoryArgs
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 ---
 
@@ -1229,8 +1172,6 @@ az monitor health-models entity ingest-health-report -g "$resourceGroupName" \
   --expires-in-minutes 60
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
 The following Azure CLI example uses the [`az monitor health-models entity ingest-health-report`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-ingest-health-report) command.
@@ -1273,8 +1214,6 @@ $azMonitorHealthModelsEntityIngestHealthReportArgs = @(
 az @azMonitorHealthModelsEntityIngestHealthReportArgs
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 ---
 
 > [!NOTE]
@@ -1295,8 +1234,6 @@ query+=".{signal:name,kind:signalKind,state:status.healthState,value:status.valu
 az monitor health-models entity show -g "$resourceGroupName" \
   --health-model-name "$modelName" -n "WebApp" --query "$query" -o table
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
@@ -1328,8 +1265,6 @@ $azMonitorHealthModelsEntityShowArgs = @(
 az @azMonitorHealthModelsEntityShowArgs
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 ---
 
 ```output
@@ -1350,8 +1285,6 @@ az monitor health-models entity get-signal-history -g "$resourceGroupName" \
   --signal-name "availability-check" \
   --query "history[].{timestamp:occurredAt,currentState:healthState,value:value}" -o table
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
@@ -1379,8 +1312,6 @@ $azMonitorHealthModelsEntityGetSignalHistoryArgs = @(
 )
 az @azMonitorHealthModelsEntityGetSignalHistoryArgs
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 ---
 
@@ -1410,8 +1341,6 @@ fi
 printf 'Local app directory exists: false\n'
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
 The following Azure CLI example uses the [`az group delete`](/cli/azure/group#az-group-delete) command.
@@ -1428,8 +1357,6 @@ if ($localDirectoryExists) {
   throw "Local app directory still exists"
 }
 ```
-
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
 ---
 
