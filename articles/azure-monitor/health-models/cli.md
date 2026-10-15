@@ -119,9 +119,9 @@ $env:modelName = "hm-cli-model-$env:suffix"
 
 ---
 
-<a id="1-create-an-app-to-monitor"></a>
+<a id="create-an-app-to-monitor"></a>
 
-## Create an app to monitor
+## 1. Create an app to monitor
 
 Create a local `index.html` file:
 
@@ -282,9 +282,9 @@ The following PowerShell example uses the [`Invoke-WebRequest`](/powershell/modu
 </html>
 ```
 
-<a id="2-create-the-health-model"></a>
+<a id="create-the-health-model"></a>
 
-## Create the health model
+## 2. Create the health model
 
 Create the model with a system-assigned managed identity.
 
@@ -318,9 +318,9 @@ Identity        Location
 SystemAssigned  swedencentral
 ```
 
-<a id="3-grant-the-model-access-to-the-app"></a>
+<a id="grant-the-model-access-to-the-app"></a>
 
-## Grant the model access to the app
+## 3. Grant the model access to the app
 
 Give the model's identity the **Reader** role on the app:
 
@@ -358,9 +358,9 @@ Role
 Reader
 ```
 
-<a id="4-create-an-authentication-setting"></a>
+<a id="create-an-authentication-setting"></a>
 
-## Create an authentication setting
+## 4. Create an authentication setting
 
 A signal uses an authentication setting to select the identity that reads its data. Set `managed-identity-name=SystemAssigned` to use the model's system-assigned identity:
 
@@ -394,9 +394,9 @@ Name
 auth-system
 ```
 
-<a id="5-define-the-request-failure-signal"></a>
+<a id="define-the-request-failure-signal"></a>
 
-## Define the request-failure signal
+## 5. Define the request-failure signal
 
 App Service emits separate metrics for each HTTP status class:
 
@@ -516,9 +516,9 @@ Name
 sd-http-4xx
 ```
 
-<a id="6-create-an-entity"></a>
+<a id="create-an-entity"></a>
 
-## Create an entity
+## 6. Create an entity
 
 Create an entity that references the app and the `Http4xx` signal definition.
 
@@ -583,9 +583,9 @@ Name
 WebApp
 ```
 
-<a id="7-connect-the-entity-to-the-model-root"></a>
+<a id="connect-the-entity-to-the-model-root"></a>
 
-## Connect the entity to the model root
+## 7. Connect the entity to the model root
 
 Azure creates each health model with a root entity that has the model's name. Connect the app entity to the root entity:
 
@@ -619,9 +619,9 @@ Name
 root-to-web-app
 ```
 
-<a id="8-generate-successful-and-failed-requests"></a>
+<a id="generate-successful-and-failed-requests"></a>
 
-## Generate successful and failed requests
+## 8. Generate successful and failed requests
 
 > [!NOTE]
 > Each iteration sends one successful request and one failing request, then waits. This traffic generates the metrics that the health model evaluates.
@@ -659,9 +659,9 @@ foreach ($requestNumber in 1..60) {
 
 ---
 
-<a id="9-observe-the-metrics-and-current-health"></a>
+<a id="observe-the-metrics-and-current-health"></a>
 
-## Observe the metrics and current health
+## 9. Observe the metrics and current health
 
 Azure Monitor publishes App Service metrics once per minute. Wait a minute and then query the `Total` values at the `PT1M` time grain:
 
@@ -736,9 +736,9 @@ http-4xx  Unhealthy  12.0
 > [!NOTE]
 > The signal is `Unhealthy` because the failed-request count exceeds five in one minute.
 
-<a id="10-query-the-signal-history"></a>
+<a id="query-the-signal-history"></a>
 
-## Query the signal history
+## 10. Query the signal history
 
 Run `get-signal-history` to return the last 24 hours of state history for the `Http4xx` signal:
 
@@ -770,9 +770,9 @@ Timestamp             CurrentState  Value
 2026-07-21T20:43:00Z  Unhealthy     12.0
 ```
 
-<a id="11-query-the-entity-health-state-history"></a>
+<a id="query-the-entity-health-state-history"></a>
 
-## Query the entity health-state history
+## 11. Query the entity health-state history
 
 Run `get-history` to return the entity's state transitions:
 
@@ -817,9 +817,9 @@ Timestamp             PreviousState  CurrentState
 
 The metric scenario is complete. The next two optional sections show how to add additional context and report health from another system.
 
-<a id="12-optional-annotate-an-entity"></a>
+<a id="optional-annotate-an-entity"></a>
 
-## Optional: Annotate an entity
+## 12. Optional: Annotate an entity
 
 Use data annotations to attach point-in-time context to an entity. An annotation can represent a new application release, or mark the time of an outage or another event, so that you correlate it with the entity's health history.
 
@@ -827,9 +827,9 @@ For the focused procedure to add, retrieve, and view annotations, see [Add data 
 
 Portal: [Review point-in-time entity health on the timeline](./analyze-health.md#timeline-view).
 
-<a id="13-optional-report-external-health"></a>
+<a id="optional-report-external-health"></a>
 
-## Optional: Report external health
+## 13. Optional: Report external health
 
 Use `ingest-health-report` to report a health state from your system.
 
