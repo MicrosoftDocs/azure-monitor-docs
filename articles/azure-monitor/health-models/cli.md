@@ -27,7 +27,16 @@ To build a health model in the portal instead, see [Create a health model](./cre
 
 * Azure CLI 2.75.0 or later. Sign in with `az login`.
 * Permission to create a resource group and its resources, and to assign the **Reader** role on the app.
-* Bash with `curl` and `jq`, or PowerShell 5.1 or later.
+
+# [Azure CLI bash](#tab/cli-bash)
+
+Bash with `curl` and `jq`.
+
+# [Azure CLI PowerShell](#tab/cli-powershell)
+
+PowerShell 5.1 or later.
+
+---
 
 ## Install the extension
 
@@ -65,18 +74,22 @@ Use this prompt:
 
 ## Scenario introduction
 
-Create a static App Service app. Send successful requests to the root path and failed requests to missing paths. Use the App Service `Http4xx` metric to report the failed requests in a health model.
-
-This tutorial creates the following resources in your subscription:
-
-* A resource group.
-* An App Service plan that uses the Free F1 SKU.
-* A static App Service app.
-* A health model with a system-assigned managed identity and a **Reader** role assignment.
+> [!NOTE]
+> Create a static App Service app. Send successful requests to the root path and failed requests to missing paths. Use the App Service `Http4xx` metric to report the failed requests in a health model.
+>
+> This tutorial creates the following resources in your subscription:
+>
+> * A resource group.
+> * An App Service plan that uses the Free F1 SKU.
+> * A static App Service app.
+> * A health model with a system-assigned managed identity and a **Reader** role assignment.
 
 ## Settings
 
-Select your shell. Set these values for your run. Later commands reuse them. Use a dedicated resource group, and choose a globally unique App Service app name.
+Select your shell. Set these values for your run.
+
+> [!NOTE]
+> Later commands reuse these values. Use a dedicated resource group, and choose a globally unique App Service app name.
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -85,12 +98,12 @@ The following Bash example uses the [`mktemp`](https://www.gnu.org/software/core
 ```bash
 # Set variables
 export suffix="$(date -u +%m%d%H%M%S)-$(printf '%08x' "$((RANDOM << 16 | RANDOM))")"
-export location="<AzureRegion>"
-export resourceGroupName="<ResourceGroupName>"
-export planName="<AppServicePlanName>"
-export appName="<AppName>"
+export location="swedencentral"
+export resourceGroupName="hm-cli-web-$suffix"
+export planName="hm-cli-plan-$suffix"
+export appName="hm-cli-app-$suffix"
 export appDir="$(mktemp -d)"
-export modelName="<HealthModelName>"
+export modelName="hm-cli-model-$suffix"
 ```
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
@@ -101,14 +114,14 @@ The following PowerShell example uses the [`New-Item`](/powershell/module/micros
 # Set variables
 $env:suffix = [DateTime]::UtcNow.ToString("MMddHHmmss") + "-" +
   [guid]::NewGuid().ToString("N").Substring(0, 8)
-$env:location = "<AzureRegion>"
-$env:resourceGroupName = "<ResourceGroupName>"
-$env:planName = "<AppServicePlanName>"
-$env:appName = "<AppName>"
+$env:location = "swedencentral"
+$env:resourceGroupName = "hm-cli-web-$env:suffix"
+$env:planName = "hm-cli-plan-$env:suffix"
+$env:appName = "hm-cli-app-$env:suffix"
 $appDirName = "hm-cli-web-" + [guid]::NewGuid().ToString("N")
 $env:appDir = Join-Path ([System.IO.Path]::GetTempPath()) $appDirName
 New-Item -ItemType Directory -Path $env:appDir | Out-Null
-$env:modelName = "<HealthModelName>"
+$env:modelName = "hm-cli-model-$env:suffix"
 ```
 
 ---
@@ -352,7 +365,10 @@ RuntimeSuccessful
 App URL: https://hm-cli-app-example.azurewebsites.net
 ```
 
-Open the app URL in a browser, or fetch it from your shell. The page includes the unique app name:
+Open the app URL in a browser, or fetch it from your shell.
+
+> [!NOTE]
+> The page includes the unique app name.
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -384,7 +400,10 @@ The following PowerShell example uses the [`Invoke-WebRequest`](/powershell/modu
 
 ## Create the health model
 
-Create the model with a system-assigned managed identity. The model uses this identity to read resource metrics:
+Create the model with a system-assigned managed identity.
+
+> [!NOTE]
+> The model uses this identity to read resource metrics.
 
 Portal: [Create a health model in the Azure portal](./create.md#create-a-health-model).
 
@@ -577,7 +596,10 @@ App Service emits separate metrics for each HTTP status class:
 * `Http4xx` counts responses with a status from 400 through 499.
 * `Http5xx` counts responses with a status from 500 through 599.
 
-App Service doesn't emit one built-in metric that combines all non-success status classes. This tutorial generates 404 responses, so it uses `Http4xx`.
+App Service doesn't emit one built-in metric that combines all non-success status classes.
+
+> [!NOTE]
+> This tutorial generates 404 responses, so it uses `Http4xx`.
 
 Portal: [Create an Azure resource metric signal in the Azure portal](./tutorial-signals.md#add-an-azure-resource-metric-signal).
 
@@ -627,7 +649,8 @@ Http4xx   Microsoft.Web/sites  Count   Total          PT1M,PT5M,PT15M,PT30M,PT1H
 Http5xx   Microsoft.Web/sites  Count   Total          PT1M,PT5M,PT15M,PT30M,PT1H,PT6H,PT12H,P1D
 ```
 
-Create one signal definition from `Http4xx`. Mark the signal as degraded above zero failed requests per minute and unhealthy above five:
+> [!NOTE]
+> Create one signal definition from `Http4xx`. Mark the signal as degraded above zero failed requests per minute and unhealthy above five.
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -723,7 +746,10 @@ sd-http-4xx
 
 ## Create an entity
 
-Create an entity that references the app and the `Http4xx` signal definition. The signal determines the entity's health state. For more information, see [Configure health rollup](./rollup.md).
+Create an entity that references the app and the `Http4xx` signal definition.
+
+> [!NOTE]
+> The signal determines the entity's health state. For more information, see [Configure health rollup](./rollup.md).
 
 Portal: [Add an entity in the Azure portal](./designer.md#add-an-entity).
 
@@ -872,7 +898,8 @@ root-to-web-app
 
 ## Generate successful and failed requests
 
-Each iteration sends one successful request and one failing request, then waits. This traffic generates the metrics that the health model evaluates.
+> [!NOTE]
+> Each iteration sends one successful request and one failing request, then waits. This traffic generates the metrics that the health model evaluates.
 
 Portal: [Open the App Service log stream in the Azure portal](/azure/app-service/troubleshoot-diagnostic-logs#azure-portal).
 
@@ -967,7 +994,10 @@ Requests  120
 Http4xx   60
 ```
 
-The metric is available. Review how it appears as a signal in the health model:
+> [!NOTE]
+> The metric is available in the preceding output.
+
+Review how it appears as a signal in the health model:
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -1025,7 +1055,8 @@ Signal    State      Value
 http-4xx  Unhealthy  12.0
 ```
 
-The signal is `Unhealthy` because the failed-request count exceeds five in one minute.
+> [!NOTE]
+> The signal is `Unhealthy` because the failed-request count exceeds five in one minute.
 
 <a id="10-query-the-signal-history"></a>
 
@@ -1148,7 +1179,8 @@ Timestamp             PreviousState  CurrentState
 2026-07-21T20:43:00Z  Degraded       Unhealthy
 ```
 
-The app becomes unhealthy at the timestamp in this row, when its state changes from `Degraded` to `Unhealthy` after the `Http4xx` value exceeds five.
+> [!NOTE]
+> The app becomes unhealthy at the timestamp in this row, when its state changes from `Degraded` to `Unhealthy` after the `Http4xx` value exceeds five.
 
 The metric scenario is complete. The next two optional sections show how to add additional context and report health from another system.
 
@@ -1166,7 +1198,12 @@ Portal: [Review point-in-time entity health on the timeline](./analyze-health.md
 
 ## Optional: Report external health
 
-Use `ingest-health-report` to report a health state from your system. The external report is independent of the App Service metric signal. Choose any value for `--signal-name`. If the name doesn't match a signal, the model adds an `External` signal to the entity:
+Use `ingest-health-report` to report a health state from your system.
+
+> [!NOTE]
+> The external report is independent of the App Service metric signal.
+
+Choose any value for `--signal-name`. If the name doesn't match a signal, the model adds an `External` signal to the entity:
 
 For a focused procedure that covers request fields, report expiration, and refresh behavior, see [Submit data for externally evaluated signals](./health-report-ingestion.md).
 
@@ -1240,7 +1277,10 @@ az @azMonitorHealthModelsEntityIngestHealthReportArgs
 
 ---
 
-The command returns no output. List the entity's external signals:
+> [!NOTE]
+> The command returns no output.
+
+List the entity's external signals:
 
 # [Azure CLI bash](#tab/cli-bash)
 
