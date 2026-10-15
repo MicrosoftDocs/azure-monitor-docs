@@ -80,4 +80,21 @@ Recommendation ID: a6d218b1-a826-4183-8cc8-4b111371e47b
 
 <!--a6d218b1-a826-4183-8cc8-4b111371e47b_end-->
 
+<!--7bd69185-7a27-4580-ab52-ecba72e71e7b_begin-->
+
+#### API preview version 2026-03-01 is retiring (Public)  
+  
+Azure Key Vault control plane API version 2026-03-01-preview is retiring on Jan 15, 2027. The retired preview API version accessed this Key Vault in the last 30 days. Requests that continue to use a retired preview API version fail or work inconsistently, so migrate away from them.  
+  
+**Potential benefits**: Prevents operation failures and maintains compatibility.  
+
+**Impact:** High
+  
+For more information, see [Update the Azure Key Vault API version you use](/azure/key-vault/general/migrate-api-version?tabs=azure-cli)  
+
+ResourceType: microsoft.keyvault/vaults  
+Recommendation ID: 7bd69185-7a27-4580-ab52-ecba72e71e7b  
+
+<!--7bd69185-7a27-4580-ab52-ecba72e71e7b_end-->
+
 <!--articleBody-->

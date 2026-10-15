@@ -630,7 +630,7 @@ Migrating to Virtual Machine Scale Sets with Flexible orchestration enhances the
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=486344)  
 
@@ -700,7 +700,7 @@ Service Fabric support for Windows Server 2022 is retiring. To remain supported,
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=558247)  
 
@@ -717,7 +717,7 @@ Service Fabric support for Windows Server 2019 is retiring. To remain supported,
   
 **Potential benefits**: Avoid service disruption  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=558246)  
 
@@ -972,7 +972,7 @@ Workloads running Standard_M192idms_v2 are deleted and associated application da
   
 **Potential benefits**: Avoid potential disruptions and use new capabilities.
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates?id=support-for-standardm192idmsv2-will-be-retired-on-31-march-2027)  
 
@@ -989,7 +989,7 @@ Workloads running Standard_M192ids_v2 are deleted and associated application dat
   
 **Potential benefits**: Avoid potential disruptions and use new capabilities.
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates?id=community-support-for-standardm192idsv2-is-ending-on-31-march-2027)  
 
@@ -1006,7 +1006,7 @@ Workloads running Standard_M192ims_v2 are deleted and associated application dat
   
 **Potential benefits**: Avoid potential disruptions and use new capabilities.
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates?id=community-support-for-standardm192imsv2-is-ending-on-31-march-2027)  
 
@@ -1023,7 +1023,7 @@ Workloads running Standard_M192is_v2 are deleted and associated application data
   
 **Potential benefits**: Avoid potential disruptions and use new capabilities.
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates?id=community-support-for-standardm192isv2-is-ending-on-31-march-2027)  
 
@@ -1082,5 +1082,22 @@ ResourceType: microsoft.compute/virtualmachines
 Recommendation ID: 3455290f-894b-45cf-b441-f28861424c5e  
 
 <!--3455290f-894b-45cf-b441-f28861424c5e_end-->
+
+<!--2a74beeb-d517-4ff7-9c13-39a5be5c1441_begin-->
+
+#### Migrate from DSv3, Dv3, ESv3, Ev3 series virtual machines  
+  
+DSv3, Dv3, ESv3, Ev3 series virtual machines are being retired. Identify recommended replacement VM sizes and switch to current virtual machines or resize.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Retired VM sizes modernization guide - Azure Virtual Machines](/azure/virtual-machines/sizes/lifecycle/retirement/retired-sizes-modernization-guide)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 2a74beeb-d517-4ff7-9c13-39a5be5c1441  
+
+<!--2a74beeb-d517-4ff7-9c13-39a5be5c1441_end-->
 
 <!--articleBody-->

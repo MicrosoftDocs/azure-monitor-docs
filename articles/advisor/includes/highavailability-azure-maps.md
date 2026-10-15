@@ -81,40 +81,6 @@ Recommendation ID: 6801eb05-04b6-4b81-ae58-c16e764dcfc2
 
 <!--6801eb05-04b6-4b81-ae58-c16e764dcfc2_end-->
 
-<!--97089a37-e512-4a1e-aea2-76b232080c54_begin-->
-
-#### Data Registry 2023-06-01 is being retired  
-  
-Azure Maps Data Registry APIs V 06-01-2023 is retiring. To avoid service disruptions, stop using Azure Maps Data Registry API V 2023-06-01.  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** High
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/azure-maps-data-registry-apis-retirement-on-30-september-2025)  
-
-ResourceType: microsoft.maps/accounts  
-Recommendation ID: 97089a37-e512-4a1e-aea2-76b232080c54  
-
-<!--97089a37-e512-4a1e-aea2-76b232080c54_end-->
-
-<!--f983a0ec-874c-499f-8364-fd1ffc5e917a_begin-->
-
-#### Spatial API V1 & 2022-08-01 is being retired  
-  
-Azure Maps Spatial APIs V1 & 2022-08-01 is retiring.  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** High
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/Azure-Maps-Spatial-APIs-V1-2022-08-01)  
-
-ResourceType: microsoft.maps/accounts  
-Recommendation ID: f983a0ec-874c-499f-8364-fd1ffc5e917a  
-
-<!--f983a0ec-874c-499f-8364-fd1ffc5e917a_end-->
-
 <!--c5a9f2fd-3672-4912-9c48-0295e2a608b1_begin-->
 
 #### Web SDK Map Controls v1.xx is being retired  

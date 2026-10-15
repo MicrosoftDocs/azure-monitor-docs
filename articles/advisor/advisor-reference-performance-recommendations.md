@@ -46,6 +46,8 @@ The performance recommendations in Azure Advisor can help improve the speed and 
 
 [!INCLUDE [Performance-azure-kubernetes-service-(aks).md](./includes/Performance-azure-kubernetes-service-(aks).md)]
 
+[!INCLUDE [performance-azure-managed-instance-for-apache-cassandra.md](./includes/performance-azure-managed-instance-for-apache-cassandra.md)]
+
 [!INCLUDE [Performance-azure-monitor.md](./includes/Performance-azure-monitor.md)]
 
 [!INCLUDE [Performance-azure-netapp-files.md](./includes/Performance-azure-netapp-files.md)]

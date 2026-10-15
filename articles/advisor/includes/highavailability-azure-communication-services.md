@@ -29,4 +29,21 @@ Recommendation ID: 71c92f71-e32f-40c1-abe5-deb2dbfc2c45
 
 <!--71c92f71-e32f-40c1-abe5-deb2dbfc2c45_end-->
 
+<!--55ddd528-915d-432c-9a48-71544faa2a6e_begin-->
+
+#### Migrate from standalone ACS offerings  
+  
+Several standalone Azure Communication Services (ACS) offerings are retiring. Update applications to the latest SDKs, such as the Voice and Video Calling SDK, Call Diagnostics, and Call Automation.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Retirement and breaking changes guide for Azure Communication Services](https://aka.ms/acs-retirement-and-breaking-changes-guide).  
+
+ResourceType: microsoft.communication/communicationservices  
+Recommendation ID: 55ddd528-915d-432c-9a48-71544faa2a6e  
+
+<!--55ddd528-915d-432c-9a48-71544faa2a6e_end-->
+
 <!--articleBody-->

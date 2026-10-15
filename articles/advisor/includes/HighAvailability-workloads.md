@@ -1291,4 +1291,21 @@ Recommendation ID: 2b3c3748-77ef-49ea-85d4-bb81e251d7bd
 
 <!--2b3c3748-77ef-49ea-85d4-bb81e251d7bd_end-->
 
+<!--d2c453ad-566a-4971-890e-d9e5921821c8_begin-->
+
+#### Keep all resources that electronic health record (EHR) workload uses in a single Azure region  
+  
+Keep all resources that you use for your electronic health record (EHR) instance in a single Azure region to maintain consistent latency, governance, and clear failure domain boundaries.  
+  
+**Potential benefits**: Improve governance and scope failure domains.  
+
+**Impact:** High
+  
+For more information, see [Organize your Azure resources effectively - Cloud Adoption Framework](/azure/cloud-adoption-framework/ready/azure-setup-guide/organize-resources)  
+
+ResourceType: microsoft.workloads/virtualinstances  
+Recommendation ID: d2c453ad-566a-4971-890e-d9e5921821c8  
+
+<!--d2c453ad-566a-4971-890e-d9e5921821c8_end-->
+
 <!--articleBody-->

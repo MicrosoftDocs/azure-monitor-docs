@@ -389,7 +389,7 @@ Python applications hosted on Azure App Service on Windows and Azure Functions o
   
 **Potential benefits**: Avoid service disruption  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=558027)  
 
@@ -584,5 +584,22 @@ ResourceType: microsoft.web/sites
 Recommendation ID: 6e427a59-6f55-474a-8104-0ef6fe48059c  
 
 <!--6e427a59-6f55-474a-8104-0ef6fe48059c_end-->
+
+<!--c0d1b2d6-6d5f-4b7a-9b6f-7c2d2c9f2c1a_begin-->
+
+#### Migrate Azure Functions v1 on Azure Container Apps to Azure Functions v2  
+  
+Azure Functions v1 on Azure Container Apps is retiring. v1 apps stop running and processing requests. Review your environment and migrate affected apps to the Functions v2 hosting model to avoid disruption.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Migrate from Functions on Azure Container Apps V1 to Functions on Azure Container Apps V2](/azure/container-apps/migrate-functions)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: c0d1b2d6-6d5f-4b7a-9b6f-7c2d2c9f2c1a  
+
+<!--c0d1b2d6-6d5f-4b7a-9b6f-7c2d2c9f2c1a_end-->
 
 <!--articleBody-->

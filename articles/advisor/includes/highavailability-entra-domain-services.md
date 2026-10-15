@@ -20,7 +20,7 @@ Essential SKU workspaces are disabled and dashboards do no longer render. Migrat
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=559395)  
 

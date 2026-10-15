@@ -146,6 +146,17 @@ API endpoint is `api.loganalytics.io` or `api.loganalytics.azure.com`.
 | <a name="op-logs-search"></a>[Search](../logs/basic-logs-query.md?tabs=rest#run-a-query-that-includes-basic-or-auxiliary-tables) | Query Auxiliary / Lake or Basic table logs using the REST API. For more information, see [Run a query on a Basic or Auxiliary table](../logs/basic-logs-query.md?tabs=rest#run-a-query-that-includes-basic-or-auxiliary-tables) |
 | <a name="op-logs-metadata"></a>[Metadata](/rest/api/logsquery/metadata) | Retrieve metadata information for a Log Analytics workspace, including table schemas and functions. |
 
+### Logs export jobs
+
+Export jobs use the Log Analytics data-plane endpoint, `https://api.loganalytics.io` or `https://api.loganalytics.azure.com`.
+
+> [!NOTE]
+> The published preview examples use API version `2025-06-01-preview` and the lowercase `/v2/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}` route.
+
+| Operation groups | Description |
+|------------------|-------------|
+| <a name="op-logs-export-jobs"></a>[Export jobs (preview)](../logs/export-job.md#create-an-export-job) | Create an on-demand export with `/export`, retrieve its `/status`, `/cancel` a job, or `/retry` failed work. See the article for request and response examples. |
+
 ### Logs management
 
 These Azure Monitor Logs APIs are part of the Azure Resource Manager (ARM) control plane and allow you to create, update, delete, and retrieve Log Analytics workspaces and related resources such as clusters, data export rules, and linked services.
@@ -187,6 +198,15 @@ Use the Azure Resource Manager deployment APIs to deploy [sample templates for A
 | Operation groups | Description |
 |------------------|-------------|
 | <a name="op-monitor-deployments"></a>[Deployments](/rest/api/resources/deployments) | Deploy resources to a resource group by using [Deployments - Create Or Update](/rest/api/resources/deployments/create-or-update). API version: `2025-04-01`. |
+
+## Related resource management APIs
+
+These Azure Resource Manager control-plane APIs support workspace moves and subscription checks. They use the `https://management.azure.com/` endpoint.
+
+| Operation groups | Description |
+|------------------|-------------|
+| <a name="op-monitor-resource-moves"></a>[Resources](/rest/api/resources/resources) | Delete resources with [Resources - Delete](/rest/api/resources/resources/delete), or move them between resource groups or subscriptions with [Resources - Move Resources](/rest/api/resources/resources/move-resources). |
+| <a name="op-monitor-subscriptions"></a>[Subscriptions](/rest/api/resources/subscriptions) | Retrieve subscription details, including the Microsoft Entra tenant ID. |
 
 ## Retired and deprecated APIs
 

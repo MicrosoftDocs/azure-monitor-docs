@@ -448,7 +448,7 @@ Azure Kubernetes Service retires 1.32 LTS Kubernetes version. To stay within s
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
 For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
 
 ResourceType: microsoft.containerservice/managedclusters  
@@ -532,7 +532,7 @@ Azure Kubernetes Service retires 1.35 Kubernetes Official version. To stay withi
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
 For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
 
 ResourceType: microsoft.containerservice/managedclusters  
@@ -624,5 +624,39 @@ ResourceType: microsoft.containerservice/managedclusters
 Recommendation ID: 3afd0e0e-36bd-444b-97d7-d1e85d44066d  
 
 <!--3afd0e0e-36bd-444b-97d7-d1e85d44066d_end-->
+
+<!--a03a9c8a-46cc-4729-83f2-e0e700bcfbd5_begin-->
+
+#### Upgrade your AKS cluster from 1.36 LTS Kubernetes version  
+  
+Azure Kubernetes Service retires 1.36 LTS Kubernetes version. To stay within supported versions and service-level agreements (SLA), upgrade to a supported version within 30 days after Azure removes version 1.36 LTS Kubernetes version.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: a03a9c8a-46cc-4729-83f2-e0e700bcfbd5  
+
+<!--a03a9c8a-46cc-4729-83f2-e0e700bcfbd5_end-->
+
+<!--fd8f05c9-239f-40db-b6b3-6b7b645b1f08_begin-->
+
+#### Upgrade your AKS cluster from 1.29 LTS Kubernetes version  
+  
+Azure Kubernetes Service retires 1.29 LTS Kubernetes version. To stay within supported versions and service-level agreements (SLA), upgrade to a supported version within 30 days after Azure removes version 1.29 LTS Kubernetes version.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/supported-kubernetes-versions?tabs=azure-cli)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: fd8f05c9-239f-40db-b6b3-6b7b645b1f08  
+
+<!--fd8f05c9-239f-40db-b6b3-6b7b645b1f08_end-->
 
 <!--articleBody-->

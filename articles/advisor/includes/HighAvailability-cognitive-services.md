@@ -294,7 +294,7 @@ The Long Audio API of Azure AI Speech is being retired.
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/long-audio-api-will-be-retired-on-31-march-2027-migrate-to-the-new-batch-synthesis-api/)  
 
@@ -319,23 +319,6 @@ ResourceType: microsoft.cognitiveservices/accounts
 Recommendation ID: 627cfbef-2bd0-4f15-8394-65b1f720ba78  
 
 <!--627cfbef-2bd0-4f15-8394-65b1f720ba78_end-->
-
-<!--ed76767e-3113-4540-872e-0e80fcd3f8d9_begin-->
-
-#### Speech-to-text REST preview API v3.1-preview.1 is being retired  
-  
-Speech-to-text REST preview API v3.1-preview.1 is being retired.  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** High
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/were-retiring-speechtotext-rest-preview-api-v31preview1-on-may-12-2023/)  
-
-ResourceType: microsoft.cognitiveservices/accounts  
-Recommendation ID: ed76767e-3113-4540-872e-0e80fcd3f8d9  
-
-<!--ed76767e-3113-4540-872e-0e80fcd3f8d9_end-->
 
 <!--b7c8556a-5977-49f2-8db0-b3a0e4252f5c_begin-->
 
