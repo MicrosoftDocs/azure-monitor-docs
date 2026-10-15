@@ -40,17 +40,15 @@ PowerShell 5.1 or later.
 
 ## Install the extension
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az extension add`](/cli/azure/extension#az-extension-add).
 
-The following Azure CLI example uses the [`az extension add`](/cli/azure/extension#az-extension-add) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 az extension add --name health-models
 ```
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
-
-The following Azure CLI example uses the [`az extension add`](/cli/azure/extension#az-extension-add) command.
 
 ```powershell
 az extension add --name health-models
@@ -161,9 +159,9 @@ The following PowerShell example uses the [`Set-Content`](/powershell/module/mic
 
 Create a resource group:
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az group create`](/cli/azure/group#az-group-create).
 
-The following Azure CLI example uses the [`az group create`](/cli/azure/group#az-group-create) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 az group create -n "$resourceGroupName" -l "$location" \
@@ -172,23 +170,9 @@ az group create -n "$resourceGroupName" -l "$location" \
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
-The following Azure CLI example uses the [`az group create`](/cli/azure/group#az-group-create) command.
-
 ```powershell
-# Define arguments for the Azure CLI command
-$azGroupCreateArgs = @(
-    'group'
-    'create'
-    '-n'
-    "$env:resourceGroupName"
-    '-l'
-    "$env:location"
-    '--query'
-    "{location:location,provisioningState:properties.provisioningState}"
-    '-o'
-    'table'
-)
-az @azGroupCreateArgs
+az group create -n "$env:resourceGroupName" -l "$env:location" `
+  --query "{location:location,provisioningState:properties.provisioningState}" -o table
 ```
 
 ---
@@ -201,9 +185,9 @@ swedencentral  Succeeded
 
 Create a Linux F1 App Service plan and app. Deploy `index.html` from its explicit source path:
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az appservice plan create`](/cli/azure/appservice/plan#az-appservice-plan-create).
 
-The following Azure CLI example uses the [`az appservice plan create`](/cli/azure/appservice/plan#az-appservice-plan-create) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 az appservice plan create -g "$resourceGroupName" -n "$planName" -l "$location" \
@@ -227,112 +211,27 @@ printf 'App URL: %s\n' "$appUrl"
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
-The following Azure CLI example uses the [`az appservice plan create`](/cli/azure/appservice/plan#az-appservice-plan-create) command.
-
-<br>
-<details>
-<summary>Create and deploy the App Service app</summary>
-
 ```powershell
-# Define arguments for the Azure CLI command
-$azAppservicePlanCreateArgs = @(
-    'appservice'
-    'plan'
-    'create'
-    '-g'
-    "$env:resourceGroupName"
-    '-n'
-    "$env:planName"
-    '-l'
-    "$env:location"
-    '--sku'
-    'F1'
-    '--is-linux'
-    '--query'
-    "{tier:sku.tier,linux:reserved}"
-    '-o'
-    'table'
-)
-az @azAppservicePlanCreateArgs
+az appservice plan create -g "$env:resourceGroupName" -n "$env:planName" `
+  -l "$env:location" --sku F1 --is-linux `
+  --query "{tier:sku.tier,linux:reserved}" -o table
 
-# Define arguments for the Azure CLI command
-$azWebappCreateArgs = @(
-    'webapp'
-    'create'
-    '-g'
-    "$env:resourceGroupName"
-    '-p'
-    "$env:planName"
-    '-n'
-    "$env:appName"
-    '--runtime'
-    "PHP:8.5"
-    '--query'
-    "{state:state}"
-    '-o'
-    'table'
-)
-az @azWebappCreateArgs
+az webapp create -g "$env:resourceGroupName" -p "$env:planName" -n "$env:appName" `
+  --runtime "PHP:8.5" --query "{state:state}" -o table
 
-# Define arguments for the Azure CLI command
-$azWebappDeployArgs = @(
-    'webapp'
-    'deploy'
-    '-g'
-    "$env:resourceGroupName"
-    '-n'
-    "$env:appName"
-    '--src-path'
-    (Join-Path $env:appDir "index.html")
-    '--type'
-    'static'
-    '--target-path'
-    'index.html'
-    '--async'
-    'false'
-    '--track-status'
-    'true'
-    '--query'
-    "{status:properties.status || status}"
-    '-o'
-    'table'
-)
-az @azWebappDeployArgs
+az webapp deploy -g "$env:resourceGroupName" -n "$env:appName" `
+  --src-path (Join-Path $env:appDir "index.html") --type static --target-path index.html `
+  --async false --track-status true `
+  --query "{status:properties.status || status}" -o table
 
-# Define arguments for the Azure CLI command
-$azWebappShowArgs = @(
-    'webapp'
-    'show'
-    '-n'
-    "$env:appName"
-    '-g'
-    "$env:resourceGroupName"
-    '--query'
-    'id'
-    '-o'
-    'tsv'
-)
-$env:appId = az @azWebappShowArgs
-# Define arguments for the Azure CLI command
-$azWebappShowArgs = @(
-    'webapp'
-    'show'
-    '-n'
-    "$env:appName"
-    '-g'
-    "$env:resourceGroupName"
-    '--query'
-    'defaultHostName'
-    '-o'
-    'tsv'
-)
-$appHost = az @azWebappShowArgs
+$env:appId = az webapp show -n "$env:appName" -g "$env:resourceGroupName" `
+  --query id -o tsv
+$appHost = az webapp show -n "$env:appName" -g "$env:resourceGroupName" `
+  --query defaultHostName -o tsv
 $env:appUrl = "https://$appHost"
 
 Write-Output "App URL: $env:appUrl"
 ```
-
-</details>
 
 ---
 
@@ -394,9 +293,9 @@ Create the model with a system-assigned managed identity.
 
 Portal: [Create a health model in the Azure portal](./create.md#create-a-health-model).
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az monitor health-models create`](/cli/azure/monitor/health-models#az-monitor-health-models-create).
 
-The following Azure CLI example uses the [`az monitor health-models create`](/cli/azure/monitor/health-models#az-monitor-health-models-create) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 az monitor health-models create -g "$resourceGroupName" -n "$modelName" -l "$location" \
@@ -405,27 +304,10 @@ az monitor health-models create -g "$resourceGroupName" -n "$modelName" -l "$loc
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
-The following Azure CLI example uses the [`az monitor health-models create`](/cli/azure/monitor/health-models#az-monitor-health-models-create) command.
-
 ```powershell
-# Define arguments for the Azure CLI command
-$azMonitorHealthModelsCreateArgs = @(
-    'monitor'
-    'health-models'
-    'create'
-    '-g'
-    "$env:resourceGroupName"
-    '-n'
-    "$env:modelName"
-    '-l'
-    "$env:location"
-    '--mi-system-assigned'
-    '--query'
-    "{location:location,identity:identity.type}"
-    '-o'
-    'table'
-)
-az @azMonitorHealthModelsCreateArgs
+az monitor health-models create -g "$env:resourceGroupName" -n "$env:modelName" `
+  -l "$env:location" --mi-system-assigned `
+  --query "{location:location,identity:identity.type}" -o table
 ```
 
 ---
@@ -444,9 +326,9 @@ Give the model's identity the **Reader** role on the app:
 
 Portal: [Assign the Reader role to the model identity in the Azure portal](/azure/role-based-access-control/role-assignments-portal#step-4-select-who-needs-access).
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az role assignment create`](/cli/azure/role/assignment#az-role-assignment-create).
 
-The following Azure CLI example uses the [`az role assignment create`](/cli/azure/role/assignment#az-role-assignment-create) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 export principalId="$(az monitor health-models show -g "$resourceGroupName" \
@@ -459,44 +341,13 @@ az role assignment create --assignee-object-id "$principalId" \
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
-The following Azure CLI example uses the [`az role assignment create`](/cli/azure/role/assignment#az-role-assignment-create) command.
-
 ```powershell
-# Define arguments for the Azure CLI command
-$azMonitorHealthModelsShowArgs = @(
-    'monitor'
-    'health-models'
-    'show'
-    '-g'
-    "$env:resourceGroupName"
-    '-n'
-    "$env:modelName"
-    '--query'
-    'identity.principalId'
-    '-o'
-    'tsv'
-)
-$env:principalId = az @azMonitorHealthModelsShowArgs
+$env:principalId = az monitor health-models show -g "$env:resourceGroupName" `
+  -n "$env:modelName" --query identity.principalId -o tsv
 
-# Define arguments for the Azure CLI command
-$azRoleAssignmentCreateArgs = @(
-    'role'
-    'assignment'
-    'create'
-    '--assignee-object-id'
-    "$env:principalId"
-    '--assignee-principal-type'
-    'ServicePrincipal'
-    '--role'
-    "Reader"
-    '--scope'
-    "$env:appId"
-    '--query'
-    "{role:roleDefinitionName}"
-    '-o'
-    'table'
-)
-az @azRoleAssignmentCreateArgs
+az role assignment create --assignee-object-id "$env:principalId" `
+  --assignee-principal-type ServicePrincipal --role "Reader" --scope "$env:appId" `
+  --query "{role:roleDefinitionName}" -o table
 ```
 
 ---
@@ -515,9 +366,9 @@ A signal uses an authentication setting to select the identity that reads its da
 
 Portal: [Create an authentication setting in the Azure portal](./create.md#identity).
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az monitor health-models authentication-setting create`](/cli/azure/monitor/health-models/authentication-setting#az-monitor-health-models-authentication-setting-create).
 
-The following Azure CLI example uses the [`az monitor health-models authentication-setting create`](/cli/azure/monitor/health-models/authentication-setting#az-monitor-health-models-authentication-setting-create) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 az monitor health-models authentication-setting create -g "$resourceGroupName" \
@@ -528,29 +379,11 @@ az monitor health-models authentication-setting create -g "$resourceGroupName" \
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
-The following Azure CLI example uses the [`az monitor health-models authentication-setting create`](/cli/azure/monitor/health-models/authentication-setting#az-monitor-health-models-authentication-setting-create) command.
-
 ```powershell
-# Define arguments for the Azure CLI command
-$azMonitorHealthModelsAuthenticationSettingCreateArgs = @(
-    'monitor'
-    'health-models'
-    'authentication-setting'
-    'create'
-    '-g'
-    "$env:resourceGroupName"
-    '--health-model-name'
-    "$env:modelName"
-    '-n'
-    "auth-system"
-    '--managed-identity'
-    'managed-identity-name=SystemAssigned'
-    '--query'
-    "{name:name}"
-    '-o'
-    'table'
-)
-az @azMonitorHealthModelsAuthenticationSettingCreateArgs
+az monitor health-models authentication-setting create -g "$env:resourceGroupName" `
+  --health-model-name "$env:modelName" -n "auth-system" `
+  --managed-identity managed-identity-name=SystemAssigned `
+  --query "{name:name}" -o table
 ```
 
 ---
@@ -580,9 +413,9 @@ Portal: [Create an Azure resource metric signal in the Azure portal](./tutorial-
 
 List the live metric definitions for the app:
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az monitor metrics list-definitions`](/cli/azure/monitor/metrics#az-monitor-metrics-list-definitions).
 
-The following Azure CLI example uses the [`az monitor metrics list-definitions`](/cli/azure/monitor/metrics#az-monitor-metrics-list-definitions) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 # Project the metric definitions into table columns
@@ -596,8 +429,6 @@ az monitor metrics list-definitions --resource "$appId" --query "$query" -o tabl
 ```
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
-
-The following Azure CLI example uses the [`az monitor metrics list-definitions`](/cli/azure/monitor/metrics#az-monitor-metrics-list-definitions) command.
 
 ```powershell
 # Project the metric definitions into table columns
@@ -623,9 +454,9 @@ Http5xx   Microsoft.Web/sites  Count   Total          PT1M,PT5M,PT15M,PT30M,PT1H
 > [!NOTE]
 > Create one signal definition from `Http4xx`. Mark the signal as degraded above zero failed requests per minute and unhealthy above five.
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az monitor health-models signal-definition create`](/cli/azure/monitor/health-models/signal-definition#az-monitor-health-models-signal-definition-create).
 
-The following Azure CLI example uses the [`az monitor health-models signal-definition create`](/cli/azure/monitor/health-models/signal-definition#az-monitor-health-models-signal-definition-create) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 # Build the metric definition and the evaluation rules
@@ -651,8 +482,6 @@ az monitor health-models signal-definition create -g "$resourceGroupName" \
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
-The following Azure CLI example uses the [`az monitor health-models signal-definition create`](/cli/azure/monitor/health-models/signal-definition#az-monitor-health-models-signal-definition-create) command.
-
 ```powershell
 # Build the metric definition and the evaluation rules
 $azureResourceMetric = @{
@@ -671,34 +500,12 @@ $azureResourceMetric | Set-Content -LiteralPath $metricFilePath -Encoding utf8
 $evaluationRules | Set-Content -LiteralPath $evaluationFilePath -Encoding utf8
 
 # Create the signal definition
-# Define arguments for the Azure CLI command
-$azMonitorHealthModelsSignalDefinitionCreateArgs = @(
-    'monitor'
-    'health-models'
-    'signal-definition'
-    'create'
-    '-g'
-    "$env:resourceGroupName"
-    '--health-model-name'
-    "$env:modelName"
-    '-n'
-    "sd-http-4xx"
-    '--display-name'
-    "HTTP 4xx responses"
-    '--refresh-interval'
-    'PT1M'
-    '--data-unit'
-    'Count'
-    '--azure-resource-metric'
-    "@$metricFilePath"
-    '--evaluation-rules'
-    "@$evaluationFilePath"
-    '--query'
-    "{name:name}"
-    '-o'
-    'table'
-)
-az @azMonitorHealthModelsSignalDefinitionCreateArgs
+az monitor health-models signal-definition create -g "$env:resourceGroupName" `
+  --health-model-name "$env:modelName" -n "sd-http-4xx" `
+  --display-name "HTTP 4xx responses" --refresh-interval PT1M --data-unit Count `
+  --azure-resource-metric "@$metricFilePath" `
+  --evaluation-rules "@$evaluationFilePath" `
+  --query "{name:name}" -o table
 ```
 
 ---
@@ -720,9 +527,9 @@ Create an entity that references the app and the `Http4xx` signal definition.
 
 Portal: [Add an entity in the Azure portal](./designer.md#add-an-entity).
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az monitor health-models entity create`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-create).
 
-The following Azure CLI example uses the [`az monitor health-models entity create`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-create) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 # Build the signal group as JSON
@@ -746,8 +553,6 @@ az monitor health-models entity create -g "$resourceGroupName" \
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
-The following Azure CLI example uses the [`az monitor health-models entity create`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-create) command.
-
 ```powershell
 # Build the signal group as JSON
 $signalGroups = @{
@@ -763,30 +568,11 @@ $signalGroupsFilePath = Join-Path $env:appDir "signal-groups.json"
 $signalGroups | Set-Content -LiteralPath $signalGroupsFilePath -Encoding utf8
 
 # Create the entity
-# Define arguments for the Azure CLI command
-$azMonitorHealthModelsEntityCreateArgs = @(
-    'monitor'
-    'health-models'
-    'entity'
-    'create'
-    '-g'
-    "$env:resourceGroupName"
-    '--health-model-name'
-    "$env:modelName"
-    '-n'
-    "WebApp"
-    '--display-name'
-    "Tutorial web app"
-    '--impact'
-    'Standard'
-    '--signal-groups'
-    "@$signalGroupsFilePath"
-    '--query'
-    "{name:name}"
-    '-o'
-    'table'
-)
-az @azMonitorHealthModelsEntityCreateArgs
+az monitor health-models entity create -g "$env:resourceGroupName" `
+  --health-model-name "$env:modelName" -n "WebApp" `
+  --display-name "Tutorial web app" --impact Standard `
+  --signal-groups "@$signalGroupsFilePath" `
+  --query "{name:name}" -o table
 ```
 
 ---
@@ -805,9 +591,9 @@ Azure creates each health model with a root entity that has the model's name. Co
 
 Portal: [Create a relationship in the Azure portal](./designer.md#relationships).
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az monitor health-models relationship create`](/cli/azure/monitor/health-models/relationship#az-monitor-health-models-relationship-create).
 
-The following Azure CLI example uses the [`az monitor health-models relationship create`](/cli/azure/monitor/health-models/relationship#az-monitor-health-models-relationship-create) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 az monitor health-models relationship create -g "$resourceGroupName" \
@@ -818,31 +604,11 @@ az monitor health-models relationship create -g "$resourceGroupName" \
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
-The following Azure CLI example uses the [`az monitor health-models relationship create`](/cli/azure/monitor/health-models/relationship#az-monitor-health-models-relationship-create) command.
-
 ```powershell
-# Define arguments for the Azure CLI command
-$azMonitorHealthModelsRelationshipCreateArgs = @(
-    'monitor'
-    'health-models'
-    'relationship'
-    'create'
-    '-g'
-    "$env:resourceGroupName"
-    '--health-model-name'
-    "$env:modelName"
-    '-n'
-    "root-to-web-app"
-    '--parent-entity-name'
-    "$env:modelName"
-    '--child-entity-name'
-    "WebApp"
-    '--query'
-    "{name:name}"
-    '-o'
-    'table'
-)
-az @azMonitorHealthModelsRelationshipCreateArgs
+az monitor health-models relationship create -g "$env:resourceGroupName" `
+  --health-model-name "$env:modelName" -n "root-to-web-app" `
+  --parent-entity-name "$env:modelName" --child-entity-name "WebApp" `
+  --query "{name:name}" -o table
 ```
 
 ---
@@ -901,9 +667,9 @@ Azure Monitor publishes App Service metrics once per minute. Wait a minute and t
 
 Portal: [Chart the App Service request metrics in metrics explorer](../metrics/analyze-metrics.md#create-a-metric-chart).
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az monitor metrics list`](/cli/azure/monitor/metrics#az-monitor-metrics-list).
 
-The following Azure CLI example uses the [`az monitor metrics list`](/cli/azure/monitor/metrics#az-monitor-metrics-list) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 az monitor metrics list --resource "$appId" \
@@ -913,31 +679,10 @@ az monitor metrics list --resource "$appId" \
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
-The following Azure CLI example uses the [`az monitor metrics list`](/cli/azure/monitor/metrics#az-monitor-metrics-list) command.
-
 ```powershell
-# Define arguments for the Azure CLI command
-$azMonitorMetricsListArgs = @(
-    'monitor'
-    'metrics'
-    'list'
-    '--resource'
-    "$env:appId"
-    '--metrics'
-    'Requests'
-    'Http4xx'
-    '--aggregation'
-    'Total'
-    '--interval'
-    'PT1M'
-    '--offset'
-    '30m'
-    '--query'
-    "value[].{metric:name.value,total:sum(timeseries[].data[].total)}"
-    '-o'
-    'table'
-)
-az @azMonitorMetricsListArgs
+az monitor metrics list --resource "$env:appId" `
+  --metrics Requests Http4xx --aggregation Total --interval PT1M --offset 30m `
+  --query "value[].{metric:name.value,total:sum(timeseries[].data[].total)}" -o table
 ```
 
 ---
@@ -954,9 +699,9 @@ Http4xx   60
 
 Review how it appears as a signal in the health model:
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az monitor health-models entity show`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-show).
 
-The following Azure CLI example uses the [`az monitor health-models entity show`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-show) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 # Project the signal states into table columns
@@ -970,32 +715,14 @@ az monitor health-models entity show -g "$resourceGroupName" \
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
-The following Azure CLI example uses the [`az monitor health-models entity show`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-show) command.
-
 ```powershell
 # Project the signal states into table columns
 $query = "properties.signalGroups.azureResource.signals[]"
 $query += ".{signal:name,state:status.healthState,value:status.value}"
 
 # Show the entity signals
-# Define arguments for the Azure CLI command
-$azMonitorHealthModelsEntityShowArgs = @(
-    'monitor'
-    'health-models'
-    'entity'
-    'show'
-    '-g'
-    "$env:resourceGroupName"
-    '--health-model-name'
-    "$env:modelName"
-    '-n'
-    "WebApp"
-    '--query'
-    "$query"
-    '-o'
-    'table'
-)
-az @azMonitorHealthModelsEntityShowArgs
+az monitor health-models entity show -g "$env:resourceGroupName" `
+  --health-model-name "$env:modelName" -n "WebApp" --query "$query" -o table
 ```
 
 ---
@@ -1017,9 +744,9 @@ Run `get-signal-history` to return the last 24 hours of state history for the `H
 
 Portal: [Inspect signal history in the entity details pane](./analyze-health.md#entity-details).
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az monitor health-models entity get-signal-history`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-get-signal-history).
 
-The following Azure CLI example uses the [`az monitor health-models entity get-signal-history`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-get-signal-history) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 az monitor health-models entity get-signal-history -g "$resourceGroupName" \
@@ -1029,29 +756,10 @@ az monitor health-models entity get-signal-history -g "$resourceGroupName" \
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
-The following Azure CLI example uses the [`az monitor health-models entity get-signal-history`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-get-signal-history) command.
-
 ```powershell
-# Define arguments for the Azure CLI command
-$azMonitorHealthModelsEntityGetSignalHistoryArgs = @(
-    'monitor'
-    'health-models'
-    'entity'
-    'get-signal-history'
-    '-g'
-    "$env:resourceGroupName"
-    '--health-model-name'
-    "$env:modelName"
-    '--entity-name'
-    "WebApp"
-    '--signal-name'
-    "http-4xx"
-    '--query'
-    "history[].{timestamp:occurredAt,currentState:healthState,value:value}"
-    '-o'
-    'table'
-)
-az @azMonitorHealthModelsEntityGetSignalHistoryArgs
+az monitor health-models entity get-signal-history -g "$env:resourceGroupName" `
+  --health-model-name "$env:modelName" --entity-name "WebApp" --signal-name "http-4xx" `
+  --query "history[].{timestamp:occurredAt,currentState:healthState,value:value}" -o table
 ```
 
 ---
@@ -1070,9 +778,9 @@ Run `get-history` to return the entity's state transitions:
 
 Portal: [View entity health changes on the timeline](./analyze-health.md#timeline-view).
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az monitor health-models entity get-history`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-get-history).
 
-The following Azure CLI example uses the [`az monitor health-models entity get-history`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-get-history) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 # Project the state transitions into table columns
@@ -1086,32 +794,14 @@ az monitor health-models entity get-history -g "$resourceGroupName" \
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
-The following Azure CLI example uses the [`az monitor health-models entity get-history`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-get-history) command.
-
 ```powershell
 # Project the state transitions into table columns
 $query = "history[].{timestamp:occurredAt,previousState:previousState,"
 $query += "currentState:newState}"
 
 # Show the entity health-state history
-# Define arguments for the Azure CLI command
-$azMonitorHealthModelsEntityGetHistoryArgs = @(
-    'monitor'
-    'health-models'
-    'entity'
-    'get-history'
-    '-g'
-    "$env:resourceGroupName"
-    '--health-model-name'
-    "$env:modelName"
-    '--entity-name'
-    "WebApp"
-    '--query'
-    "$query"
-    '-o'
-    'table'
-)
-az @azMonitorHealthModelsEntityGetHistoryArgs
+az monitor health-models entity get-history -g "$env:resourceGroupName" `
+  --health-model-name "$env:modelName" --entity-name "WebApp" --query "$query" -o table
 ```
 
 ---
@@ -1152,9 +842,9 @@ For a focused procedure that covers request fields, report expiration, and refre
 
 Portal: [Inspect the reported external signal in entity details](./analyze-health.md#entity-details).
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az monitor health-models entity ingest-health-report`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-ingest-health-report).
 
-The following Azure CLI example uses the [`az monitor health-models entity ingest-health-report`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-ingest-health-report) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 # Build the evaluation rules
@@ -1174,8 +864,6 @@ az monitor health-models entity ingest-health-report -g "$resourceGroupName" \
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
-The following Azure CLI example uses the [`az monitor health-models entity ingest-health-report`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-ingest-health-report) command.
-
 ```powershell
 # Build the evaluation rules
 $evaluationRules = @{
@@ -1186,32 +874,12 @@ $evaluationFilePath = Join-Path $env:appDir "external-evaluation.json"
 $evaluationRules | Set-Content -LiteralPath $evaluationFilePath -Encoding utf8
 
 # Report the external health state
-# Define arguments for the Azure CLI command
-$azMonitorHealthModelsEntityIngestHealthReportArgs = @(
-    'monitor'
-    'health-models'
-    'entity'
-    'ingest-health-report'
-    '-g'
-    "$env:resourceGroupName"
-    '--health-model-name'
-    "$env:modelName"
-    '--entity-name'
-    "WebApp"
-    '--signal-name'
-    "availability-check"
-    '--health-state'
-    'Degraded'
-    '--value'
-    85.5
-    '--evaluation-rules'
-    "@$evaluationFilePath"
-    '--additional-context'
-    "Synthetic availability check reported elevated latency"
-    '--expires-in-minutes'
-    60
-)
-az @azMonitorHealthModelsEntityIngestHealthReportArgs
+az monitor health-models entity ingest-health-report -g "$env:resourceGroupName" `
+  --health-model-name "$env:modelName" --entity-name "WebApp" `
+  --signal-name "availability-check" --health-state Degraded --value 85.5 `
+  --evaluation-rules "@$evaluationFilePath" `
+  --additional-context "Synthetic availability check reported elevated latency" `
+  --expires-in-minutes 60
 ```
 
 ---
@@ -1221,9 +889,9 @@ az @azMonitorHealthModelsEntityIngestHealthReportArgs
 
 List the entity's external signals:
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az monitor health-models entity show`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-show).
 
-The following Azure CLI example uses the [`az monitor health-models entity show`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-show) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 # Project the external signals into table columns
@@ -1237,32 +905,14 @@ az monitor health-models entity show -g "$resourceGroupName" \
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
-The following Azure CLI example uses the [`az monitor health-models entity show`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-show) command.
-
 ```powershell
 # Project the external signals into table columns
 $query = "properties.signalGroups.*.signals[] | [?signalKind=='External']"
 $query += ".{signal:name,kind:signalKind,state:status.healthState,value:status.value}"
 
 # Show the external signals
-# Define arguments for the Azure CLI command
-$azMonitorHealthModelsEntityShowArgs = @(
-    'monitor'
-    'health-models'
-    'entity'
-    'show'
-    '-g'
-    "$env:resourceGroupName"
-    '--health-model-name'
-    "$env:modelName"
-    '-n'
-    "WebApp"
-    '--query'
-    "$query"
-    '-o'
-    'table'
-)
-az @azMonitorHealthModelsEntityShowArgs
+az monitor health-models entity show -g "$env:resourceGroupName" `
+  --health-model-name "$env:modelName" -n "WebApp" --query "$query" -o table
 ```
 
 ---
@@ -1275,9 +925,9 @@ availability-check  External  Degraded  85.5
 
 View the reported value in the signal history:
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az monitor health-models entity get-signal-history`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-get-signal-history).
 
-The following Azure CLI example uses the [`az monitor health-models entity get-signal-history`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-get-signal-history) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 az monitor health-models entity get-signal-history -g "$resourceGroupName" \
@@ -1288,29 +938,11 @@ az monitor health-models entity get-signal-history -g "$resourceGroupName" \
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
-The following Azure CLI example uses the [`az monitor health-models entity get-signal-history`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-get-signal-history) command.
-
 ```powershell
-# Define arguments for the Azure CLI command
-$azMonitorHealthModelsEntityGetSignalHistoryArgs = @(
-    'monitor'
-    'health-models'
-    'entity'
-    'get-signal-history'
-    '-g'
-    "$env:resourceGroupName"
-    '--health-model-name'
-    "$env:modelName"
-    '--entity-name'
-    "WebApp"
-    '--signal-name'
-    "availability-check"
-    '--query'
-    "history[].{timestamp:occurredAt,currentState:healthState,value:value}"
-    '-o'
-    'table'
-)
-az @azMonitorHealthModelsEntityGetSignalHistoryArgs
+az monitor health-models entity get-signal-history -g "$env:resourceGroupName" `
+  --health-model-name "$env:modelName" --entity-name "WebApp" `
+  --signal-name "availability-check" `
+  --query "history[].{timestamp:occurredAt,currentState:healthState,value:value}" -o table
 ```
 
 ---
@@ -1325,9 +957,9 @@ Timestamp                          CurrentState  Value
 
 Delete the resource group, verify that Azure removed it, and delete the local app directory:
 
-# [Azure CLI bash](#tab/cli-bash)
+The following CLI command uses [`az group delete`](/cli/azure/group#az-group-delete).
 
-The following Azure CLI example uses the [`az group delete`](/cli/azure/group#az-group-delete) command.
+# [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 az group delete -n "$resourceGroupName" --yes
@@ -1342,8 +974,6 @@ printf 'Local app directory exists: false\n'
 ```
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
-
-The following Azure CLI example uses the [`az group delete`](/cli/azure/group#az-group-delete) command.
 
 ```powershell
 az group delete -n "$env:resourceGroupName" --yes
