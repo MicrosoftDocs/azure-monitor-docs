@@ -97,11 +97,12 @@ These Azure Monitor APIs retrieve resource metric definitions, values, and manag
 
 ### Related management APIs
 
-These management APIs support related workflows in Azure Service Health.
+These management APIs support related workflows in Azure Monitor and Azure Service Health.
 
 | Operation groups | Description |
 |------------------|-------------|
 | <a name="op-monitor-advisor-recommendation-metadata"></a>[Advisor recommendation metadata](/rest/api/advisor/recommendation-metadata/list?view=rest-advisor-2025-01-01&preserve-view=true) | Lists Azure Advisor recommendation metadata. Stable API version `2025-01-01` supports the `trackingIds/any` filter for Service Health retirement events. |
+| <a name="op-monitor-resource-graph"></a>[Resource Graph - Resources](/rest/api/azureresourcegraph/resourcegraph/resources/resources) | Query Azure resource and policy data. Omit `subscriptions` and `managementGroups` to use tenant scope, or specify one of those properties to restrict the query. |
 
 ## Application Insights APIs
 
