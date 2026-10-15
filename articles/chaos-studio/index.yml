@@ -7,7 +7,7 @@ metadata:
   title: Chaos Studio Workspaces documentation
   description: Use Azure Chaos Studio Workspaces for resilience testing. Follow the quickstart, explore Scenarios, review reports, and compare Experiments (classic).
   ms.topic: landing-page
-  ms.date: 09/25/2026
+  ms.date: 09/28/2026
 
 landingContent:
   - title: Chaos Studio Workspaces (preview)
@@ -69,6 +69,8 @@ landingContent:
         links:
           - text: Manage Workspaces and Scenarios with the Azure CLI
             url: chaos-studio-manage-cli.md
+          - text: Filter resources for Chaos Studio Workspace Scenarios
+            url: chaos-studio-workspaces-resource-targeting.md
           - text: Create least-privilege roles for Chaos Studio Workspaces
             url: chaos-studio-workspaces-least-privilege-roles.md
           - text: Troubleshoot Chaos Studio Workspaces and Scenarios

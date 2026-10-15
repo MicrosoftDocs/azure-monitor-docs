@@ -3,7 +3,7 @@ title: Manage Workspaces and Scenarios with the Azure CLI
 description: Use the Azure Chaos Studio CLI to create Workspaces, discover resources, configure Scenario permissions, validate runs, and review execution results.
 author: nikhilkaul-msft
 ms.topic: how-to
-ms.date: 09/05/2026
+ms.date: 09/28/2026
 ms.custom: devx-track-azurecli
 ms.devlang: azurecli
 ai-usage: ai-assisted
@@ -121,7 +121,9 @@ Keep the following points in mind:
 
 - `--scenario-name` is the name of a scenario from `az chaos scenario list`, such as `ComputeZoneDown-1.1`.
 - `--parameters` takes a list of key/value objects. Use it to set values a scenario supports, such as the run `duration` in ISO 8601 format, where `PT10M` is 10 minutes. You can also pass a file with `--parameters @parameters.json`.
-- `--filters` narrows the targeted resources by `locations`, `zones`, or `physical-zones`. The `zones` and `physical-zones` keys are mutually exclusive.
+- `--filters` narrows the targeted resources by `locations`, `zones`, or `physical-zones`. The `zones` and `physical-zones` keys are mutually exclusive. This option sets the earlier `filters` model.
+
+In the `2026-08-01-preview` REST API, `resourceTargeting` replaces the earlier `filters` and `exclusions` properties. You can't combine the two models. To migrate a configuration or create an include and exclude policy that targets resources by Azure tag, resource type, or resource ID, see [Filter resources for Chaos Studio Workspace Scenarios](chaos-studio-workspaces-resource-targeting.md).
 
 ## Validate and fix permissions
 

@@ -14,10 +14,18 @@
       href: chaos-studio-scenario-reports.md
     - name: Permissions and identity in Chaos Studio Workspaces
       href: chaos-studio-workspace-permissions.md
-    - name: Manage Workspaces and Scenarios with the Azure CLI
-      href: chaos-studio-manage-cli.md
-    - name: Create least-privilege roles for Chaos Studio Workspaces
-      href: chaos-studio-workspaces-least-privilege-roles.md
+    - name: Manage and troubleshoot Workspaces
+      items:
+        - name: Manage Workspaces and Scenarios with the Azure CLI
+          href: chaos-studio-manage-cli.md
+        - name: Filter resources for Workspace Scenarios
+          href: chaos-studio-workspaces-resource-targeting.md
+        - name: Create least-privilege roles for Chaos Studio Workspaces
+          href: chaos-studio-workspaces-least-privilege-roles.md
+        - name: Troubleshoot Chaos Studio Workspaces and Scenarios
+          href: troubleshoot-workspaces-scenarios.md
+        - name: Chaos Studio Workspaces limitations (preview)
+          href: chaos-studio-workspaces-limitations.md
     - name: "Tutorial: Test AKS zone resilience with a Scenario"
       href: chaos-studio-tutorial-sample-app.md
     - name: "Tutorial: Run a PostgreSQL zone-down failover Scenario"
@@ -30,10 +38,6 @@
           href: chaos-studio-aks-extension-overview.md
         - name: Prepare and install
           href: chaos-studio-aks-extension-install.md
-    - name: Troubleshoot Chaos Studio Workspaces and Scenarios
-      href: troubleshoot-workspaces-scenarios.md
-    - name: Chaos Studio Workspaces limitations (preview)
-      href: chaos-studio-workspaces-limitations.md
     - name: Chaos Studio Workspaces (Azure portal)
       href: https://portal.azure.com/#view/Microsoft_Azure_Chaos/ChaosStudio.MenuView/~/workspaces
     - name: Chaos Studio AI plugin
