@@ -2,7 +2,7 @@
 title: Monitor AI Agents with Application Insights
 description: Learn how to monitor AI agents across multiple sources with Application Insights for performance tracking and troubleshooting.
 ms.topic: overview
-ms.date: 05/21/2026
+ms.date: 10/16/2026
 ai-usage: ai-assisted
 ---
 
@@ -28,7 +28,7 @@ After telemetry flows to Application Insights:
 1. In the Azure portal, go to your **Application Insights** resource.
 1. In the navigation menu, select **Agents (Preview)**.
 
-    :::image type="content" source="media/agents-view/agent-details-goto.png" lightbox="media/agents-view/agent-details-goto.png" alt-text="A screenshot showing how to get to the Agent details experience.":::
+    :::image type="content" source="media/agents-view/agent-details-goto.png" lightbox="media/agents-view/agent-details-goto.png" alt-text="Screenshot of the Application Insights navigation menu with Agents (Preview) selected to open the Agent details view.":::
 
 > [!NOTE]
 > You can also get to the Agent details view from Foundry. From your agent, go to the **Monitoring** tab, and then select **View in Azure Monitor**.
@@ -43,7 +43,7 @@ To explore specific agent runs:
    * **View Traces with Gen AI Errors** - Focus on failed or problematic runs.
    * Any individual tool call or model in the **Tool Calls** or **Models** tiles.
 
-    :::image type="content" source="media/agents-view/agent-details-open-search.png" lightbox="media/agents-view/agent-details-open-search.png" alt-text="A screenshot showing how to open Search in the Agent details experience.":::
+    :::image type="content" source="media/agents-view/agent-details-open-search.png" lightbox="media/agents-view/agent-details-open-search.png" alt-text="Screenshot of the Agent details view with options to open Search for AI agent traces, errors, tool calls, and models.":::
 
     The **Search** overlay displays filtered traces that match your selection.
 
@@ -55,7 +55,7 @@ To explore specific agent runs:
 
 1. Select any trace to access the **End-to-end transaction details** view for comprehensive analysis.
 
-    :::image type="content" source="media/agents-view/agent-details-search.png" lightbox="media/agents-view/agent-details-search.png" alt-text="A screenshot showing the Search overlay in the Agent details experience.":::
+    :::image type="content" source="media/agents-view/agent-details-search.png" lightbox="media/agents-view/agent-details-search.png" alt-text="Screenshot of the Search overlay in the Agent details view showing filtered AI agent traces.":::
 
 ### End-to-end transaction details view
 
@@ -66,7 +66,7 @@ Simple view helps you quickly find the relevant telemetry and transition to Foun
 > [!NOTE]
 > To return to the traditional view, select **Leave simple view** in the top action bar.
 
-:::image type="content" source="media/agents-view/agent-details-search-details.png" lightbox="media/agents-view/agent-details-search-details.png" alt-text="A screenshot showing the end-to-end transaction details view.":::
+:::image type="content" source="media/agents-view/agent-details-search-details.png" lightbox="media/agents-view/agent-details-search-details.png" alt-text="Screenshot of the end-to-end transaction details view showing AI agent steps in simple view.":::
 
 In this example, you research high token use. Transaction details help you identify that large prompt context and an expensive model drive up token use and costs.
 
@@ -81,7 +81,7 @@ Azure Monitor includes prebuilt Grafana dashboards designed for Gen AI monitorin
 * **Foundry -** Visualize Foundry-specific metrics and telemetry
 * **Coding agent dashboards -** Monitor AI coding agent usage, performance, and cost. See [Monitor AI coding agents](#monitor-ai-coding-agents).
 
-:::image type="content" source="media/agents-view/grafana-monitoring-agents.png" lightbox="media/agents-view/grafana-monitoring-agents.png" alt-text="A screenshot showing Grafana dashboard when monitoring AI agents.":::
+:::image type="content" source="media/agents-view/grafana-monitoring-agents.png" lightbox="media/agents-view/grafana-monitoring-agents.png" alt-text="Screenshot of a prebuilt Grafana dashboard for monitoring AI agents with Application Insights data.":::
 
 These dashboards serve as a starting point for your monitoring strategy. You can customize them by:
 
