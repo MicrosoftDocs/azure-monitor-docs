@@ -24,7 +24,11 @@ items:
 - name: Best practices
   items:
   - name: Reliability
-    href: fundamentals/best-practices-reliability.md
+    items:
+    - name: Overview
+      href: fundamentals/best-practices-reliability.md
+    - name: Health models (preview)
+      href: /azure/reliability/reliability-monitor-health-models?toc=/azure/azure-monitor/toc.json
   - name: Security
     href: fundamentals/best-practices-security.md
   - name: Cost optimization
