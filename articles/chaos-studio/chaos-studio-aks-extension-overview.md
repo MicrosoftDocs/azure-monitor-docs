@@ -3,7 +3,7 @@ title: Chaos Studio extension for AKS (preview) overview
 description: Learn what the Chaos Studio extension for AKS does, when to use its pod-level faults, how it connects to a Workspace, and its preview requirements and known issues.
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 10/14/2026
+ms.date: 10/18/2026
 ai-usage: ai-assisted
 ---
 
@@ -14,7 +14,7 @@ The Azure Chaos Studio extension for Azure Kubernetes Service (AKS) injects faul
 You run the faults as Actions in [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) Scenarios. The extension runs the open-source [LitmusChaos](https://litmuschaos.io/) engine inside your cluster. You don't write Litmus resources yourself.
 
 > [!IMPORTANT]
-> The extension is in a limited preview. Microsoft enables it only for allow-listed subscriptions. During the preview, the extension is available in West Central US. To request access, [open an issue in the Chaos Studio GitHub repository](https://github.com/microsoft/chaos-studio/issues/new/choose). Workspaces public preview access doesn't give you access to the extension.
+> The extension is in a limited preview. Microsoft enables it only for allow-listed subscriptions. During the preview, you can use the extension with a Workspace in West Central US, West US 2, North Europe, Sweden Central, UK South, and Japan East. Your AKS cluster can be in any region that supports AKS extensions. To request access, [open an issue in the Chaos Studio GitHub repository](https://github.com/microsoft/chaos-studio/issues/new/choose). Workspaces public preview access doesn't give you access to the extension.
 
 ## When to use the extension
 
@@ -69,7 +69,7 @@ The cluster connects outbound to Chaos Studio. You don't open inbound ports on t
 ## Preview requirements and limitations
 
 - **Access.** Your subscription must be on the preview allow list. To request access, [open an issue in the Chaos Studio GitHub repository](https://github.com/microsoft/chaos-studio/issues/new/choose).
-- **Region.** During the preview, the extension is available in West Central US.
+- **Region.** The extension uses the Chaos Studio data plane in the region of your Workspace, not the region of your cluster. Create the Workspace in one of these regions: West Central US, West US 2, North Europe, Sweden Central, UK South, and Japan East. Your AKS cluster can be in any region that supports AKS extensions. For more information about Workspace regions, see [Regional availability by resource model](chaos-studio-region-availability.md#regional-availability-of-chaos-studio-workspaces).
 - **Cluster features.** The cluster must have [Microsoft Entra Workload ID](/azure/aks/workload-identity-overview), the [OIDC issuer](/azure/aks/use-oidc-issuer), and [Azure RBAC for Kubernetes authorization](/azure/aks/manage-azure-rbac) turned on.
 - **Node pools.** Faults affect pods on Linux amd64 nodes. In a cluster with amd64 and arm64 node pools, faults affect only pods on amd64 nodes. Clusters with only arm64 node pools and Windows node pools aren't supported.
 - **Deployment Safeguards.** If [Deployment Safeguards](/azure/aks/deployment-safeguards) enforces policies on the cluster, the network faults aren't available. Pod delete, CPU hog, and memory hog still work. For details, see [Check your cluster configuration](chaos-studio-aks-extension-install.md#check-your-cluster-configuration).
