@@ -696,7 +696,9 @@ When you create a diagnostic setting for a management group, it exports Azure Mo
 
 Azure Resource Manager includes a `hierarchy` property when writing activity log events, but the property isn't required. Resource providers outside Azure Resource Manager don't populate it. Subscription-level events without this property don't propagate to management-group diagnostic settings, including a setting on the root management group.
 
-To capture events that don't propagate to the management group, [create a subscription-level diagnostic setting](#export-activity-log) for each subscription you need to monitor. If the subscription and management group both have diagnostic settings, you receive duplicate events for events collected at both scopes.
+To capture events that don't propagate to the management group, [create a subscription-level diagnostic setting](#export-activity-log) for each subscription you need to monitor. Select all activity log categories if you need to export all subscription-level events.
+
+If the subscription and management group export the same events to the same destination, you receive duplicate events. Keep the subscription-level diagnostic setting to avoid missing events without the `hierarchy` property.
 
 > [!NOTE]
 > For example, if MG1 contains MG2, which contains Subscription1, a diagnostic setting on MG1 captures activity log events for MG1, MG2, and many of the events collected by a diagnostic setting on Subscription1. Configure a diagnostic setting on Subscription1 to also capture events without the `hierarchy` property. You don't need a diagnostic setting on MG2 to collect the same management group events.
