@@ -7,9 +7,10 @@ ms.date: 07/21/2026
 ai-usage: ai-assisted
 ms.custom:
   - devx-track-azurecli
+  - cbo-v1.6
 ---
 
-# Use the Azure CLI (preview)
+# Use the Azure CLI for Azure Monitor health models (preview)
 
 Use the `health-models` Azure CLI extension (preview) to build, update, and query your health models.
 
@@ -24,11 +25,22 @@ To build a health model in the portal instead, see [Create a health model](./cre
 
 ## Prerequisites
 
-- Azure CLI 2.75.0 or later. Sign in with `az login`.
-- Permission to create resources and assign roles in the target subscription.
-- Bash with `curl`, or PowerShell 5.1 or later.
+* Azure CLI 2.75.0 or later. Sign in with `az login`.
+* Permission to create a resource group and its resources, and to assign the **Reader** role on the app.
+
+# [Azure CLI bash](#tab/cli-bash)
+
+Bash with `curl` and `jq`.
+
+# [Azure CLI PowerShell](#tab/cli-powershell)
+
+PowerShell 5.1 or later.
+
+---
 
 ## Install the extension
+
+The following CLI command uses [`az extension add`](/cli/azure/extension#az-extension-add).
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -60,16 +72,21 @@ Create a static App Service app. Send successful requests to the root path and f
 
 This tutorial creates the following resources in your subscription:
 
-- A resource group.
-- An App Service plan that uses the Free F1 SKU.
-- A static App Service app.
-- A health model with a system-assigned managed identity and a **Reader** role assignment.
+* A resource group.
+* An App Service plan that uses the Free F1 SKU.
+* A static App Service app.
+* A health model with a system-assigned managed identity and a **Reader** role assignment.
 
 ## Settings
 
-Select your shell. Microsoft Learn keeps your tab selection for the remaining command groups. Set these values for your run. Later commands reuse them.
+Select your shell. Set these values for your run.
+
+> [!NOTE]
+> Later commands reuse these values. Use a dedicated resource group, and choose a globally unique App Service app name.
 
 # [Azure CLI bash](#tab/cli-bash)
+
+The following Bash example uses the [`mktemp`](https://www.gnu.org/software/coreutils/manual/html_node/mktemp-invocation.html) command to create a temporary working directory and sets the variables for the remaining Azure CLI examples.
 
 ```bash
 # Set variables
@@ -83,6 +100,8 @@ export modelName="hm-cli-model-$suffix"
 ```
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
+
+The following PowerShell example uses the [`New-Item`](/powershell/module/microsoft.powershell.management/new-item) cmdlet to create a temporary working directory and sets the variables for the remaining Azure CLI examples.
 
 ```powershell
 # Set variables
@@ -100,6 +119,8 @@ $env:modelName = "hm-cli-model-$env:suffix"
 
 ---
 
+<a id="create-an-app-to-monitor"></a>
+
 ## 1. Create an app to monitor
 
 Create a local `index.html` file:
@@ -107,6 +128,8 @@ Create a local `index.html` file:
 Portal: [Create an App Service app in the Azure portal](/azure/app-service/quickstart-nodejs?pivots=development-environment-azure-portal#create-azure-resources).
 
 # [Azure CLI bash](#tab/cli-bash)
+
+The following Bash example uses the [`cat`](https://www.gnu.org/software/coreutils/manual/html_node/cat-invocation.html) command to create the local HTML file for the App Service app.
 
 ```bash
 cat > "$appDir/index.html" <<HTML
@@ -119,6 +142,8 @@ HTML
 ```
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
+
+The following PowerShell example uses the [`Set-Content`](/powershell/module/microsoft.powershell.management/set-content) cmdlet to create the local HTML file for the App Service app.
 
 ```powershell
 @"
@@ -133,6 +158,8 @@ HTML
 ---
 
 Create a resource group:
+
+The following CLI command uses [`az group create`](/cli/azure/group#az-group-create).
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -157,6 +184,8 @@ swedencentral  Succeeded
 ```
 
 Create a Linux F1 App Service plan and app. Deploy `index.html` from its explicit source path:
+
+The following CLI command uses [`az appservice plan create`](/cli/azure/appservice/plan#az-appservice-plan-create).
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -222,15 +251,22 @@ RuntimeSuccessful
 App URL: https://hm-cli-app-example.azurewebsites.net
 ```
 
-Open the app URL in a browser, or fetch it from your shell. The page includes the unique app name:
+Open the app URL in a browser, or fetch it from your shell.
+
+> [!NOTE]
+> The page includes the unique app name.
 
 # [Azure CLI bash](#tab/cli-bash)
+
+The following Bash example uses the [`curl`](https://curl.se/docs/manpage.html) command to retrieve the app home page.
 
 ```bash
 curl --fail --silent "$appUrl/"
 ```
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
+
+The following PowerShell example uses the [`Invoke-WebRequest`](/powershell/module/microsoft.powershell.utility/invoke-webrequest) cmdlet to retrieve the app home page.
 
 ```powershell
 (Invoke-WebRequest -Uri "$env:appUrl/" -UseBasicParsing).Content
@@ -246,11 +282,18 @@ curl --fail --silent "$appUrl/"
 </html>
 ```
 
+<a id="create-the-health-model"></a>
+
 ## 2. Create the health model
 
-Create the model with a system-assigned managed identity. The model uses this identity to read resource metrics:
+Create the model with a system-assigned managed identity.
+
+> [!NOTE]
+> The model uses this identity to read resource metrics.
 
 Portal: [Create a health model in the Azure portal](./create.md#create-a-health-model).
+
+The following CLI command uses [`az monitor health-models create`](/cli/azure/monitor/health-models#az-monitor-health-models-create).
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -275,11 +318,15 @@ Identity        Location
 SystemAssigned  swedencentral
 ```
 
+<a id="grant-the-model-access-to-the-app"></a>
+
 ## 3. Grant the model access to the app
 
 Give the model's identity the **Reader** role on the app:
 
 Portal: [Assign the Reader role to the model identity in the Azure portal](/azure/role-based-access-control/role-assignments-portal#step-4-select-who-needs-access).
+
+The following CLI command uses [`az role assignment create`](/cli/azure/role/assignment#az-role-assignment-create).
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -311,11 +358,15 @@ Role
 Reader
 ```
 
+<a id="create-an-authentication-setting"></a>
+
 ## 4. Create an authentication setting
 
 A signal uses an authentication setting to select the identity that reads its data. Set `managed-identity-name=SystemAssigned` to use the model's system-assigned identity:
 
 Portal: [Create an authentication setting in the Azure portal](./create.md#identity).
+
+The following CLI command uses [`az monitor health-models authentication-setting create`](/cli/azure/monitor/health-models/authentication-setting#az-monitor-health-models-authentication-setting-create).
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -343,19 +394,26 @@ Name
 auth-system
 ```
 
+<a id="define-the-request-failure-signal"></a>
+
 ## 5. Define the request-failure signal
 
 App Service emits separate metrics for each HTTP status class:
 
-- `Requests` counts requests for every resulting HTTP status.
-- `Http4xx` counts responses with a status from 400 through 499.
-- `Http5xx` counts responses with a status from 500 through 599.
+* `Requests` counts requests for every resulting HTTP status.
+* `Http4xx` counts responses with a status from 400 through 499.
+* `Http5xx` counts responses with a status from 500 through 599.
 
-App Service doesn't emit one built-in metric that combines all non-success status classes. This tutorial generates 404 responses, so it uses `Http4xx`.
+App Service doesn't emit one built-in metric that combines all non-success status classes.
+
+> [!NOTE]
+> This tutorial generates 404 responses, so it uses `Http4xx`.
 
 Portal: [Create an Azure resource metric signal in the Azure portal](./tutorial-signals.md#add-an-azure-resource-metric-signal).
 
 List the live metric definitions for the app:
+
+The following CLI command uses [`az monitor metrics list-definitions`](/cli/azure/monitor/metrics#az-monitor-metrics-list-definitions).
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -393,16 +451,25 @@ Http4xx   Microsoft.Web/sites  Count   Total          PT1M,PT5M,PT15M,PT30M,PT1H
 Http5xx   Microsoft.Web/sites  Count   Total          PT1M,PT5M,PT15M,PT30M,PT1H,PT6H,PT12H,P1D
 ```
 
-Create one signal definition from `Http4xx`. Mark the signal as degraded above zero failed requests per minute and unhealthy above five:
+> [!NOTE]
+> Create one signal definition from `Http4xx`. Mark the signal as degraded above zero failed requests per minute and unhealthy above five.
+
+The following CLI command uses [`az monitor health-models signal-definition create`](/cli/azure/monitor/health-models/signal-definition#az-monitor-health-models-signal-definition-create).
 
 # [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 # Build the metric definition and the evaluation rules
-azureResourceMetric="{metric-namespace:Microsoft.Web/sites,metric-name:Http4xx,"
-azureResourceMetric+="aggregation-type:Total,time-grain:PT1M}"
-evaluationRules="{degraded-rule:{operator:GreaterThan,threshold:0},"
-evaluationRules+="unhealthy-rule:{operator:GreaterThan,threshold:5}}"
+azureResourceMetric=$(jq -n '{
+  "metric-namespace": "Microsoft.Web/sites",
+  "metric-name": "Http4xx",
+  "aggregation-type": "Total",
+  "time-grain": "PT1M"
+}')
+evaluationRules=$(jq -n '{
+  "degraded-rule": { "operator": "GreaterThan", "threshold": 0 },
+  "unhealthy-rule": { "operator": "GreaterThan", "threshold": 5 }
+}')
 
 # Create the signal definition
 az monitor health-models signal-definition create -g "$resourceGroupName" \
@@ -417,17 +484,27 @@ az monitor health-models signal-definition create -g "$resourceGroupName" \
 
 ```powershell
 # Build the metric definition and the evaluation rules
-$azureResourceMetric = "{metric-namespace:Microsoft.Web/sites,metric-name:Http4xx,"
-$azureResourceMetric += "aggregation-type:Total,time-grain:PT1M}"
-$evaluationRules = "{degraded-rule:{operator:GreaterThan,threshold:0},"
-$evaluationRules += "unhealthy-rule:{operator:GreaterThan,threshold:5}}"
+$azureResourceMetric = @{
+  "metric-namespace" = "Microsoft.Web/sites"
+  "metric-name"      = "Http4xx"
+  "aggregation-type" = "Total"
+  "time-grain"       = "PT1M"
+} | ConvertTo-Json -Depth 5
+$evaluationRules = @{
+  "degraded-rule" = @{ operator = "GreaterThan"; threshold = 0 }
+  "unhealthy-rule" = @{ operator = "GreaterThan"; threshold = 5 }
+} | ConvertTo-Json -Depth 5
+$metricFilePath = Join-Path $env:appDir "metric.json"
+$evaluationFilePath = Join-Path $env:appDir "evaluation.json"
+$azureResourceMetric | Set-Content -LiteralPath $metricFilePath -Encoding utf8
+$evaluationRules | Set-Content -LiteralPath $evaluationFilePath -Encoding utf8
 
 # Create the signal definition
 az monitor health-models signal-definition create -g "$env:resourceGroupName" `
   --health-model-name "$env:modelName" -n "sd-http-4xx" `
   --display-name "HTTP 4xx responses" --refresh-interval PT1M --data-unit Count `
-  --azure-resource-metric "$azureResourceMetric" `
-  --evaluation-rules "$evaluationRules" `
+  --azure-resource-metric "@$metricFilePath" `
+  --evaluation-rules "@$evaluationFilePath" `
   --query "{name:name}" -o table
 ```
 
@@ -439,19 +516,32 @@ Name
 sd-http-4xx
 ```
 
+<a id="create-an-entity"></a>
+
 ## 6. Create an entity
 
-Create an entity that references the app and the `Http4xx` signal definition. The signal determines the entity's health state. For more information, see [Configure health rollup](./rollup.md).
+Create an entity that references the app and the `Http4xx` signal definition.
+
+> [!NOTE]
+> The signal determines the entity's health state. For more information, see [Configure health rollup](./rollup.md).
 
 Portal: [Add an entity in the Azure portal](./designer.md#add-an-entity).
+
+The following CLI command uses [`az monitor health-models entity create`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-create).
 
 # [Azure CLI bash](#tab/cli-bash)
 
 ```bash
-# Build the signal group
-signalGroups="{azure-resource:{authentication-setting:auth-system,"
-signalGroups+="azure-resource-id:$appId,"
-signalGroups+="signals:[{name:http-4xx,signal-definition-name:sd-http-4xx}]}}"
+# Build the signal group as JSON
+signalGroups=$(jq -n --arg appId "$appId" '{
+  "azure-resource": {
+    "authentication-setting": "auth-system",
+    "azure-resource-id": $appId,
+    "signals": [
+      { "name": "http-4xx", "signal-definition-name": "sd-http-4xx" }
+    ]
+  }
+}')
 
 # Create the entity
 az monitor health-models entity create -g "$resourceGroupName" \
@@ -464,16 +554,24 @@ az monitor health-models entity create -g "$resourceGroupName" \
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
 ```powershell
-# Build the signal group
-$signalGroups = "{azure-resource:{authentication-setting:auth-system,"
-$signalGroups += "azure-resource-id:$env:appId,"
-$signalGroups += "signals:[{name:http-4xx,signal-definition-name:sd-http-4xx}]}}"
+# Build the signal group as JSON
+$signalGroups = @{
+  "azure-resource" = @{
+    "authentication-setting" = "auth-system"
+    "azure-resource-id"       = $env:appId
+    signals = @(
+      @{ name = "http-4xx"; "signal-definition-name" = "sd-http-4xx" }
+    )
+  }
+} | ConvertTo-Json -Depth 8
+$signalGroupsFilePath = Join-Path $env:appDir "signal-groups.json"
+$signalGroups | Set-Content -LiteralPath $signalGroupsFilePath -Encoding utf8
 
 # Create the entity
 az monitor health-models entity create -g "$env:resourceGroupName" `
   --health-model-name "$env:modelName" -n "WebApp" `
   --display-name "Tutorial web app" --impact Standard `
-  --signal-groups "$signalGroups" `
+  --signal-groups "@$signalGroupsFilePath" `
   --query "{name:name}" -o table
 ```
 
@@ -485,11 +583,15 @@ Name
 WebApp
 ```
 
+<a id="connect-the-entity-to-the-model-root"></a>
+
 ## 7. Connect the entity to the model root
 
 Azure creates each health model with a root entity that has the model's name. Connect the app entity to the root entity:
 
 Portal: [Create a relationship in the Azure portal](./designer.md#relationships).
+
+The following CLI command uses [`az monitor health-models relationship create`](/cli/azure/monitor/health-models/relationship#az-monitor-health-models-relationship-create).
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -517,28 +619,35 @@ Name
 root-to-web-app
 ```
 
+<a id="generate-successful-and-failed-requests"></a>
+
 ## 8. Generate successful and failed requests
 
-Each iteration sends one successful request and one failing request, then waits. This traffic generates the metrics that the health model evaluates.
+> [!NOTE]
+> Each iteration sends one successful request and one failing request, then waits. This traffic generates the metrics that the health model evaluates.
 
 Portal: [Open the App Service log stream in the Azure portal](/azure/app-service/troubleshoot-diagnostic-logs#azure-portal).
 
 # [Azure CLI bash](#tab/cli-bash)
 
+The following Bash example uses the [`curl`](https://curl.se/docs/manpage.html) command to generate successful and failed requests.
+
 ```bash
-for i in {1..60}; do
+for requestNumber in {1..60}; do
   curl --silent --output /dev/null "$appUrl/"
-  curl --silent --output /dev/null "$appUrl/missing-$suffix-$i"
+  curl --silent --output /dev/null "$appUrl/missing-$suffix-$requestNumber"
   sleep 5
 done
 ```
 
 # [Azure CLI PowerShell](#tab/cli-powershell)
 
+The following PowerShell example uses the [`Invoke-WebRequest`](/powershell/module/microsoft.powershell.utility/invoke-webrequest) cmdlet to generate successful and failed requests.
+
 ```powershell
-foreach ($i in 1..60) {
+foreach ($requestNumber in 1..60) {
   Invoke-WebRequest -Uri "$env:appUrl/" -UseBasicParsing | Out-Null
-  $missingUrl = "$env:appUrl/missing-$env:suffix-$i"
+  $missingUrl = "$env:appUrl/missing-$env:suffix-$requestNumber"
   try {
     Invoke-WebRequest -Uri $missingUrl -UseBasicParsing -ErrorAction Stop | Out-Null
   }
@@ -550,11 +659,15 @@ foreach ($i in 1..60) {
 
 ---
 
+<a id="observe-the-metrics-and-current-health"></a>
+
 ## 9. Observe the metrics and current health
 
 Azure Monitor publishes App Service metrics once per minute. Wait a minute and then query the `Total` values at the `PT1M` time grain:
 
 Portal: [Chart the App Service request metrics in metrics explorer](../metrics/analyze-metrics.md#create-a-metric-chart).
+
+The following CLI command uses [`az monitor metrics list`](/cli/azure/monitor/metrics#az-monitor-metrics-list).
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -581,7 +694,12 @@ Requests  120
 Http4xx   60
 ```
 
-The metric is available. Review how it appears as a signal in the health model:
+> [!NOTE]
+> The metric is available in the preceding output.
+
+Review how it appears as a signal in the health model:
+
+The following CLI command uses [`az monitor health-models entity show`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-show).
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -615,13 +733,18 @@ Signal    State      Value
 http-4xx  Unhealthy  12.0
 ```
 
-The signal is `Unhealthy` because the failed-request count exceeds five in one minute.
+> [!NOTE]
+> The signal is `Unhealthy` because the failed-request count exceeds five in one minute.
+
+<a id="query-the-signal-history"></a>
 
 ## 10. Query the signal history
 
 Run `get-signal-history` to return the last 24 hours of state history for the `Http4xx` signal:
 
 Portal: [Inspect signal history in the entity details pane](./analyze-health.md#entity-details).
+
+The following CLI command uses [`az monitor health-models entity get-signal-history`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-get-signal-history).
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -647,11 +770,15 @@ Timestamp             CurrentState  Value
 2026-07-21T20:43:00Z  Unhealthy     12.0
 ```
 
+<a id="query-the-entity-health-state-history"></a>
+
 ## 11. Query the entity health-state history
 
 Run `get-history` to return the entity's state transitions:
 
 Portal: [View entity health changes on the timeline](./analyze-health.md#timeline-view).
+
+The following CLI command uses [`az monitor health-models entity get-history`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-get-history).
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -685,9 +812,12 @@ Timestamp             PreviousState  CurrentState
 2026-07-21T20:43:00Z  Degraded       Unhealthy
 ```
 
-The app becomes unhealthy at the timestamp in this row, when its state changes from `Degraded` to `Unhealthy` after the `Http4xx` value exceeds five.
+> [!NOTE]
+> The app becomes unhealthy at the timestamp in this row, when its state changes from `Degraded` to `Unhealthy` after the `Http4xx` value exceeds five.
 
 The metric scenario is complete. The next two optional sections show how to add additional context and report health from another system.
+
+<a id="optional-annotate-an-entity"></a>
 
 ## 12. Optional: Annotate an entity
 
@@ -697,20 +827,31 @@ For the focused procedure to add, retrieve, and view annotations, see [Add data 
 
 Portal: [Review point-in-time entity health on the timeline](./analyze-health.md#timeline-view).
 
+<a id="optional-report-external-health"></a>
+
 ## 13. Optional: Report external health
 
-Use `ingest-health-report` to report a health state from your system. The external report is independent of the App Service metric signal. Choose any value for `--signal-name`. If the name doesn't match a signal, the model adds an `External` signal to the entity:
+Use `ingest-health-report` to report a health state from your system.
+
+> [!NOTE]
+> The external report is independent of the App Service metric signal.
+
+Choose any value for `--signal-name`. If the name doesn't match a signal, the model adds an `External` signal to the entity:
 
 For a focused procedure that covers request fields, report expiration, and refresh behavior, see [Submit data for externally evaluated signals](./health-report-ingestion.md).
 
 Portal: [Inspect the reported external signal in entity details](./analyze-health.md#entity-details).
 
+The following CLI command uses [`az monitor health-models entity ingest-health-report`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-ingest-health-report).
+
 # [Azure CLI bash](#tab/cli-bash)
 
 ```bash
 # Build the evaluation rules
-evaluationRules="{degraded-rule:{operator:GreaterThan,threshold:70},"
-evaluationRules+="unhealthy-rule:{operator:GreaterThan,threshold:90}}"
+evaluationRules=$(jq -n '{
+  "degraded-rule": { "operator": "GreaterThan", "threshold": 70 },
+  "unhealthy-rule": { "operator": "GreaterThan", "threshold": 90 }
+}')
 
 # Report the external health state
 az monitor health-models entity ingest-health-report -g "$resourceGroupName" \
@@ -725,21 +866,30 @@ az monitor health-models entity ingest-health-report -g "$resourceGroupName" \
 
 ```powershell
 # Build the evaluation rules
-$evaluationRules = "{degraded-rule:{operator:GreaterThan,threshold:70},"
-$evaluationRules += "unhealthy-rule:{operator:GreaterThan,threshold:90}}"
+$evaluationRules = @{
+  "degraded-rule" = @{ operator = "GreaterThan"; threshold = 70 }
+  "unhealthy-rule" = @{ operator = "GreaterThan"; threshold = 90 }
+} | ConvertTo-Json -Depth 5
+$evaluationFilePath = Join-Path $env:appDir "external-evaluation.json"
+$evaluationRules | Set-Content -LiteralPath $evaluationFilePath -Encoding utf8
 
 # Report the external health state
 az monitor health-models entity ingest-health-report -g "$env:resourceGroupName" `
   --health-model-name "$env:modelName" --entity-name "WebApp" `
   --signal-name "availability-check" --health-state Degraded --value 85.5 `
-  --evaluation-rules "$evaluationRules" `
+  --evaluation-rules "@$evaluationFilePath" `
   --additional-context "Synthetic availability check reported elevated latency" `
   --expires-in-minutes 60
 ```
 
 ---
 
-The command returns no output. List the entity's external signals:
+> [!NOTE]
+> The command returns no output.
+
+List the entity's external signals:
+
+The following CLI command uses [`az monitor health-models entity show`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-show).
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -775,6 +925,8 @@ availability-check  External  Degraded  85.5
 
 View the reported value in the signal history:
 
+The following CLI command uses [`az monitor health-models entity get-signal-history`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-get-signal-history).
+
 # [Azure CLI bash](#tab/cli-bash)
 
 ```bash
@@ -804,6 +956,8 @@ Timestamp                          CurrentState  Value
 ## Clean up
 
 Delete the resource group, verify that Azure removed it, and delete the local app directory:
+
+The following CLI command uses [`az group delete`](/cli/azure/group#az-group-delete).
 
 # [Azure CLI bash](#tab/cli-bash)
 
@@ -845,9 +999,9 @@ Local app directory exists: false
 
 Each CLI parameter maps to a property of the `Microsoft.CloudHealth/healthModels` resource. For the full schema, see:
 
-- [Health model resource schema](/azure/templates/microsoft.cloudhealth/healthmodels)
-- [Signal definition schema](/azure/templates/microsoft.cloudhealth/healthmodels/signaldefinitions)
-- [Entity schema](/azure/templates/microsoft.cloudhealth/healthmodels/entities)
+* [Health model resource schema](/azure/templates/microsoft.cloudhealth/healthmodels)
+* [Signal definition schema](/azure/templates/microsoft.cloudhealth/healthmodels/signaldefinitions)
+* [Entity schema](/azure/templates/microsoft.cloudhealth/healthmodels/entities)
 
 ## Next steps
 
