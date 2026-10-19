@@ -3,7 +3,7 @@ title: Prepare to use the Chaos Studio extension for AKS (preview)
 description: Check prerequisites and permissions, check your cluster configuration, verify the installation, plan a controlled test, and remove the Chaos Studio extension for AKS.
 author: nikhilkaul-msft
 ms.topic: how-to
-ms.date: 10/14/2026
+ms.date: 10/18/2026
 ai-usage: ai-assisted
 ---
 
@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 This article helps you prepare a cluster and a workspace for the [Chaos Studio extension for Azure Kubernetes Service (AKS)](chaos-studio-aks-extension-overview.md). You check the prerequisites and permissions, verify the installation, and plan your first pod-level test.
 
 > [!IMPORTANT]
-> The extension is in a limited preview. Microsoft enables it only for allow-listed subscriptions. During the preview, the extension is available in West Central US. To get access, see [Request access](#request-access).
+> The extension is in a limited preview. Microsoft enables it only for allow-listed subscriptions. During the preview, you can use the extension with a Workspace in West Central US, West US 2, North Europe, Sweden Central, UK South, and Japan East. Your AKS cluster can be in any region that supports AKS extensions. To get access, see [Request access](#request-access).
 
 ## Prerequisites
 
@@ -39,7 +39,7 @@ The command returns `1.9.4` or a later version.
 ## Request access
 
 1. [open an issue in the Chaos Studio GitHub repository](https://github.com/microsoft/chaos-studio/issues/new/choose).
-1. Include your subscription ID, the region of your AKS cluster, and the faults that you plan to use.
+1. Include your subscription ID, the region of your Workspace, and the faults that you plan to use.
 1. Wait for the Chaos Studio team to confirm that your subscription is on the allow list. The team also sends you the installation instructions.
 
 ## Review the permissions for installation
