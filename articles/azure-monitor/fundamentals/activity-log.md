@@ -692,12 +692,14 @@ Each event is stored in the PT1H.json file with the following format. This forma
 
 ## Export management group activity logs
 
-When you create a diagnostic setting for a management group, it exports Azure Monitor activity log events for that management group in addition to all management groups under it in the hierarchy. If multiple management groups in the hierarchy have diagnostic settings, you receive duplicate events. You only need a diagnostic setting on the highest level management group to capture all events for the hierarchy.
+When you create a diagnostic setting for a management group, it exports Azure Monitor activity log events for that management group and all management groups under it in the hierarchy. If multiple management groups in the hierarchy have diagnostic settings, you receive duplicate events. A diagnostic setting on the highest-level management group is sufficient for management group events, but it doesn't capture every subscription-level activity log event.
 
-The management group also collects many of the same events as any subscriptions under it. If the subscription and management group both have diagnostic settings, you receive duplicate events. Azure Resource Manager includes a hierarchy property when writing events, but it's not a required field. Resource providers outside Azure Resource Manager don't populate it, so their events don't propagate up the hierarchy. Because of this, getting duplicate events is better than missing events.
+Azure Resource Manager includes a `hierarchy` property when writing activity log events, but the property isn't required. Resource providers outside Azure Resource Manager don't populate it. Subscription-level events without this property don't propagate to management-group diagnostic settings, including a setting on the root management group.
+
+To capture events that don't propagate to the management group, [create a subscription-level diagnostic setting](#export-activity-log) for each subscription you need to monitor. If the subscription and management group both have diagnostic settings, you receive duplicate events for events collected at both scopes.
 
 > [!NOTE]
-> For example, if you have MG1 which contains MG2 which contains Subscription1, a diagnostic setting on MG1 captures all activity log events for MG1, MG2, and many of the events collected by a diagnostic setting on Subscription1. In this case, no diagnostic setting is needed on MG2 since it would just collect duplicate events.
+> For example, if MG1 contains MG2, which contains Subscription1, a diagnostic setting on MG1 captures activity log events for MG1, MG2, and many of the events collected by a diagnostic setting on Subscription1. Configure a diagnostic setting on Subscription1 to also capture events without the `hierarchy` property. You don't need a diagnostic setting on MG2 to collect the same management group events.
 
 If you have duplicate events, combine them by using a query that uses a hash of all fields to identify unique records.
 
