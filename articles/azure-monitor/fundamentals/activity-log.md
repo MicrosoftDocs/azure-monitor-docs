@@ -765,7 +765,7 @@ Get-AzActivityLog @getAzActivityLogParams |
     Export-Csv -Path $outputFile -NoTypeInformation
 ```
 
-The following example PowerShell script exports the activity log to CSV files in one-hour intervals, each saved to a separate file.
+The following example PowerShell script exports the activity log to CSV files in one-hour intervals, and saves each interval to a separate file.
 
 ```powershell
 # Set variables
