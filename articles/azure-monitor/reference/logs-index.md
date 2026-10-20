@@ -2,7 +2,7 @@
 title: Supported Resource log categories for Azure Monitor
 description: Understand the supported services and event schemas for Azure Monitor resource logs.
 ms.topic: generated-reference
-ms.date: 09/28/2026
+ms.date: 10/16/2026
 
 # NOTE This list is largely auto-generated. Any modification made to this list via GitHub might be written over without warning. Contact the author of this article for details on how to make permanent updates.
 ---
@@ -59,6 +59,7 @@ Following table lists metrics and log categories available for each resource typ
 |`Microsoft.`<br>`ContainerRegistry` <a name="microsoftcontainerregistry"></a>|[`registries`](./supported-metrics/microsoft-containerregistry-registries-metrics.md)|[`registries`](./supported-logs/microsoft-containerregistry-registries-logs.md)|
 |`Microsoft.`<br>`ContainerService` <a name="microsoftcontainerservice"></a>|[`managedClusters`](./supported-metrics/microsoft-containerservice-managedclusters-metrics.md)|[`fleets`](./supported-logs/microsoft-containerservice-fleets-logs.md)<br>[`managedClusters`](./supported-logs/microsoft-containerservice-managedclusters-logs.md)|
 |`Microsoft.`<br>`CustomProviders` <a name="microsoftcustomproviders"></a>|[`resourceproviders`](./supported-metrics/microsoft-customproviders-resourceproviders-metrics.md)|[`resourceproviders`](./supported-logs/microsoft-customproviders-resourceproviders-logs.md)|
+|`Microsoft.`<br>`D365CustomerInsights` <a name="microsoftd365customerinsights"></a>|N/A|[`instances`](./supported-logs/microsoft-d365customerinsights-instances-logs.md)|
 |`Microsoft.Dashboard` <a name="microsoftdashboard"></a>|[`grafana`](./supported-metrics/microsoft-dashboard-grafana-metrics.md)|[`dashboards`](./supported-logs/microsoft-dashboard-dashboards-logs.md)<br>[`grafana`](./supported-logs/microsoft-dashboard-grafana-logs.md)|
 |`Microsoft.Databricks` <a name="microsoftdatabricks"></a>|N/A|[`workspaces`](./supported-logs/microsoft-databricks-workspaces-logs.md)|
 |`Microsoft.DataFactory` <a name="microsoftdatafactory"></a>|[`datafactories`](./supported-metrics/microsoft-datafactory-datafactories-metrics.md)<br>[`factories`](./supported-metrics/microsoft-datafactory-factories-metrics.md)|[`factories`](./supported-logs/microsoft-datafactory-factories-logs.md)|
@@ -111,7 +112,7 @@ Following table lists metrics and log categories available for each resource typ
 |`Microsoft.`<br>`OpenLogisticsPlatform` <a name="microsoftopenlogisticsplatform"></a>|N/A|[`Workspaces`](./supported-logs/microsoft-openlogisticsplatform-workspaces-logs.md)|
 |`Microsoft.`<br>`OperationalInsights` <a name="microsoftoperationalinsights"></a>|[`workspaces`](./supported-metrics/microsoft-operationalinsights-workspaces-metrics.md)|[`workspaces`](./supported-logs/microsoft-operationalinsights-workspaces-logs.md)|
 |`Microsoft.Orbital` <a name="microsoftorbital"></a>|[`contactProfiles`](./supported-metrics/microsoft-orbital-contactprofiles-metrics.md)<br>[`geocatalogs`](./supported-metrics/microsoft-orbital-geocatalogs-metrics.md)<br>[`l2Connections`](./supported-metrics/microsoft-orbital-l2connections-metrics.md)<br>[`spacecrafts`](./supported-metrics/microsoft-orbital-spacecrafts-metrics.md)<br>[`terminals`](./supported-metrics/microsoft-orbital-terminals-metrics.md)|[`geocatalogs`](./supported-logs/microsoft-orbital-geocatalogs-logs.md)|
-|`Microsoft.Peering` <a name="microsoftpeering"></a>|N/A|[`peeringServices`](./supported-logs/microsoft-peering-peeringservices-logs.md)|
+|`Microsoft.Peering` <a name="microsoftpeering"></a>|N/A|[`peerings`](./supported-logs/microsoft-peering-peerings-logs.md)<br>[`peeringServices`](./supported-logs/microsoft-peering-peeringservices-logs.md)|
 |`Microsoft.PlayFab` <a name="microsoftplayfab"></a>|[`titles`](./supported-metrics/microsoft-playfab-titles-metrics.md)|[`titles`](./supported-logs/microsoft-playfab-titles-logs.md)|
 |`Microsoft.PowerBI` <a name="microsoftpowerbi"></a>|N/A|[`tenants`](./supported-logs/microsoft-powerbi-tenants-logs.md)<br>[`tenants/workspaces`](./supported-logs/microsoft-powerbi-tenants-workspaces-logs.md)|
 |`Microsoft.`<br>`PowerBIDedicated` <a name="microsoftpowerbidedicated"></a>|[`capacities`](./supported-metrics/microsoft-powerbidedicated-capacities-metrics.md)|[`capacities`](./supported-logs/microsoft-powerbidedicated-capacities-logs.md)|
@@ -120,7 +121,7 @@ Following table lists metrics and log categories available for each resource typ
 |`Microsoft.Quantum` <a name="microsoftquantum"></a>|[`providerAccounts`](./supported-metrics/microsoft-quantum-provideraccounts-metrics.md)|[`providerAccounts`](./supported-logs/microsoft-quantum-provideraccounts-logs.md)<br>[`workspaces`](./supported-logs/microsoft-quantum-workspaces-logs.md)|
 |`Microsoft.`<br>`RecoveryServices` <a name="microsoftrecoveryservices"></a>|[`Vaults`](./supported-metrics/microsoft-recoveryservices-vaults-metrics.md)|[`Vaults`](./supported-logs/microsoft-recoveryservices-vaults-logs.md)|
 |`Microsoft.`<br>`RedHatOpenShift` <a name="microsoftredhatopenshift"></a>|N/A|[`hcpOpenShiftClusters`](./supported-logs/microsoft-redhatopenshift-hcpopenshiftclusters-logs.md)|
-|`Microsoft.Relay` <a name="microsoftrelay"></a>|[`namespaces`](./supported-metrics/microsoft-relay-namespaces-metrics.md)|[`namespaces`](./supported-logs/microsoft-relay-namespaces-logs.md)|
+|`Microsoft.Relay` <a name="microsoftrelay"></a>|[`clusters`](./supported-metrics/microsoft-relay-clusters-metrics.md)<br>[`namespaces`](./supported-metrics/microsoft-relay-namespaces-metrics.md)|[`namespaces`](./supported-logs/microsoft-relay-namespaces-logs.md)|
 |`Microsoft.`<br>`ResourceBuilder` <a name="microsoftresourcebuilder"></a>|[`workspaces`](./supported-metrics/microsoft-resourcebuilder-workspaces-metrics.md)<br>[`workspaces/pipelines/jobs`](./supported-metrics/microsoft-resourcebuilder-workspaces-pipelines-jobs-metrics.md)|[`workspaces`](./supported-logs/microsoft-resourcebuilder-workspaces-logs.md)<br>[`workspaces/pipelines/jobs`](./supported-logs/microsoft-resourcebuilder-workspaces-pipelines-jobs-logs.md)|
 |`Microsoft.Search` <a name="microsoftsearch"></a>|[`searchServices`](./supported-metrics/microsoft-search-searchservices-metrics.md)|[`searchServices`](./supported-logs/microsoft-search-searchservices-logs.md)|
 |`Microsoft.Security` <a name="microsoftsecurity"></a>|N/A|[`antiMalwareSettings`](./supported-logs/microsoft-security-antimalwaresettings-logs.md)<br>[`defenderForStorageSettings`](./supported-logs/microsoft-security-defenderforstoragesettings-logs.md)|
