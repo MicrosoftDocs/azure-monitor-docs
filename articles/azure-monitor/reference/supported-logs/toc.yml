@@ -131,6 +131,9 @@ items:
 - name: Microsoft.CustomProviders/resourceproviders
   href: microsoft-customproviders-resourceproviders-logs.md
   displayName: Audit logs for MiniRP calls
+- name: Microsoft.D365CustomerInsights/instances
+  href: microsoft-d365customerinsights-instances-logs.md
+  displayName: Audit events,Operational events
 - name: Microsoft.Dashboard/dashboards
   href: microsoft-dashboard-dashboards-logs.md
   displayName: Update Events
@@ -446,6 +449,9 @@ items:
 - name: Microsoft.Orbital/geocatalogs
   href: microsoft-orbital-geocatalogs-logs.md
   displayName: Audit Logs,Ingestion Logs
+- name: Microsoft.Peering/peerings
+  href: microsoft-peering-peerings-logs.md
+  displayName: Operational Logs
 - name: Microsoft.Peering/peeringServices
   href: microsoft-peering-peeringservices-logs.md
   displayName: Operational Logs,Prefix Validation Logs

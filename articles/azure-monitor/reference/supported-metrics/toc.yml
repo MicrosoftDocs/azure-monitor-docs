@@ -392,6 +392,8 @@
   href: microsoft-quantum-provideraccounts-metrics.md
 - name: Microsoft.RecoveryServices/Vaults
   href: microsoft-recoveryservices-vaults-metrics.md
+- name: Microsoft.Relay/clusters
+  href: microsoft-relay-clusters-metrics.md
 - name: Microsoft.Relay/namespaces
   href: microsoft-relay-namespaces-metrics.md
 - name: Microsoft.ResourceBuilder/workspaces

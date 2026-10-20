@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Monitor/pipelineGroups
 description: Reference for Microsoft.Monitor/pipelineGroups metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 08/21/2026
+ms.date: 10/16/2026
 ms.custom: Microsoft.Monitor/pipelineGroups, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -35,20 +35,24 @@ For a list of supported logs, see [Supported log categories - Microsoft.Monitor/
 ### Category: Export
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
+|**Bytes exported(preview)**<br><br>Encoded application payload bytes produced or submitted by successful export attempts. |`exported_bytes` | No | Bytes |Total (Sum) |`outcome`, `instanceId`, `pipelineName`, `componentName`|PT1M |No|
 |**Logs exported(preview)**<br><br>Number of log records successfully sent to the destination. |`exported_log_records` | No | Count |Total (Sum) |`signal`, `outcome`, `instanceId`, `pipelineName`, `componentName`|PT1M |No|
 |**Logs failed to export(preview)**<br><br>The number of log records the pipeline could not deliver after exhausting its own retries, if any. The same logs may be counted more than once if resubmitted by an upstream retry or buffering mechanism. A non-zero value indicates export issues but not necessarily data loss, as the pipeline may still retry successfully. |`log_records_failed_to_export` | No | Count |Total (Sum) |`signal`, `outcome`, `instanceId`, `pipelineName`, `componentName`|PT1M |No|
-|**Logs currently pending export(preview)**<br><br>Current number of log records queued or in flight for export. |`log_records_pending_export` | No | Count |Total (Sum), Minimum, Maximum |`instanceId`, `pipelineName`, `componentName`|PT1M |No|
+|**Logs currently pending export(preview)**<br><br>Current number of log records queued or in flight for export. |`log_records_pending_export` | No | Count |Average, Minimum, Maximum |`instanceId`, `pipelineName`, `componentName`|PT1M |No|
 
 ### Category: Ingestion
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**Logs accepted(preview)**<br><br>Number of log records accepted into the pipeline. |`accepted_log_records` | No | Count |Total (Sum) |`signal`, `instanceId`, `componentName`|PT1M |No|
+|**Bytes received(preview)**<br><br>Encoded application payload bytes observed at the receiver boundary for successfully handled messages. |`received_bytes` | No | Bytes |Total (Sum) |`outcome`, `instanceId`, `componentName`|PT1M |No|
 |**Logs rejected(preview)**<br><br>Number of log records rejected by validation while entering the pipeline. |`rejected_log_records` | No | Count |Total (Sum) |`signal`, `instanceId`, `componentName`|PT1M |No|
 
 ### Category: Persistent storage
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
+|**Bytes dropped from persistent storage(preview)**<br><br>Logical payload bytes dropped from persistent storage by retention. |`bytes_dropped_from_storage` | No | Bytes |Total (Sum) |`reason`, `instanceId`, `pipelineName`, `componentName`|PT1M |No|
 |**Logs dropped from persistent storage(preview)**<br><br>Number of log records dropped from persistent storage. |`log_records_dropped_from_storage` | No | Count |Total (Sum) |`signal`, `reason`, `instanceId`, `pipelineName`, `componentName`|PT1M |No|
+|**Persistent storage used bytes(preview)**<br><br>Current persistent storage usage in bytes. |`persistent_storage_used_bytes` | No | Bytes |Average, Minimum, Maximum |`instanceId`, `pipelineName`, `componentName`|PT1M |No|
 |**Persistent storage utilization(preview)**<br><br>Percentage of configured persistent storage currently in use. |`persistent_storage_utilization` | No | Percent |Average, Minimum, Maximum |`instanceId`, `pipelineName`, `componentName`|PT1M |No|
 
 ### Category: Processing

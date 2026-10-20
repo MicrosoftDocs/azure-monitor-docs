@@ -2,8 +2,8 @@
 title: Supported metrics - Microsoft.Devices/provisioningServices
 description: Reference for Microsoft.Devices/provisioningServices metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
-ms.custom: Microsoft.Devices/provisioningServices, arm
+ms.date: 10/16/2026
+ms.custom: Microsoft.Devices/provisioningServices, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
@@ -34,9 +34,9 @@ For a list of supported logs, see [Supported log categories - Microsoft.Devices/
 
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Attestation attempts**<br><br>Number of device attestations attempted |`AttestationAttempts` | No | Count |Total (Sum) |`ProvisioningServiceName`, `Status`, `Protocol`|PT1M |Yes|
-|**Devices assigned**<br><br>Number of devices assigned to an IoT hub |`DeviceAssignments` | No | Count |Total (Sum) |`ProvisioningServiceName`, `IotHubName`|PT1M |Yes|
-|**Registration attempts**<br><br>Number of device registrations attempted |`RegistrationAttempts` | No | Count |Total (Sum) |`ProvisioningServiceName`, `IotHubName`, `Status`|PT1M |Yes|
+|**Attestation attempts**<br><br>Number of device attestations attempted |`AttestationAttempts` | No | Count |Total (Sum), Count, Average, Minimum, Maximum |`provisioningServiceName`, `status`, `protocol`|PT1M |Yes|
+|**Devices assigned**<br><br>Number of device assigned to an IoT hub |`DeviceAssignments` | No | Count |Total (Sum), Count, Average, Minimum, Maximum |`provisioningServiceName`, `iotHubName`|PT1M |Yes|
+|**Registration attempts**<br><br>Number of device registrations attempted |`RegistrationAttempts` | No | Count |Total (Sum), Count, Average, Minimum, Maximum |`provisioningServiceName`, `iotHubName`, `status`|PT1M |Yes|
 
 ## Next steps
 
