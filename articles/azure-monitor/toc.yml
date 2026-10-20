@@ -805,6 +805,8 @@ items:
       href: data-collection/data-collection-rule-samples.md
     - name: Data collection endpoints
       href: data-collection/data-collection-endpoint-overview.md
+    - name: Test DCE Private IP Endpoint Compression (preview)
+      href: data-collection/data-collection-endpoint-ip-compression.md
     - name: Tutorials
       items:
       - name: Workspace transformation in Azure portal
