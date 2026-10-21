@@ -3,7 +3,7 @@ title: Prepare to use the Chaos Studio extension for AKS (preview)
 description: Check prerequisites and permissions, check your cluster configuration, verify the installation, plan a controlled test, and remove the Chaos Studio extension for AKS.
 author: nikhilkaul-msft
 ms.topic: how-to
-ms.date: 10/18/2026
+ms.date: 10/21/2026
 ai-usage: ai-assisted
 ---
 
@@ -93,8 +93,9 @@ To remove the extension, you need the matching delete permissions.
 
 Check the following items before you install:
 
-- **Node pools.** Faults affect pods on Linux amd64 nodes. In a cluster with amd64 and arm64 node pools, faults affect only pods on amd64 nodes. Clusters with only arm64 node pools and Windows node pools aren't supported.
+- **Node pools.** The extension's network fault component runs only on Linux amd64 nodes. In a cluster with amd64 and arm64 node pools, pod network latency and pod network loss affect only pods on amd64 nodes. Pod delete can also delete target pods on arm64 nodes. Make sure that your target selection includes only the pods you intend to affect. Clusters with only arm64 node pools and Windows node pools aren't supported.
 - **Deployment Safeguards.** If [Deployment Safeguards](/azure/aks/deployment-safeguards) is set to enforce, installation shows a warning. It installs the extension without the component that the network faults need. Pod delete, CPU hog, and memory hog still work. Pod network latency and pod network loss fail with the error `AksLitmusDaemonUnavailable`. To use the network faults, exclude the `chaos-infrastructure` namespace from Deployment Safeguards and install again. This exclusion removes Safeguards protection from that namespace.
+- **Pod Security Admission.** If a namespace enforces the Pod Security Admission `restricted` level, Kubernetes rejects the pod that runs the pod delete fault. Use a namespace that doesn't enforce `restricted` for pod delete tests. This issue is fixed in a later release of the extension.
 - **Other configurations.** If your cluster uses a configuration that this article doesn't list, ask about it in your access request.
 
 ## Install and verify the extension
