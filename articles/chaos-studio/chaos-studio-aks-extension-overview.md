@@ -3,7 +3,7 @@ title: Chaos Studio extension for AKS (preview) overview
 description: Learn what the Chaos Studio extension for AKS does, when to use its pod-level faults, how it connects to a Workspace, and its preview requirements and known issues.
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 10/18/2026
+ms.date: 10/21/2026
 ai-usage: ai-assisted
 ---
 
@@ -71,7 +71,7 @@ The cluster connects outbound to Chaos Studio. You don't open inbound ports on t
 - **Access.** Your subscription must be on the preview allow list. To request access, [open an issue in the Chaos Studio GitHub repository](https://github.com/microsoft/chaos-studio/issues/new/choose).
 - **Region.** The extension uses the Chaos Studio data plane in the region of your Workspace, not the region of your cluster. Create the Workspace in one of these regions: West Central US, West US 2, North Europe, Sweden Central, UK South, and Japan East. Your AKS cluster can be in any region that supports AKS extensions. For more information about Workspace regions, see [Regional availability by resource model](chaos-studio-region-availability.md#regional-availability-of-chaos-studio-workspaces).
 - **Cluster features.** The cluster must have [Microsoft Entra Workload ID](/azure/aks/workload-identity-overview), the [OIDC issuer](/azure/aks/use-oidc-issuer), and [Azure RBAC for Kubernetes authorization](/azure/aks/manage-azure-rbac) turned on.
-- **Node pools.** Faults affect pods on Linux amd64 nodes. In a cluster with amd64 and arm64 node pools, faults affect only pods on amd64 nodes. Clusters with only arm64 node pools and Windows node pools aren't supported.
+- **Node pools.** The extension's network fault component runs only on Linux amd64 nodes. In a cluster with amd64 and arm64 node pools, pod network latency and pod network loss affect only pods on amd64 nodes. Pod delete can also delete target pods on arm64 nodes. Make sure that your target selection includes only the pods you intend to affect. Clusters with only arm64 node pools and Windows node pools aren't supported.
 - **Deployment Safeguards.** If [Deployment Safeguards](/azure/aks/deployment-safeguards) enforces policies on the cluster, the network faults aren't available. Pod delete, CPU hog, and memory hog still work. For details, see [Check your cluster configuration](chaos-studio-aks-extension-install.md#check-your-cluster-configuration).
 - **Azure CLI.** Use version 1.9.4 or later of the `k8s-extension` Azure CLI extension.
 - **Other configurations.** If your cluster uses a configuration that this article doesn't list, ask about it in your access request.
@@ -81,6 +81,9 @@ The cluster connects outbound to Chaos Studio. You don't open inbound ports on t
 - **Connection status shows Pending.** The Workspace connection status shows `Pending` even when the connection works. Don't use the connection status to decide whether the extension is ready. Check the extension provisioning state and run a short test.
 - **Short durations fail.** A fault duration shorter than 1 minute (`PT1M`) fails.
 - **Installation in a second subscription fails with older CLI versions.** Versions of the `k8s-extension` Azure CLI extension earlier than 1.9.4 can fail when you install in more than one subscription in the same tenant. Upgrade to version 1.9.4 or later.
+- **Pod delete fails in restricted namespaces.** If a namespace enforces the Pod Security Admission `restricted` level, Kubernetes rejects the pod that runs the pod delete fault. Run pod delete tests in a namespace that doesn't enforce `restricted`. A later release of the extension fixes this issue.
+- **Network faults end early if the helper pod is deleted.** Pod network latency and pod network loss use a helper pod in the cluster. If that pod is deleted during a run, the network effect stops before the fault duration ends. If a network test ends early, check whether the helper pod was deleted before you evaluate the results.
+- **Run status can differ from the effect in the cluster.** The Scenario run status might not match what happened in the cluster. For example, a run can show Succeeded when the effect ended early, or Failed when the fault ran and was cleaned up. A run can also stay in the Running state. Check Kubernetes events and your application metrics to confirm the result. For more information, see [Interpret the results](#interpret-the-results).
 
 ## Interpret the results
 
@@ -88,7 +91,7 @@ A completed Action shows that Chaos Studio ran the fault. It doesn't show that y
 
 | Evidence | What it tells you |
 | --- | --- |
-| The [Scenario report](chaos-studio-scenario-reports.md) | Whether the Action completed, and when it ran. |
+| The [Scenario report](chaos-studio-scenario-reports.md) | When the Action ran, and its reported status. During the preview, the status can differ from the effect in the cluster. |
 | Kubernetes events and pod status | Which pods the fault affected, and how Kubernetes responded. |
 | Application metrics and test traffic | Whether users could still complete their tasks. |
 | Data checks | Whether the application kept the work it acknowledged. |
