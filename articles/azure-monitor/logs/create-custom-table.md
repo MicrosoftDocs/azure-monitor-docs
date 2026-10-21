@@ -20,8 +20,9 @@ Custom columns extend the schema of a table to accommodate changes in the data s
 ## Prerequisites
 
 | Action | Permission required |
-|---|---|
+| --- | --- |
 | Manage a table | `Microsoft.OperationalInsights/workspaces/*` permission at the Log Analytics workspace scope or higher. <br>For example, as provided by the privileged built-in role, [Log Analytics contributor](../logs/manage-access.md#log-analytics-contributor). |
+| Create a data collection rule (DCR) | `Microsoft.Insights/dataCollectionRules/write` permission at the resource group scope where you create the DCR. For example, as provided by the [Monitoring Contributor](/azure/role-based-access-control/built-in-roles/monitor#monitoring-contributor) built-in role. |
 
 To ingest data into the table, you might need the following items:
 * Data collection endpoint (DCE). For more information, see [DCE](../data-collection/data-collection-endpoint-overview.md).
