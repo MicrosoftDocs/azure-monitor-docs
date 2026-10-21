@@ -20,8 +20,9 @@ Custom columns extend the schema of a table to accommodate changes in the data s
 ## Prerequisites
 
 | Action | Permission required |
-|---|---|
+| --- | --- |
 | Manage a table | `Microsoft.OperationalInsights/workspaces/*` permission at the Log Analytics workspace scope or higher. <br>For example, as provided by the privileged built-in role, [Log Analytics contributor](../logs/manage-access.md#log-analytics-contributor). |
+| Create a data collection rule (DCR) | `Microsoft.Insights/dataCollectionRules/write` permission at the resource group scope where you create the DCR. For example, as provided by the [Monitoring Contributor](/azure/role-based-access-control/built-in-roles/monitor#monitoring-contributor) built-in role. |
 
 To ingest data into the table, you might need the following items:
 * Data collection endpoint (DCE). For more information, see [DCE](../data-collection/data-collection-endpoint-overview.md).
@@ -332,7 +333,7 @@ The following Azure PowerShell examples use the [`New-AzOperationalInsightsTable
     # Define parameters for Invoke-AzRestMethod
     $invokeAzRestMethodParams = @{
         Method  = "PUT"
-        Path    = "$url?api-version=$apiVersion"
+        Path    = "${url}?api-version=$apiVersion"
         Payload = Get-Content -Raw -Path $payloadFile
     }
 
@@ -397,11 +398,13 @@ The following Azure PowerShell examples use the [`New-AzOperationalInsightsTable
 
 1. Create a data collection rule that routes data sent through the Logs Ingestion API to the custom table. This PowerShell example uses the [New-AzDataCollectionRule](/powershell/module/az.monitor/new-azdatacollectionrule) cmdlet to create a Direct DCR.
 
+    Save the JSON request body shown later in this step as `my-dcr.json` in your current directory before running the command.
+
     ```powershell
     # Set variables
     $resourceGroupName = "<ResourceGroupName>"
     $dataCollectionRuleName = "<DataCollectionRuleName>"
-    $jsonFilePath = ".\my-dcr.json"
+    $jsonFilePath = Join-Path -Path (Get-Location) -ChildPath "my-dcr.json"
 
     $newAzDataCollectionRuleParams = @{
         Name              = $dataCollectionRuleName
@@ -1057,7 +1060,7 @@ $url = "$path/providers/$provider"
 # Define parameters for Invoke-AzRestMethod
 $invokeAzRestMethodParams = @{
     Method = "DELETE"
-    Path   = "$url?api-version=$apiVersion"
+    Path   = "${url}?api-version=$apiVersion"
 }
 
 # Delete the table
@@ -1163,7 +1166,7 @@ $url = "$path/providers/$provider"
 # Define parameters for Invoke-AzRestMethod
 $invokeAzRestMethodParams = @{
     Method  = "PUT"
-    Path    = "$url?api-version=$apiVersion"
+    Path    = "${url}?api-version=$apiVersion"
     Payload = Get-Content -Raw -Path $payloadFile
 }
 
