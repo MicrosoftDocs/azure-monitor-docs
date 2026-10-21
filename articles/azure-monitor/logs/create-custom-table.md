@@ -332,7 +332,7 @@ The following Azure PowerShell examples use the [`New-AzOperationalInsightsTable
     # Define parameters for Invoke-AzRestMethod
     $invokeAzRestMethodParams = @{
         Method  = "PUT"
-        Path    = "$url?api-version=$apiVersion"
+        Path    = "${url}?api-version=$apiVersion"
         Payload = Get-Content -Raw -Path $payloadFile
     }
 
@@ -397,11 +397,13 @@ The following Azure PowerShell examples use the [`New-AzOperationalInsightsTable
 
 1. Create a data collection rule that routes data sent through the Logs Ingestion API to the custom table. This PowerShell example uses the [New-AzDataCollectionRule](/powershell/module/az.monitor/new-azdatacollectionrule) cmdlet to create a Direct DCR.
 
+    Save the JSON request body shown later in this step as `my-dcr.json` in your current directory before running the command.
+
     ```powershell
     # Set variables
     $resourceGroupName = "<ResourceGroupName>"
     $dataCollectionRuleName = "<DataCollectionRuleName>"
-    $jsonFilePath = ".\my-dcr.json"
+    $jsonFilePath = Join-Path -Path (Get-Location) -ChildPath "my-dcr.json"
 
     $newAzDataCollectionRuleParams = @{
         Name              = $dataCollectionRuleName
@@ -1057,7 +1059,7 @@ $url = "$path/providers/$provider"
 # Define parameters for Invoke-AzRestMethod
 $invokeAzRestMethodParams = @{
     Method = "DELETE"
-    Path   = "$url?api-version=$apiVersion"
+    Path   = "${url}?api-version=$apiVersion"
 }
 
 # Delete the table
@@ -1163,7 +1165,7 @@ $url = "$path/providers/$provider"
 # Define parameters for Invoke-AzRestMethod
 $invokeAzRestMethodParams = @{
     Method  = "PUT"
-    Path    = "$url?api-version=$apiVersion"
+    Path    = "${url}?api-version=$apiVersion"
     Payload = Get-Content -Raw -Path $payloadFile
 }
 
