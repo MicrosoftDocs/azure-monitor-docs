@@ -12,6 +12,6 @@ ai-usage: ai-assisted
 
 # Resource log availability for Microsoft.Web/staticsites
 
-Azure Monitor resource-log export isn't currently available for Azure Static Web Apps. Log category names might appear in Azure Monitor APIs, but their presence doesn't indicate that log export is supported.
+Azure Static Web Apps does not currently support exporting the `StaticSiteHttpLogs` and `StaticSiteDiagnosticLogs` resource log categories through Azure Monitor diagnostic settings. These categories might appear in Azure Monitor APIs, but configuring diagnostic settings for them does not enable log delivery.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Web/staticsites](../supported-metrics/microsoft-web-staticsites-metrics.md)
