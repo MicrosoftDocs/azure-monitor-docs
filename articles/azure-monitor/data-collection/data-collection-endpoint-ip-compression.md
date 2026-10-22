@@ -47,7 +47,7 @@ Count distinct private IP addresses, not DNS records or endpoint hostnames. Mult
 
 The following Azure portal screenshot shows the private endpoint's **DNS configuration** for two DCEs in West US (`westus`) associated with the same AMPLS. Each highlighted group maps the endpoint hostnames for both DCEs to one shared private IP address.
 
-:::image type="content" source="media/data-collection-endpoint-ip-compression/shared-private-ip-addresses.png" lightbox="media/data-collection-endpoint-ip-compression/shared-private-ip-addresses.png" alt-text="Screenshot of Azure portal DNS configuration showing two DCEs in West US sharing three private IP addresses for configuration access, logs ingestion, and metrics ingestion.":::
+:::image type="content" source="media/data-collection-endpoint-ip-compression/dce-ip-endpoint-compression.png" lightbox="media/data-collection-endpoint-ip-compression/dce-ip-endpoint-compression.png" alt-text="Screenshot of Azure portal DNS configuration showing two DCEs in West US sharing three private IP addresses for configuration access, logs ingestion, and metrics ingestion.":::
 
 | Endpoint type | Shared private IP address | How the address is shared |
 |:--------------|:--------------------------|:--------------------------|
