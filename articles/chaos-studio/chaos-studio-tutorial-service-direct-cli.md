@@ -41,7 +41,7 @@ If you want to install and use the CLI locally, this tutorial requires Azure CLI
 
 Chaos Studio can't inject faults against a resource unless that resource was added to Chaos Studio first. You add a resource to Chaos Studio by creating a [target and capabilities](chaos-studio-targets-capabilities.md) on the resource. Azure Cosmos DB accounts have only one target type (service-direct) and one capability (failover). Other resources might have up to two target types. One target type is for service-direct faults. Another target type is for agent-based faults. Other resources might have  many other capabilities.
 
-1. Create a target by replacing `$RESOURCE_ID` with the resource ID of the resource you're adding. Replace `$TARGET_TYPE` with the [target type you're adding](chaos-studio-fault-providers.md):
+1. Create a target by replacing `$RESOURCE_ID` with the resource ID of the resource you're adding. Replace `$TARGET_TYPE` with the [target type you're adding](chaos-studio-fault-library.md):
 
     ```azurecli-interactive
     az rest --method put --url "https://management.azure.com/$RESOURCE_ID/providers/Microsoft.Chaos/targets/$TARGET_TYPE?api-version=2023-11-01" --body "{\"properties\":{}}"
@@ -53,7 +53,7 @@ Chaos Studio can't inject faults against a resource unless that resource was add
     az rest --method put --url "https://management.azure.com/subscriptions/b65f2fec-d6b2-4edd-817e-9339d8c01dc4/resourceGroups/myRG/providers/Microsoft.Compute/virtualMachines/myVM/providers/Microsoft.Chaos/targets/Microsoft-VirtualMachine?api-version=2023-11-01" --body "{\"properties\":{}}"
     ```
 
-1. Create the capabilities on the target by replacing `$RESOURCE_ID` with the resource ID of the resource you're adding. Replace `$TARGET_TYPE` with the [target type you're adding](chaos-studio-fault-providers.md). Replace `$CAPABILITY` with the [name of the fault capability you're enabling](chaos-studio-fault-library.md).
+1. Create the capabilities on the target by replacing `$RESOURCE_ID` with the resource ID of the resource you're adding. Replace `$TARGET_TYPE` with the [target type you're adding](chaos-studio-fault-library.md). Replace `$CAPABILITY` with the [name of the fault capability you're enabling](chaos-studio-fault-library.md).
     
     ```azurecli-interactive
     az rest --method put --url "https://management.azure.com/$RESOURCE_ID/providers/Microsoft.Chaos/targets/$TARGET_TYPE/capabilities/$CAPABILITY?api-version=2023-11-01" --body "{\"properties\":{}}"
@@ -128,9 +128,9 @@ Now you can create your experiment. A chaos experiment defines the actions you w
     Each experiment creates a corresponding system-assigned managed identity. Note the principal ID for this identity in the response for the next step.
 
 ## Give the experiment permission to your Azure Cosmos DB account
-When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. This identity must be given [appropriate permissions](chaos-studio-fault-providers.md) to the target resource for the experiment to run successfully.
+When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. You must give this identity [appropriate permissions](chaos-studio-workspaces-supported-resources.md) to the target resource for the experiment to run successfully.
 
-Give the experiment access to your resources by using the following command. Replace `$EXPERIMENT_PRINCIPAL_ID` with the principal ID from the previous step. Replace `$RESOURCE_ID` with the resource ID of the target resource. In this case, it's the Azure Cosmos DB instance resource ID. Change the role to the appropriate [built-in role for that resource type](chaos-studio-fault-providers.md). Run this command for each resource targeted in your experiment.
+Give the experiment access to your resources by using the following command. Replace `$EXPERIMENT_PRINCIPAL_ID` with the principal ID from the previous step. Replace `$RESOURCE_ID` with the resource ID of the target resource. In this case, it's the Azure Cosmos DB instance resource ID. Change the role to the appropriate [built-in role for that resource type](chaos-studio-workspaces-supported-resources.md). Run this command for each resource targeted in your experiment.
 
 ```azurecli-interactive
 az role assignment create --role "Cosmos DB Operator" --assignee-object-id $EXPERIMENT_PRINCIPAL_ID --scope $RESOURCE_ID

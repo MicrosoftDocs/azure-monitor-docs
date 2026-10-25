@@ -18,6 +18,8 @@
       items:
         - name: Manage Workspaces and Scenarios with the Azure CLI
           href: chaos-studio-manage-cli.md
+        - name: Supported resources and Actions for Chaos Studio Workspaces
+          href: chaos-studio-workspaces-supported-resources.md
         - name: Filter resources for Workspace Scenarios
           href: chaos-studio-workspaces-resource-targeting.md
         - name: Create least-privilege roles for Chaos Studio Workspaces
@@ -174,8 +176,6 @@
           href: chaos-studio-fault-library.md
         - name: Experiment examples for the CLI and portal (classic)
           href: experiment-examples.md
-        - name: Supported resources for Experiments (classic)
-          href: chaos-studio-fault-providers.md
         - name: Version compatibility for Experiments (classic)
           href: chaos-studio-versions.md
         - name: Limitations and known issues for Experiments (classic)

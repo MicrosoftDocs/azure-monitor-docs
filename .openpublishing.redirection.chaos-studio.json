@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path_from_root": "/articles/chaos-studio/chaos-studio-fault-providers.md",
+      "redirect_url": "/azure/chaos-studio/chaos-studio-workspaces-supported-resources",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/chaos-studio/chaos-studio-tutorial-agent-based.md",
       "redirect_url": "/azure/chaos-studio/chaos-studio-tutorial-agent-based-portal",
       "redirect_document_id": false

@@ -69,7 +69,7 @@ Now you can create your experiment. A chaos experiment defines the actions you w
    ![Screenshot that shows reviewing and creating an experiment.](images/tutorial-service-direct-add-review.png)
 
 ## Give the experiment permission to your target resource
-When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. This identity must be given [appropriate permissions](chaos-studio-fault-providers.md) to the target resource for the experiment to run successfully. You can use these steps for any resource and target type by modifying the role assignment in step 3 to match the [appropriate role for that resource and target type.](chaos-studio-fault-providers.md).
+When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. You must give this identity [appropriate permissions](chaos-studio-workspaces-supported-resources.md) to the target resource for the experiment to run successfully. You can use these steps for any resource and target type by modifying the role assignment in step 3 to match the [appropriate role for that resource and target type.](chaos-studio-workspaces-supported-resources.md)
 
 1. Go to your Azure Cosmos DB account and select **Access control (IAM)**.
 
