@@ -33,7 +33,7 @@ Chaos Studio has three levels of security to help you control how and when fault
 
    When creating a chaos experiment in the Azure portal, you can choose to enable [automatic role assignment using Azure built-in roles or a custom role](chaos-studio-assign-experiment-permissions.md) on either your system-assigned or user-assigned managed identity selection. Enabling this functionality allows Chaos Studio to create and assign Azure built-in roles or a custom role containing any necessary experiment action capabilities to your experiment's identity (that do not already exist in your identity selection). If a chaos experiment is using a user-assigned managed identity, any custom roles assigned to the experiment identity by Chaos Studio will persist after experiment deletion.
   
-  If you choose to grant your experiment permissions manually, you must grant its identity [appropriate permissions](chaos-studio-fault-providers.md) to all target resources. If the experiment identity doesn't have appropriate permission to a resource, it can't execute a fault against that resource.
+  If you choose to grant your experiment permissions manually, you must grant its identity [appropriate permissions](chaos-studio-workspaces-supported-resources.md) to all target resources. If the experiment identity doesn't have appropriate permission to a resource, it can't execute a fault against that resource.
 
 * Third, each resource must be onboarded to Chaos Studio as [a target with corresponding capabilities enabled](chaos-studio-targets-capabilities.md). If a target or the capability for the fault being executed doesn't exist, the experiment fails without affecting the resource.
 

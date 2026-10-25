@@ -32,7 +32,7 @@ az rest --method put --uri https://management.azure.com/subscriptions/aaaa0a0a-b
 > Make sure your experiment has permission to operate on **ALL** resources within the experiment. These examples exclusively use **System-assigned managed identity**, but we also support User-assigned managed identity. For more information, see [Experiment permissions](chaos-studio-permissions-security.md). These experiments will **NOT** run without granting the experiment permission to run on the target resources. 
 ><br>
 ><br>
->View all available role assignments [here](chaos-studio-fault-providers.md) to determine which permissions are required for your target resources. 
+>To determine which permissions your target resources require, see [Supported resources and Actions for Chaos Studio Workspaces](chaos-studio-workspaces-supported-resources.md).
 
 
 

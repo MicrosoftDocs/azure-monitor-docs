@@ -213,7 +213,7 @@ Restarts target virtual machines and, after the restart succeeds, redeploys them
 
 #### CPU Pressure
 
-Applies sustained CPU stress inside target virtual machines to validate application behavior under CPU contention. You set the pressure level (percentage) and duration.
+Applies sustained CPU stress inside target virtual machines or scale set instances to validate application behavior under CPU contention. You set the pressure level (percentage) and duration.
 
 > [!NOTE]
 > CPU Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Chaos Studio installs the agent extension automatically during the run and removes it afterward. For target VM and operating system requirements, see [Agent-based Scenario requirements](#agent-based-scenario-requirements).
@@ -221,12 +221,12 @@ Applies sustained CPU stress inside target virtual machines to validate applicat
 | Property | Value |
 |---|---|
 | Actions | CPU Pressure (agent-based) |
-| Target resources | Virtual Machines (standalone only) |
+| Target resources | Virtual Machines, Virtual Machine Scale Sets |
 | Outage category | Resource pressure |
 
 #### Physical Memory Pressure
 
-Consumes physical memory inside target virtual machines to validate application behavior under memory contention. You set the pressure level (percentage) and duration.
+Consumes physical memory inside target virtual machines or scale set instances to validate application behavior under memory contention. You set the pressure level (percentage) and duration.
 
 > [!NOTE]
 > Physical Memory Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Chaos Studio installs the agent extension automatically during the run and removes it afterward. For target VM and operating system requirements, see [Agent-based Scenario requirements](#agent-based-scenario-requirements).
@@ -234,16 +234,15 @@ Consumes physical memory inside target virtual machines to validate application 
 | Property | Value |
 |---|---|
 | Actions | Physical Memory Pressure (agent-based) |
-| Target resources | Virtual Machines (standalone only) |
+| Target resources | Virtual Machines, Virtual Machine Scale Sets |
 | Outage category | Resource pressure |
 
 ## Agent-based Scenario requirements
 
 Most Scenarios use service-direct actions that operate on resources through Azure management APIs. Agent-based Scenarios, such as CPU Pressure and Physical Memory Pressure, instead run the fault inside the target virtual machine through the Chaos Studio agent. Chaos Studio installs the agent extension automatically when the run starts and removes it when the run ends, so you don't install or manage the agent yourself.
 
-Each target virtual machine must meet the following requirements:
+Each target virtual machine or virtual machine scale set must meet the following requirements:
 
-- It's a standalone virtual machine. Virtual machine scale sets aren't supported yet.
 - It has a managed identity.
 - It runs a supported operating system.
 - It can reach the Chaos Studio service over public outbound connectivity. VMs restricted to private networking aren't supported.
@@ -353,16 +352,9 @@ Canonical Action URNs have the form `urn:csci:microsoft:{service}:{action}/{vers
 
 ### Actions available for custom Scenarios
 
-In addition to the Actions used by the [supported Scenario templates](#supported-scenario-templates), you can use the following Actions in custom Scenarios that you build in the Scenario designer or define as `Microsoft.Chaos/workspaces/scenarios` resources. Each Action applies to the discovered resources of its target resource type in the Workspace scope.
+You can use any Action in the Workspaces Action catalog in a custom Scenario, not only the Actions that the [supported Scenario templates](#supported-scenario-templates) use. For every supported resource type, its Actions, the `actionId` values, parameters, and recommended roles, see [Supported resources and Actions for Chaos Studio Workspaces](chaos-studio-workspaces-supported-resources.md).
 
-| Action | `actionId` | Target resource type | Key parameters | Behavior |
-|---|---|---|---|---|
-| Azure Cosmos DB offline region | `microsoft-documentdb-offlineregion/1.0` | `Microsoft.DocumentDb/databaseAccounts` | `RegionName` (required): the display name of the Azure region to take offline, such as `East US`. | Continuous. Takes the region offline for the Action's `duration`, and then brings it back online. Requires a `duration`. |
-| Service Bus change topic state | `microsoft-servicebus-changetopicstate/1.0` | `Microsoft.ServiceBus/namespaces` | `topics` (required): array of topic names. `desiredState` (required): `Active` or `Disabled`. | Discrete. Sets the state once and doesn't revert it. Add a later Action that sets `desiredState` to `Active` to re-enable the topics. |
-| Service Bus change subscription state | `microsoft-servicebus-changesubscriptionstate/1.0` | `Microsoft.ServiceBus/namespaces` | `topic` (required): topic name. `subscriptions` (required): array of subscription names. `desiredState` (required): `Active` or `Disabled`. | Discrete. Sets the state once and doesn't revert it. Add a later Action that sets `desiredState` to `Active` to re-enable the subscriptions. |
-| App Service restart | `microsoft-appService-Restart/1.0` | `Microsoft.Web/sites` | `SoftRestart` (optional): `true` applies configuration settings and restarts only if necessary. The default, `false`, always restarts and reprovisions the app. | Discrete. Restarts the app once. |
-
-The Workspace identity needs permissions for each Action. The recommended built-in roles are Cosmos DB Operator for Azure Cosmos DB offline region, Azure Service Bus Data Owner for the Service Bus Actions, and Website Contributor for App Service restart. For more information, see [Permissions and identity in Chaos Studio Workspaces](chaos-studio-workspace-permissions.md#role-assignments-the-workspace-identity-needs).
+Each Action applies to the discovered resources of its target resource type in the Workspace scope. The Workspace identity needs permissions for each Action. For more information, see [Permissions and identity in Chaos Studio Workspaces](chaos-studio-workspace-permissions.md#role-assignments-the-workspace-identity-needs).
 
 ### Example: Azure Cosmos DB offline region in Bicep
 
@@ -424,5 +416,6 @@ When you configure a Scenario, you can exclude specific resources from the run. 
 ## Next steps
 
 - [Quickstart: Create a Workspace and run your first Scenario](quickstart-create-workspace.md)
+- [Supported resources and Actions for Chaos Studio Workspaces](chaos-studio-workspaces-supported-resources.md)
 - [Scenario reports in Azure Chaos Studio](chaos-studio-scenario-reports.md)
 - [Choose between Chaos Studio Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md)

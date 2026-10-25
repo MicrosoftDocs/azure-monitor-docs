@@ -45,9 +45,9 @@ The Workspace's managed identity must have the roles required by each Action it 
 | Azure Cosmos DB offline region | Cosmos DB Operator | Target Azure Cosmos DB account |
 | Service Bus topic and subscription state changes | Azure Service Bus Data Owner | Target Service Bus namespace |
 | App Service restart | Website Contributor | Target app |
-| Agent-based Actions (CPU, memory, network) | Reader | Target VM (agent authenticates separately) |
+| Agent-based Actions (CPU pressure, physical memory pressure) | Virtual Machine Contributor | Target VM or scale set |
 
-For the Actions used by current Scenario templates, see [Scenarios in Azure Chaos Studio](chaos-studio-scenarios.md). To create custom roles from the permissions returned by validation, see [Least-privilege custom roles for Chaos Studio Workspaces](chaos-studio-workspaces-least-privilege-roles.md).
+For the recommended role for every Action, see [Supported resources and Actions for Chaos Studio Workspaces](chaos-studio-workspaces-supported-resources.md). For the Actions used by current Scenario templates, see [Scenarios in Azure Chaos Studio](chaos-studio-scenarios.md). To create custom roles from the permissions returned by validation, see [Least-privilege custom roles for Chaos Studio Workspaces](chaos-studio-workspaces-least-privilege-roles.md).
 
 > [!IMPORTANT]
 > Resolve permission-validation errors before you start a Scenario. If an Action still fails, check the [Scenario report](chaos-studio-scenario-reports.md) for permission-related errors.

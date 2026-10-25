@@ -114,8 +114,6 @@ landingContent:
         links:
           - text: Fault and action library for Experiments (classic)
             url: chaos-studio-fault-library.md
-          - text: Supported resources for Experiments (classic)
-            url: chaos-studio-fault-providers.md
           - text: Service limits for Experiments (classic)
             url: chaos-studio-service-limits.md
           - text: Limitations and known issues for Experiments (classic)
