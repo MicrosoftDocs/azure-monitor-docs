@@ -170,7 +170,7 @@ The blob for a network security group might have a name similar to this example:
 insights-logs-networksecuritygrouprulecounter/resourceId=/SUBSCRIPTIONS/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/RESOURCEGROUPS/TESTRESOURCEGROUP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUP/TESTNSG/y=2016/m=08/d=22/h=18/m=00/PT1H.json
 ```
 
-Each `PT1H.json` blob contains a JSON object with records. The `y=`, `m=`, `d=`, and `h=` values in the blob path reflect the blob's original generation time, not the time the logs arrive in Azure Storage. All times are in UTC. These path segments identify blobs within the container, not separate containers. The minute value, `m=00`, is always `00` because blobs are created hourly.
+Each `PT1H.json` blob contains a JSON object with records. The `y=`, `m=`, `d=`, and `h=` values in the blob path reflect the blob's original generation time, not the time the logs arrive in Azure Storage. All times are in UTC. These path segments identify blobs within the container, not separate containers. The minute value, `m=00`, is always `00` because Azure Monitor creates blobs hourly.
 
 Within the `PT1H.json` file, each event is stored in the following format. It uses a common top-level schema but is unique for each Azure service, as described in [Resource logs schema](resource-logs-schema.md).
 

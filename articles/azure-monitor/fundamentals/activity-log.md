@@ -659,7 +659,7 @@ For example, a particular blob might have a name similar to:
 insights-activity-logs/resourceId=/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/y=2020/m=06/d=08/h=18/m=00/PT1H.json
 ```
 
-Each `PT1H.json` blob contains a JSON object with events. The `y=`, `m=`, `d=`, and `h=` values in the blob path reflect the blob's original generation time, not the time the logs arrive in Azure Storage. All times are in UTC. These path segments identify blobs within the container, not separate containers. The minute value, `m=00`, is always `00` because blobs are created hourly.
+Each `PT1H.json` blob contains a JSON object with events. The `y=`, `m=`, `d=`, and `h=` values in the blob path reflect the blob's original generation time, not the time the logs arrive in Azure Storage. All times are in UTC. These path segments identify blobs within the container, not separate containers. The minute value, `m=00`, is always `00` because Azure Monitor creates blobs hourly.
 
 Each event is stored in the PT1H.json file with the following format. This format uses a common top-level schema but is otherwise unique for each category, as described in [Activity log schema](activity-log-schema.md).
 
