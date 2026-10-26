@@ -10,7 +10,8 @@ ai-usage: ai-assisted
 
 Azure Monitor health models help you visually define and track the health of entities in your workload and the resources they depend on. They use [health modeling](./health-modeling.md) to connect raw monitoring signals with business context, so you can move away from resource-centric alerting and alert fatigue towards health-based alerting that represents the actual state of your workload.
 
-:::image type="content" source="media/overview/health-models-browse.png" lightbox="media/overview/health-models-browse.png" alt-text="Screenshot of a health model Graph view in the Azure portal showing entities organized in a tree with health states rolling up from resources to logical components.":::
+Watch this video to see how Azure Monitor health models help you turn monitoring signals and workload dependencies into a clear view of application health and prioritize issues based on business impact.
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=091b8754-a0c5-40cb-a3c0-77d676c5a97c]
 
 ## State-based monitoring
 
@@ -26,7 +27,11 @@ State-based monitoring provides the following benefits over exclusively alert-ba
 ## Track health
 Entities in the health model represent Azure resources and logical components such as code components, user and system flows, and business teams. Each has a set of signals that together determine its overall health state. Signals can be based on metrics or log queries, and you can define your own signals or use a set of recommended signals for common Azure resources. The health of each entity rolls up to any entities that depend on it, giving you an overall health state for the entire workload.
 
-Track the health of your workload using multiple views. The Graph view shown above gives you a graphical representation of the current health of the workload, while the Timeline view provides its health over time. Drill in on any entity in the model for a detailed view of its health state and the signals that contribute to it.
+Track the health of your workload using multiple views. The Graph view gives you a graphical representation of the current health of the workload, while the Timeline view provides its health over time.
+
+:::image type="content" source="media/overview/health-models-browse.png" lightbox="media/overview/health-models-browse.png" alt-text="Screenshot of a health model Graph view in the Azure portal showing entities organized in a tree with health states rolling up from resources to logical components.":::
+
+Drill in on any entity in the model for a detailed view of its health state and the signals that contribute to it.
 
 :::image type="content" source="media/overview/sample-graph-view.png" lightbox="media/overview/sample-graph-view.png" alt-text="Screenshot of health details of an entity in a sample health model." :::
 
