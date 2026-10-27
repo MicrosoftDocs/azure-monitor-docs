@@ -60,7 +60,7 @@ This server runs locally as a .NET global tool and authenticates as you through 
       --name AzureMonitorTracesMcp
     ```
 
-1. Install the tool. This is a one-time setup.
+1. Install the tool. This step is a one-time setup.
 
     ```powershell
     dotnet tool install --global Microsoft.Azure.Monitor.Traces.Mcp `
