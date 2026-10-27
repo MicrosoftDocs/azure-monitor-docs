@@ -2,8 +2,8 @@
 title: Activity Log in Azure Monitor
 description: Learn how to view, retrieve, and export Azure Monitor activity log data to Log Analytics, Azure Event Hubs, and Azure Storage for analysis and long-term retention.
 ms.topic: how-to
-ms.date: 05/04/2026
 ms.reviewer: orens
+ms.date: 10/19/2026
 ai-usage: ai-assisted
 
 # customer intent: As an Azure administrator, I want to view and export activity log data so that I can audit control plane operations and retain logs beyond the default 90-day period.
@@ -42,29 +42,27 @@ The following sections present common scenarios showing different ways to access
 
 # [Portal](#tab/portal)
 
-> [!NOTE]
-> Azure portal samples provide extra context around what kind of events to expect in that view.
+Azure portal samples provide extra context around what kind of events to expect in that view.
 
 # [Azure CLI](#tab/cli)
 
+Azure CLI samples highlight the specific commands available through the [az monitor activity-log list](/cli/azure/monitor/activity-log#az-monitor-activity-log-list) command.
+
 > [!NOTE]
-> Azure CLI samples highlight the specific commands available through the [az monitor activity-log list](/cli/azure/monitor/activity-log#az-monitor-activity-log-list) command.
->
 > The native Azure CLI examples use the subscription selected in your current context. The Bash examples that call REST APIs use `jq` to URL-encode filters.
 
 # [Azure PowerShell](#tab/powershell)
 
+Azure PowerShell samples highlight the specific cmdlets available through the [Get-AzActivityLog](/powershell/module/az.monitor/get-azactivitylog) cmdlet.
+
 > [!NOTE]
-> Azure PowerShell samples highlight the specific cmdlets available through the [Get-AzActivityLog](/powershell/module/az.monitor/get-azactivitylog) cmdlet.
->
 > The native Azure PowerShell examples use the subscription selected in your current context.
 
 # [REST](#tab/rest)
 
-> [!NOTE]
-> REST API samples show how to retrieve events by using the required `$filter` parameter with the [Activity Log REST API](azure-monitor-rest-api-index.md#activity-log).
->
-> The [List activity log events for a resource group](#list-activity-log-events-for-a-resource-group) sample also demonstrates how to explicitly set a timeout for your client to match the maximum timeout period for the activity log REST API of 75 seconds by using the [`Prefer` header](../logs/api/timeouts.md#timeout-request-header).
+REST API samples show how to retrieve events by using the required `$filter` parameter with the [Activity Log REST API](azure-monitor-rest-api-index.md#activity-log).
+
+The [List activity log events for a resource group](#list-activity-log-events-for-a-resource-group) sample also demonstrates how to explicitly set a timeout for your client to match the maximum timeout period for the activity log REST API of 75 seconds by using the [`Prefer` header](../logs/api/timeouts.md#timeout-request-header).
 
 | Supported `$filter` patterns | Details |
 |------------------------------|---------|
@@ -80,8 +78,7 @@ The following sections present common scenarios showing different ways to access
 
 Subscription level events capture events created directly by resource providers and is the default scope for listing activity log events. Tenant level and management group level events only capture Azure Resource Manager events in those hierarchies. These higher-level scopes do not include events generated directly by resource providers outside of Azure Resource Manager operations.
 
-> [!NOTE]
-> The following example retrieves activity log events for a subscription during a specific time range.
+The following example retrieves activity log events for a subscription during a specific time range.
 
 # [Portal](#tab/portal)
 
@@ -112,8 +109,7 @@ az monitor activity-log list \
 
 Azure CLI also supports relative time ranges by using `--offset`.
 
-> [!NOTE]
-> For example, `--offset 14d` returns events from the last 14 days.
+For example, `--offset 14d` returns events from the last 14 days.
 
 ```bash
 # Set variables
@@ -139,6 +135,7 @@ Azure PowerShell supports specifying an exact time range by using `StartTime` an
 $startTime = [datetime]"<StartTime>"
 $endTime = [datetime]"<EndTime>"
 
+# Define parameters for Get-AzActivityLog
 $getAzActivityLogParams = @{
     StartTime = $startTime
     EndTime   = $endTime
@@ -152,13 +149,13 @@ Get-AzActivityLog @getAzActivityLogParams
 
 Azure PowerShell also supports querying a relative time range by using `Get-Date` expressions for `StartTime` and `EndTime`.
 
-> [!NOTE]
-> The following example returns events from the last 14 days, ending at the time the command runs.
+The following example returns events from the last 14 days, ending at the time the command runs.
 
 ```powershell
 # Set variables
 $lookbackDays = 14
 
+# Define parameters for Get-AzActivityLog
 $getAzActivityLogParams = @{
     StartTime = (Get-Date).AddDays(-$lookbackDays)
     EndTime   = Get-Date
@@ -231,6 +228,7 @@ Azure PowerShell provides the [Get-AzActivityLog](/powershell/module/az.monitor/
 $resourceGroupName = "<ResourceGroupName>"
 $lookbackDays = 30
 
+# Define parameters for Get-AzActivityLog
 $getAzActivityLogParams = @{
     ResourceGroupName = $resourceGroupName
     StartTime         = (Get-Date).AddDays(-$lookbackDays)
@@ -312,6 +310,7 @@ $selectProperties = @(
     "Level"
 )
 
+# Define parameters for Get-AzActivityLog
 $getAzActivityLogParams = @{
     StartTime = (Get-Date).AddDays(-$lookbackDays)
     EndTime   = Get-Date
@@ -388,11 +387,13 @@ $provider = "Microsoft.Insights/eventtypes/management/values"
 $queryString = "?api-version=$apiVersion&`$filter=$encodedFilter"
 $url = "$apiEndpoint/providers/$provider$queryString"
 
+# Define parameters for Invoke-AzRestMethod
 $invokeAzRestMethodParams = @{
     Uri    = $url
     Method = "GET"
 }
 
+# Send request
 Invoke-AzRestMethod @invokeAzRestMethodParams
 ```
 
@@ -464,11 +465,13 @@ $provider = "Microsoft.Insights/eventtypes/management/values"
 $queryString = "?api-version=$apiVersion&`$filter=$encodedFilter"
 $url = "$apiEndpoint$path/providers/$provider$queryString"
 
+# Define parameters for Invoke-AzRestMethod
 $invokeAzRestMethodParams = @{
     Method = "GET"
     Uri    = $url
 }
 
+# Send request
 Invoke-AzRestMethod @invokeAzRestMethodParams
 ```
 
@@ -501,8 +504,7 @@ For some events, you can view the change history, which shows what changes happe
 
 If any changes are associated with the event, the portal shows you a selectable list of changes. Selecting a change opens the **Change history** page. This page displays the changes to the resource. 
 
-> [!NOTE]
-> The following example shows that the VM changed sizes. The page displays the VM size before the change and after the change. To learn more about change history, see [Get resource changes](/azure/governance/resource-graph/how-to/get-resource-changes).
+The following example shows that the VM changed sizes. The page displays the VM size before the change and after the change. To learn more about change history, see [Get resource changes](/azure/governance/resource-graph/how-to/get-resource-changes).
 
 :::image type="content" source="media/activity-log/change-history-event-details.png" lightbox="media/activity-log/change-history-event-details.png" alt-text="Screenshot that shows the Change history page showing differences.":::
 
@@ -556,16 +558,14 @@ There are no data ingestion charges for activity logs. Retention charges for act
 
 Activity log data in a Log Analytics workspace is stored in a table called [AzureActivity](/azure/azure-monitor/reference/tables/azureactivity). The structure of this table varies depending on the [category of the log entry](activity-log-schema.md).
 
-> [!NOTE]
-> For example, to view a count of activity log records for each category, use the following query:
+For example, to view a count of activity log records for each category, use the following query:
 
 ```kusto
 AzureActivity
 | summarize count() by CategoryValue
 ```
 
-> [!NOTE]
-> To retrieve all records in the administrative category, use the following query:
+To retrieve all records in the administrative category, use the following query:
 
 ```kusto
 AzureActivity
@@ -579,12 +579,11 @@ AzureActivity
 
 Send the activity log to Azure Event Hubs to send entries outside of Azure, for example, to a third-party SIEM or other log analysis solutions. Activity log events from event hubs are consumed in JSON format with a `records` element that contains the records in each payload. The schema depends on the category and is described in [Azure activity log event schema](activity-log-schema.md).
 
-> [!NOTE]
-> The following sample output data is from event hubs for an activity log:
+The following sample output data is from event hubs for an activity log:
 
 <br>
 <details>
-<summary>Export activity log</summary>
+<summary>View activity log output from Event Hubs</summary>
 
 ```json
 {
@@ -654,14 +653,13 @@ When you send the activity log to storage, a storage container is created in the
 insights-activity-logs/resourceId=/SUBSCRIPTIONS/{subscription ID}/y={four-digit numeric year}/m={two-digit numeric month}/d={two-digit numeric day}/h={two-digit 24-hour clock hour}/m=00/PT1H.json
 ```
 
-> [!NOTE]
-> For example, a particular blob might have a name similar to:
+For example, a particular blob might have a name similar to:
 
 ```text
 insights-activity-logs/resourceId=/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/y=2020/m=06/d=08/h=18/m=00/PT1H.json
 ```
 
-Each `PT1H.json` blob contains a JSON object with events from log files that were received during the hour specified in the blob URL. During the present hour, events are appended to the PT1H.json file as they're received, regardless of when they were generated. The minute value in the URL, `m=00` is always `00` as blobs are created on a per hour basis.
+Each `PT1H.json` blob contains a JSON object with events. The `y=`, `m=`, `d=`, and `h=` values in the blob path reflect the blob's original generation time, not the time the logs arrive in Azure Storage. All times are in UTC. These path segments identify blobs within the container, not separate containers. The minute value, `m=00`, is always `00` because Azure Monitor creates blobs hourly.
 
 Each event is stored in the PT1H.json file with the following format. This format uses a common top-level schema but is otherwise unique for each category, as described in [Activity log schema](activity-log-schema.md).
 
@@ -700,13 +698,11 @@ To capture events that don't propagate to the management group, [create a subscr
 
 If the subscription and management group export the same events to the same destination, you receive duplicate events. Keep the subscription-level diagnostic setting to avoid missing events without the `hierarchy` property.
 
-> [!NOTE]
-> For example, if MG1 contains MG2, which contains Subscription1, a diagnostic setting on MG1 captures activity log events for MG1, MG2, and many of the events collected by a diagnostic setting on Subscription1. Configure a diagnostic setting on Subscription1 to also capture events without the `hierarchy` property. You don't need a diagnostic setting on MG2 to collect the same management group events.
+For example, if MG1 contains MG2, which contains Subscription1, a diagnostic setting on MG1 captures activity log events for MG1, MG2, and many of the events collected by a diagnostic setting on Subscription1. Configure a diagnostic setting on Subscription1 to also capture events without the `hierarchy` property. You don't need a diagnostic setting on MG2 to collect the same management group events.
 
 If you have duplicate events, combine them by using a query that uses a hash of all fields to identify unique records.
 
-> [!NOTE]
-> The following example Kusto query shows a sample for logs collected in a Log Analytics workspace:
+The following example Kusto query shows a sample for logs collected in a Log Analytics workspace:
 
 ```kusto
 AzureActivity
@@ -756,6 +752,7 @@ $startTime = "<StartTime>"
 $endTime = "<EndTime>"
 $outputFile = "<OutputFilePath>"
 
+# Define parameters for Get-AzActivityLog
 $getAzActivityLogParams = @{
     StartTime = $startTime
     EndTime   = $endTime
@@ -766,20 +763,19 @@ Get-AzActivityLog @getAzActivityLogParams |
     Export-Csv -Path $outputFile -NoTypeInformation
 ```
 
-> [!NOTE]
-> The following example PowerShell script exports the activity log to CSV files in one-hour intervals, each saved to a separate file.
+The following example PowerShell script exports the activity log to CSV files in one-hour intervals, and saves each interval to a separate file.
 
 ```powershell
 # Set variables
 $startTime = [datetime]"<StartTime>"
 $endTime = [datetime]"<EndTime>"
 $outputFolder = "<OutputFolder>"
- 
+
 # Ensure output folder exists
 if (-not (Test-Path $outputFolder)) {
     New-Item -Path $outputFolder -ItemType Directory
 }
- 
+
 # Loop through 1-hour intervals
 $currentStart = $startTime
 while ($currentStart -lt $endTime) {
@@ -787,14 +783,21 @@ while ($currentStart -lt $endTime) {
     if ($currentEnd -gt $endTime) { $currentEnd = $endTime }
     $timestamp = $currentStart.ToString("yyyyMMdd-HHmm")
     $csvFile = Join-Path $outputFolder "ActivityLog_$timestamp.csv"
- 
+
+    # Define parameters for Get-AzActivityLog
+    $getAzActivityLogParams = @{
+        StartTime   = $currentStart
+        EndTime     = $currentEnd
+        ErrorAction = "Stop"
+    }
+
     Write-Host "Fetching logs from $currentStart to $currentEnd..."
-    Get-AzActivityLog -StartTime $currentStart -EndTime $currentEnd -ErrorAction Stop |
+    Get-AzActivityLog @getAzActivityLogParams |
         Export-Csv -Path $csvFile -NoTypeInformation
- 
+
     $currentStart = $currentEnd
 }
- 
+
 Write-Host "Export completed. Files saved to $outputFolder."
 ```
 

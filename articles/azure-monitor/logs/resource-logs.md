@@ -2,8 +2,9 @@
 title: Resource logs in Azure Monitor
 description: Learn how to send Azure resource logs to a Log Analytics workspace, event hub, or Azure Storage in Azure Monitor.
 ms.topic: how-to
-ms.date: 07/17/2025
+ms.date: 10/19/2026
 ms.reviewer: lualderm
+ai-usage: ai-assisted
 ---
 
 # Resource logs in Azure Monitor
@@ -169,13 +170,9 @@ The blob for a network security group might have a name similar to this example:
 insights-logs-networksecuritygrouprulecounter/resourceId=/SUBSCRIPTIONS/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/RESOURCEGROUPS/TESTRESOURCEGROUP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUP/TESTNSG/y=2016/m=08/d=22/h=18/m=00/PT1H.json
 ```
 
-Each PT1H.json blob contains a JSON object with events from log files that were received during the hour specified in the blob URL. During the present hour, events are appended to the PT1H.json file as they're received, regardless of when they were generated. The minute value in the URL, `m=00` is always `00` as blobs are created on a per hour basis.
+Each `PT1H.json` blob contains a JSON object with records. The `y=`, `m=`, `d=`, and `h=` values in the blob path reflect the blob's original generation time, not the time the logs arrive in Azure Storage. All times are in UTC. These path segments identify blobs within the container, not separate containers. The minute value, `m=00`, is always `00` because Azure Monitor creates blobs hourly.
 
-Within the PT1H.json file, each event is stored in the following format. It uses a common top-level schema but is unique for each Azure service, as described in [Resource logs schema](resource-logs-schema.md).
-
-> [!NOTE]
-> Logs are written to blobs based on the time that the log was received, regardless of the time it was generated. This means that a given blob can contain log data that is outside the hour specified in the blob's URL. Where a data source like Application insights, supports uploading stale telemetry a blob can contain data from the previous 48 hours.
-> At the start of a new hour, it is possible that existing logs are still being written to the previous hour's blob while new logs are written to the new hour's blob.
+Within the `PT1H.json` file, each event is stored in the following format. It uses a common top-level schema but is unique for each Azure service, as described in [Resource logs schema](resource-logs-schema.md).
 
 ```json
 {"time": "2016-07-01T00:00:37.2040000Z","systemId": "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1","category": "NetworkSecurityGroupRuleCounter","resourceId": "/SUBSCRIPTIONS/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/RESOURCEGROUPS/TESTRESOURCEGROUP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/TESTNSG","operationName": "NetworkSecurityGroupCounters","properties": {"vnetResourceGuid": "{aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e}","subnetPrefix": "10.3.0.0/24","macAddress": "000123456789","ruleName": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/testresourcegroup/providers/Microsoft.Network/networkSecurityGroups/testnsg/securityRules/default-allow-rdp","direction": "In","type": "allow","matchedConnections": 1988}}
