@@ -46,7 +46,7 @@ This server runs locally as a .NET global tool and authenticates as you through 
     az account set --subscription "<SUBSCRIPTION_ID>"
     ```
 
-1. Install the Azure Artifacts Credential Provider so `dotnet` can authenticate to the internal feed without prompting. This is a one-time setup.
+1. Install the Azure Artifacts Credential Provider so `dotnet` can authenticate to the internal feed without prompting. This step is a one-time setup.
 
     ```powershell
     iex "& { $(iwr https://aka.ms/install-artifacts-credprovider.ps1) }"
