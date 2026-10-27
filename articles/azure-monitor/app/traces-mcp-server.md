@@ -77,7 +77,7 @@ This server runs locally as a .NET global tool and authenticates as you through 
       --allow-roll-forward
     ```
 
-1. Add the server to `~/.copilot/mcp-config.json` to wire it into GitHub Copilot CLI:
+1. Add the server to `~/.copilot/mcp-config.json` to wire it into GitHub Copilot CLI.
 
     ```json
     {
