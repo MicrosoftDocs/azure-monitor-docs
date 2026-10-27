@@ -34,8 +34,8 @@ You need to open the following outbound ports in your firewall to allow the Appl
 
 | Purpose | Hostname | Type | Ports |
 |---------|-----|------|-------|
-| Telemetry | `dc.applicationinsights.azure.com`<br>`dc.applicationinsights.microsoft.com`<br>`dc.services.visualstudio.com`<br><br>`{region}.in.applicationinsights.azure.com`<br><br> | Global<br>Global<br>Global<br><br>Regional<br> | 443 |
-| Live Metrics | `live.applicationinsights.azure.com`<br>`rt.applicationinsights.microsoft.com`<br>`rt.services.visualstudio.com`<br><br>`{region}.livediagnostics.monitor.azure.com`<br><br>An example `{region}` is `westus2` |Global<br>Global<br>Global<br><br>Regional<br> | 443 |
+| Telemetry | `{region}.in.applicationinsights.azure.com`<br><br> | Regional<br> | 443 |
+| Live Metrics | `{region}.livediagnostics.monitor.azure.com`<br><br>An example `{region}` is `westus2` |Global<br>Global<br>Global<br><br>Regional<br> | 443 |
 
 ### Application Insights agent configuration
 
