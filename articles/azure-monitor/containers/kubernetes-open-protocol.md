@@ -84,21 +84,30 @@ When you register the preview features, enable the Application Insights feature 
    az login
    ```
 
-1. Select the subscription that hosts the AKS cluster, and then register the AKS preview feature and provider:
+1. Select the subscription that hosts the AKS cluster, and then register the AKS preview feature:
    ```bash
    az account set --subscription "<aks-subscription-name-or-id>"
    az feature register --namespace "Microsoft.ContainerService" --name "AzureMonitorAppMonitoringPreview"
-   az feature list -o table --query "[?contains(name, 'Microsoft.ContainerService/AzureMonitorAppMonitoringPreview')].{Name:name,State:properties.state}"
+   az feature show --namespace "Microsoft.ContainerService" --name "AzureMonitorAppMonitoringPreview" --query properties.state --output tsv
+   ```
+
+   Wait until the command returns `Registered`. If it returns `Pending`, request access to the preview before continuing. Then register the provider:
+
+   ```bash
    az provider register --namespace "Microsoft.ContainerService"
    az provider show --namespace "Microsoft.ContainerService" --query "registrationState"
    ```
 
-1. Select the subscription where you create the Application Insights resource, and then register the Application Insights OTLP preview feature and provider:
+1. Select the subscription where you create the Application Insights resource, and then register the Application Insights OTLP preview feature:
    ```bash
    az account set --subscription "<application-insights-subscription-name-or-id>"
    az feature register --name OtlpApplicationInsights --namespace Microsoft.Insights
-   az feature list -o table --query "[?contains(name, 'Microsoft.Insights/OtlpApplicationInsights')].{Name:name,State:properties.state}"
+   az feature show --name OtlpApplicationInsights --namespace Microsoft.Insights --query properties.state --output tsv
+   ```
 
+   Wait until the command returns `Registered`. If it returns `Pending`, request access to the preview before continuing. Then register the provider:
+
+   ```bash
    az provider register -n Microsoft.Insights
    ```
 
@@ -214,6 +223,9 @@ Follow the **namespace-wide** or **per-deployment** onboarding guidance in the a
 
 Autoconfiguration sets environment variables so existing SDKs export telemetry to Application Insights through the Azure Monitor Agent on the cluster. It doesn't place any SDK on the pod.
 
+> [!IMPORTANT]
+> In both examples, replace the sample connection string with the complete `ConnectionString` value from the OTLP-enabled Application Insights resource. The value must include `ApplicationId`, which the webhook uses to set `microsoft.applicationId` for Application Insights DCR routing.
+
 - **Namespace-wide**: Set the **Instrumentation** custom resource with an empty platforms list.
   ```yml
   apiVersion: monitor.azure.com/v1
@@ -225,7 +237,7 @@ Autoconfiguration sets environment variables so existing SDKs export telemetry t
     settings:
       autoInstrumentationPlatforms: []
     destination: # required
-      applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/"
+      applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/;ApplicationId=22222222-2222-2222-2222-222222222222"
   ```
 - **Per-deployment**: Create an **Instrumentation** custom resource with a name other than `default` (for example, `cr1`).
   ```yml
@@ -238,8 +250,12 @@ Autoconfiguration sets environment variables so existing SDKs export telemetry t
     settings:
       autoInstrumentationPlatforms: []
     destination: # required
-      applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/"
+      applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/;ApplicationId=22222222-2222-2222-2222-222222222222"
   ```
+
+  > [!NOTE]
+  > If the named custom resource targets a different OTLP-enabled Application Insights resource than the resource already configured for the cluster, associate the destination resource's DCR with the AKS cluster. Reusing the same resource doesn't require another association. For more information, see [Manage data collection rule associations](../data-collection/data-collection-rule-associations.md).
+
   Add the annotation to each deployment that should use the custom resource:
   ```yml
   apiVersion: apps/v1
@@ -265,7 +281,7 @@ Autoconfiguration sets environment variables so existing SDKs export telemetry t
           instrumentation.opentelemetry.io/inject-configuration: "false"
   ```
 
-- **Change protocol**: OpenTelemetry supports two main protocols to transmit and receive telemetry data: gRPC and HTTP. By default, AKS autoconfiguration uses `http/protobuf`. Use the following annotations to override the default protocol for a deployment.
+- **Change protocol**: OpenTelemetry supports two main protocols to transmit and receive telemetry data: gRPC and HTTP. By default, AKS autoconfiguration uses `http/protobuf`. Add the protocol annotation at `spec.template.metadata.annotations` alongside the deployment's existing annotations. For namespace-wide onboarding, the deployment continues to use the `default` custom resource without an `inject-configuration` annotation. For per-deployment onboarding, keep the existing `inject-configuration` annotation that selects the named custom resource.
 
 For gRPC, use:
 
@@ -273,30 +289,30 @@ For gRPC, use:
 
 
 ```yml
-  apiVersion: apps/v1
-  kind: Deployment
-  ...
-  spec:
-    template:
-      metadata:
-        annotations:
-          instrumentation.opentelemetry.io/inject-configuration: "cr1"
-          instrumentation.opentelemetry.io/otel-protocol: "grpc"
+apiVersion: apps/v1
+kind: Deployment
+...
+spec:
+  template:
+    metadata:
+      annotations:
+        # keep existing annotations, including inject-configuration for a named custom resource
+        instrumentation.opentelemetry.io/otel-protocol: "grpc"
 ```
 
 For HTTP, use:
 - HTTP/Protobuf: `instrumentation.opentelemetry.io/otel-protocol: "http/protobuf"`
 
 ```yml
-  apiVersion: apps/v1
-  kind: Deployment
-  ...
-  spec:
-    template:
-      metadata:
-        annotations:
-          instrumentation.opentelemetry.io/inject-configuration: "cr1"
-          instrumentation.opentelemetry.io/otel-protocol: "http/protobuf"
+apiVersion: apps/v1
+kind: Deployment
+...
+spec:
+  template:
+    metadata:
+      annotations:
+        # keep existing annotations, including inject-configuration for a named custom resource
+        instrumentation.opentelemetry.io/otel-protocol: "http/protobuf"
 ```
   
 
