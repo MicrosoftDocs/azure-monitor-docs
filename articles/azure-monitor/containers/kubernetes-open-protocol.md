@@ -218,7 +218,7 @@ Autoconfiguration sets environment variables so existing SDKs export telemetry t
   apiVersion: monitor.azure.com/v1
   kind: Instrumentation
   metadata:
-    name: cr1
+    name: default
     namespace: mynamespace1
   spec:
     settings:

@@ -20,7 +20,7 @@ It covers [preparing a cluster](#prepare-a-cluster), [onboarding deployments](#o
 
 * An [AKS cluster](/azure/aks/learn/quick-kubernetes-deploy-portal) running a [Kubernetes deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) that uses Java or Node.js in the Azure public cloud
 * [A workspace-based Application Insights resource](../app/create-workspace-resource.md#create-and-configure-application-insights-resources).
-* Azure CLI 2.60.0 or greater. For more information, see [How to install the Azure CLI](/cli/azure/install-azure-cli), [What version of the Azure CLI is installed?](/cli/azure/install-azure-cli#what-version-of-the-azure-cli-is-installed), and [How to update the Azure CLI](/cli/azure/update-azure-cli).
+* Azure CLI 2.86.0 or greater. For more information, see [How to install the Azure CLI](/cli/azure/install-azure-cli), [What version of the Azure CLI is installed?](/cli/azure/install-azure-cli#what-version-of-the-azure-cli-is-installed), and [How to update the Azure CLI](/cli/azure/update-azure-cli).
 
 > [!WARNING]
 > This feature supports Linux node pools only. Windows node pools aren't supported.
@@ -93,7 +93,7 @@ metadata:
   namespace: mynamespace1
 spec:
   settings:
-    autoInstrumentationPlatforms: []
+    autoInstrumentationPlatforms: ["Java"]
   destination: # required
     applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/"
 ```
@@ -135,7 +135,8 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
     ```
     
     At a minimum, the following configuration is required:
-    - `spec.destination.applicationInsightsConnectionString`: The connection string of an Application Insights resource.
+    - `spec.settings.autoInstrumentationPlatforms:[]` which may be set to an empty array if more than one language will be used across deployments.
+    - `spec.destination.applicationInsightsConnectionString:` The connection string of an Application Insights resource.
 
 1. Associate each deployment with the appropriate custom resource using [annotations](#annotations). The annotation overrides the language set in the custom resource.
 
@@ -258,24 +259,6 @@ The following annotations disable autoinstrumentation:
   ```yml
   instrumentation.opentelemetry.io/inject-java: "false"
   ```
-To turn autoinstrumentation back on after disabling it, add the annotations.
-
-  ```yml
-  instrumentation.opentelemetry.io/inject-java: "true"
-  ```
-
-Place the annotations as follows.
-
-```yml
-apiVersion: apps/v1
-kind: Deployment
-...
-spec:
-  template:
-    metadata:
-      annotations:
-        instrumentation.opentelemetry.io/inject-java: "false"
-```
 
 ### Enabling logs in Application Insights
 
