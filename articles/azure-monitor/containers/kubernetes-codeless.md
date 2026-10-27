@@ -135,10 +135,11 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
     ```
     
     At a minimum, the following configuration is required:
-    - `spec.settings.autoInstrumentationPlatforms:[]` which you can set to an empty array if more than one language is used across deployments.
-    - `spec.destination.applicationInsightsConnectionString:` The connection string of an Application Insights resource.
 
-1. Associate each deployment with the appropriate custom resource using [annotations](#annotations). The annotation overrides the language set in the custom resource.
+    - `spec.settings.autoInstrumentationPlatforms`: For a non-default custom resource, set this required field to an empty array (`[]`). The deployment annotation determines the language.
+    - `spec.destination.applicationInsightsConnectionString`: The connection string of an Application Insights resource.
+
+1. Associate each deployment with the appropriate custom resource using [annotations](#annotations). The annotation selects the custom resource and the language to instrument.
 
     > [!IMPORTANT]
     > To avoid adding them to the deployment's annotations by mistake, add annotations at the `spec.template.metadata.annotations` level of your deployment.

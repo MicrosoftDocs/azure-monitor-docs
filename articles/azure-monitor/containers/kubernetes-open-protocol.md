@@ -61,7 +61,7 @@ Use the following guidance to separate platform (cluster) responsibilities from 
 ## Prerequisites
 
 - An AKS cluster in Azure public cloud that runs at least one Kubernetes deployment.
-- Azure CLI **2.78.0** or later. Install or update by using the guidance in **Install the Azure CLI** documentation.  
+- Azure CLI **2.86.0** or later. Install or update by using the guidance in **Install the Azure CLI** documentation.
   Verify the version:
   ```bash
   az version
@@ -77,24 +77,25 @@ Use the following guidance to separate platform (cluster) responsibilities from 
 
 ## 1. Register the preview features
 
-When you register the preview features, enable the feature flag on the subscription where you create the Application Insights resource and on the subscription that hosts the AKS cluster.
+When you register the preview features, enable the Application Insights feature on the subscription where you create the Application Insights resource and the AKS feature on the subscription that hosts the AKS cluster. If both resources use the same subscription, use the same subscription value in both registration steps.
 
-1. Sign in and select the target subscription:
+1. Sign in:
    ```bash
    az login
-   az account set --subscription "<subscription-name>"
    ```
 
-1. Register the AKS preview feature and provider:
+1. Select the subscription that hosts the AKS cluster, and then register the AKS preview feature and provider:
    ```bash
+   az account set --subscription "<aks-subscription-name-or-id>"
    az feature register --namespace "Microsoft.ContainerService" --name "AzureMonitorAppMonitoringPreview"
    az feature list -o table --query "[?contains(name, 'Microsoft.ContainerService/AzureMonitorAppMonitoringPreview')].{Name:name,State:properties.state}"
    az provider register --namespace "Microsoft.ContainerService"
    az provider show --namespace "Microsoft.ContainerService" --query "registrationState"
    ```
 
-1. Register the Application Insights OTLP preview features and provider:
+1. Select the subscription where you create the Application Insights resource, and then register the Application Insights OTLP preview feature and provider:
    ```bash
+   az account set --subscription "<application-insights-subscription-name-or-id>"
    az feature register --name OtlpApplicationInsights --namespace Microsoft.Insights
    az feature list -o table --query "[?contains(name, 'Microsoft.Insights/OtlpApplicationInsights')].{Name:name,State:properties.state}"
 
@@ -226,7 +227,20 @@ Autoconfiguration sets environment variables so existing SDKs export telemetry t
     destination: # required
       applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/"
   ```
-- **Per-deployment**: Add the annotation to the deployment and reference your instrumentation custom resource (replace `cr1` with your resource name).
+- **Per-deployment**: Create an **Instrumentation** custom resource with a name other than `default` (for example, `cr1`).
+  ```yml
+  apiVersion: monitor.azure.com/v1
+  kind: Instrumentation
+  metadata:
+    name: cr1
+    namespace: mynamespace1
+  spec:
+    settings:
+      autoInstrumentationPlatforms: []
+    destination: # required
+      applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/"
+  ```
+  Add the annotation to each deployment that should use the custom resource:
   ```yml
   apiVersion: apps/v1
   kind: Deployment
