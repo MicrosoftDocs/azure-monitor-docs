@@ -14,30 +14,25 @@ You can use either the local Azure Monitor traces server, which runs as a .NET g
 
 ## Prerequisites
 
-Meet the requirements for the server option you choose.
+- Have an Azure Monitor workspace (AMW) with Azure Monitor traces enabled.
+- Have the Monitoring Reader role on the workspace through Azure role-based access control (RBAC).
 
 ### Local Azure Monitor traces server
 
-- Have an Azure Monitor workspace (AMW) with Azure Monitor traces enabled.
-- Have the Monitoring Reader role on the workspace through role-based access control (RBAC).
 - Install the Azure CLI and authenticate with your own Microsoft Entra identity.
 - Install [.NET SDK 9.0 or later](https://dotnet.microsoft.com/download/dotnet/9.0).
 - Get the workspace's Azure Resource Manager (ARM) resource ID, in the format `/subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.Monitor/accounts/{name}`.
 
-You install the `Microsoft.Azure.Monitor.Traces.Mcp` .NET global tool in the local server installation procedure.
-
 ### Azure MCP Server
 
-- Have an Azure Monitor workspace with Azure Monitor traces enabled.
-- Have the Monitoring Reader role on the workspace through role-based access control (RBAC).
-- Install the Azure CLI and authenticate with your own Microsoft Entra identity.
+- Authenticated identity with Monitoring Reader role on the workspace.
 - Install Node.js 22 or later for the `npx` configuration in this article.
 - Get the subscription ID, resource group, and name of the workspace.
 - Meet the [Azure MCP installation prerequisites](/azure/developer/azure-mcp-server/get-started).
 
 ## Install the local Azure Monitor traces server
 
-This server runs locally as a .NET global tool and authenticates as you through the Azure CLI. Replace `<SUBSCRIPTION_ID>` with the subscription that contains the workspace you want to query.
+You install the `Microsoft.Azure.Monitor.Traces.Mcp` .NET global tool in the local server installation procedure. This server runs locally as a .NET global tool and authenticates as you through the Azure CLI. Replace `<SUBSCRIPTION_ID>` with the subscription that contains the workspace you want to query.
 
 1. Sign in to a subscription that contains an Azure Monitor workspace you can read:
 
@@ -180,3 +175,8 @@ The server calls as you, so a Forbidden response means the identity you signed i
 **Empty or unexpected results**
 
 The TraceStore KQL dialect isn't standard KQL. Trace-level filters go outside `<<>>` and span-level filters go inside. Ask the agent to call `az_list_supported_syntax` for the grammar, and `list_field_names` or `az_list_field_names` for the schema.
+
+## Next steps
+
+- [Onboard Application Insights resources to Azure Monitor traces](traces-onboard-app-insights.md).
+- Use the Azure Portal to  [Search and analyze traces with Trace Analytics](traces-search-analyze.md).
