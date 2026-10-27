@@ -34,20 +34,20 @@ You can use either the local Azure Monitor traces server, which runs as a .NET g
 
 You install the `Microsoft.Azure.Monitor.Traces.Mcp` .NET global tool in the local server installation procedure. This server runs locally as a .NET global tool and authenticates as you through the Azure CLI. Replace `<SUBSCRIPTION_ID>` with the subscription that contains the workspace you want to query.
 
-1. Sign in to a subscription that contains an Azure Monitor workspace you can read:
+1. Sign in to a subscription that contains an Azure Monitor workspace you can read.
 
     ```azurecli
     az login
     az account set --subscription "<SUBSCRIPTION_ID>"
     ```
 
-1. Install the Azure Artifacts Credential Provider so `dotnet` can authenticate to the internal feed without prompting. This is a one-time setup.
+1. Install the Azure Artifacts Credential Provider so `dotnet` can authenticate to the internal feed without prompting. This step is a one-time setup.
 
     ```powershell
     iex "& { $(iwr https://aka.ms/install-artifacts-credprovider.ps1) }"
     ```
 
-1. Register the feed as a NuGet source. This is a one-time setup.
+1. Register the feed as a NuGet source. This step is a one-time setup.
 
     ```powershell
     dotnet nuget add source `
@@ -55,7 +55,7 @@ You install the `Microsoft.Azure.Monitor.Traces.Mcp` .NET global tool in the loc
       --name AzureMonitorTracesMcp
     ```
 
-1. Install the tool. This is a one-time setup.
+1. Install the tool. This step is a one-time setup.
 
     ```powershell
     dotnet tool install --global Microsoft.Azure.Monitor.Traces.Mcp `
@@ -72,7 +72,7 @@ You install the `Microsoft.Azure.Monitor.Traces.Mcp` .NET global tool in the loc
       --allow-roll-forward
     ```
 
-1. Add the server to `~/.copilot/mcp-config.json` to wire it into GitHub Copilot CLI:
+1. Add the server to `~/.copilot/mcp-config.json` to wire it into GitHub Copilot CLI.
 
     ```json
     {
