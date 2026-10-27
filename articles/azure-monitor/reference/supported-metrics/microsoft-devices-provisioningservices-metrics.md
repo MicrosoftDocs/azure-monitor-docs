@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Devices/provisioningServices
 description: Reference for Microsoft.Devices/provisioningServices metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 10/16/2026
+ms.date: 10/27/2026
 ms.custom: Microsoft.Devices/provisioningServices, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -36,7 +36,10 @@ For a list of supported logs, see [Supported log categories - Microsoft.Devices/
 |---|---|---|---|---|---|---|---|
 |**Attestation attempts**<br><br>Number of device attestations attempted |`AttestationAttempts` | No | Count |Total (Sum), Count, Average, Minimum, Maximum |`provisioningServiceName`, `status`, `protocol`|PT1M |Yes|
 |**Devices assigned**<br><br>Number of device assigned to an IoT hub |`DeviceAssignments` | No | Count |Total (Sum), Count, Average, Minimum, Maximum |`provisioningServiceName`, `iotHubName`|PT1M |Yes|
-|**Registration attempts**<br><br>Number of device registrations attempted |`RegistrationAttempts` | No | Count |Total (Sum), Count, Average, Minimum, Maximum |`provisioningServiceName`, `iotHubName`, `status`|PT1M |Yes|
+|**Device registration authentication errors**<br><br>Number of device registration attempts that failed authentication |`DeviceRegistrationAuthenticationErrors` | No | Count |Total (Sum), Count, Average, Minimum, Maximum |`provisioningServiceName`|PT1M |Yes|
+|**Device registration throttling errors**<br><br>Number of device registration attempts that were throttled |`DeviceRegistrationThrottlingErrors` | No | Count |Total (Sum), Count, Average, Minimum, Maximum |`provisioningServiceName`|PT1M |Yes|
+|**Number of registrations**<br><br>Number of device registration records in the provisioning service |`NumberOfRegistrations` | No | Count |Average, Minimum, Maximum |`dpsName`|PT1M |Yes|
+|**Registration attempts**<br><br>Number of device registrations attempted |`RegistrationAttempts` | No | Count |Total (Sum), Count, Average, Minimum, Maximum |`provisioningServiceName`, `iotHubName`, `status`, `provisioningType`|PT1M |Yes|
 
 ## Next steps
 
