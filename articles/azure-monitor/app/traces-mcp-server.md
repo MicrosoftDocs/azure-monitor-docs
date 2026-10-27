@@ -39,7 +39,7 @@ You install the `Microsoft.Azure.Monitor.Traces.Mcp` .NET global tool in the loc
 
 This server runs locally as a .NET global tool and authenticates as you through the Azure CLI. Replace `<SUBSCRIPTION_ID>` with the subscription that contains the workspace you want to query.
 
-1. Sign in to a subscription that contains an Azure Monitor workspace you can read:
+1. Sign in to a subscription that contains an Azure Monitor workspace you can read.
 
     ```azurecli
     az login
