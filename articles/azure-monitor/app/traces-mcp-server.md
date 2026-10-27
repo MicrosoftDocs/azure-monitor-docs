@@ -52,7 +52,7 @@ This server runs locally as a .NET global tool and authenticates as you through 
     iex "& { $(iwr https://aka.ms/install-artifacts-credprovider.ps1) }"
     ```
 
-1. Register the feed as a NuGet source. This is a one-time setup.
+1. Register the feed as a NuGet source. This step is a one-time setup.
 
     ```powershell
     dotnet nuget add source `
