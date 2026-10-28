@@ -179,4 +179,4 @@ The TraceStore KQL dialect isn't standard KQL. Trace-level filters go outside `<
 ## Next steps
 
 - [Onboard Application Insights resources to Azure Monitor traces](traces-onboard-app-insights.md).
-- Use the Azure Portal to  [Search and analyze traces with Trace Analytics](traces-search-analyze.md).
+- Use the Azure portal to  [Search and analyze traces with Trace Analytics](traces-search-analyze.md).
