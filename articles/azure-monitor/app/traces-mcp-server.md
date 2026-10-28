@@ -32,7 +32,7 @@ You can use either the local Azure Monitor traces server, which runs as a .NET g
 
 ## Install the local Azure Monitor traces server
 
-You install the `Microsoft.Azure.Monitor.Traces.Mcp` .NET global tool in the local server installation procedure. This server runs locally as a .NET global tool and authenticates as you through the Azure CLI. Replace `<SUBSCRIPTION_ID>` with the subscription that contains the workspace you want to query.
+Install the `Microsoft.Azure.Monitor.Traces.Mcp` .NET global tool in the local server installation procedure. This server runs locally as a .NET global tool and authenticates as you through the Azure CLI. Replace `<SUBSCRIPTION_ID>` with the subscription that contains the workspace you want to query.
 
 1. Sign in to a subscription that contains an Azure Monitor workspace you can read.
 
