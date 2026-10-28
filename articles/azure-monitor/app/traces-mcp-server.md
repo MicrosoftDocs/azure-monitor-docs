@@ -93,7 +93,7 @@ You install the `Microsoft.Azure.Monitor.Traces.Mcp` .NET global tool in the loc
 
 As an alternative to the local server, you can use Azure MCP Server. Use the latest Azure MCP Server release. Private-preview monitor traces commands are available starting with [version 4.0.0-beta.1](https://github.com/microsoft/mcp/releases/tag/Azure.Mcp.Server-4.0.0-beta.1).
 
-1. Follow the [Azure MCP installation prerequisites](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/get-started), [client setup](https://github.com/microsoft/mcp/blob/main/servers/Azure.Mcp.Server/README.md#manual-setup), and [authentication guide](https://github.com/microsoft/mcp/blob/main/docs/Authentication.md#local-authentication-stdio-transport). For GitHub Copilot CLI, use the [Copilot CLI configuration instructions](https://github.com/microsoft/mcp/blob/main/servers/Azure.Mcp.Server/README.md#github-copilot-cli-configuration).
+1. Follow the [Azure MCP installation prerequisites](/azure/developer/azure-mcp-server/get-started), [client setup](https://github.com/microsoft/mcp/blob/main/servers/Azure.Mcp.Server/README.md#manual-setup), and [authentication guide](https://github.com/microsoft/mcp/blob/main/docs/Authentication.md#local-authentication-stdio-transport). For GitHub Copilot CLI, use the [Copilot CLI configuration instructions](https://github.com/microsoft/mcp/blob/main/servers/Azure.Mcp.Server/README.md#github-copilot-cli-configuration).
 
 1. Use the latest package tag to receive updates and expose the monitor namespace. For example, with Node.js 22 or later, add this entry to `~/.copilot/mcp-config.json`:
 
