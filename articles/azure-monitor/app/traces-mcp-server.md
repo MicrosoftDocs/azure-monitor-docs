@@ -15,7 +15,7 @@ You can use either the local Azure Monitor traces server, which runs as a .NET g
 ## Prerequisites
 
 - Have an Azure Monitor workspace (AMW) with Azure Monitor traces enabled.
-- Have the Monitoring Reader role on the workspace through Azure role-based access control (RBAC).
+- The Monitoring Reader role on the workspace through Azure role-based access control (RBAC).
 
 ### Local Azure Monitor traces server
 
