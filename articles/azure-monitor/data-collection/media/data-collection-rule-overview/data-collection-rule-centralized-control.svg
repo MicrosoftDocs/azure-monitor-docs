@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="880" viewBox="0 0 1200 880" role="img" aria-labelledby="title desc">
+  <title id="title">Centralized data collection rule applied to many resources</title>
+  <desc id="desc">The first panel shows one centrally managed baseline data collection rule linked to four monitored resources by four separate data collection rule associations. The second panel shows a workload data collection rule linked only to two resources and a specialized data collection rule linked only to one resource. Colored dashed lines represent control-plane associations, not telemetry flow.</desc>
+  <rect width="1200" height="880" fill="#ffffff"/>
+  <g font-family="Segoe UI, Arial, sans-serif" fill="#000000">
+    <rect x="30" y="25" width="1140" height="430" rx="8" fill="transparent" stroke="#0078d4" stroke-width="1.5"/>
+    <text x="55" y="65" font-size="25" font-weight="600">Centralized control: define once, apply many times</text>
+    <text x="55" y="94" font-size="16">Manage one shared collection policy and associate it with every resource that needs it.</text>
+
+    <rect x="390" y="120" width="420" height="120" rx="6" fill="#eaf4fc" stroke="#0078d4" stroke-width="2"/>
+    <text x="600" y="158" font-size="23" font-weight="600" text-anchor="middle">Central baseline DCR</text>
+    <text x="600" y="190" font-size="16" text-anchor="middle">Collection | optional processing | destination</text>
+    <text x="600" y="218" font-size="14" text-anchor="middle">One centrally managed Azure resource</text>
+
+    <g fill="none" stroke="#0078d4" stroke-width="2.5" stroke-dasharray="9 5">
+      <polyline points="450,240 450,265 160,265 160,330"/>
+      <polyline points="550,240 550,285 440,285 440,330"/>
+      <polyline points="650,240 650,285 720,285 720,330"/>
+      <polyline points="750,240 750,265 1000,265 1000,330"/>
+    </g>
+
+    <g font-size="13" font-weight="600" text-anchor="middle">
+      <rect x="115" y="296" width="90" height="26" rx="13" fill="#ffffff" stroke="#0078d4" stroke-width="1.5"/>
+      <text x="160" y="314">DCRA</text>
+      <rect x="395" y="296" width="90" height="26" rx="13" fill="#ffffff" stroke="#0078d4" stroke-width="1.5"/>
+      <text x="440" y="314">DCRA</text>
+      <rect x="675" y="296" width="90" height="26" rx="13" fill="#ffffff" stroke="#0078d4" stroke-width="1.5"/>
+      <text x="720" y="314">DCRA</text>
+      <rect x="955" y="296" width="90" height="26" rx="13" fill="#ffffff" stroke="#0078d4" stroke-width="1.5"/>
+      <text x="1000" y="314">DCRA</text>
+    </g>
+
+    <g text-anchor="middle">
+      <rect x="70" y="330" width="180" height="80" rx="6" fill="#ffffff" stroke="#a6a6a6" stroke-width="1.5"/>
+      <text x="160" y="364" font-size="19" font-weight="600">Resource A</text>
+      <text x="160" y="389" font-size="14">Uses baseline</text>
+      <rect x="350" y="330" width="180" height="80" rx="6" fill="#ffffff" stroke="#a6a6a6" stroke-width="1.5"/>
+      <text x="440" y="364" font-size="19" font-weight="600">Resource B</text>
+      <text x="440" y="389" font-size="14">Uses baseline</text>
+      <rect x="630" y="330" width="180" height="80" rx="6" fill="#ffffff" stroke="#a6a6a6" stroke-width="1.5"/>
+      <text x="720" y="364" font-size="19" font-weight="600">Resource C</text>
+      <text x="720" y="389" font-size="14">Uses baseline</text>
+      <rect x="910" y="330" width="180" height="80" rx="6" fill="#ffffff" stroke="#a6a6a6" stroke-width="1.5"/>
+      <text x="1000" y="364" font-size="19" font-weight="600">Resource D</text>
+      <text x="1000" y="389" font-size="14">Uses baseline</text>
+    </g>
+
+    <text x="600" y="438" font-size="15" font-weight="600" text-anchor="middle">Four DCRAs apply one centrally managed DCR to four resources.</text>
+
+    <rect x="30" y="480" width="1140" height="300" rx="8" fill="transparent" stroke="#a6a6a6" stroke-width="1.5"/>
+    <text x="55" y="520" font-size="24" font-weight="600">Add targeted DCRs only where collection requirements differ</text>
+
+    <rect x="225" y="550" width="300" height="105" rx="6" fill="#eef8ed" stroke="#107c10" stroke-width="1.5"/>
+    <text x="375" y="587" font-size="21" font-weight="600" text-anchor="middle">Workload DCR</text>
+    <text x="375" y="617" font-size="15" text-anchor="middle">Application-specific collection policy</text>
+    <text x="375" y="640" font-size="13" text-anchor="middle">Applies only to Resources B and C</text>
+
+    <rect x="790" y="550" width="300" height="105" rx="6" fill="#fff4ce" stroke="#986f0b" stroke-width="1.5"/>
+    <text x="940" y="587" font-size="21" font-weight="600" text-anchor="middle">Specialized DCR</text>
+    <text x="940" y="617" font-size="15" text-anchor="middle">Specialized collection policy</text>
+    <text x="940" y="640" font-size="13" text-anchor="middle">Applies only to Resource D</text>
+
+    <g fill="none" stroke="#107c10" stroke-width="2.5" stroke-dasharray="4 4">
+      <polyline points="330,655 330,685 350,685 350,710"/>
+      <polyline points="420,655 420,695 600,695 600,710"/>
+    </g>
+    <line x1="940" y1="655" x2="940" y2="710" stroke="#986f0b" stroke-width="2.5" stroke-dasharray="10 4 2 4"/>
+
+    <g text-anchor="middle">
+      <rect x="260" y="710" width="180" height="55" rx="6" fill="#ffffff" stroke="#a6a6a6" stroke-width="1.5"/>
+      <text x="350" y="744" font-size="18" font-weight="600">Resource B</text>
+      <rect x="510" y="710" width="180" height="55" rx="6" fill="#ffffff" stroke="#a6a6a6" stroke-width="1.5"/>
+      <text x="600" y="744" font-size="18" font-weight="600">Resource C</text>
+      <rect x="850" y="710" width="180" height="55" rx="6" fill="#ffffff" stroke="#a6a6a6" stroke-width="1.5"/>
+      <text x="940" y="744" font-size="18" font-weight="600">Resource D</text>
+    </g>
+
+    <text x="55" y="818" font-size="16" font-weight="600">Control-plane DCRA assignments - telemetry follows a separate data path:</text>
+    <line x1="55" y1="850" x2="115" y2="850" stroke="#0078d4" stroke-width="2.5" stroke-dasharray="9 5"/>
+    <text x="135" y="856" font-size="16">Central baseline</text>
+    <line x1="380" y1="850" x2="440" y2="850" stroke="#107c10" stroke-width="2.5" stroke-dasharray="4 4"/>
+    <text x="460" y="856" font-size="16">Workload</text>
+    <line x1="650" y1="850" x2="710" y2="850" stroke="#986f0b" stroke-width="2.5" stroke-dasharray="10 4 2 4"/>
+    <text x="730" y="856" font-size="16">Specialized</text>
+  </g>
+</svg>
