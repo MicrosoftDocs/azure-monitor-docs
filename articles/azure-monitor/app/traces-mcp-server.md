@@ -1,5 +1,5 @@
 ---
-title: Query Azure Monitor Traces with an MCP Server (47 Chars)
+title: Query Azure Monitor Traces with an MCP Server
 description: Query Azure Monitor traces with an MCP server. Set up the local .NET tool or Azure MCP Server to investigate trace data from chat. Get started now.
 ms.date: 10/27/2026
 ms.topic: quickstart
@@ -21,7 +21,7 @@ You can use either the local Azure Monitor traces server, which runs as a .NET g
 
 - Install the Azure CLI and authenticate with your own Microsoft Entra identity.
 - Install [.NET SDK 9.0 or later](https://dotnet.microsoft.com/download/dotnet/9.0).
-- Get the workspace's Azure Resource Manager (ARM) resource ID, in the format `/subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.Monitor/accounts/{name}`.
+- Get the workspace's Azure Resource Manager resource ID, in the format `/subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.Monitor/accounts/{name}`.
 
 ### Azure MCP Server
 
@@ -91,7 +91,7 @@ Install the `Microsoft.Azure.Monitor.Traces.Mcp` .NET global tool in the local s
 
 ## Configure tracing through Azure MCP Server
 
-As an alternative to the local server, you can use Azure MCP Server. Use the latest Azure MCP Server release. Private-preview monitor traces commands are available starting with [version 4.0.0-beta.1](https://github.com/microsoft/mcp/releases/tag/Azure.Mcp.Server-4.0.0-beta.1).
+As an alternative to the local server, you can use Azure MCP Server. Use the latest Azure MCP Server release. Monitor traces commands are available starting with [version 4.0.0-beta.1](https://github.com/microsoft/mcp/releases/tag/Azure.Mcp.Server-4.0.0-beta.1).
 
 1. Follow the [Azure MCP installation prerequisites](/azure/developer/azure-mcp-server/get-started), [client setup](https://github.com/microsoft/mcp/blob/main/servers/Azure.Mcp.Server/README.md#manual-setup), and [authentication guide](https://github.com/microsoft/mcp/blob/main/docs/Authentication.md#local-authentication-stdio-transport). For GitHub Copilot CLI, use the [Copilot CLI configuration instructions](https://github.com/microsoft/mcp/blob/main/servers/Azure.Mcp.Server/README.md#github-copilot-cli-configuration).
 
@@ -121,7 +121,7 @@ As an alternative to the local server, you can use Azure MCP Server. Use the lat
 
 1. To verify, ask Azure MCP to run `monitor traces account list` for your subscription, and then run `monitor traces field list` with the subscription, resource group, and name of a returned workspace.
 
-    Unlike the standalone server, these commands take the AMW name, not its ARM resource ID or `accountId` GUID.
+    These commands take the AMW name, not its Azure Resource Manager Resource ID or `accountId` GUID.
 
 1. To investigate, ask:
 
@@ -135,7 +135,7 @@ As an alternative to the local server, you can use Azure MCP Server. Use the lat
 
 Confirm that the local server works by asking the agent to run its schema tool.
 
-1. Ask the agent to run `az_list_field_names` with your Azure Monitor workspace ARM resource ID.
+1. Ask the agent to run `az_list_field_names` with your Azure Monitor workspace Azure Resource Manager resource ID.
 1. Confirm that the agent returns the span schema for that workspace.
 
 ## Troubleshoot common issues
