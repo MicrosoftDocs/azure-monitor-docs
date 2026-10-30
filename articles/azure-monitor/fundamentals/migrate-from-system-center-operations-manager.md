@@ -49,7 +49,7 @@ To migrate to Azure Monitor DCRs, follow these steps:
 
 3. **Author Data Collection Rules (DCRs)**
 
-   Map management packs to DCRs. To extract the rules and monitors from existing management packs and convert them into DCR configurations, see [Convert System Center Operations Manager management packs into data collection rules](/azure/azure-monitor/scom-manage-instance/convert-management-packs-into-data-collection-rules).
+   Map management packs to DCRs. To extract the rules and monitors from existing management packs and convert them into DCR configurations, see [Convert System Center Operations Manager management packs into data collection rules](/azure/azure-monitor/fundamentals/convert-management-packs-into-data-collection-rules).
 
 4. **Deploy Azure Monitor Agent (AMA)**
 

@@ -191,7 +191,7 @@ items:
         href: app/traces-attribute-analysis.md
       - name: Trace derived metrics
         href: app/trace-derived-metrics.md
-      - name: Query Azure Monitor Traces with an MCP Server (47 Chars)
+      - name: Query Azure Monitor Traces with an MCP Server
         href: app/traces-mcp-server.md
     - name: Code analysis
       items:

@@ -1,8 +1,8 @@
 ---
 title: Structure of a data collection rule (DCR) in Azure Monitor
-description: Details on the structure of different kinds of data collection rule in Azure Monitor.
+description: Learn about data collection rule (DCR) types and properties to determine the data sources, streams, transformations, and destinations in Azure Monitor.
 ms.topic: reference
-ms.date: 05/15/2026
+ms.date: 10/28/2026
 ms.reviewer: msundaram
 ai-usage: ai-assisted
 ---
@@ -16,7 +16,9 @@ This article describes the JSON structure of DCRs for those cases where you need
 
 ## Properties
 
-The following table describes properties at the top level of the DCR.
+The resource-level `kind` property identifies the DCR's data collection scenario. It's defined at the resource level, outside the `properties` object. Other settings, including `dataSources`, `dataFlows`, and `transformations`, are nested under `properties`.
+
+The following table describes general DCR properties. Except for `kind`, these properties are nested under `properties`. The [DCR data flow overview later in this article](#overview-of-dcr-data-flow) describes the data collection and processing settings.
 
 | Property | Description |
 |:---------|:------------|
@@ -25,24 +27,23 @@ The following table describes properties at the top level of the DCR.
 | `endpoints`<sup>1</sup> | Contains the `logsIngestion` and `metricsIngestion` URL of the endpoints for the DCR. This section and its properties are automatically created when the DCR is created only if the `kind` attribute in the DCR is `Direct`. |
 | `immutableId` | A unique identifier for the data collection rule. This property and its value are automatically created when the DCR is created. |
 | `kind` | Specifies the data collection scenario the DCR is used for. This parameter is further described in the following section. |
-| `transformations` | (Preview) Array of named transformation pipelines used by [multi-stage transformations](data-collection-transformations.md#multi-stage-transformations-preview). Each entry defines a header processor and an ordered sequence of processors. Referenced by `dataSources` and `dataFlows` via the `transform` property. Requires API version `2025-05-11` or later. See [Transformations](#transformations). |
 
-<sup>1</sup> This property wasn't created for DCRs created before March 31, 2024. DCRs created before this date required a [data collection endpoint (DCE)](data-collection-endpoint-overview.md) and the `dataCollectionEndpointId` property to be specified. If you want to use these embedded DCEs, you must create a new DCR. 
+<sup>1</sup> DCRs created before March 31, 2024, don't have the `endpoints` property. They require a separate [data collection endpoint (DCE)](data-collection-endpoint-overview.md), specified through `dataCollectionEndpointId`. To use DCR ingestion endpoints instead, create a new DCR with `kind` set to `Direct`.
 
 ## Kind
 
-The `kind` property in the DCR specifies the type of collection that the DCR is used for. Each kind of DCR has a different structure and properties. 
+The `kind` property specifies the data collection scenario, not an individual data source type. The scenario determines which settings the DCR uses.
 
 The following table lists the different kinds of DCRs and their details.
 
 | Kind | Description |
 |:-----|:------------|
-| `Direct` | Direct ingestion using Logs ingestion API. Endpoints are created for the DCR only if this kind value is used. |
-| `AgentSettings` | Configure Azure Monitor agent parameters. |
+| `Direct` | Direct ingestion using the [Log Ingestion API](../logs/logs-ingestion-api-overview.md). Endpoints are created for the DCR only if this kind value is used. |
+| `AgentSettings` | Configure [Azure Monitor Agent settings](../agents/agent-settings.md), such as local cache size and OTLP listener ports, through `properties.agentSettings`. |
 | `Linux` | Collect events and performance data from Linux machines. |
 | `PlatformTelemetry` | Export platform metrics. |
 | `Windows` | Collect events and performance data from Windows machines. |
-| `WorkspaceTransforms` | Workspace transformation DCR. This DCR doesn't include an input stream. |
+| `WorkspaceTransforms` | Apply [workspace transformations](data-collection-transformations.md#workspace-transformation-dcr) to supported tables. This DCR routes standard input streams without defining how to collect them. |
 
 ## Overview of DCR data flow
 
@@ -50,31 +51,40 @@ The basic flow of a DCR is shown in the following diagram. Each of the component
 
 :::image type="content" source="media/data-collection-rule-structure/dcr-flow-diagram.png" lightbox="media/data-collection-rule-structure/dcr-flow-diagram.png" alt-text="Diagram that illustrates the relationship between the different sections of a DCR." border="false":::
 
-The full data flow through a DCR follows this sequence: **Data sources** → **Input streams** → **Data flows** → **Destinations**. Not all DCR types use every element. The following table shows which elements apply to each DCR type.
+For collection scenarios, data moves from **Data sources** through **Input streams** and **Data flows** to **Destinations**. Not every DCR uses every component. The following table describes each property's role and uses. All properties in this table are nested under `properties`.
 
-| DCR type | Data sources | Input streams | Data flows | Destinations |
-|:---------|:-------------|:--------------|:-----------|:-------------|
-| AMA DCRs (`Linux`, `Windows`) | Yes | Yes | Yes | Yes |
-| Direct ingest DCRs (`Direct`) | No | Yes | Yes | Yes |
-| Workspace transformation DCRs (`WorkspaceTransforms`) | No | No | Yes | No |
+| Property | Role and scenario |
+|:---------|:------------------|
+| [`dataSources`](#data-sources) | Configure collection from sources such as Windows events, Syslog, and performance counters for Azure Monitor Agent (AMA). `Linux` and `Windows` DCRs use these collection settings. |
+| [`directDataSources`](#direct-data-sources) | Configure direct OpenTelemetry logs, metrics, and traces through `otelLogs`, `otelMetrics`, and `otelTraces`. |
+| [`streamDeclarations`](#stream-declarations) | Define the schema of custom input streams for data with a customer-defined schema, including data sent through the Log Ingestion API or collected by AMA. Multi-stage processing of Syslog or Windows events can also produce custom streams that require declarations. Standard schemas don't need a custom declaration. |
+| [`dataFlows`](#data-flows) | Route input streams to destinations and specify ingestion-time transformations. Workspace transformation DCRs route standard input streams without defining how to collect them. |
+| [`destinations`](#destinations) | Define named destinations referenced by data flows. A workspace transformation DCR can only send data to the workspace it's associated with. |
+| [`transformations`](#transformations) | Define named processor pipelines for multi-stage transformations (preview). A data source or data flow selects a pipeline through `transform`. This property is separate from inline `dataFlows[].transformKql`. |
+| [`references`](#references) | Define resources used by other DCR sections, such as Application Insights references for OpenTelemetry enrichment and enrichment data referenced by data flows. |
+| [`agentSettings`](#agent-settings) | Configure agent behavior on a host, including local cache size and OTLP listener ports. |
 
-With [multi-stage transformations](data-collection-transformations.md#multi-stage-transformations-preview), the `transformations` section adds processor pipelines that apply at the data source stage (client-side) or the data flow stage (ingestion-side), depending on where the named transformation is referenced.
+The [ARM template reference](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template#resource-format-1) describes the resource format and property types for a selected API version. Its resource format is a property inventory, not a working example that requires every field to be populated. Use the configuration for your collection scenario. Multi-stage transformations require API version `2025-05-11` or later, as described in [Multi-stage DCR considerations](data-collection-transformations.md#multi-stage-dcr-considerations).
 
-## Input streams
+<a id="input-streams"></a>
 
-The input stream section of a DCR defines the incoming data it collects. Two types of incoming streams are possible depending on the data collection scenario. Most data collection scenarios use one of the input streams, while some scenarios use both.
+## Data inputs
+
+A DCR's data input configuration specifies how data reaches Azure Monitor and the schema of its input streams. Collection settings and schema declarations serve different purposes, as shown in the following table. Some scenarios require both, for example, text log collection with AMA.
+
+| Purpose | Property | Description |
+|:--------|:---------|:------------|
+| Collection configuration | `dataSources` | Configure how AMA collects data, such as Windows events, Syslog, performance counters, and log files. |
+| Collection configuration | `directDataSources` | Configure direct OpenTelemetry logs, metrics, and traces. See [Direct data sources](#direct-data-sources). |
+| Ingestion endpoints | `endpoints` | Provide the DCR's generated ingestion endpoint URLs for clients that send data directly to Azure Monitor. |
+| Schema declaration | `streamDeclarations` | Define the schema of each custom input stream, whether the data arrives through an ingestion API or from an agent. |
 
 > [!NOTE]
-> [Workspace transformation DCRs](data-collection-transformations.md#workspace-transformation-dcr) don't have an input stream.
+> [Workspace transformation DCRs](data-collection-transformations.md#workspace-transformation-dcr) don't define input collection. They route standard input streams to their associated workspace.
 
-| Input stream | Description |
-|:-------------|:------------|
-| `dataSources` | Known type of data. This type often comes from data processed by Azure Monitor agent and delivered to Azure Monitor by using a known data type. |
-| `streamDeclarations` | Custom data that requires a definition in the DCR. |
+Data sent through the Log Ingestion API uses `streamDeclarations` to define the schema of the incoming data.
 
-Data sent from the Logs ingestion API uses a `streamDeclaration` with the schema of the incoming data because the API sends custom data.
-
-Text logs from Azure Monitor Agent (AMA) are an example of data collection that requires both `dataSources` and `streamDeclarations`. The data source includes the configuration for connecting to the data source, and `streamDeclarations` defines the schema of the incoming data.
+Text log collection with AMA uses `dataSources` to configure file collection and `streamDeclarations` to define the incoming data's schema. Custom streams produced by multi-stage processing also require stream declarations.
 
 ### Data sources
 
@@ -84,7 +94,7 @@ For example, events and performance data collected from a VM by using the Azure 
 
 #### Common data source parameters
 
-All data source types share the following common parameters.
+The following parameters describe data source naming, streams, and transformations. The `transform` property is available only for data sources supported by multi-stage transformations.
 
 | Parameter | Description |
 |:----------|:------------|
@@ -94,7 +104,7 @@ All data source types share the following common parameters.
 
 #### Valid data source types
 
-The following table lists the currently available data source types.
+The following table describes common data source types. For additional types and their properties, see the [ARM template reference](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template#datacollectionruledatasources-1).
 
 | Data source type | Description | Streams | Parameters |
 |:-----------------|:------------|:--------|:-----------|
@@ -108,6 +118,12 @@ The following table lists the currently available data source types.
 | `extension` | Extension-based data source used by Azure Monitor agent. | Varies by extension | `extensionName` - Name of the extension<br>`extensionSettings` - Values for each setting required by the extension |
 
 <sup>1</sup> These data sources use both a data source and a stream declaration since the schema of the data they collect can vary. The stream used in the data source should be the custom stream defined in the stream declaration.
+
+### Direct data sources
+
+The `directDataSources` object contains `otelLogs`, `otelMetrics`, and `otelTraces` collections for OpenTelemetry data. Each entry includes a name and streams, with additional properties for enrichment. For the property definitions, see [DataCollectionRuleDirectDataSources](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template#datacollectionruledirectdatasources-1).
+
+The ARM reference also lists OpenTelemetry logs, metrics, and traces under `dataSources`. These are separate collections in the resource format. The inventory alone doesn't establish an agent requirement or a requirement to duplicate entries across the two collections.
 
 ### Stream declarations
 
@@ -127,6 +143,19 @@ Assign the following data types to the properties:
 
 The `guid` type isn't available in stream declarations. If your source data includes GUID values, declare those columns as `string`. The Tables API supports the `guid` type, but the values are actually stored and queried as strings. For more information, see [Column data types in Azure Monitor Logs](../logs/logs-table-overview.md#column-data-types).
 
+## References
+
+The `references` object defines resources used by other sections of the DCR. It doesn't route data to a destination.
+
+- `applicationInsights` defines named Application Insights resource references for OpenTelemetry enrichment. OpenTelemetry data source entries use `enrichWithReference` to select a reference.
+- `enrichmentData` defines enrichment data sources referenced by data flows, including storage blobs.
+
+For the supported fields, see [DataCollectionRuleReferences](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template#datacollectionrulereferences-1).
+
+## Agent settings
+
+The `agentSettings` object configures agent behavior on a host, including local cache size and OTLP listener ports. Its `logs` and `metrics` collections contain named settings and values for AMA. For supported settings and configuration instructions, see [Azure Monitor Agent settings](../agents/agent-settings.md). For the resource structure, see [DataCollectionRuleAgentSettings](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template#datacollectionruleagentsettings-1).
+
 ## Destinations
 
 Include an entry for each destination where you send the data in the `destinations` section. Match these destinations with input streams in the `dataFlows` section.
@@ -135,7 +164,7 @@ Include an entry for each destination where you send the data in the `destinatio
 
 | Parameters | Description |
 |:-----------|:------------|
-| `name` | Name to identify the destination in the `dataSources` section. |
+| `name` | Name used to reference the destination in the `dataSources` section. |
 
 ### Valid destinations
 
@@ -153,13 +182,13 @@ The following table lists the available destinations.
 
 ## Data flows
 
-Data flows match input streams with destinations. Each data source can optionally specify a transformation and, in some cases, specify a specific table in the Log Analytics workspace. 
+Data flows match streams with destinations. Each data flow can optionally specify an ingestion-time transformation and, in some cases, a specific table in the Log Analytics workspace.
 
 ### Data flow properties
 
 | Section | Description |
 |:--------|:------------|
-| `streams` | One or more streams defined in the input streams section. Include multiple streams in a single data flow if you want to send multiple data sources to the same destination. Only use a single stream if the data flow includes a transformation. Use one stream for multiple data flows when you want to send a particular data source to multiple tables in the same Log Analytics workspace. |
+| `streams` | One or more standard input streams or custom streams defined in [`streamDeclarations`](#stream-declarations). Include multiple streams in a single data flow if you want to send multiple data sources to the same destination. Only use a single stream if the data flow includes a transformation. Use one stream for multiple data flows when you want to send a particular data source to multiple tables in the same Log Analytics workspace. |
 | `destinations` | One or more destinations from the `destinations` section above. Multiple destinations are allowed for multi-homing scenarios. |
 | `transform` | (Preview) Name of a transformation from the [`transformations`](#transformations) section to apply at ingestion time. Mutually exclusive with `transformKql`. See [Multi-stage transformations](data-collection-transformations.md#multi-stage-transformations-preview). |
 | `transformKql` | Optional [transformation](data-collection-transformations.md) applied to the incoming stream. The transformation must understand the schema of the incoming data and output data in the schema of the target table. If you use a transformation, the data flow should only use a single stream. Mutually exclusive with `transform`. |
@@ -171,6 +200,8 @@ Data flows match input streams with destinations. Each data source can optionall
 > Multi-stage transformations are currently in public preview. This section requires API version `2025-05-11` or later. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 The `transformations` section defines reusable named transformations referenced by `dataSources` and `dataFlows`. Each transformation defines a pipeline of [processors](data-collection-transformations.md#processors) that are applied sequentially to the data. See [Multi-stage transformations](data-collection-transformations.md#multi-stage-transformations-preview) for conceptual details.
+
+Assign a named transformation to a processing stage through the `transform` property: use `dataSources` for client-side processing or `dataFlows` for ingestion-time processing. A data flow supports either an inline KQL query in `transformKql` or a reference to a named multi-stage pipeline in `transform`, but not both.
 
 ```json
 "transformations": [
