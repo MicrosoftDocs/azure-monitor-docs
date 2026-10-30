@@ -98,19 +98,6 @@ When you register the preview features, enable the Application Insights feature 
    az provider show --namespace "Microsoft.ContainerService" --query "registrationState"
    ```
 
-1. Select the subscription where you create the Application Insights resource, and then register the Application Insights OTLP preview feature:
-   ```bash
-   az account set --subscription "<application-insights-subscription-name-or-id>"
-   az feature register --name OtlpApplicationInsights --namespace Microsoft.Insights
-   az feature show --name OtlpApplicationInsights --namespace Microsoft.Insights --query properties.state --output tsv
-   ```
-
-   Wait until the command returns `Registered`. If it returns `Pending`, request access to the preview before continuing. Then register the provider:
-
-   ```bash
-   az provider register -n Microsoft.Insights
-   ```
-
 ## 2. Prepare the cluster
 
 1. Ensure the cluster is onboarded to Azure Monitor metrics and logs. Use [**Enable monitoring for AKS clusters**](kubernetes-monitoring-enable.md) in Azure Monitor (Application Insights isn't required yet).
@@ -127,12 +114,11 @@ If you didn't previously onboard the cluster, you can enable Managed Prometheus,
 Create or select an Application Insights resource that supports OTLP and uses **Managed workspaces**.
 
 1. In the Azure portal, create a new Application Insights resource.
-1. Turn on **Enable OTLP Support (Preview)**.
+1. Turn on **Enable OTLP Support**.
 1. Set **Use managed workspaces** to **Yes**.  
     :::image type="content" source="./media/kubernetes-open-protocol/application-insights-create-enable.png" lightbox="./media/kubernetes-open-protocol/application-insights-create-enable.png" alt-text="A screenshot of Create Application Insights resource with enable option selected.":::
 
 > [!IMPORTANT]
-> - Use an **Azure Monitor workspace** that's **different** from the workspace used for infrastructure metrics in step 2.
 > - Managed workspaces create a separate Azure Monitor workspace for Application Insights application telemetry using a distinct workspace from the one used for infrastructure metrics.
 
 ## 4. Onboard applications to Application Insights
