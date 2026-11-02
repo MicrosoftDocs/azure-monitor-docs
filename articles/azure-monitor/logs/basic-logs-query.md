@@ -77,9 +77,9 @@ Hover over a table name to open the table information view, which identifies the
 
 # [REST](#tab/rest)
 
-Use **/search** from the [Log Analytics API](api/overview.md) to query data in a Basic or Auxiliary table by using a REST API. Specify the time span as a query parameter (`timespan`) instead of in the request body.
+The following REST example uses the [Search](../fundamentals/azure-monitor-rest-api-index.md#op-logs-search) REST API operation to query a Basic-plan `ContainerLogV2` table for a computer over the past day. Specify the time span as a query parameter (`timespan`) instead of in the request body.
 
-**Sample Request:**
+Replace `{WorkspaceId}` with your workspace ID and `<ComputerName>` with the computer name.
 
 ```REST
 POST https://api.loganalytics.io/v1/workspaces/{WorkspaceId}/search?timespan=P1D
@@ -87,7 +87,7 @@ Authorization: Bearer {AccessToken}
 Content-Type: application/json
 
 {
-  "query": "ContainerLogV2 | where Computer == 'some value'"
+  "query": "ContainerLogV2 | where Computer == '<ComputerName>'"
 }
 ```
 
