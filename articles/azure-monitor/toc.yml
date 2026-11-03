@@ -882,6 +882,8 @@ items:
       href: containers/opentelemetry-protocol-ingestion.md
     - name: Ingest OTLP signals with AMA (Preview)
       href: containers/opentelemetry-ingest-agent.md
+    - name: Connect metrics to traces with Exemplars
+      href: containers/opentelemetry-exemplars.md
   - name: Azure Monitor Agent
     items:
     - name: Overview
