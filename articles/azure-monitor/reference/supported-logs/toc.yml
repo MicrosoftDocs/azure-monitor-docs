@@ -451,7 +451,7 @@ items:
   displayName: Audit Logs,Ingestion Logs
 - name: Microsoft.Peering/peerings
   href: microsoft-peering-peerings-logs.md
-  displayName: Operational Logs
+  displayName: Peering Operational Logs
 - name: Microsoft.Peering/peeringServices
   href: microsoft-peering-peeringservices-logs.md
   displayName: Operational Logs,Prefix Validation Logs

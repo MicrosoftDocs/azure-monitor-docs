@@ -328,6 +328,8 @@
   href: microsoft-network-privateendpoints-metrics.md
 - name: Microsoft.Network/privateLinkServices
   href: microsoft-network-privatelinkservices-metrics.md
+- name: Microsoft.Network/privateTrafficManagerProfiles
+  href: microsoft-network-privatetrafficmanagerprofiles-metrics.md
 - name: Microsoft.Network/publicIPAddresses
   href: microsoft-network-publicipaddresses-metrics.md
 - name: Microsoft.Network/publicIPPrefixes

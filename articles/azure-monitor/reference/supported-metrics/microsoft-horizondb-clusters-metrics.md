@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.HorizonDB/clusters
 description: Reference for Microsoft.HorizonDB/clusters metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 10/16/2026
+ms.date: 11/03/2026
 ms.custom: Microsoft.HorizonDB/clusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -47,6 +47,12 @@ For a list of supported logs, see [Supported log categories - Microsoft.HorizonD
 |**Tuples Inserted**<br><br>Number of rows inserted by queries in this database |`TuplesInserted` | No | Count |Total (Sum) |`Database`|PT1M |No|
 |**Tuples Returned**<br><br>Number of rows returned by queries in this database |`TuplesReturned` | No | Count |Total (Sum) |`Database`, `Pool`, `Node`, `Role`|PT1M |No|
 |**Tuples Updated**<br><br>Number of rows updated by queries in this database |`TuplesUpdated` | No | Count |Total (Sum) |`Database`|PT1M |No|
+
+### Category: Billing
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Backup Used**<br><br>Amount of backup storage used by the service, including snapshots of database files |`BackupStorageUsed` | No | Bytes |Average, Maximum, Minimum |\<none\>|PT1M |No|
+|**Storage Used**<br><br>Amount of storage used by the service, including database files |`StorageUsed` | No | Bytes |Average, Maximum, Minimum |\<none\>|PT1M |No|
 
 ### Category: Compute
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
@@ -107,7 +113,6 @@ For a list of supported logs, see [Supported log categories - Microsoft.HorizonD
 |**SSD Cache Hits**<br><br>Number of reads served by the local SSD cache |`SsdCacheHits` | No | Count |Average, Maximum, Minimum, Total (Sum) |`Pool`, `Node`, `Role`|PT1M |No|
 |**SSD Cache Misses**<br><br>Number of reads that missed the SSD cache and were served from storage |`SsdCacheMisses` | No | Count |Average, Maximum, Minimum, Total (Sum) |`Pool`, `Node`, `Role`|PT1M |No|
 |**SSD Cache Writes**<br><br>Number of writes performed into the SSD cache |`SsdCacheWrites` | No | Count |Average, Maximum, Minimum, Total (Sum) |`Pool`, `Node`, `Role`|PT1M |No|
-|**Storage Used**<br><br>Amount of storage used by the service, including database files and the transaction log tail |`StorageUsed` | No | Bytes |Average, Maximum, Minimum |\<none\>|PT1M |No|
 |**WAL Write Iops**<br><br>Number of WAL write I/O operations to storage |`WALWriteIops` | No | CountPerSecond |Maximum |\<none\>|PT1M |No|
 |**WAL Write Throughput**<br><br>Amount of WAL written to storage |`WALWriteThroughput` | No | BytesPerSecond |Maximum |\<none\>|PT1M |No|
 |**Write Latency**<br><br>Maximum time taken to flush a WAL record (microseconds) |`WriteLatency` | No | Unspecified |Maximum |\<none\>|PT1M |No|
