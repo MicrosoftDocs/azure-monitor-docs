@@ -216,7 +216,7 @@ Restarts target virtual machines and, after the restart succeeds, redeploys them
 Applies sustained CPU stress inside target virtual machines or scale set instances to validate application behavior under CPU contention. You set the pressure level (percentage) and duration.
 
 > [!NOTE]
-> CPU Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Chaos Studio installs the agent extension automatically during the run and removes it afterward. For target VM and operating system requirements, see [Agent-based Scenario requirements](#agent-based-scenario-requirements).
+> CPU Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Chaos Studio installs the agent extension automatically during the run and leaves it installed afterward. For target VM and operating system requirements, see [Agent-based Scenario requirements](#agent-based-scenario-requirements).
 
 | Property | Value |
 |---|---|
@@ -229,7 +229,7 @@ Applies sustained CPU stress inside target virtual machines or scale set instanc
 Consumes physical memory inside target virtual machines or scale set instances to validate application behavior under memory contention. You set the pressure level (percentage) and duration.
 
 > [!NOTE]
-> Physical Memory Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Chaos Studio installs the agent extension automatically during the run and removes it afterward. For target VM and operating system requirements, see [Agent-based Scenario requirements](#agent-based-scenario-requirements).
+> Physical Memory Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Chaos Studio installs the agent extension automatically during the run and leaves it installed afterward. For target VM and operating system requirements, see [Agent-based Scenario requirements](#agent-based-scenario-requirements).
 
 | Property | Value |
 |---|---|
@@ -239,7 +239,7 @@ Consumes physical memory inside target virtual machines or scale set instances t
 
 ## Agent-based Scenario requirements
 
-Most Scenarios use service-direct actions that operate on resources through Azure management APIs. Agent-based Scenarios, such as CPU Pressure and Physical Memory Pressure, instead run the fault inside the target virtual machine through the Chaos Studio agent. Chaos Studio installs the agent extension automatically when the run starts and removes it when the run ends, so you don't install or manage the agent yourself.
+Most Scenarios use service-direct actions that operate on resources through Azure management APIs. Agent-based Scenarios, such as CPU Pressure and Physical Memory Pressure, instead run the fault inside the target virtual machine through the Chaos Studio agent. Chaos Studio installs the agent extension automatically when the run starts and leaves it installed after the run ends, so you don't install or manage the agent yourself.
 
 Each target virtual machine or virtual machine scale set must meet the following requirements:
 
