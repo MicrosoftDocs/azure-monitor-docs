@@ -231,7 +231,7 @@ The following are sample metric alert payloads.
       ],
       "dataSources": [
         {
-          "resourceId": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourcegroups/test/providers/microsoft.operationalinsights/workspaces/test",
+          "resourceId": "/subscriptions/aaaabbbb-0000-cccc-1111-dddd2222eeee/resourcegroups/test/providers/microsoft.operationalinsights/workspaces/test",
           "tables": [
             "Heartbeat"
           ]
@@ -301,7 +301,7 @@ The following are sample metric alert payloads.
       ],
       "dataSources": [
         {
-          "resourceId": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourcegroups/test/providers/microsoft.operationalinsights/workspaces/test",
+          "resourceId": "/subscriptions/aaaabbbb-0000-cccc-1111-dddd2222eeee/resourcegroups/test/providers/microsoft.operationalinsights/workspaces/test",
           "tables": [
             "Heartbeat"
           ]
@@ -906,7 +906,7 @@ Test **Log alerts V1** payloads only if your receiving endpoint or automation is
         ],
         "dataSources": [
           {
-            "resourceId": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace",
+            "resourceId": "/subscriptions/aaaabbbb-0000-cccc-1111-dddd2222eeee/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace",
             "region": "eastus",
             "tables": [
               "Heartbeat"
@@ -994,7 +994,7 @@ Test **Log alerts V1** payloads only if your receiving endpoint or automation is
         ],
         "dataSources": [
           {
-            "resourceId": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace",
+            "resourceId": "/subscriptions/aaaabbbb-0000-cccc-1111-dddd2222eeee/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace",
             "region": "eastus",
             "tables": [
               "Heartbeat"
