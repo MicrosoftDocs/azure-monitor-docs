@@ -656,7 +656,7 @@ insights-activity-logs/resourceId=/SUBSCRIPTIONS/{subscription ID}/y={four-digit
 For example, a particular blob might have a name similar to:
 
 ```text
-insights-activity-logs/resourceId=/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/y=2020/m=06/d=08/h=18/m=00/PT1H.json
+insights-activity-logs/resourceId=/SUBSCRIPTIONS/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/y=2020/m=06/d=08/h=18/m=00/PT1H.json
 ```
 
 Each `PT1H.json` blob contains a JSON object with events. The `y=`, `m=`, `d=`, and `h=` values in the blob path reflect the blob's original generation time, not the time the logs arrive in Azure Storage. All times are in UTC. These path segments identify blobs within the container, not separate containers. The minute value, `m=00`, is always `00` because Azure Monitor creates blobs hourly.
@@ -666,7 +666,7 @@ Each event is stored in the PT1H.json file with the following format. This forma
 ```json
 {
   "time": "2020-06-12T13:07:46.766Z",
-  "resourceId": "/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/MY-RESOURCE-GROUP/PROVIDERS/MICROSOFT.COMPUTE/VIRTUALMACHINES/MV-VM-01",
+  "resourceId": "/SUBSCRIPTIONS/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/RESOURCEGROUPS/MY-RESOURCE-GROUP/PROVIDERS/MICROSOFT.COMPUTE/VIRTUALMACHINES/MV-VM-01",
   "correlationId": "bbbb1111-cc22-3333-44dd-555555eeeeee",
   "operationName": "Microsoft.Resourcehealth/healthevent/Updated/action",
   "level": "Information",
