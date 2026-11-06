@@ -2,7 +2,7 @@
 title: Azure Monitor Agent extension versions
 description: Release notes and version history for the Azure Monitor Agent virtual machine extension, including Windows, Linux, and metrics updates.
 ms.topic: release-notes
-ms.date: 10/06/2026
+ms.date: 11/06/2026
 ms.custom: references_region
 ms.reviewer: shseth, nmangum
 ai-usage: ai-assisted
@@ -47,6 +47,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 | Month | Windows | Linux | Metrics | Highlights |
 |---|---|---|---|---|
+| [November 2026](#november-2026) | 1.47.1 | — | 2.2026.1020.841 | Security updates, log-configuration cleanup, histogram reliability fixes |
 | [October 2026](#october-2026) | 1.46.1 | — | 2.2026.921.1606 | Custom-log ingestion fix, Delos Cloud support, security updates |
 | [September 2026](#september-2026) | — | 1.45.0, 1.45.1 | 2.2026.807.1915, 2.2026.921.1606 | Guest-metric hotfix, log-data reliability fixes, protected-settings security fix |
 | [Aug 2026](#aug-2026) | 1.45 | 1.44 | 2.2026.703.954 | Windows data-integrity and reliability fixes, Linux distribution support, OTLP metrics improvements |
@@ -65,6 +66,31 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 | [January 2025](#january-2025) | 1.32.0 | 1.33.4 | — | Disk quota tuning |
 | [Older versions (Unsupported)](#older-versions-unsupported) |  
 
+
+## November 2026
+
+**Versions:** Windows 1.47.1
+
+### Windows 1.47.1 (Rollout start date: Nov 5, 2026)
+
+**Customer action:** Upgrade to Windows 1.47.1 when it becomes available in your region to receive these security updates and reliability fixes.
+
+#### Security
+
+- Updated bundled .NET components to address:
+  - [CVE-2026-111497](https://www.cve.org/CVERecord?id=CVE-2026-111497): Buffer overflow in Brotli decompression.
+  - [CVE-2026-84008](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-84008): .NET denial-of-service vulnerability.
+- Updated the bundled OpenSSL library to 3.6.5.
+
+#### Improvements
+
+- Updated Metrics Extension to 2.2026.1020.841.
+- Updated the bundled OpenTelemetry Collector to 1.20261019.180534, which includes OpenTelemetry Collector 0.163.0.
+
+#### Fixes
+
+- Fixed an issue where stale log-collection configuration could remain active after all data collection rule (DCR) associations were removed from a machine.
+- Fixed a metrics-collection crash when the same metric was reported with conflicting histogram types. Conflicting datapoints are now discarded instead of crashing the metrics collector.
 
 ## October 2026
 
