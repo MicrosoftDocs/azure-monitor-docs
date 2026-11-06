@@ -147,6 +147,49 @@ Review the operations and attributes of the matching transactions. This analysis
 1. Review its status, exception information, dependencies, and attributes.
 1. Use this individual transaction as an example of the earlier aggregate failure analysis.
 
+## Service limits
+
+The following limits apply when you query trace data in Azure Monitor.
+
+### Single query limits
+
+| Limit | Maximum |
+|---|---:|
+| Traces returned per query | 10,000 traces |
+| Query time range | 24 hours |
+| Data scanned per query | 5 TB |
+| Spans returned per query | 30,000 spans |
+
+> [!NOTE]
+> If your scenario requires returning more than 10,000 traces per query, contact Azure Support to request a higher limit.
+
+Queries that exceed a limit might require you to narrow the time range or add more search criteria to reduce the amount of trace data processed or returned.
+
+### Workspace query limits
+
+The following limits apply per Azure Monitor workspace. They govern aggregate query usage across the workspace:
+
+| Limit | Maximum |
+|---|---:|
+| New queries | 20 query starts per 30 seconds |
+| Data scanned | 5 TB per 30 seconds |
+| Data retrieved | 1 GB per 30 seconds |
+
+These workspace limits apply to queries running against trace data in the Azure Monitor workspace. Applications that issue concurrent or automated queries should account for these limits and avoid sending large bursts of queries.
+
+### Data deletion and purge
+
+Direct deletion or purge of trace data isn't currently available as a self-service operation. To request deletion or purge of trace data from an Azure Monitor workspace, contact Azure Support.
+
+### Recommendations
+
+To stay within these limits:
+
+- Use filters to reduce the search scope before running queries across large trace populations.
+- Split longer investigations into time windows of 24 hours or less.
+- For automated agents and clients, control query concurrency and request rate to stay within the workspace-level limits.
+- If the 10,000-trace result limit blocks your analysis scenario, contact Azure Support to request a higher query limit.
+
 ## Next steps
 
 - [Investigate latency with Critical Path Analysis](traces-critical-path-analysis.md)
