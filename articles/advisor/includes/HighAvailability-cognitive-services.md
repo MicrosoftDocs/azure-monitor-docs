@@ -222,7 +222,7 @@ Recommendation ID: d4f522ba-0646-4c73-8ca6-7636f7ad119c
 
 #### Azure Content Moderator is being retired.  
   
-The platform encourages users to explore our new offering Azure AI Content Safety that offers both new and updated capabilities to meet various content moderation needs.  
+Migrate your AI workloads to Azure AI Content Safety by the retirement date to continue detecting harmful user-generated and AI-generated content in applications and services.  
   
 **Potential benefits**: Avoid potential disruptions and use new capabilities  
 
