@@ -16,7 +16,7 @@ ms.custom: Cost Azure Cosmos DB
 
 #### Enable autoscale on your Azure Cosmos DB database or container  
   
-Based on your usage over the past 7 days, enabling autoscale can reduce costs by automatically scaling RU/s down when capacity isn't needed. Estimated savings are based on your provisioned RU/s compared with actual utilization.  
+Based on your usage over the past seven days, enabling autoscale can reduce costs by automatically scaling RU/s down when capacity isn't needed. Estimated savings are based on your provisioned RU/s compared with actual utilization.  
   
 **Impact:** Medium
   
