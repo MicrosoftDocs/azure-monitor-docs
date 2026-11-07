@@ -141,7 +141,7 @@ Your API Management instance uses virtual network (VNet) integration in the Deve
 
 **Impact:** High
   
-For more information, see [VNet configuration settings](/azure/api-management/virtual-network-reference#control-plane-ip-addresses)  
+For more information, see [Update network rules for the API Management service tag](https://techcommunity.microsoft.com/blog/IntegrationsonAzureBlog/update-network-rules-for-the-api-management-service-tag/4562518)  
 
 ResourceType: microsoft.apimanagement/service  
 Recommendation ID: dd689461-5ae0-42f0-9cfa-1756b1712e04  
