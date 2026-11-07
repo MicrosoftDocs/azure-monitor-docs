@@ -14,9 +14,9 @@ ms.custom: Cost Virtual Network Gateway
   
 <!--c3d6e0b4-4b3a-4f3f-9a6c-6c2c6d2c7c1a_begin-->
 
-#### (Preview) Delete Azure virtual network gateways with no connections  
+#### (Preview) Review Azure virtual network gateways with no connections  
   
-Deleting Azure virtual network gateways with zero connections can lower hourly gateway charges and related public IP address costs. This action helps you align network spending with active VPN or ExpressRoute connectivity needs.
+Your virtual network gateway has zero connections, but it still incurs hourly gateway charges and related public IP address costs. Delete unused gateways to reduce ongoing charges and align network spending with active VPN or ExpressRoute connectivity needs.  
   
 **Impact:** Medium
   

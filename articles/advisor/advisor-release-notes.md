@@ -15,8 +15,8 @@ Learn about the latest updates and changes in Azure Advisor with the items in th
 
 Azure Advisor continues to expand its cost optimization coverage. Two new recommendations help you find and remove idle networking resources:
 
+* [(Preview) Review Azure virtual network gateways with no connections](advisor-reference-cost-recommendations.md#preview-review-azure-virtual-network-gateways-with-no-connections)
 * [(Preview) Review ExpressRoute circuits in a not-provisioned state](advisor-reference-cost-recommendations.md#preview-review-expressroute-circuits-in-a-not-provisioned-state)
-* [(Preview) Delete Azure virtual network gateways with no connections](advisor-reference-cost-recommendations.md#preview-delete-azure-virtual-network-gateways-with-no-connections)
 
 They join two existing recommendations:
 
