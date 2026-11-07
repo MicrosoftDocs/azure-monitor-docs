@@ -477,7 +477,7 @@ Azure Virtual Machine (VM) series F, Fs, Fsv2, Lsv2, G, Gs, Av2, and B are retir
   
 **Potential benefits**: Avoid service disruptions by proactively migrating workloads  
 
-**Impact:** High
+**Impact:** Medium
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500682)  
 
