@@ -14,7 +14,7 @@ ms.custom: Cost ExpressRoute
   
 <!--d2d7f8a7-2c7b-4d0b-9b4f-6c8b7b5f3a1e_begin-->
 
-#### (Preview) Delete or provision ExpressRoute circuits in a not-provisioned state  
+#### (Preview) Review ExpressRoute circuits in a not-provisioned state  
   
 ExpressRoute circuits that remain in a not-provisioned state aren't actively carrying traffic but still incur monthly charges. These circuits might be created but never completed with the service provider. Remove unused circuits or complete provisioning with your provider to optimize spending.
   
