@@ -80,7 +80,7 @@ Recommendation ID: 354D7BBB-A243-4BE1-A8B9-43DBFC05C44A
 
 #### Reduce Data Explorer table cache policy to optimize costs  
   
-Based on last month's usage, reduce the table's hot cache. With autoscale enabled, this change might allow the cluster to scale in and reduce costs while keeping more than 95% of query reads in the hot cache. The analysis includes only user queries that scanned data.  
+Based on last month's usage, reduce the table's hot cache. By enabling autoscale, this change might allow the cluster to scale in and reduce costs while keeping more than 95% of query reads in the hot cache. The analysis includes only user queries that scanned data.  
   
 **Impact:** Medium
   
