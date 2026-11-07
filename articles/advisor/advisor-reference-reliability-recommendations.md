@@ -129,6 +129,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-media-services.md](./includes/HighAvailability-media-services.md)]
 
+[!INCLUDE [high-availability-microsoft-dev-box.md](./includes/high-availability-microsoft-dev-box.md)]
+
 [!INCLUDE [HighAvailability-microsoft.fileshares.md](./includes/HighAvailability-microsoft-fileshares.md)]
 
 [!INCLUDE [highavailability-microsoft-sentinel.md](./includes/highavailability-microsoft-sentinel.md)]
