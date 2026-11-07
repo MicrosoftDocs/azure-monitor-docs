@@ -32,7 +32,7 @@ Recommendation ID: bce95beb-3389-4e64-8863-d196cc2f69dc
 
 #### Enable Optimized Autoscale for Data Explorer resources  
   
-Looks like your resource could have automatically scaled to reduce costs (based on your actual usage during the last week, cache utilization, ingestion utilization, CPU, and streaming ingests utilization). To optimize costs and performance, we recommend enabling Optimized Autoscale. You are encouraged to choose the recommended minimum and maximum instance count that we have provided.  
+Based on the past week's usage, your resource could reduce costs with Optimized Autoscale. Enable it by using the recommended minimum and maximum instance counts to optimize cost and performance.  
   
 **Impact:** Medium
   
@@ -80,7 +80,7 @@ Recommendation ID: 354D7BBB-A243-4BE1-A8B9-43DBFC05C44A
 
 #### Reduce Data Explorer table cache policy to optimize costs  
   
-Based on your actual usage during the last month, update the cache policy to reduce the hot cache for the table. With autoscale enabled, the cluster can potentially scale in and thus reduce costs. Our goal is that more than 95% of the queries read data from the hot cache (*) The analysis is based only on user queries that scanned data.  
+Based on last month's usage, reduce the table's hot cache. With autoscale enabled, this change might allow the cluster to scale in and reduce costs while keeping more than 95% of query reads in the hot cache. The analysis includes only user queries that scanned data.  
   
 **Impact:** Medium
   
