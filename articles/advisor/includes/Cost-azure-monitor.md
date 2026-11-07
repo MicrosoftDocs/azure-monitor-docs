@@ -14,7 +14,7 @@ ms.custom: Cost Azure Monitor
   
 <!--3dfe0963-0fe5-49e0-aaaa-593b6fd4308e_begin-->
 
-#### Data ingestion anomaly was detected  
+#### Data ingestion anomaly detected  
   
 You have a much higher ingestion rate over the past week, based on your ingestion in the three previous weeks. Please take note of this change and the expected change in your costs.
   
