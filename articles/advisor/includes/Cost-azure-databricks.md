@@ -16,7 +16,7 @@ ms.custom: Cost Azure Databricks
 
 #### Enable Autoscaling for Azure Databricks Clusters  
   
-Autoscaling makes it easier to achieve high cluster utilization, because you don't need to provision the cluster to match a workload. When autoscaling is leveraged, workloads can run faster and overall costs can be reduced compared to a statically sized cluster.  
+Autoscaling improves cluster utilization by automatically adjusting capacity to workload demand, helping workloads run efficiently while reducing costs compared to a statically sized cluster.  
   
 **Impact:** Medium
   
