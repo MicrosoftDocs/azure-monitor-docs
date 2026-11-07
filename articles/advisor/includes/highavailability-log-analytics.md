@@ -16,7 +16,7 @@ ms.custom: HighAvailability Log Analytics
 
 #### Migrate from the HTTP Data Collector API to the Logs ingestion API  
   
-HTTP Data Collector API support is ending. Migrate to the Logs ingestion API, which provides more processing power and flexibility in ingesting logs and managing tables.  
+Support for the HTTP Data Collector API is ending. Migrate to the Logs ingestion API, which provides more processing power and flexibility in ingesting logs and managing tables.  
   
 **Potential benefits**: Avoid potential disruptions  
 
