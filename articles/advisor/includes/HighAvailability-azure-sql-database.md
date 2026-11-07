@@ -209,7 +209,7 @@ Microsoft.SQL 2014-04-01 stable APIs are retiring.
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** High
+**Impact:** Medium
   
 For more information, see [Azure SQL Database REST API 2014-04-01 Retirement Notice](/rest/api/sql/retirement)  
 

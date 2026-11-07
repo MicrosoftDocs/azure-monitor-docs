@@ -15,13 +15,13 @@ Learn about the latest updates and changes in Azure Advisor with the items in th
 
 Azure Advisor continues to expand its cost optimization coverage. Two new recommendations help you find and remove idle networking resources:
 
-* [(Preview) Delete or provision ExpressRoute circuits in a not-provisioned state](advisor-reference-cost-recommendations.md#preview-delete-or-provision-expressroute-circuits-in-a-not-provisioned-state)
 * [(Preview) Review Azure virtual network gateways with no connections](advisor-reference-cost-recommendations.md#preview-review-azure-virtual-network-gateways-with-no-connections)
+* [(Preview) Review ExpressRoute circuits in a not-provisioned state](advisor-reference-cost-recommendations.md#preview-review-expressroute-circuits-in-a-not-provisioned-state)
 
 They join two existing recommendations:
 
 * [(Preview) Unused or empty App Service plan](advisor-reference-cost-recommendations.md#preview-unused-or-empty-app-service-plan)
-* [(Preview) Review disks that aren't attached to a VM and evaluate if you still need the disks](advisor-reference-cost-recommendations.md#preview-review-disks-that-arent-attached-to-a-vm-and-evaluate-if-you-still-need-the-disks)
+* [(Preview) Review unattached disks and decide whether you still need them](advisor-reference-cost-recommendations.md#preview-review-unattached-disks-and-decide-whether-you-still-need-them)
 
 All four are available in preview. To view them, go to **Advisor** > **Recommendations** > **Cost**.
 

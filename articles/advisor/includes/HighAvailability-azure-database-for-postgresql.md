@@ -68,9 +68,9 @@ Subcategory: HighAvailability
 
 <!--d1f667d3-b945-4c67-98e2-84a1df2c30ca_begin-->
 
-#### Turn on backup for PostgreSQL flexible server  
+#### Turn on vaulted backup for PostgreSQL flexible server and elastic cluster  
   
-Backup helps protect data from accidental or malicious deletion. The platform recommends configuring the PostgreSQL flexible server to turn on backup.  
+Turn on vaulted backup for PostgreSQL to keep an isolated, immutable copy of your data, protected from accidental deletion, corruption, and ransomware. It also enables long-term retention and reliable recovery, so you can restore data even when the production copy is compromised or unavailable.  
   
 **Potential benefits**: Protect data from accidental or malicious deletion.  
 
