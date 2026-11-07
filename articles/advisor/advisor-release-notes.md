@@ -21,7 +21,7 @@ Azure Advisor continues to expand its cost optimization coverage. Two new recomm
 They join two existing recommendations:
 
 * [(Preview) Unused or empty App Service plan](advisor-reference-cost-recommendations.md#preview-unused-or-empty-app-service-plan)
-* [(Preview) Review disks that aren't attached to a VM and evaluate if you still need the disks](advisor-reference-cost-recommendations.md#preview-review-disks-that-arent-attached-to-a-vm-and-evaluate-if-you-still-need-the-disks)
+* [(Preview) Review unattached disks and decide whether you still need them](advisor-reference-cost-recommendations.md#preview-review-unattached-disks-and-decide-whether-you-still-need-them)
 
 All four are available in preview. To view them, go to **Advisor** > **Recommendations** > **Cost**.
 
