@@ -53,9 +53,13 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-databricks.md](./includes/HighAvailability-azure-databricks.md)]
 
+[!INCLUDE [high-availability-azure-deployment-environments.md](./includes/high-availability-azure-deployment-environments.md)]
+
 [!INCLUDE [highavailability-azure-health-data-services.md](./includes/highavailability-azure-health-data-services.md)]
 
 [!INCLUDE [highavailability-azure-hpc-cache.md](./includes/highavailability-azure-hpc-cache.md)]
+
+[!INCLUDE [high-availability-azure-iot-central.md](./includes/high-availability-azure-iot-central.md)]
 
 [!INCLUDE [HighAvailability-azure-iot-hub.md](./includes/HighAvailability-azure-iot-hub.md)]
 
@@ -124,6 +128,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 [!INCLUDE [highavailability-log-analytics.md](./includes/highavailability-log-analytics.md)]
 
 [!INCLUDE [HighAvailability-media-services.md](./includes/HighAvailability-media-services.md)]
+
+[!INCLUDE [high-availability-microsoft-dev-box.md](./includes/high-availability-microsoft-dev-box.md)]
 
 [!INCLUDE [HighAvailability-microsoft.fileshares.md](./includes/HighAvailability-microsoft-fileshares.md)]
 

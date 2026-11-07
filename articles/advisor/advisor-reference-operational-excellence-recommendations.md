@@ -51,6 +51,8 @@ You can get these recommendations on the **Operational Excellence** tab of the A
 
 [!INCLUDE [OperationalExcellence-azure-dedicated-hsm.md](./includes/OperationalExcellence-azure-dedicated-hsm.md)]
 
+[!INCLUDE [operational-excellence-azure-documentdb.md](./includes/operational-excellence-azure-documentdb.md)]
+
 [!INCLUDE [OperationalExcellence-azure-iot-hub.md](./includes/OperationalExcellence-azure-iot-hub.md)]
 
 [!INCLUDE [OperationalExcellence-azure-kubernetes-service-(aks).md](./includes/OperationalExcellence-azure-kubernetes-service-(aks).md)]
