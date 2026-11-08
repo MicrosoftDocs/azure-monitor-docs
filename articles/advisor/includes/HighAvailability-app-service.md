@@ -602,4 +602,106 @@ Recommendation ID: c0d1b2d6-6d5f-4b7a-9b6f-7c2d2c9f2c1a
 
 <!--c0d1b2d6-6d5f-4b7a-9b6f-7c2d2c9f2c1a_end-->
 
+<!--06ea786a-2199-402d-9b7b-7facaf70420c_begin-->
+
+#### Upgrade your apps from Node.js 22 to Node.js 24  
+  
+Support for Node.js 22 is ending. Security patches and updates are no longer provided, and customer support for Node.js 22 is discontinued. To maintain support eligibility, upgrade your apps to Node.js 24.  
+  
+**Potential benefits**: Service upgrade and retirement  
+
+**Impact:** High
+  
+For more information, see [Update language versions in Azure Functions](/azure/azure-functions/update-language-versions?tabs=azure-portal%2Cwindows&pivots=programming-language-javascript)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 06ea786a-2199-402d-9b7b-7facaf70420c  
+
+<!--06ea786a-2199-402d-9b7b-7facaf70420c_end-->
+
+<!--188f6a7a-947a-4fd8-94eb-9d5b13c387e3_begin-->
+
+#### Upgrade App Service apps from Java 8, 11, and 17 to Java 25  
+  
+Azure App Service support for Java 8, 11, and 17 is ending. Security updates are no longer available, and the platform no longer provides customer support. Upgrade to Java 25.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Deploy and configure Tomcat, JBoss EAP, or Java SE apps](https://aka.ms/appservicejava81117)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 188f6a7a-947a-4fd8-94eb-9d5b13c387e3  
+
+<!--188f6a7a-947a-4fd8-94eb-9d5b13c387e3_end-->
+
+<!--747a604b-d7de-4bed-86b4-4518a8a13ca8_begin-->
+
+#### Support for Node 22 LTS on App Service is ending  
+  
+Support for Node 22 LTS is ending. Your apps hosted on App Service continue to run, but security updates are no longer available, and the platform no longer provides customer service for Node 22 LTS.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=567334)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 747a604b-d7de-4bed-86b4-4518a8a13ca8  
+
+<!--747a604b-d7de-4bed-86b4-4518a8a13ca8_end-->
+
+<!--9f19f7b4-b0b8-4003-80c9-6334b2ff614a_begin-->
+
+#### Upgrade Function Apps from Java 8, 11, and 17 to Java 25  
+  
+Azure Functions support for Java 8, 11, and 17 is ending. Apps hosted on Azure Functions continue to run, but security updates are no longer available, and the platform no longer provides customer service. Upgrade to Java 25.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Update language versions in Azure Functions](/azure/azure-functions/update-language-versions?tabs=azure-portal%2Clinux&pivots=programming-language-java#update-the-stack-configuration)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 9f19f7b4-b0b8-4003-80c9-6334b2ff614a  
+
+<!--9f19f7b4-b0b8-4003-80c9-6334b2ff614a_end-->
+
+<!--b76de668-9137-4305-ad10-343e11bd8831_begin-->
+
+#### Migrate from Azure App Service on Azure Stack Hub to Azure App Service in Azure  
+  
+Azure App Service on Azure Stack Hub is retiring and no longer receives updates. Migrate to Azure App Service in Azure.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Benefits of migrating to Azure App Service in Azure](/azure-stack/operator/app-service-benefits-migrate-to-azure)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: b76de668-9137-4305-ad10-343e11bd8831  
+
+<!--b76de668-9137-4305-ad10-343e11bd8831_end-->
+
+<!--efd285e2-6f62-4357-988e-012845c7707f_begin-->
+
+#### Migrate your apps from PowerShell 7.4 to PowerShell 7.6  
+  
+Support for PowerShell 7.4 is ending. Upgrade your apps to PowerShell 7.6.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Update language versions in Azure Functions](/azure/azure-functions/update-language-versions?tabs=azure-portal%2Cwindows&pivots=programming-language-powershell)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: efd285e2-6f62-4357-988e-012845c7707f  
+
+<!--efd285e2-6f62-4357-988e-012845c7707f_end-->
+
 <!--articleBody-->

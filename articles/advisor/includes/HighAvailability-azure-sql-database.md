@@ -235,4 +235,55 @@ Recommendation ID: 2ed2b058-8bf0-459d-9674-6fdf8e39e11a
 
 <!--2ed2b058-8bf0-459d-9674-6fdf8e39e11a_end-->
 
+<!--6175478e-d04c-4ca3-8bd2-fec4e9bd3f0d_begin-->
+
+#### Migrate from Intel SGX enclaves on DC-series hardware to hardware-independent VBS enclaves  
+  
+Intel SGX enclaves are retiring as DC-series hardware is phased out. Migrate from DC-series to standard (non-DC) SKUs, enable VBS enclaves for Always Encrypted, update drivers, and remove SGX attestation settings from connection strings.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Always Encrypted with secure enclaves](/sql/relational-databases/security/encryption/always-encrypted-enclaves?view=sql-server-ver17&preserve-view=true)  
+
+ResourceType: microsoft.sql/servers/databases  
+Recommendation ID: 6175478e-d04c-4ca3-8bd2-fec4e9bd3f0d  
+
+<!--6175478e-d04c-4ca3-8bd2-fec4e9bd3f0d_end-->
+
+<!--c31236b2-917a-4c67-befa-8ee42404b2b9_begin-->
+
+#### Migrate from Legacy Purview access policies to access SQL databases  
+  
+Legacy Purview access policies (DevOps policies and data owner policies) for Azure SQL DB, SQL MI and Arc-enabled SQL Server 2022 are retiring. Customers can no longer use Purview access policies to manage access to their SQL databases. Migrate to fixed server roles instead.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Retirement of Microsoft Purview access policies for SQL - Azure SQL Database & Azure SQL Managed Instance & SQL Server enabled by Azure Arc](https://aka.ms/retirePurviewRBACforSQL)  
+
+ResourceType: microsoft.sql/managedinstances  
+Recommendation ID: c31236b2-917a-4c67-befa-8ee42404b2b9  
+
+<!--c31236b2-917a-4c67-befa-8ee42404b2b9_end-->
+
+<!--da805c9b-982f-491b-b8a1-5278c987495a_begin-->
+
+#### Migrate from Legacy Purview access policies to access SQL databases  
+  
+Legacy Purview access policies (DevOps policies and data owner policies) for Azure SQL DB, SQL MI and Arc-enabled SQL Server 2022 are retiring. Customers can no longer use Purview access policies to manage access to their SQL databases. Migrate to fixed server roles instead.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Retirement of Microsoft Purview access policies for SQL - Azure SQL Database & Azure SQL Managed Instance & SQL Server enabled by Azure Arc](https://aka.ms/retirePurviewRBACforSQL)  
+
+ResourceType: microsoft.sql/servers  
+Recommendation ID: da805c9b-982f-491b-b8a1-5278c987495a  
+
+<!--da805c9b-982f-491b-b8a1-5278c987495a_end-->
+
 <!--articleBody-->

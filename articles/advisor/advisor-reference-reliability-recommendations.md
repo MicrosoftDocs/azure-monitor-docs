@@ -33,6 +33,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-arc-enabled-kubernetes.md](./includes/HighAvailability-azure-arc-enabled-kubernetes.md)]
 
+[!INCLUDE [high-availability-azure-arc-enabled-system-center-virtual-machine-manager.md](./includes/high-availability-azure-arc-enabled-system-center-virtual-machine-manager.md)]
+
 [!INCLUDE [HighAvailability-azure-arc-enabled-servers.md](./includes/HighAvailability-azure-arc-enabled-servers.md)]
 
 [!INCLUDE [HighAvailability-azure-cache-for-redis.md](./includes/HighAvailability-azure-cache-for-redis.md)]
