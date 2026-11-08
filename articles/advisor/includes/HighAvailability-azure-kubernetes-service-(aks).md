@@ -659,4 +659,21 @@ Recommendation ID: fd8f05c9-239f-40db-b6b3-6b7b645b1f08
 
 <!--fd8f05c9-239f-40db-b6b3-6b7b645b1f08_end-->
 
+<!--51f120ad-e0bf-4e88-966d-d4ed53dccfc8_begin-->
+
+#### Transition AKS pod name dimension to use Azure Monitor Managed Prometheus  
+  
+The AKS pod name dimension within the `kube_pod_status_phase` and `kube_pod_status_ready` platform metrics is retiring. To continue using the pod name dimension, switch to Azure Monitor Managed Prometheus.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Overview of Azure Monitor with Prometheus](/azure/azure-monitor/metrics/prometheus-metrics-overview)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 51f120ad-e0bf-4e88-966d-d4ed53dccfc8  
+
+<!--51f120ad-e0bf-4e88-966d-d4ed53dccfc8_end-->
+
 <!--articleBody-->

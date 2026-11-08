@@ -165,4 +165,21 @@ Recommendation ID: 64936c6e-8236-4875-8234-109ab34576fe
 
 <!--64936c6e-8236-4875-8234-109ab34576fe_end-->
 
+<!--1b9efad5-3113-43b6-9b06-3d1dceba5233_begin-->
+
+#### Prevent authentication issues with Azure NetApp Files: Delay or roll back Windows updates KB5126655 and KB5126651  
+  
+SMB volume creation might fail after you install Windows updates KB5126655 or KB5126651. If you haven't installed them, delay the upgrade. If you installed them, roll them back to restore SMB volume creation.  
+  
+**Potential benefits**: Improve volume creation success rates  
+
+**Impact:** High
+  
+For more information, see [SMB FAQs for Azure NetApp Files](/azure/azure-netapp-files/faq-smb)  
+
+ResourceType: microsoft.netapp/netappaccounts  
+Recommendation ID: 1b9efad5-3113-43b6-9b06-3d1dceba5233  
+
+<!--1b9efad5-3113-43b6-9b06-3d1dceba5233_end-->
+
 <!--articleBody-->

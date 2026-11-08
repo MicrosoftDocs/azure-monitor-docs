@@ -703,4 +703,21 @@ Recommendation ID: 4d9ee0c5-6fbd-41d3-864f-b9251c92eebc
 
 <!--4d9ee0c5-6fbd-41d3-864f-b9251c92eebc_end-->
 
+<!--782ee9c5-e175-4765-af22-1c5852a55110_begin-->
+
+#### Migrate Azure VPN gateways from SSTP protocol to IKEv2 or OpenVPN  
+  
+Azure VPN Gateway support for the SSTP protocol is retiring. Migrate your gateways to IKEv2 or OpenVPN, which offer enhanced capabilities.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [SSTP protocol retirement and connections migration](/azure/vpn-gateway/ikev2-openvpn-from-sstp?tabs=portal)  
+
+ResourceType: microsoft.network/virtualnetworkgateways  
+Recommendation ID: 782ee9c5-e175-4765-af22-1c5852a55110  
+
+<!--782ee9c5-e175-4765-af22-1c5852a55110_end-->
+
 <!--articleBody-->
