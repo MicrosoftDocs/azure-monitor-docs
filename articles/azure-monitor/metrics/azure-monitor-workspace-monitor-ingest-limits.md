@@ -38,7 +38,7 @@ Static ingestion limits create problems in both directions:
 - Manual work: Raising a limit means opening a support request and waiting for it to be applied.
 - Over-provisioning: To avoid repeat requests, teams often ask for far more headroom than they need.
 
-Auto-scale removes this balancing act. Your limits track your real usage, so you can spend less time managing quotas and more time using your observability data.
+Autoscale removes this balancing act. Your limits track your real usage, so you can spend less time managing quotas and more time using your observability data.
 
 ### Turn on autoscale for your workspace
 
