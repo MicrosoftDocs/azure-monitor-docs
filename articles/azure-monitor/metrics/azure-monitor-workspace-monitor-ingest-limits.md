@@ -510,7 +510,7 @@ New-AzResourceGroupDeployment -Name AMWRecAlerts -ResourceGroupName <resourceGro
 
 ## Request for an increase in ingestion limits (Preview)
 
-If you have not enabled Auto-scale of ingestion limits for your Azure Monitor Workspace, you can request for an increase in ingestion limits using Azure Resource Manager API. This API is in Preview and below conditions apply with this API:
+If you didn't enable auto-scale for ingestion limits on your Azure Monitor Workspace, you can request an increase in ingestion limits by using the Azure Resource Manager API. This API is in preview. The following conditions apply to this API:
 
 * Request an increase from the default 1 million events per minute or active time series to up to 20 million events per minute or active time series by using an API update through the CLI or an ARM template deployment. For limits above 20 million, create a support ticket.
     * For a limit increase request up to 2 million, the request is autoapproved.
