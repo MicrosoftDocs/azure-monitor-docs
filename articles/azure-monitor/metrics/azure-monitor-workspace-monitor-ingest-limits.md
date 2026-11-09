@@ -59,7 +59,7 @@ To turn autoscale off, set **enableAutoScale=false**. Your limits then stay fixe
 
 ### Monitor scale change in the Activity Log
 
-When Auto-scale is enabled, any change in the ingestion limits is recorded in the workspace's [Activity Log](../fundamentals/activity-log.md). You get a clear history of when your limits changed and in which direction. You can also set up alert for any scale change event triggered. See [create an activity log alert](../alerts/alerts-create-activity-log-alert-rule.md) rule to learn more.
+When you enable autoscale, the system records any change in the ingestion limits in the workspace's [Activity Log](../fundamentals/activity-log.md). You get a clear history of when your limits changed and in which direction. You can also set up an alert for any scale change event triggered. To learn more, see [create an activity log alert](../alerts/alerts-create-activity-log-alert-rule.md).
 
 
 ## View limits and set up recommended alerts
