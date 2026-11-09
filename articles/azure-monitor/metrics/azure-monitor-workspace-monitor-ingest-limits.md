@@ -55,7 +55,7 @@ $resourceId = "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName
 az resource update --ids $resourceId --api-version 2026-09-03-preview --set properties.limits.enableAutoScale=true --force-string
 ```
 
-To turn Auto-scale off, set **enableAutoScale=false**. Your limits then stay fixed and you manage them manually, the same as today.
+To turn autoscale off, set **enableAutoScale=false**. Your limits then stay fixed and you manage them manually, the same as today.
 
 ### Monitor scale change in the Activity Log
 
