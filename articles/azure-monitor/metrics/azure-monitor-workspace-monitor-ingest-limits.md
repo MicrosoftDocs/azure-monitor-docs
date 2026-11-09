@@ -42,7 +42,7 @@ Auto-scale removes this balancing act. Your limits track your real usage, so you
 
 ### Turn on autoscale for your workspace
 
-Auto-scale is an opt-in setting for each workspace. When it's on, the system keeps your ingestion limit at a healthy level compared with your usage:
+Autoscale is an opt-in setting for each workspace. When it's on, the system keeps your ingestion limit at a healthy level compared with your usage:
 
 - Scale up: When ingestion approaches the upper utilization threshold, your limit is raised to help prevent throttling.
 - Scale down: When utilization stays low for a sustained period, unused capacity is reclaimed. Ingestion isn't affected.
