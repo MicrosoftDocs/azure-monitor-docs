@@ -47,7 +47,7 @@ Autoscale is an opt-in setting for each workspace. When it's on, the system keep
 - Scale up: When ingestion approaches the upper utilization threshold, your limit is raised to help prevent throttling.
 - Scale down: When utilization stays low for a sustained period, unused capacity is reclaimed. Ingestion isn't affected.
 
-You can turn on Auto-scale with an ARM API update:
+You can turn on autoscale with an ARM API update:
 
 ```azurecli
 $resourceId = "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.Monitor/accounts/<azureMonitorWorkspaceName>/metricsContainers/default"
