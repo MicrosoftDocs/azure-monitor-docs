@@ -26,7 +26,6 @@ For more information, see [Manage Azure Files backups - Azure Backup](/azure/bac
 
 ResourceType: microsoft.fileshares/fileshares  
 Recommendation ID: b263dad8-02a1-4546-a496-3dc5361c3f0c  
-Subcategory: undefined
 
 <!--b263dad8-02a1-4546-a496-3dc5361c3f0c_end-->
 

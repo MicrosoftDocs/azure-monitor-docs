@@ -71,9 +71,9 @@ The **Search** view allows you to find and explore individual telemetry items.
 ---
 
 > [!NOTE]
-> In addition to the out-of-the-box telemetry sent by the Azure Monitor OpenTelemetry Distro or JavaScript SDK, you can add and modify telemetry (for example, custom events).
+> In addition to the default telemetry sent by the Microsoft OpenTelemetry Distro for .NET, Node.js, and Python, the Azure Monitor OpenTelemetry Distro for Java, or the JavaScript SDK, you can add and modify telemetry (for example, custom events).
 >
-> For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md).
+> For more information, see [Add and modify OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md).
 
 ## Filter telemetry
 
@@ -99,7 +99,7 @@ You can select which event types to view from the **Event types** dropdown menu,
 
 * **Availability** - Results from [availability tests](availability-overview.md), used to monitor uptime and responsiveness from different locations around the globe.
 
-* **Custom Event** - Custom events set up and captured using the [Azure Monitor OpenTelemetry Distro](opentelemetry-add-modify.md#send-custom-events) or the [JavaScript SDK](javascript-sdk.md).
+* **Custom Event** - Custom events set up and captured by using the [Microsoft OpenTelemetry Distro](opentelemetry-add-modify.md#send-custom-events) for .NET, Node.js, and Python, the Azure Monitor OpenTelemetry Distro for Java, or the [JavaScript SDK](javascript-sdk.md).
 
 * **Dependency** - Outbound calls from your application to external services such as REST APIs, databases, or message queues.
 
@@ -109,7 +109,7 @@ You can select which event types to view from the **Event types** dropdown menu,
 
 * **Request** - HTTP requests to your server application, including API calls, web pages, and assets. These events are used to create the request and response overview charts.
 
-* **Trace** - Diagnostic log data captured through logging frameworks included in the [Azure Monitor OpenTelemetry Distro](opentelemetry-collect-detect.md#included-instrumentation-libraries).
+* **Trace** - Diagnostic log data captured through logging frameworks included in the [Microsoft OpenTelemetry Distro](opentelemetry-collect-detect.md#included-instrumentation-libraries) for .NET, Node.js, and Python, or the Azure Monitor OpenTelemetry Distro for Java.
 
 If you want to restore the filters later, select **Reset** from the top navigation bar.
 
@@ -453,7 +453,7 @@ Call the script and pass values for the parameters. The `-releaseProperties` par
 
 | Argument | Definition | Note |
 |----------|------------|------|
-| `aiResourceId` | Resource ID of the target Application Insights resource. | Example: `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyRGName/providers/microsoft.insights/components/MyResourceName` |
+| `aiResourceId` | Resource ID of the target Application Insights resource. | Example: `/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/MyRGName/providers/microsoft.insights/components/MyResourceName` |
 | `releaseName` | Name of the new release annotation. | |
 | `releaseProperties` | Custom metadata to attach to the annotation. | Optional |
 
@@ -638,7 +638,7 @@ If all calls were instrumented, in process is the likely root cause for the time
 
 #### What if I see the message ***Error retrieving data*** while navigating Application Insights in the Azure portal?
 
-This error message indicates that the browser can't call a required API or the API returns a failure response. To troubleshoot the problem, open a browser [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2) and [disable any browser extensions](https://support.microsoft.com/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-9c0ec68c-2fbc-2f2c-9ff0-bdc76f46b026) that are running. Then, check if you can still reproduce the portal behavior. If the portal error still occurs, try testing with other browsers or other machines. From the client machine where the API calls fail, investigate DNS or other network-related issues. If the portal error continues and needs further investigation, [collect a browser network trace](/azure/azure-portal/capture-browser-trace#capture-a-browser-trace-for-troubleshooting) while reproducing the unexpected portal behavior. Then, open a support case from the Azure portal.
+This error message indicates that the browser can't call a required API or the API returns a failure response. To troubleshoot the problem, open a browser private window and disable any browser extensions that are running. Then, check if you can still reproduce the portal behavior. If the portal error still occurs, try testing with other browsers or other machines. From the client machine where the API calls fail, investigate DNS or other network-related issues. If the portal error continues and needs further investigation, [collect a browser network trace](/azure/azure-portal/capture-browser-trace#capture-a-browser-trace-for-troubleshooting) while reproducing the unexpected portal behavior. Then, open a support case from the Azure portal.
 -->
 
 ## Next steps

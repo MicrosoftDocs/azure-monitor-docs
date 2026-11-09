@@ -24,7 +24,11 @@ items:
 - name: Best practices
   items:
   - name: Reliability
-    href: fundamentals/best-practices-reliability.md
+    items:
+    - name: Overview
+      href: fundamentals/best-practices-reliability.md
+    - name: Health models (preview)
+      href: /azure/reliability/reliability-monitor-health-models?toc=/azure/azure-monitor/toc.json
   - name: Security
     href: fundamentals/best-practices-security.md
   - name: Cost optimization
@@ -173,6 +177,22 @@ items:
         href: app/work-item-integration.md
       - name: Grafana dashboards
         href: app/grafana-dashboards.md
+    - name: Traces
+      items:
+      - name: Traces overview
+        href: app/traces-overview.md
+      - name: Onboard to traces
+        href: app/traces-onboard-app-insights.md
+      - name: Search and analyze
+        href: app/traces-search-analyze.md
+      - name: Critical path analysis
+        href: app/traces-critical-path-analysis.md
+      - name: Attribute analysis
+        href: app/traces-attribute-analysis.md
+      - name: Trace derived metrics
+        href: app/trace-derived-metrics.md
+      - name: Query Azure Monitor Traces with an MCP Server
+        href: app/traces-mcp-server.md
     - name: Code analysis
       items:
       - name: Code Optimizations
@@ -321,7 +341,7 @@ items:
           displayName: virtual machine scale set, VMSS
           href: vm/tutorial-scale-set-alerts.md
       - name: Collect guest logs
-        displayName: virtual machine, VM 
+        displayName: virtual machine, VM
         href: vm/tutorial-collect-logs.md
     - name: Enable monitoring
       items:
@@ -724,17 +744,13 @@ items:
         href: health-models/monitoring.md
     - name: FAQ
       displayName: health models, frequently asked questions
-      href: health-models/health-models-faq.yml
-  - name: Migrate from SCOM Managed Instance
+      href: health-models/health-models-faq.md
+  - name: Migrate from System Center Operations Manager
     items:
-    - name: Overview
-      href: scom-manage-instance/migration-overview.md
     - name: Migrate to Azure Monitor
-      href: scom-manage-instance/migrate-to-azure-monitor.md
+      href: fundamentals/migrate-from-system-center-operations-manager.md
     - name: Convert management packs into data collection rules
-      href: scom-manage-instance/convert-management-packs-into-data-collection-rules.md
-    - name: Migration FAQs
-      href: scom-manage-instance/migration-faq-scom-manage-instance.yml
+      href: fundamentals/convert-management-packs-into-data-collection-rules.md
   - name: Monitoring coverage
     href: fundamentals/monitoring-coverage.md
   - name: Service level indicators
@@ -805,6 +821,8 @@ items:
       href: data-collection/data-collection-rule-samples.md
     - name: Data collection endpoints
       href: data-collection/data-collection-endpoint-overview.md
+    - name: Test DCE Private IP Endpoint Compression (preview)
+      href: data-collection/data-collection-endpoint-ip-compression.md
     - name: Tutorials
       items:
       - name: Workspace transformation in Azure portal
@@ -864,6 +882,8 @@ items:
       href: containers/opentelemetry-protocol-ingestion.md
     - name: Ingest OTLP signals with AMA (Preview)
       href: containers/opentelemetry-ingest-agent.md
+    - name: Connect metrics to traces with Exemplars
+      href: containers/opentelemetry-exemplars.md
   - name: Azure Monitor Agent
     items:
     - name: Overview
@@ -1041,43 +1061,43 @@ items:
       href: data-collection/stream-monitoring-data-event-hubs.md
   - name: Azure Monitor pipeline
     items:
-      - name: Overview
-        href: data-collection/pipeline-overview.md
-      - name: FAQ
-        href: data-collection/pipeline-faq.yml
-      - name: Configure
-        items:
-        - name: Configure Azure Monitor pipeline
-          displayName: Azure Monitor pipeline
-          href: data-collection/pipeline-configure.md
-        - name: Configure with the Azure portal
-          displayName: Azure Monitor pipeline
-          href: data-collection/pipeline-configure-portal.md
-        - name: Configure with CLI or ARM templates
-          displayName: Azure Monitor pipeline
-          href: data-collection/pipeline-configure-cli.md
-      - name: Transformations
-        href: data-collection/pipeline-transformations.md
-      - name: Configure a Kubernetes gateway
-        displayName: Sample gateway setup
-        href: data-collection/pipeline-kubernetes-gateway.md
-      - name: Transport Layer Security (TLS)
-        items:
-        - name: Configure TLS
-          href: data-collection/pipeline-tls.md
-        - name: Automated certificate management (default TLS)
-          href: data-collection/pipeline-tls-automated.md
-        - name: Customer-managed certificates (BYOC)
-          href: data-collection/pipeline-tls-custom.md
-      - name: Sizing best practices
-        href: data-collection/pipeline-sizing.md
-      - name: Pod placement
-        href: data-collection/pipeline-pod-placement.md
-      - name: Extension versions
-        displayName: Azure Monitor pipeline extension versions
-        href: data-collection/pipeline-extension-versions.md
-      - name: Troubleshoot
-        href: data-collection/pipeline-troubleshoot.md
+    - name: Overview
+      href: data-collection/pipeline-overview.md
+    - name: FAQ
+      href: data-collection/pipeline-faq.yml
+    - name: Configure
+      items:
+      - name: Configure Azure Monitor pipeline
+        displayName: Azure Monitor pipeline
+        href: data-collection/pipeline-configure.md
+      - name: Configure with the Azure portal
+        displayName: Azure Monitor pipeline
+        href: data-collection/pipeline-configure-portal.md
+      - name: Configure with CLI or ARM templates
+        displayName: Azure Monitor pipeline
+        href: data-collection/pipeline-configure-cli.md
+    - name: Transformations
+      href: data-collection/pipeline-transformations.md
+    - name: Configure a Kubernetes gateway
+      displayName: Sample gateway setup
+      href: data-collection/pipeline-kubernetes-gateway.md
+    - name: Transport Layer Security (TLS)
+      items:
+      - name: Configure TLS
+        href: data-collection/pipeline-tls.md
+      - name: Automated certificate management (default TLS)
+        href: data-collection/pipeline-tls-automated.md
+      - name: Customer-managed certificates (BYOC)
+        href: data-collection/pipeline-tls-custom.md
+    - name: Sizing best practices
+      href: data-collection/pipeline-sizing.md
+    - name: Pod placement
+      href: data-collection/pipeline-pod-placement.md
+    - name: Extension versions
+      displayName: Azure Monitor pipeline extension versions
+      href: data-collection/pipeline-extension-versions.md
+    - name: Troubleshoot
+      href: data-collection/pipeline-troubleshoot.md
   - name: Custom metrics in Azure Monitor (preview)
     href: metrics/metrics-custom-overview.md
   - name: Custom metrics ingestion using REST

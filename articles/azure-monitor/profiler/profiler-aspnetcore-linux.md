@@ -30,7 +30,7 @@ In this article, you:
 [!INCLUDE [application-insights-sdk-support-policy](../app/includes/application-insights-sdk-support-policy.md)]
 
 > [!CAUTION]
-> For new applications, use the [Azure Monitor OpenTelemetry Distro](../app/opentelemetry-enable.md). It provides a similar experience and comparable functionality to the Application Insights SDK. To migrate to an OpenTelemetry-based offering, review the [migration guidance](../app/migrate-to-opentelemetry.md).
+> For new applications, use the [Microsoft OpenTelemetry Distro](../app/opentelemetry-enable.md). It provides a similar experience and comparable functionality to the Application Insights SDK. To migrate to an OpenTelemetry-based offering, review the [migration guidance](../app/migrate-to-opentelemetry.md).
 
 ## Prerequisites
 
@@ -107,7 +107,7 @@ Configure your application to collect Profiler traces. Select the tab for the of
     ///
 
     builder.Services.AddOpenTelemetry()
-        .UseAzureMonitor()          // Enable Azure Monitor OpenTelemetry distro for ASP.NET Core
+        .UseAzureMonitor()          // Enable Azure Monitor export for ASP.NET Core
         .AddAzureMonitorProfiler(); // Add Azure Monitor Profiler
     ```
 

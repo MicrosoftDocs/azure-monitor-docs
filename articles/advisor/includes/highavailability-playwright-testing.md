@@ -26,7 +26,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.azureplaywrightservice/accounts  
 Recommendation ID: 2c1fc2d7-3e01-4bce-b306-5d506c4d7f2a  
-Subcategory: undefined
 
 <!--2c1fc2d7-3e01-4bce-b306-5d506c4d7f2a_end-->
 

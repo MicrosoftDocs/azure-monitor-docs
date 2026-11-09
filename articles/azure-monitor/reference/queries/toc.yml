@@ -477,6 +477,18 @@ items:
   href: GCPAuditLogs.md
 - name: Heartbeat
   href: Heartbeat.md
+- name: HorizonDBAutovacuumStats
+  href: HorizonDBAutovacuumStats.md
+- name: HorizonDBPgStatActivitySessions
+  href: HorizonDBPgStatActivitySessions.md
+- name: HorizonDBQueryStoreRuntimeStats
+  href: HorizonDBQueryStoreRuntimeStats.md
+- name: HorizonDBQueryStoreWaitsStats
+  href: HorizonDBQueryStoreWaitsStats.md
+- name: HorizonDBServerLogs
+  href: HorizonDBServerLogs.md
+- name: HorizonDBTransactionsStats
+  href: HorizonDBTransactionsStats.md
 - name: IdentityDirectoryEvents
   href: IdentityDirectoryEvents.md
 - name: IdentityLogonEvents

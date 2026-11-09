@@ -2,7 +2,7 @@
 title: Configure the ContainerLogV2 schema for Container insights
 description: Switch your ContainerLog table to the ContainerLogV2 schema.
 ms.topic: how-to
-ms.date: 08/07/2026
+ms.date: 10/22/2026
 ai-usage: ai-assisted
 ms.reviewer: aul
 ---
@@ -16,8 +16,8 @@ Container insights stores log data it collects in a table called *ContainerLogV2
 
 *ContainerLogV2* is the default schema for CLI version 2.54.0 and greater. This schema is the default table for customers who onboard Container insights with managed identity authentication. Enable ContainerLogV2 explicitly through CLI version 2.51.0 or higher by using data collection settings.
 
->[!IMPORTANT]
-> Support for the *ContainerLog* table retires on 30 September 2026. After that date, the legacy table stops receiving data. Migrate to *ContainerLogV2* before then to avoid gaps in log collection. To switch tables, see [Enable the ContainerLogV2 schema](#enable-the-containerlogv2-schema).
+> [!IMPORTANT]
+> Support for the ContainerLog table retires on September 30, 2026. Customers should migrate to ContainerLogV2 before this date. Following retirement, Microsoft might continue accepting data for a limited transition period to reduce disruption for existing customers; however, the retired experience no longer receives support, bug fixes, or new investments. Customers should not rely on the transition period and should complete migration as soon as possible. To switch tables, see [Enable the ContainerLogV2 schema](#enable-the-containerlogv2-schema).
 
 The following table highlights the key differences between using ContainerLogV2 and ContainerLog schema.
 
@@ -122,10 +122,19 @@ Multiline logging stitches together previously split container logs and sends th
 >[!NOTE]
 > The configmap now features a language specification option that allows you to select only the languages you're interested in. This feature can be enabled by editing the languages in the stacktrace_languages option in the [configmap](https://github.com/microsoft/Docker-Provider/blob/ci_prod/kubernetes/container-azm-ms-agentconfig.yaml).
 
+To confirm that the agent picked up your multiline setting, check the agent logs after the agent pods restart. The output includes `Using config map setting for multiline logging`. If it also includes a warning about invalid stack trace languages, correct the `stacktrace_languages` value.
+
+```bash
+kubectl logs <ama-logs-pod-name> -n kube-system -c ama-logs | grep -i multiline
+```
+
+The multiline settings aren't exposed as container environment variables, so they don't appear in the output of `kubectl exec ... -- env`.
+
 ### Limitations
 
 - Multiline logging only stitches exception stack traces from the containers using Java, Python, .NET, and Go. Other multiline log entries, including custom exceptions and arbitrary log messages, are not stitched together.
 - Multiline logging isn't supported for Python exception stack traces with [fine-grained-error-locations-in-tracebacks](https://docs.python.org/3/whatsnew/3.11.html#pep-657-fine-grained-error-locations-in-tracebacks). For multiline logging to work, you need to opt-out of this feature as described in [Python documentation](https://peps.python.org/pep-0657/#opt-out-mechanism).
+- Java exceptions whose first line has no message, such as a bare `java.lang.NullPointerException`, aren't stitched on clusters that use containerd or another CRI runtime, including AKS. The exception line and each `at ...` line are sent as separate entries. Exceptions with a message, such as `java.lang.IllegalStateException: details`, are stitched normally. To work around this limitation, include a message in logged exceptions, or use structured JSON logging so each event and its stack trace is written as a single line. Starting with Java 15, the JVM adds a message to the `NullPointerException` errors it throws.
 - By default, the container runtime truncates log lines at 16 KB. When you enable multiline logging, `ContainerLogV2` supports log lines up to 64 KB.
 
 ### Examples

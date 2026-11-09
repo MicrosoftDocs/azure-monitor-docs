@@ -42,7 +42,7 @@ Azure Chaos Studio can't inject faults against a resource unless that resource w
 
 Virtual Machine Scale Sets has only one target type (`Microsoft-VirtualMachineScaleSet`) and one capability (`shutdown`). Other resources might have up to two target types. One target type is for service-direct faults. Another target type is for agent-based faults. Other resources also might have many other capabilities.
 
-1. Create a [target for your virtual machine scale set](chaos-studio-fault-providers.md) resource. Replace `$RESOURCE_ID` with the resource ID of the virtual machine scale set you're adding:
+1. Create a [target for your virtual machine scale set](chaos-studio-fault-library.md) resource. Replace `$RESOURCE_ID` with the resource ID of the virtual machine scale set you're adding:
 
     ```azurecli-interactive  
     az rest --method put --url "https://management.azure.com/$RESOURCE_ID/providers/Microsoft.Chaos/targets/Microsoft-VirtualMachineScaleSet?api-version=2023-11-01" --body "{\"properties\":{}}"
@@ -130,9 +130,9 @@ Now you can create your experiment. A chaos experiment defines the actions you w
 
 ## Give experiment permission to your virtual machine scale sets
 
-When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. This identity must be given [appropriate permissions](chaos-studio-fault-providers.md) to the target resource for the experiment to run successfully.
+When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. You must give this identity [appropriate permissions](chaos-studio-workspaces-supported-resources.md) to the target resource for the experiment to run successfully.
 
-Give the experiment access to your resources by using the following command. Replace `$EXPERIMENT_PRINCIPAL_ID` with the principal ID from the previous step. Replace `$RESOURCE_ID` with the resource ID of the target resource. Change the role to the appropriate [built-in role for that resource type](chaos-studio-fault-providers.md). Run this command for each resource targeted in your experiment.
+Give the experiment access to your resources by using the following command. Replace `$EXPERIMENT_PRINCIPAL_ID` with the principal ID from the previous step. Replace `$RESOURCE_ID` with the resource ID of the target resource. Change the role to the appropriate [built-in role for that resource type](chaos-studio-workspaces-supported-resources.md). Run this command for each resource targeted in your experiment.
 
 ```azurecli-interactive
 az role assignment create --role "Virtual Machine Contributor" --assignee-object-id $EXPERIMENT_PRINCIPAL_ID --scope $RESOURCE_ID

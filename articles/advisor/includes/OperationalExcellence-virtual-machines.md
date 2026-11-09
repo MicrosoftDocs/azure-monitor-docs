@@ -80,4 +80,21 @@ Recommendation ID: 2881ca3a-070d-40fb-9471-83783ff487c0
 
 <!--2881ca3a-070d-40fb-9471-83783ff487c0_end-->
 
+<!--912f2157-cec8-4ee3-8e69-7edaa6c9be7f_begin-->
+
+#### Consider Azure Blob Storage SFTP for file transfer workloads hosted on SFTP VMs  
+  
+If this virtual machine runs an SFTP server to transfer files, use Azure Blob Storage SFTP to transfer files directly to Azure Storage. This fully managed endpoint improves operational efficiency, reduces VM management overhead, and might lower your overall SFTP infrastructure costs.  
+  
+**Potential benefits**: Reduce SFTP server management and VM costs with managed SFTP.  
+
+**Impact:** Low
+  
+For more information, see [Azure Blob Storage SFTP vs. Self-Hosted SFTP Server - Azure Storage](/azure/storage/blobs/secure-file-transfer-protocol-choose-solution).  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 912f2157-cec8-4ee3-8e69-7edaa6c9be7f  
+
+<!--912f2157-cec8-4ee3-8e69-7edaa6c9be7f_end-->
+
 <!--articleBody-->

@@ -14,7 +14,7 @@ ms.custom: HighAvailability Azure IoT Hub
 
 <!--d448c687-b808-4143-bbdc-02c35478198a_begin-->
 
-#### Upgrade device client SDK to a supported version for IotHub  
+#### Upgrade Device Client SDK for IoT Hub
   
 When devices use an outdated SDK, performance degradation can occur. Some or all of your devices are using an outdated SDK. We recommend you upgrade to a supported SDK version.  
   
@@ -48,24 +48,6 @@ Subcategory: Other
 
 <!--8d7efd88-c891-46be-9287-0aec2fabd51c_end-->
 
-<!--d1ff97b9-44cd-4acf-a9d3-3af500bd79d6_begin-->
-
-#### Upgrade Device Update for IoT Hub SDK to a supported version  
-  
-When a Device Update for IoT Hub instance uses an outdated version of the SDK, it doesn't get the latest upgrades. For the latest fixes, performance improvements, and new feature capabilities, upgrade to the latest Device Update for IoT Hub SDK version.  
-  
-**Potential benefits**: Ensure business continuity with supported SDK  
-
-**Impact:** Medium
-  
-For more information, see [Introduction to Device Update for Azure IoT Hub ](/azure/iot-hub-device-update/understand-device-update)  
-
-ResourceType: microsoft.devices/iothubs  
-Recommendation ID: d1ff97b9-44cd-4acf-a9d3-3af500bd79d6  
-Subcategory: ServiceUpgradeAndRetirement
-
-<!--d1ff97b9-44cd-4acf-a9d3-3af500bd79d6_end-->
-
 <!--e4bda6ac-032c-44e0-9b40-e0522796a6d2_begin-->
 
 #### Add IoT Hub units or increase SKU level  
@@ -80,18 +62,16 @@ For more information, see [Troubleshoot Azure IoT Hub Error Codes](/azure/iot-hu
 
 ResourceType: microsoft.devices/iothubs  
 Recommendation ID: e4bda6ac-032c-44e0-9b40-e0522796a6d2  
-Subcategory: undefined
 
 <!--e4bda6ac-032c-44e0-9b40-e0522796a6d2_end-->
-
 
 <!--63f181a7-95a9-42be-9443-34ea8a5b4d3e_begin-->
 
 #### Upgrade the Azure Device Update for IoT Hub SDK to the latest version  
   
-When a Device Update for IoT Hub instance uses an outdated version of the SDK, it doesn't get the latest upgrades. Upgrade the Device Update for IoT Hub SDK to the latest version.  
+When a Device Update for IoT Hub instance calls the service by using an outdated SDK version, it misses fixes, features, and support for current API versions. Outdated SDK versions are supported only until the API versions they use retire. Upgrade to the recommended version to stay supported.
   
-**Potential benefits**: Ensure business continuity with supported SDK  
+**Potential benefits**: Stay supported and avoid disruption when older SDKs retire.  
 
 **Impact:** Medium
   

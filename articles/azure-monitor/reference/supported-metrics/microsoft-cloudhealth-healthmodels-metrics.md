@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.CloudHealth/healthmodels
 description: Reference for Microsoft.CloudHealth/healthmodels metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 10/16/2026
 ms.custom: Microsoft.CloudHealth/healthmodels, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -40,14 +40,16 @@ For a list of supported logs, see [Supported log categories - Microsoft.CloudHea
 ### Category: Saturation
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
-|**Number of discovery rules in health model**<br><br>Current number of discovery rules in the health model. |`DiscoveryRuleCount` | No | Count |Minimum, Maximum, Average |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**Number of discovery rules in health model**<br><br>Current number of discovery rules in the health model. |`DiscoveryRuleCount` | No | Count |Minimum, Maximum, Average |`type`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Number of entities in health model**<br><br>Current number of entities in the health model. |`EntityCount` | No | Count |Minimum, Maximum, Average |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Number of relationships in health model**<br><br>Current number of relationships in the health model. |`RelationshipCount` | No | Count |Minimum, Maximum, Average |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**Number of active signals in health model**<br><br>Current number of active (non-expired) signals in the health model. |`SignalCount` | No | Count |Minimum, Maximum, Average |`signalType`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 
 ### Category: Traffic
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
 |**Discovery rule entities discovered count**<br><br>Number of entities discovered by a discovery rule execution. |`DiscoveryRuleEntitiesDiscoveredCount` | No | Count |Minimum, Maximum, Average |`discovery_rule.name`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**Dropped signal write count**<br><br>Number of signal writes dropped during ingestion. |`SignalDropCount` | No | Count |Total (Sum) |`reason`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 
 ## Next steps
 

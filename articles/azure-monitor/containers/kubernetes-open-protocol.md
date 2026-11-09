@@ -1,5 +1,5 @@
 ---
-title: Monitor AKS applications with OpenTelemetry Protocol (OTLP) Preview
+title: Monitor AKS applications with OpenTelemetry Protocol (OTLP) 
 description: Enable application monitoring for Azure Kubernetes Service (AKS) namespaces and deployments and send OpenTelemetry Protocol (OTLP) telemetry to Application Insights using Azure Monitor.
 ms.topic: how-to
 ms.date: 04/08/2026
@@ -7,24 +7,19 @@ ms.reviewer: kaprince
 ms.custom: references_regions
 ---
 
-# Monitor AKS applications with OTLP and Azure Monitor (Preview)
+# Monitor AKS applications with OTLP and Azure Monitor 
 
-OpenTelemetry provides a standardized way to emit traces, logs, and metrics. Azure Monitor adds **Preview** support for monitoring applications that run on Azure Kubernetes Service (AKS) by using the OpenTelemetry Protocol (OTLP) for instrumentation and data collection.
-
-> [!IMPORTANT]
-> This feature is a **preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads. 
->  
-> For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+OpenTelemetry provides a standardized way to emit traces, logs, and metrics. Azure Monitor includes support for monitoring applications that run on Azure Kubernetes Service (AKS) by using the OpenTelemetry Protocol (OTLP) for instrumentation and data collection.
 
 > [!TIP]
-> For a conceptual overview of OpenTelemetry options in Azure Monitor — native OTLP ingestion, the Microsoft OpenTelemetry distro, and end-to-end observability experiences — see [OpenTelemetry with Azure Monitor](opentelemetry-options.md).
+> For a conceptual overview of OpenTelemetry options in Azure Monitor — native OTLP ingestion, the Microsoft OpenTelemetry Distro, and end-to-end observability experiences — see [OpenTelemetry with Azure Monitor](opentelemetry-options.md).
 
 ## Key capabilities
 
 - Enable cluster-level monitoring to install Azure Monitor components on the AKS cluster.
 - Create an Application Insights resource with OTLP ingestion enabled.
 - Onboard applications at the namespace or deployment scope by using either:
-  - **Autoinstrumentation** with the Azure Monitor OpenTelemetry distribution.
+  - **Autoinstrumentation** with language-specific OpenTelemetry instrumentation.
   - **Autoconfiguration** for applications already instrumented with the open-source OpenTelemetry Software Development Kits (SDKs).
     - Autoconfiguration applies only to applications that are already instrumented with OpenTelemetry. When you select autoconfiguration, Azure Monitor doesn't add instrumentation to your application. Instead, it sets environment variables at the platform level so existing OpenTelemetry SDKs export telemetry to Application Insights. You're responsible for instrumenting the application (for example, by using OpenTelemetry SDKs or annotations) before you enable autoconfiguration.
 
@@ -61,50 +56,16 @@ Use the following guidance to separate platform (cluster) responsibilities from 
 ## Prerequisites
 
 - An AKS cluster in Azure public cloud that runs at least one Kubernetes deployment.
-- Azure CLI **2.78.0** or later. Install or update by using the guidance in **Install the Azure CLI** documentation.  
+- Azure CLI **2.86.0** or later. Install or update by using the guidance in **Install the Azure CLI** documentation.
   Verify the version:
   ```bash
   az version
   ```
-- `aks-preview` Azure CLI extension:
-  ```bash
-  az extension add --name aks-preview
-  az extension update --name aks-preview
-  ```
 
-> [!NOTE]
-> The Azure Kubernetes Service (AKS) preview APIs are designed to allow you to test and provide feedback on new features before they become generally available. You need to install this `aks-preview` extension before you can register the AzureMonitorAppMonitoringPreview feature flag.
+## 1. Prepare the cluster
 
-## 1. Register the preview features
-
-When you register the preview features, enable the feature flag on the subscription where you create the Application Insights resource and on the subscription that hosts the AKS cluster.
-
-1. Sign in and select the target subscription:
-   ```bash
-   az login
-   az account set --subscription "<subscription-name>"
-   ```
-
-1. Register the AKS preview feature and provider:
-   ```bash
-   az feature register --namespace "Microsoft.ContainerService" --name "AzureMonitorAppMonitoringPreview"
-   az feature list -o table --query "[?contains(name, 'Microsoft.ContainerService/AzureMonitorAppMonitoringPreview')].{Name:name,State:properties.state}"
-   az provider register --namespace "Microsoft.ContainerService"
-   az provider show --namespace "Microsoft.ContainerService" --query "registrationState"
-   ```
-
-1. Register the Application Insights OTLP preview features and provider:
-   ```bash
-   az feature register --name OtlpApplicationInsights --namespace Microsoft.Insights
-   az feature list -o table --query "[?contains(name, 'Microsoft.Insights/OtlpApplicationInsights')].{Name:name,State:properties.state}"
-
-   az provider register -n Microsoft.Insights
-   ```
-
-## 2. Prepare the cluster
-
-1. Ensure the cluster is onboarded to Azure Monitor metrics and logs. Use [**Enable monitoring for AKS clusters**](kubernetes-monitoring-enable.md) in Azure Monitor (Application Insights isn't required yet).
-2. Turn on **Enable support for Autoinstrumentation** and **Enable support for data collection from vendor neutral OpenTelemetry SDKs (Preview)**, and then select **Review + enable**.
+1. Ensure the cluster is onboarded to Azure Monitor metrics and logs. Use [Enable monitoring for AKS clusters](kubernetes-monitoring-enable.md) in Azure Monitor (Application Insights isn't required yet).
+1. Turn on **Enable support for Autoinstrumentation** and **Enable support for data collection from vendor neutral OpenTelemetry SDKs**, and then select **Review + enable**.
 
 If you didn't previously onboard the cluster, you can enable Managed Prometheus, Container Logs, and application monitoring at the same time.
 
@@ -112,53 +73,52 @@ If you didn't previously onboard the cluster, you can enable Managed Prometheus,
 
 :::image type="content" source="./media/kubernetes-open-protocol/azure-settings-review-enable.png" lightbox="./media/kubernetes-open-protocol/azure-settings-review-enable.png" alt-text="A screenshot of the Azure settings review page showing enable application option.":::
 
-## 3. Create an Application Insights resource with OTLP support
+## 2. Create an Application Insights resource with OTLP support
 
 Create or select an Application Insights resource that supports OTLP and uses **Managed workspaces**.
 
 1. In the Azure portal, create a new Application Insights resource.
-1. Turn on **Enable OTLP Support (Preview)**.
+1. Turn on **Enable OTLP Support**.
 1. Set **Use managed workspaces** to **Yes**.  
     :::image type="content" source="./media/kubernetes-open-protocol/application-insights-create-enable.png" lightbox="./media/kubernetes-open-protocol/application-insights-create-enable.png" alt-text="A screenshot of Create Application Insights resource with enable option selected.":::
 
 > [!IMPORTANT]
-> - Use an **Azure Monitor workspace** that's **different** from the workspace used for infrastructure metrics in step 2.
 > - Managed workspaces create a separate Azure Monitor workspace for Application Insights application telemetry using a distinct workspace from the one used for infrastructure metrics.
 
-## 4. Onboard applications to Application Insights
+## 3. Onboard applications to Application Insights
 
 You can onboard **all deployments in a namespace** or target **individual deployments** later.
 
-### 4.1 Open the namespace
+### 3.1 Open the namespace
 
 1. In the AKS resource, expand **Kubernetes resources**.
 1. Open **Namespaces**, and then select the namespace that hosts your workloads.
 
 :::image type="content" source="./media/kubernetes-open-protocol/azure-namespaces-list.png" lightbox="./media/kubernetes-open-protocol/azure-namespaces-list.png" alt-text="A screenshot of the Azure namespaces list under Kubernetes resources.":::
 
-### 4.2 Configure Application Monitoring (Preview)
+### 3.2 Configure application monitoring
 
 When you enable OTLP, Application Insights adds support for open-source, vendor-neutral OpenTelemetry SDKs and OTLP endpoints, and stores metrics in an Azure Monitor workspace.
 
 If you don't enable OTLP, Application Insights only uses Azure Monitor autoinstrumentation and classic ingestion.
 
-1. Select **Application Monitoring (Preview)**.
-1. Choose the Application Insights resource with OTLP enabled that you created previously in [step 3](#3-create-an-application-insights-resource-with-otlp-support). If you select or create an Application Insights resource without OTLP by using the **Create New** option, you won't see the **Instrumentation Type** option in the next step.
+1. Select **Application Monitoring**.
+1. Choose the Application Insights resource with OTLP enabled that you created previously in [step 2](#2-create-an-application-insights-resource-with-otlp-support). If you select or create an Application Insights resource without OTLP by using the **Create New** option, you won't see the **Instrumentation Type** option in the next step.
 1. Choose an **Instrumentation Type**:  
     - **User-configured instrumentation per deployment**
-      - Autoconfiguration sets environment variables so existing SDKs export telemetry to Application Insights
+      - Autoconfiguration sets environment variables so existing SDKs export telemetry to Application Insights.
       - Each deployment must already have autoinstrumentation annotations or manual instrumentation. For more information, see [Per deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding).
-    - **Java autoinstrumentation for all deployments** for automatic injection of the Azure Monitor OpenTelemetry distribution into Java applications.  
+    - **Java autoinstrumentation for all deployments** for automatic injection of the Azure Monitor OpenTelemetry Distro into Java applications.
       - All deployments in the namespace use Java autoinstrumentation by default. Use annotations to change the language or exclude a deployment. For more information, see [Automatic instrumentation](../app/codeless-overview.md) and [Per deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding).
-    - **NodeJs autoinstrumentation for all deployments** for automatic injection of the Azure Monitor OpenTelemetry distribution into Node.js applications.  
+    - **NodeJs autoinstrumentation for all deployments** for automatic injection of OpenTelemetry instrumentation into Node.js applications.
        - All deployments in the namespace use Node.js autoinstrumentation by default. Use annotations to change the language or exclude a deployment. For more information, see [Automatic instrumentation](../app/codeless-overview.md) and [Per deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding).
     > [!NOTE]
-    > The Azure portal only allows you to apply autoinstrumentation OR autoconfiguration to a single namespace. If you need to use both options within a single namespace, see [per-deployment onboarding options](kubernetes-codeless.md#onboard-deployments).
+    > The Azure portal only allows you to apply autoinstrumentation or autoconfiguration to a single namespace. If you need to use both options within a single namespace, see [per-deployment onboarding options](kubernetes-codeless.md#onboard-deployments).
 1. Leave **Perform rollout restart of all deployments** unchecked. You perform the restart manually in the next step.
 1. Select **Configure**.  
   :::image type="content" source="./media/kubernetes-open-protocol/application-configuration-pane.png" lightbox="./media/kubernetes-open-protocol/application-configuration-pane.png" alt-text="A screenshot of the configuration pane for application with resource and language selections.":::
 
-### 4.3 Restart deployments to apply changes
+### 3.3 Restart deployments to apply changes
 
 Restart deployments in the target namespace from **Run command** in the portal or from your terminal:
 
@@ -168,9 +128,9 @@ kubectl rollout restart deployment -n <your-namespace>
 
 :::image type="content" source="./media/kubernetes-open-protocol/azure-run-command-rollout.png" lightbox="./media/kubernetes-open-protocol/azure-run-command-rollout.png" alt-text="A screenshot of the Azure run command screen showing rollout restart command.":::
 
-### 4.4 Confirm instrumented status
+### 3.4 Confirm instrumented status
 
-Return to **Application Monitoring (Preview)** for the namespace. Expand **Deployments in this namespace** and confirm that deployments show **Instrumented** status.
+Return to **Application Monitoring** for the namespace. Expand **Deployments in this namespace** and confirm that deployments show **Instrumented** status.
 
 :::image type="content" source="./media/kubernetes-open-protocol/application-deployments-status.png" lightbox="./media/kubernetes-open-protocol/application-deployments-status.png" alt-text="A screenshot of the Application deployments list showing instrumented status.":::
 
@@ -186,7 +146,7 @@ Return to **Application Monitoring (Preview)** for the namespace. Expand **Deplo
 > For more information, see [Metrics Exporters - OTLP](https://opentelemetry.io/docs/specs/otel/metrics/sdk_exporters/otlp/).
 
 
-## 5. View application signals in Container Insights
+## 4. View application signals in Container Insights
 
 Explore application performance in the context of your cluster by using Container Insights. From **Monitor** in the AKS resource, open **Controllers** and then select a controller to review request failures, slow operations, and suggested investigations.
 
@@ -204,7 +164,7 @@ Use the Kubernetes custom resources when you need more control. For more informa
 
 ### Autoinstrumentation (Java, Node.js)
 
-Follow the **namespace-wide** or **per-deployment** onboarding guidance in the article linked earlier to inject the Azure Monitor OpenTelemetry distribution into your pods.
+Follow the **namespace-wide** or **per-deployment** onboarding guidance in the article linked earlier to inject language-specific OpenTelemetry instrumentation into your pods. Java uses the Azure Monitor OpenTelemetry Distro. For manual Node.js instrumentation, use the [Microsoft OpenTelemetry Distro](../app/opentelemetry-enable.md?tabs=nodejs).
 
 > [!NOTE]
 > To participate in the limited public preview of Autoinstrumentation for .NET or Python, see [Enable AKS autoinstrumentation for Python and .NET (limited preview)](kubernetes-codeless-python-net.md).
@@ -213,7 +173,23 @@ Follow the **namespace-wide** or **per-deployment** onboarding guidance in the a
 
 Autoconfiguration sets environment variables so existing SDKs export telemetry to Application Insights through the Azure Monitor Agent on the cluster. It doesn't place any SDK on the pod.
 
+> [!IMPORTANT]
+> In both examples, replace the sample connection string with the complete `ConnectionString` value from the OTLP-enabled Application Insights resource. The value must include `ApplicationId`, which the webhook uses to set `microsoft.applicationId` for Application Insights DCR routing.
+
 - **Namespace-wide**: Set the **Instrumentation** custom resource with an empty platforms list.
+  ```yml
+  apiVersion: monitor.azure.com/v1
+  kind: Instrumentation
+  metadata:
+    name: default
+    namespace: mynamespace1
+  spec:
+    settings:
+      autoInstrumentationPlatforms: []
+    destination: # required
+      applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/;ApplicationId=22222222-2222-2222-2222-222222222222"
+  ```
+- **Per-deployment**: Create an **Instrumentation** custom resource with a name other than `default` (for example, `cr1`).
   ```yml
   apiVersion: monitor.azure.com/v1
   kind: Instrumentation
@@ -224,9 +200,13 @@ Autoconfiguration sets environment variables so existing SDKs export telemetry t
     settings:
       autoInstrumentationPlatforms: []
     destination: # required
-      applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/"
+      applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/;ApplicationId=22222222-2222-2222-2222-222222222222"
   ```
-- **Per-deployment**: Add the annotation to the deployment and reference your instrumentation custom resource (replace `cr1` with your resource name).
+
+  > [!NOTE]
+  > If the named custom resource targets a different OTLP-enabled Application Insights resource than the resource already configured for the cluster, associate the destination resource's DCR with the AKS cluster. Reusing the same resource doesn't require another association. For more information, see [Manage data collection rule associations](../data-collection/data-collection-rule-associations.md).
+
+  Add the annotation to each deployment that should use the custom resource:
   ```yml
   apiVersion: apps/v1
   kind: Deployment
@@ -251,7 +231,7 @@ Autoconfiguration sets environment variables so existing SDKs export telemetry t
           instrumentation.opentelemetry.io/inject-configuration: "false"
   ```
 
-- **Change protocol**: OpenTelemetry supports two main protocols to transmit and receive telemetry data: gRPC and HTTP. By default, AKS autoconfiguration uses `http/protobuf`. Use the following annotations to override the default protocol for a deployment.
+- **Change protocol**: OpenTelemetry supports two main protocols to transmit and receive telemetry data: gRPC and HTTP. By default, AKS autoconfiguration uses `http/protobuf`. Add the protocol annotation at `spec.template.metadata.annotations` alongside the deployment's existing annotations. For namespace-wide onboarding, the deployment continues to use the `default` custom resource without an `inject-configuration` annotation. For per-deployment onboarding, keep the existing `inject-configuration` annotation that selects the named custom resource.
 
 For gRPC, use:
 
@@ -259,36 +239,36 @@ For gRPC, use:
 
 
 ```yml
-  apiVersion: apps/v1
-  kind: Deployment
-  ...
-  spec:
-    template:
-      metadata:
-        annotations:
-          instrumentation.opentelemetry.io/inject-configuration: "cr1"
-          instrumentation.opentelemetry.io/otel-protocol: "grpc"
+apiVersion: apps/v1
+kind: Deployment
+...
+spec:
+  template:
+    metadata:
+      annotations:
+        # keep existing annotations, including inject-configuration for a named custom resource
+        instrumentation.opentelemetry.io/otel-protocol: "grpc"
 ```
 
 For HTTP, use:
 - HTTP/Protobuf: `instrumentation.opentelemetry.io/otel-protocol: "http/protobuf"`
 
 ```yml
-  apiVersion: apps/v1
-  kind: Deployment
-  ...
-  spec:
-    template:
-      metadata:
-        annotations:
-          instrumentation.opentelemetry.io/inject-configuration: "cr1"
-          instrumentation.opentelemetry.io/otel-protocol: "http/protobuf"
+apiVersion: apps/v1
+kind: Deployment
+...
+spec:
+  template:
+    metadata:
+      annotations:
+        # keep existing annotations, including inject-configuration for a named custom resource
+        instrumentation.opentelemetry.io/otel-protocol: "http/protobuf"
 ```
   
 
 ## Limitations
 
-During the preview, the feature is available in all public cloud regions except:
+The feature is available in all public cloud regions except:
 
 - Israel Central
 - Israel North West

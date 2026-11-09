@@ -16,7 +16,7 @@ ms.custom: Cost Azure Cosmos DB
 
 #### Enable autoscale on your Azure Cosmos DB database or container  
   
-Based on your usage in the past 7 days, you can save by enabling autoscale. For each hour, we compared the RU/s provisioned to the actual utilization of the RU/s (what autoscale would have scaled to) and calculated the cost savings across the time period. Autoscale helps optimize your cost by scaling down RU/s when not in use.  
+Based on your usage over the past seven days, enabling autoscale can reduce costs by automatically scaling RU/s down when capacity isn't needed. Estimated savings are based on your provisioned RU/s compared with actual utilization.  
   
 **Impact:** Medium
   
@@ -31,7 +31,7 @@ Recommendation ID: cdf51428-a41b-4735-ba23-39f3b7cde20c
 
 #### Review the configuration of your Azure Cosmos DB free tier account  
   
-Your Azure Cosmos DB free tier account is currently containing resources with a total provisioned throughput exceeding 1000 Request Units per second (RU/s). Because Azure Cosmos DB's free tier only covers the first 1000 RU/s of throughput provisioned across your account, any throughput beyond 1000 RU/s is billed at the regular pricing. As a result, we anticipate that you are charged for the throughput currently provisioned on your Azure Cosmos DB account.  
+Your Azure Cosmos DB free tier account has provisioned throughput above 1,000 RU/s. Free tier covers only the first 1,000 RU/s, so any additional provisioned throughput is billed at standard rates.  
   
 **Impact:** Medium
   

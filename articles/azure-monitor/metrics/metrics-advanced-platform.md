@@ -1,12 +1,12 @@
 ---
-title: Advanced platform metrics (preview)
+title: Advanced platform metrics
 description: Learn about advanced platform metrics in Azure Monitor, a premium tier of platform metrics that provides deeper observability for Azure resource providers.
 ms.topic: concept-article
-ms.date: 05/29/2026
+ms.date: 10/14/2026
 ms.reviewer: alyssaschimm
 ---
 
-# Advanced platform metrics (preview)
+# Advanced platform metrics
 
 Advanced platform metrics are a premium, paid tier of platform metrics in Azure Monitor that provide more granular observability for Azure resources. Azure Monitor automatically collects platform metrics at no cost and covers baseline monitoring scenarios. Advanced platform metrics extend this capability with deeper, more detailed metrics that Azure resources generate on demand.
 
@@ -19,7 +19,7 @@ Examples of advanced platform metrics for Azure Storage include container-level 
 
 Azure Monitor supports several types of metrics, including platform metrics, Prometheus metrics, and more. For a full overview of metric types, see [Azure Monitor Metrics overview](data-platform-metrics.md).
 
-Advanced platform metrics are a subset of platform metrics. Azure resources automatically emit platform metrics at no cost. Advanced platform metrics extend platform metrics with deeper, more granular data that Azure resources generate when you enable this feature. You explicitly opt in to these metrics at the resource level.
+Advanced platform metrics are a subset of platform metrics. Advanced platform metrics extend platform metrics with deeper, more granular data that Azure resources generate when you enable this feature. You explicitly opt in to these metrics at the resource level.
 
 The following table summarizes the differences between platform metrics and advanced platform metrics:
 

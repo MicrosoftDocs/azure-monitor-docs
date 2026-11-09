@@ -107,7 +107,7 @@ apiserver = "mymetric.*"
 If you want to further customize default targets to change properties like collection frequency or labels, then disable that target by setting its value to `false`. Then create a custom job for the target as described in [Customize scraping of Prometheus metrics in Azure Monitor](./prometheus-metrics-scrape-configmap.md).
 
 ### Cluster alias
-The last part of the cluster's resource ID is appended to every time series to uniquely identify the data. For example, if the resource ID is `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-name/providers/Microsoft.ContainerService/managedClusters/myclustername`, the cluster label is `myclustername`. To override this cluster label, update the setting `cluster_alias` under `prometheus-collector-settings`. 
+The last part of the cluster's resource ID is appended to every time series to uniquely identify the data. For example, if the resource ID is `/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourcegroups/rg-name/providers/Microsoft.ContainerService/managedClusters/myclustername`, the cluster label is `myclustername`. To override this cluster label, update the setting `cluster_alias` under `prometheus-collector-settings`. 
 
 > [!NOTE]
 > Only alphanumeric characters are allowed. Any other characters are replaced with `_`. 

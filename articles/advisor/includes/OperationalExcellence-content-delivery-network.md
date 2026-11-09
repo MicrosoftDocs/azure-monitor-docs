@@ -29,4 +29,21 @@ Recommendation ID: 062d41f2-0dfa-48e0-a9b8-fb40fa5b001f
 
 <!--062d41f2-0dfa-48e0-a9b8-fb40fa5b001f_end-->
 
+<!--16c397fb-ccae-493f-9214-77eb088fc17d_begin-->
+
+#### Complete your Azure Front Door migration by moving traffic to the new endpoint  
+  
+Complete your migration by moving traffic to the new Azure Front Door Standard/Premium endpoint. Update custom domain DNS and applications using the classic endpoint. Both endpoints remain active for validation, but classic support ends April 1, 2028.  
+  
+**Potential benefits**: Reduce migration risk by switching to new endpoint.  
+
+**Impact:** High
+  
+For more information, see [About Azure CDN from Microsoft (classic) to Azure Front Door migration](https://aka.ms/cdn/migration).  
+
+ResourceType: microsoft.cdn/profiles  
+Recommendation ID: 16c397fb-ccae-493f-9214-77eb088fc17d  
+
+<!--16c397fb-ccae-493f-9214-77eb088fc17d_end-->
+
 <!--articleBody-->

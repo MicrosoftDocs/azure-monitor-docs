@@ -20,7 +20,7 @@ Automatic pause releases and shuts down unused compute resources after a set idl
   
 **Impact:** Low
   
-For more information, see [AutoPauseProperties Class (Microsoft.Azure.Management.Synapse.Models) - Azure for .NET Developers ](https://aka.ms/EnableSynapseSparkComputeAutoPauseGuidance)  
+For more information, see [Manage costs for Azure Synapse Analytics](/azure/synapse-analytics/plan-manage-costs#serverless-apache-spark-pool)  
 
 ResourceType: microsoft.synapse/workspaces  
 Recommendation ID: afdf4c1a-e46b-4817-a5d6-4b9909f58e2a  
@@ -32,7 +32,7 @@ Recommendation ID: afdf4c1a-e46b-4817-a5d6-4b9909f58e2a
 
 #### Consider enabling autoscale feature on spark compute  
   
-Apache Spark for Azure Synapse Analytics pool's Autoscale feature automatically scales the number of nodes in a cluster instance up and down. During the creation of a new Apache Spark for Azure Synapse Analytics pool, a minimum and maximum number of nodes can be set when Autoscale is selected. Autoscale then monitors the resource requirements of the load and scales the number of nodes up or down. There's no extra charge for this feature.  
+Autoscale automatically adjusts the number of nodes in an Azure Synapse Apache Spark pool based on workload demand. Set minimum and maximum node limits, and Autoscale scales capacity as needed at no extra charge.  
   
 **Impact:** Low
   

@@ -71,9 +71,9 @@ Sign in to the [Azure portal](https://portal.azure.com).
 
 A single dashboard can contain resources from multiple applications, resource groups, and subscriptions. Start the tutorial by creating a new dashboard for your application.
 
-1. In the menu dropdown on the left in the Azure portal, select **Dashboard**.
+1. In the Azure portal, select the menu icon to open the main navigation, and then select **Dashboard**.
 
-    :::image type="content" source="media/overview-dashboard/dashboard-from-menu.png" lightbox="media/overview-dashboard/dashboard-from-menu.png" alt-text="Screenshot that shows the Azure portal menu dropdown.":::
+    :::image type="content" source="media/overview-dashboard/dashboard-from-menu.png" lightbox="media/overview-dashboard/dashboard-from-menu.png" alt-text="Screenshot that shows Dashboard in the Azure portal main navigation." border="true":::
 
 1. On the **Dashboard** pane, select **New dashboard** > **Blank dashboard**.
 

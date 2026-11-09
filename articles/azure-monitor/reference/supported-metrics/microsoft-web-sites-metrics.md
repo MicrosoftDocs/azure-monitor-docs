@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Web/sites
 description: Reference for Microsoft.Web/sites metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 11/03/2026
 ms.custom: Microsoft.Web/sites, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -45,7 +45,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Web/site
 |**Percentage CPU**<br><br>The average percentage of CPU being used. For Flex Consumption function apps only. |`CpuPercentage` | No | Percent |Average |`Instance`|PT1M |Yes|
 |**CPU Time**<br><br>The amount of CPU consumed by the app, in seconds. For more information about this metric. Please see https://aka.ms/website-monitor-cpu-time-vs-cpu-percentage (CPU time vs CPU percentage). For WebApps only. |`CpuTime` | No | Seconds |Count, Total (Sum), Minimum, Maximum |`Instance`|PT1M |Yes|
 |**Current Assemblies**<br><br>The current number of Assemblies loaded across all AppDomains in this application. For WebApps and FunctionApps. |`CurrentAssemblies` | No | Count |Average |`Instance`|PT1M |Yes|
-|**File System Usage**<br><br>Percentage of filesystem quota consumed by the app. For WebApps and FunctionApps. |`FileSystemUsage` | No | Bytes |Average |\<none\>|PT6H, PT12H, P1D |Yes|
+|**File System Usage**<br><br>File-system storage used by the app, in bytes. |`FileSystemUsage` | No | Bytes |Average |\<none\>|PT6H, PT12H, P1D |Yes|
 |**Function Execution Count**<br><br>Function Execution Count. For FunctionApps only. |`FunctionExecutionCount` | No | Count |Total (Sum) |`Instance`|PT1M |Yes|
 |**Function Execution Units**<br><br>Function Execution Units. For FunctionApps only. |`FunctionExecutionUnits` | No | Count |Total (Sum) |`Instance`|PT1M |Yes|
 |**Gen 0 Garbage Collections**<br><br>The number of times the generation 0 objects are garbage collected since the start of the app process. Higher generation GCs include all lower generation GCs. For WebApps and FunctionApps. |`Gen0Collections` | No | Count |Total (Sum) |`Instance`|PT1M |Yes|

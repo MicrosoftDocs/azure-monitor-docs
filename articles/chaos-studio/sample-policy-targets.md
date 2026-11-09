@@ -17,7 +17,7 @@ These Azure Policy samples onboard resources to Azure Chaos Studio Experiments (
 
 This article includes sample [Azure Policy](/azure/governance/policy/overview) definitions that create [targets and capabilities](chaos-studio-targets-capabilities.md) for a specific resource type. You can automatically add resources to Azure Chaos Studio. First, you [deploy these samples as custom policy definitions](/azure/governance/policy/tutorials/create-and-manage). Then you [assign the policy](/azure/governance/policy/assign-policy-portal) to a scope.
 
-In these samples, we add service-direct targets and capabilities for each [supported resource type](chaos-studio-fault-providers.md) by using [targets and capabilities](chaos-studio-targets-capabilities.md).
+In these samples, we add service-direct targets and capabilities for each [supported resource type](chaos-studio-workspaces-supported-resources.md) by using [targets and capabilities](chaos-studio-targets-capabilities.md).
 
 > [!NOTE]
 > Each of these policies differs slightly, and you should consult the documentation of the Resource (e.g. Compute, Storage, etc.) you are using in addition to these below sample definitions to ensure you are setting everything ocrrectly for your specific scenario
