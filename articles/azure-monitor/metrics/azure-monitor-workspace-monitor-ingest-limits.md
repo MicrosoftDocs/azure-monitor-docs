@@ -29,7 +29,7 @@ When you request a limit increase through a support ticket, increases up to 2 mi
 Azure Monitor Workspace supports autoscaling ingestion limits (preview). When you turn on autoscale, Azure Monitor automatically adjusts your workspace's ingestion limits based on your actual usage. Limits go up as your metrics volume grows and come back down when usage stays low for a sustained period of time. Any change in the ingestion limits is recorded in the workspace's Activity Log. You get a clear history of when your limits changed and in which direction.
 
 > [!NOTE]
-> Enabling Auto-scale doesn't change billing. It only adjusts your ingestion limit (the quota ceiling). Billing is still based on what you actually ingest. Learn more about Azure Monitor Workspace [pricing](./prometheus-metrics-overview.md#pricing).
+> Enabling autoscale doesn't change billing. It only adjusts your ingestion limit (the quota ceiling). Billing is still based on what you actually ingest. Learn more about Azure Monitor Workspace [pricing](./prometheus-metrics-overview.md#pricing).
 
 **Why autoscale?**
 Static ingestion limits create problems in both directions:
