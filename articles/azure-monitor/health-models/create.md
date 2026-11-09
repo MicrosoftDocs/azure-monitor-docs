@@ -1,5 +1,5 @@
 ---
-title: Azure Monitor health model portal quickstart (preview)
+title: Azure Monitor health model portal quickstart
 description: In this quickstart, create an Azure Monitor health model in the Azure portal, configure its managed identity, and verify the deployment.
 ms.topic: quickstart
 ms.date: 08/26/2026
@@ -7,7 +7,7 @@ ai-usage: ai-assisted
 #customer intent: As an Azure user, I want to create my first health model in the Azure portal so that I can begin modeling my workload health.
 ---
 
-# Quickstart: Create an Azure Monitor health model in the Azure portal (preview)
+# Quickstart: Create an Azure Monitor health model in the Azure portal
 
 In this quickstart, you create an Azure Monitor health model in the Azure portal, configure its managed identity, and verify that the model is ready for configuration.
 
