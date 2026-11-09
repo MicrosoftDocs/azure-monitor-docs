@@ -1,12 +1,12 @@
 ---
-title: Health models in Azure Monitor (preview)
+title: Health models in Azure Monitor
 description: Overview of health models in Azure Monitor that allow you to track the health of your Azure resources and workloads.
 ms.topic: overview
 ms.date: 05/25/2026
 ai-usage: ai-assisted
 ---
 
-# Health models in Azure Monitor (preview)
+# Health models in Azure Monitor
 
 Azure Monitor health models help you visually define and track the health of entities in your workload and the resources they depend on. They use [health modeling](./health-modeling.md) to connect raw monitoring signals with business context, so you can move away from resource-centric alerting and alert fatigue towards health-based alerting that represents the actual state of your workload.
 

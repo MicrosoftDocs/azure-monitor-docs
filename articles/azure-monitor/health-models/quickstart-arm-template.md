@@ -1,5 +1,5 @@
 ---
-title: Azure Monitor health model ARM template quickstart (preview)
+title: Azure Monitor health model ARM template quickstart
 description: In this quickstart, use an ARM template to deploy, verify, and delete an Azure Monitor health model with a managed identity.
 ms.topic: quickstart-arm
 ms.date: 08/26/2026
@@ -8,14 +8,11 @@ ms.custom: subject-armqs
 #customer intent: As an Azure user, I want to deploy my first health model with an ARM template so that I can automate Health Models deployment.
 ---
 
-# Quickstart: Create a health model with an ARM template (preview)
+# Quickstart: Create a health model with an ARM template
 
 In this quickstart, you use an Azure Resource Manager template (ARM template) to create an Azure Monitor health model with a system-assigned managed identity, verify the deployment, and delete the resources.
 
 An ARM template is a JavaScript Object Notation (JSON) file that defines the infrastructure and configuration for your project. Declarative syntax states what to deploy without specifying the sequence of programming commands that creates it.
-
-> [!IMPORTANT]
-> Azure Monitor health models are in preview and might change. Microsoft provides limited support for preview features. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to features that are in preview or otherwise not yet released into general availability.
 
 ## Prerequisites
 

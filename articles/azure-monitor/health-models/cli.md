@@ -1,6 +1,6 @@
 ---
-title: Create an Azure Monitor Health Model with the Azure CLI (Preview)
-description: Use the health-models Azure CLI extension (preview) to create and operate an Azure Monitor health model end to end.
+title: Create an Azure Monitor Health Model with the Azure CLI
+description: Use the health-models Azure CLI extension to create and operate an Azure Monitor health model end to end.
 ms.topic: how-to
 ms.reviewer: anbossar
 ms.date: 07/21/2026
@@ -10,12 +10,9 @@ ms.custom:
   - cbo-v1.6
 ---
 
-# Use the Azure CLI for Azure Monitor health models (preview)
+# Use the Azure CLI for Azure Monitor health models
 
-Use the `health-models` Azure CLI extension (preview) to build, update, and query your health models.
-
-> [!IMPORTANT]
-> The `health-models` Azure CLI extension is in preview and might change. Microsoft provides limited support for this feature. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in preview or otherwise not yet released into general availability.
+Use the `health-models` Azure CLI extension to build, update, and query your health models.
 
 In this article, you learn how to use the Azure Health Models CLI extension to [create](./create.md), configure, and query a health model. Run the commands in sequence. Delete the resources when you finish to avoid extra costs.
 

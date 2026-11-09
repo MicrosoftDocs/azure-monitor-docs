@@ -9,7 +9,7 @@ ai-usage: ai-assisted
 
 # Monitor Azure Monitor workspace metrics ingestion
 
-Prometheus metrics are ingested into an Azure Monitor workspace. Azure Monitor workspaces have default limits and quotas for ingestion. When you reach the ingestion limits, throttling can occur. To avoid throttling, monitor and alert on the workspace ingestion limits.
+Prometheus metrics are ingested into an Azure Monitor workspace. Azure Monitor workspaces have default limits and quotas for ingestion. When you reach the ingestion limits, throttling can occur. To avoid throttling, monitor and alert on the workspace ingestion limits, or enable Auto-scale (Preview).
 
 For more information on Prometheus and Azure Monitor workspace limits and quotas, see [Azure Monitor service limits](../fundamentals/service-limits.md#prometheus-metrics).
 
@@ -17,17 +17,50 @@ For more information on Prometheus and Azure Monitor workspace limits and quotas
 
 The following table summarizes the default ingestion limits for an Azure Monitor workspace and the maximum available through the ingestion-limit increase API.
 
-| Limit | Default | Maximum | Notes |
-|:------|:--------|:--------|:------|
-| Events per minute | 1 million | 20 million (through the API) | Increases above 20 million require a support ticket. |
-| Active time series | 1 million | 20 million (through the API) | Increases above 20 million require a support ticket. |
+| Limit | Default | Notes |
+|:------|:--------|:------|
+| Events per minute | 1 million | Limits increase automatically if Auto-scale is enabled, or through a support ticket |
+| Active time series | 1 million | Limits increase automatically if Auto-scale is enabled, or through a support ticket |
 
-Limit increases up to 2 million are autoapproved. For increases above 2 million, current ingestion usage must reach 50% of the desired limit. For example, a workspace at a current limit of 5 million qualifies for an increase up to 10 million. For details, see [Request for an increase in ingestion limits (Preview)](#request-for-an-increase-in-ingestion-limits-preview).
+When you request a limit increase through a support ticket, increases up to 2 million are autoapproved. For increases above 2 million, current ingestion usage must reach 50% of the desired limit. For example, a workspace at a current limit of 5 million qualifies for an increase up to 10 million. For details, see [Request for an increase in ingestion limits (Preview)](#request-for-an-increase-in-ingestion-limits-preview).
 
-## Prerequisites
+## Autoscale ingestion limits in Azure Monitor workspace (Preview)
 
-* The Monitoring Contributor role, or an equivalent role, on the Azure Monitor workspace to create the recommended alert rules.
-* Write access on the Azure Monitor workspace to request an ingestion-limit increase through the API.
+Azure Monitor Workspace supports autoscaling ingestion limits (preview). When you turn on autoscale, Azure Monitor automatically adjusts your workspace's ingestion limits based on your actual usage. Limits go up as your metrics volume grows and come back down when usage stays low for a sustained period of time. Any change in the ingestion limits is recorded in the workspace's Activity Log. You get a clear history of when your limits changed and in which direction.
+
+> [!NOTE]
+> Enabling autoscale doesn't change billing. It only adjusts your ingestion limit (the quota ceiling). Billing is still based on what you actually ingest. Learn more about Azure Monitor Workspace [pricing](./prometheus-metrics-overview.md#pricing).
+
+**Why autoscale?**
+Static ingestion limits create problems in both directions:
+
+- Throttling risk: When usage grows faster than your limit, metrics can be dropped. You lose visibility right when your environment is changing.
+- Manual work: Raising a limit means opening a support request and waiting for it to be applied.
+- Over-provisioning: To avoid repeat requests, teams often ask for far more headroom than they need.
+
+Autoscale removes this balancing act. Your limits track your real usage, so you can spend less time managing quotas and more time using your observability data.
+
+### Turn on autoscale for your workspace
+
+Autoscale is an opt-in setting for each workspace. When it's on, the system keeps your ingestion limit at a healthy level compared with your usage:
+
+- Scale up: When ingestion approaches the upper utilization threshold, your limit is raised to help prevent throttling.
+- Scale down: When utilization stays low for a sustained period, unused capacity is reclaimed. Ingestion isn't affected.
+
+You can turn on autoscale with an ARM API update:
+
+```azurecli
+$resourceId = "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.Monitor/accounts/<azureMonitorWorkspaceName>/metricsContainers/default"
+
+az resource update --ids $resourceId --api-version 2026-09-03-preview --set properties.limits.enableAutoScale=true --force-string
+```
+
+To turn autoscale off, set **enableAutoScale=false**. Your limits then stay fixed and you manage them manually, the same as today.
+
+### Monitor scale change in the Activity Log
+
+When you enable autoscale, the system records any change in the ingestion limits in the workspace's [Activity Log](../fundamentals/activity-log.md). You get a clear history of when your limits changed and in which direction. You can also set up an alert for any scale change event triggered. To learn more, see [create an activity log alert](../alerts/alerts-create-activity-log-alert-rule.md).
+
 
 ## View limits and set up recommended alerts
 
@@ -477,7 +510,7 @@ New-AzResourceGroupDeployment -Name AMWRecAlerts -ResourceGroupName <resourceGro
 
 ## Request for an increase in ingestion limits (Preview)
 
-Request for an increase in ingestion limits using Azure Resource Manager API. This API is in Preview and below conditions apply with this API:
+If you didn't enable auto-scale for ingestion limits on your Azure Monitor Workspace, you can request an increase in ingestion limits by using the Azure Resource Manager API. This API is in preview. The following conditions apply to this API:
 
 * Request an increase from the default 1 million events per minute or active time series to up to 20 million events per minute or active time series by using an API update through the CLI or an ARM template deployment. For limits above 20 million, create a support ticket.
     * For a limit increase request up to 2 million, the request is autoapproved.
@@ -489,7 +522,9 @@ This article explains how to use the Azure Resource Manager API to update the da
 
 ### Limit-increase prerequisites
 
-A command-line tool to run the ARM template commands, such as Azure PowerShell, or Azure CLI.
+* The Monitoring Contributor role, or an equivalent role, on the Azure Monitor workspace to create the recommended alert rules.
+* Write access on the Azure Monitor workspace to request an ingestion-limit increase through the API.
+* A command-line tool to run the ARM template commands, such as Azure PowerShell, or Azure CLI.
 
 ### Step 1: Download the ARM templates and update the parameters
 

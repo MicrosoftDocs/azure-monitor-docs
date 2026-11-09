@@ -878,6 +878,8 @@
   href: ../edgeactionconsolelog.md
 - name: EdgeActionServiceLog
   href: ../edgeactionservicelog.md
+- name: EdgeSecurityEvents
+  href: ../edgesecurityevents.md
 - name: EGNFailedHttpDataPlaneOperations
   href: ../egnfailedhttpdataplaneoperations.md
 - name: EGNFailedMqttConnections
@@ -1214,6 +1216,8 @@
   href: ../nwpacketcapturetlssession.md
 - name: OAuthAppInfo
   href: ../oauthappinfo.md
+- name: ODSPFiles
+  href: ../odspfiles.md
 - name: OEPAirFlowTask
   href: ../oepairflowtask.md
 - name: OEPAuditLogs
@@ -1256,6 +1260,8 @@
   href: ../oteltraces.md
 - name: OTelTracesAgent
   href: ../oteltracesagent.md
+- name: PartnerRiskEvents
+  href: ../partnerriskevents.md
 - name: PaymentHsmHardwareOperationAuditLogs
   href: ../paymenthsmhardwareoperationauditlogs.md
 - name: PerfInsightsFindings

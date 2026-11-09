@@ -1,5 +1,5 @@
 ---
-title: Azure Monitor health model Bicep quickstart (preview)
+title: Azure Monitor health model Bicep quickstart
 description: In this quickstart, use Bicep to deploy and verify an Azure Monitor health model with entities, relationships, and metric signals.
 ms.topic: quickstart-bicep
 ms.custom:
@@ -11,14 +11,11 @@ ai-usage: ai-assisted
 #customer intent: As an Azure user, I want to deploy a health model with Bicep so that I can automate a repeatable Health Models configuration.
 ---
 
-# Quickstart: Create an Azure Monitor health model with Bicep (preview)
+# Quickstart: Create an Azure Monitor health model with Bicep
 
 In this quickstart, you use Bicep to deploy a self-contained Azure Monitor health model. The model represents an application that depends on a storage account and key vault. Availability signals monitor both resources and propagate their health to the application.
 
 [Bicep](/azure/azure-resource-manager/bicep/overview) is a declarative language for deploying Azure resources. Use Bicep instead of JSON to author Azure Resource Manager templates.
-
-> [!IMPORTANT]
-> Azure Monitor health models are in preview and might change. Microsoft provides limited support for preview features. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to features that are in preview or otherwise not yet released into general availability.
 
 ## Prerequisites
 

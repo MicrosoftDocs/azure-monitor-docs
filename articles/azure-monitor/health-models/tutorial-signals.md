@@ -1,12 +1,12 @@
 ---
-title: Configure signals in an Azure Monitor health model (preview)
+title: Configure signals in an Azure Monitor health model
 description: Learn how to configure Azure resource metric signals, Log Analytics workspace signals, and Azure Monitor workspace PromQL signals for entities in Azure Monitor health models.
 ms.topic: tutorial
 ms.date: 09/01/2026
 ai-usage: ai-assisted
 ---
 
-# Tutorial: Configure signals in an Azure Monitor health model (preview)
+# Tutorial: Configure signals in an Azure Monitor health model
 
 Signals determine the health state of each entity in your Azure Monitor health model. In this tutorial, you configure three signal types in the designer: Azure resource metric signals, Log Analytics workspace signals (logs), and Azure Monitor workspace signals (metrics).
 
