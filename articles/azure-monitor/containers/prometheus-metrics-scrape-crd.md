@@ -306,7 +306,7 @@ kubectl apply -f .\ama-metrics-settings-configmap.yaml
 
 For details about applying settings, see [Customize collection using ConfigMap](prometheus-metrics-scrape-configuration.md#configmap).
 
-When enabled, the target allocator drops PodMonitor and ServiceMonitor scrape configurations that reference local files, including bearer token files and TLS CA, certificate, or key files. This prevents those configurations from making the collector read and transmit local bearer tokens. It doesn't disable bearer-token authentication that doesn't require local file access.
+When enabled, the target allocator drops PodMonitor and ServiceMonitor scrape configurations that reference local files, including bearer token files and TLS CA, certificate, or key files. This protection prevents those configurations from making the collector read and transmit local bearer tokens. It doesn't disable bearer-token authentication that doesn't require local file access.
 
 > [!IMPORTANT]
 > Review your PodMonitor and ServiceMonitor configurations before enabling this setting. Targets whose configurations use `bearerTokenFile` or local TLS files stop being scraped. This setting applies to scrape configurations generated from PodMonitor and ServiceMonitor resources, not built-in scrape jobs or custom scrape jobs defined directly in a ConfigMap. It doesn't replace the namespace-scoped secrets access configuration described in the following sections.
