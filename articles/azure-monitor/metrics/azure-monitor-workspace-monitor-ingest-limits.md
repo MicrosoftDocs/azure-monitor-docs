@@ -31,7 +31,7 @@ Azure Monitor Workspace supports autoscaling ingestion limits (preview). When yo
 > [!NOTE]
 > Enabling Auto-scale doesn't change billing. It only adjusts your ingestion limit (the quota ceiling). Billing is still based on what you actually ingest. Learn more about Azure Monitor Workspace [pricing](./prometheus-metrics-overview.md#pricing).
 
-**Why Auto-scale?**
+**Why autoscale?**
 Static ingestion limits create problems in both directions:
 
 - Throttling risk: When usage grows faster than your limit, metrics can be dropped. You lose visibility right when your environment is changing.
