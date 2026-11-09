@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.DocumentDB/DatabaseAccounts
 description: Reference for Microsoft.DocumentDB/DatabaseAccounts metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 08/31/2026
+ms.date: 10/16/2026
 ms.custom: Microsoft.DocumentDB/DatabaseAccounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -70,7 +70,8 @@ For a list of supported logs, see [Supported log categories - Microsoft.Document
 |**(deprecated) Document Count**<br><br>Total document count reported at 5 minutes, 1 hour and 1 day granularity |`DocumentCount` | No | Count |Total (Sum), Average |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Document Quota**<br><br>Total storage quota reported at 5 minutes granularity |`DocumentQuota` | No | Bytes |Total (Sum), Average |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Global Secondary Index Catchup Gap In Minutes**<br><br>Maximum time difference in minutes between data in source container and data propagated to global secondary index |`GlobalSecondaryIndexCatchupGapInMinutes` | No | Count |Maximum |`Region`, `TargetContainerName`, `BuildType`|PT1M |No|
-|**Global Secondary Index Propagation Latency In Seconds**<br><br>Average time difference in seconds between data in source container and data propagated to global secondary index |`GlobalSecondaryIndexPropagationLatencyInSeconds` | No | Count |Average |`Region`, `TargetContainerName`, `TargetContainerStatus`, `BuildType`|PT1M |No|
+|**(deprecated) Global Secondary Index Propagation Latency In Seconds**<br><br>Average time difference in seconds between data in source container and data propagated to global secondary index |`GlobalSecondaryIndexPropagationLatencyInSeconds` | No | Count |Average |`Region`, `TargetContainerName`, `TargetContainerStatus`, `BuildType`|PT1M |No|
+|**Global Secondary Index Propagation Latency In Seconds**<br><br>Average time difference in seconds between data in source container and data propagated to global secondary index |`GlobalSecondaryIndexPropagationLatencyInSecondsV2` | No | Count |Average |`TargetContainerName`, `TargetContainerStatus`, `BuildType`|PT1M |No|
 |**Gremlin Database Created**<br><br>Gremlin Database Created |`GremlinDatabaseCreate` | No | Count |Count |`ResourceName`, `ApiKind`, `ApiKindResourceType`, `IsThroughputRequest`, `OperationType`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Gremlin Database Deleted**<br><br>Gremlin Database Deleted |`GremlinDatabaseDelete` | No | Count |Count |`ResourceName`, `ApiKind`, `ApiKindResourceType`, `OperationType`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Gremlin Database Throughput Updated**<br><br>Gremlin Database Throughput Updated |`GremlinDatabaseThroughputUpdate` | No | Count |Count |`ResourceName`, `ApiKind`, `ApiKindResourceType`, `IsThroughputRequest`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|

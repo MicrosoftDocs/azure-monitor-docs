@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.DBforPostgreSQL/flexibleServers
 description: Reference for Microsoft.DBforPostgreSQL/flexibleServers metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 09/08/2026
+ms.date: 10/16/2026
 ms.custom: Microsoft.DBforPostgreSQL/flexibleServers, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -119,6 +119,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.DBforPos
 |**Backup Storage Used**<br><br>Backup Storage Used |`backup_storage_used` | No | Bytes |Average, Maximum, Minimum |`LogicalServerName`|PT1M |Yes|
 |**CPU Credits Consumed**<br><br>Total number of credits consumed by the database server |`cpu_credits_consumed` | No | Count |Average, Maximum, Minimum |`LogicalServerName`|PT1M |Yes|
 |**CPU Credits Remaining**<br><br>Total number of credits available to burst |`cpu_credits_remaining` | No | Count |Average, Maximum, Minimum |`LogicalServerName`|PT1M |Yes|
+|**CPU Limit (Preview)**<br><br>Configured logical vCore count available to the server. |`cpu_limit` | No | Count |Maximum |`ServerName`|PT30M, PT1H, PT6H, PT12H, P1D |Yes|
 |**CPU percent**<br><br>CPU percent |`cpu_percent` | No | Percent |Average, Maximum, Minimum |`ServerName`|PT1M |Yes|
 |**Disk Bandwidth Consumed Percentage**<br><br>Percentage of disk bandwidth consumed per minute |`disk_bandwidth_consumed_percentage` | No | Percent |Average, Maximum, Minimum |`LogicalServerName`|PT1M |Yes|
 |**Disk IOPS Consumed Percentage**<br><br>Percentage of disk I/Os consumed per minute |`disk_iops_consumed_percentage` | No | Percent |Average, Maximum, Minimum |`LogicalServerName`|PT1M |Yes|

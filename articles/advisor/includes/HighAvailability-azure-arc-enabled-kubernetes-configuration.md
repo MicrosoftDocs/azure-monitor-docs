@@ -12,23 +12,6 @@ ms.custom: HighAvailability Azure Arc-enabled Kubernetes Configuration
   
 ## Azure Arc-enabled Kubernetes Configuration  
   
-<!--4bc7a00b-edbb-4963-8800-1b0f8897fecf_begin-->
-
-#### Upgrade Microsoft Flux extension to the newest major version  
-  
-The Microsoft Flux extension has a major version release. Plan for a manual upgrade to the latest major version for Microsoft Flux for all Azure Arc-enabled Kubernetes and Azure Kubernetes Service (AKS) clusters within 6 months for continued support and new functionality.  
-  
-**Potential benefits**: Continued support and new functionality  
-
-**Impact:** Medium
-  
-For more information, see [Available extensions for Azure Arc-enabled Kubernetes clusters - Azure Arc ](https://aka.ms/fluxreleasenotes)  
-
-ResourceType: microsoft.kubernetesconfiguration/extensions  
-Recommendation ID: 4bc7a00b-edbb-4963-8800-1b0f8897fecf  
-Subcategory: ServiceUpgradeAndRetirement
-
-<!--4bc7a00b-edbb-4963-8800-1b0f8897fecf_end-->
 
 <!--79cfad72-9b6d-4215-922d-7df77e1ea3bb_begin-->
 
@@ -44,10 +27,8 @@ For more information, see [Available extensions for Azure Arc-enabled Kubernetes
 
 ResourceType: microsoft.kubernetesconfiguration/extensions  
 Recommendation ID: 79cfad72-9b6d-4215-922d-7df77e1ea3bb  
-Subcategory: undefined
 
 <!--79cfad72-9b6d-4215-922d-7df77e1ea3bb_end-->
-
 
 <!--51b9ef93-332d-4438-b1ba-851a6eae2e67_begin-->
 
@@ -63,7 +44,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.kubernetesconfiguration/extensions  
 Recommendation ID: 51b9ef93-332d-4438-b1ba-851a6eae2e67  
-Subcategory: undefined
 
 <!--51b9ef93-332d-4438-b1ba-851a6eae2e67_end-->
 

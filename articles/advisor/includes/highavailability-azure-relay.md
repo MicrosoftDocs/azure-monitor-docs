@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/25/2025
+ms.date: 10/01/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Relay
@@ -12,22 +12,21 @@ ms.custom: HighAvailability Azure Relay
   
 ## Azure Relay  
   
-<!--f94e36fd-c8c1-4af3-8ac6-39c151f9515e_begin-->
+<!--98ac83b7-1944-4a73-b6ed-4cfc6bc610b9_begin-->
 
-#### Create in availability zone supported regions to keep relays running during zone outages  
+#### Migrate Azure Relay templates and automation to ARM API version 2021-11-01 or later  
   
-Deploy relays in regions that support availability zones and zone redundancy. If available, enable zone redundancy for service or resource during creation.  
+Using ARM API version 2021-11-01 or later for Azure Relay keeps your deployments compatible with current Azure Resource Manager capabilities. This approach supports consistent provisioning and management across templates, scripts, and tools.
   
-**Potential benefits**: Messaging continuity during zone outages  
+**Potential benefits**: Ensure supported Azure Relay management  
 
 **Impact:** High
   
-For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
+For more information, see [Steps to upgrade control plane API references for Azure Service Bus, Event Hubs, and Relay](https://techcommunity.microsoft.com/blog/messagingonazureblog/steps-to-upgrade-control-plane-api-references-for-azure-service-bus-event-hubs-a/3940126)  
 
 ResourceType: microsoft.relay/namespaces  
-Recommendation ID: f94e36fd-c8c1-4af3-8ac6-39c151f9515e  
-Subcategory: undefined
+Recommendation ID: 98ac83b7-1944-4a73-b6ed-4cfc6bc610b9  
 
-<!--f94e36fd-c8c1-4af3-8ac6-39c151f9515e_end-->
+<!--98ac83b7-1944-4a73-b6ed-4cfc6bc610b9_end-->
 
 <!--articleBody-->

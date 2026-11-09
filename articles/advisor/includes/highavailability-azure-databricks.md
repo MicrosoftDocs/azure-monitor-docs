@@ -20,13 +20,12 @@ Standard tier workspaces are retiring. Upgrade to Premium tier prior to retireme
   
 **Potential benefits**: Access to enhanced capabilities  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=502623)  
 
 ResourceType: microsoft.databricks/workspaces  
 Recommendation ID: 99db65bb-fdb3-4bc8-b015-341fba99865c  
-Subcategory: undefined
 
 <!--99db65bb-fdb3-4bc8-b015-341fba99865c_end-->
 

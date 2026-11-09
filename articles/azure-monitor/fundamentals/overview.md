@@ -11,7 +11,7 @@ Azure Monitor is Microsoft's unified observability service for collecting, analy
 
 In addition to supporting Azure Monitor features, the Azure Monitor data platform also supports other services such as Defender for Cloud and Microsoft Sentinel. This simplifies your management infrastructure allowing you to leverage your investment in a common set of query languages and analysis tools.
 
-:::image type="content" source="media/overview/overview.png" alt-text="Diagram that shows an overview of Azure Monitor with data sources sending data, and Azure Monitor features using the collected data." border="false" lightbox="media/overview/overview.png":::
+:::image type="content" source="media/overview/overview.svg" alt-text="Diagram that shows an overview of Azure Monitor with data sources sending data, and Azure Monitor features using the collected data." border="false" lightbox="media/overview/overview.svg":::
 
 ## Monitor your cloud resources
 Azure Monitor collects logs and metrics from all the resources across the different Azure services that you use, including audit logs from Microsoft Entra ID. This monitoring data is integrated into the Azure portal experience for each service. View a summary of the health and performance of your resources and then drill down into more detailed monitoring data and analysis tools to investigate and troubleshoot issues. Some services also provide dedicated monitoring experiences called Azure Monitor insights that deliver deep visibility into the performance and operation of your cloud resources.

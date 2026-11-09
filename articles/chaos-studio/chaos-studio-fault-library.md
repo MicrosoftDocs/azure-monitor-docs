@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 This Azure Chaos Studio fault and action library is for Experiments (classic). For current-model tests, use the [Chaos Studio Workspaces Scenario catalog](chaos-studio-scenarios.md), which lists Scenario Actions and supported resources. A classic fault entry doesn't establish availability in Workspaces.
 
-This article lists the faults you can use with Experiments (classic), organized by the applicable resource type. To understand which role assignments are recommended for each resource type, see [Supported resource types and role assignments for Experiments (classic)](./chaos-studio-fault-providers.md).
+This article lists the faults you can use with Experiments (classic), organized by the applicable resource type. For the resource types and Actions that Chaos Studio Workspaces supports, see [Supported resources and Actions for Chaos Studio Workspaces](chaos-studio-workspaces-supported-resources.md).
 
 ## Agent-based faults
 
@@ -1360,7 +1360,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 | Fault type | Discrete. |
 | Parameters (key, value) |  |
 | rebootType | The node types where the reboot action is to be performed, which can be specified as PrimaryNode, SecondaryNode, or AllNodes.  |
-| shardId | The ID of the shard to be rebooted. Only relevant for Premium tier caches. |
+| shardId | The ID of the shard to be rebooted. Applies to clustered caches only. Omit `shardId` for non-clustered (Basic or Standard) caches. If you set it on a non-clustered cache, the fault fails. |
 
 #### Sample JSON
 
@@ -1391,6 +1391,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 
 * The reboot fault causes a forced reboot to better simulate an outage event, which means there's the potential for data loss to occur.
 * The reboot fault is a **discrete** fault type. Unlike continuous faults, it's a one-time action and has no duration.
+* The sample JSON sets `ShardId` for a clustered cache. For a non-clustered (Basic or Standard) cache, remove the `ShardId` parameter.
 
 
 ### Cosmos DB Failover

@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.ContainerService/managedClusters
 description: Reference for Microsoft.ContainerService/managedClusters metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 08/14/2026
+ms.date: 10/05/2026
 ms.custom: Microsoft.ContainerService/managedClusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.

@@ -75,3 +75,7 @@ Microsoft Defender for Endpoints (MDE) script execution events table for the Cus
 | TimeGenerated | datetime | Date and time the event was recorded by the MDE agent on the endpoint. |
 | Timestamp | datetime | Date and time when the record was generated. |
 | Type | string | The name of the table |
+
+## Additional resources
+
+- [Custom data collection in Microsoft Defender for Endpoint](/defender-endpoint/custom-data-collection).

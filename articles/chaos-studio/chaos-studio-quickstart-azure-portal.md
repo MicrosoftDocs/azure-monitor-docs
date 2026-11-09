@@ -33,7 +33,7 @@ If it's your first time using Chaos Studio, you must first register the Chaos St
 
 ## Create an Azure resource supported by Chaos Studio
 
-Create an Azure resource and ensure that it's one of the supported [fault providers](chaos-studio-fault-providers.md). Also validate if this resource is being created in the [region](https://azure.microsoft.com/global-infrastructure/services/?products=chaos-studio) where Chaos Studio is available. In this experiment, we choose an Azure VM, which is one of the supported fault providers for Chaos Studio.
+Create an Azure resource and ensure that it's a [supported resource type](chaos-studio-workspaces-supported-resources.md). Also check if you can create the resource in the [region](https://azure.microsoft.com/global-infrastructure/services/?products=chaos-studio) where Chaos Studio is available. In this experiment, choose an Azure VM, which is one of the supported fault providers for Chaos Studio.
 
 ## Enable Chaos Studio on the VM you created
 1. Open the [Azure portal](https://portal.azure.com).

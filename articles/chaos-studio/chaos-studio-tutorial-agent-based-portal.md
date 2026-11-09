@@ -81,7 +81,7 @@ Now you can create your experiment. A chaos experiment defines the actions you w
    ![Screenshot that shows reviewing and creating the experiment.](images/tutorial-agent-based-add-review.png)
 
 ## Give the experiment permission to your virtual machine
-When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. This identity must be given [appropriate permissions](chaos-studio-fault-providers.md) to the target resource for the experiment to run successfully.
+When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. You must give this identity [appropriate permissions](chaos-studio-workspaces-supported-resources.md) to the target resource for the experiment to run successfully.
 
 1. Go to your VM and select **Access control (IAM)**.
 

@@ -40,7 +40,7 @@ The Microsoft OpenTelemetry Distro includes open-source OpenTelemetry instrument
 - Includes additional Azure Monitor capabilities such as application profiling, live streaming of metrics, trace sampling, and advanced [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) on ingested data.
 - Simplifies setup and configuration for teams that want a Microsoft-supported and optimized path.
 
-This path is especially relevant for teams that want to adopt modern OpenTelemetry instrumentation without giving up Azure Monitor capabilities. If you're using the Azure Monitor OpenTelemetry Distro, the APIs are nearly identical, so you can swap the packages for the new *Microsoft* OpenTelemetry Distro.
+This path is especially relevant for teams that want to adopt modern OpenTelemetry instrumentation without giving up Azure Monitor capabilities. For .NET, Node.js, and Python applications that use older Azure Monitor packages, update the package references and initialization code to use the [Microsoft OpenTelemetry Distro](../app/opentelemetry-enable.md). For Java, continue to use the Azure Monitor OpenTelemetry Distro.
 
 ## Choose the right option
 

@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.StorageCache/amlFilesystems
 description: Reference for Microsoft.StorageCache/amlFilesystems metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 08/21/2026
+ms.date: 10/16/2026
 ms.custom: Microsoft.StorageCache/amlFilesystems, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -82,6 +82,11 @@ For a list of supported logs, see [Supported log categories - Microsoft.StorageC
 |**OST Files Free**<br><br>Count of free files (inodes) on the OST. |`OSTFilesFree` | No | Count |Minimum, Maximum, Average |`ostnum`|PT1M |No|
 |**OST Files Total**<br><br>Total number of files supported on the OST. |`OSTFilesTotal` | No | Count |Minimum, Maximum, Average |`ostnum`|PT1M |No|
 |**OST Files Used**<br><br>Number of total supported files minus the number of free files on the OST. |`OSTFilesUsed` | No | Count |Minimum, Maximum, Average |`ostnum`|PT1M |No|
+|**Rebalancer Balance Percent**<br><br>Composite rebalancer progress indicator (0-100). 100 means the filesystem is fully balanced. Resets to 0 when a new rebalance run starts or after a crash restart. |`RebalancerBalancePercent` | No | Percent |Minimum, Maximum, Average |\<none\>|PT1M |No|
+|**Rebalancer Bytes Moved**<br><br>Cumulative bytes moved by the rebalancer in the current run. Monotonically increasing within a run; use Maximum or Average across time grains to avoid over-counting snapshot rollups. |`RebalancerBytesMoved` | No | Bytes |Minimum, Maximum, Average |\<none\>|PT1M |No|
+|**Rebalancer Files Migrated**<br><br>Cumulative number of files migrated by the rebalancer in the current run. Monotonically increasing within a run; use Maximum or Average across time grains to avoid over-counting snapshot rollups. |`RebalancerFilesMigrated` | No | Count |Minimum, Maximum, Average |\<none\>|PT1M |No|
+|**Rebalancer Files Migrated Per Second**<br><br>Rolling 60-second average rebalancer file migration rate, in files per second. |`RebalancerFilesMigratedPerSecond` | No | CountPerSecond |Minimum, Maximum, Average |\<none\>|PT1M |No|
+|**Rebalancer Throughput**<br><br>Rolling 60-second average rebalancer data migration throughput, in bytes per second (calculated as MBps x 1024 x 1024). |`RebalancerThroughput` | No | BytesPerSecond |Minimum, Maximum, Average |\<none\>|PT1M |No|
 
 ## Next steps
 

@@ -176,6 +176,8 @@
   href: ../agcaccesslogs.md
 - name: AGCFirewallLogs
   href: ../agcfirewalllogs.md
+- name: AgentFabricFlowLogs
+  href: ../agentfabricflowlogs.md
 - name: AgentsInfo
   href: ../agentsinfo.md
 - name: AggregatedSecurityAlert
@@ -396,6 +398,8 @@
   href: ../asimdhcpeventlogs.md
 - name: ASimDnsActivityLogs
   href: ../asimdnsactivitylogs.md
+- name: ASimEmailEventLogs
+  href: ../asimemaileventlogs.md
 - name: ASimFileEventLogs
   href: ../asimfileeventlogs.md
 - name: ASimNetworkSessionLogs
@@ -568,6 +572,8 @@
   href: ../behaviorentities.md
 - name: BehaviorInfo
   href: ../behaviorinfo.md
+- name: CallActivityEvents
+  href: ../callactivityevents.md
 - name: CampaignInfo
   href: ../campaigninfo.md
 - name: CassandraAudit
@@ -1020,6 +1026,20 @@
   href: ../healthstatechangeevent.md
 - name: Heartbeat
   href: ../heartbeat.md
+- name: HorizonDBAutovacuumStats
+  href: ../horizondbautovacuumstats.md
+- name: HorizonDBPgStatActivitySessions
+  href: ../horizondbpgstatactivitysessions.md
+- name: HorizonDBQueryStoreQueryText
+  href: ../horizondbquerystorequerytext.md
+- name: HorizonDBQueryStoreRuntimeStats
+  href: ../horizondbquerystoreruntimestats.md
+- name: HorizonDBQueryStoreWaitsStats
+  href: ../horizondbquerystorewaitsstats.md
+- name: HorizonDBServerLogs
+  href: ../horizondbserverlogs.md
+- name: HorizonDBTransactionsStats
+  href: ../horizondbtransactionsstats.md
 - name: IdentityAccountInfo
   href: ../identityaccountinfo.md
 - name: IdentityDirectoryEvents
@@ -1184,6 +1204,14 @@
   href: ../nwconnectionmonitorpathresult.md
 - name: NWConnectionMonitorTestResult
   href: ../nwconnectionmonitortestresult.md
+- name: NWPacketCaptureDnsQuery
+  href: ../nwpacketcapturednsquery.md
+- name: NWPacketCaptureHttpTransaction
+  href: ../nwpacketcapturehttptransaction.md
+- name: NWPacketCaptureNetworkSession
+  href: ../nwpacketcapturenetworksession.md
+- name: NWPacketCaptureTlsSession
+  href: ../nwpacketcapturetlssession.md
 - name: OAuthAppInfo
   href: ../oauthappinfo.md
 - name: OEPAirFlowTask

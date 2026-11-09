@@ -2,8 +2,9 @@
 title: Azure Monitor Agent Migration Helper workbook 
 description: Plan your migration from the Log Analytics Agent to the Azure Monitor Agent using the Azure Monitor Agent Migration Helper workbook.
 ms.topic: how-to
-ms.date: 04/09/2026
+ms.date: 10/22/2026
 ms.reviewer: shseth, nmangum
+ai-usage: ai-assisted
 
 # Customer intent: As an azure administrator, I want to understand how the Azure Monitor Agent Migration Helper workbook can help me in migrating from the MMA agent to the AMA agent.
 
@@ -86,17 +87,17 @@ The **Solutions** tab shows the legacy solutions that have been deployed into th
 
 You can also see this information in the **Legacy solutions** tab on your Log Analytics workspace page.
 
-### Automation update management
+### Manage operating system updates with Azure Update Manager
 
-The AMA migration Helper workbook provides you with guidance on which of your machines are using the update Management solution and how to migrate them.
+Use [Azure Update Manager](/azure/update-manager/overview) to assess and install operating system updates on Azure virtual machines and Azure Arc-enabled servers. To manage servers outside Azure, you must connect them to Azure Arc.
 
-The **Azure Automation Update Management** tab provides a detailed view of the machines in your subscriptions that use the Update Management solution. It detects your automation accounts linked to your workspace, shows the machines that might require migration, their status, and the ability to migrate them.
+1. In the Azure portal, go to **Azure Update Manager** and select **Machines**.
+1. Select your machines, then select **Check for updates** to see which updates are available. To check for updates automatically every 24 hours, select **Update settings** and turn on **Periodic assessment**.
+1. To install updates now, select **One-time update** > **Install now**. Choose the updates, maintenance window, and reboot option.
+1. To install updates on a recurring schedule, select **Schedule updates**. Choose the machines, schedule, maintenance window, updates, and reboot option. For Azure VMs, set patch orchestration to **Customer Managed Schedules**.
+1. Check update compliance and installation results in Azure Update Manager.
 
-Select **Migrate Now** to go to the Azure Update Manager migration tool(Preview). 
-
-For more information, see [Move from Automation Update Management to Azure Update Manager](/azure/update-manager/guidance-migration-automation-update-management-azure-update-manager)
-
-:::image type="content" source="./media/azure-monitor-agent-migration-helper-workbook/automation-update-management.png" lightbox="./media/azure-monitor-agent-migration-helper-workbook/automation-update-management.png" alt-text="A screenshot showing the automation update management tab.":::    
+Azure Update Manager installs the extensions it needs automatically. It doesn't require Azure Monitor Agent, a Log Analytics workspace, or an Automation account.
 
 
 ## Workspace Auditing workbook

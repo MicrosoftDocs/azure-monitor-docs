@@ -8,7 +8,7 @@ ai-usage: ai-assisted
 ms.custom:
   - devx-track-azurepowershell
   - references_region
-  - cbo-v1.5
+  - cbo-v1.6
 ---
 
 # Set up the Azure Monitor Agent on Windows client devices
@@ -578,6 +578,10 @@ Each of the following scripts combines all four steps into a single runnable scr
 
 The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to run all four steps in sequence. It calls the [Role Assignments - Create](/rest/api/authorization/role-assignments/create) and [Data Collection Rule Associations - Create](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rule-associations) REST API operations.
 
+<br>
+<details>
+<summary>Create a monitored object and associate a data collection rule</summary>
+
 ```bash
 # Set variables
 tenantId="<TenantId>"
@@ -658,9 +662,15 @@ listUrl="$apiEndpoint$monitoredObjectId$dcraProvider$monitorQueryString"
 az rest --method get --url "$listUrl"
 ```
 
+</details>
+
 # [Azure PowerShell](#tab/powershell-2)
 
 The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to run all four steps in sequence. It calls the [Role Assignments - Create](/rest/api/authorization/role-assignments/create) and [Data Collection Rule Associations - Create](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rule-associations) REST API operations.
+
+<br>
+<details>
+<summary>Create a monitored object and associate a data collection rule</summary>
 
 ```powershell
 # Set variables
@@ -766,6 +776,8 @@ $invokeAzRestMethodParams = @{
     ConvertFrom-Json |
     Select-Object -ExpandProperty value
 ```
+
+</details>
 
 ---
 

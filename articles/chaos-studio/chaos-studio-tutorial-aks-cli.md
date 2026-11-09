@@ -204,7 +204,7 @@ Now you can create your experiment. A chaos experiment defines the actions you w
     Each experiment creates a corresponding system-assigned managed identity. Note the principal ID for this identity in the response for the next step.
 
 ## Give the experiment permission to your AKS cluster
-When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. This identity must be given [appropriate permissions](chaos-studio-fault-providers.md) to the target resource for the experiment to run successfully.
+When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. You must give this identity [appropriate permissions](chaos-studio-workspaces-supported-resources.md) to the target resource for the experiment to run successfully.
 
 1. Retrieve the `$EXPERIMENT_PRINCIPAL_ID` by running the following command and copying the `PrincipalID` from the response. Replace `$SUBSCRIPTION_ID`, `$RESOURCE_GROUP`, and `$EXPERIMENT_NAME` with the properties for your experiment. 
 
@@ -221,7 +221,7 @@ az role assignment create --role "Azure Kubernetes Service RBAC Cluster Admin" -
 az role assignment create --role "Azure Kubernetes Service Cluster User Role" --assignee-principal-type "ServicePrincipal" --assignee-object-id $EXPERIMENT_PRINCIPAL_ID --scope subscriptions/$SUBSCRIPTION_ID/resourceGroups/$resourceGroupName/providers/Microsoft.ContainerService/managedClusters/$AKS_CLUSTER_NAME
 ```
 
-If you prefer to create custom roles instead of the built-in AKS roles, follow the instructions on the [Supported resource types and role assignments for Chaos Studio](chaos-studio-fault-providers.md) page to list the role-based access control operations needed for a specific fault and add them to a manually created custom role.
+If you prefer to create custom roles instead of the built-in AKS roles, follow the instructions in the [Supported resources and Actions for Chaos Studio Workspaces](chaos-studio-workspaces-supported-resources.md) article to list the role-based access control operations needed for a specific fault and add them to a manually created custom role.
 
 ## Run your experiment
 You're now ready to run your experiment. To see the effect, we recommend that you open your AKS cluster overview and go to **Insights** in a separate browser tab. Live data for the **Active Pod Count** shows the effect of running your experiment.

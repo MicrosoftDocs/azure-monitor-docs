@@ -134,7 +134,7 @@ You can use a sample output from the **Run query and list results** step.
         "Category": "Administrative",
         "EventSubmissionTimestamp": "2026-07-09T23:11:02Z",
         "ClientIpAddress": "192.168.1.100",
-        "ResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/monitoring/providers/microsoft.storage/storageaccounts/my-storage-account"
+        "ResourceId": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourcegroups/monitoring/providers/microsoft.storage/storageaccounts/my-storage-account"
     }
     ```
 

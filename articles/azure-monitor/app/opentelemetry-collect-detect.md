@@ -1,19 +1,22 @@
 ---
-title: Data Collection and Resource Detectors for Azure Monitor OpenTelemetry
-description: Learn how Azure Monitor OpenTelemetry automatically collects telemetry and how resource detectors enrich telemetry with consistent service, host, and cloud metadata in Application Insights.
+title: OpenTelemetry Data Collection and Resource Detectors in Application Insights
+description: Learn how OpenTelemetry distros collect telemetry and how resource detectors add service, host, and cloud metadata in Application Insights.
 ms.topic: how-to
-ms.date: 03/27/2026
+ms.date: 09/11/2026
+ai-usage: ai-assisted
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
-ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python, references_regions
+ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python, references_regions, cbo-v1.6
 
 #customer intent: As a developer or site reliability engineer, I want to understand what telemetry is collected automatically and configure resource detectors so that Application Insights data is consistently enriched with environment and service metadata for reliable filtering, correlation, and troubleshooting.
 
 ---
 
-# Automatic data collection and resource detectors for Azure Monitor OpenTelemetry
+# Automatic OpenTelemetry data collection and resource detectors
 
-This article explains how Azure Monitor OpenTelemetry collects telemetry automatically and how resource detectors enrich telemetry with consistent metadata. You learn what signals are collected by default and how resource detectors populate attributes like service identity and environment details so your Application Insights data is easier to filter, correlate, and troubleshoot across .NET, Java, Node.js, and Python applications.
+[!INCLUDE [Choose an OpenTelemetry onboarding path](includes/opentelemetry-onboarding-paths.md)]
+
+This article explains automatic telemetry collection and resource detection in [Application Insights](app-insights-overview.md). Use the Microsoft OpenTelemetry Distro for .NET, Node.js, and Python. Java continues to use the Azure Monitor OpenTelemetry Distro and its agent or native-image integrations. Select the tab for your language to review bundled instrumentation and resource metadata.
 
 To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](app-insights-overview.md).
 
@@ -22,7 +25,7 @@ To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](app
 
 ## Included instrumentation libraries
 
-The Azure Monitor Distros automatically collect data by bundling OpenTelemetry instrumentation libraries.
+The Microsoft OpenTelemetry Distro for .NET, Node.js, and Python and the Azure Monitor OpenTelemetry Distro for Java bundle instrumentation libraries to collect data automatically. First, [enable OpenTelemetry](opentelemetry-enable.md) and select Azure Monitor as the export destination. Don't initialize a second distro or a duplicate provider for the same signal.
 
 # [ASP.NET Core](#tab/aspnetcore)
 
@@ -44,32 +47,24 @@ For more information about `ILogger`, see [Logging in C# and .NET](/dotnet/core/
 
 # [.NET](#tab/net)
 
-The Azure Monitor Exporter doesn't include any instrumentation libraries.
+The Microsoft OpenTelemetry Distro for .NET includes HttpClient, SqlClient, and Azure SDK instrumentation, along with resource detection, metrics, and logging support. You don't need to add a separate Azure SDK subscription or HttpClient deduplication filter for the bundled instrumentation.
 
-To collect dependencies from the [Azure Software Development Kits (SDKs)](https://github.com/Azure/azure-sdk), use the following code sample to manually subscribe to the source.
+For console and other non-hosted applications, initialize the distro as follows. Set `APPLICATIONINSIGHTS_CONNECTION_STRING` before starting the application, and keep the SDK alive until shutdown:
 
 ```csharp
-// Create an OpenTelemetry tracer provider builder.
-// It is important to keep the TracerProvider instance active throughout the process lifetime.
-using var tracerProvider = Sdk.CreateTracerProviderBuilder()
-	// The following line subscribes to dependencies emitted from Azure SDKs
-    .AddSource("Azure.*")
-    .AddAzureMonitorTraceExporter()
-    .AddHttpClientInstrumentation(o => o.FilterHttpRequestMessage = (_) =>
-	{
-    	// Azure SDKs create their own client span before calling the service using HttpClient
-		// In this case, we would see two spans corresponding to the same operation
-		// 1) created by Azure SDK 2) created by HttpClient
-		// To prevent this duplication we are filtering the span from HttpClient
-		// as span from Azure SDK contains all relevant information needed.
-		var parentActivity = Activity.Current?.Parent;
-		if (parentActivity != null && parentActivity.Source.Name.Equals("Azure.Core.Http"))
-		{
-		    return false;
-		}
-		return true;
-	})
-    .Build();
+// Import the Microsoft OpenTelemetry Distro and supporting APIs.
+using Microsoft.OpenTelemetry;
+using OpenTelemetry;
+
+// Create the SDK and keep its providers alive until application shutdown.
+using var sdk = OpenTelemetrySdk.Create(telemetry =>
+{
+    // Configure the Microsoft OpenTelemetry Distro.
+    telemetry.UseMicrosoftOpenTelemetry(options =>
+    {
+        options.Exporters = ExportTarget.AzureMonitor;
+    });
+});
 ```
 
 # [Java](#tab/java)
@@ -185,9 +180,9 @@ For Quartz native applications, see the [Quarkus documentation](https://quarkus.
 # [Node.js](#tab/nodejs)
 
 > [!TIP]
-> **TypeScript samples** for Azure Monitor OpenTelemetry (authoritative parity source): https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry/samples-dev
+> For Microsoft OpenTelemetry Distro examples, see the [Node.js samples](https://github.com/microsoft/opentelemetry-distro-javascript/tree/main/samples/src).
 
-The Azure Monitor Application Insights Distro includes the following OpenTelemetry Instrumentation libraries. For more information, see [Azure SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/monitor/monitor-opentelemetry/README.md#instrumentation-libraries).
+The Microsoft OpenTelemetry Distro for Node.js includes the following instrumentation libraries. Initialize it before loading the application libraries you want to instrument. For ESM applications, preload the [Microsoft OpenTelemetry Distro loader](https://github.com/microsoft/opentelemetry-distro-javascript#esm-support).
 
 **Requests**
 
@@ -207,35 +202,50 @@ The Azure Monitor Application Insights Distro includes the following OpenTelemet
 * [Bunyan](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-bunyan)
 * [Winston](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-winston)
 
+**AI libraries**
+
+* OpenAI Agents SDK, when the application installs `@openai/agents`.
+* LangChain, when the application installs `@langchain/core`.
+
+For configuration and defaults, see [Microsoft OpenTelemetry Distro instrumentation options](https://github.com/microsoft/opentelemetry-distro-javascript#instrumentationoptions).
+
 > [!IMPORTANT]
 > Bunyan and Winston *aren't* enabled by default. You can enable instrumentation libraries by setting `enabled: true` in the instrumentation options.
 
 <br>
 <details>
-<summary><b>Expand to view a code sample that shows how to configure instrumentations by using AzureMonitorOpenTelemetryOptions.</b></summary>
+<summary><b>Configure Bunyan logging with the Microsoft OpenTelemetry Distro</b></summary>
+
+This example assumes the application uses `bunyan`. For TypeScript, install `@types/bunyan` as a development dependency.
 
 ```typescript
-import { useAzureMonitor, AzureMonitorOpenTelemetryOptions } from "@azure/monitor-opentelemetry";
-import bunyan from "bunyan";
+import {
+    useMicrosoftOpenTelemetry,
+    MicrosoftOpenTelemetryOptions,
+} from "@microsoft/opentelemetry";
 
-// Call useAzureMonitor before importing other libraries
-const options: AzureMonitorOpenTelemetryOptions = {
-  azureMonitorExporterOptions: {
-    connectionString:
-      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING ||
-      "<your-connection-string>",
-  },
-  // Bunyan is disabled by default — explicitly enable it
-  instrumentationOptions: {
-    bunyan: { enabled: true },
-  },
+// Set the Azure Monitor exporter options.
+const options: MicrosoftOpenTelemetryOptions = {
+    azureMonitor: {
+        azureMonitorExporterOptions: {
+            connectionString:
+                process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<ConnectionString>",
+        },
+    },
+    // Enable Bunyan instrumentation, which is disabled by default.
+    instrumentationOptions: {
+        bunyan: { enabled: true },
+    },
 };
 
-useAzureMonitor(options);
+// Initialize the distro before loading Bunyan.
+useMicrosoftOpenTelemetry(options);
 
-// Create a bunyan logger as usual logs are automatically captured
+// Load Bunyan after instrumentation is configured.
+const { default: bunyan } = await import("bunyan");
+
+// Create an application logger; instrumentation captures its log records.
 const logger = bunyan.createLogger({ name: "my-app" });
-
 logger.info("Application started");
 logger.warn({ requestId: "abc-123" }, "Slow response detected");
 logger.error(new Error("Something failed"), "Unhandled error");
@@ -257,14 +267,15 @@ logger.error(new Error("Something failed"), "Unhandled error");
 * [Requests](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-requests) ¹
 * [`Urllib`](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-urllib) ¹
 * [`Urllib3`](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-urllib3) ¹
+* [HTTPX](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-httpx).
 
 **Logs**
 
 * [Python logging library](https://docs.python.org/3/howto/logging.html)
 
-You can find examples of using the Python logging library on [GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry/samples/logging).
+For Python logging examples, see the [Microsoft OpenTelemetry Distro samples](https://github.com/microsoft/opentelemetry-distro-python/tree/main/samples/distro).
 
-Telemetry emitted by Azure Software Development Kits (SDKs) is automatically [collected](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry/README.md#officially-supported-instrumentations) by default.
+The Microsoft OpenTelemetry Distro for Python also supports instrumentation for OpenAI, OpenAI Agents SDK, LangChain, Semantic Kernel, and Microsoft Agent Framework when the corresponding application libraries are installed. Azure SDK instrumentation is enabled when Azure Monitor export is active. See [supported Python instrumentation and defaults](https://github.com/microsoft/opentelemetry-distro-python#auto-instrumented-libraries).
 
 ---
 
@@ -274,7 +285,7 @@ Telemetry emitted by Azure Software Development Kits (SDKs) is automatically [co
 * ²: Supports OpenTelemetry Metrics
 
 > [!NOTE]
-> The Azure Monitor OpenTelemetry Distros include custom mapping and logic to automatically emit [Application Insights standard metrics](standard-metrics.md).
+> The Microsoft OpenTelemetry Distro versions' Azure Monitor integration and Azure Monitor OpenTelemetry for Java include mapping and logic to emit [Application Insights standard metrics](standard-metrics.md).
 > For billing purposes, all OpenTelemetry metrics, whether automatically collected from instrumentation libraries or manually collected from custom coding, are currently considered Application Insights *custom metrics*. [Learn more](pre-aggregated-metrics-log-metrics.md#custom-metrics-dimensions-and-preaggregation).
 
 > [!TIP]
@@ -282,28 +293,60 @@ Telemetry emitted by Azure Software Development Kits (SDKs) is automatically [co
 
 ## Resource detectors
 
-Resource detectors discover environment metadata at startup and populate OpenTelemetry **resource attributes** such as `service.name`, `cloud.provider`, and `cloud.resource_id`. This metadata powers experiences in Application Insights like Application Map and compute linking, and it improves correlation across traces, metrics, and logs.
+Resource detectors identify the service and host that produce telemetry. They read environment variables or host metadata and populate OpenTelemetry *resource attributes* such as `service.name`, `service.instance.id`, and `cloud.resource_id`.
 
-> [!TIP]
-> Resource attributes describe the process and its environment. Span attributes describe a single operation. Use resource attributes for app-level properties like `service.name`.
+### What resource detectors power
+
+Application Insights uses resource attributes to provide context for your telemetry:
+
+* **Service and instance identification:** Service attributes help set the Cloud Role Name and Cloud Role Instance shown in [Application Map](app-map.md). Use a stable service name so instances of the same service aren't shown as separate components. For explicit configuration, see [Set the Cloud Role Name and the Cloud Role Instance](opentelemetry-configuration.md#set-the-cloud-role-name-and-the-cloud-role-instance).
+* **Compute linking:** Attributes such as `cloud.resource_id` identify the Azure resource that hosts an application. Missing resource metadata can prevent Application Insights from linking application telemetry to its Azure compute resource.
+* **Environment context:** Host, operating-system, region, and service-version attributes describe where an application runs. The available attributes depend on the detector and hosting environment.
+
+Resource attributes describe the service or process. Span attributes describe a single operation. Resource detection doesn't replace the trace-context propagation that connects requests and dependencies.
 
 ### Supported environments
 
-| Environment | How detection works | Notes |
-|-------------|---------------------|-------|
-| Azure App Service | The language SDK or Azure Monitor Distro reads well-known App Service environment variables and host metadata | Works with .NET, Java, Node.js, and Python when you use the guidance in this article. |
-| Azure Functions | See the [Azure Functions OpenTelemetry how‑to](/azure/azure-functions/opentelemetry-howto) | All Azure Functions guidance lives there. |
-| Azure Virtual Machines | The language SDK or distro queries the Azure Instance Metadata Service | Ensure the VM has access to the Instance Metadata Service endpoint. |
-| Azure Kubernetes Service (AKS) | Use the OpenTelemetry Collector `k8sattributes` processor to add Kubernetes metadata | Recommended for all languages running in AKS. |
-| Azure Container Apps | Detectors map environment variables and resource identifiers when available | You can also set `OTEL_RESOURCE_ATTRIBUTES` to fill gaps. |
+Detector availability and the attributes they collect vary by language, package version, and hosting integration. Use the registration code to see which detectors the distro enables, and the implementation to see which environment values they read. Select the repository tag that matches your installed package when checking a specific version.
+
+| Language or integration | Detector registration and implementation |
+| --- | --- |
+| ASP.NET Core and .NET | [Microsoft OpenTelemetry detector registration](https://github.com/microsoft/opentelemetry-distro-dotnet/blob/main/src/Microsoft.OpenTelemetry/AzureMonitor/OpenTelemetryBuilderExtensions.cs) and [Azure detector implementations](https://github.com/microsoft/opentelemetry-distro-dotnet/tree/main/src/Microsoft.OpenTelemetry/AzureMonitor/Vendoring/OpenTelemetry.Resources.Azure). |
+| Node.js | [Microsoft OpenTelemetry resource configuration](https://github.com/microsoft/opentelemetry-distro-javascript/blob/main/src/shared/config.ts) and [Azure detector implementations](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/resource-detector-azure). |
+| Python | [Microsoft OpenTelemetry detector selection](https://github.com/microsoft/opentelemetry-distro-python/blob/main/src/microsoft/opentelemetry/_azure_monitor/_utils/configurations.py) and [Azure detector implementations](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/resource/opentelemetry-resource-detector-azure). |
+| Java agent | [Application Insights Java resource-provider configuration](https://github.com/microsoft/ApplicationInsights-Java/blob/main/agent/agent-tooling/src/main/java/com/microsoft/applicationinsights/agent/internal/init/AiConfigCustomizer.java). |
+| Java native | [Spring Boot integration](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-starter-monitor) and [Quarkus Azure exporter](https://github.com/quarkiverse/quarkus-opentelemetry-exporter/tree/main/quarkus-opentelemetry-exporter-azure). Detector configuration depends on the framework. |
+
+For Azure Functions, follow the [Azure Functions OpenTelemetry guidance](/azure/azure-functions/opentelemetry-howto). For collector-based Kubernetes enrichment, see the [Kubernetes attributes processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/k8sattributesprocessor).
+
+### Resource metadata metric
+
+The Azure Monitor exporters can send resource attributes in a special metric named `_OTELRESOURCE_`. The metric's properties carry the metadata; its numeric value isn't a measurement of application performance. This separate metadata record supplies resource context without adding every resource attribute to every telemetry item.
+
+For the emitted name and properties, see the exporter implementations for [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/monitor/Azure.Monitor.OpenTelemetry.Exporter/src/Customizations/Models/MetricsData.cs), [Node.js](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/monitor/monitor-opentelemetry-exporter/src/utils/common.ts), [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry-exporter/azure/monitor/opentelemetry/exporter/export/trace/_exporter.py), and [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/monitor/azure-monitor-opentelemetry-autoconfigure/src/main/java/com/azure/monitor/opentelemetry/autoconfigure/implementation/pipeline/TelemetryItemExporter.java).
+
+> [!NOTE]
+> Earlier Java agent releases used `_APPRESOURCEPREVIEW_`; [version 3.5.3 removed that metric](https://github.com/microsoft/ApplicationInsights-Java/blob/main/CHANGELOG.md#version-353-ga-05242024). The exporter implementations linked here use `_OTELRESOURCE_`. Check your exporter version before relying on a resource-metric name in a query or filter.
+
+### Turn off resource metadata export
+
+Keep resource metadata export enabled unless you have a specific requirement to suppress it. Disabling it can remove compute-resource context used during troubleshooting. To control telemetry volume, use [sampling](opentelemetry-sampling.md) or [telemetry filters](opentelemetry-filter.md) instead.
+
+To stop exporting the resource metadata metric, set the applicable environment variable before the application starts, and then restart the application:
+
+| Language | Environment variable | Value |
+| --- | --- | --- |
+| ASP.NET Core and .NET | `OTEL_DOTNET_AZURE_MONITOR_ENABLE_RESOURCE_METRICS` | `false` |
+| Node.js | `APPLICATIONINSIGHTS_OPENTELEMETRY_RESOURCE_METRIC_DISABLED` | `true` |
+| Python | `APPLICATIONINSIGHTS_OPENTELEMETRY_RESOURCE_METRIC_DISABLED` | `true` |
+
+These settings control resource-metric export, not detector execution or the collection of all application metrics. Resource attributes can still be used to populate cloud role fields on other telemetry. Remove the environment variable and restart the application to restore the default export behavior.
+
+The settings in this table don't apply to Java. The linked Java exporter doesn't expose an equivalent metadata-only opt-out; don't disable all telemetry or remove service attributes to suppress this metric.
 
 ### OTLP ingestion considerations
 
-* `cloud.resource_id` improves compute linking to Azure resources. If this attribute is missing, some experiences might not show the Azure resource that produced the data.
-
-* Application Insights uses `service.name` to derive Cloud Role Name. Choose a stable name per service to avoid fragmented nodes in Application Map.
-
-* `cloud.resource_id` improves compute linking to Azure resources. If this attribute is missing, some experiences might not show the Azure resource that produced the data.
+When you use native OTLP ingestion, preserve resource attributes on the OTLP resource. The Azure Monitor exporter settings in the preceding section don't control an OTLP exporter. Attributes such as `service.name` and `cloud.resource_id` still identify the service and its Azure host.
 
 [!INCLUDE [Help, feedback, and support](includes/opentelemetry-help-feedback-support.md)]
 

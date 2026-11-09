@@ -80,3 +80,7 @@ Microsoft Defender for Endpoints (MDE) image load events table for the Custom Co
 | TenantId | string | The Log Analytics workspace ID |
 | TimeGenerated | datetime | Date and time the event was recorded by the MDE agent on the endpoint. |
 | Type | string | The name of the table |
+
+## Additional resources
+
+- [Custom data collection in Microsoft Defender for Endpoint](/defender-endpoint/custom-data-collection).

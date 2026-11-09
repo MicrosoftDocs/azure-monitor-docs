@@ -2,6 +2,7 @@
 title: Logs Ingestion API in Azure Monitor
 description: Send data to a Log Analytics workspace using REST API or client libraries.
 ms.topic: concept-article
+ms.custom: cbo-v1.6
 ms.date: 08/13/2026
 ai-usage: ai-assisted
 ---
@@ -49,67 +50,72 @@ You only need a DCE when you're connecting to a Log Analytics workspace using [p
 
 ## Data collection rule
 
-When you [create a custom table](create-custom-table.md#create-a-custom-table) in a Log Analytics workspace using the Azure portal, a DCR that can be used with the Logs ingestion API is created for you. If you're sending data to a table that already exists, then you must create the DCR manually. Start with the sample DCR below, replacing values for the following parameters in the template. Use any of the methods described in [Create and edit data collection rules (DCRs) in Azure Monitor](../data-collection/data-collection-rule-create-edit.md) to create the DCR.
+When you [create a custom table](create-custom-table.md#create-a-custom-table) in a Log Analytics workspace using the Azure portal, a DCR that can be used with the Logs ingestion API is created for you. If you're sending data to a table that already exists, create the DCR by using the methods in [Create and edit data collection rules (DCRs) in Azure Monitor](../data-collection/data-collection-rule-create-edit.md).
 
-| Parameter | Description |
+> [!NOTE]
+> The following JSON example is the request body for the [`Data Collection Rules - Create`](../fundamentals/azure-monitor-rest-api-index.md#op-monitor-data-collection-rules) REST API operation, not an ARM deployment template.
+>
+> * The destination table must already exist, and its schema must match the transformation output.
+> * Use the same region for the DCR, Log Analytics workspace, and DCE if you use one.
+> * When adapting the example to an existing DCR, retain the stream declarations, destinations, data flows, identity, and other configuration that you still need. A create-or-update request isn't a partial property update.
+
+| Property | Description |
 |:----------|:------------|
-| `region` | Region to create your DCR. This must match the region of the Log Analytics workspace and the DCE if you're using one. |
-| `dataCollectionEndpointId` | Resource ID of your DCE. Remove this parameter if you're using the [DCR ingestion point](#endpoint). |
+| `location` | Region to create your DCR. This region must match the region of the Log Analytics workspace and the DCE if you're using one. |
+| `properties.dataCollectionEndpointId` | Resource ID of your DCE. Omit this property if you're using only the [DCR ingestion endpoint](#endpoint). |
 | `streamDeclarations` | Change the column list to the columns in your incoming data. You don't need to change the name of the stream since this just needs to match the `streams` name in `dataFlows`. |
 | `workspaceResourceId` | Resource ID of your Log Analytics workspace. You don't need to change the name since this just needs to match the `destinations` name in `dataFlows`. |
 | `transformKql` | KQL query to be applied to the incoming data. If the schema of the incoming data matches the schema of the table, then you can use `source` for the transformation which will pass on the incoming data unchanged. Otherwise, use a query that will transform the data to match the destination table schema. |
 | `outputStream` | Name of the table to send the data. For a custom table, add the prefix *Custom-\<table-name\>*. For a built-in table, add the prefix *Microsoft-\<table-name\>*. |
-
-
 ```json
 {
-    "location": "eastus",
-    "dataCollectionEndpointId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/dce-eastus",
-    "kind": "Direct",
-    "properties": {
-        "streamDeclarations": {
-            "Custom-MyTable": {
-                "columns": [
-                    {
-                        "name": "Time",
-                        "type": "datetime"
-                    },
-                    {
-                        "name": "Computer",
-                        "type": "string"
-                    },
-                    {
-                        "name": "AdditionalContext",
-                        "type": "string"
-                    },
-                    {
-                        "name": "NestedJson",
-                        "type": "dynamic"
-                    }
-                ]
-            }
-        },
-        "destinations": {
-            "logAnalytics": [
-                {
-                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/cefingestion/providers/microsoft.operationalinsights/workspaces/my-workspace",
-                    "name": "LogAnalyticsDest"
-                }
-            ]
-        },
-        "dataFlows": [
-            {
-                "streams": [
-                    "Custom-MyTable"
-                ],
-                "destinations": [
-                    "LogAnalyticsDest"
-                ],
-                "transformKql": "source",
-                "outputStream": "Custom-MyTable_CL"
-            }
+  "location": "<AzureRegion>",
+  "kind": "Direct",
+  "properties": {
+    "dataCollectionEndpointId": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.Insights/dataCollectionEndpoints/<DataCollectionEndpointName>",
+    "streamDeclarations": {
+      "Custom-MyTable": {
+        "columns": [
+          {
+            "name": "Time",
+            "type": "datetime"
+          },
+          {
+            "name": "Computer",
+            "type": "string"
+          },
+          {
+            "name": "AdditionalContext",
+            "type": "string"
+          },
+          {
+            "name": "NestedJson",
+            "type": "dynamic"
+          }
         ]
-    }
+      }
+    },
+    "destinations": {
+      "logAnalytics": [
+        {
+          "workspaceResourceId": "/subscriptions/<SubscriptionId>/resourceGroups/<WorkspaceResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>",
+          "name": "LogAnalyticsDest"
+        }
+      ]
+    },
+    "dataFlows": [
+      {
+        "streams": [
+          "Custom-MyTable"
+        ],
+        "destinations": [
+          "LogAnalyticsDest"
+        ],
+        "transformKql": "source",
+        "outputStream": "Custom-MyTable_CL"
+      }
+    ]
+  }
 }
 ```
 
@@ -131,16 +137,21 @@ To send data to Azure Monitor with a REST API call, make a POST call over HTTPS.
 
 The URI includes the region, the [DCE or DCR ingestion endpoint](#endpoint), DCR ID, and the stream name. It also specifies the API version. 
 
-The URI uses the following format.
+The URI uses the following format, where `endpoint` includes the `https://` scheme.
 
-```
+```text
 {endpoint}/dataCollectionRules/{dcrImmutableId}/streams/{streamName}?api-version={apiVersion}
 ```
 
-For example:
+The following REST example uses the [`Upload - Upload`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-upload) REST API operation.
 
-```
-https://my-dce-5kyl.eastus-1.ingest.monitor.azure.com/dataCollectionRules/dcr-000a00a000a00000a000000aa000a0aa/streams/Custom-MyTable?api-version=2023-01-01
+> [!NOTE]
+> Append the JSON array described in [Request body](#request-body) after the headers.
+
+```REST
+POST https://{ingestionHost}/dataCollectionRules/{dcrImmutableId}/streams/{streamName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+Content-Type: application/json
 ```
 
 The `DCR Immutable ID` is generated for the DCR when it's created. You can retrieve it from the [Overview page for the DCR in the Azure portal](../data-collection/data-collection-rule-overview.md#view-dcrs). 
@@ -162,21 +173,24 @@ The following table describes request headers for your API call.
 
 ### Request body
 
-The body of the call includes the custom data to send to Azure Monitor. The data must be a JSON array with an item structure that matches the format expected by the stream in the DCR. Here's an example of a single-item array that matches the `streamDeclarations` in the [Data Collection Rule](#data-collection-rule) section.
+The body of the call includes the custom data to send to Azure Monitor. The data must be a JSON array with an item structure that matches the format expected by the stream in the DCR.
+
+> [!NOTE]
+> Here's an example of a single-item array that matches the `streamDeclarations` in the [Data collection rule](#data-collection-rule) section. `Time` uses an ISO 8601 timestamp, and `NestedJson` is a JSON object.
 
 ```json
 [
-    {
-        "Time": "2023-11-14 15:10:02",
-        "Computer": "Value01",
-        "AdditionalContext": "Value02",
-        "NestedJson": {
-            "Level2": {
-              "Key1": "Value03",
-              "Key2": "Value04"
-            }
-        }
+  {
+    "Time": "<Timestamp>",
+    "Computer": "<ComputerName>",
+    "AdditionalContext": "<AdditionalContext>",
+    "NestedJson": {
+      "Level2": {
+        "Key1": "<Value1>",
+        "Key2": "<Value2>"
+      }
     }
+  }
 ]
 ```
 

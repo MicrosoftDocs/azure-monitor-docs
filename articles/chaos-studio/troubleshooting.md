@@ -40,7 +40,7 @@ You might encounter the following problems when you add a resource.
 ### Resources don't show up in the targets list in the Azure portal
 If you don't see the resources you want to enable in the Chaos Studio targets list, it might be because of any of the following problems:
 * The resources aren't in [a supported region for Chaos Studio](https://azure.microsoft.com/global-infrastructure/services/?products=chaos-studio).
-* The resources aren't of [a supported resource type in Chaos Studio](chaos-studio-fault-providers.md).
+* The resources aren't of [a supported resource type in Chaos Studio](chaos-studio-workspaces-supported-resources.md).
 * The resources are in a subscription or resource group that's filtered out in the filters for the target list. Change the subscription and resource group filters to see your resources.
 
 ### Target or capability enablement fails or doesn't show correctly in the target list
