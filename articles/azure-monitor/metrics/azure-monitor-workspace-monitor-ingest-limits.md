@@ -40,7 +40,7 @@ Static ingestion limits create problems in both directions:
 
 Auto-scale removes this balancing act. Your limits track your real usage, so you can spend less time managing quotas and more time using your observability data.
 
-### Turn on Auto-scale for your workspace
+### Turn on autoscale for your workspace
 
 Auto-scale is an opt-in setting for each workspace. When it's on, the system keeps your ingestion limit at a healthy level compared with your usage:
 
