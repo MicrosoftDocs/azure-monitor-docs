@@ -281,7 +281,7 @@ Metric renaming isn't supported.
 
 ### Protect bearer tokens from local file access
 
-The `bearerTokenFile` field in a PodMonitor or ServiceMonitor references a file in the collector's container, not the application container. A user who can create or modify these resources could reference a local credential file, such as the collector's service account token, and cause the collector to send its contents to an untrusted scrape endpoint. This can expose credentials and allow unauthorized access with the token's permissions.
+The `bearerTokenFile` field in a PodMonitor or ServiceMonitor references a file in the collector's container, not the application container. A user who can create or modify these resources could reference a local credential file, such as the collector's service account token, and cause the collector to send its contents to an untrusted scrape endpoint. This exposure can compromise credentials and allow unauthorized access with the token's permissions.
 
 To mitigate this risk, enable `deny_fs_access_through_sms` in `ama-metrics-settings-configmap`. The setting defaults to `false`; you must explicitly enable it.
 
