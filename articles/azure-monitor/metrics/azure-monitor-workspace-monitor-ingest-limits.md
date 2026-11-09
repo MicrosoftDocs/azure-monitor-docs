@@ -24,7 +24,7 @@ The following table summarizes the default ingestion limits for an Azure Monitor
 
 When you request a limit increase through a support ticket, increases up to 2 million are autoapproved. For increases above 2 million, current ingestion usage must reach 50% of the desired limit. For example, a workspace at a current limit of 5 million qualifies for an increase up to 10 million. For details, see [Request for an increase in ingestion limits (Preview)](#request-for-an-increase-in-ingestion-limits-preview).
 
-## Auto-scale of ingestion limits in Azure Monitor workspace (Preview)
+## Autoscale ingestion limits in Azure Monitor workspace (Preview)
 
 Azure Monitor Workspace supports autoscaling ingestion limits (preview). When you turn on autoscale, Azure Monitor automatically adjusts your workspace's ingestion limits based on your actual usage. Limits go up as your metrics volume grows and come back down when usage stays low for a sustained period of time. Any change in the ingestion limits is recorded in the workspace's Activity Log. You get a clear history of when your limits changed and in which direction.
 
