@@ -3,7 +3,7 @@ title: Activity Log in Azure Monitor
 description: Learn how to view, retrieve, and export Azure Monitor activity log data to Log Analytics, Azure Event Hubs, and Azure Storage for analysis and long-term retention.
 ms.topic: how-to
 ms.reviewer: orens
-ms.date: 10/19/2026
+ms.date: 11/03/2026
 ai-usage: ai-assisted
 
 # customer intent: As an Azure administrator, I want to view and export activity log data so that I can audit control plane operations and retain logs beyond the default 90-day period.
@@ -21,6 +21,9 @@ In contrast to the activity log, [Azure resource logs](../logs/resource-logs.md)
 ## Activity log entries
 
 Azure Monitor collects activity log entries by default with no required configuration. The system generates these entries, and you can't change or delete them. Entries typically result from changes (create, update, and delete operations) or an action being initiated. The activity log doesn't typically capture read operations. 
+
+> [!IMPORTANT]
+> Activity Log isn't an authentication or authorization audit log. Requests that Azure Resource Manager rejects during authentication or authorization before an operation starts don't generate Activity Log entries. Because no entry is generated, these requests don't appear in Activity Log, trigger Activity Log alerts, or flow to destinations configured through diagnostic settings.
 
 Activity log entries are usually available for analysis and alerting within [3 to 20 minutes of the event occurring](../logs/data-ingestion-time.md#azure-metrics-resource-logs-activity-logs). For a description of activity log categories, see [Azure activity log event schema](activity-log-schema.md#categories).
 

@@ -2,7 +2,7 @@
 title: Azure Activity Log event schema
 description: Describes the event schema for each category in the Azure Activity log.
 ms.topic: reference
-ms.date: 03/17/2026
+ms.date: 11/03/2026
 ---
 
 # Azure Activity Log event schema
@@ -32,7 +32,7 @@ Each event in the Activity Log has a particular category that is described in th
 
 | Category | Description |
 | --------- | ------------- |
-| [Administrative](#administrative-category) | Contains the record of all create, update, delete, and action operations performed through Resource Manager. Examples of Administrative events include _create virtual machine_ and _delete network security group_.<br><br>Every action taken by a user or application using Resource Manager is modeled as an operation on a particular resource type. If the operation type is _Write_, _Delete_, or _Action_, the records of both the start and success or fail of that operation are recorded in the Administrative category. Administrative events also include any changes to Azure role-based access control in a subscription. |
+| [Administrative](#administrative-category) | Contains records of create, update, delete, and action operations processed through Resource Manager. Examples of Administrative events include _create virtual machine_ and _delete network security group_.<br><br>For _Write_, _Delete_, and _Action_ operations that start processing, the Administrative category records both the start and the final success or failure. Requests rejected during authentication or authorization before the operation starts aren't recorded. Administrative events also include changes to Azure role-based access control in a subscription. |
 | [Service Health](#service-health-category) | Contains the record of any service health incidents that occurred in Azure. An example of a Service Health event _SQL Azure in East US is experiencing downtime_. <br><br>Service Health events come in Six varieties: _Action Required_, _Assisted Recovery_, _Incident_, _Maintenance_, _Information_, or _Security_. These events are only created if you have a resource in the subscription impacted by the event. |
 | [Resource Health](#resource-health-category) | Contains the record of any resource health events that occurred to your Azure resources. An example of a Resource Health event is _Virtual Machine health status changed to unavailable_.<br><br>Resource Health events can represent one of four health statuses: _Available_, _Unavailable_, _Degraded_, and _Unknown_. Additionally, Resource Health events can be categorized as being _Platform Initiated_ or _User Initiated_. |
 | [Alert](#alert-category) | Contains the record of activations for Azure alerts. An example of an Alert event is _CPU % on myVM above 80 for the past 5 minutes_. |
@@ -46,7 +46,7 @@ Each event in the Activity Log has a particular category that is described in th
 
 ## Administrative category
 
-This category contains the record of all create, update, delete, and action operations performed through Resource Manager. Examples of the types of events you would see in this category include "create virtual machine" and "delete network security group". Every action taken by a user or application using Resource Manager is modeled as an operation on a particular resource type. If the operation type is Write, Delete, or Action, the records of both the start and success or fail of that operation are recorded in the Administrative category. The Administrative category also includes any changes to Azure role-based access control in a subscription.
+This category contains records of create, update, delete, and action operations processed through Resource Manager. Examples include "create virtual machine" and "delete network security group." For Write, Delete, and Action operations that start processing, the Administrative category records both the start and the final success or failure. Requests rejected during authentication or authorization before the operation starts aren't recorded. The Administrative category also includes changes to Azure role-based access control in a subscription.
 
 ### Sample event
 
