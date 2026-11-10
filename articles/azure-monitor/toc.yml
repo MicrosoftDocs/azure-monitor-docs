@@ -282,24 +282,26 @@ items:
           href: alerts/proactive-email-notification.md
     - name: Terms and concepts
       items:
-      - name: OpenTelemetry sampling
-        href: app/opentelemetry-sampling.md
+      - name: Automatic instrumentation
+        href: app/codeless-overview.md
       - name: Connection strings
         href: app/connection-strings.md
+      - name: Dependencies
+        href: app/dependencies.md
       - name: Geolocation and IP address handling
         displayName: geolocation, IP collection, IP tracking, IP storage
         href: app/ip-collection.md
-      - name: Dependencies
-        href: app/dependencies.md
+      - name: Managed workspaces
+        href: app/managed-workspaces.md
       - name: Metrics
         href: app/metrics-overview.md
       - name: Microsoft Entra authentication
         displayName: azure ad authentication
         href: app/azure-ad-authentication.md
-      - name: Managed workspaces
-        href: app/managed-workspaces.md
-      - name: Automatic instrumentation
-        href: app/codeless-overview.md
+      - name: OpenTelemetry sampling
+        href: app/opentelemetry-sampling.md
+      - name: Protect Sensitive Content
+        href: app/protect-sensitive-content.md
       - name: Telemetry data model
         href: app/data-model-complete.md
     - name: Help and support

@@ -3,7 +3,7 @@ title: Application Insights telemetry data model
 description: This article describes the Application Insights telemetry data model and its different telemetry types.
 ms.tgt_pltfrm: ibiza
 ms.topic: how-to
-ms.date: 07/13/2026
+ms.date: 11/08/2026
 ai-usage: ai-assisted
 ---
 
@@ -149,7 +149,7 @@ For a list of all available fields, see [AppExceptions](../reference/tables/appe
 
 ## Generative AI telemetry
 
-Generative AI telemetry captures the content of large language model (LLM) interactions, including prompts, model responses, system instructions, and tool calls. Application Insights stores this content in a dedicated `genAIContent` table, which appears in Log Analytics as `AppGenAIContent`. A dedicated table is important for generative AI content, which often contains sensitive data such as personally identifiable information (PII) or protected health information (PHI). To restrict access to this content, set the table as protected. For more information, see [Configure protected tables in Azure Monitor Logs](../logs/protected-tables-configure.md). Once you set the table as protected, it is only visible to users, groups, or managed identities that are assigned the *Privileged Monitoring Data Reader* on the Application Insights resource. It isn't necessary to have a separate role assignment on the underlying Log Analytics workspace unless you plan to query it directly. If PIM is in place, you can use time-bound or JIT access.
+Generative AI telemetry captures the content of large language model (LLM) interactions, including prompts, model responses, system instructions, and tool calls. Application Insights stores this content in a dedicated `genAIContent` table, which appears in Log Analytics as `AppGenAIContent`. A dedicated table is important for generative AI content, which often contains sensitive data such as personally identifiable information (PII) or protected health information (PHI). To restrict access to this content, see [Protect sensitive generative AI content in Azure Monitor](protect-sensitive-content.md).
 
 Application Insights routes the following OpenTelemetry generative AI attributes to `AppGenAIContent`:
 
@@ -165,35 +165,7 @@ Application Insights routes the following OpenTelemetry generative AI attributes
 
 For a list of all available fields, see [AppGenAIContent](../reference/tables/appgenaicontent.md).
 
-### Migration to the dedicated genAIContent table
-
-Before October 31, 2026, Application Insights routes these seven attributes to both the existing telemetry tables (`AppDependencies`, `AppTraces`, and `AppEvents`) and `AppGenAIContent`. Starting October 31, 2026, Application Insights stops routing the attribute values to the existing tables for newly ingested data. The attribute keys remain in the existing tables, but their values are replaced with a short pointer to `AppGenAIContent`. Read the values from `AppGenAIContent` instead.
-
-This change only affects data ingested on or after October 31, 2026. Data ingested before that date remains in its existing tables and stays queryable as before. Built-in Application Insights and Azure AI Foundry experiences continue to work automatically. Update any custom queries, alert rules, dashboards, workbooks, or reports that read the affected attribute values from `AppDependencies`, `AppTraces`, or `AppEvents`.
-
-### Control routing with preview feature flags
-
-Two Azure preview feature flags control when generative AI content stops flowing to the existing telemetry tables. Register and unregister these flags on your subscription by using the standard preview feature process. For the portal, Azure CLI, and Azure PowerShell steps, see [Set up preview features in Azure subscription](/azure/azure-resource-manager/management/preview-features#register-preview-feature). Registering a preview feature requires the `Microsoft.Features/*` actions, which the Contributor and Owner built-in roles grant.
-
-To enable the dedicated table behavior before the October 31, 2026 migration date, register the `protectGenAISensitiveData` feature flag. Early enablement routes sensitive content only to the `AppGenAIContent` table and improves your security posture ahead of the deadline when coupled with its configuration as a protected table.
-
-```azurecli
-az feature register --namespace Microsoft.Insights --name protectGenAISensitiveData
-```
-
-If you need more time to update custom queries and related assets after the migration date, register the `optOutProtectGenAISensitiveData` feature flag to temporarily maintain the current routing behavior.
-
-```azurecli
-az feature register --namespace Microsoft.Insights --name optOutProtectGenAISensitiveData
-```
-
-This opt-out is temporary and is discontinued on October 31, 2027. After that date, Application Insights routes generative AI content only to `AppGenAIContent`, regardless of the flag. To return to the dedicated table behavior sooner, unregister the flag.
-
-```azurecli
-az feature unregister --namespace Microsoft.Insights --name optOutProtectGenAISensitiveData
-```
-
-For more information on how to configure feature flags in Azure, see [Set up preview features in Azure Subscription](/azure/azure-resource-manager/management/preview-features).
+To opt in to protecting sensitive content with protected tables, see [Protect sensitive generative AI content in Azure Monitor](protect-sensitive-content.md). The article covers the required content routing configuration and how to restrict access.
 
 ## Metric telemetry
 
@@ -406,4 +378,3 @@ Every telemetry item might have a strongly typed context field. Every field enab
 * Learn how to [collect custom telemetry](opentelemetry-add-modify.md#collect-custom-telemetry).
 * Learn how to [modify telemetry](opentelemetry-add-modify.md#modify-telemetry).
 * Learn how to use [OpenTelemetry sampling](opentelemetry-sampling.md) to minimize telemetry volume.
-
