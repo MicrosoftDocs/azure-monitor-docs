@@ -3,7 +3,7 @@ title: Set up codeless monitoring for AKS with Application Insights
 description: Enable codeless application monitoring on AKS by using Azure Monitor Application Insights autoinstrumentation for Java and Node.js workloads.
 ms.topic: how-to
 ms.custom: devx-track-extended-java
-ms.date: 06/23/2026
+ms.date: 11/06/2026
 ai-usage: ai-assisted
 ---
 
@@ -19,7 +19,21 @@ It covers [preparing a cluster](#prepare-a-cluster), [onboarding deployments](#o
 ## Prerequisites
 
 * An [AKS cluster](/azure/aks/learn/quick-kubernetes-deploy-portal) running a [Kubernetes deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) that uses Java or Node.js in the Azure public cloud
-* [A workspace-based Application Insights resource](../app/create-workspace-resource.md#create-and-configure-application-insights-resources).
+* [A workspace-based Application Insights resource](../app/create-workspace-resource.md#create-and-configure-application-insights-resources). To create one with a template, download the matching files:
+  - **Bicep:** [Template](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/bicep/application-insights-codeless.bicep) and [parameter file](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/bicep/application-insights-codeless.parameters.json).
+  - **ARM:** [Template](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/arm/application-insights-codeless.json) and [parameter file](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/arm/application-insights-codeless.parameters.json).
+
+  | Parameter | Description |
+  | --- | --- |
+  | `applicationInsightsName` | Name of the Application Insights component. |
+  | `location` | Azure region for Application Insights and the Log Analytics workspace. |
+  | `createLogAnalyticsWorkspace` | When `true`, create a Log Analytics workspace. When `false`, reuse `logAnalyticsWorkspaceResourceId`. |
+  | `logAnalyticsWorkspaceName` | Name for a new Log Analytics workspace. |
+  | `logAnalyticsWorkspaceResourceId` | Existing Log Analytics workspace resource ID when `createLogAnalyticsWorkspace=false`. |
+  | `workspaceRetentionInDays` | Retention period for a new Log Analytics workspace, from 30 through 730 days. |
+  | `tags` | Optional tags to apply to Application Insights and a new Log Analytics workspace. |
+
+  Edit the parameter file. Use a unique `logAnalyticsWorkspaceName`, or set `createLogAnalyticsWorkspace=false` and provide `logAnalyticsWorkspaceResourceId`. Deploy the template and parameter file by using any valid Resource Manager deployment method. For examples, see [Deploy the sample templates](../fundamentals/resource-manager-samples.md#deploy-the-sample-templates).
 * Azure CLI 2.86.0 or greater. For more information, see [How to install the Azure CLI](/cli/azure/install-azure-cli), [What version of the Azure CLI is installed?](/cli/azure/install-azure-cli#what-version-of-the-azure-cli-is-installed), and [How to update the Azure CLI](/cli/azure/update-azure-cli).
 
 > [!WARNING]
@@ -27,16 +41,17 @@ It covers [preparing a cluster](#prepare-a-cluster), [onboarding deployments](#o
 
 ## Prepare a cluster
 
-You can prepare a cluster by using either the Azure portal or Azure CLI.
+You can prepare a cluster by using the Azure portal, Azure CLI, an ARM template, or Bicep.
 
 #### [Azure portal](#tab/portal)
 
 Use the Azure portal to prepare a cluster.
 
-1. Select the **Monitor** pane.
-1. Check the **Enable support for auto-instrumentation** box.
-1. Select **Review + enable**.  
-  :::image type="content" source="media/kubernetes-codeless/monitor-settings-enable-autoinstrumentation.png" alt-text="Screenshot of the Monitor Settings Capabilities tab with the Enable support for auto-instrumentation checkbox selected." lightbox="media/kubernetes-codeless/monitor-settings-enable-autoinstrumentation.png":::
+1. In the AKS resource, select **Monitor (Insights)**, and then select **Monitor Settings**.
+1. On the **Capabilities** tab, select **Enable support for auto-instrumentation**.
+   :::image type="content" source="media/kubernetes-codeless/monitor-settings-enable-autoinstrumentation.png" alt-text="Screenshot of the Monitor Settings Capabilities tab with the Enable support for auto-instrumentation checkbox selected." lightbox="media/kubernetes-codeless/monitor-settings-enable-autoinstrumentation.png":::
+1. Review any other selected monitoring capabilities and workspace choices.
+1. Select **Review + enable**, confirm the summary, and then select **Enable**.
 
 #### [Azure CLI](#tab/programmatic)
 
@@ -46,10 +61,37 @@ To prepare a cluster, run the following Azure CLI command.
 az aks update --resource-group={resource_group} --name={cluster_name} --enable-azure-monitor-app-monitoring 
 ```
 
-> [!TIP]
-> You can prepare AKS clusters for this feature during cluster creation. To learn more, see [Prepare a cluster during AKS cluster create](#prepare-a-cluster-during-aks-cluster-create).
+#### [Bicep/ARM](#tab/bicep-arm)
+
+##### Download the template and parameter file
+
+- **Bicep:** [Template](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/bicep/aks-app-monitoring-profile.bicep) and [parameter file](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/bicep/aks-app-monitoring-profile.parameters.json).
+- **ARM:** [Template](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/arm/aks-app-monitoring-profile.json) and [parameter file](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/arm/aks-app-monitoring-profile.parameters.json).
+
+##### Configure the parameters
+
+| Parameter | Description |
+| --- | --- |
+| `clusterName` | Name of the existing AKS cluster. |
+| `clusterLocation` | Azure region of the AKS cluster. |
+
+##### Deploy the template
+
+Edit the matching parameter file. Keep the application-monitoring profile values as provided. Deploy the template and parameter file to the resource group that contains the AKS cluster by using any valid Resource Manager deployment method. For examples, see [Deploy the sample templates](../fundamentals/resource-manager-samples.md#deploy-the-sample-templates).
 
 ---
+
+Before onboarding workloads, wait for the autoinstrumentation webhook to exist and become available:
+
+```shell
+kubectl --namespace kube-system get deployment app-monitoring-webhook
+kubectl --namespace kube-system rollout status deployment/app-monitoring-webhook --timeout=10m
+```
+
+If the first command returns `NotFound`, wait for AKS reconciliation and retry it before continuing.
+
+> [!TIP]
+> You can prepare AKS clusters for this feature during cluster creation. To learn more, see [Prepare a cluster during AKS cluster create](#prepare-a-cluster-during-aks-cluster-create).
 
 ## Onboard deployments
 
@@ -57,33 +99,35 @@ You can onboard deployments in two ways: _namespace-wide_ or _per-deployment_. U
 
 ### Namespace-wide onboarding
 
-#### [Azure portal](#tab/portal)
+#### [Azure portal](#tab/portal-namespace)
 
 Use the Azure portal for namespace-wide deployment onboarding.
 
 1. From the **Namespaces** pane, select the namespace to instrument.  
   :::image type="content" source="media/kubernetes-codeless/namespaces-select-namespace.png" alt-text="Screenshot of the AKS Namespaces pane listing available namespaces with Kubernetes resources and Namespaces highlighted." lightbox="media/kubernetes-codeless/namespaces-select-namespace.png":::
-1. Select **Application Monitoring**.  
+1. Select **Application Monitoring**.
   :::image type="content" source="media/kubernetes-codeless/configure-monitoring-select-language.png" alt-text="Screenshot of the Configure Application Monitoring panel with the Instrumentation Type dropdown expanded showing language options." lightbox="media/kubernetes-codeless/configure-monitoring-select-language.png":::
+1. In **Application Insights**, select an existing workspace-based resource. Keep a value that begins with **(New)** only if you intend to create another Application Insights resource. Verify whether the portal will create or reuse its Log Analytics workspace.
 1. Select the languages to instrument.
 1. Leave the **Perform rollout restart of all deployments** box unchecked. You should manually [restart deployments](#restart-deployment) later.
 1. Select **Configure**.  
   :::image type="content" source="media/kubernetes-codeless/configure-monitoring-java-selected.png" alt-text="Screenshot of the Configure Application Monitoring panel with Java selected and the rollout restart checkbox unchecked." lightbox="media/kubernetes-codeless/configure-monitoring-java-selected.png":::
-1. Observe the **Application Monitoring Progress** and wait for it to complete.  
-      :::image type="content" source="media/kubernetes-codeless/deployments-instrumented-status.png" alt-text="Screenshot of the Deployments section showing the deployment with Instrumented status." lightbox="media/kubernetes-codeless/deployments-instrumented-status.png":::
+1. Wait until the application monitoring deployment is complete.
     > [!NOTE]
-    > * The affected deployments must be restarted before the changes take effect.
-    > * Manually [restart deployments](#restart-deployment) if you observe progress failures.  
-1. Revisit the **Application Monitoring** section.
-1. Verify the "instrumented" status for each namespace in the deployment.  
+    > The affected deployments must be restarted before the changes take effect.
+1. Complete [Restart deployment](#restart-deployment). After the rollout finishes, return to **Application Monitoring**.
+1. Verify the **Instrumented** status for each deployment in the namespace.
   :::image type="content" source="media/kubernetes-codeless/configure-monitoring-verify-instrumented.png" alt-text="Screenshot of the Configure Application Monitoring panel with the Deployments section expanded showing Instrumented status." lightbox="media/kubernetes-codeless/configure-monitoring-verify-instrumented.png":::
+1. Generate traffic and confirm that telemetry appears in the Application Insights resource you intended to use.
 
-#### [YAML](#tab/programmatic)
+#### [YAML](#tab/yaml-namespace)
 
 To onboard all deployments within a namespace, create a single _Instrumentation_ custom resource named `default` in each namespace. Update `applicationInsightsConnectionString` to have the connection string of your Application Insights resource.
 
 > [!TIP]
 > You can retrieve the connection string from the overview page of your Application Insights resource.
+
+You can start with the downloadable [namespace-wide Instrumentation YAML sample](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/kubernetes/instrumentation-codeless.yaml). The sample defaults to Java. Replace `Java` with `NodeJs` for a Node.js-only namespace.
 
 ```yml
 apiVersion: monitor.azure.com/v1
@@ -117,6 +161,8 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
 
     Create _Instrumentation_ custom resources to configure Application Insights in each namespace. Update `applicationInsightsConnectionString` to have the connection string of your Application Insights resource. 
 
+    You can start with the downloadable [per-deployment Instrumentation YAML sample](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/kubernetes/instrumentation-per-deployment.yaml).
+
     > [!TIP]
     > You can retrieve the connection string from the overview page of your Application Insights resource.
 
@@ -143,6 +189,8 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
 
     > [!IMPORTANT]
     > To avoid adding them to the deployment's annotations by mistake, add annotations at the `spec.template.metadata.annotations` level of your deployment.
+
+    For complete Java and Node.js deployment examples, see the [workload autoinstrumentation YAML sample](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/kubernetes/workload-autoinstrumentation.example.yaml).
 
     Examples:
     - Java: `instrumentation.opentelemetry.io/inject-java: "cr1"`
@@ -175,13 +223,17 @@ Use mixed mode when most deployments use a default configuration and a few deplo
 
 ## Restart deployment
 
-You can restart a deployment by using either the Azure portal or the Kubernetes command line (`kubectl`) tool.
+You can restart a deployment from **Run command** in the AKS resource or from a terminal that has `kubectl` access.
 
 Run the following command after you create all custom resources and optionally annotate deployments.
 
 ```shell
 kubectl rollout restart deployment <deployment-name> -n mynamespace1
 ```
+
+In the Azure portal, open **Run command**, enter the same command, make sure **Dry Run** is off, and then select **Send**.
+
+ARM templates and Bicep don't have a native resource for a Kubernetes rollout restart.
 
 This command causes autoinstrumentation to take effect, enabling Application Insights. You can verify Application Insights is enabled by generating traffic and navigating to your resource. Your app is represented as a cloud role in Application Insights experiences. You can use all Application Insights experiences except Live Metrics and Code Analysis. To learn more about the available Application Insights experiences, see [Application Insights experiences](../app/app-insights-overview.md#application-insights-experiences).
 
@@ -211,7 +263,7 @@ These metrics appear at three scopes:
 
 ### View metrics at the workload scope
 
-1. From your AKS cluster, select **Workloads** > **Deployments** in the left navigation.
+1. From your AKS cluster, select **Kubernetes resources** > **Workloads**, and then select the **Deployments** tab.
 1. Select an instrumented deployment.
 1. Review the time series charts on the deployment overview: Average server response time, Server requests, and Failed requests.
 1. Select **View in Application Insights** to open the workload in the full Application Insights experience.
@@ -231,20 +283,35 @@ For full APM analysis, including distributed traces, end-to-end transactions, an
 
 ## Remove autoinstrumentation for AKS
 
-You can remove AKS autoinstrumentation by using Azure CLI.
+You can remove AKS autoinstrumentation by using Azure CLI, an ARM template, or Bicep.
 
 > [!TIP]
-> * Removing AKS autoinstrumentation by using Azure CLI removes it from the entire cluster.
+> * Disabling AKS autoinstrumentation at the cluster level removes the webhook from the entire cluster. Clean up instrumented deployments before you disable it.
 > * To remove autoinstrumentation from a single namespace, delete the associated **Instrumentation** custom resource (CR). For example, `kubectl delete instrumentation <instrumentation-name> -n <namespace-name>`.
 
-Ensure that you don't have any instrumented deployments. To uninstrument an instrumented deployment, remove the associated Instrumentation custom resource and run `kubectl rollout restart` on the deployment. Next, run the following command.
+Ensure that you don't have any instrumented deployments. To uninstrument a deployment, remove the associated Instrumentation custom resource and run `kubectl rollout restart` on the deployment while autoinstrumentation is still enabled. Then disable autoinstrumentation at the cluster level.
+
+#### [Azure CLI](#tab/cli-remove)
 
 ```azurecli
 az aks update --resource-group={resource_group} --name={cluster_name} --disable-azure-monitor-app-monitoring 
 ```
 
- > [!NOTE]
- > If instrumented deployments remain after the feature is disabled, they continue to be instrumented until redeployed to their original uninstrumented state or deleted.
+#### [Bicep/ARM](#tab/bicep-arm-remove)
+
+##### Download the template and parameter file
+
+- **Bicep:** [Template](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/bicep/aks-app-monitoring-profile.bicep) and [parameter file](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/bicep/aks-app-monitoring-profile.parameters.json).
+- **ARM:** [Template](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/arm/aks-app-monitoring-profile.json) and [parameter file](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/arm/aks-app-monitoring-profile.parameters.json).
+
+##### Deploy the template
+
+Edit the matching parameter file. Set `autoInstrumentationEnabled=false` and keep the other application-monitoring profile values as provided. Deploy the template and parameter file to the resource group that contains the AKS cluster by using any valid Resource Manager deployment method. For examples, see [Deploy the sample templates](../fundamentals/resource-manager-samples.md#deploy-the-sample-templates).
+
+---
+
+> [!NOTE]
+> If instrumented deployments remain after the feature is disabled, they continue to be instrumented. Restore the webhook and restart them after removing their `Instrumentation` resources, or replace or delete and recreate them from the original uninstrumented manifests. `kubectl apply` alone doesn't remove previously injected fields.
 
 ## Annotations
 
@@ -274,7 +341,7 @@ If you have multiple observability teams, such as infrastructure engineers using
 Review the console logging configurations in your application's code to determine whether you want to enable Application Insights Logs, container logs, or both. To disable container log collection, see [Filter container log collection with ConfigMap](../containers/kubernetes-data-collection-configmap.md).
 
 > [!IMPORTANT]
-> To avoid unnecessary duplication and increased cost, enable logs in Application Insights to allow the feature to collect application logs from standard logging frameworks and send them to Application Insights.
+> Enabling Application Insights application logs can duplicate logs that Container Insights already collects and can increase ingestion cost. Enable this annotation only when you need Application Insights logging. If you use it as a replacement for Container Insights logs, filter or disable the duplicate Container Insights collection.
 
 Use the following annotation to enable logs in Application Insights:
 
@@ -289,11 +356,43 @@ Use the following annotation to enable logs in Application Insights:
 
 ## Prepare a cluster during AKS cluster create
 
-You can prepare AKS clusters for this feature during cluster creation. Run the following Azure CLI command if you prefer to have the cluster prepped during creation. Application monitoring isn't enabled just because your cluster is prepped. You must deploy an application and onboard the application to this feature.
+You can prepare AKS clusters for this feature during cluster creation by using Azure CLI, an ARM template, or Bicep. Application monitoring isn't enabled just because your cluster is prepared. You must deploy an application and onboard the application to this feature.
+
+#### [Azure CLI](#tab/cli-create)
 
 ```azurecli
 az aks create --resource-group={resource_group} --name={cluster_name} --enable-azure-monitor-app-monitoring --generate-ssh-keys
 ```
+
+#### [Bicep/ARM](#tab/bicep-arm-create)
+
+Use API version `2026-06-01` or later, and add `azureMonitorProfile` to the `properties` block of the managed cluster resource in your complete cluster template.
+
+##### Bicep
+
+```bicep
+azureMonitorProfile: {
+  appMonitoring: {
+    autoInstrumentation: {
+      enabled: true
+    }
+  }
+}
+```
+
+##### ARM
+
+```json
+"azureMonitorProfile": {
+  "appMonitoring": {
+    "autoInstrumentation": {
+      "enabled": true
+    }
+  }
+}
+```
+
+---
 
 ## AKS autoinstrumentation FAQ
 
@@ -301,9 +400,7 @@ The following questions address common scenarios and considerations when using A
 
 ### Does Azure Kubernetes Service (AKS) autoinstrumentation support custom metrics?
 
-If you want custom metrics in Node.js, manually instrument applications with the [Microsoft OpenTelemetry Distro](../app/opentelemetry-enable.md).
-
-Java supports custom metrics with autoinstrumentation. You can [collect custom metrics](../app/opentelemetry-add-modify.md?tabs=java#add-custom-metrics) by updating your code and enabling this feature. If your code already has custom metrics, they flow through when autoinstrumentation is enabled.
+Java and Node.js autoinstrumentation can export custom metrics that your code records by using the OpenTelemetry metrics API. To add custom metrics, [update your code to create OpenTelemetry metrics](../app/opentelemetry-add-modify.md#add-custom-metrics). For manual Node.js instrumentation or SDK configuration, use the [Microsoft OpenTelemetry Distro](../app/opentelemetry-enable.md?tabs=nodejs).
 
 ### Does AKS autoinstrumentation work with applications instrumented with an Open Source Software (OSS) OpenTelemetry SDK?
 

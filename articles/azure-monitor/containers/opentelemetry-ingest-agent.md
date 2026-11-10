@@ -1,22 +1,18 @@
 ---
-title: Ingest OTLP Data into Azure Monitor with AMA (Preview)
+title: Ingest OTLP Data into Azure Monitor with AMA
 description: Learn how to send OpenTelemetry Protocol (OTLP) telemetry data to Azure Monitor using Azure Monitor Agent on VMs, Scale Sets, and Arc-enabled servers.
 ms.topic: how-to
-ms.date: 05/25/2026
+ms.date: 11/09/2026
 ms.reviewer: kaprince
 ai-usage: ai-assisted
 ---
 
-# Ingest OTLP data into Azure Monitor by using AMA (Preview)
+# Ingest OTLP data into Azure Monitor by using AMA
 
 Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) signals. You can send telemetry data directly from OpenTelemetry-instrumented applications to Azure Monitor.
 
-> [!IMPORTANT]
-> * This feature is in **preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
-> * For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-
 > [!TIP]
-> For a conceptual overview of OpenTelemetry options in Azure Monitor — native OTLP ingestion, the Microsoft OpenTelemetry distro, and end-to-end observability experiences — see [OpenTelemetry with Azure Monitor](opentelemetry-options.md).
+> For a conceptual overview of OpenTelemetry options in Azure Monitor: native OTLP ingestion, the Microsoft OpenTelemetry distro, and end-to-end observability experiences, see [OpenTelemetry with Azure Monitor](opentelemetry-options.md).
 
 ## Overview
 
@@ -28,12 +24,15 @@ Azure Monitor can receive OTLP signals through three ingestion mechanisms:
 
 This article covers the Azure Monitor Agent method of collecting OTLP signals.
 
+> [!IMPORTANT]
+> OTLP ingestion through Azure Monitor Agent is generally available only on Linux, starting with version 1.45.1.
+
 ## Prerequisites
 
 > [!div class="checklist"]
 > * Azure subscription: If you don't have one, [create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 > * [OpenTelemetry SDK](https://opentelemetry.io/docs/languages/) instrumented application (any supported language).
-> * For VMs and Virtual Machine Scale Sets deployments: Azure Monitor Agent version 1.38.1 or higher (Windows) or 1.37.0 or higher (Linux).
+> * Azure Monitor Agent installed on your VMs, Virtual Machine Scale Sets, or Azure Arc-enabled servers. For the minimum version for your operating system and OTLP protocol, see [Deploy Azure Monitor Agent](#deploy-azure-monitor-agent). General availability applies only to Linux.
 
 ## Set up OTLP data ingestion
 
@@ -43,20 +42,9 @@ You can configure OTLP data ingestion in Azure Monitor by using one of two appro
 
 This method automatically creates all required Azure resources and configures their relationships. You can use Application Insights for application performance monitoring, distributed tracing, and failure analysis.
 
-1. Register the Application Insights OTLP preview features and provider.
-
-    ```bash
-    az feature register --name OtlpApplicationInsights --namespace Microsoft.Insights
-    az feature list -o table --query "[?contains(name, 'Microsoft.Insights/OtlpApplicationInsights')].{Name:name,State:properties.state}"
-    
-    az provider register -n Microsoft.Insights
-    ```
-
 1. In the Azure portal, create a new Application Insights resource.
 
-1. On the **Basics** tab, select the **Enable OTLP support** checkbox.
-
-    :::image type="content" source="./media/opentelemetry-protocol-ingestion/create-app-insights-resource.png" lightbox="./media/opentelemetry-protocol-ingestion/create-app-insights-resource.png" alt-text="Screenshot showing the Create Application Insights page with Enable OTLP support option selected.":::
+1. On the **Basics** tab, set **OTLP support** to **On**.
 
 1. Complete the resource creation process.
 
@@ -87,7 +75,7 @@ Record the resource IDs of both workspaces for later use.
 To enable Application Insights troubleshooting experiences with your OTLP data:
 
 1. Create an Application Insights resource in the same region as your workspaces.
-1. Clear the **Enable OTLP support** checkbox to avoid creating duplicate resources.
+1. Set **OTLP support** to **Off** to avoid creating duplicate resources.
 1. Copy the Application Insights resource ID.
 
 > [!NOTE]
@@ -109,10 +97,14 @@ To enable Application Insights troubleshooting experiences with your OTLP data:
 
 Install the Azure Monitor Agent by using Azure CLI or PowerShell. For detailed instructions, see [Install and manage Azure Monitor Agent](../agents/azure-monitor-agent-manage.md?tabs=azure-powershell).
 
-Verify that you're installing the minimum required version:
+Verify that you're installing the minimum required version for your operating system and OTLP protocol:
 
-* **Windows**: Version 1.38.1 or higher
-* **Linux**: Version 1.37.0 or higher
+| Operating system | OTLP gRPC | OTLP gRPC and OTLP HTTP/Protobuf |
+|---|---|---|
+| Linux | Version 1.37.0 or later. | Version 1.45.1 or later. |
+| Windows | Version 1.38.1 or later. | Version 1.46.1 or later. |
+
+OTLP ingestion is generally available only on Linux.
 
 ## Associate the DCR with your compute resources
 
@@ -128,25 +120,35 @@ For programmatic association, see [Manage data collection rule associations](../
 
 Set the following configuration in your application environment:
 
-1. Add the `microsoft.applicationId` resource attribute with the Application Insights connection string application ID (the GUID portion after `InstrumentationKey=`). This attribute is required if Application Insights creates the DCR in use. It's also required if you include the Application Insights ID in the manually created DCR to separate ingested data per Application Insights resource.
+1. Add the `microsoft.applicationId` resource attribute with the GUID after `ApplicationId=` in the Application Insights connection string, not the instrumentation key. This attribute is required if Application Insights creates the DCR in use.
 
-1. Configure the OpenTelemetry SDK to send data to localhost by using these ports:
+    > [!TIP]
+    > Use separate DCRs that filter by different `microsoft.applicationId` values to route data to multiple Application Insights resources.
 
-    * **Metrics**: Port 4317 (gRPC)
-    * **Logs and Traces**: Port 4319 (gRPC)
+1. Configure the OpenTelemetry SDK to send data to localhost by using these default ports:
 
-Port 4319 is a Microsoft-picked port for the Azure Monitor Agent path, not a canonical OTLP port. The [OTLP protocol specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/README.md) defines 4317 (gRPC) and 4318 (HTTP) as the standard ports.
+    | Signal | gRPC default | HTTP/Protobuf default |
+    | --- | --- | --- |
+    | Metrics | `4317` | `4318` |
+    | Logs and traces | `4319` | `4320` |
 
-You might need to alter your OTLP exporter to separate metrics versus logs and traces data across these ports.
+Ports 4319 and 4320 are Microsoft-picked ports for the Azure Monitor Agent path, not canonical OTLP ports. The [OTLP protocol specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/README.md) defines 4317 (gRPC) and 4318 (HTTP) as the standard ports.
+
+Configure separate endpoints for metrics and for logs and traces because they use different ports.
 
 > [!IMPORTANT]
 > Application Insights experiences, including prebuilt dashboards and queries, expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
 
 ### Example environment variable configuration
 
-Here's an example configuration for setting environment variables. `microsoft.applicationId` is required if using App Insights based DCR.
+Choose the example for your OTLP protocol. Replace `<your-application-id>` with the Application Insights application ID. The `microsoft.applicationId` resource attribute is required when you use a DCR created by Application Insights.
+
+#### [gRPC](#tab/ama-grpc)
+
+Use the following environment variables to send metrics to port 4317 and logs and traces to port 4319:
 
 ```bash
+export OTEL_EXPORTER_OTLP_PROTOCOL="grpc"
 export OTEL_EXPORTER_OTLP_METRICS_ENDPOINT="http://localhost:4317"
 export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="http://localhost:4319"
 export OTEL_EXPORTER_OTLP_LOGS_ENDPOINT="http://localhost:4319"
@@ -155,10 +157,36 @@ export OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE=delta
 export OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION=base2_exponential_bucket_histogram
 ```
 
-Port 4319, used above for traces and logs, is specific to the Azure Monitor Agent local endpoint and isn't part of the OTLP protocol specification's canonical port assignments (4317 gRPC, 4318 HTTP).
+Port 4319, used above for traces and logs, is specific to the Azure Monitor Agent local endpoint.
+
+#### [HTTP/Protobuf](#tab/ama-http-protobuf)
+
+Use the following environment variables to send metrics to port 4318 and logs and traces to port 4320. HTTP/Protobuf requires Azure Monitor Agent version 1.45.1 or later on Linux, or version 1.46.1 or later on Windows.
+
+For HTTP/Protobuf, include the signal path in each endpoint. OpenTelemetry SDKs use signal-specific endpoint URLs as-is.
+
+```bash
+export OTEL_EXPORTER_OTLP_PROTOCOL="http/protobuf"
+export OTEL_EXPORTER_OTLP_METRICS_ENDPOINT="http://localhost:4318/v1/metrics"
+export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="http://localhost:4320/v1/traces"
+export OTEL_EXPORTER_OTLP_LOGS_ENDPOINT="http://localhost:4320/v1/logs"
+export OTEL_RESOURCE_ATTRIBUTES="microsoft.applicationId=<your-application-id>"
+export OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE=delta
+export OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION=base2_exponential_bucket_histogram
+```
+
+---
 
 > [!NOTE]
 > The Azure Monitor Agent running on the VM handles authentication and routing to Azure Monitor endpoints.
+
+### Customize listener ports (preview)
+
+If a default OTLP port conflicts with another application or service, use an Agent Settings DCR to override the listener port with a port you choose. Port customization remains in preview.
+
+For the available OTLP port settings and instructions to create and apply an Agent Settings DCR, see [Configure agents with Azure Monitor Agent settings](../agents/agent-settings.md#supported-parameters).
+
+After you change a listener port, update the corresponding OpenTelemetry exporter endpoint to use the same port. For HTTP/Protobuf endpoints, keep the signal-specific path.
 
 ## Authentication and permissions
 
