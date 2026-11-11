@@ -54,7 +54,7 @@ Health models allow you to create alerts based on health state instead of indivi
 
 ## Billing and cost management
 
-Azure Monitor health models billing is based on _active signals_. Your monthly cost depends on the number and type of signals configured across your health models.
+Azure Monitor health models billing is based on _active signals_. Your monthly cost depends on the number and type of signals you configure across your health models.
 
 ### Signals
 
