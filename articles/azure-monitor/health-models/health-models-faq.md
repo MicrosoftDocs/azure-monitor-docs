@@ -3,7 +3,7 @@ title: Azure Monitor Health Models FAQ
 description: Frequently asked questions about Azure Monitor health models, including discovery, topology, alerts, integrations, and deployment options.
 ms.service: azure-monitor
 ms.topic: faq
-ms.date: 10/12/2026
+ms.date: 11/11/2026
 ai-usage: ai-assisted
 
 #customer intent: As an Azure administrator or site reliability engineer, I want answers to common questions about Azure Monitor health models so that I can design, deploy, and operate a health model for my workload.
@@ -244,6 +244,14 @@ Find current pricing information for Azure Monitor health models.
 ### What is the pricing for Azure Monitor health models?
 
 See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
+
+### How will I be charged for my health model?
+
+Charges are based on the number and type of signals configured in your health model. Prices differ by signal type. Charges are prorated, with each signal evaluation billed as a fraction of the monthly price for that signal type. See [Billing and cost management](./overview.md#billing-and-cost-management).
+
+### What happens to charges if I add or delete a signal partway through the month?
+
+You're charged for the signal evaluations performed during the billing cycle. Adding or deleting a signal partway through the month doesn't incur a full month's charge. See [Billing and cost management](./overview.md#billing-and-cost-management).
 
 ## Health state data and troubleshooting
 
