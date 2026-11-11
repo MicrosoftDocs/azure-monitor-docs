@@ -3,7 +3,7 @@ title: Configure Azure Monitor pipeline
 description: Learn how to prepare your cluster, install cert-manager, and choose a configuration method for Azure Monitor pipeline.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/09/2026
+ms.date: 11/11/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
@@ -64,21 +64,39 @@ After you complete the configuration by using your chosen method, use the follow
 
 ### Verify pipeline components running in the cluster
 
-In the Azure portal, go to the **Kubernetes services** menu and select your Azure Arc-enabled Kubernetes cluster. Select **Services and ingresses** and make sure that you see the following services:
+In the Azure portal, go to the **Kubernetes services** menu and select your Azure Arc-enabled Kubernetes cluster. Select **Services and ingresses** and verify that `<pipeline-name>-service` exists in the pipeline namespace and has type `ClusterIP`.
 
-* \<pipeline name\>-external-service
-* \<pipeline name\>-service
+You can also check the service by using `kubectl`:
 
-:::image type="content" source="./media/pipeline-configure/pipeline-cluster-components.png" lightbox="./media/pipeline-configure/pipeline-cluster-components.png" alt-text="Screenshot of cluster components supporting Azure Monitor pipeline."::: 
+```bash
+kubectl get service <pipeline-name>-service -n <pipeline-namespace>
+```
 
+Current pipeline deployments don't automatically create `<pipeline-name>-external-service`. For clients outside the cluster, configure and verify a separate gateway as described in [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
 
 ### Verify heartbeat
 
-Each pipeline that you configure in your pipeline instance sends a heartbeat record to the `Heartbeat` table in your Log Analytics workspace every minute. The contents of the `OSMajorVersion` column should match the name of your pipeline instance. If the pipeline instance has multiple workspaces, the first configured workspace is used.
+Each pipeline that you configure in your pipeline instance sends a heartbeat record to the `Heartbeat` table in your Log Analytics workspace every minute. If the pipeline instance has multiple workspaces, the first configured workspace is used.
 
-To retrieve the heartbeat records, use a log query as shown in the following example:
+The `OSName`, `OSMajorVersion`, and `OSMinorVersion` columns describe the operating system in the pipeline collector container. These values can differ from the Kubernetes node's operating system. For example, an Azure Linux 3 container can report `OSMajorVersion` as `3` even when the nodes run Ubuntu. Don't use these columns to identify the pipeline instance or determine whether deployment succeeded.
 
-:::image type="content" source="./media/pipeline-configure/heartbeat-records.png" lightbox="./media/pipeline-configure/heartbeat-records.png" alt-text="Screenshot of log query that returns heartbeat records for Azure Monitor pipeline.":::
+To find the collector pod names for your pipeline, run:
+
+```bash
+kubectl get pods -n <pipeline-namespace> -l pipeline=<pipeline-name>
+```
+
+Use the following query to check for recent heartbeat records from a collector pod. Replace `<collector-pod-name>` with a pod name from the command output, and repeat the query for each collector pod.
+
+```kusto
+Heartbeat
+| where TimeGenerated > ago(15m)
+| where Computer == "<collector-pod-name>"
+| project TimeGenerated, Computer, OSName, OSMajorVersion, OSMinorVersion
+| order by TimeGenerated desc
+```
+
+Heartbeat delivery doesn't by itself verify end-to-end ingestion of client data.
 
 ## Configure private link
 Configure [Azure Private Link](../fundamentals/private-link-security.md) to connect to Azure Monitor using a private endpoint. See [Configure private link for Azure Monitor](../fundamentals/private-link-configure.md) for details on creating an Azure Monitor Private link scope and connecting it to a Log Analytics workspace.
