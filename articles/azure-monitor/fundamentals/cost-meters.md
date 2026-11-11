@@ -120,14 +120,14 @@ To separate costs from your Log Analytics and classic Application Insights usage
 
 The following meters appear in Cost Management for Azure Monitor health models.
 
-| ServiceName   | MeterName                                         |
-|---------------|---------------------------------------------------|
-| Azure Monitor | Health Metric Monitored                           |
-| Azure Monitor | Health Prom Monitored Metric                      |
-| Azure Monitor | Health System Log Monitored at 1 Minute Frequency  |
-| Azure Monitor | Health System Log Monitored at 5 Minute Frequency  |
-| Azure Monitor | Health System Log Monitored at 10 Minute Frequency |
-| Azure Monitor | Health System Log Monitored at 15 Minute Frequency |
-| Azure Monitor | Health Dynamic Threshold Signals                  |
+| ServiceName   | MeterName                                         | Regional Meter? |
+|---------------|---------------------------------------------------|-----------------|
+| Azure Monitor | Health Metric Monitored                           | yes             |
+| Azure Monitor | Health Prom Monitored Metric                      | yes             |
+| Azure Monitor | Health System Log Monitored at 1 Minute Frequency  | yes             |
+| Azure Monitor | Health System Log Monitored at 5 Minute Frequency  | yes             |
+| Azure Monitor | Health System Log Monitored at 10 Minute Frequency | yes             |
+| Azure Monitor | Health System Log Monitored at 15 Minute Frequency | yes             |
+| Azure Monitor | Health Dynamic Threshold Signals                  | yes             |
 
 Log signals with an evaluation interval longer than 15 minutes use the **Health System Log Monitored at 15 Minute Frequency** meter. For information about prorated signal charges, see [Health model billing and cost management](../health-models/overview.md#billing-and-cost-management).
