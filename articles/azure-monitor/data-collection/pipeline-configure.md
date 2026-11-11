@@ -3,13 +3,13 @@ title: Configure Azure Monitor pipeline
 description: Learn how to prepare your cluster, install cert-manager, and choose a configuration method for Azure Monitor pipeline.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 09/21/2026
+ms.date: 11/09/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
 # Configure Azure Monitor pipeline
 
-This article describes the overall setup process for [Azure Monitor pipeline](./pipeline-overview.md) and provides details for the initial common setup to prepare your Arc-enabled Kubernetes cluster for the pipeline. 
+This article describes how to configure [Azure Monitor pipeline](./pipeline-overview.md) on an Arc-enabled Kubernetes cluster. To deploy the pipeline on a Linux VM in Azure or an Arc-enabled Linux server without Kubernetes, see [Configure Azure Monitor pipeline on Linux VMs (preview)](./pipeline-configure-vm.md).
 
 ## Complete setup flow
 
