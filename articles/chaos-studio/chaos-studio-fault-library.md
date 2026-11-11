@@ -12,11 +12,11 @@ ai-usage: ai-assisted
 
 # Fault and action library for Experiments (classic)
 
-This Azure Chaos Studio fault and action library is for Experiments (classic). For current-model tests, use the [Chaos Studio Workspaces Scenario catalog](chaos-studio-scenarios.md), which lists Scenario Actions and supported resources. A classic fault entry doesn't establish availability in Workspaces.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 
-This article lists the faults you can use with Experiments (classic), organized by the applicable resource type. To understand which role assignments are recommended for each resource type, see [Supported resource types and role assignments for Experiments (classic)](./chaos-studio-fault-providers.md).
+This Azure Chaos Studio fault and action library is for Experiments (classic). For current-model tests, use the [Chaos Studio Workspaces Scenario catalog](chaos-studio-scenarios.md), which lists Scenario Actions and supported resources. A classic fault entry doesn't establish availability in Workspaces.
+
+This article lists the faults you can use with Experiments (classic), organized by the applicable resource type. For the resource types and Actions that Chaos Studio Workspaces supports, see [Supported resources and Actions for Chaos Studio Workspaces](chaos-studio-workspaces-supported-resources.md).
 
 ## Agent-based faults
 
@@ -695,7 +695,7 @@ Currently, the Windows agent doesn't reduce memory pressure when other applicati
 | Capability name | LinuxDiskIOPressure-1.1 |
 | Target type | Microsoft-Agent |
 | Supported OS types | Linux |
-| Description | Uses stress-ng to apply pressure to the disk. One or more worker processes are spawned that perform I/O processes with temporary files. Pressure is added to the primary disk by default, or the disk specified with the targetTempDirectory parameter. For information on how pressure is applied, see the [stress-ng](https://wiki.ubuntu.com/Kernel/Reference/stress-ng) article. |
+| Description | Uses stress-ng to apply pressure to the disk. One or more worker processes are spawned that perform I/O processes with temporary files. Pressure is added to the primary disk by default, or the disk specified with the targetTempDirectory parameter. For information on how pressure is applied, see the [stress-ng](https://github.com/ColinIanKing/stress-ng) article. |
 | Prerequisites | **Linux**: The **stress-ng** utility needs to be installed. Installation happens automatically as part of agent installation, using the default package manager, on several operating systems including Debian-based (like Ubuntu), Red Hat Enterprise Linux, and OpenSUSE. For other distributions, including Azure Linux, you must install **stress-ng** manually. For more information, see the [upstream project repository](https://github.com/ColinIanKing/stress-ng). |
 | Urn | urn:csci:microsoft:agent:linuxDiskIOPressure/1.1 |
 | Fault type | Continuous. |
@@ -934,7 +934,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 | Urn | urn:csci:microsoft:agent:stressNg/1.0 |
 | Fault type | Continuous. |
 | Parameters (key, value) |  |
-| stressNgArguments | One or more arguments to pass to the stress-ng process. For information on possible stress-ng arguments, see the [stress-ng](https://wiki.ubuntu.com/Kernel/Reference/stress-ng) article. **NOTE: Do NOT include the "-t " argument because it will cause an error. Experiment length is defined directly in the Azure chaos experiment UI, NOT in the stressNgArguments.** |
+| stressNgArguments | One or more arguments to pass to the stress-ng process. For information on possible stress-ng arguments, see the [stress-ng](https://github.com/ColinIanKing/stress-ng) article. **NOTE: Do NOT include the "-t " argument because it will cause an error. Experiment length is defined directly in the Azure chaos experiment UI, NOT in the stressNgArguments.** |
 
 #### Sample JSON
 
@@ -1360,7 +1360,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 | Fault type | Discrete. |
 | Parameters (key, value) |  |
 | rebootType | The node types where the reboot action is to be performed, which can be specified as PrimaryNode, SecondaryNode, or AllNodes.  |
-| shardId | The ID of the shard to be rebooted. Only relevant for Premium tier caches. |
+| shardId | The ID of the shard to be rebooted. Applies to clustered caches only. Omit `shardId` for non-clustered (Basic or Standard) caches. If you set it on a non-clustered cache, the fault fails. |
 
 #### Sample JSON
 
@@ -1391,6 +1391,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 
 * The reboot fault causes a forced reboot to better simulate an outage event, which means there's the potential for data loss to occur.
 * The reboot fault is a **discrete** fault type. Unlike continuous faults, it's a one-time action and has no duration.
+* The sample JSON sets `ShardId` for a clustered cache. For a non-clustered (Basic or Standard) cache, remove the `ShardId` parameter.
 
 
 ### Cosmos DB Failover

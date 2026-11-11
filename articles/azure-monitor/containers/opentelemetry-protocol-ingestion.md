@@ -201,6 +201,9 @@ For manually orchestrated resources, construct the endpoint URLs:
 
 Configure your OpenTelemetry Collector with the authentication extension and Azure Monitor endpoints. Here's a sample configuration:
 
+> [!NOTE]
+> The stream names in this example match the manual DCR template in this article. If Application Insights created the DCR, use the trace, log, and metric endpoint URLs from the Application Insights **Overview** page instead.
+
 ```yaml
 receivers:
   otlp:
@@ -221,9 +224,9 @@ extensions:
 
 exporters:
   otlphttp/azuremonitor:
-    traces_endpoint: "https://<logs-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/<strong>Microsoft-OTLP-Traces</strong>/otlp/v1/traces"
-    logs_endpoint: "https://<logs-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/<strong>Microsoft-OTLP-Logs</strong>/otlp/v1/logs"
-    metrics_endpoint: "https://<metrics-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/microsoft-otelmetrics/otlp/v1/metrics"
+    traces_endpoint: "https://<logs-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/Microsoft-OTLP-Traces/otlp/v1/traces"
+    logs_endpoint: "https://<logs-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/Microsoft-OTLP-Logs/otlp/v1/logs"
+    metrics_endpoint: "https://<metrics-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/Custom-Metrics-Otel/otlp/v1/metrics"
     auth:
       authenticator: azure_auth
 

@@ -27,7 +27,6 @@ For more information, see [Configure your own key for encrypting Azure Service B
 ResourceType: microsoft.servicebus/namespaces  
 Recommendation ID: 8849acb8-a958-41f3-af98-dab43f85bf3c  
 
-
 <!--8849acb8-a958-41f3-af98-dab43f85bf3c_end-->
 
 <!--articleBody-->

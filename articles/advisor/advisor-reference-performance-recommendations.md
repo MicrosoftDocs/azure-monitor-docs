@@ -40,21 +40,17 @@ The performance recommendations in Azure Advisor can help improve the speed and 
 
 [!INCLUDE [Performance-azure-data-explorer.md](./includes/Performance-azure-data-explorer.md)]
 
-[!INCLUDE [Performance-azure-database-for-mariadb.md](./includes/Performance-azure-database-for-mariadb.md)]
-
 [!INCLUDE [Performance-azure-database-for-mysql.md](./includes/Performance-azure-database-for-mysql.md)]
 
 [!INCLUDE [Performance-azure-database-for-postgresql.md](./includes/Performance-azure-database-for-postgresql.md)]
 
-[!INCLUDE [Performance-azure-health-data-services-de-identification-service.md](./includes/Performance-azure-health-data-services-de-identification-service.md)]
-
 [!INCLUDE [Performance-azure-kubernetes-service-(aks).md](./includes/Performance-azure-kubernetes-service-(aks).md)]
+
+[!INCLUDE [performance-azure-managed-instance-for-apache-cassandra.md](./includes/performance-azure-managed-instance-for-apache-cassandra.md)]
 
 [!INCLUDE [Performance-azure-monitor.md](./includes/Performance-azure-monitor.md)]
 
 [!INCLUDE [Performance-azure-netapp-files.md](./includes/Performance-azure-netapp-files.md)]
-
-[!INCLUDE [Performance-azure-sql-database.md](./includes/Performance-azure-sql-database.md)]
 
 [!INCLUDE [Performance-azure-synapse-analytics.md](./includes/Performance-azure-synapse-analytics.md)]
 
@@ -62,13 +58,9 @@ The performance recommendations in Azure Advisor can help improve the speed and 
 
 [!INCLUDE [Performance-azure-virtual-desktop.md](./includes/Performance-azure-virtual-desktop.md)]
 
-[!INCLUDE [Performance-azure-vmware-solution.md](./includes/Performance-azure-vmware-solution.md)]
-
 [!INCLUDE [Performance-cognitive-services.md](./includes/Performance-cognitive-services.md)]
 
 [!INCLUDE [Performance-content-delivery-network.md](./includes/Performance-content-delivery-network.md)]
-
-[!INCLUDE [Performance-data-factory.md](./includes/Performance-data-factory.md)]
 
 [!INCLUDE [Performance-durable-task-schedulers.md](./includes/Performance-durable-task-schedulers.md)]
 
@@ -78,11 +70,11 @@ The performance recommendations in Azure Advisor can help improve the speed and 
 
 [!INCLUDE [Performance-health-data-services.md](./includes/Performance-health-data-services.md)]
 
+[!INCLUDE [performance-horizondb.md](./includes/performance-horizondb.md)]
+
 [!INCLUDE [Performance-key-vault.md](./includes/Performance-key-vault.md)]
 
 [!INCLUDE [Performance-storage.md](./includes/Performance-storage.md)]
-
-[!INCLUDE [Performance-subscriptions.md](./includes/Performance-subscriptions.md)]
 
 [!INCLUDE [Performance-virtual-machines.md](./includes/Performance-virtual-machines.md)]
 

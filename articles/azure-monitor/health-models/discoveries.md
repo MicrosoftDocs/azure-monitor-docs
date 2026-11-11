@@ -1,12 +1,12 @@
 ---
-title: Create discovery rules for Azure Monitor health models (preview)
+title: Create discovery rules for Azure Monitor health models
 description: Learn discovery concepts and configuration for Azure Monitor health models, including discovery kinds, recommended configuration, and parent entity assignment.
 ms.topic: how-to
 ms.date: 07/15/2026
 ai-usage: ai-assisted
 ---
 
-# Create discovery rules for Azure Monitor health models (preview)
+# Create discovery rules for Azure Monitor health models
 Discoveries automatically add Azure resource entities to your [Azure Monitor health model](./overview.md). They allow you to quickly create a new model without manually adding each resource and to keep your models up to date as your environment grows. This article explains the different types of discoveries and how to create and configure them.
 
 ## Create a discovery rule

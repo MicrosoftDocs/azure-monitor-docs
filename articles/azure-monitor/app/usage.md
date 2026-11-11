@@ -48,7 +48,7 @@ To collect browser telemetry about the usage of your application, use the [Appli
 To verify if browser telemetry is being collected, run your project in debug mode for a few minutes, then look for results in the **Overview** pane in Application Insights.
 
 > [!TIP]
-> To optimize your experience, consider integrating Application Insights into both your application server code using the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and your web pages using the [JavaScript SDK](javascript-sdk.md).
+> To optimize your experience, consider integrating Application Insights into both your application server code using the [Microsoft OpenTelemetry Distro](opentelemetry-enable.md) for .NET, Node.js, and Python, or the Azure Monitor OpenTelemetry Distro for Java, and your web pages using the [JavaScript SDK](javascript-sdk.md).
 >
 > This dual implementation collects telemetry from both the client and server components of your application, enabling additional monitoring capabilities. For more information, see [Application Insights Experiences](app-insights-overview.md#application-insights-experiences).
 
@@ -79,7 +79,7 @@ Events can be logged from the client side of the application using either the [C
 appInsights.trackEvent({name: "incrementCount"});
 ```
 
-You can also log server-side custom events by using the Azure Monitor OpenTelemetry Distro. For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#send-custom-events).
+You can also log server-side custom events by using the Microsoft OpenTelemetry Distro for .NET, Node.js, and Python, or the Azure Monitor OpenTelemetry Distro for Java. For more information, see [Add and modify OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#send-custom-events).
 
 > [!TIP]
 > When you design each feature of your app, consider how you're going to measure its success with your users. Decide what business events you need to record, and code the tracking calls for those events into your application from the start.

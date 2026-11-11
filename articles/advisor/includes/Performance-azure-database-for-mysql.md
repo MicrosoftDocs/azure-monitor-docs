@@ -12,23 +12,6 @@ ms.custom: Performance Azure Database for MySQL
   
 ## Azure Database for MySQL  
   
-<!--fba7355d-0f26-4015-9b14-17bdc584081a_begin-->
-
-#### Boost your workload performance by 30% with the new Ev5 compute hardware  
-  
-With the new Ev5 compute hardware, you can boost workload performance by 30% with higher concurrency and better throughput. Navigate to the Compute+Storage blade on the Azure portal and switch to Ev5 compute at no extra cost. Ev5 compute provides best performance among other VM series in terms of QPS and latency.  
-  
-**Potential benefits**: With the new Ev5 compute hardware, you can boost workload performance by 30% with higher concurrency and better throughput.  
-
-**Impact:** Medium
-  
-For more information, see [Boost Azure MySQL Business Critical flexible server performance by 30% with the Ev5 compute series!](https://techcommunity.microsoft.com/t5/azure-database-for-mysql-blog/boost-azure-mysql-business-critical-flexible-server-performance/ba-p/3603698)  
-
-ResourceType: microsoft.dbformysql/flexibleservers  
-Recommendation ID: fba7355d-0f26-4015-9b14-17bdc584081a  
-
-
-<!--fba7355d-0f26-4015-9b14-17bdc584081a_end-->
 
 <!--2aa0da9d-b0f0-4924-92e0-1518441f40ac_begin-->
 
@@ -45,9 +28,7 @@ For more information, see [Accelerated Logs Feature in Azure Database for MySQL 
 ResourceType: microsoft.dbformysql/flexibleservers  
 Recommendation ID: 2aa0da9d-b0f0-4924-92e0-1518441f40ac  
 
-
 <!--2aa0da9d-b0f0-4924-92e0-1518441f40ac_end-->
-
 
 <!--d397f019-f52e-47e9-ba3f-106399c829a8_begin-->
 
@@ -64,8 +45,6 @@ For more information, see [Zone-Redundant High-Availability (HA) - Azure Databas
 ResourceType: microsoft.dbformysql/flexibleservers  
 Recommendation ID: d397f019-f52e-47e9-ba3f-106399c829a8  
 
-
 <!--d397f019-f52e-47e9-ba3f-106399c829a8_end-->
-
 
 <!--articleBody-->

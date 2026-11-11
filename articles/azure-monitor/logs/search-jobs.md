@@ -5,7 +5,7 @@ ms.topic: how-to
 ms.reviewer: adi.biran
 ms.date: 08/11/2026
 ai-usage: ai-assisted
-ms.custom: references_regions
+ms.custom: references_regions, cbo-v1.6
 
 # Customer intent: As a data scientist or workspace administrator, I want an efficient way to search through large volumes of data in a table, including data in long-term retention.
 ---
@@ -57,6 +57,8 @@ Queries on the results table appear in [log query auditing](query-audit.md) but 
 
 Run a search job to fetch records from large datasets into a new search results table in your workspace.
 
+The following code examples limit the results to 1,500 records. Specify the search window with UTC timestamps, such as `2026-01-01T00:00:00.000Z`. For example, the query `Heartbeat | where ComputerIP has "198.51.100.101"` searches for records from a specific computer IP address.
+
 > [!TIP]
 > You incur charges for running a search job. Write and optimize your query in interactive query mode before running the search job. Use the cost estimation preview to understand the potential costs.
 
@@ -96,17 +98,17 @@ To run a search job, in the Azure portal:
 
 # [Azure CLI](#tab/cli)
 
-The following Azure CLI example uses the [az monitor log-analytics workspace table search-job create](/cli/azure/monitor/log-analytics/workspace/table/search-job#az-monitor-log-analytics-workspace-table-search-job-create) command. It creates a Log Analytics workspace search results table by running a search job. The name of the results table, which you set by using the `--name` parameter, must end with `_SRCH`.
+The following Azure CLI example uses the [`az monitor log-analytics workspace table search-job create`](/cli/azure/monitor/log-analytics/workspace/table/search-job#az-monitor-log-analytics-workspace-table-search-job-create) command. It creates a Log Analytics workspace search results table by running a search job. The name of the results table, which you set by using the `--name` parameter, must end with `_SRCH`.
 
 ```bash
 # Set variables
 resourceGroupName="<ResourceGroupName>"
 workspaceName="<WorkspaceName>"
 tableName="<TableName>_SRCH"
-searchQuery='Heartbeat | where ComputerIP has "198.51.100.101"'
+searchQuery="<SearchQuery>"
+startSearchTime="<StartSearchTime>"
+endSearchTime="<EndSearchTime>"
 limit="1500"
-startSearchTime="2026-01-01T00:00:00.000Z"
-endSearchTime="2026-01-08T00:00:00.000Z"
 
 # Create the Log Analytics workspace search results table
 az monitor log-analytics workspace table search-job create \
@@ -124,17 +126,17 @@ az monitor log-analytics workspace table search-job create \
 
 # [Azure PowerShell](#tab/powershell)
 
-The following Azure PowerShell example uses the [New-AzOperationalInsightsSearchTable](/powershell/module/az.operationalinsights/new-azoperationalinsightssearchtable) cmdlet. It creates a Log Analytics workspace search results table by running a search job. The name of the results table, which you set by using the `-TableName` parameter, must end with `_SRCH`.
+The following Azure PowerShell example uses the [`New-AzOperationalInsightsSearchTable`](/powershell/module/az.operationalinsights/new-azoperationalinsightssearchtable) cmdlet. It creates a Log Analytics workspace search results table by running a search job. The name of the results table, which you set by using the `-TableName` parameter, must end with `_SRCH`.
 
 ```powershell
 # Set variables
 $resourceGroupName = "<ResourceGroupName>"
 $workspaceName = "<WorkspaceName>"
 $tableName = "<TableName>_SRCH"
-$searchQuery = 'Heartbeat | where ComputerIP has "198.51.100.101"'
+$searchQuery = "<SearchQuery>"
+$startSearchTime = "<StartSearchTime>"
+$endSearchTime = "<EndSearchTime>"
 $limit = 1500
-$startSearchTime = "2026-01-01T00:00:00.000Z"
-$endSearchTime = "2026-01-08T00:00:00.000Z"
 
 # Define parameters for New-AzOperationalInsightsSearchTable
 $newAzOperationalInsightsSearchTableParams = @{
@@ -155,7 +157,7 @@ New-AzOperationalInsightsSearchTable @newAzOperationalInsightsSearchTableParams
 
 # [REST](#tab/rest)
 
-The following REST example uses the [Tables - Create Or Update](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation. It creates a Log Analytics workspace search results table by running a search job. The name of the results table must end with `_SRCH`.
+The following REST example uses the [`Tables - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation. It creates a Log Analytics workspace search results table by running a search job. The name of the results table must end with `_SRCH`.
 
 Include the following values in the body of the request:
 
@@ -168,20 +170,20 @@ Include the following values in the body of the request:
 
 **Sample request**
 
-This example creates a search results table by running a search job that searches the *Heartbeat* table for records with a specific computer IP.
+This example creates a search results table for the specified query and time range.
 
 ```REST
-PUT https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}/tables/{TableName}_SRCH?api-version={apiVersion}
-Authorization: Bearer {AccessToken}
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}_SRCH?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
   "properties": {
     "searchResults": {
-      "query": "Heartbeat | where ComputerIP has \"198.51.100.101\"",
+      "query": "<SearchQuery>",
       "limit": 1500,
-      "startSearchTime": "2026-01-01T00:00:00.000Z",
-      "endSearchTime": "2026-01-08T00:00:00.000Z"
+      "startSearchTime": "<StartSearchTime>",
+      "endSearchTime": "<EndSearchTime>"
     }
   }
 }
@@ -189,13 +191,99 @@ Content-Type: application/json
 
 **Response**
 
-Status code: 202 Accepted.
+Status code: 202 Accepted. The request is accepted, but the search job might still be running. [Check the table status](#get-search-job-status-and-details) to monitor progress.
+
+# [Bicep](#tab/bicep)
+
+> [!NOTE]
+> Template deployments are create-or-update operations, not partial PATCH updates. Use a new `_SRCH` table name for each search job.
+
+The following Bicep example uses the [`Microsoft.OperationalInsights/workspaces/tables`](/azure/templates/microsoft.operationalinsights/workspaces/tables?pivots=deployment-language-bicep) resource type. Deploy it to the resource group that contains the workspace.
+
+```bicep
+param workspaceName string = '<WorkspaceName>'
+param tableName string = '<TableName>_SRCH'
+param searchQuery string = '<SearchQuery>'
+param startSearchTime string = '<StartSearchTime>'
+param endSearchTime string = '<EndSearchTime>'
+
+resource searchTable 'Microsoft.OperationalInsights/workspaces/tables@<ApiVersion>' = {
+  name: '${workspaceName}/${tableName}'
+  properties: {
+    searchResults: {
+      query: searchQuery
+      limit: 1500
+      startSearchTime: startSearchTime
+      endSearchTime: endSearchTime
+    }
+  }
+}
+```
+
+# [ARM template](#tab/arm)
+
+> [!NOTE]
+> Template deployments are create-or-update operations, not partial PATCH updates. Use a new `_SRCH` table name for each search job.
+
+The following ARM template example uses the [`Microsoft.OperationalInsights/workspaces/tables`](/azure/templates/microsoft.operationalinsights/workspaces/tables?pivots=deployment-language-arm-template) resource type. Deploy it to the resource group that contains the workspace.
+
+<br>
+<details>
+<summary>Create a search results table</summary>
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaceName": {
+      "type": "string",
+      "defaultValue": "<WorkspaceName>"
+    },
+    "tableName": {
+      "type": "string",
+      "defaultValue": "<TableName>_SRCH"
+    },
+    "searchQuery": {
+      "type": "string",
+      "defaultValue": "<SearchQuery>"
+    },
+    "startSearchTime": {
+      "type": "string",
+      "defaultValue": "<StartSearchTime>"
+    },
+    "endSearchTime": {
+      "type": "string",
+      "defaultValue": "<EndSearchTime>"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/tables",
+      "apiVersion": "<ApiVersion>",
+      "name": "[format('{0}/{1}', parameters('workspaceName'), parameters('tableName'))]",
+      "properties": {
+        "searchResults": {
+          "query": "[parameters('searchQuery')]",
+          "limit": 1500,
+          "startSearchTime": "[parameters('startSearchTime')]",
+          "endSearchTime": "[parameters('endSearchTime')]"
+        }
+      }
+    }
+  ]
+}
+```
+
+</details>
 
 ---
 
 ## Get search job status and details
 
-# [Portal](#tab/portal)
+Check the search results table to track the search job's progress.
+
+# [Portal](#tab/portal-2)
 
 1. From the **Log Analytics workspace** menu, select **Logs**.
 
@@ -205,9 +293,9 @@ Status code: 202 Accepted.
 
     :::image type="content" source="media/search-job/search-job-status-results.png" alt-text="Screenshot shows the status of the search table results." lightbox="media/search-job/search-job-status-results.png":::
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/cli-2)
 
-The following Azure CLI example uses the [az monitor log-analytics workspace table show](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-show) command. It retrieves the status and details of a search job table.
+The following Azure CLI example uses the [`az monitor log-analytics workspace table show`](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-show) command. It retrieves the status and details of a search job table.
 
 ```bash
 # Set variables
@@ -225,9 +313,9 @@ az monitor log-analytics workspace table show \
 
 [!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
-# [Azure PowerShell](#tab/powershell)
+# [Azure PowerShell](#tab/powershell-2)
 
-The following Azure PowerShell example uses the [Get-AzOperationalInsightsTable](/powershell/module/az.operationalinsights/get-azoperationalinsightstable) cmdlet. It retrieves the status and details of a search job table.
+The following Azure PowerShell example uses the [`Get-AzOperationalInsightsTable`](/powershell/module/az.operationalinsights/get-azoperationalinsightstable) cmdlet. It retrieves the status and details of a search job table.
 
 ```powershell
 # Set variables
@@ -250,9 +338,9 @@ When you don't provide `-TableName`, the cmdlet lists all tables associated with
 
 [!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
 
-# [REST](#tab/rest)
+# [REST](#tab/rest-2)
 
-The following REST example uses the [Tables - Get](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation. It retrieves the status and details of a search job table.
+The following REST example uses the [`Tables - Get`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-tables) REST API operation. It retrieves the status and details of a search job table.
 
 **Search job table status**
 
@@ -270,14 +358,13 @@ The `provisioningState` property indicates the current state of the search job. 
 This example retrieves the table status for the search job in the previous example.
 
 ```REST
-GET https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}/tables/{TableName}_SRCH?api-version={apiVersion}
-Authorization: Bearer {AccessToken}
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}_SRCH?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 ```
 
 **Response**
 
-<details>
-<summary>Search job table status response</summary>
+The following example response shows a completed search for the Heartbeat query. It is abbreviated to focus on search job properties.
 
 ```json
 {
@@ -295,14 +382,14 @@ Authorization: Bearer {AccessToken}
       "standardColumns": [],
       "solutions": [
         "LogManagement"
-      ],
-      "searchResults": {
-        "query": "Heartbeat | where ComputerIP has \"198.51.100.101\"",
-        "limit": 1500,
-        "startSearchTime": "Thu, 01 Jan 2026 00:00:00 GMT",
-        "endSearchTime": "Thu, 08 Jan 2026 00:00:00 GMT",
-        "sourceTable": "Heartbeat"
-      }
+      ]
+    },
+    "searchResults": {
+      "query": "Heartbeat | where ComputerIP has \"198.51.100.101\"",
+      "limit": 1500,
+      "startSearchTime": "2026-01-01T00:00:00.000Z",
+      "endSearchTime": "2026-01-08T00:00:00.000Z",
+      "sourceTable": "Heartbeat"
     },
     "provisioningState": "Succeeded"
   },
@@ -310,8 +397,6 @@ Authorization: Bearer {AccessToken}
   "name": "HeartbeatByIp_SRCH"
 }
 ```
-
-</details>
 
 ---
 

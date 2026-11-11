@@ -11,9 +11,9 @@ ms.reviewer: prashabora
 
 # Run and manage an experiment (classic)
 
-Manage Azure Chaos Studio Experiments (classic) with this guide. For current-model tests, follow the [Chaos Studio Workspaces quickstart to run a Scenario](quickstart-create-workspace.md#run-the-scenario) and review [Scenario reports](chaos-studio-scenario-reports.md) rather than experiment history.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+Manage Azure Chaos Studio Experiments (classic) with this guide. For current-model tests, follow the [Chaos Studio Workspaces quickstart to run a Scenario](quickstart-create-workspace.md#run-the-scenario) and review [Scenario reports](chaos-studio-scenario-reports.md) rather than experiment history.
 
 You can use a chaos experiment to verify that your application is resilient to failures by causing those failures in a controlled environment. This article provides an overview of how to use Azure Chaos Studio with a chaos experiment that you've previously created.
 

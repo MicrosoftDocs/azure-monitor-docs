@@ -3,7 +3,7 @@ title: Scenarios and outage templates for Chaos Studio Workspaces
 description: Explore Azure Chaos Studio Scenarios for zone down, DNS outages, and database failovers. Review Workspaces templates, Actions, and resource requirements.
 author: nikhilkaul-msft
 ms.topic: reference
-ms.date: 09/05/2026
+ms.date: 09/29/2026
 ai-usage: ai-assisted
 ---
 
@@ -64,6 +64,19 @@ Shuts down all discovered Azure Virtual Machine Scale Sets instances in the targ
 | Actions | Virtual Machine Scale Set Shutdown (zone filter), Azure Cache for Redis force failover (reboot primary node), optional Azure Automation runbooks |
 | Target resources | Virtual Machine Scale Sets, Azure Cache for Redis |
 | Outage category | Zone / Datacenter |
+
+#### Key Vault Public Endpoint Outage
+
+Blocks outbound access to Azure Key Vault public data-plane endpoints by applying an NSG rule that denies outbound traffic to the `AzureKeyVault` service tag. Tests whether your application tolerates losing access to secrets, keys, and certificates, including cached secret use, retry behavior, and startup failures. Chaos Studio removes the NSG rule when the run ends. You set the duration, which defaults to 15 minutes.
+
+> [!NOTE]
+> This Scenario affects only traffic that passes through the selected NSGs to Key Vault public endpoints. Key Vault private endpoints, Azure Resource Manager control-plane operations on Key Vault, and traffic that doesn't traverse a selected NSG aren't affected.
+
+| Property | Value |
+|---|---|
+| Actions | NSG ApplyNSGRule (block Azure Key Vault service tag) |
+| Target resources | Network Security Group |
+| Outage category | Networking / Dependency |
 
 ### Database Scenarios
 
@@ -174,41 +187,62 @@ Simulates a correlated outage of upstream dependencies across identity, messagin
 
 ### Compute and resource-pressure Scenarios
 
-These Scenarios simulate resource exhaustion on virtual machines.
+These Scenarios simulate virtual machine disruption, such as hibernation and routine platform maintenance, and resource exhaustion on virtual machines.
+
+#### VM Hibernate
+
+Hibernates standalone virtual machines to test how your application handles sudden loss of compute capacity. Chaos Studio automatically resumes the VMs when the Scenario completes or is canceled. You set the duration, which defaults to 15 minutes.
+
+Target VMs must support hibernation. For hibernation requirements, see [Hibernation for Azure virtual machines](/azure/virtual-machines/hibernate-resume).
+
+| Property | Value |
+|---|---|
+| Actions | VM Hibernate |
+| Target resources | Virtual Machines (standalone only) |
+| Outage category | Compute |
+
+#### VM Maintenance Reboot
+
+Restarts target virtual machines and, after the restart succeeds, redeploys them to a different host through Azure Resource Manager. Use this baseline Scenario to validate that your application survives routine platform maintenance events, such as host patching, hardware servicing, and planned migrations. This Scenario has no parameters.
+
+| Property | Value |
+|---|---|
+| Actions | VM Restart, VM Redeploy (runs after VM Restart succeeds) |
+| Target resources | Virtual Machines |
+| Outage category | Compute / Maintenance |
 
 #### CPU Pressure
 
-Applies sustained CPU stress inside target virtual machines to validate application behavior under CPU contention. You set the pressure level (percentage) and duration.
+Applies sustained CPU stress inside target virtual machines or scale set instances to validate application behavior under CPU contention. You set the pressure level (percentage) and duration.
 
 > [!NOTE]
-> CPU Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Chaos Studio installs the agent extension automatically during the run and removes it afterward. For target VM and operating system requirements, see [Agent-based Scenario requirements](#agent-based-scenario-requirements).
+> CPU Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Chaos Studio installs the agent extension automatically during the run and leaves it installed afterward. For target VM and operating system requirements, see [Agent-based Scenario requirements](#agent-based-scenario-requirements).
 
 | Property | Value |
 |---|---|
 | Actions | CPU Pressure (agent-based) |
-| Target resources | Virtual Machines (standalone only) |
+| Target resources | Virtual Machines, Virtual Machine Scale Sets |
 | Outage category | Resource pressure |
 
 #### Physical Memory Pressure
 
-Consumes physical memory inside target virtual machines to validate application behavior under memory contention. You set the pressure level (percentage) and duration.
+Consumes physical memory inside target virtual machines or scale set instances to validate application behavior under memory contention. You set the pressure level (percentage) and duration.
 
 > [!NOTE]
-> Physical Memory Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Chaos Studio installs the agent extension automatically during the run and removes it afterward. For target VM and operating system requirements, see [Agent-based Scenario requirements](#agent-based-scenario-requirements).
+> Physical Memory Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Chaos Studio installs the agent extension automatically during the run and leaves it installed afterward. For target VM and operating system requirements, see [Agent-based Scenario requirements](#agent-based-scenario-requirements).
 
 | Property | Value |
 |---|---|
 | Actions | Physical Memory Pressure (agent-based) |
-| Target resources | Virtual Machines (standalone only) |
+| Target resources | Virtual Machines, Virtual Machine Scale Sets |
 | Outage category | Resource pressure |
 
 ## Agent-based Scenario requirements
 
-Most Scenarios use service-direct actions that operate on resources through Azure management APIs. Agent-based Scenarios, such as CPU Pressure and Physical Memory Pressure, instead run the fault inside the target virtual machine through the Chaos Studio agent. Chaos Studio installs the agent extension automatically when the run starts and removes it when the run ends, so you don't install or manage the agent yourself.
+Most Scenarios use service-direct actions that operate on resources through Azure management APIs. Agent-based Scenarios, such as CPU Pressure and Physical Memory Pressure, instead run the fault inside the target virtual machine through the Chaos Studio agent. Chaos Studio installs the agent extension automatically when the run starts and leaves it installed after the run ends, so you don't install or manage the agent yourself.
 
-Each target virtual machine must meet the following requirements:
+Each target virtual machine or virtual machine scale set must meet the following requirements:
 
-- It's a standalone virtual machine. Virtual machine scale sets aren't supported yet.
 - It has a managed identity.
 - It runs a supported operating system.
 - It can reach the Chaos Studio service over public outbound connectivity. VMs restricted to private networking aren't supported.
@@ -256,7 +290,7 @@ When the supported templates don't match what you need, customize your own Scena
 
 A Scenario is a `Microsoft.Chaos/workspaces/scenarios` resource. Each Scenario has:
 
-- **Actions**: One or more Actions that define the Scenario's orchestration. Each Action references an action type by its URN (for example, `urn:csci:microsoft:compute:shutdown/1.0.0`), runs for an ISO 8601 **duration** (such as `PT30M` for 30 minutes), and takes action-specific **parameters**.
+- **Actions**: One or more Actions that define the Scenario's orchestration. Each Action references an action type by its `actionId`, either the catalog form (for example, `microsoft-compute-Restart/1.0`) or its canonical URN (for example, `urn:csci:microsoft:compute:shutdown/1.0.0`), runs for an ISO 8601 **duration** (such as `PT30M` for 30 minutes), and takes action-specific **parameters**.
 - **Parameters**: Scenario-level parameters that callers supply at run time, such as which availability zone to target. Each parameter has a name, a type (`string`, `number`, `boolean`, `array`, or `object`), an optional default, and a `required` flag. Reference a parameter inside an Action with the macro syntax `%%{parameters.<name>}%%`.
 - **Dependencies**: Use an Action's `runAfter` property to control sequencing. You specify the Actions to wait for, the lifecycle state that triggers the next Action (`Start`, `Running`, `Success`, `Failure`, `Skipped`, or `AnyTerminal`), and how multiple dependencies are evaluated (`All`, `Any`, or `AtLeastOne`). You can also set `waitBefore` to delay an Action and `timeout` to cap its execution time.
 
@@ -314,7 +348,56 @@ resource customScenario 'Microsoft.Chaos/workspaces/scenarios@2026-05-01-preview
 }
 ```
 
-Action IDs are URNs of the form `urn:csci:microsoft:{service}:{action}/{version}`. For the full resource schema, including every Action and parameter property, see the [Microsoft.Chaos/workspaces/scenarios template reference](/azure/templates/microsoft.chaos/workspaces/scenarios). Use the [supported Scenario templates](#supported-scenario-templates) and the Scenario designer to identify Workspaces Actions. The separate catalog for Experiments (classic) doesn't establish Action availability in Workspaces; see the [resource model comparison](chaos-studio-workspaces-vs-experiments.md).
+Canonical Action URNs have the form `urn:csci:microsoft:{service}:{action}/{version}`. For the full resource schema, including every Action and parameter property, see the [Microsoft.Chaos/workspaces/scenarios template reference](/azure/templates/microsoft.chaos/workspaces/scenarios). Use the [supported Scenario templates](#supported-scenario-templates), the [Actions available for custom Scenarios](#actions-available-for-custom-scenarios), and the Scenario designer to identify Workspaces Actions. The separate catalog for Experiments (classic) doesn't establish Action availability in Workspaces; see the [resource model comparison](chaos-studio-workspaces-vs-experiments.md). When you create or update a Scenario, the Workspace validates each `actionId` and rejects Actions it doesn't recognize.
+
+### Actions available for custom Scenarios
+
+You can use any Action in the Workspaces Action catalog in a custom Scenario, not only the Actions that the [supported Scenario templates](#supported-scenario-templates) use. For every supported resource type, its Actions, the `actionId` values, parameters, and recommended roles, see [Supported resources and Actions for Chaos Studio Workspaces](chaos-studio-workspaces-supported-resources.md).
+
+Each Action applies to the discovered resources of its target resource type in the Workspace scope. The Workspace identity needs permissions for each Action. For more information, see [Permissions and identity in Chaos Studio Workspaces](chaos-studio-workspace-permissions.md#role-assignments-the-workspace-identity-needs).
+
+### Example: Azure Cosmos DB offline region in Bicep
+
+The following Bicep defines a custom Scenario that takes an Azure Cosmos DB region offline for a parameterized duration. The `RegionName` value is the Azure region display name, such as `East US`.
+
+```bicep
+resource cosmosRegionOutage 'Microsoft.Chaos/workspaces/scenarios@2026-08-01-preview' = {
+  parent: workspace
+  name: 'cosmos-db-region-offline'
+  properties: {
+    description: 'Take an Azure Cosmos DB region offline.'
+    parameters: [
+      {
+        name: 'regionName'
+        type: 'string'
+        required: true
+        description: 'Display name of the Azure region to take offline, such as East US.'
+      }
+      {
+        name: 'duration'
+        type: 'string'
+        required: false
+        default: 'PT10M'
+        description: 'How long the region stays offline.'
+      }
+    ]
+    actions: [
+      {
+        name: 'cosmosOfflineRegion'
+        actionId: 'microsoft-documentdb-offlineregion/1.0'
+        description: 'Take the Cosmos DB region offline.'
+        duration: '%%{parameters.duration}%%'
+        parameters: [
+          {
+            key: 'RegionName'
+            value: '%%{parameters.regionName}%%'
+          }
+        ]
+      }
+    ]
+  }
+}
+```
 
 ## What determines which Scenarios appear in your Workspace
 
@@ -333,5 +416,6 @@ When you configure a Scenario, you can exclude specific resources from the run. 
 ## Next steps
 
 - [Quickstart: Create a Workspace and run your first Scenario](quickstart-create-workspace.md)
+- [Supported resources and Actions for Chaos Studio Workspaces](chaos-studio-workspaces-supported-resources.md)
 - [Scenario reports in Azure Chaos Studio](chaos-studio-scenario-reports.md)
 - [Choose between Chaos Studio Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md)

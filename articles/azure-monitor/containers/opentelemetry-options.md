@@ -3,7 +3,7 @@ title: OpenTelemetry with Azure Monitor
 description: Centralized guide to OpenTelemetry in Azure Monitor - native OTLP ingestion, the Microsoft OpenTelemetry Distro, and end-to-end observability experiences.
 ms.topic: concept-article
 ms.reviewer: kaprince
-ms.date: 05/29/2026
+ms.date: 10/28/2026
 ai-usage: ai-assisted
 
 #customer intent: As a developer or cloud architect, I want to understand how Azure Monitor supports OpenTelemetry so that I can choose between native OTLP ingestion and the Microsoft OpenTelemetry Distro for my applications.
@@ -28,10 +28,6 @@ Azure Monitor supports direct ingestion of OpenTelemetry signals using OTLP, the
 - Works across AKS, Azure virtual machines, Virtual Machine Scale Sets, Azure Arc-enabled servers, and other environments through the open-source OpenTelemetry Collector.
 - Routes all telemetry into Azure Monitor so you can use Application Insights, Log Analytics, Azure Monitor dashboards with Grafana (built into the Azure portal), and Azure Managed Grafana.
 
-> [!IMPORTANT]
-> * Only the AMA and AKS paths are in **preview**. The other paths (Microsoft OpenTelemetry Distro and OpenTelemetry Collector) are generally available. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
-> * For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-
 ## Microsoft OpenTelemetry Distro
 
 The Microsoft OpenTelemetry Distro includes open-source OpenTelemetry instrumentations and other components for .NET, Node.js, and Python. It adds Microsoft-specific capabilities, integrations, and defaults for Microsoft's observability solutions. By using this Distro, you can adopt OpenTelemetry instrumentation while benefiting from a solution that's validated and officially supported by Microsoft. Microsoft contributes enhancements back to the upstream open-source SDKs when possible, but official support applies only to the Microsoft-published distros (.NET, Node.js, and Python).
@@ -40,7 +36,7 @@ The Microsoft OpenTelemetry Distro includes open-source OpenTelemetry instrument
 - Includes additional Azure Monitor capabilities such as application profiling, live streaming of metrics, trace sampling, and advanced [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) on ingested data.
 - Simplifies setup and configuration for teams that want a Microsoft-supported and optimized path.
 
-This path is especially relevant for teams that want to adopt modern OpenTelemetry instrumentation without giving up Azure Monitor capabilities. If you're using the Azure Monitor OpenTelemetry Distro, the APIs are nearly identical, so you can swap the packages for the new *Microsoft* OpenTelemetry Distro.
+This path is especially relevant for teams that want to adopt modern OpenTelemetry instrumentation without giving up Azure Monitor capabilities. For .NET, Node.js, and Python applications that use older Azure Monitor packages, update the package references and initialization code to use the [Microsoft OpenTelemetry Distro](../app/opentelemetry-enable.md). For Java, continue to use the Azure Monitor OpenTelemetry Distro.
 
 ## Choose the right option
 

@@ -1,13 +1,13 @@
 ### YamlMime:Landing
 
 title: Chaos Studio Workspaces documentation
-summary: Test Azure application resilience with Chaos Studio Workspaces, the current resource model in public preview. Discover resources, run outage Scenarios, and review Scenario reports. Use Experiments (classic) when you need a generally available resource model or a classic-only fault or capability.
+summary: Test your Azure application's resilience with Chaos Studio Workspaces, the current resource model in public preview. Discover resources, run outage Scenarios, and review Scenario reports. Experiments (classic) is being replaced by Workspaces. Use Experiments (classic) when you need a generally available resource model or a fault or capability that Workspaces doesn't support yet.
 
 metadata:
   title: Chaos Studio Workspaces documentation
   description: Use Azure Chaos Studio Workspaces for resilience testing. Follow the quickstart, explore Scenarios, review reports, and compare Experiments (classic).
   ms.topic: landing-page
-  ms.date: 09/05/2026
+  ms.date: 09/28/2026
 
 landingContent:
   - title: Chaos Studio Workspaces (preview)
@@ -22,6 +22,10 @@ landingContent:
         links:
           - text: Chaos Studio Workspaces vs. Experiments (classic)
             url: chaos-studio-workspaces-vs-experiments.md
+      - linkListType: how-to-guide
+        links:
+          - text: Move from Experiments (classic) to Chaos Studio Workspaces
+            url: chaos-studio-migrate-from-classic.md
       - linkListType: quickstart
         links:
           - text: "Quickstart: Create a Workspace and run a Scenario"
@@ -65,6 +69,8 @@ landingContent:
         links:
           - text: Manage Workspaces and Scenarios with the Azure CLI
             url: chaos-studio-manage-cli.md
+          - text: Filter resources for Chaos Studio Workspace Scenarios
+            url: chaos-studio-workspaces-resource-targeting.md
           - text: Create least-privilege roles for Chaos Studio Workspaces
             url: chaos-studio-workspaces-least-privilege-roles.md
           - text: Troubleshoot Chaos Studio Workspaces and Scenarios
@@ -85,14 +91,16 @@ landingContent:
 
   - title: Experiments (classic)
     linkLists:
+      - linkListType: how-to-guide
+        links:
+          - text: Move from Experiments (classic) to Chaos Studio Workspaces
+            url: chaos-studio-migrate-from-classic.md
       - linkListType: quickstart
         links:
           - text: "Quickstart: Create and run an experiment (classic)"
             url: chaos-studio-quickstart-azure-portal.md
       - linkListType: concept
         links:
-          - text: Use Experiments (classic) when general availability is required
-            url: chaos-studio-workspaces-vs-experiments.md
           - text: Experiments (classic) overview
             url: chaos-studio-chaos-experiments.md
           - text: Faults and actions for Experiments (classic)
@@ -106,8 +114,6 @@ landingContent:
         links:
           - text: Fault and action library for Experiments (classic)
             url: chaos-studio-fault-library.md
-          - text: Supported resources for Experiments (classic)
-            url: chaos-studio-fault-providers.md
           - text: Service limits for Experiments (classic)
             url: chaos-studio-service-limits.md
           - text: Limitations and known issues for Experiments (classic)

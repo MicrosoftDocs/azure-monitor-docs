@@ -12,9 +12,9 @@ ms.custom: devx-track-bicep
 
 # Bicep experiment sample for Experiments (classic)
 
-This Bicep sample creates Azure Chaos Studio Experiments (classic), targets, and capabilities. For the current model, see [how to structure a custom Workspaces Scenario](chaos-studio-scenarios.md#how-a-custom-scenario-is-structured), including a Bicep example. The resource models are separate.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This Bicep sample creates Azure Chaos Studio Experiments (classic), targets, and capabilities. For the current model, see [how to structure a custom Workspaces Scenario](chaos-studio-scenarios.md#how-a-custom-scenario-is-structured), including a Bicep example. The resource models are separate.
 
 [!INCLUDE [About Bicep](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-bicep-introduction.md)]
 
@@ -28,7 +28,7 @@ This article includes a sample Bicep file to get started in Azure Chaos Studio, 
 
 ## Build a Virtual Machine Shutdown experiment
 
-In this sample, we create a chaos experiment with a single target resource and a single virtual machine shutdown fault. You can modify the experiment by referencing the [fault library](chaos-studio-fault-library.md) and [recommended role assignments](chaos-studio-fault-providers.md).
+In this sample, you create a chaos experiment with a single target resource and a single virtual machine shutdown fault. You can modify the experiment by referencing the [fault library](chaos-studio-fault-library.md) and [recommended role assignments](chaos-studio-workspaces-supported-resources.md).
 
 ### Prerequisites
 

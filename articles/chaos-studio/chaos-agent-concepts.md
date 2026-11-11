@@ -12,9 +12,9 @@ ms.custom:
 
 # Agent concepts for Experiments (classic)
 
-These Azure Chaos Studio agent concepts apply to Experiments (classic). For current-model tests, use [Chaos Studio Workspaces agent-based Scenario requirements](chaos-studio-scenarios.md#agent-based-scenario-requirements), not the classic agent installation and private-networking configuration.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+These Azure Chaos Studio agent concepts apply to Experiments (classic). For current-model tests, use [Chaos Studio Workspaces agent-based Scenario requirements](chaos-studio-scenarios.md#agent-based-scenario-requirements), not the classic agent installation and private-networking configuration.
 
 This document provides a deep dive into the **Chaos Agent** within Azure Chaos Studio. It explains how the agent works, its network access requirements, dependencies, and security considerations, ensuring that you have the information needed to properly deploy and maintain the agent in your environment.
 

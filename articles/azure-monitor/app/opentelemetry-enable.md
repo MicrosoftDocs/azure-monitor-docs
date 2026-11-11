@@ -1,37 +1,28 @@
 ---
 title: Enable OpenTelemetry in Application Insights
-description: Learn how to enable OpenTelemetry (OTel) data collection in Application Insights for .NET, Java, Node.js, and Python applications using the Azure Monitor OpenTelemetry Distro.
+description: Use Microsoft OpenTelemetry Distro for .NET, Node.js, and Python, or Azure Monitor OpenTelemetry for Java, to send data to Application Insights.
 ms.topic: how-to
-ms.date: 06/19/2026
+ms.date: 09/11/2026
+ai-usage: ai-assisted
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, typescript, python
-ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
+ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python, cbo-v1.6
 
 #customer intent: As a developer or site reliability engineer, I want to enable OpenTelemetry (OTel) data collection in Application Insights so that I can automatically collect telemetry data from my .NET, Java, Node.js, or Python applications without extensive configuration.
 
 ---
 
-# Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python, and Java applications
+# Enable OpenTelemetry for .NET, Node.js, Python, and Java applications
 
-This article describes how to enable and configure OpenTelemetry-based data collection within [Azure Monitor Application Insights](app-insights-overview.md) using the Azure Monitor OpenTelemetry Distro. [OpenTelemetry](https://opentelemetry.io/) is the open-source CNCF observability standard; the Azure Monitor OpenTelemetry Distro is Microsoft's distribution of that standard, optimized for Azure Monitor. The distro:
+[!INCLUDE [Choose an OpenTelemetry onboarding path](includes/opentelemetry-onboarding-paths.md)]
 
-* Provides an [OpenTelemetry distribution](https://opentelemetry.io/docs/concepts/distributions/#what-is-a-distribution), which includes support for features specific to Azure Monitor.
-* Enables [automatic telemetry](opentelemetry-collect-detect.md) collection by including OpenTelemetry instrumentation libraries for collecting traces, metrics, logs, and exceptions.
-* Allows collecting [custom](opentelemetry-add-modify.md#collect-custom-telemetry) telemetry.
-* Supports [Live Metrics](live-stream.md) to monitor and collect telemetry from live, in-production web applications.
+[!INCLUDE [Get started with Microsoft OpenTelemetry Distro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/microsoft-opentelemetry-distro/microsoft-opentelemetry-getting-started-intro.md)]
 
-For more information about the advantages of using the Azure Monitor OpenTelemetry Distro, see [Why should I use the Azure Monitor OpenTelemetry Distro](application-insights-faq.yml#why-should-i-use-the-azure-monitor-opentelemetry-distro).
-
-To learn more about collecting data using OpenTelemetry, check out the [Application Insights overview](app-insights-overview.md) or the [OpenTelemetry FAQ](./application-insights-faq.yml#opentelemetry-support-and-feedback).
-
-Follow the steps in this article to install the distro, connect it to your Application Insights resource, and verify that telemetry data flows to Azure Monitor.
-
-> [!TIP]
-> For a conceptual overview of OpenTelemetry options in Azure Monitor — native OTLP ingestion, the Microsoft OpenTelemetry distro, and end-to-end observability experiences — see [OpenTelemetry with Azure Monitor](../containers/opentelemetry-options.md).
+For other collection and export options, see [OpenTelemetry with Azure Monitor](../containers/opentelemetry-options.md).
 
 ## OpenTelemetry release status
 
-OpenTelemetry offerings are available for .NET, Node.js, Python, and Java applications. For a feature-by-feature release status, see the [FAQ](application-insights-faq.yml#what-s-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
+For package details and release notes, see [Next steps](#next-steps).
 
 > [!NOTE]
 > [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
@@ -40,18 +31,11 @@ OpenTelemetry offerings are available for .NET, Node.js, Python, and Java applic
 
 Follow the steps in this section to instrument your application with OpenTelemetry. Select a tab for language-specific instructions.
 
-The following table summarizes the packages and install commands for each supported language:
+[!INCLUDE [Microsoft OpenTelemetry packages](~/reusable-content/ce-skilling/azure/includes/azure-monitor/microsoft-opentelemetry-distro/microsoft-opentelemetry-packages.md)]
 
-| Language | Package | Install command |
-|----------|---------|------------------|
-| ASP.NET Core | `Azure.Monitor.OpenTelemetry.AspNetCore` | `dotnet add package Azure.Monitor.OpenTelemetry.AspNetCore` |
-| .NET | `Azure.Monitor.OpenTelemetry.Exporter` | `dotnet add package Azure.Monitor.OpenTelemetry.Exporter` |
-| Java | `applicationinsights-agent-3.7.9.jar` | [Download from GitHub](https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.7.9/applicationinsights-agent-3.7.9.jar) |
-| Node.js | `@azure/monitor-opentelemetry` | `npm install @azure/monitor-opentelemetry` |
-| Python | `azure-monitor-opentelemetry` | `pip install azure-monitor-opentelemetry` |
+For Java, use the agent or native-image integration described in the Java and Java native tabs.
 
-> [!NOTE]
-> .NET covers multiple scenarios, including classic ASP.NET, console apps, Windows Forms (WinForms), and more.
+Use the ASP.NET Core tab for web applications and the .NET tab for console and other non-hosted applications.
 
 ### Prerequisites
 
@@ -59,76 +43,77 @@ The following table summarizes the packages and install commands for each suppor
 > * Azure subscription: [Create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 > * Application Insights resource: [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource)
 
-<!---NOTE TO CONTRIBUTORS: PLEASE DO NOT SEPARATE OUT JAVASCRIPT AND TYPESCRIPT INTO DIFFERENT TABS.--->
+<!---NOTE TO CONTRIBUTORS: PLEASE DO NOT SEPARATE OUT JavaScript AND TypeScript INTO DIFFERENT TABS.--->
 
-#### [ASP.NET Core](#tab/aspnetcore)
+# [ASP.NET Core](#tab/aspnetcore)
 
 > [!div class="checklist"]
 > * [ASP.NET Core Application](/aspnet/core/introduction-to-aspnet-core) using an officially supported version of [.NET](https://dotnet.microsoft.com/download/dotnet)
 
 > [!Tip]
-> If you're migrating from older Application Insights SDKs, see our [migration documentation](./migrate-to-opentelemetry.md).
+> If you're upgrading from Application Insights .NET SDK 2.x, follow the [SDK 3.x migration guidance](migrate-to-opentelemetry.md?tabs=dotnet). That upgrade doesn't require switching to the Microsoft OpenTelemetry Distro.
 
-#### [.NET](#tab/net)
+# [.NET](#tab/net)
 
 > [!div class="checklist"]
-> * Application using a [supported version](https://dotnet.microsoft.com/platform/support/policy) of [.NET](https://dotnet.microsoft.com/download/dotnet) or [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework) 4.6.2 and later.
+> * Application using a [supported version of .NET](https://dotnet.microsoft.com/platform/support/policy). For other target frameworks, check the [Microsoft.OpenTelemetry package compatibility](https://www.nuget.org/packages/Microsoft.OpenTelemetry#supportedframeworks-body-tab).
 
 > [!Tip]
-> If you're migrating from older Application Insights SDKs, see our [migration documentation](./migrate-to-opentelemetry.md).
+> If you're upgrading from Application Insights .NET SDK 2.x, follow the [SDK 3.x migration guidance](migrate-to-opentelemetry.md?tabs=dotnet). That upgrade doesn't require switching to the Microsoft OpenTelemetry Distro.
 
-#### [Java](#tab/java)
+# [Java](#tab/java)
 
 > [!div class="checklist"]
 > * A Java application using Java 8+
 
-#### [Java native](#tab/java-native)
+# [Java native](#tab/java-native)
 
 > [!div class="checklist"]
 > * A Java application using GraalVM 17+
 
-#### [Node.js](#tab/nodejs)
+# [Node.js](#tab/nodejs)
 
 > [!div class="checklist"]
-> * Application using an officially [supported version](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry-exporter#currently-supported-environments) of Node.js runtime:<br>• [OpenTelemetry supported runtimes](https://github.com/open-telemetry/opentelemetry-js#supported-runtimes)<br>• [Azure Monitor OpenTelemetry Exporter supported runtimes](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry-exporter#currently-supported-environments)
-
-> [!NOTE]
-> If you don't rely on any properties listed in the [not-supported table](https://github.com/microsoft/ApplicationInsights-node.js/blob/beta/README.md#ApplicationInsights-Shim-Unsupported-Properties), the *ApplicationInsights shim* is your easiest path forward once out of beta.
->
-> If you rely on any of those properties, proceed with the Azure Monitor OpenTelemetry Distro.
+> * Application using Node.js 22 or later. For startup requirements, see the [Microsoft OpenTelemetry Distro for Node.js documentation](https://github.com/microsoft/opentelemetry-distro-javascript#getting-started).
 
 > [!Tip]
-> If you're migrating from older Application Insights SDKs, see our [migration documentation](./migrate-to-opentelemetry.md).
+> If you're migrating from an older Application Insights SDK, review the [Node.js migration guidance](migrate-to-opentelemetry.md?tabs=nodejs) to choose between an SDK upgrade and a clean distro installation.
 
-#### [Python](#tab/python)
+# [Python](#tab/python)
 
 > [!div class="checklist"]
 > * Python Application using Python 3.10+
 
 > [!Tip]
-> If you're migrating from OpenCensus, see our [migration documentation](./migrate-to-opentelemetry.md).
+> If you're migrating from OpenCensus, review the [migration guidance](./migrate-to-opentelemetry.md), and then use the Microsoft OpenTelemetry Distro package and initialization code in this article.
 
 ---
 
 ### Install the client library
 
-#### [ASP.NET Core](#tab/aspnetcore)
+# [ASP.NET Core](#tab/aspnetcore)
 
-Install the latest `Azure.Monitor.OpenTelemetry.AspNetCore` [NuGet package](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.AspNetCore):
+> [!NOTE]
+> These installation steps are for applications that use the Microsoft OpenTelemetry Distro. They aren't an upgrade requirement for existing Azure Monitor OpenTelemetry Distro users. Don't initialize both distros in the same application. Standalone Azure Monitor exporter packages keep their existing names.
 
-```dotnetcli
-dotnet add package Azure.Monitor.OpenTelemetry.AspNetCore
-```
-
-#### [.NET](#tab/net)
-
-Install the latest `Azure.Monitor.OpenTelemetry.Exporter` [NuGet package](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter):
+Install the [Microsoft.OpenTelemetry NuGet package](https://www.nuget.org/packages/Microsoft.OpenTelemetry):
 
 ```dotnetcli
-dotnet add package Azure.Monitor.OpenTelemetry.Exporter
+dotnet add package Microsoft.OpenTelemetry
 ```
 
-#### [Java](#tab/java)
+# [.NET](#tab/net)
+
+> [!NOTE]
+> These installation steps are for applications that use the Microsoft OpenTelemetry Distro. They aren't an upgrade requirement for existing Azure Monitor OpenTelemetry Distro users. Don't initialize both distros in the same application. Standalone Azure Monitor exporter packages keep their existing names.
+
+Install the [Microsoft.OpenTelemetry NuGet package](https://www.nuget.org/packages/Microsoft.OpenTelemetry):
+
+```dotnetcli
+dotnet add package Microsoft.OpenTelemetry
+```
+
+# [Java](#tab/java)
 
 Download the latest [applicationinsights-agent-3.7.9.jar](https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.7.9/applicationinsights-agent-3.7.9.jar) file.
 
@@ -141,7 +126,7 @@ Download the latest [applicationinsights-agent-3.7.9.jar](https://github.com/mic
 > [3.2.0](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.2.0), and
 > [3.1.0](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.1.0)
 
-#### [Java native](#tab/java-native)
+# [Java native](#tab/java-native)
 
 For *Spring Boot* native applications:
 
@@ -155,93 +140,81 @@ For *Quarkus* native applications:
 
 [!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
-#### [Node.js](#tab/nodejs)
+# [Node.js](#tab/nodejs)
 
-Install the latest [`@azure/monitor-opentelemetry`](https://www.npmjs.com/package/@azure/monitor-opentelemetry) package:
+> [!NOTE]
+> These installation steps are for applications that use the Microsoft OpenTelemetry Distro. They aren't an upgrade requirement for existing Azure Monitor OpenTelemetry Distro users. Don't initialize both distros in the same application. Standalone Azure Monitor exporter packages keep their existing names.
 
-```sh
-npm install @azure/monitor-opentelemetry
+Install the [@microsoft/opentelemetry npm package](https://www.npmjs.com/package/@microsoft/opentelemetry):
+
+```bash
+npm install @microsoft/opentelemetry
 ```
 
-The following packages are also used for some specific scenarios described later in this article:
+# [Python](#tab/python)
 
-* [@opentelemetry/api](https://www.npmjs.com/package/@opentelemetry/api)
-* [@opentelemetry/sdk-metrics](https://www.npmjs.com/package/@opentelemetry/sdk-metrics)
-* [@opentelemetry/resources](https://www.npmjs.com/package/@opentelemetry/resources)
-* [@opentelemetry/semantic-conventions](https://www.npmjs.com/package/@opentelemetry/semantic-conventions)
-* [@opentelemetry/sdk-trace-base](https://www.npmjs.com/package/@opentelemetry/sdk-trace-base)
+> [!NOTE]
+> These installation steps are for applications that use the Microsoft OpenTelemetry Distro. They aren't an upgrade requirement for existing Azure Monitor OpenTelemetry Distro users. Don't initialize both distros in the same application. Standalone Azure Monitor exporter packages keep their existing names.
 
-```sh
-npm install @opentelemetry/api
-npm install @opentelemetry/sdk-metrics
-npm install @opentelemetry/resources
-npm install @opentelemetry/semantic-conventions
-npm install @opentelemetry/sdk-trace-base
-```
+Install the [microsoft-opentelemetry PyPI package](https://pypi.org/project/microsoft-opentelemetry/):
 
-#### [Python](#tab/python)
-
-Install the latest [azure-monitor-opentelemetry](https://pypi.org/project/azure-monitor-opentelemetry/) PyPI package:
-
-```sh
-pip install azure-monitor-opentelemetry
+```bash
+pip install microsoft-opentelemetry
 ```
 
 ---
 
 ### Modify your application
 
-#### [ASP.NET Core](#tab/aspnetcore)
+Initialize the Microsoft OpenTelemetry Distro before your application starts handling work. The following examples select Azure Monitor as the destination and read the connection string from the `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable. Set that variable before starting your application, as described later in this article.
 
-Import the `Azure.Monitor.OpenTelemetry.AspNetCore` namespace, add OpenTelemetry, and configure it to use Azure Monitor in your `program.cs` class:
+You can also set the connection string in code. For .NET, use `options.AzureMonitor.ConnectionString` inside `UseMicrosoftOpenTelemetry()`. For all supported languages, see [Connection string configuration](opentelemetry-configuration.md#connection-string).
+
+# [ASP.NET Core](#tab/aspnetcore)
+
+In `Program.cs`, configure the application builder to use the Microsoft OpenTelemetry Distro:
 
 ```csharp
-// Import the Azure.Monitor.OpenTelemetry.AspNetCore namespace.
-using Azure.Monitor.OpenTelemetry.AspNetCore;
+// Import the distro API.
+using Microsoft.OpenTelemetry;
 
+// Create the application builder.
 var builder = WebApplication.CreateBuilder(args);
 
-// Add OpenTelemetry and configure it to use Azure Monitor.
-builder.Services.AddOpenTelemetry().UseAzureMonitor();
+// Initialize the Microsoft OpenTelemetry Distro with Azure Monitor export.
+builder.UseMicrosoftOpenTelemetry(options =>
+{
+    options.Exporters = ExportTarget.AzureMonitor;
+});
 
+// Build and run the application.
 var app = builder.Build();
-
 app.Run();
 ```
 
-#### [.NET](#tab/net)
+# [.NET](#tab/net)
 
-Add the Azure Monitor Exporter to each OpenTelemetry signal in the `program.cs` class:
+For console and other non-hosted applications, create an OpenTelemetry SDK instance before your application code:
 
 ```csharp
-// Create a new tracer provider builder and add an Azure Monitor trace exporter to the tracer provider builder.
-// It is important to keep the TracerProvider instance active throughout the process lifetime.
-// See https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/trace#tracerprovider-management
-var tracerProvider = Sdk.CreateTracerProviderBuilder()
-    .AddAzureMonitorTraceExporter();
+// Import the distro and SDK APIs.
+using Microsoft.OpenTelemetry;
+using OpenTelemetry;
 
-// Add an Azure Monitor metric exporter to the metrics provider builder.
-// It is important to keep the MetricsProvider instance active throughout the process lifetime.
-// See https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/metrics#meterprovider-management
-var metricsProvider = Sdk.CreateMeterProviderBuilder()
-    .AddAzureMonitorMetricExporter();
-
-// Create a new logger factory.
-// It is important to keep the LoggerFactory instance active throughout the process lifetime.
-// See https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/logs#logger-management
-var loggerFactory = LoggerFactory.Create(builder =>
+// Create the Microsoft OpenTelemetry Distro and keep the SDK alive until shutdown.
+using var sdk = OpenTelemetrySdk.Create(telemetry =>
 {
-    builder.AddOpenTelemetry(logging =>
+    // Select Azure Monitor as the export destination.
+    telemetry.UseMicrosoftOpenTelemetry(options =>
     {
-        logging.AddAzureMonitorLogExporter();
+        options.Exporters = ExportTarget.AzureMonitor;
     });
 });
 ```
 
-> [!NOTE]
-> For more information, see the [getting-started tutorial for OpenTelemetry .NET](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main#getting-started)
+Keep `sdk` alive for the lifetime of your application. Dispose it only during shutdown to flush pending telemetry and stop the providers.
 
-#### [Java](#tab/java)
+# [Java](#tab/java)
 
 Autoinstrumentation is enabled through configuration changes. *No code changes are required.*
 
@@ -257,42 +230,81 @@ Point the Java virtual machine (JVM) to the jar file by adding `-javaagent:"path
 > [!TIP]
 > If you develop a Spring Boot application, you can optionally replace the JVM argument by a programmatic configuration. For more information, see [Using Azure Monitor Application Insights with Spring Boot](./java-spring-boot.md).
 
-#### [Java native](#tab/java-native)
+# [Java native](#tab/java-native)
 
 Autoinstrumentation is enabled through configuration changes. *No code changes are required.*
 
-#### [Node.js](#tab/nodejs)
+# [Node.js](#tab/nodejs)
 
-```typescript
-// Import the `useAzureMonitor()` function from the `@azure/monitor-opentelemetry` package.
-const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
+For CommonJS applications, initialize the Microsoft OpenTelemetry Distro before loading the libraries you want to instrument:
 
-// Call the `useAzureMonitor()` function to configure OpenTelemetry to use Azure Monitor.
-useAzureMonitor();
+```javascript
+// Import the distro API.
+const { useMicrosoftOpenTelemetry } = require("@microsoft/opentelemetry");
+
+// Initialize the distro before loading application libraries.
+useMicrosoftOpenTelemetry({
+    azureMonitor: {
+        azureMonitorExporterOptions: {
+            // Read the Azure Monitor connection string from the environment.
+            connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING,
+        },
+    },
+});
 ```
 
-#### [Python](#tab/python)
+For ECMAScript modules (ESM), create a `telemetry.mjs` bootstrap file:
+
+```javascript
+// Register instrumentation hooks before loading application modules.
+import "@microsoft/opentelemetry/loader";
+import { useMicrosoftOpenTelemetry } from "@microsoft/opentelemetry";
+
+// Initialize the Microsoft OpenTelemetry Distro with Azure Monitor export.
+useMicrosoftOpenTelemetry({
+    azureMonitor: {
+        azureMonitorExporterOptions: {
+            // Read the connection string from the environment.
+            connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING,
+        },
+    },
+});
+```
+
+Preload the bootstrap file so instrumentation hooks register before your application modules load:
+
+```bash
+node --import ./telemetry.mjs "<AppEntryPoint>"
+```
+
+# [Python](#tab/python)
+
+Use the Microsoft OpenTelemetry Distro to enable Azure Monitor export and select a named application logger. By using a named logger, you avoid collecting the SDK's own log messages:
 
 ```python
+# Import the logging and distro APIs.
 import logging
-# Import the `configure_azure_monitor()` function from the
-# `azure.monitor.opentelemetry` package.
-from azure.monitor.opentelemetry import configure_azure_monitor
+from microsoft.opentelemetry import use_microsoft_opentelemetry
 
-# Configure OpenTelemetry to use Azure Monitor with the
-# APPLICATIONINSIGHTS_CONNECTION_STRING environment variable.
-configure_azure_monitor(
-    logger_name="<your_logger_namespace>",  # Set the namespace for the logger in which you would like to collect telemetry for if you are collecting logging telemetry. This is imperative so you do not collect logging telemetry from the SDK itself.
+# Select an application logger to avoid collecting the SDK's own logs.
+loggerName = "<LoggerName>"
+
+# Enable Azure Monitor export using the connection string environment variable.
+use_microsoft_opentelemetry(
+    enable_azure_monitor=True,
+    logger_name=loggerName,
 )
-logger = logging.getLogger("<your_logger_namespace>")  # Logging telemetry will be collected from logging calls made with this logger and all of it's children loggers.
 
+# Collect application log records at INFO level and above.
+logger = logging.getLogger(loggerName)
+logger.setLevel(logging.INFO)
 ```
 
 ---
 
 ### Copy the connection string from your Application Insights resource
 
-The connection string is unique and specifies where the Azure Monitor OpenTelemetry Distro sends the telemetry it collects.
+The connection string identifies the Application Insights resource that receives your telemetry.
 
 > [!TIP]
 > If you don't already have an Application Insights resource, create one following [this guide](create-workspace-resource.md#create-an-application-insights-resource). We recommend you create a new resource rather than [using an existing one](create-workspace-resource.md#when-to-use-a-single-application-insights-resource).
@@ -300,8 +312,8 @@ The connection string is unique and specifies where the Azure Monitor OpenTeleme
 To copy the connection string:
 
 1. Go to the **Overview** pane of your Application Insights resource.
-2. Find your **connection string**.
-3. Hover over the connection string and select the **Copy to clipboard** icon.
+1. Find your **connection string**.
+1. Hover over the connection string and select the **Copy to clipboard** icon.
 
 :::image type="content" source="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png" alt-text="Screenshot that shows Application Insights overview and connection string." lightbox="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png":::
 
@@ -310,10 +322,10 @@ To copy the connection string:
 To paste your connection string, use one of the following methods:
 
 | Method | Supported languages | Recommended for |
-|--------|--------------------|-----------------|
+| ------ | ------------------- | --------------- |
 | Environment variable | All | Production |
 | Configuration file (`applicationinsights.json`) | Java only | Production (Java) |
-| Code | ASP.NET Core, Node.js, Python | Local dev/test only |
+| Code | .NET, Node.js, Python | Local dev/test only |
 
 > [!IMPORTANT]
 > We recommend setting the connection string through code only in local development and test environments.
@@ -322,10 +334,16 @@ To paste your connection string, use one of the following methods:
 
 * **Set the Application Insights connection string as an environment variable (recommended for production)**
 
-    Replace `<Your connection string>` in the following command with your connection string.
+    In Bash:
 
-    ```console
-    APPLICATIONINSIGHTS_CONNECTION_STRING=<Your connection string>
+    ```bash
+    export APPLICATIONINSIGHTS_CONNECTION_STRING="<ConnectionString>"
+    ```
+
+    In PowerShell:
+
+    ```powershell
+    $env:APPLICATIONINSIGHTS_CONNECTION_STRING = "<ConnectionString>"
     ```
 
 * **Set the Application Insights connection string in a configuration file** - *Java only*
@@ -333,26 +351,18 @@ To paste your connection string, use one of the following methods:
     Create a configuration file named `applicationinsights.json`, and place it in the same directory as `applicationinsights-agent-3.7.9.jar` with the following content:
 
     ```json
-    {
-      "connectionString": "<Your connection string>"
-    }
+        {
+            "connectionString": "<ConnectionString>"
+        }
     ```
 
-    Replace `<Your connection string>` in the preceding JSON with *your* unique connection string.
+* **Set the Application Insights connection string in code** - *.NET, Node.js, and Python only*
 
-* **Set the Application Insights connection string in code** - *ASP.NET Core, Node.js, and Python only*
-
-    See [connection string configuration](opentelemetry-configuration.md#connection-string) for an example of setting connection string via code.
-
-> [!NOTE]
-> If you set the connection string in multiple places, it's resolved in the following precedence order (highest to lowest):
-> 1. Code
-> 2. Environment variable
-> 3. Configuration file
+    For Microsoft OpenTelemetry Distro options, see the [.NET](https://github.com/microsoft/opentelemetry-distro-dotnet/blob/main/docs/azure-monitor-getting-started.md), [Node.js](https://github.com/microsoft/opentelemetry-distro-javascript#azure-monitor), or [Python](https://github.com/microsoft/opentelemetry-distro-python#quick-start) documentation.
 
 ### Confirm data is flowing
 
-After you configure the Azure Monitor OpenTelemetry Distro and set the connection string, run your application and open your Application Insights resource in the Azure portal to verify that traces, metrics, and logs appear. It might take a few minutes for data to show up.
+After you configure the distro and set the connection string, run your application and generate traffic or log messages. Open your Application Insights resource in the Azure portal to verify that telemetry appears. It might take a few minutes for data to show up.
 
 :::image type="content" source="media/opentelemetry/server-requests.png" alt-text="Screenshot of the Application Insights Overview tab with server requests and server response time highlighted.":::
 

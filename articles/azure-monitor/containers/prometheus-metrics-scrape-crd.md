@@ -2,8 +2,9 @@
 title: Create custom Prometheus scrape job from your Kubernetes cluster using CRDs
 description: Describes how to create and apply pod and service monitors to scrape Prometheus metrics in Azure Monitor to Kubernetes cluster.
 ms.topic: how-to
-ms.date: 08/25/2025
+ms.date: 11/09/2026
 ms.reviewer: aul
+ai-usage: ai-assisted
 ---
 # Create custom Prometheus scrape job from your Kubernetes cluster using CRDs
 
@@ -273,10 +274,42 @@ metricRelabelings:
 Metric renaming isn't supported.
 
 
-## Basic Authentication and Bearer Tokens
+## Basic authentication and bearer tokens
 
 > [!NOTE]
 > On Kubernetes 1.37 and later, Azure Managed Prometheus (or ama-metrics) uses namespace-scoped access to Kubernetes secrets for PodMonitor and ServiceMonitor configurations. You must configure namespace-scoped secrets access if you're running Kubernetes 1.37 or later and your ServiceMonitor or PodMonitor uses basicAuth and any configuration that references Kubernetes secrets.
+
+### Protect bearer tokens from local file access
+
+The `bearerTokenFile` field in a PodMonitor or ServiceMonitor references a file in the collector's container, not the application container. A user who can create or modify these resources could reference a local credential file, such as the collector's service account token, and cause the collector to send its contents to an untrusted scrape endpoint. This exposure can compromise credentials and allow unauthorized access with the token's permissions.
+
+To mitigate this risk, enable `deny_fs_access_through_sms` in `ama-metrics-settings-configmap`. The setting defaults to `false`; you must explicitly enable it.
+
+Edit your existing [ama-metrics-settings-configmap.yaml](https://aka.ms/azureprometheus-addon-settings-configmap) file and add the following setting under `prometheus-collector-settings`. Preserve the other settings in that section and the rest of the ConfigMap.
+
+```yaml
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: ama-metrics-settings-configmap
+  namespace: kube-system
+data:
+  prometheus-collector-settings: |-
+    deny_fs_access_through_sms = true
+```
+
+Apply the updated file:
+
+```azurecli
+kubectl apply -f .\ama-metrics-settings-configmap.yaml
+```
+
+For details about applying settings, see [Customize collection using ConfigMap](prometheus-metrics-scrape-configuration.md#configmap).
+
+When enabled, the target allocator drops PodMonitor and ServiceMonitor scrape configurations that reference local files, including bearer token files and TLS CA, certificate, or key files. This protection prevents those configurations from making the collector read and transmit local bearer tokens. It doesn't disable bearer-token authentication that doesn't require local file access.
+
+> [!IMPORTANT]
+> Review your PodMonitor and ServiceMonitor configurations before enabling this setting. Targets whose configurations use `bearerTokenFile` or local TLS files stop being scraped. This setting applies to scrape configurations generated from PodMonitor and ServiceMonitor resources, not built-in scrape jobs or custom scrape jobs defined directly in a ConfigMap. It doesn't replace the namespace-scoped secrets access configuration described in the following sections.
 
 ### Scoped Secrets Access for Pod/ServiceMonitors
 

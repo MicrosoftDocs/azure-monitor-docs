@@ -28,7 +28,7 @@ A DCE isn't always required for data collection since the data source might use 
 
 View the agents associated with a DCE from its **Resources** page. Select **Add** to add more agents. To remove them, select one or more agents and select **Disassociate**.
 
-:::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-resources.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-resources.png" alt-text="Screenshot resources for a DCE in the Azure portal.":::
+:::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-resources.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-resources.png" alt-text="Screenshot of resources for a DCE in the Azure portal.":::
 
 A DCE is required for certain [AMA data sources](../vm/data-collection.md). In this case, the DCE is specified in the DCR using that data source. If an agent is associated with multiple DCRs, a DCE is only required in those DCRs with data sources that require it. Other data sources can continue to use the public endpoint.
 
@@ -42,7 +42,7 @@ The following data sources currently require a DCE:
 
 View the DCE for a DCR from the **Overview** page of the DCR. Select **Configure DCE** to modify it.
 
-:::image type="content" source="media/data-collection-endpoint-overview/data-collection-rule-dce.png" lightbox="media/data-collection-endpoint-overview/data-collection-rule-dce.png" alt-text="Screenshot showing DCR overview page with DCE.":::
+:::image type="content" source="media/data-collection-endpoint-overview/data-collection-rule-dce.png" lightbox="media/data-collection-endpoint-overview/data-collection-rule-dce.png" alt-text="Screenshot of the DCR overview page with DCE.":::
 
 ### Logs ingestion API
 
@@ -68,16 +68,16 @@ This table describes the components of a data collection endpoint, related regio
 * **Scenario: All monitored resources are in the same region as the destination Log Analytics workspace**
 
     Set up one data collection endpoint to send configuration files and receive collected data.
-
-    :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-one-region.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-one-region.png" alt-text="A diagram that shows resources in a single region sending data and receiving configuration files using a data collection endpoint.":::
+    
+    :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-one-region.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-one-region.png" alt-text="Screenshot of a diagram that shows resources in a single region sending data and receiving configuration files using a data collection endpoint.":::
 
 * **Scenario: Monitored resources send data to a Log Analytics workspace in a different region**
 
     * Create a data collection endpoint in each region where you have Azure Monitor Agent deployed to send configuration files to the agents in that region.
-
-    * Send data from all resources to a data collection endpoint in the region where your destination Log Analytics workspaces are located.
-
-    :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-regionality.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-regionality.png" alt-text="A diagram that shows resources in two regions sending data and receiving configuration files using data collection endpoints.":::
+    
+    * Send data from all resources to a data collection endpoint in the region where your destination Log Analytics workspaces are located. 
+    
+    :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-regionality.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-regionality.png" alt-text="Screenshot of a diagram that shows resources in two regions sending data and receiving configuration files using data collection endpoints.":::
 
 * **Scenario: Monitored resources in one or more regions send data to multiple Log Analytics workspaces in different regions**
 
@@ -86,8 +86,8 @@ This table describes the components of a data collection endpoint, related regio
     * Create a data collection endpoint in each region with a destination Log Analytics workspace to send data to the Log Analytics workspaces in that region.
 
     * Send data from each monitored resource to the data collection endpoint in the region where the destination Log Analytics workspace is located.
-
-    :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-regionality-multiple-workspaces.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-regionality-multiple-workspaces.png" alt-text="A diagram that shows monitored resources in multiple regions sending data to multiple Log Analytics workspaces in different regions using data collection endpoints.":::
+    
+    :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-regionality-multiple-workspaces.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-regionality-multiple-workspaces.png" alt-text="Screenshot of a diagram that shows monitored resources in multiple regions sending data to multiple Log Analytics workspaces in different regions using data collection endpoints.":::
 
 ## Prerequisites
 
@@ -127,35 +127,11 @@ az monitor data-collection endpoint create \
 
 Verify that the endpoint was created and review its provisioning state by using [az monitor data-collection endpoint show](/cli/azure/monitor/data-collection/endpoint#az-monitor-data-collection-endpoint-show):
 
-```azurecli
-az monitor data-collection endpoint show \
-    --name "myCollectionEndpoint" \
-    --resource-group "myResourceGroup" \
-    --query "provisioningState"
-```
-
-Create associations between endpoints and your target machines or resources by using [az monitor data-collection rule association create](/cli/azure/monitor/data-collection/rule/association#az-monitor-data-collection-rule-association-create).
-
 # [REST API](#tab/restapi)
 
-Create a data collection endpoint by using the [DCE REST API](/rest/api/monitor/data-collection-endpoints/create). Send a `PUT` request to the resource URI, replacing the placeholder values with your own. The following example uses API version `2024-03-11`.
+Create DCEs by using the [DCE REST APIs](/rest/api/monitor/data-collection-endpoints).
 
-```http
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionEndpoints/{dataCollectionEndpointName}?api-version=2024-03-11
-
-{
-  "location": "eastus",
-  "properties": {
-    "networkAcls": {
-      "publicNetworkAccess": "Disabled"
-    }
-  }
-}
-```
-
-A successful response returns the created endpoint, including its `configurationAccess`, `logsIngestion`, and `metricsIngestion` endpoints and a `provisioningState` of `Succeeded`, which verifies that the DCE was created. For more operations, see the [DCE REST APIs](/rest/api/monitor/data-collection-endpoints).
-
-Create associations between endpoints and your target machines or resources by using the [DCRA REST APIs](/rest/api/monitor/datacollectionruleassociations/create#examples).
+Create associations between endpoints to your target machines or resources by using the [DCRA REST APIs](/rest/api/monitor/datacollectionruleassociations/create#examples).
 
 ---
 
@@ -206,3 +182,4 @@ Data collection endpoints only support Log Analytics workspaces and Azure Monito
 ## Next steps
 
 * [Add an endpoint to an Azure Monitor Private Link Scope resource](../fundamentals/private-link-configure.md#connect-resources-to-the-ampls)
+* [Data Collection Endpoint (DCE) Private IP Endpoint compression (preview)](data-collection-endpoint-ip-compression.md).

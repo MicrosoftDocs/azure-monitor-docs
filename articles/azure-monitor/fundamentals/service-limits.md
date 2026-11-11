@@ -49,6 +49,10 @@ This article lists limits in different areas of Azure Monitor.
 
 [!INCLUDE [monitoring-limits-application-insights](../app/includes/application-insights-limits.md)]
 
+## Azure Monitor health models
+
+[!INCLUDE [monitoring-limits-amhm](../app/includes//azure-monitor-health-models-limits.md)]
+
 ## Azure Monitor Private Link Scope (AMPLS)
 
 [!INCLUDE [ampls-limitations](includes/ampls-limitations.md)]

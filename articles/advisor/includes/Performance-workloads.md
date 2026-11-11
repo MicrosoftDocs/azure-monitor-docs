@@ -12,27 +12,10 @@ ms.custom: Performance Workloads
   
 ## Workloads  
   
-<!--c8202443-6550-4fc8-9416-5f81089b77d0_begin-->
-
-#### Update to the newest AMS API Version  
-  
-We identified requests to an AMS API version that isn't recommended. We recommend switching to the newest AMS API version to ensure uninterrupted access to AMS, newest features, and performance improvements.  
-  
-**Potential benefits**: Newest AMS API contains fixes for known issues and other improvements.  
-
-**Impact:** Medium
-  
-For more information, see [What is Azure Monitor for SAP solutions?](https://aka.ms/AMSAdvisor)  
-
-ResourceType: microsoft.workloads/monitors  
-Recommendation ID: c8202443-6550-4fc8-9416-5f81089b77d0  
-
-
-<!--c8202443-6550-4fc8-9416-5f81089b77d0_end-->
 
 <!--eabfd1a1-6092-471b-8cff-22dd044e5535_begin-->
 
-#### Upgrade to the newest Workloads SDK version  
+#### Upgrade to the newest Workloads SDK version for AMS  
   
 Upgrade to the newest Workloads SDK version to get the best results in terms of model quality, performance, and service availability.  
   
@@ -44,7 +27,6 @@ For more information, see [What is Azure Monitor for SAP solutions?](https://aka
 
 ResourceType: microsoft.workloads/monitors  
 Recommendation ID: eabfd1a1-6092-471b-8cff-22dd044e5535  
-
 
 <!--eabfd1a1-6092-471b-8cff-22dd044e5535_end-->
 
@@ -63,7 +45,6 @@ For more information, see [Kernel soft lockup with blk_mq_update in traces](http
 ResourceType: microsoft.workloads/sapvirtualinstances/applicationinstances  
 Recommendation ID: fc547b20-0a11-4d8c-86ce-0d9993a89fbf  
 
-
 <!--fc547b20-0a11-4d8c-86ce-0d9993a89fbf_end-->
 
 <!--7fe03dfd-e9f2-4886-8e4a-f212c738ca4c_begin-->
@@ -80,7 +61,6 @@ For more information, see [Kernel soft lockup with blk_mq_update in traces](http
 
 ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
 Recommendation ID: 7fe03dfd-e9f2-4886-8e4a-f212c738ca4c  
-
 
 <!--7fe03dfd-e9f2-4886-8e4a-f212c738ca4c_end-->
 
@@ -99,7 +79,6 @@ For more information, see [Kernel soft lockup with blk_mq_update in traces](http
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: cc03700f-6530-40ae-adf4-5f654d5076a9  
 
-
 <!--cc03700f-6530-40ae-adf4-5f654d5076a9_end-->
 
 <!--11cbda6c-33fb-47a2-8abc-b708420115f7_begin-->
@@ -116,7 +95,6 @@ In HANA DB with ANF storage type, the maximum read socket buffer, defined by the
 
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 11cbda6c-33fb-47a2-8abc-b708420115f7  
-
 
 <!--11cbda6c-33fb-47a2-8abc-b708420115f7_end-->
 
@@ -135,7 +113,6 @@ In HANA DB with ANF storage type, the maximum write socket buffer, defined by th
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: bf10b7d5-2d5d-459a-8a0d-9c6ae2bc5bed  
 
-
 <!--bf10b7d5-2d5d-459a-8a0d-9c6ae2bc5bed_end-->
 
 <!--a6ad3344-7a93-4d97-98a7-7284048e1653_begin-->
@@ -152,7 +129,6 @@ The parameter net.ipv4.tcp_rmem specifies minimum, default, and maximum receive 
 
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: a6ad3344-7a93-4d97-98a7-7284048e1653  
-
 
 <!--a6ad3344-7a93-4d97-98a7-7284048e1653_end-->
 
@@ -171,14 +147,13 @@ The parameter net.ipv4.tcp_wmem specifies minimum, default, and maximum send buf
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 096a9a97-88fa-4e92-b818-c2b9dbbc38ed  
 
-
 <!--096a9a97-88fa-4e92-b818-c2b9dbbc38ed_end-->
 
 <!--d40a458d-b366-45f2-a315-dfe71d3eb0eb_begin-->
 
 #### For improved file system performance in HANA DB with ANF, set receiver backlog queue size to 300000  
   
-The parameter net.core.netdev_max_backlog specifies the size of the receiver backlog queue, used if a Network interface receives packets faster than the kernel can process. Set the parameter as per SAP note: 3024346. This configuration certifies HANA DB to run with ANF and improves file system performance.  
+The parameter `net.core.netdev_max_backlog` specifies the size of the receiver backlog queue for the network interface when packets arrive faster than the kernel can process them. Set the parameter as described in SAP note 3024346. This configuration certifies HANA DB to run with ANF and improves file system performance.
   
 **Potential benefits**: Improved file system performance  
 
@@ -188,7 +163,6 @@ The parameter net.core.netdev_max_backlog specifies the size of the receiver bac
 
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: d40a458d-b366-45f2-a315-dfe71d3eb0eb  
-
 
 <!--d40a458d-b366-45f2-a315-dfe71d3eb0eb_end-->
 
@@ -207,7 +181,6 @@ The parameter net.ipv4.tcp_slow_start_after_idle disables the need to scale-up i
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 4f21a973-f15e-4e9b-8d10-5d46f0f91367  
 
-
 <!--4f21a973-f15e-4e9b-8d10-5d46f0f91367_end-->
 
 <!--eb6a0b87-7c06-466c-a095-69a9bcf211c0_begin-->
@@ -224,7 +197,6 @@ The parameter net.ipv4.tcp_moderate_rcvbuf enables TCP to perform receive buffer
 
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: eb6a0b87-7c06-466c-a095-69a9bcf211c0  
-
 
 <!--eb6a0b87-7c06-466c-a095-69a9bcf211c0_end-->
 
@@ -243,7 +215,6 @@ Enable the TCP window scaling parameter as per SAP note: 302436. This configurat
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: c93a842a-deca-449d-adc9-840120daa0ca  
 
-
 <!--c93a842a-deca-449d-adc9-840120daa0ca_end-->
 
 <!--5a6bdcee-dd9f-4e99-adb5-f24dad289d42_begin-->
@@ -260,7 +231,6 @@ Enable the tcp_timestamps parameter as per SAP note: 302436. This configuration 
 
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 5a6bdcee-dd9f-4e99-adb5-f24dad289d42  
-
 
 <!--5a6bdcee-dd9f-4e99-adb5-f24dad289d42_end-->
 
@@ -279,7 +249,6 @@ Disable the tcp_timestamps parameter as per SAP note: 302436. This configuration
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 3b8dc04c-73dd-4bf9-9d6f-b8bfec694da3  
 
-
 <!--3b8dc04c-73dd-4bf9-9d6f-b8bfec694da3_end-->
 
 <!--06b7b95e-91ec-4b38-a97c-923caf3497a5_begin-->
@@ -296,7 +265,6 @@ Enable the tcp_sack parameter as per SAP note: 302436. This configuration certif
 
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 06b7b95e-91ec-4b38-a97c-923caf3497a5  
-
 
 <!--06b7b95e-91ec-4b38-a97c-923caf3497a5_end-->
 
@@ -315,7 +283,6 @@ For more information, see [SAP HANA scale-out with standby with Azure NetApp Fil
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 47eb0254-02be-4817-bacb-aaf5eeabcbb9  
 
-
 <!--47eb0254-02be-4817-bacb-aaf5eeabcbb9_end-->
 
 <!--d3bcfaa8-bce5-4869-9b1a-cc11d1dc3a61_begin-->
@@ -333,12 +300,11 @@ For more information, see [SAP HANA scale-out with standby with Azure NetApp Fil
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: d3bcfaa8-bce5-4869-9b1a-cc11d1dc3a61  
 
-
 <!--d3bcfaa8-bce5-4869-9b1a-cc11d1dc3a61_end-->
 
 <!--612ab8fc-8f4e-4605-bc3f-278e4dfa20e7_begin-->
 
-#### For improved file system performance  in HANA DB with ANF, optimize net.ipv4.ip_local_port_range  
+#### For improved file system performance in HANA DB with ANF, optimize net.ipv4.ip_local_port_range  
   
 As HANA uses a considerable number of connections for the internal communication, it makes sense to have as many client ports available as possible for this purpose. Set the OS parameter, net.ipv4.ip_local_port_range parameter as per SAP note 2382421 to ensure optimal internal HANA communication.  
   
@@ -350,7 +316,6 @@ As HANA uses a considerable number of connections for the internal communication
 
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 612ab8fc-8f4e-4605-bc3f-278e4dfa20e7  
-
 
 <!--612ab8fc-8f4e-4605-bc3f-278e4dfa20e7_end-->
 
@@ -369,7 +334,6 @@ For more information, see [SAP HANA scale-out with standby with Azure NetApp Fil
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 08f07906-f2ce-4123-bf48-3b468ed7875c  
 
-
 <!--08f07906-f2ce-4123-bf48-3b468ed7875c_end-->
 
 <!--1bfe7781-ccf8-4fa0-ac85-41f2269e041d_begin-->
@@ -386,7 +350,6 @@ For more information, see [SAP HANA scale-out with standby with Azure NetApp Fil
 
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 1bfe7781-ccf8-4fa0-ac85-41f2269e041d  
-
 
 <!--1bfe7781-ccf8-4fa0-ac85-41f2269e041d_end-->
 
@@ -405,7 +368,6 @@ For more information, see [SAP HANA scale-out with standby with Azure NetApp Fil
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 0e3db9b9-d301-445d-8ddb-650b87204632  
 
-
 <!--0e3db9b9-d301-445d-8ddb-650b87204632_end-->
 
 <!--db1a57ee-014b-4f4f-89e4-1ab1337eeff8_begin-->
@@ -422,7 +384,6 @@ For more information, see [SAP HANA scale-out with standby with Azure NetApp Fil
 
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: db1a57ee-014b-4f4f-89e4-1ab1337eeff8  
-
 
 <!--db1a57ee-014b-4f4f-89e4-1ab1337eeff8_end-->
 
@@ -441,7 +402,6 @@ For more information, see [SAP HANA Azure virtual machine storage configurations
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 6d4c7645-93ca-4ebc-8a8f-0981463f4ab2  
 
-
 <!--6d4c7645-93ca-4ebc-8a8f-0981463f4ab2_end-->
 
 <!--41ed90fb-8953-40d7-a6ff-d7f67ceaf903_begin-->
@@ -458,7 +418,6 @@ For more information, see [SAP HANA Azure virtual machine storage configurations
 
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 41ed90fb-8953-40d7-a6ff-d7f67ceaf903  
-
 
 <!--41ed90fb-8953-40d7-a6ff-d7f67ceaf903_end-->
 
@@ -477,7 +436,6 @@ For more information, see [SAP HANA Azure virtual machine storage configurations
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 2bd5a83a-a59d-4941-960a-495211b19b67  
 
-
 <!--2bd5a83a-a59d-4941-960a-495211b19b67_end-->
 
 <!--6d87a5a3-64ba-4f28-b228-f1da8403e2bb_begin-->
@@ -494,7 +452,6 @@ For more information, see [SAP HANA Azure virtual machine storage configurations
 
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 6d87a5a3-64ba-4f28-b228-f1da8403e2bb  
-
 
 <!--6d87a5a3-64ba-4f28-b228-f1da8403e2bb_end-->
 
@@ -513,7 +470,6 @@ For more information, see [SAP HANA Azure virtual machine storage configurations
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 773fdeac-ef26-486c-aeb0-a1922201dc2a  
 
-
 <!--773fdeac-ef26-486c-aeb0-a1922201dc2a_end-->
 
 <!--5b34b8c0-0427-4737-be51-88e49b14b734_begin-->
@@ -530,7 +486,6 @@ For more information, see [SAP HANA Azure virtual machine storage configurations
 
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 5b34b8c0-0427-4737-be51-88e49b14b734  
-
 
 <!--5b34b8c0-0427-4737-be51-88e49b14b734_end-->
 
@@ -549,7 +504,6 @@ For more information, see [SAP HANA Azure virtual machine storage configurations
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 18544c51-decc-4696-aa4f-f1cdfffc0753  
 
-
 <!--18544c51-decc-4696-aa4f-f1cdfffc0753_end-->
 
 <!--b94f9b67-0969-430d-b6cd-ac1bc4910601_begin-->
@@ -566,7 +520,6 @@ For more information, see [SAP HANA Azure virtual machine storage configurations
 
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: b94f9b67-0969-430d-b6cd-ac1bc4910601  
-
 
 <!--b94f9b67-0969-430d-b6cd-ac1bc4910601_end-->
 
@@ -585,7 +538,210 @@ For more information, see [SAP HANA Azure virtual machine storage configurations
 ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
 Recommendation ID: 3188f9a0-12fc-4cb8-9fdd-7380dd92564b  
 
-
 <!--3188f9a0-12fc-4cb8-9fdd-7380dd92564b_end-->
+
+<!--6913419a-d4b8-434a-a9ef-a45a7bbd8e17_begin-->
+
+#### Enable Non-Volatile Memory Express (NVMe) to improve your Azure managed disk performance.  
+  
+Non-volatile memory express (NVMe) is a protocol that helps you transfer data faster between servers and storage by using non-volatile memory. It can increase input/output operations per second (IOPS) and throughput in megabytes per second (MB/s).  
+  
+**Potential benefits**: Faster data transfers with high throughput.  
+
+**Impact:** High
+  
+For more information, see [NVMe Overview - Azure Virtual Machines](/azure/virtual-machines/nvme-overview)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 6913419a-d4b8-434a-a9ef-a45a7bbd8e17  
+
+<!--6913419a-d4b8-434a-a9ef-a45a7bbd8e17_end-->
+
+<!--c38a6fb5-dc34-4f83-8ead-4dd36bee5822_begin-->
+
+#### Enable advanced networking for your Oracle base database.  
+  
+Enable advanced networking so you can use Azure Virtual Network integration (network security groups, user-defined routes, and Azure Private Link) to strengthen network segmentation and improve performance for your Oracle base database resources.  
+  
+**Potential benefits**: Improve your virtual network security and performance.  
+
+**Impact:** Medium
+  
+For more information, see [Network planning for Oracle AI Database@Azure](/azure/oracle/oracle-db/oracle-database-network-plan)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: c38a6fb5-dc34-4f83-8ead-4dd36bee5822  
+
+<!--c38a6fb5-dc34-4f83-8ead-4dd36bee5822_end-->
+
+<!--6143f164-7b1f-460e-90fe-86cb6cb1181b_begin-->
+
+#### Enable Azure Monitor VM insights to monitor the virtual machines that host your workloads.  
+  
+Use Azure Monitor VM Insights to monitor your virtual machines and virtual machine scale sets for performance, health status, processes, and dependencies.  
+  
+**Potential benefits**: Simplify monitoring so you can track health and performance.  
+
+**Impact:** Low
+  
+For more information, see [Enable VM monitoring in Azure Monitor - Azure Monitor](/azure/azure-monitor/vm/vm-enable-monitoring)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 6143f164-7b1f-460e-90fe-86cb6cb1181b  
+
+<!--6143f164-7b1f-460e-90fe-86cb6cb1181b_end-->
+
+<!--468a3b1e-863e-4e63-af78-fa2ddbd7130d_begin-->
+
+#### Enable diagnostic settings on your Azure Firewall resources.  
+  
+Enable diagnostic settings on your Azure Firewall to capture logs and metrics for monitoring and troubleshooting.  
+  
+**Potential benefits**: Improve your Azure Firewall monitoring and troubleshooting.  
+
+**Impact:** Medium
+  
+For more information, see [Monitor Azure Firewall](/azure/firewall/firewall-diagnostics)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 468a3b1e-863e-4e63-af78-fa2ddbd7130d  
+
+<!--468a3b1e-863e-4e63-af78-fa2ddbd7130d_end-->
+
+<!--1ef37d8d-9594-4112-b6e3-b9839e15c40a_begin-->
+
+#### Enable advanced networking for your Oracle Autonomous Database.  
+  
+Enable advanced networking to use Azure Virtual Network integration (network security groups, user-defined routes, and Azure Private Link) to strengthen isolation and improve performance.  
+  
+**Potential benefits**: Improve your virtual network security and performance.  
+
+**Impact:** Medium
+  
+For more information, see [Network planning for Oracle AI Database@Azure](/azure/oracle/oracle-db/oracle-database-network-plan)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 1ef37d8d-9594-4112-b6e3-b9839e15c40a  
+
+<!--1ef37d8d-9594-4112-b6e3-b9839e15c40a_end-->
+
+<!--36e7f05c-6ed0-43a0-aec7-8879cd22ab55_begin-->
+
+#### Use network peering for the virtual machines in your electronic health record (EHR) workload.  
+  
+If your virtual machines that support the same workload span multiple virtual networks, use virtual network peering to connect them. Keep the peering connection active to provide low-latency, redundant connectivity.  
+  
+**Potential benefits**: You get low-latency, resilient connectivity.  
+
+**Impact:** High
+  
+For more information, see [Azure Virtual Network Peering](/azure/virtual-network/virtual-network-peering-overview)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 36e7f05c-6ed0-43a0-aec7-8879cd22ab55  
+
+<!--36e7f05c-6ed0-43a0-aec7-8879cd22ab55_end-->
+
+<!--92fb3932-98e4-493d-b889-2f287f7d23a4_begin-->
+
+#### Optimize network configuration for improved internal HANA communication in SAP workloads  
+  
+Configure net.ipv4.ip_local_port_range to maximize client ports for HANA internal communication. Use: sysctl -w net.ipv4.ip_local_port_range='9000 65499' for NonANF or '9000 65300' for ANF. Exclude ports used by specific processes via net.ipv4.ip_local_reserved_ports.  
+  
+**Potential benefits**: Improved internal HANA communication  
+
+**Impact:** High
+  
+For more information, see [SAP Note 2382421](https://launchpad.support.sap.com/#/notes/2382421)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 92fb3932-98e4-493d-b889-2f287f7d23a4  
+
+<!--92fb3932-98e4-493d-b889-2f287f7d23a4_end-->
+
+<!--ffb3f675-188c-4365-b591-2e0d438f9741_begin-->
+
+#### Enable accelerated networking on your virtual machine network interfaces to reduce latency.  
+  
+Enable accelerated networking to keep network latency between your virtual machines at 0.7 ms or less.  
+  
+**Potential benefits**: Low network latency and improved performance.  
+
+**Impact:** High
+  
+For more information, see [Azure Accelerated Networking Overview and Benefits](/azure/virtual-network/accelerated-networking-overview?tabs=NetworkManager)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: ffb3f675-188c-4365-b591-2e0d438f9741  
+
+<!--ffb3f675-188c-4365-b591-2e0d438f9741_end-->
+
+<!--41f9c8e2-1354-4d7a-ac53-00cf429064f8_begin-->
+
+#### Host your Oracle workloads in the same or peered Azure virtual network to reduce latency.  
+  
+Host your Oracle database and application resources in the same virtual network. If you use multiple virtual networks, enable virtual network peering to maintain low latency across your virtual networks.  
+  
+**Potential benefits**: Reduce network latency and improve performance.  
+
+**Impact:** High
+  
+For more information, see [Azure Virtual Network Peering](/azure/virtual-network/virtual-network-peering-overview)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 41f9c8e2-1354-4d7a-ac53-00cf429064f8  
+
+<!--41f9c8e2-1354-4d7a-ac53-00cf429064f8_end-->
+
+<!--f26aef83-49c6-4db0-9130-d3cf7fc081bb_begin-->
+
+#### Enable IP forwarding for your network virtual appliances.  
+  
+Enable IP forwarding for network virtual appliances (NVAs) that act as routers, firewalls, or gateways in your virtual network to improve network performance with efficient routing.  
+  
+**Potential benefits**: Supports firewall, routing, and traffic inspection.  
+
+**Impact:** High
+  
+For more information, see [Hybrid connection with two-tier application](/azure/virtual-network/virtual-network-scenario-udr-gw-nva)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: f26aef83-49c6-4db0-9130-d3cf7fc081bb  
+
+<!--f26aef83-49c6-4db0-9130-d3cf7fc081bb_end-->
+
+<!--056e860f-885a-47f9-94cc-f218fe753acf_begin-->
+
+#### Enable advanced networking for your Oracle Exadata Cloud VM Cluster.  
+  
+Enable advanced networking so you can use Azure Virtual Network integration (network security groups, user-defined routes, and Azure Private Link) to strengthen network segmentation and improve performance for your Exadata Cloud VM Cluster resources.  
+  
+**Potential benefits**: Improve your virtual network security and performance.  
+
+**Impact:** Medium
+  
+For more information, see [Network planning for Oracle AI Database@Azure](/azure/oracle/oracle-db/oracle-database-network-plan)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 056e860f-885a-47f9-94cc-f218fe753acf  
+
+<!--056e860f-885a-47f9-94cc-f218fe753acf_end-->
+
+<!--951f0ec5-07bb-4c96-85a8-b40d12175dbc_begin-->
+
+#### Validate the Linux kernel swappiness setting on your SAP DB2 virtual machine  
+  
+Adjust the Linux kernel swappiness parameter on your Azure virtual machine to improve SAP workload performance for your DB2 database.  
+  
+**Potential benefits**: Improve SAP workload performance and supportability.  
+
+**Impact:** Medium
+  
+For more information, see [Kernel parameter requirements (Linux)](https://www.ibm.com/docs/db2/11.1?topic=unix-kernel-parameter-requirements-linux)  
+
+ResourceType: microsoft.workloads/virtualinstances/components  
+Recommendation ID: 951f0ec5-07bb-4c96-85a8-b40d12175dbc  
+
+<!--951f0ec5-07bb-4c96-85a8-b40d12175dbc_end-->
 
 <!--articleBody-->

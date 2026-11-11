@@ -26,7 +26,6 @@ For more information, see [We're retiring classic storage accounts on August 31,
 
 ResourceType: microsoft.classicstorage/storageaccounts  
 Recommendation ID: fd04ff97-d3b3-470a-9544-dfea3a5708db  
-Subcategory: undefined
 
 <!--fd04ff97-d3b3-470a-9544-dfea3a5708db_end-->
 
@@ -39,7 +38,7 @@ The modern version of the Azure Storage Data Movement Library offers important u
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485106)  
 

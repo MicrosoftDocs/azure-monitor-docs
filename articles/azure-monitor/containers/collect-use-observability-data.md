@@ -1,18 +1,14 @@
 ---
-title: Collect and analyze OpenTelemetry data with Azure Monitor (Preview)
+title: Collect and analyze OpenTelemetry data with Azure Monitor
 description: Onboard OpenTelemetry Protocol (OTLP) signals to Azure Monitor for AKS and other environments. Learn the supported onboarding paths and how to use Dashboards with Grafana, Application Insights experiences, and Log Analytics with OpenTelemetry semantic conventions.
 ms.topic: how-to
 ms.reviewer: kaprince
-ms.date: 04/01/2026
+ms.date: 11/09/2026
 ---
 
-# Use OpenTelemetry with Azure Monitor (Preview)
+# Use OpenTelemetry with Azure Monitor
 
 Azure Monitor ingests OpenTelemetry (OTel) **signals** - traces, metrics, and logs - from your applications and platforms. Application Insights orchestrates ingestion into Azure Monitor and provides experiences to explore the data. You can also use the OpenTelemetry Collector to export telemetry to Azure Monitor. After onboarding, use troubleshooting and exploration experiences in Application Insights, work with Prometheus metrics in **Dashboards with Grafana**, and analyze logs and traces in Log Analytics using OpenTelemetry semantic conventions.
-
-> [!IMPORTANT]
-> * This feature is a **preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
-> * For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 > [!TIP]
 > For a conceptual overview of OpenTelemetry options in Azure Monitor — native OTLP ingestion, the Microsoft OpenTelemetry distro, and end-to-end observability experiences — see [OpenTelemetry with Azure Monitor](opentelemetry-options.md).
@@ -35,7 +31,7 @@ Select one of the following paths based on where your workloads run.
 Enable application monitoring for **Azure Kubernetes Service (AKS)** and send OTLP telemetry **to Azure Monitor**. Application Insights orchestrates ingestion and provides investigation experiences.
 
 - **Enable the AKS integration** in the cluster’s **Monitor** settings to add the required Azure Monitor components.
-- **Create or select** an Application Insights resource with **Enable OTLP Support (Preview)** and **Use managed workspaces** set to **Yes**.
+- **Create or select** an Application Insights resource with **OTLP support** set to **On** and **Use managed workspaces** set to **Yes**.
 - **Onboard applications** per namespace or per deployment by using either:
   - **Autoinstrumentation** for **Java** and **Node.js**.
 
@@ -44,21 +40,24 @@ Enable application monitoring for **Azure Kubernetes Service (AKS)** and send OT
 
   - **Autoconfiguration** for apps already instrumented with OpenTelemetry Software Development Kits (SDKs).
 
-For more information, see [Monitor AKS applications with OpenTelemetry Protocol (OTLP) Preview](kubernetes-open-protocol.md).
+For more information, see [Monitor AKS applications with OpenTelemetry Protocol (OTLP)](kubernetes-open-protocol.md).
 
 ### Use the Azure Monitor Agent to send OTLP signals from compute resources outside AKS into Azure Monitor
 
-- **Use Application Insights to orchestrate ingestion into Azure Monitor.** Create an Application Insights resource to automatically create the required workspaces (**AMW** and **LAW**), and capture the **Data Collection Rule (DCR)** link and **OTLP endpoint URLs** for **traces**, **metrics**, and **logs** from the **Overview** page. Alternatively, orchestrate ingestion manually by creating all required resources.
-- Configure the OTLP exporter to use gRPC on port 4317 for metrics and port 4319 for traces and logs, using Delta temporality and Exponential histogram aggregation for metrics. Port 4319 is an Azure Monitor Agent-specific port and not one of the canonical OTLP ports (4317 gRPC, 4318 HTTP) defined in the [OTLP protocol specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/README.md).
+> [!NOTE]
+> OTLP ingestion through Azure Monitor Agent is generally available only on Linux, starting with version 1.45.1. For minimum versions by operating system and OTLP protocol, see [Deploy Azure Monitor Agent](opentelemetry-ingest-agent.md#deploy-azure-monitor-agent).
 
-For more information, see [Ingest OpenTelemetry Protocol signals into Azure Monitor with the Azure Monitor Agent (Preview)](opentelemetry-protocol-ingestion.md).
+- **Use Application Insights to orchestrate ingestion into Azure Monitor.** Create an Application Insights resource to automatically create the required workspaces (**AMW** and **LAW**), and capture the **Data Collection Rule (DCR)** link and **OTLP endpoint URLs** for **traces**, **metrics**, and **logs** from the **Overview** page. Alternatively, orchestrate ingestion manually by creating all required resources.
+- Configure the OTLP exporter to use the default gRPC ports 4317 for metrics and 4319 for traces and logs, or the default HTTP/Protobuf ports 4318 for metrics and 4320 for traces and logs. Use Delta temporality and Exponential histogram aggregation for metrics. Ports 4319 and 4320 are Azure Monitor Agent-specific ports and aren't canonical OTLP ports. The [OTLP protocol specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/README.md) defines 4317 (gRPC) and 4318 (HTTP) as the standard ports.
+
+For more information, see [Ingest OTLP data into Azure Monitor with AMA](opentelemetry-ingest-agent.md).
 
 ### Use the OpenTelemetry Collector to send OTLP signals from compute resources outside AKS into Azure Monitor
 
 - **Use Application Insights to orchestrate ingestion into Azure Monitor.** Create an Application Insights resource to automatically create the required workspaces (**AMW** and **LAW**), and capture the **Data Collection Rule (DCR)** link and **OTLP endpoint URLs** for **traces**, **metrics**, and **logs** from the **Overview** page. Alternatively, orchestrate ingestion manually by creating all required resources.
 - **Export from the OpenTelemetry Collector.** Use the Collector `contrib` distribution and authenticate with Microsoft Entra ID or a managed identity. Use the Collector's **Azure Auth extension** to authenticate with Microsoft Entra. For details, see the [extension README](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/azureauthextension#readme). Configure export to HTTP/Protobuf and set delta temporality and exponential histogram aggregation for metrics.
 
-For more information, see [Ingest OpenTelemetry Protocol signals into Azure Monitor with the OpenTelemetry Collector (Preview)](opentelemetry-protocol-ingestion.md).
+For more information, see [Ingest OTLP data into Azure Monitor with the OpenTelemetry Collector](opentelemetry-protocol-ingestion.md).
 
 > [!TIP]
 > Endpoint URLs also appear on the Application Insights **Overview** page when OTLP support is enabled. Use these values in your Collector exporters or SDK configuration.
@@ -106,15 +105,15 @@ When you use OpenTelemetry with Azure Monitor, be aware of the following limitat
 
 ### Limitations in AKS auto-instrumentation and auto-configuration
 
-- Unsupported node pools: **Windows** and **Linux Arm64**.
-- OTLP **HTTP/protobuf** only; JSON payloads and **OTLP/gRPC** aren't supported.
+- Unsupported node pools: **Windows**.
+- OTLP **HTTP/protobuf** and **gRPC** with binary Protobuf are supported. JSON payloads aren't supported.
 - Selected networking scenarios such as Istio mTLS aren't supported.
 
 ### Limitations for AMA-based ingestion
 
-- AMA path: Application-to-agent communication over **gRPC** on local ports.
-- **4317** (gRPC) for metrics.
-- **4319** (gRPC) for logs and traces. Azure Monitor Agent chooses this port, not an OTLP/IANA-standard port. For the canonical OTLP ports, see the [OTLP protocol specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/README.md) (4317 gRPC, 4318 HTTP).
+- AMA path: Application-to-agent communication over **gRPC** or **HTTP/Protobuf** on local ports.
+- Default metrics ports: **4317** (gRPC) or **4318** (HTTP/Protobuf).
+- Default logs and traces ports: **4319** (gRPC) or **4320** (HTTP/Protobuf). Azure Monitor Agent chooses ports 4319 and 4320; they aren't OTLP/IANA-standard ports. For the canonical OTLP ports, see the [OTLP protocol specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/README.md) (4317 gRPC, 4318 HTTP).
 - **Host:** `localhost`.
 
 ### Limitations for OpenTelemetry collector ingestion

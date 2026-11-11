@@ -11,9 +11,9 @@ ms.author: nikhilkaul
 
 # Authorize AKS IP ranges for Experiments (classic)
 
-Authorize AKS API access for Azure Chaos Studio Experiments (classic) with this guide. For the current model, follow [AKS resilience testing with Chaos Studio Workspaces](chaos-studio-aks-guidance.md), which tests node scale sets rather than using Chaos Mesh inside the cluster.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+Authorize AKS API access for Azure Chaos Studio Experiments (classic) with this guide. For the current model, follow [AKS resilience testing with Chaos Studio Workspaces](chaos-studio-aks-guidance.md), which tests node scale sets rather than using Chaos Mesh inside the cluster.
 
 ## Overview
 

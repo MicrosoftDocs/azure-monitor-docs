@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Storage/storageAccounts/blobServices
 description: Reference for Microsoft.Storage/storageAccounts/blobServices metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 11/09/2026
 ms.custom: Microsoft.Storage/storageAccounts/blobServices, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -38,9 +38,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Storage/
 |**Blob Capacity**<br><br>The amount of storage used by the storage account's Blob service in bytes. |`BlobCapacity` | No | Bytes |Average |`BlobType`, `Tier`|PT1H, PT6H, PT12H, P1D |No|
 |**Blob Count**<br><br>The number of blob objects stored in the storage account. |`BlobCount` | No | Count |Average |`BlobType`, `Tier`|PT1H, PT6H, PT12H, P1D |No|
 |**Blob Provisioned Size**<br><br>The amount of storage provisioned in the storage account's Blob service in bytes. |`BlobProvisionedSize` | No | Bytes |Average |`BlobType`, `Tier`|PT1H, PT6H, PT12H, P1D |No|
-|**Container Blob Count**<br><br>The number of blob objects stored in the storage account at the container level. |`ContainerBlobCount` | [Yes](https://aka.ms/apm-microsoft-storage) | Count |Average |`ContainerName`, `BlobType`, `Tier`|PT1H, PT6H, PT12H, P1D |No|
 |**Blob Container Count**<br><br>The number of containers in the storage account. |`ContainerCount` | No | Count |Average |`AccessLevel`|PT1H, PT6H, PT12H, P1D |Yes|
-|**Container Blob Capacity**<br><br>The amount of storage used by the storage account's Blob service in bytes at the container level. |`ContainerUsedSize` | [Yes](https://aka.ms/apm-microsoft-storage) | Bytes |Average |`ContainerName`, `Tier`, `BlobType`|PT1H, PT6H, PT12H, P1D |No|
 |**Index Capacity**<br><br>The amount of storage used by Azure Data Lake Storage Gen2 hierarchical index. |`IndexCapacity` | No | Bytes |Average |\<none\>|PT1H, PT6H, PT12H, P1D |No|
 
 ### Category: Transaction

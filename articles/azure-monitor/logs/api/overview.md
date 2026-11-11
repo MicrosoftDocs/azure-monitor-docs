@@ -1,8 +1,10 @@
 ---
 title: Azure Monitor Logs Query API Overview
 description: Use the Logs query REST API to run KQL queries against Azure Monitor Logs, retrieve data programmatically, and integrate with your tools and workflows.
-ms.date: 05/14/2026
 ms.topic: concept-article
+ms.custom: cbo-v1.6
+ms.date: 05/14/2026
+ai-usage: ai-assisted
 ---
 
 # Azure Monitor Logs query API overview
@@ -11,7 +13,49 @@ Query the full set of data collected by Azure Monitor Logs with the Logs query A
 
 ## Query endpoint
 
-All queries target a Log Analytics workspace through the public REST endpoint:
+All queries target a Log Analytics workspace. The following examples run the KQL query `AzureActivity | summarize count() by Category` over the past 12 hours to count activity log records by category.
+
+# [Azure CLI](#tab/cli)
+
+The following Azure CLI example uses the [`az monitor log-analytics query`](/cli/azure/monitor/log-analytics#az-monitor-log-analytics-query) command.
+
+```bash
+# Set variables
+workspaceId="<WorkspaceId>"
+query="AzureActivity | summarize count() by Category"
+timespan="PT12H"
+
+# Run the Log Analytics query
+az monitor log-analytics query \
+  --workspace "$workspaceId" \
+  --analytics-query "$query" \
+  --timespan "$timespan"
+```
+
+# [Azure PowerShell](#tab/powershell)
+
+The following Azure PowerShell example uses the [`Invoke-AzOperationalInsightsQuery`](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery) cmdlet.
+
+```powershell
+# Set variables
+$workspaceId = "<WorkspaceId>"
+$query = "AzureActivity | summarize count() by Category"
+$timespan = New-TimeSpan -Hours 12
+
+# Define parameters for Invoke-AzOperationalInsightsQuery
+$invokeAzOperationalInsightsQueryParams = @{
+    WorkspaceId = $workspaceId
+    Query       = $query
+    Timespan    = $timespan
+}
+
+# Run the Log Analytics query
+Invoke-AzOperationalInsightsQuery @invokeAzOperationalInsightsQueryParams
+```
+
+# [REST](#tab/rest)
+
+The following REST example uses the [`Query - Execute`](../../fundamentals/azure-monitor-rest-api-index.md#op-logs-query) REST API operation. The `v1` version is part of the URL path. This endpoint doesn't use an `api-version` query parameter.
 
 ```REST
 POST https://api.loganalytics.azure.com/v1/workspaces/{workspaceId}/query
@@ -24,9 +68,9 @@ Content-Type: application/json
 }
 ```
 
-Replace `{workspaceId}` with the GUID of your Log Analytics workspace and `{accessToken}` with a Microsoft Entra bearer token.
+---
 
-The API returns a JSON response containing a `tables` array. Each table includes `columns` (the schema) and `rows` (the data):
+The REST API returns a JSON response containing a `tables` array. Each table includes `columns` (the schema) and `rows` (the data). The following example shows results for the activity log query:
 
 ```json
 {
@@ -93,34 +137,7 @@ Azure Monitor supports client libraries for various programming languages. Inste
 * [JavaScript](/javascript/api/overview/azure/monitor-query-readme)
 * [Python](/python/api/overview/azure/monitor-query-readme)
 
-Use Azure CLI or Azure PowerShell in a similar way to query from the command line:
-
-# [Azure CLI](#tab/azure-cli)
-
-Use [`az monitor log-analytics query`](/cli/azure/monitor/log-analytics#az-monitor-log-analytics-query) to run a KQL query against a workspace.
-
-```azurecli
-az monitor log-analytics query \
-  --workspace "myWorkspaceId" \
-  --analytics-query "AzureActivity | summarize count() by Category" \
-  --timespan "PT12H"
-```
-
-# [PowerShell](#tab/powershell)
-
-Use [`Invoke-AzOperationalInsightsQuery`](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery) (from the [Az.OperationalInsights](/powershell/module/az.operationalinsights/) module) to run a KQL query against a workspace.
-
-```azurepowershell
-$queryParams = @{
-    WorkspaceId = 'myWorkspaceId'
-    Query       = 'AzureActivity | summarize count() by Category'
-    Timespan    = (New-TimeSpan -Hours 12)
-}
-
-Invoke-AzOperationalInsightsQuery @queryParams
-```
-
----
+For Azure CLI and Azure PowerShell examples, see [Query endpoint](#query-endpoint).
 
 ## Try the API
 

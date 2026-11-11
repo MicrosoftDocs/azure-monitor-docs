@@ -3,7 +3,7 @@ title: Troubleshoot Chaos Studio Workspaces and Scenarios
 description: "Troubleshoot Chaos Studio Workspaces and Scenarios: empty discovery, missing permissions, failed runs, skipped Actions, and agent connectivity."
 author: nikhilkaul-msft
 ms.topic: troubleshooting-general
-ms.date: 09/05/2026
+ms.date: 09/25/2026
 ai-usage: ai-assisted
 ---
 
@@ -12,6 +12,10 @@ ai-usage: ai-assisted
 Troubleshoot [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) by symptom: resources aren't discovered, permissions are missing, a Scenario run fails, or Actions are skipped. This guide also covers agent connectivity for Workspaces Scenarios. For experiments, targets, and capabilities in the legacy model, use [Experiments (classic) troubleshooting](troubleshooting.md).
 
 [!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
+
+## Confirm that you're using Chaos Studio Workspaces
+
+This article covers `Microsoft.Chaos/workspaces` and `Microsoft.Chaos/workspaces/scenarios` resources. If your resource type is `Microsoft.Chaos/experiments` or `Microsoft.Chaos/targets`, you're using Experiments (classic). Use [Troubleshoot Experiments (classic)](troubleshooting.md) instead. To move your experiments to Workspaces, follow [Move from Experiments (classic) to Chaos Studio Workspaces](chaos-studio-migrate-from-classic.md).
 
 ## "No resources found" when selecting a scope or viewing resources
 
@@ -209,7 +213,7 @@ To fix blocked traffic:
 - To fix name resolution, make sure the VM can resolve the public agent endpoint. Don't create private DNS zones that shadow the Chaos Studio agent endpoint.
 
 > [!NOTE]
-> The agent can't be configured to use an explicit proxy. Chaos Studio installs and removes the agent for each run, so you can't set proxy settings on it. If your environment requires outbound applications to use a configured proxy, allow the agent's traffic to the `ChaosStudio` service tag to bypass the proxy instead.
+> The agent can't be configured to use an explicit proxy. Chaos Studio installs and manages the agent, so you can't set proxy settings on it. If your environment requires outbound applications to use a configured proxy, allow the agent's traffic to the `ChaosStudio` service tag to bypass the proxy instead.
 
 ### The agent can't get a managed identity token
 
@@ -260,7 +264,7 @@ curl -v https://as.<region>.chaos-prod.azure.com/health --max-time 15
 - Command 3 returns HTTP 200: the VM can reach Chaos Studio over the network. This confirms network reachability only. It doesn't confirm that the agent can register, which also requires the managed identity token from command 1.
 - Command 3 times out or can't connect while commands 1 and 2 succeed: the network path to Chaos Studio is blocked. See the subnet outbound access, NSG, or firewall and proxy problems earlier in this section.
 
-After you correct the network configuration, run the scenario again. When a scenario run fails, Chaos Studio cleans up the agent it installed, so no agent keeps retrying in the background. Rerunning the scenario reinstalls the agent, which then connects by using your updated configuration.
+After you correct the network configuration, run the scenario again so that the agent can connect by using your updated configuration.
 
 ## Next steps
 

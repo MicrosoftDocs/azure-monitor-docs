@@ -26,8 +26,6 @@ Azure Advisor helps you optimize and reduce your overall Azure spend by identify
 
 [!INCLUDE [Cost-azure-data-explorer.md](./includes/Cost-azure-data-explorer.md)]
 
-[!INCLUDE [Cost-azure-database-for-mysql.md](./includes/Cost-azure-database-for-mysql.md)]
-
 [!INCLUDE [Cost-azure-databricks.md](./includes/Cost-azure-databricks.md)]
 
 [!INCLUDE [Cost-azure-kubernetes-service-(aks).md](./includes/Cost-azure-kubernetes-service-(aks).md)]
@@ -42,15 +40,15 @@ Azure Advisor helps you optimize and reduce your overall Azure spend by identify
 
 [!INCLUDE [Cost-content-delivery-network.md](./includes/Cost-content-delivery-network.md)]
 
-[!INCLUDE [Cost-data-factory.md](./includes/Cost-data-factory.md)]
+[!INCLUDE [cost-expressroute.md](./includes/cost-expressroute.md)]
 
 [!INCLUDE [Cost-reservations.md](./includes/Cost-reservations.md)]
 
 [!INCLUDE [Cost-storage.md](./includes/Cost-storage.md)]
 
-[!INCLUDE [Cost-subscriptions.md](./includes/Cost-subscriptions.md)]
-
 [!INCLUDE [Cost-virtual-machines.md](./includes/Cost-virtual-machines.md)]
+
+[!INCLUDE [cost-virtual-network-gateway.md](./includes/cost-virtual-network-gateway.md)]
 
 
 ## Next steps

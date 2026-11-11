@@ -16,7 +16,7 @@ ms.custom: OperationalExcellence Batch
 
 #### Recreate your pool with a new image  
   
-Your pool is using an image with an imminent expiration date. Recreate the pool with a new image to avoid potential interruptions. A list of newer images is available via the ListSupportedImages API.  
+Your pool is using an image with an imminent expiration date. Please recreate the pool with a new image to avoid potential interruptions. A list of newer images is available via the ListSupportedImages API.  
   
 **Potential benefits**: Avoid potential interruptions  
 
@@ -27,26 +27,7 @@ For more information, see [Choose VM sizes and images for pools - Azure Batch](h
 ResourceType: microsoft.batch/batchaccounts  
 Recommendation ID: a37462ed-d4d7-4c42-bf88-f16a60e2f8b6  
 
-
 <!--a37462ed-d4d7-4c42-bf88-f16a60e2f8b6_end-->
-
-<!--48ae14cb-10de-4bd9-a005-5c25f498649b_begin-->
-
-#### Delete and recreate your pool using a VM size that will soon be retired  
-  
-Your pool is using A8-A11 VMs, which are set to be retired in March 2021. Delete your pool and recreate it with a different VM size.  
-  
-**Potential benefits**: Avoid potential interruptions  
-
-**Impact:** High
-  
-For more information, see [Analyst Reports, E-Books, and White Papers](https://aka.ms/batch_a8_a11_retirement_learnmore)  
-
-ResourceType: microsoft.batch/batchaccounts  
-Recommendation ID: 48ae14cb-10de-4bd9-a005-5c25f498649b  
-
-
-<!--48ae14cb-10de-4bd9-a005-5c25f498649b_end-->
 
 <!--bbc3f0f1-85b7-4bcb-b474-0e02571eb5fa_begin-->
 
@@ -62,7 +43,6 @@ For more information, see [Azure Batch API Life Cycle and Deprecation](https://a
 
 ResourceType: microsoft.batch/batchaccounts  
 Recommendation ID: bbc3f0f1-85b7-4bcb-b474-0e02571eb5fa  
-
 
 <!--bbc3f0f1-85b7-4bcb-b474-0e02571eb5fa_end-->
 

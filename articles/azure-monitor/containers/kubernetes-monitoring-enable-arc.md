@@ -105,7 +105,7 @@ az k8s-extension create --name azuremonitor-metrics --cluster-name <cluster-name
 **Example**
 
 ```azurecli
-az k8s-extension create --name azuremonitor-metrics --cluster-name "my-cluster"--resource-group "my-resource-group" --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers.Metrics --configuration-settings azure-monitor-workspace-resource-id "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/microsoft.monitor/accounts/my-workspace" grafana-resource-id="/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Dashboard/grafana/my-workspace"
+az k8s-extension create --name azuremonitor-metrics --cluster-name "my-cluster"--resource-group "my-resource-group" --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers.Metrics --configuration-settings azure-monitor-workspace-resource-id "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/my-resource-group/providers/microsoft.monitor/accounts/my-workspace" grafana-resource-id="/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/my-resource-group/providers/Microsoft.Dashboard/grafana/my-workspace"
 ```
 
 #### Optional parameters
@@ -679,4 +679,3 @@ The command will return JSON-formatted information about the solution. The `addo
 
 * If you experience issues attempting to onboard, review the [Troubleshooting guide](container-insights-troubleshoot.md).
 * Learn how to [Analyze Kubernetes monitoring data in the Azure portal](container-insights-analyze.md) Container insights.
-

@@ -1,10 +1,11 @@
 ---
 title: Log Analytics Data Export Rules in Azure Monitor
-description: Log Analytics data export rules in Azure Monitor let you continuously export data per selected tables in your workspace. You can export to an Azure Blob Storage account or Azure Event Hubs as it's collected. 
+description: Log Analytics data export rules in Azure Monitor let you continuously export data per selected tables in your workspace. You can export to an Azure Blob Storage account or Azure Event Hubs as it's collected.
 ms.topic: how-to
-ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell
+ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, cbo-v1.6
 ms.reviewer: yossiy
 ms.date: 02/16/2026
+ai-usage: ai-assisted
 ---
 
 # Log Analytics data export rules in Azure Monitor
@@ -21,15 +22,15 @@ After you configure data export rules in a Log Analytics workspace, new data for
 
 :::image type="content" source="media/logs-data-export/data-export-overview.png" lightbox="media/logs-data-export/data-export-overview.png" alt-text="Diagram that shows a data export flow.":::
 
-Data is exported without a filter. For example, when you configure a data export rule for a *SecurityEvent* table, all data sent to the *SecurityEvent* table is exported starting from the configuration time. Alternatively, filter or modify exported data by configuring [transformations](./../essentials/data-collection-transformations.md) in your workspace. Transformations apply to incoming data before the data is sent to your Log Analytics workspace and to export destinations.
+Data is exported without a filter. For example, when you configure a data export rule for a *SecurityEvent* table, all data sent to the *SecurityEvent* table is exported starting from the configuration time. Alternatively, filter or modify exported data by configuring [transformations](../data-collection/data-collection-transformations.md) in your workspace. Transformations apply to incoming data before the data is sent to your Log Analytics workspace and to export destinations.
 
 ## Other export options
 Log Analytics data export rules continuously export data that's sent to your Log Analytics workspace. Other options export data for these particular scenarios:
 
-- To export historical records from a single table by query and time range to Azure Blob Storage, run an [export job (Preview)](export-job.md). An export job is purpose-built for on-demand export of historical data at scale and writes results in Parquet format.
-- If an Azure resource is sending logs to your Log Analytics workspace through its diagnostic log settings already, consider updating the diagnostic settings on the Azure resource directly to add the new destination instead of regularly using a data export. This approach has lower latency compared to a data export but doesn't send historical data.
-- Schedule an export of data based on a log query you define with the [Log Analytics query API](/rest/api/loganalytics/dataaccess/query/execute). Use Azure Data Factory, Azure Functions, or Azure Logic Apps to orchestrate queries in your workspace and export data to a destination. This method is similar to the data export feature, but you can use it to export historical data from your workspace by using filters and aggregation. This method is subject to [log query limits](../service-limits.md#log-analytics-workspaces) and isn't intended for scale. For more information, see [Export data from a Log Analytics workspace to a storage account by using Logic Apps](logs-export-logic-app.md).
-- Use a one-time export to a local machine by using a PowerShell script. For more information, see [Invoke-AzOperationalInsightsQueryExport](https://www.powershellgallery.com/packages/Invoke-AzOperationalInsightsQueryExport).
+* To export historical records from a single table by query and time range to Azure Blob Storage, run an [export job (Preview)](export-job.md). An export job is purpose-built for on-demand export of historical data at scale and writes results in Parquet format.
+* If an Azure resource is sending logs to your Log Analytics workspace through its diagnostic log settings already, consider updating the diagnostic settings on the Azure resource directly to add the new destination instead of regularly using a data export. This approach has lower latency compared to a data export but doesn't send historical data.
+* Schedule an export of data based on a log query you define with the [Log Analytics query API](/rest/api/loganalytics/dataaccess/query/execute). Use Azure Data Factory, Azure Functions, or Azure Logic Apps to orchestrate queries in your workspace and export data to a destination. This method is similar to the data export feature, but you can use it to export historical data from your workspace by using filters and aggregation. This method is subject to [log query limits](../fundamentals/service-limits.md#log-analytics-workspaces) and isn't intended for scale. For more information, see [Export data from a Log Analytics workspace to a storage account by using Logic Apps](logs-export-logic-app.md).
+* Use a one-time export to a local machine by using a PowerShell script. For more information, see [Invoke-AzOperationalInsightsQueryExport](https://www.powershellgallery.com/packages/Invoke-AzOperationalInsightsQueryExport).
 
 ## Permissions required
 
@@ -44,13 +45,13 @@ Log Analytics data export rules continuously export data that's sent to your Log
 
 ## Considerations
 
-- Custom logs created using the [HTTP Data Collector API](./data-collector-api.md) can't be exported, including text-based logs consumed by Log Analytics agent. Custom logs created using [data collection rules](./logs-ingestion-api-overview.md), including text-based logs, can be exported.
-- Data export will gradually support more tables. See [Unsupported tables](#unsupported-tables) section.
-- The maximum number of active rules per workspace is 10, each can include multiple tables.
-- The storage account must be unique across rules in the workspace.
-- Supported table plans are Analytics and Basic. Auxiliary plan isn't supported.
-- Destinations must be in the same region as the Log Analytics workspace.
-- Export to a Premium storage account isn't supported.
+* You can't export custom logs created by using the [HTTP Data Collector API](/previous-versions/azure/azure-monitor/logs/data-collector-api), including text-based logs that the Log Analytics agent consumes. You can export custom logs created by using [data collection rules](./logs-ingestion-api-overview.md), including text-based logs.
+* Data export will gradually support more tables. See the [Unsupported tables](#unsupported-tables) section.
+* The maximum number of active rules per workspace is 10, and each rule can include multiple tables.
+* The storage account must be unique across rules in the workspace.
+* Supported table plans are Analytics and Basic. Auxiliary plan isn't supported.
+* Destinations must be in the same region as the Log Analytics workspace.
+* Export to a Premium storage account isn't supported.
 
 ## Data completeness
 
@@ -61,10 +62,10 @@ For more information about destination limits and recommended alerts, see [Creat
 ## Pricing model
 Data export charges are based on the number of bytes exported to destinations in JSON formatted data, and measured in GB (10^9 bytes). The table size reported in Azure Monitor Logs is smaller than the data size that lands in the export destination. This discrepancy is due to the following factors:
 
-- Azure Monitor Logs excludes certain fields from the billable size calculation.
-- Data exported to storage is uncompressed.
-- Exported data includes property names with each record to ensure each record is valid JSON.
-- When actual log records are small, the metadata is significant overhead, making the relative size increase more pronounced.
+* Azure Monitor Logs excludes certain fields from the billable size calculation.
+* Data exported to storage is uncompressed.
+* Exported data includes property names with each record to ensure each record is valid JSON.
+* When actual log records are small, the metadata is significant overhead, making the relative size increase more pronounced.
 
 Data export size calculations can't be done with a workspace query since the size calculation doesn't include the JSON formatting overhead. When comparing the size reported in Azure Monitor Logs to what appears in the storage account, expect substantial differences. In Azure Monitor Logs, small events omit metadata such as property names, while the storage blob includes both the metadata and uncompressed JSON, making the records considerably larger.
 
@@ -72,7 +73,7 @@ For an accurate estimate, run a representative export to a test blob container a
 
 Data export rules are billed under the **Log Analytics Data Export** meter. The same meter is used by [export jobs (preview)](export-job.md). To distinguish the two on your invoice or in Cost analysis, check the **Additional info** field, where data export rules are tagged with `ExportType:Data export rule`.
 
-For more information, including the data export billing timeline, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/). Billing for Data Export was enabled in early October 2023. 
+For more information, including the data export billing timeline, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/). Billing for Data Export was enabled in early October 2023.
 
 ## Export destinations
 
@@ -109,24 +110,24 @@ Data is sent to your Event Hub as it reaches Azure Monitor and is exported to de
 The [number of supported Event Hubs in Basic and Standard namespace tiers is 10](/azure/event-hubs/event-hubs-quotas#common-limits-for-all-tiers). When you're exporting more than 10 tables to these tiers, either split the tables between several export rules to different Event Hubs namespaces or provide an Event Hub name to export all tables to it.
 
 > [!NOTE]
-> - The Basic Event Hubs namespace tier is limited. It supports [lower event size](/azure/event-hubs/event-hubs-quotas#basic-vs-standard-vs-premium-vs-dedicated-tiers) and no [Auto-inflate](/azure/event-hubs/event-hubs-auto-inflate) option to automatically scale up and increase the number of throughput units. Because data volume to your workspace increases over time and as a consequence Event Hub scaling is required, use Standard, Premium, or Dedicated Event Hubs tiers with the **Auto-inflate** feature enabled. For more information, see [Automatically scale up Azure Event Hubs throughput units](/azure/event-hubs/event-hubs-auto-inflate).
-> - You can't use a [compacted event hub](/azure/event-hubs/log-compaction) because it requires the message to have a partition key, which Azure Monitor doesn't include.
-> - Data export can't reach Event Hubs resources when virtual networks are enabled. You have to select the **Allow Azure services on the trusted services list to access this Storage Account** checkbox to bypass this firewall setting in an Event Hub to grant access to your Event Hubs.
+> * The Basic Event Hubs namespace tier is limited. It supports [lower event size](/azure/event-hubs/event-hubs-quotas#basic-vs-standard-vs-premium-vs-dedicated-tiers) and no [Auto-inflate](/azure/event-hubs/event-hubs-auto-inflate) option to automatically scale up and increase the number of throughput units. Because data volume to your workspace increases over time and as a consequence Event Hub scaling is required, use Standard, Premium, or Dedicated Event Hubs tiers with the **Auto-inflate** feature enabled. For more information, see [Automatically scale up Azure Event Hubs throughput units](/azure/event-hubs/event-hubs-auto-inflate).
+> * You can't use a [compacted event hub](/azure/event-hubs/log-compaction) because it requires the message to have a partition key, which Azure Monitor doesn't include.
+> * Data export can't reach Event Hubs resources when virtual networks are enabled. You have to select the **Allow Azure services on the trusted services list to access this Storage Account** checkbox to bypass this firewall setting in an Event Hub to grant access to your Event Hubs.
 
 ## Query exported data
 
 Exporting data from workspaces to storage accounts helps satisfy various scenarios mentioned in [overview](#overview), and can be consumed by tools that can read blobs from storage accounts. The following methods let you query data using Log Analytics query language, which is the same for Azure Data Explorer.
-- Use Azure Data Explorer to [query data in Azure Data Lake Storage](/azure/data-explorer/data-lake-query-data).
-- Use Azure Data Explorer to [ingest data from a storage account](/azure/data-explorer/ingest-from-container).
-- Use Log Analytics workspace to query [ingested data using Logs Ingestion API](./logs-ingestion-api-overview.md). Ingested data is sent to a custom log table and not to the original table.
-   
+* Use Azure Data Explorer to [query data in Azure Data Lake Storage](/azure/data-explorer/data-lake-query-data).
+* Use Azure Data Explorer to [ingest data from a storage account](/azure/data-explorer/ingest-from-container).
+* Use Log Analytics workspace to query [ingested data using Logs Ingestion API](./logs-ingestion-api-overview.md). Ingested data is sent to a custom log table and not to the original table.
+
 
 ## Enable data export
 The following steps must be performed to enable Log Analytics data export.
 
-- [Register the resource provider](#register-the-resource-provider)
-- [Allow trusted Microsoft services](#allow-trusted-microsoft-services)
-- [Create or update a data export rule](#create-or-update-a-data-export-rule)
+* [Register the resource provider](#register-the-resource-provider)
+* [Allow trusted Microsoft services](#allow-trusted-microsoft-services)
+* [Create or update a data export rule](#create-or-update-a-data-export-rule)
 
 After you create a data export rule, [monitor your destinations](#monitor-destinations) to ensure reliable export operations.
 
@@ -135,16 +136,16 @@ The Azure resource provider **Microsoft.Insights** needs to be registered in you
 
 This resource provider is probably already registered for most Azure Monitor users. To verify, go to **Subscriptions** in the Azure portal. Select your subscription and then select **Resource providers** under the **Settings** section of the menu. Locate **Microsoft.Insights**. If its status is **Registered**, then it's already registered. If not, select **Register** to register it.
 
-You can also use any of the available methods to register a resource provider as described in [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types). The following sample command uses the Azure CLI:
+You can also use any of the available methods to register a resource provider as described in [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types). The following Azure CLI example uses the [`az provider register`](/cli/azure/provider#az-provider-register) command.
 
-```azurecli
-az provider register --namespace 'Microsoft.insights'
+```bash
+az provider register --namespace Microsoft.Insights
 ```
 
-The following sample command uses PowerShell:
+The following Azure PowerShell example uses the [`Register-AzResourceProvider`](/powershell/module/az.resources/register-azresourceprovider) cmdlet.
 
-```azurepowershell
-Register-AzResourceProvider -ProviderNamespace Microsoft.insights
+```powershell
+Register-AzResourceProvider -ProviderNamespace Microsoft.Insights
 ```
 
 ### Allow trusted Microsoft services
@@ -174,16 +175,16 @@ The following metrics are available for data export operation and alerts
     | Scope | Metric namespace | Metric | Aggregation | Threshold |
     |:---|:---|:---|:---|:---|
     | storage-name | Account | Ingress | Sum | 80% of maximum ingress per alert evaluation period. For example, the limit is 60 Gbps for general-purpose v2 in West US. The alert threshold is 1676 GiB per 5-minute evaluation period. |
-  
+
 1. Alert remediation actions:
-    - Use a separate storage account for export that isn't shared with non-monitoring data.
-    - Azure Storage Standard accounts support higher ingress limit by request. To request an increase, contact [Azure Support](https://azure.microsoft.com/support/faq/).
-    - Split tables between more storage accounts.
+    * Use a separate storage account for export that you don't share with non-monitoring data.
+    * Azure Storage Standard accounts support a higher ingress limit by request. To request an increase, contact [Azure Support](https://azure.microsoft.com/support/faq/).
+    * Split tables between more storage accounts.
 
 ### Monitor Event Hubs
 
 1. Configure alerts on the [metrics](/azure/event-hubs/monitor-event-hubs-reference):
-  
+
     | Scope | Metric namespace | Metric | Aggregation | Threshold |
     |:---|:---|:---|:---|:---|
     | namespaces-name | Event Hubs standard metrics | Incoming bytes | Sum | 80% of maximum ingress per alert evaluation period. For example, the limit is 1 MB/s per unit (TU or PU) and five units used. The threshold is 228 MiB per 5-minute evaluation period. |
@@ -191,24 +192,24 @@ The following metrics are available for data export operation and alerts
     | namespaces-name | Event Hubs standard metrics | Quota exceeded errors | Count | Between 1% of request. For example, requests per 5 minutes is 600,000. The threshold is 6,000 per 5-minute evaluation period. |
 
 1. Alert remediation actions:
-   - Use a separate Event Hubs namespace for export that isn't shared with non-monitoring data.
-   - Configure the [Auto-inflate](/azure/event-hubs/event-hubs-auto-inflate) feature to automatically scale up and increase the number of throughput units to meet usage needs.
-   - Verify the increase of throughput units to accommodate data volume.
-   - Split tables between more namespaces.
-   - Use Premium or Dedicated tiers for higher throughput.
+   * Use a separate Event Hubs namespace for export that isn't shared with non-monitoring data.
+   * Configure the [Auto-inflate](/azure/event-hubs/event-hubs-auto-inflate) feature to automatically scale up and increase the number of throughput units to meet usage needs.
+   * Verify the increase of throughput units to accommodate data volume.
+   * Split tables between more namespaces.
+   * Use Premium or Dedicated tiers for higher throughput.
 
 ### Create or update a data export rule
 A data export rule defines the destination and tables for which data is exported. The rule provisioning takes about 30 minutes before the export operation initiated. Data export rules considerations:
-- The storage account must be unique across rules in the workspace.
-- Multiple rules can use the same Event Hubs namespace when you're sending to separate Event Hubs.
-- Export to a storage account: A separate container is created in the storage account for each table.
-- Export to Event Hubs: If an Event Hub name isn't provided, a separate Event Hub is created for each table. The [number of supported Event Hubs in Basic and Standard namespace tiers is 10](/azure/event-hubs/event-hubs-quotas#common-limits-for-all-tiers). When you're exporting more than 10 tables to these tiers, either split the tables between several export rules to different Event Hubs namespaces or provide an Event Hub name in the rule to export all tables to it.
+* The storage account must be unique across rules in the workspace.
+* Multiple rules can use the same Event Hubs namespace when you're sending to separate Event Hubs.
+* Export to a storage account: A separate container is created in the storage account for each table.
+* Export to Event Hubs: If an Event Hub name isn't provided, a separate Event Hub is created for each table. The [number of supported Event Hubs in Basic and Standard namespace tiers is 10](/azure/event-hubs/event-hubs-quotas#common-limits-for-all-tiers). When you're exporting more than 10 tables to these tiers, either split the tables between several export rules to different Event Hubs namespaces or provide an Event Hub name in the rule to export all tables to it.
 
-# [Azure portal](#tab/portal-1)
+# [Portal](#tab/portal)
 
 1. From the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
 1. In the left menu, under **Settings**, select **Rules**.
-1. Select the **Data export rules** tab. 
+1. Select the **Data export rules** tab.
 1. Select **New export rule** at the top of the pane.
 
    :::image type="content" source="media/logs-data-export/export-create-1.png" lightbox="media/logs-data-export/export-create-1.png" alt-text="Screenshot that shows the data export entry point.":::
@@ -217,227 +218,303 @@ A data export rule defines the destination and tables for which data is exported
 
    :::image type="content" source="media/logs-data-export/export-create-2.png" lightbox="media/logs-data-export/export-create-2.png" alt-text="Screenshot of export rule configuration." border="false":::
 
-# [Azure CLI](#tab/azure-cli-1)
+# [Azure CLI](#tab/cli)
 
-Use the following command to create a data export rule to a storage account by using the CLI. This process creates a separate container for each table.
+The following Azure CLI example uses the [`az monitor log-analytics workspace data-export create`](/cli/azure/monitor/log-analytics/workspace/data-export#az-monitor-log-analytics-workspace-data-export-create) command.
 
-```azurecli
-# User input
-subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-resourceGroupName="myResourceGroupName"
-storageAccountName="myStorageAccountName"
+#### Export to a storage account with Azure CLI
+
+The rule exports each table to a separate container in a storage account.
+
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+dataExportName="<DataExportName>"
+storageAccountName="<StorageAccountName>"
+
+# Get the subscription ID from the current Azure CLI context
+subscriptionId=$(az account show --query id --output tsv)
 
 # Build destination storage account resource ID
 storagePath="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 storageProvider="Microsoft.Storage/storageAccounts/$storageAccountName"
 storageAccountResourceId="$storagePath/providers/$storageProvider"
 
+# Create the data export rule
 az monitor log-analytics workspace data-export create \
   --resource-group "$resourceGroupName" \
-  --workspace-name myWorkspaceName \
-  --name myRuleName \
+    --workspace-name "$workspaceName" \
+    --name "$dataExportName" \
   --tables SecurityEvent Heartbeat \
   --destination "$storageAccountResourceId"
 ```
 
+#### Export to a specific event hub with Azure CLI
+
 Use the following command to create a data export rule to a specific Event Hub by using the CLI. All tables are exported to the provided Event Hub name and can be filtered by the **Type** field to separate tables.
 
-```azurecli
-# User input
-subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-resourceGroupName="myResourceGroupName"
-eventHubNamespace="myEventHubNamespace"
-eventHubName="myEventHub"
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+dataExportName="<DataExportName>"
+eventHubNamespace="<EventHubNamespace>"
+eventHubName="<EventHubName>"
 
-# Build destination Event Hub resource ID
-eventHubPath="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
-eventHubProvider="Microsoft.EventHub/namespaces/$eventHubNamespace/eventhubs/$eventHubName"
-eventHubResourceId="$eventHubPath/providers/$eventHubProvider"
-
-az monitor log-analytics workspace data-export create \
-  --resource-group "$resourceGroupName" \
-  --workspace-name myWorkspaceName \
-  --name myRuleName \
-  --tables SecurityEvent Heartbeat \
-  --destination "$eventHubResourceId"
-```
-
-Use the following command to create a data export rule to an Event Hub by using the CLI. When you don't provide a specific Event Hub name, the process creates a separate container for each table, up to the [number of supported Event Hubs for your Event Hubs tier](/azure/event-hubs/event-hubs-quotas#common-limits-for-all-tiers). If you have more tables to export, provide an Event Hub name to export any number of tables, or set a new rule to export the remaining tables to another Event Hubs namespace.
-
-```azurecli
-# User input
-subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-resourceGroupName="myResourceGroupName"
-eventHubNamespace="myEventHubNamespace"
+# Get the subscription ID from the current Azure CLI context
+subscriptionId=$(az account show --query id --output tsv)
 
 # Build destination Event Hub namespace resource ID
 eventHubNsPath="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 eventHubNsProvider="Microsoft.EventHub/namespaces/$eventHubNamespace"
 eventHubNamespaceResourceId="$eventHubNsPath/providers/$eventHubNsProvider"
 
+# Create the data export rule
 az monitor log-analytics workspace data-export create \
   --resource-group "$resourceGroupName" \
-  --workspace-name myWorkspaceName \
-  --name myRuleName \
+    --workspace-name "$workspaceName" \
+    --name "$dataExportName" \
+  --tables SecurityEvent Heartbeat \
+    --destination "$eventHubNamespaceResourceId" \
+    --event-hub-name "$eventHubName"
+```
+
+#### Export to an Event Hubs namespace with Azure CLI
+
+Use the following command to create a data export rule to an Event Hubs namespace. When you don't provide a specific Event Hub name, the process creates a separate Event Hub for each table, up to the [number of supported Event Hubs for your Event Hubs tier](/azure/event-hubs/event-hubs-quotas#common-limits-for-all-tiers). If you have more tables to export, provide an Event Hub name to export any number of tables, or set a new rule to export the remaining tables to another Event Hubs namespace.
+
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+dataExportName="<DataExportName>"
+eventHubNamespace="<EventHubNamespace>"
+
+# Get the subscription ID from the current Azure CLI context
+subscriptionId=$(az account show --query id --output tsv)
+
+# Build destination Event Hub namespace resource ID
+eventHubNsPath="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+eventHubNsProvider="Microsoft.EventHub/namespaces/$eventHubNamespace"
+eventHubNamespaceResourceId="$eventHubNsPath/providers/$eventHubNsProvider"
+
+# Create the data export rule
+az monitor log-analytics workspace data-export create \
+  --resource-group "$resourceGroupName" \
+    --workspace-name "$workspaceName" \
+    --name "$dataExportName" \
   --tables SecurityEvent Heartbeat \
   --destination "$eventHubNamespaceResourceId"
 ```
 
-# [REST API](#tab/rest-1)
+[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
-To create or update a data export rule, use this `PUT` request for the [Logs management REST API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) **Data export rules** operation group. Use the latest `apiVersion` documented there.
+# [Azure PowerShell](#tab/powershell)
 
-```REST
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/dataexports/{dataExportName}?api-version={apiVersion}
-Authorization: Bearer {accessToken}
-Content-Type: application/json
-```
+The following Azure PowerShell example uses the [`New-AzOperationalInsightsDataExport`](/powershell/module/az.operationalinsights/new-azoperationalinsightsdataexport) cmdlet.
 
-The body of the request specifies the table's destination. The following example is a sample body for the REST request.
+#### Export to a storage account with Azure PowerShell
 
-```json
-{
-    "properties": {
-        "destination": {
-            "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroupName/providers/Microsoft.Storage/storageAccounts/myStorageAccountName"
-        },
-        "tableNames": [
-            "table1",
-            "table2" 
-        ],
-        "enable": true
-    }
-}
-```
+The rule exports each table to a separate container in a storage account.
 
-The following example is a sample body for the REST request for an Event Hub.
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$dataExportName = "<DataExportName>"
+$storageAccountName = "<StorageAccountName>"
 
-```json
-{
-    "properties": {
-        "destination": {
-            "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroupName/providers/Microsoft.EventHub/namespaces/myEventHubNamespace"
-        },
-        "tableNames": [
-            "table1",
-            "table2"
-        ],
-        "enable": true
-    }
-}
-```
-
-The following example is a sample body for the REST request for an Event Hub where the Event Hub name is provided. In this case, all exported data is sent to it.
-
-```json
-{
-    "properties": {
-        "destination": {
-            "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroupName/providers/Microsoft.EventHub/namespaces/myEventHubNamespace",
-            "metaData": {
-                "EventHubName": "myEventHub"
-            }
-        },
-        "tableNames": [
-            "table1",
-            "table2"
-        ],
-        "enable": true
-    }
-}
-```
-
-# [PowerShell](#tab/powershell-1)
-
-Use the following command to create a data export rule to a storage account by using PowerShell. A separate container is created for each table.
-
-```azurepowershell
-# User input
-$subscriptionId = 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e'
-$resourceGroupName = 'myResourceGroupName'
-$storageAccountName = 'myStorageAccountName'
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
 
 # Build destination storage account resource ID
 $storagePath = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 $storageProvider = "Microsoft.Storage/storageAccounts/$storageAccountName"
 $storageAccountResourceId = "$storagePath/providers/$storageProvider"
 
-$dataExportParams = @{
+# Define parameters for New-AzOperationalInsightsDataExport
+$newAzOperationalInsightsDataExportParams = @{
     ResourceGroupName = $resourceGroupName
-    WorkspaceName     = 'myWorkspaceName'
-    DataExportName    = 'myRuleName'
-    TableName         = 'SecurityEvent,Heartbeat'
+        WorkspaceName     = $workspaceName
+        DataExportName    = $dataExportName
+        TableName         = @("SecurityEvent", "Heartbeat")
     ResourceId        = $storageAccountResourceId
 }
-New-AzOperationalInsightsDataExport @dataExportParams
+
+# Create the data export rule
+New-AzOperationalInsightsDataExport @newAzOperationalInsightsDataExportParams
 ```
+
+#### Export to a specific event hub with Azure PowerShell
 
 Use the following command to create a data export rule to a specific Event Hub by using PowerShell. The command exports all tables to the provided Event Hub name. Filter by the **Type** field to separate tables.
 
-```azurepowershell
-# User input
-$subscriptionId = 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e'
-$resourceGroupName = 'myResourceGroupName'
-$eventHubNamespace = 'myEventHubNamespace'
-$eventHubName = 'myEventHub'
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$dataExportName = "<DataExportName>"
+$eventHubNamespace = "<EventHubNamespace>"
+$eventHubName = "<EventHubName>"
 
-# Build destination Event Hub resource ID
-$eventHubPath = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
-$eventHubProvider = "Microsoft.EventHub/namespaces/$eventHubNamespace/eventhubs/$eventHubName"
-$eventHubResourceId = "$eventHubPath/providers/$eventHubProvider"
-
-$dataExportParams = @{
-    ResourceGroupName = $resourceGroupName
-    WorkspaceName     = 'myWorkspaceName'
-    DataExportName    = 'myRuleName'
-    TableName         = 'SecurityEvent,Heartbeat'
-    ResourceId        = $eventHubResourceId
-    EventHubName      = $eventHubName
-}
-New-AzOperationalInsightsDataExport @dataExportParams
-```
-
-Use the following command to create a data export rule to an Event Hub by using PowerShell. When you don't provide a specific Event Hub name, the command creates a separate container for each table, up to the [number of Event Hubs supported in each Event Hubs tier](/azure/event-hubs/event-hubs-quotas#common-limits-for-all-tiers). To export more tables, provide an Event Hub name in the rule. Or you can set another rule and export the remaining tables to another Event Hubs namespace.
-
-```azurepowershell
-# User input
-$subscriptionId = 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e'
-$resourceGroupName = 'myResourceGroupName'
-$eventHubNamespace = 'myEventHubNamespace'
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
 
 # Build destination Event Hub namespace resource ID
 $eventHubNsPath = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 $eventHubNsProvider = "Microsoft.EventHub/namespaces/$eventHubNamespace"
 $eventHubNamespaceResourceId = "$eventHubNsPath/providers/$eventHubNsProvider"
 
-$dataExportParams = @{
+# Define parameters for New-AzOperationalInsightsDataExport
+$newAzOperationalInsightsDataExportParams = @{
     ResourceGroupName = $resourceGroupName
-    WorkspaceName     = 'myWorkspaceName'
-    DataExportName    = 'myRuleName'
-    TableName         = 'SecurityEvent,Heartbeat'
-    ResourceId        = $eventHubNamespaceResourceId
+        WorkspaceName     = $workspaceName
+        DataExportName    = $dataExportName
+        TableName         = @("SecurityEvent", "Heartbeat")
+        ResourceId        = $eventHubNamespaceResourceId
+    EventHubName      = $eventHubName
 }
-New-AzOperationalInsightsDataExport @dataExportParams
+
+# Create the data export rule
+New-AzOperationalInsightsDataExport @newAzOperationalInsightsDataExportParams
 ```
 
-# [Bicep](#tab/bicep-1)
+#### Export to an Event Hubs namespace with Azure PowerShell
 
-Deploy the following Bicep template to create a data export rule to a storage account. The template creates a separate container for each table.
+Use the following command to create a data export rule to an Event Hubs namespace. When you don't provide a specific Event Hub name, the command creates a separate Event Hub for each table, up to the [number of Event Hubs supported in each Event Hubs tier](/azure/event-hubs/event-hubs-quotas#common-limits-for-all-tiers). To export more tables, provide an Event Hub name in the rule. Or you can set another rule and export the remaining tables to another Event Hubs namespace.
 
-```bicep
-param workspaceName string
-param workspaceLocation string
-param storageAccountRuleName string
-param storageAccountResourceId string
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$dataExportName = "<DataExportName>"
+$eventHubNamespace = "<EventHubNamespace>"
 
-resource workspace 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
-  name: workspaceName
-  location: workspaceLocation
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
+
+# Build destination Event Hub namespace resource ID
+$eventHubNsPath = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$eventHubNsProvider = "Microsoft.EventHub/namespaces/$eventHubNamespace"
+$eventHubNamespaceResourceId = "$eventHubNsPath/providers/$eventHubNsProvider"
+
+# Define parameters for New-AzOperationalInsightsDataExport
+$newAzOperationalInsightsDataExportParams = @{
+    ResourceGroupName = $resourceGroupName
+        WorkspaceName     = $workspaceName
+        DataExportName    = $dataExportName
+        TableName         = @("SecurityEvent", "Heartbeat")
+    ResourceId        = $eventHubNamespaceResourceId
 }
 
-resource dataExport 'Microsoft.OperationalInsights/workspaces/dataExports@2023-09-01' = {
-  parent: workspace
-  name: storageAccountRuleName
+# Create the data export rule
+New-AzOperationalInsightsDataExport @newAzOperationalInsightsDataExportParams
+```
+
+[!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
+
+# [REST](#tab/rest)
+
+The following REST example uses the [`Data Exports - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-data-export-rules) REST API operation.
+
+#### Export to a storage account with REST
+
+The rule exports each table to a separate container in a storage account.
+
+```REST
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/dataexports/{dataExportName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+Content-Type: application/json
+
+{
+    "properties": {
+        "destination": {
+            "resourceId": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.Storage/storageAccounts/<StorageAccountName>"
+        },
+        "tableNames": [
+            "<TableName1>",
+            "<TableName2>"
+        ],
+        "enable": true
+    }
+}
+```
+
+#### Export to an Event Hubs namespace with REST
+
+To export each table to a separate Event Hub, use an Event Hubs namespace as the destination in the request body:
+
+```json
+{
+    "properties": {
+        "destination": {
+            "resourceId": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.EventHub/namespaces/<EventHubNamespace>"
+        },
+        "tableNames": [
+            "<TableName1>",
+            "<TableName2>"
+        ],
+        "enable": true
+    }
+}
+```
+
+#### Export to a specific event hub with REST
+
+To export all tables to a specific Event Hub, provide its name in `metaData.eventHubName`:
+
+```json
+{
+    "properties": {
+        "destination": {
+            "resourceId": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.EventHub/namespaces/<EventHubNamespace>",
+            "metaData": {
+                "eventHubName": "<EventHubName>"
+            }
+        },
+        "tableNames": [
+            "<TableName1>",
+            "<TableName2>"
+        ],
+        "enable": true
+    }
+}
+```
+
+# [Bicep](#tab/bicep)
+
+> [!NOTE]
+> Template deployments create or update the complete export rule. They aren't partial PATCH operations. Preserve the destination and table list when updating an existing rule.
+
+The following three Bicep templates use the [`Microsoft.OperationalInsights/workspaces/dataExports`](/azure/templates/microsoft.operationalinsights/workspaces/dataexports?pivots=deployment-language-bicep) resource type. Deploy the selected template to the existing workspace's resource group. The `subscriptionId` and `resourceGroupName` parameters identify the destination resource's scope.
+
+#### Export to a storage account with Bicep
+
+When updating an existing rule:
+
+* Retain all existing `tableNames` array entries unless you intend to change them.
+* Retain the destination settings unless you intend to change them.
+* Retain the `enable` state unless you intend to change it.
+
+This is a complete child-resource definition, not a partial update to the workspace.
+
+```bicep
+param subscriptionId string = '<SubscriptionId>'
+param resourceGroupName string = '<ResourceGroupName>'
+param workspaceName string = '<WorkspaceName>'
+param dataExportName string = '<DataExportName>'
+param storageAccountName string = '<StorageAccountName>'
+
+var storageAccountResourceId = resourceId(
+    subscriptionId,
+    resourceGroupName,
+    'Microsoft.Storage/storageAccounts',
+    storageAccountName
+)
+
+resource logExport 'Microsoft.OperationalInsights/workspaces/dataExports@<ApiVersion>' = {
+    name: '${workspaceName}/${dataExportName}'
   properties: {
     destination: {
       resourceId: storageAccountResourceId
@@ -453,25 +530,37 @@ resource dataExport 'Microsoft.OperationalInsights/workspaces/dataExports@2023-0
 }
 ```
 
-Deploy the following Bicep template to create a data export rule to an Event Hub. The template creates a separate Event Hub for each table.
+#### Export to an Event Hubs namespace with Bicep
+
+To create a separate Event Hub for each table, deploy this template:
+
+When updating an existing rule:
+
+* Retain all existing `tableNames` array entries unless you intend to change them.
+* Retain the destination settings unless you intend to change them.
+* Retain the `enable` state unless you intend to change it.
+
+This is a complete child-resource definition, not a partial update to the workspace.
 
 ```bicep
-param workspaceName string
-param workspaceLocation string
-param eventhubRuleName string
-param namespacesResourceId string
+param subscriptionId string = '<SubscriptionId>'
+param resourceGroupName string = '<ResourceGroupName>'
+param workspaceName string = '<WorkspaceName>'
+param dataExportName string = '<DataExportName>'
+param eventHubNamespace string = '<EventHubNamespace>'
 
-resource workspace 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
-  name: workspaceName
-  location: workspaceLocation
-}
+var eventHubNamespaceResourceId = resourceId(
+    subscriptionId,
+    resourceGroupName,
+    'Microsoft.EventHub/namespaces',
+    eventHubNamespace
+)
 
-resource dataExport 'Microsoft.OperationalInsights/workspaces/dataExports@2023-09-01' = {
-  parent: workspace
-  name: eventhubRuleName
+resource logExport 'Microsoft.OperationalInsights/workspaces/dataExports@<ApiVersion>' = {
+    name: '${workspaceName}/${dataExportName}'
   properties: {
     destination: {
-      resourceId: namespacesResourceId
+            resourceId: eventHubNamespaceResourceId
     }
     tableNames: [
       'Usage'
@@ -482,28 +571,40 @@ resource dataExport 'Microsoft.OperationalInsights/workspaces/dataExports@2023-0
 }
 ```
 
-Deploy the following Bicep template to create a data export rule to a specific Event Hub. The template exports all tables to that Event Hub.
+#### Export to a specific event hub with Bicep
+
+To export all tables to a specific Event Hub, deploy this template:
+
+When updating an existing rule:
+
+* Retain all existing `tableNames` array entries unless you intend to change them.
+* Retain the destination settings unless you intend to change them.
+* Retain the `enable` state unless you intend to change it.
+
+This is a complete child-resource definition, not a partial update to the workspace.
 
 ```bicep
-param workspaceName string
-param workspaceLocation string
-param eventhubRuleName string
-param namespacesResourceId string
-param eventhubName string
+param subscriptionId string = '<SubscriptionId>'
+param resourceGroupName string = '<ResourceGroupName>'
+param workspaceName string = '<WorkspaceName>'
+param dataExportName string = '<DataExportName>'
+param eventHubNamespace string = '<EventHubNamespace>'
+param eventHubName string = '<EventHubName>'
 
-resource workspace 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
-  name: workspaceName
-  location: workspaceLocation
-}
+var eventHubNamespaceResourceId = resourceId(
+    subscriptionId,
+    resourceGroupName,
+    'Microsoft.EventHub/namespaces',
+    eventHubNamespace
+)
 
-resource dataExport 'Microsoft.OperationalInsights/workspaces/dataExports@2023-09-01' = {
-  parent: workspace
-  name: eventhubRuleName
+resource logExport 'Microsoft.OperationalInsights/workspaces/dataExports@<ApiVersion>' = {
+    name: '${workspaceName}/${dataExportName}'
   properties: {
     destination: {
-      resourceId: namespacesResourceId
+            resourceId: eventHubNamespaceResourceId
       metaData: {
-        eventHubName: eventhubName
+                eventHubName: eventHubName
       }
     }
     tableNames: [
@@ -515,206 +616,208 @@ resource dataExport 'Microsoft.OperationalInsights/workspaces/dataExports@2023-0
 }
 ```
 
-# [ARM template](#tab/json-1)
+# [ARM template](#tab/arm)
 
-Deploy the following ARM template to create a data export rule to a storage account.
+> [!NOTE]
+> Template deployments create or update the complete export rule. They aren't partial PATCH operations. Preserve the destination and table list when updating an existing rule.
 
-<details>
-<summary>Create export rule to send to a storage account</summary>
+The following three ARM templates use the [`Microsoft.OperationalInsights/workspaces/dataExports`](/azure/templates/microsoft.operationalinsights/workspaces/dataexports?pivots=deployment-language-arm-template) resource type. Deploy the selected template to the existing workspace's resource group. The `subscriptionId` and `resourceGroupName` parameters identify the destination resource's scope.
+
+#### Export to a storage account with an ARM template
+
+When updating an existing rule:
+
+* Retain all existing `tableNames` array entries unless you intend to change them.
+* Retain the destination settings unless you intend to change them.
+* Retain the `enable` state unless you intend to change it.
+
+This is a complete child-resource definition, not a partial update to the workspace.
 
 ```json
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "subscriptionId": {
+            "defaultValue": "<SubscriptionId>",
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "defaultValue": "<ResourceGroupName>",
+            "type": "string"
+        },
         "workspaceName": {
-            "defaultValue": "myWorkspaceName",
-            "type": "String"
-        },
-        "workspaceLocation": {
-            "defaultValue": "myWorkspaceLocation",
+            "defaultValue": "<WorkspaceName>",
             "type": "string"
         },
-        "storageAccountRuleName": {
-            "defaultValue": "myStorageAccountRuleName",
+        "dataExportName": {
+            "defaultValue": "<DataExportName>",
             "type": "string"
         },
-        "storageAccountResourceId": {
-            "defaultValue": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroupName/providers/Microsoft.Storage/storageAccounts/myStorageAccountName",
-            "type": "String"
+        "storageAccountName": {
+            "defaultValue": "<StorageAccountName>",
+            "type": "string"
         }
     },
-    "variables": {},
+    "variables": {
+        "storageAccountResourceId": "[resourceId(parameters('subscriptionId'), parameters('resourceGroupName'), 'Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+    },
     "resources": [
         {
-            "type": "microsoft.operationalinsights/workspaces",
-            "apiVersion": "2023-09-01",
-            "name": "[parameters('workspaceName')]",
-            "location": "[parameters('workspaceLocation')]",
-            "resources": [
-                {
-                  "type": "microsoft.operationalinsights/workspaces/dataexports",
-                  "apiVersion": "2023-09-01",
-                  "name": "[concat(parameters('workspaceName'), '/' , parameters('storageAccountRuleName'))]",
-                  "dependsOn": [
-                      "[resourceId('microsoft.operationalinsights/workspaces', parameters('workspaceName'))]"
-                  ],
-                  "properties": {
-                      "destination": {
-                          "resourceId": "[parameters('storageAccountResourceId')]"
-                      },
-                      "tableNames": [
-                          "Heartbeat",
-                          "InsightsMetrics",
-                          "VMConnection",
-                          "Usage"
-                      ],
-                      "enable": true
-                  }
-              }
-            ]
+            "type": "Microsoft.OperationalInsights/workspaces/dataExports",
+            "apiVersion": "<ApiVersion>",
+            "name": "[format('{0}/{1}', parameters('workspaceName'), parameters('dataExportName'))]",
+            "properties": {
+                "destination": {
+                    "resourceId": "[variables('storageAccountResourceId')]"
+                },
+                "tableNames": [
+                    "Heartbeat",
+                    "InsightsMetrics",
+                    "VMConnection",
+                    "Usage"
+                ],
+                "enable": true
+            }
         }
     ]
 }
 ```
 
-</details>
+#### Export to an Event Hubs namespace with an ARM template
 
 Deploy the following ARM template to create a data export rule to an Event Hub. The template creates a separate Event Hub for each table.
 
-<details>
-<summary>Create export rule to send to Event Hub namespace</summary>
+When updating an existing rule:
+
+* Retain all existing `tableNames` array entries unless you intend to change them.
+* Retain the destination settings unless you intend to change them.
+* Retain the `enable` state unless you intend to change it.
+
+This is a complete child-resource definition, not a partial update to the workspace.
 
 ```json
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "subscriptionId": {
+            "defaultValue": "<SubscriptionId>",
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "defaultValue": "<ResourceGroupName>",
+            "type": "string"
+        },
         "workspaceName": {
-            "defaultValue": "myWorkspaceName",
-            "type": "String"
-        },
-        "workspaceLocation": {
-            "defaultValue": "myWorkspaceLocation",
+            "defaultValue": "<WorkspaceName>",
             "type": "string"
         },
-        "eventhubRuleName": {
-            "defaultValue": "myEventHubRuleName",
+        "dataExportName": {
+            "defaultValue": "<DataExportName>",
             "type": "string"
         },
-        "namespacesResourceId": {
-            "defaultValue": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroupName/providers/Microsoft.EventHub/namespaces/myEventHubNamespace",
-            "type": "String"
+        "eventHubNamespace": {
+            "defaultValue": "<EventHubNamespace>",
+            "type": "string"
         }
     },
-    "variables": {},
+    "variables": {
+        "eventHubNamespaceResourceId": "[resourceId(parameters('subscriptionId'), parameters('resourceGroupName'), 'Microsoft.EventHub/namespaces', parameters('eventHubNamespace'))]"
+    },
     "resources": [
         {
-            "type": "microsoft.operationalinsights/workspaces",
-            "apiVersion": "2023-09-01",
-            "name": "[parameters('workspaceName')]",
-            "location": "[parameters('workspaceLocation')]",
-            "resources": [
-              {
-                  "type": "microsoft.operationalinsights/workspaces/dataexports",
-                  "apiVersion": "2023-09-01",
-                  "name": "[concat(parameters('workspaceName'), '/', parameters('eventhubRuleName'))]",
-                  "dependsOn": [
-                      "[resourceId('microsoft.operationalinsights/workspaces', parameters('workspaceName'))]"
-                  ],
-                  "properties": {
-                      "destination": {
-                          "resourceId": "[parameters('namespacesResourceId')]"
-                      },
-                      "tableNames": [
-                          "Usage",
-                          "Heartbeat"
-                      ],
-                      "enable": true
-                  }
-              }
-            ]
+            "type": "Microsoft.OperationalInsights/workspaces/dataExports",
+            "apiVersion": "<ApiVersion>",
+            "name": "[format('{0}/{1}', parameters('workspaceName'), parameters('dataExportName'))]",
+            "properties": {
+                "destination": {
+                    "resourceId": "[variables('eventHubNamespaceResourceId')]"
+                },
+                "tableNames": [
+                    "Usage",
+                    "Heartbeat"
+                ],
+                "enable": true
+            }
         }
     ]
 }
 ```
 
-</details>
+#### Export to a specific event hub with an ARM template
 
 Deploy the following ARM template to create a data export rule to a specific Event Hub. The rule exports all tables to this Event Hub.
 
-<details>
-<summary>Create export rule to send to a specific Event Hub</summary>
+When updating an existing rule:
+
+* Retain all existing `tableNames` array entries unless you intend to change them.
+* Retain the destination settings unless you intend to change them.
+* Retain the `enable` state unless you intend to change it.
+
+This is a complete child-resource definition, not a partial update to the workspace.
 
 ```json
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "subscriptionId": {
+            "defaultValue": "<SubscriptionId>",
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "defaultValue": "<ResourceGroupName>",
+            "type": "string"
+        },
         "workspaceName": {
-            "defaultValue": "myWorkspaceName",
-            "type": "String"
-        },
-        "workspaceLocation": {
-            "defaultValue": "myWorkspaceLocation",
+            "defaultValue": "<WorkspaceName>",
             "type": "string"
         },
-        "eventhubRuleName": {
-            "defaultValue": "myEventHubRuleName",
+        "dataExportName": {
+            "defaultValue": "<DataExportName>",
             "type": "string"
         },
-        "namespacesResourceId": {
-            "defaultValue": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroupName/providers/Microsoft.EventHub/namespaces/myEventHubNamespace",
-            "type": "String"
+        "eventHubNamespace": {
+            "defaultValue": "<EventHubNamespace>",
+            "type": "string"
         },
-        "eventhubName": {
-            "defaultValue": "myEventHub",
+        "eventHubName": {
+            "defaultValue": "<EventHubName>",
             "type": "string"
         }
     },
-    "variables": {},
+    "variables": {
+        "eventHubNamespaceResourceId": "[resourceId(parameters('subscriptionId'), parameters('resourceGroupName'), 'Microsoft.EventHub/namespaces', parameters('eventHubNamespace'))]"
+    },
     "resources": [
         {
-            "type": "microsoft.operationalinsights/workspaces",
-            "apiVersion": "2023-09-01",
-            "name": "[parameters('workspaceName')]",
-            "location": "[parameters('workspaceLocation')]",
-            "resources": [
-              {
-                  "type": "microsoft.operationalinsights/workspaces/dataexports",
-                  "apiVersion": "2023-09-01",
-                  "name": "[concat(parameters('workspaceName'), '/', parameters('eventhubRuleName'))]",
-                  "dependsOn": [
-                      "[resourceId('microsoft.operationalinsights/workspaces', parameters('workspaceName'))]"
-                  ],
-                  "properties": {
-                      "destination": {
-                          "resourceId": "[parameters('namespacesResourceId')]",
-                          "metaData": {
-                              "eventHubName": "[parameters('eventhubName')]"
-                          }
-                      },
-                      "tableNames": [
-                          "Usage",
-                          "Heartbeat"
-                      ],
-                      "enable": true
-                  }
-              }
-            ]
+            "type": "Microsoft.OperationalInsights/workspaces/dataExports",
+            "apiVersion": "<ApiVersion>",
+            "name": "[format('{0}/{1}', parameters('workspaceName'), parameters('dataExportName'))]",
+            "properties": {
+                "destination": {
+                    "resourceId": "[variables('eventHubNamespaceResourceId')]",
+                    "metaData": {
+                        "eventHubName": "[parameters('eventHubName')]"
+                    }
+                },
+                "tableNames": [
+                    "Usage",
+                    "Heartbeat"
+                ],
+                "enable": true
+            }
         }
     ]
 }
 ```
-
-</details>
-
 
 ---
 
 ## View data export rule configuration
 
-# [Azure portal](#tab/portal-2)
+# [Portal](#tab/portal-2)
 
 1. From the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
 1. In the left menu, under **Settings**, select **Rules**.
@@ -726,46 +829,64 @@ Deploy the following ARM template to create a data export rule to a specific Eve
    <!-- convertborder later -->
    :::image type="content" source="media/logs-data-export/export-view-2.png" lightbox="media/logs-data-export/export-view-2.png" alt-text="Screenshot of data export rule view." border="false":::
 
-# [Azure CLI](#tab/azure-cli-2)
+# [Azure CLI](#tab/cli-2)
 
-Use the following command to view the configuration of a data export rule by using the CLI.
+The following Azure CLI example uses the [`az monitor log-analytics workspace data-export show`](/cli/azure/monitor/log-analytics/workspace/data-export#az-monitor-log-analytics-workspace-data-export-show) command.
 
-```azurecli
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+dataExportName="<DataExportName>"
+
+# Retrieve the data export rule
 az monitor log-analytics workspace data-export show \
-  --resource-group resourceGroupName \
-  --workspace-name workspaceName \
-  --name ruleName
+    --resource-group "$resourceGroupName" \
+    --workspace-name "$workspaceName" \
+    --name "$dataExportName"
 ```
 
-# [REST API](#tab/rest-2)
+[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
-To view the configuration of a data export rule, use this `GET` request for the [Logs management REST API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) **Data export rules** operation group. Use the latest `apiVersion` documented there.
+# [Azure PowerShell](#tab/powershell-2)
+
+The following Azure PowerShell example uses the [`Get-AzOperationalInsightsDataExport`](/powershell/module/az.operationalinsights/get-azoperationalinsightsdataexport) cmdlet.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$dataExportName = "<DataExportName>"
+
+# Define parameters for Get-AzOperationalInsightsDataExport
+$getAzOperationalInsightsDataExportParams = @{
+    ResourceGroupName = $resourceGroupName
+    WorkspaceName     = $workspaceName
+    DataExportName    = $dataExportName
+}
+
+# Retrieve the data export rule
+Get-AzOperationalInsightsDataExport @getAzOperationalInsightsDataExportParams
+```
+
+[!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
+
+# [REST](#tab/rest-2)
+
+The following REST example uses the [`Data Exports - Get`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-data-export-rules) REST API operation.
 
 ```REST
 GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/dataexports/{dataExportName}?api-version={apiVersion}
 Authorization: Bearer {accessToken}
 ```
 
-# [PowerShell](#tab/powershell-2)
-
-Use the following command to view the configuration of a data export rule by using PowerShell.
-
-```azurepowershell
-$dataExportParams = @{
-    ResourceGroupName = 'resourceGroupName'
-    WorkspaceName     = 'workspaceName'
-    DataExportName    = 'ruleName'
-}
-Get-AzOperationalInsightsDataExport @dataExportParams
-```
-
 ---
 
 ## Disable or update an export rule
 
-# [Azure portal](#tab/portal-1)
+# [Portal](#tab/portal)
 
-Disable export rules to stop the export for a certain period, such as when testing is being held. 
+Disable export rules to stop the export for a certain period, such as when testing is being held.
 
 1. From the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
 1. In the left menu, under **Settings**, select **Rules**.
@@ -774,22 +895,55 @@ Disable export rules to stop the export for a certain period, such as when testi
 
 :::image type="content" source="media/logs-data-export/export-disable.png" lightbox="media/logs-data-export/export-disable.png" alt-text="Screenshot that shows disabling the data export rule.":::
 
-# [Azure CLI](#tab/azure-cli-1)
+# [Azure CLI](#tab/cli)
 
-You can disable export rules to stop the export for a certain period, such as when testing is being held. Use the following command to disable or update rule parameters by using the CLI.
+The following Azure CLI example uses the [`az monitor log-analytics workspace data-export update`](/cli/azure/monitor/log-analytics/workspace/data-export#az-monitor-log-analytics-workspace-data-export-update) command. It disables the rule by using the `--enable` parameter.
 
-```azurecli
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+dataExportName="<DataExportName>"
+
+# Disable the data export rule
 az monitor log-analytics workspace data-export update \
-  --resource-group resourceGroupName \
-  --workspace-name workspaceName \
-  --name ruleName \
+    --resource-group "$resourceGroupName" \
+    --workspace-name "$workspaceName" \
+    --name "$dataExportName" \
   --tables SecurityEvent Heartbeat \
   --enable false
 ```
 
-# [REST API](#tab/rest-1)
+[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
-Use this method to disable an export rule for a certain period, such as during testing. To disable or update rule parameters, use this `PUT` request for the [Logs management REST API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) **Data export rules** operation group. Use the latest `apiVersion` documented there.
+# [Azure PowerShell](#tab/powershell)
+
+The following Azure PowerShell example uses the [`Update-AzOperationalInsightsDataExport`](/powershell/module/az.operationalinsights/update-azoperationalinsightsdataexport) cmdlet. It disables the rule by using the `Enable` parameter.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$dataExportName = "<DataExportName>"
+
+# Define parameters for Update-AzOperationalInsightsDataExport
+$updateAzOperationalInsightsDataExportParams = @{
+        ResourceGroupName = $resourceGroupName
+        WorkspaceName     = $workspaceName
+        DataExportName    = $dataExportName
+        TableName         = @("SecurityEvent", "Heartbeat")
+    Enable            = $false
+}
+
+# Disable the data export rule
+Update-AzOperationalInsightsDataExport @updateAzOperationalInsightsDataExportParams
+```
+
+[!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
+
+# [REST](#tab/rest)
+
+The following REST example uses the [`Data Exports - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-data-export-rules) REST API operation. It disables the rule by using the `enable` property. Preserve the rule's destination and table list when sending the request.
 
 ```REST
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/dataexports/{dataExportName}?api-version={apiVersion}
@@ -799,91 +953,100 @@ Content-Type: application/json
 {
     "properties": {
         "destination": {
-            "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroupName/providers/Microsoft.Storage/storageAccounts/myStorageAccountName"
+            "resourceId": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.Storage/storageAccounts/<StorageAccountName>"
         },
         "tableNames": [
-            "table1",
-            "table2"
+            "<TableName1>",
+            "<TableName2>"
         ],
         "enable": false
     }
 }
 ```
 
-# [PowerShell](#tab/powershell-1)
+# [Bicep](#tab/bicep)
 
-To stop exporting a rule temporarily, such as for testing, disable the rule by setting `Enable` to `$false`. Use the following command to disable the rule or update its parameters by using PowerShell.
+> [!NOTE]
+> Template deployments create or update the complete export rule. They aren't partial PATCH operations. Preserve the destination and table list when updating an existing rule.
 
-```azurepowershell
-$dataExportParams = @{
-    ResourceGroupName = 'resourceGroupName'
-    WorkspaceName     = 'workspaceName'
-    DataExportName    = 'ruleName'
-    TableName         = 'SecurityEvent,Heartbeat'
-    Enable            = $false
-}
-Update-AzOperationalInsightsDataExport @dataExportParams
-```
+Use the [`Microsoft.OperationalInsights/workspaces/dataExports`](/azure/templates/microsoft.operationalinsights/workspaces/dataexports?pivots=deployment-language-bicep) resource type in the Bicep template from [Create or update a data export rule](#create-or-update-a-data-export-rule). Set `enable: false` and redeploy it with the existing destination and complete table list.
 
-# [Bicep](#tab/bicep-1)
+# [ARM template](#tab/arm)
 
-Set `enable: false` in the Bicep template to disable a data export.
+> [!NOTE]
+> Template deployments create or update the complete export rule. They aren't partial PATCH operations. Preserve the destination and table list when updating an existing rule.
 
-# [ARM template](#tab/json-1)
-
-Set `"enable": false` in the ARM template to disable a data export.
+Use the [`Microsoft.OperationalInsights/workspaces/dataExports`](/azure/templates/microsoft.operationalinsights/workspaces/dataexports?pivots=deployment-language-arm-template) resource type in the ARM template from [Create or update a data export rule](#create-or-update-a-data-export-rule). Set `"enable": false` and redeploy it with the existing destination and complete table list.
 
 ---
 
 ## Delete an export rule
 
-# [Azure portal](#tab/portal-2)
+# [Portal](#tab/portal-2)
 
 1. From the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
 1. In the left menu, under **Settings**, select **Rules**.
-1. Select the **Data export rules** tab. 
+1. Select the **Data export rules** tab.
 1. Select the ellipsis to the right of the rule and select **Delete**.
 
 :::image type="content" source="media/logs-data-export/export-delete.png" lightbox="media/logs-data-export/export-delete.png" alt-text="Screenshot that shows deleting the data export rule.":::
 
-# [Azure CLI](#tab/azure-cli-2)
+# [Azure CLI](#tab/cli-2)
 
-Use the following command to delete a data export rule by using the CLI.
+The following Azure CLI example uses the [`az monitor log-analytics workspace data-export delete`](/cli/azure/monitor/log-analytics/workspace/data-export#az-monitor-log-analytics-workspace-data-export-delete) command.
 
-```azurecli
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+dataExportName="<DataExportName>"
+
+# Delete the data export rule
 az monitor log-analytics workspace data-export delete \
-  --resource-group resourceGroupName \
-  --workspace-name workspaceName \
-  --name ruleName
+    --resource-group "$resourceGroupName" \
+    --workspace-name "$workspaceName" \
+    --name "$dataExportName"
 ```
 
-# [REST API](#tab/rest-2)
+[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
-To delete a data export rule, use this `DELETE` request for the [Logs management REST API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) **Data export rules** operation group. Use the latest `apiVersion` documented there.
+# [Azure PowerShell](#tab/powershell-2)
+
+The following Azure PowerShell example uses the [`Remove-AzOperationalInsightsDataExport`](/powershell/module/az.operationalinsights/remove-azoperationalinsightsdataexport) cmdlet.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$dataExportName = "<DataExportName>"
+
+# Define parameters for Remove-AzOperationalInsightsDataExport
+$removeAzOperationalInsightsDataExportParams = @{
+        ResourceGroupName = $resourceGroupName
+        WorkspaceName     = $workspaceName
+        DataExportName    = $dataExportName
+}
+
+# Delete the data export rule
+Remove-AzOperationalInsightsDataExport @removeAzOperationalInsightsDataExportParams
+```
+
+[!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
+
+# [REST](#tab/rest-2)
+
+The following REST example uses the [`Data Exports - Delete`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-data-export-rules) REST API operation.
 
 ```REST
 DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/dataexports/{dataExportName}?api-version={apiVersion}
 Authorization: Bearer {accessToken}
 ```
 
-# [PowerShell](#tab/powershell-2)
-
-Use the following command to delete a data export rule by using PowerShell.
-
-```azurepowershell
-$dataExportParams = @{
-    ResourceGroupName = 'resourceGroupName'
-    WorkspaceName     = 'workspaceName'
-    DataExportName    = 'ruleName'
-}
-Remove-AzOperationalInsightsDataExport @dataExportParams
-```
-
 ---
 
 ## View all data export rules in a workspace
 
-# [Azure portal](#tab/portal-2)
+# [Portal](#tab/portal-2)
 
 1. From the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
 1. In the left menu, under **Settings**, select **Rules**.
@@ -891,35 +1054,51 @@ Remove-AzOperationalInsightsDataExport @dataExportParams
 
 :::image type="content" source="media/logs-data-export/export-view.png" lightbox="media/logs-data-export/export-view.png" alt-text="Screenshot that shows the data export rules view.":::
 
-# [Azure CLI](#tab/azure-cli-2)
+# [Azure CLI](#tab/cli-2)
 
-Use the following command to view all data export rules in a workspace by using the CLI.
+The following Azure CLI example uses the [`az monitor log-analytics workspace data-export list`](/cli/azure/monitor/log-analytics/workspace/data-export#az-monitor-log-analytics-workspace-data-export-list) command.
 
-```azurecli
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+
+# List the data export rules
 az monitor log-analytics workspace data-export list \
-  --resource-group resourceGroupName \
-  --workspace-name workspaceName
+    --resource-group "$resourceGroupName" \
+    --workspace-name "$workspaceName"
 ```
 
-# [REST API](#tab/rest-2)
+[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
-To view all data export rules in a workspace, use this `GET` request for the [Logs management REST API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) **Data export rules** operation group. Use the latest `apiVersion` documented there.
+# [Azure PowerShell](#tab/powershell-2)
+
+The following Azure PowerShell example uses the [`Get-AzOperationalInsightsDataExport`](/powershell/module/az.operationalinsights/get-azoperationalinsightsdataexport) cmdlet.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+
+# Define parameters for Get-AzOperationalInsightsDataExport
+$getAzOperationalInsightsDataExportParams = @{
+        ResourceGroupName = $resourceGroupName
+        WorkspaceName     = $workspaceName
+}
+
+# List the data export rules
+Get-AzOperationalInsightsDataExport @getAzOperationalInsightsDataExportParams
+```
+
+[!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
+
+# [REST](#tab/rest-2)
+
+The following REST example uses the [`Data Exports - List By Workspace`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-data-export-rules) REST API operation.
 
 ```REST
 GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/dataexports?api-version={apiVersion}
 Authorization: Bearer {accessToken}
-```
-
-# [PowerShell](#tab/powershell-2)
-
-Use the following command to view all the data export rules in a workspace by using PowerShell.
-
-```azurepowershell
-$dataExportParams = @{
-    ResourceGroupName = 'resourceGroupName'
-    WorkspaceName     = 'workspaceName'
-}
-Get-AzOperationalInsightsDataExport @dataExportParams
 ```
 
 ---
@@ -959,4 +1138,4 @@ Get-AzOperationalInsightsDataExport @dataExportParams
 
 ## Related content
 
-[Query the exported data from Azure Data Explorer](../logs/azure-data-explorer-query-storage.md)
+[Query the exported data from Azure Data Explorer](/azure/data-explorer/data-lake-query-data)

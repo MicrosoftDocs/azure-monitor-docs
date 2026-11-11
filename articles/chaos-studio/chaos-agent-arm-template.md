@@ -12,9 +12,9 @@ ms.reviewer: nikhilkaul
 
 # Agent ARM template for Experiments (classic)
 
-Use this ARM template to install an agent for Azure Chaos Studio Experiments (classic). For current-model tests, review [agent-based Scenario requirements in Chaos Studio Workspaces](chaos-studio-scenarios.md#agent-based-scenario-requirements), where supported Scenarios manage agent installation.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+Use this ARM template to install an agent for Azure Chaos Studio Experiments (classic). For current-model tests, review [agent-based Scenario requirements in Chaos Studio Workspaces](chaos-studio-scenarios.md#agent-based-scenario-requirements), where supported Scenarios manage agent installation.
 
 This article includes a sample [Azure Resource Manager template](/azure/azure-resource-manager/templates/syntax) to deploy and configure the [Chaos Agent](./chaos-agent-overview.md) on Azure virtual machine scale sets using a user-assigned managed identity. The sample deploys the Chaos Agent extension with all capabilities enabled on a VM scale set.
 

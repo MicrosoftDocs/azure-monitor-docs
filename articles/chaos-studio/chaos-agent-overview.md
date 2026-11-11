@@ -11,9 +11,9 @@ ai-usage: ai-assisted
 
 # Agent overview for Experiments (classic)
 
-The Azure Chaos Studio agent runs in virtual machines to inject faults for Experiments (classic). For the current model, start with [Chaos Studio Workspaces agent-based Scenario requirements](chaos-studio-scenarios.md#agent-based-scenario-requirements). Supported Workspaces Scenarios install and remove the agent automatically.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+The Azure Chaos Studio agent runs in virtual machines to inject faults for Experiments (classic). For the current model, start with [Chaos Studio Workspaces agent-based Scenario requirements](chaos-studio-scenarios.md#agent-based-scenario-requirements). Supported Workspaces Scenarios install and remove the agent automatically.
 
 The Chaos Studio agent is a component that runs inside your virtual machines (VMs) to inject faults that can't be achieved through the Azure control plane alone. Faults like CPU pressure, memory pressure, and network latency require in-guest access to the operating system, and the agent provides that access.
 

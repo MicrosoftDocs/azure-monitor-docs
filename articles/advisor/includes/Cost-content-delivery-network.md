@@ -18,8 +18,6 @@ ms.custom: Cost Content Delivery Network
   
 We detected your subscription contains multiple Front Door Standard/Premium profiles with a small number of endpoints on them. You can save costs in base fees by using multiple endpoints within one profile. You can use a maximum of 10 endpoints with Standard tier and 25 endpoints with Premium tier.  
   
-**Potential benefits**: Save costs  
-
 **Impact:** Medium
   
 For more information, see [Endpoints in Azure Front Door ](/azure/frontdoor/endpoint?)  

@@ -2,6 +2,7 @@
 title: Run an Export Job in Azure Monitor Logs (Preview)
 description: Run an on-demand export job to export historical Log Analytics records by query and time range to Azure Blob Storage in Parquet format.
 ms.topic: how-to
+ms.custom: cbo-v1.6
 ms.reviewer: yossiy
 ms.date: 05/19/2026
 ai-usage: ai-assisted
@@ -12,8 +13,8 @@ ai-usage: ai-assisted
 
 Export historical records from a Log Analytics workspace table by using **Export job (preview)**. An export job is an asynchronous, on-demand operation that exports logs from a single table to an Azure Blob Storage account. Based on a Kusto Query Language (KQL) query and a time range you specify, results are written to Blob Storage in Parquet format and partitioned into hourly folders.
 
-| Scenario | Description|
-|----------|------------|
+| Scenario | Description |
+|----------|-------------|
 | **Legal compliance and audit readiness** | Export logs from specific time periods to fulfill audit requests, support legal holds, or demonstrate regulatory compliance. |
 | **Advanced security investigation** | Export targeted log datasets for integration with third-party SIEM solutions or for in-depth threat investigations, forensic analysis, and cross-referencing. |
 | **Machine learning and business intelligence** | Export historical datasets for model training, validation, and combining with enterprise data warehouses for reporting and analytics. |
@@ -27,8 +28,8 @@ This article shows you how to grant the required permissions, submit an export j
 
 ## Prerequisites
 
-- A [Log Analytics workspace](quick-create-workspace.md) with at least one table in the [Analytics or Basic plan](logs-table-plans.md). The Auxiliary plan isn't supported.
-- An [Azure Blob Storage account](/azure/storage/blobs/storage-blobs-introduction) to receive the exported data. Plan capacity for the volume you're exporting as described in [storage account scalability targets](/azure/storage/common/scalability-targets-standard-account).
+* A [Log Analytics workspace](quick-create-workspace.md) with at least one table in the [Analytics or Basic plan](logs-table-plans.md). The Auxiliary plan isn't supported.
+* An [Azure Blob Storage account](/azure/storage/blobs/storage-blobs-introduction) to receive the exported data. Plan capacity for the volume you're exporting as described in [storage account scalability targets](/azure/storage/common/scalability-targets-standard-account).
 
 ## How an export job works
 
@@ -45,7 +46,7 @@ Create and manage export jobs through the Log Analytics REST API. Access the exp
 To run an export job, you need permissions on the Log Analytics workspace. You must also grant the workspace's system-assigned managed identity access to the destination storage account.
 
 | Action | Permissions required | Member |
-|---|---|---|
+|--------|----------------------|--------|
 | Run an export job and query the source table | `Microsoft.OperationalInsights/workspaces/query/read` and `Microsoft.OperationalInsights/workspaces/jobs/export/action` permissions to the Log Analytics workspace, as provided by the [Log Analytics Reader built-in role](manage-access.md#log-analytics-reader), for example. | User |
 | Query logs in a table | `Microsoft.OperationalInsights/workspaces/query/<table>/read` permissions to the Log Analytics workspace, as provided by the [Log Analytics Reader built-in role](manage-access.md#log-analytics-reader), for example. | User |
 | Create a system-assigned managed identity on the workspace | `Microsoft.OperationalInsights/workspaces/write` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](manage-access.md#log-analytics-contributor), for example. | User |
@@ -56,7 +57,12 @@ To run an export job, you need permissions on the Log Analytics workspace. You m
 
 The Log Analytics workspace's system-assigned managed identity authenticates to your Azure storage account to write exported blobs. Set up this identity once per workspace.
 
-#### Step 1: Create a system-assigned managed identity on the workspace
+<a id="step-1-create-a-system-assigned-managed-identity-on-the-workspace"></a>
+
+#### Create a system-assigned managed identity on the workspace
+
+> [!NOTE]
+> The API examples update the workspace identity by using PATCH rather than replacing the workspace. If the workspace also uses user-assigned identities, retain them in the identity configuration and use `SystemAssigned,UserAssigned` for the identity type.
 
 # [Portal](#tab/portal)
 
@@ -64,65 +70,51 @@ The Log Analytics workspace's system-assigned managed identity authenticates to 
 1. Select **Identity** in the workspace left menu.
 1. On the **System assigned** tab, set **Status** to **On**, and then select **Save**.
 
-# [Azure CLI](#tab/cli-0)
+# [Azure CLI](#tab/cli)
 
-[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
+The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to call the [`Workspaces - Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation.
 
-```azurecli
-subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-resourceGroupName="myResourceGroup"
-workspaceName="myWorkspace"
-apiVersion="2025-07-01"
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+apiVersion="<ApiVersion>"
 
+# Get the subscription ID from the current Azure CLI context
+subscriptionId=$(az account show --query id --output tsv)
+
+# Build request URL
 apiEndpoint="https://management.azure.com"
 path="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 provider="Microsoft.OperationalInsights/workspaces/$workspaceName"
 queryString="?api-version=$apiVersion"
 url="$apiEndpoint$path/providers/$provider$queryString"
 
-az account set --subscription "$subscriptionId"
-
-az rest --method put --url "$url" --body @body.json
+az rest --method patch --url "$url" --body @body.json
 ```
 
-body.json
+Save the following request body as `body.json`.
 
 ```json
 {
-  "location": "eastus",
   "identity": {
     "type": "SystemAssigned"
   }
 }
 ```
 
-# [REST](#tab/rest-0)
+# [Azure PowerShell](#tab/powershell)
 
-To enable a system-assigned managed identity on the Log Analytics workspace, use this `PUT` request for the [Workspaces REST API](../fundamentals/azure-monitor-rest-api-index.md#logs-management).
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Workspaces - Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation.
 
-```REST
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}?api-version=2025-07-01
-Authorization: Bearer {accessToken}
-Content-Type: application/json
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$apiVersion = "<ApiVersion>"
 
-{
-  "location": "eastus",
-  "identity": {
-    "type": "SystemAssigned"
-  }
-}
-```
-
-# [PowerShell](#tab/powershell-0)
-
-[!INCLUDE [PowerShell using REST](../includes/powershell-using-rest.md)]
-
-```azurepowershell
-# User input
-$subscriptionId = 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e'
-$resourceGroupName = 'myResourceGroup'
-$workspaceName = 'myWorkspace'
-$apiVersion = '2025-07-01'
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
 
 # Build request URL
 $apiEndpoint = 'https://management.azure.com'
@@ -131,28 +123,42 @@ $provider = "Microsoft.OperationalInsights/workspaces/$workspaceName"
 $queryString = "?api-version=$apiVersion"
 $url = "$apiEndpoint$path/providers/$provider$queryString"
 
-# Set subscription context
-Set-AzContext -Subscription $subscriptionId
-
 # Build request body
 $body = @{
-  location = 'eastus'
   identity = @{ type = 'SystemAssigned' }
 } | ConvertTo-Json -Depth 5
 
 # Send request
-$params = @{
-  Method = 'PUT'
+$invokeAzRestMethodParams = @{
+  Method = 'PATCH'
   Uri    = $url
   Payload = $body
 }
 
-Invoke-AzRestMethod @params
+Invoke-AzRestMethod @invokeAzRestMethodParams
+```
+
+# [REST](#tab/rest)
+
+The following REST example uses the [`Workspaces - Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation.
+
+```REST
+PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+Content-Type: application/json
+
+{
+  "identity": {
+    "type": "SystemAssigned"
+  }
+}
 ```
 
 ---
 
-#### Step 2: Grant the managed identity write access to the destination storage account
+<a id="step-2-grant-the-managed-identity-write-access-to-the-destination-storage-account"></a>
+
+#### Grant the managed identity write access to the destination storage account
 
 1. In the Azure portal, open the destination storage account.
 1. Select **Access Control (IAM)** > **Add** > **Add role assignment**.
@@ -161,7 +167,9 @@ Invoke-AzRestMethod @params
 1. In the **Select managed identities** pane, select the subscription and managed identity type **Log Analytics workspace**, select your workspace, and then select **Select**.
 1. Select **Review + assign**.
 
-#### Step 3: Grant the managed identity read access to the storage account endpoint
+<a id="step-3-grant-the-managed-identity-read-access-to-the-storage-account-endpoint"></a>
+
+#### Grant the managed identity read access to the storage account endpoint
 
 Repeat the role assignment procedure, but this time assign the **Log Analytics Reader** built-in role to the same managed identity. This role provides the `Microsoft.Storage/storageAccounts/read` permission required to resolve the storage account endpoint.
 
@@ -169,26 +177,26 @@ Repeat the role assignment procedure, but this time assign the **Log Analytics R
 
 Consider these factors before you submit an export job:
 
-- Configure the job through a REST API. The Azure portal experience isn't available yet.
-- Export tables in the Analytics and Basic plans. The Auxiliary plan isn't supported.
-- Exported data is written in Parquet format. JSON format isn't supported yet.
-- Azure Private Link and network security perimeter aren't supported yet.
-- Workspace replication failover might terminate in-progress jobs. You aren't able to create new export jobs in the secondary region.
-- Export job doesn't support Azure Based Access Control (ABAC) conditions. If you configure any ABAC condition in the workspace, or if a protected table exists and you don't have sufficient permissions to query it, export jobs fail at the workspace level and return a 403 (Forbidden) error without a detailed message.
+* Configure the job through a REST API. The Azure portal experience isn't available yet.
+* Export tables in the Analytics and Basic plans. The Auxiliary plan isn't supported.
+* Exported data is written in Parquet format. JSON format isn't supported yet.
+* Azure Private Link and network security perimeter aren't supported yet.
+* Workspace replication failover might terminate in-progress jobs. You aren't able to create new export jobs in the secondary region.
+* Export job doesn't support Azure Based Access Control (ABAC) conditions. If you configure any ABAC condition in the workspace, or if a protected table exists and you don't have sufficient permissions to query it, export jobs fail at the workspace level and return a 403 (Forbidden) error without a detailed message.
 
 | Export job threshold | Value | Notes |
-|:---|:---|:---|
+|:---------------------|:------|:------|
 | Concurrent jobs per workspace | 5 (active including retry jobs) | If you need to run more than five jobs, submit them sequentially as existing jobs complete. |
 | Job timeout | 7 days | This timeout is sufficient to export a few hundred terabytes of data. If your job is approaching the timeout threshold, consider scoping the export to a smaller time range or optimizing the query to reduce the volume of data scanned and exported. |
 | Time range per job | up to 1 year range across the entire retention period of the table |  If you need to export data for a longer time range, submit separate jobs with different time ranges. |
 | Job retries | 5 retries per `jobId` (each within 7 days of latest job completion time) | If a job fails or times out, you can retry the job within seven days of the latest job completion time, or submit a new job later. |
 
-## Export job pricing
+### Export job pricing
 
 Export jobs are billed based on two Azure Monitor meters:
 
-- **Search Jobs** bills for the volume of data scanned in the source table.
-- **Log Analytics Data Export** bills for the volume of exported data measured at the destination Azure storage account.
+* **Search Jobs** bills for the volume of data scanned in the source table.
+* **Log Analytics Data Export** bills for the volume of exported data measured at the destination Azure storage account.
 
 You pay for capacity in the destination Azure storage account in your subscription, and it's not part of the export job feature cost.
 
@@ -196,13 +204,15 @@ The **Log Analytics Data Export** meter is shared with [data export rules](logs-
 
 For pricing details, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
-## Ensure data completeness
+### Ensure data completeness
 
 An export job is designed to handle hundreds of terabytes of logs and includes a retry mechanism to overcome transient issues in queries, networking, or storage. If a job fails, one or more bins might be missing results. You can complete the export within seven days of the original job completion by using the `retry` action with the `jobId`. The retry process is optimized to address incomplete or missing data while skipping data already exported successfully, preventing duplicates at the destination.
 
 To check the status of active and completed jobs, enable **Jobs** diagnostic settings on the workspace, then query the `LAJobLogs` table. You can initiate up to five retry attempts, each within seven days of the latest job completion time.
 
-The following sample query returns failed jobs from the last seven days:
+#### Find failed export jobs
+
+The following sample query returns failed jobs from the last seven days.
 
 ```kusto
 LAJobLogs
@@ -217,12 +227,12 @@ Manage export jobs through the REST API with job configuration parameters. The A
 
 A single job allows configuration of up to 10 storage accounts to address storage rate-limit scenarios, ensuring data is distributed efficiently. A single storage account is sufficient when the destination isn't shared with other high-bandwidth tasks.
 
-## Export job API parameters
+### Export job API parameters
 
 The following parameters define an export job request:
 
 | Property name | Description |
-|---|---|
+|---------------|-------------|
 | `startTime` | The export start time. Must be earlier than the current time. |
 | `endTime` | The export end time. Must be later than `startTime` and earlier than the current time. |
 | `query` | A filtering search written in the Kusto Query Language commands supported in [search jobs](search-jobs.md). |
@@ -231,16 +241,15 @@ The following parameters define an export job request:
 | `outputDataFormat` | The data format in the storage account. Only `Parquet` is currently supported. JSON isn't supported yet. |
 | `dateTimeFormat` | The datetime format in the storage account path. Supported values are `yyyy-MM-ddTHH` (default) and `year=yyyy/month=MM/day=dd/hour=HH`.<br /><br />Path example: `<container-name>/workspaceId/<workspace-id>/jobId/<job-id>/timestamp=<datetime>` |
 
-## Estimate export job size
+### Estimate export job size
 
 Before you submit an export job, estimate the data volume so you can decide whether to scope the export to a smaller time range.
 
-> [!NOTE]
-> The query below uses `Usage` data from the last 30 days to estimate volume. Normal Azure Blob Storage charges apply.
-
 If you want to export all data for a given time range, specify only the table name in `query`. If you want to export a subset of records, write a search query using the same KQL conventions as [search jobs](search-jobs.md) and verify it returns only the records you need.
 
-For example, to estimate exporting all data from `StorageBlobLogs` over a 90-day period, run the following query in your workspace. The result indicates the total volume involved and whether the job is likely to time out.
+#### Estimate a 90-day StorageBlobLogs export
+
+To estimate exporting all data from `StorageBlobLogs` over a 90-day period, run the following query in your workspace. The result indicates the total volume involved and whether the job is likely to time out. The query uses `Usage` data from the last 30 days to estimate volume. Normal Azure Blob Storage charges apply.
 
 ```kusto
 // Definitions
@@ -263,114 +272,118 @@ Usage
 
 When `IsExceedLimit` is `true`, the job is likely to time out. Submit multiple jobs with smaller time ranges instead.
 
-## Generate a bearer token for the export job API call
+### Generate a bearer token for the export job API call
 
 REST requests to the export job API require an `Authorization: Bearer` token. Tokens expire periodically and an expired token returns a `403 Unauthorized` response. The export job API uses the data-plane endpoint `api.loganalytics.io` (equivalent to `api.loganalytics.azure.com`). There are a few ways to obtain a token.
-- If you're using Azure CLI, the `az rest` command handles token generation for you. 
-- If you're using Azure PowerShell, the `Invoke-AzRestMethod` cmdlet handles token generation for you. 
-- For direct REST API calls, use one of the following scripts to generate a token, then paste it as the `Authorization` value in your REST requests.
 
-```azurecli
-az login --tenant aaaabbbb-0000-cccc-1111-dddd2222eeee
-az account set --subscription aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e
-token=$(az account get-access-token --resource https://api.loganalytics.io --query accessToken -o tsv)
+# [Azure CLI](#tab/cli-2)
+
+The `az rest` command handles token generation for you.
+
+# [Azure PowerShell](#tab/powershell-2)
+
+The `Invoke-AzRestMethod` cmdlet handles token generation for you.
+
+# [REST](#tab/rest-2)
+
+For direct REST API calls, select a tool to generate a token. Treat the resulting token as a secret; don't print it or include it in logs.
+
+**Option 1: Azure CLI**
+
+The following Azure CLI example uses the [`az account get-access-token`](/cli/azure/account#az-account-get-access-token) command for a direct REST client.
+
+```bash
+# Set variables
+tenantId="<TenantId>"
+
+# Sign in and acquire a token for the direct REST client
+az login --tenant "$tenantId"
+token=$(az account get-access-token \
+  --resource https://api.loganalytics.io \
+  --query accessToken --output tsv)
 ```
 
-```azurepowershell
-Connect-AzAccount -Tenant 'aaaabbbb-0000-cccc-1111-dddd2222eeee'
-Set-AzContext -Subscription 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e'
+**Option 2: Azure PowerShell**
+
+The following Azure PowerShell example uses the [`Get-AzAccessToken`](/powershell/module/az.accounts/get-azaccesstoken) cmdlet for a direct REST client.
+
+> [!NOTE]
+> The `ConvertFrom-SecureString -AsPlainText` parameter requires PowerShell 7 or later.
+
+```powershell
+# Set variables
+$tenantId = "<TenantId>"
+
+# Sign in and acquire a token for the direct REST client
+Connect-AzAccount -Tenant $tenantId
 $tokenObj = Get-AzAccessToken -ResourceUrl "https://api.loganalytics.io" -AsSecureString
 $token = ConvertFrom-SecureString -SecureString $tokenObj.Token -AsPlainText
 ```
 
-## Create an export job
+---
 
-Before you create an export job, ensure the workspace has a [system-assigned managed identity with Storage Blob Data Contributor role](#grant-the-log-analytics-workspace-managed-identity-access-to-azure-storage) on the destination storage account. For direct REST API calls, you also need a [bearer token](#generate-a-bearer-token-for-the-export-job-api-call) for the Log Analytics data-plane API.
+### Create an export job
+
+Before you create an export job, ensure the workspace has a [system-assigned managed identity with Storage Blob Data Contributor role](#grant-the-log-analytics-workspace-managed-identity-access-to-azure-storage) on the destination storage account.
 
 Submit the following request to start an export job. The operation is asynchronous and might take several days to complete for hundreds of terabytes.
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/cli-2)
 
-[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
+The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to call the [`/export`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-export-jobs) REST API operation.
 
-```azurecli
-subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-resourceGroupName="myResourceGroup"
-workspaceName="myWorkspace"
-apiVersion="2025-06-01-preview"
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+apiVersion="<ApiVersion>"
 
+# Get the subscription ID from the current Azure CLI context
+subscriptionId=$(az account show --query id --output tsv)
+
+# Build request URL
 apiEndpoint="https://api.loganalytics.io"
 path="/v2/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName"
 provider="Microsoft.OperationalInsights/workspaces/$workspaceName"
 queryString="?api-version=$apiVersion"
 url="$apiEndpoint$path/providers/$provider/jobs/export$queryString"
 
-az account set --subscription "$subscriptionId"
-
 az rest --method post --url "$url" --body @body.json
 ```
 
-body.json
+Save the following request body as `body.json`.
 
 ```json
 {
-  "startTime": "2026-01-01T00:00:00",
-  "endTime": "2026-03-01T00:00:00",
-  "query": "CommonSecurityLog",
+  "startTime": "<StartTime>",
+  "endTime": "<EndTime>",
+  "query": "<Query>",
   "destinationStorageAccounts": [
-    "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Storage/storageAccounts/myStorageAccount"
+    "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.Storage/storageAccounts/<StorageAccountName>"
   ],
-  "containerName": "common-security-log-export",
+  "containerName": "<ContainerName>",
   "outputDataFormat": "Parquet",
   "dateTimeFormat": "yyyy-MM-ddTHH"
 }
 ```
 
-# [REST](#tab/rest)
+# [Azure PowerShell](#tab/powershell-2)
 
-**Operation:** `/export`
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`/export`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-export-jobs) REST API operation.
 
-```REST
-POST https://api.loganalytics.azure.com/v2/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/jobs/export?api-version=2025-06-01-preview
-Authorization: Bearer {accessToken}
-Content-Type: application/json
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$storageAccountName = "<StorageAccountName>"
+$containerName = "<ContainerName>"
+$query = "<Query>"
+$startTime = "<StartTime>"
+$endTime = "<EndTime>"
+$apiVersion = "<ApiVersion>"
 
-{
-  "startTime": "2026-01-01T00:00:00",
-  "endTime": "2026-03-01T00:00:00",
-  "query": "CommonSecurityLog",
-  "destinationStorageAccounts": [
-    "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Storage/storageAccounts/myStorageAccount"
-  ],
-  "containerName": "common-security-log-export",
-  "outputDataFormat": "Parquet",
-  "dateTimeFormat": "yyyy-MM-ddTHH"
-}
-```
-
-**Response**
-
-```http
-202 Accepted
-
-{
-  "operationId": "aaaa0000-bb11-2222-33cc-444444dddddd"
-}
-```
-
-# [PowerShell](#tab/powershell)
-
-[!INCLUDE [PowerShell using REST](../includes/powershell-using-rest.md)]
-
-```azurepowershell
-# User input
-$subscriptionId = 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e'
-$resourceGroupName = 'myResourceGroup'
-$workspaceName = 'myWorkspace'
-$storageAccountName = 'myStorageAccount'
-$containerName = 'common-security-log-export'
-$query = 'CommonSecurityLog'
-$apiVersion = '2025-06-01-preview'
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
 
 # Build request URL
 $apiEndpoint = 'https://api.loganalytics.io'
@@ -384,13 +397,10 @@ $storagePath = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName
 $storageProviders = "Microsoft.Storage/storageAccounts/$storageAccountName"
 $destinationStorageAccount = "$storagePath/providers/$storageProviders"
 
-# Set subscription context
-Set-AzContext -Subscription $subscriptionId
-
 # Build request body
 $createJobBody = @{
-  startTime                  = '2026-01-01T00:00:00'
-  endTime                    = '2026-03-01T00:00:00'
+  startTime                  = $startTime
+  endTime                    = $endTime
   query                      = $query
   destinationStorageAccounts = @($destinationStorageAccount)
   containerName              = $containerName
@@ -399,13 +409,47 @@ $createJobBody = @{
 } | ConvertTo-Json -Depth 4
 
 # Send request
-$createJobParams = @{
+$invokeAzRestMethodParams = @{
   Method   = 'POST'
   Uri      = $url
   Payload  = $createJobBody
 }
 
-Invoke-AzRestMethod @createJobParams
+Invoke-AzRestMethod @invokeAzRestMethodParams
+```
+
+# [REST](#tab/rest-2)
+
+For direct REST API calls, you also need a [bearer token](#generate-a-bearer-token-for-the-export-job-api-call) for the Log Analytics data-plane API.
+
+The following REST example uses the [`/export`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-export-jobs) REST API operation.
+
+```REST
+POST https://api.loganalytics.azure.com/v2/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/jobs/export?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+Content-Type: application/json
+
+{
+  "startTime": "<StartTime>",
+  "endTime": "<EndTime>",
+  "query": "<Query>",
+  "destinationStorageAccounts": [
+    "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.Storage/storageAccounts/<StorageAccountName>"
+  ],
+  "containerName": "<ContainerName>",
+  "outputDataFormat": "Parquet",
+  "dateTimeFormat": "yyyy-MM-ddTHH"
+}
+```
+
+**Response**
+
+```output
+202 Accepted
+
+{
+  "operationId": "aaaa0000-bb11-2222-33cc-444444dddddd"
+}
 ```
 
 ---
@@ -413,45 +457,77 @@ Invoke-AzRestMethod @createJobParams
 > [!NOTE]
 > Save the `operationId` value returned by the request. It's the `jobId` you use to check status, cancel, or retry the job.
 
-## Check export job status
+### Check export job status
 
 Submit the following request with the export job `jobId` to check job status.
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/cli-2)
 
-[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
+The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to call the [`/status`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-export-jobs) REST API operation.
 
-```azurecli
-subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-resourceGroupName="myResourceGroup"
-workspaceName="myWorkspace"
-jobId="aaaa0000-bb11-2222-33cc-444444dddddd"
-apiVersion="2025-06-01-preview"
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+jobId="<JobId>"
+apiVersion="<ApiVersion>"
 
+# Get the subscription ID from the current Azure CLI context
+subscriptionId=$(az account show --query id --output tsv)
+
+# Build request URL
 apiEndpoint="https://api.loganalytics.io"
 path="/v2/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName"
 provider="Microsoft.OperationalInsights/workspaces/$workspaceName"
 queryString="?api-version=$apiVersion"
 url="$apiEndpoint$path/providers/$provider/jobs/export/$jobId/status$queryString"
 
-az account set --subscription "$subscriptionId"
-
 az rest --method get --url "$url"
 ```
 
-# [REST](#tab/rest)
+# [Azure PowerShell](#tab/powershell-2)
 
-**Operation:** `/status`
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`/status`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-export-jobs) REST API operation.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$jobId = "<JobId>"
+$apiVersion = "<ApiVersion>"
+
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
+
+# Build request URL
+$apiEndpoint = 'https://api.loganalytics.io'
+$path = "/v2/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName"
+$provider = "Microsoft.OperationalInsights/workspaces/$workspaceName"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider/jobs/export/$jobId/status$queryString"
+
+# Send request
+$invokeAzRestMethodParams = @{
+  Method   = 'GET'
+  Uri      = $url
+}
+
+Invoke-AzRestMethod @invokeAzRestMethodParams
+```
+
+# [REST](#tab/rest-2)
+
+The following REST example uses the [`/status`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-export-jobs) REST API operation.
 
 ```REST
-GET https://api.loganalytics.azure.com/v2/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/jobs/export/{jobId}/status?api-version=2025-06-01-preview
+GET https://api.loganalytics.azure.com/v2/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/jobs/export/{jobId}/status?api-version={apiVersion}
 Authorization: Bearer {accessToken}
 Content-Type: application/json
 ```
 
 **Response**
 
-```http
+```output
 200 OK
 
 {
@@ -464,81 +540,82 @@ Content-Type: application/json
 }
 ```
 
-# [PowerShell](#tab/powershell)
-
-[!INCLUDE [PowerShell using REST](../includes/powershell-using-rest.md)]
-
-```azurepowershell
-# User input
-$subscriptionId = 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e'
-$resourceGroupName = 'myResourceGroup'
-$workspaceName = 'myWorkspace'
-$jobId = 'aaaa0000-bb11-2222-33cc-444444dddddd'
-$apiVersion = '2025-06-01-preview'
-
-# Build request URL
-$apiEndpoint = 'https://api.loganalytics.io'
-$path = "/v2/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName"
-$provider = "Microsoft.OperationalInsights/workspaces/$workspaceName"
-$queryString = "?api-version=$apiVersion"
-$url = "$apiEndpoint$path/providers/$provider/jobs/export/$jobId/status$queryString"
-
-# Set subscription context
-Set-AzContext -Subscription $subscriptionId
-
-# Send request
-$statusParams = @{
-  Method   = 'GET'
-  Uri      = $url
-}
-
-Invoke-AzRestMethod @statusParams
-```
-
 ---
 
-## Cancel an export job
+### Cancel an export job
 
 Submit the following request with the export job `jobId` to cancel the job. Data processed and exported before cancellation remains available in the destination Azure storage account and is billed accordingly.
 
 > [!WARNING]
 > A canceled export job is terminated permanently and can't be retried.
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/cli-2)
 
-[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
+The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to call the [`/cancel`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-export-jobs) REST API operation.
 
-```azurecli
-subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-resourceGroupName="myResourceGroup"
-workspaceName="myWorkspace"
-jobId="aaaa0000-bb11-2222-33cc-444444dddddd"
-apiVersion="2025-06-01-preview"
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+jobId="<JobId>"
+apiVersion="<ApiVersion>"
 
+# Get the subscription ID from the current Azure CLI context
+subscriptionId=$(az account show --query id --output tsv)
+
+# Build request URL
 apiEndpoint="https://api.loganalytics.io"
 path="/v2/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName"
 provider="Microsoft.OperationalInsights/workspaces/$workspaceName"
 queryString="?api-version=$apiVersion"
 url="$apiEndpoint$path/providers/$provider/jobs/export/$jobId/cancel$queryString"
 
-az account set --subscription "$subscriptionId"
-
 az rest --method post --url "$url"
 ```
 
-# [REST](#tab/rest)
+# [Azure PowerShell](#tab/powershell-2)
 
-**Operation:** `/cancel`
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`/cancel`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-export-jobs) REST API operation.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$jobId = "<JobId>"
+$apiVersion = "<ApiVersion>"
+
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
+
+# Build request URL
+$apiEndpoint = 'https://api.loganalytics.io'
+$path = "/v2/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName"
+$provider = "Microsoft.OperationalInsights/workspaces/$workspaceName"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider/jobs/export/$jobId/cancel$queryString"
+
+# Send request
+$invokeAzRestMethodParams = @{
+  Method   = 'POST'
+  Uri      = $url
+}
+
+Invoke-AzRestMethod @invokeAzRestMethodParams
+```
+
+# [REST](#tab/rest-2)
+
+The following REST example uses the [`/cancel`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-export-jobs) REST API operation.
 
 ```REST
-POST https://api.loganalytics.azure.com/v2/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/jobs/export/{jobId}/cancel?api-version=2025-06-01-preview
+POST https://api.loganalytics.azure.com/v2/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/jobs/export/{jobId}/cancel?api-version={apiVersion}
 Authorization: Bearer {accessToken}
 Content-Type: application/json
 ```
 
 **Response**
 
-```http
+```output
 200 OK
 
 {
@@ -551,40 +628,9 @@ Content-Type: application/json
 }
 ```
 
-# [PowerShell](#tab/powershell)
-
-[!INCLUDE [PowerShell using REST](../includes/powershell-using-rest.md)]
-
-```azurepowershell
-# User input
-$subscriptionId = 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e'
-$resourceGroupName = 'myResourceGroup'
-$workspaceName = 'myWorkspace'
-$jobId = 'aaaa0000-bb11-2222-33cc-444444dddddd'
-$apiVersion = '2025-06-01-preview'
-
-# Build request URL
-$apiEndpoint = 'https://api.loganalytics.io'
-$path = "/v2/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName"
-$provider = "Microsoft.OperationalInsights/workspaces/$workspaceName"
-$queryString = "?api-version=$apiVersion"
-$url = "$apiEndpoint$path/providers/$provider/jobs/export/$jobId/cancel$queryString"
-
-# Set subscription context
-Set-AzContext -Subscription $subscriptionId
-
-# Send request
-$cancelParams = @{
-  Method   = 'POST'
-  Uri      = $url
-}
-
-Invoke-AzRestMethod @cancelParams
-```
-
 ---
 
-## Retry an export job
+### Retry an export job
 
 If an export job fails after the service exhausts its automatic retry attempts, or times out due to large data volume, manually retry the job to complete the export. The manual retry process skips data already exported successfully and only processes incomplete or missing bins, preventing duplicates.
 
@@ -593,59 +639,43 @@ You are only allowed to manually retry an export job up to five times per `jobId
 > [!NOTE]
 > A canceled export job can't be retried.
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/cli-2)
 
-[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
+The following Azure CLI example uses [az rest](/cli/azure/reference-index#az-rest) to call the [`/retry`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-export-jobs) REST API operation.
 
-```azurecli
-subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-resourceGroupName="myResourceGroup"
-workspaceName="myWorkspace"
-jobId="aaaa0000-bb11-2222-33cc-444444dddddd"
-apiVersion="2025-06-01-preview"
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+jobId="<JobId>"
+apiVersion="<ApiVersion>"
 
+# Get the subscription ID from the current Azure CLI context
+subscriptionId=$(az account show --query id --output tsv)
+
+# Build request URL
 apiEndpoint="https://api.loganalytics.io"
 path="/v2/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName"
 provider="Microsoft.OperationalInsights/workspaces/$workspaceName"
 queryString="?api-version=$apiVersion"
 url="$apiEndpoint$path/providers/$provider/jobs/export/$jobId/retry$queryString"
 
-az account set --subscription "$subscriptionId"
-
 az rest --method post --url "$url"
 ```
 
-# [REST](#tab/rest)
+# [Azure PowerShell](#tab/powershell-2)
 
-**Operation:** `/retry`
+The following Azure PowerShell example uses [Invoke-AzRestMethod](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`/retry`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-export-jobs) REST API operation.
 
-```REST
-POST https://api.loganalytics.azure.com/v2/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/jobs/export/{jobId}/retry?api-version=2025-06-01-preview
-Authorization: Bearer {accessToken}
-Content-Type: application/json
-```
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$jobId = "<JobId>"
+$apiVersion = "<ApiVersion>"
 
-**Response**
-
-```http
-202 Accepted
-
-{
-  "operationId": "aaaa0000-bb11-2222-33cc-444444dddddd"
-}
-```
-
-# [PowerShell](#tab/powershell)
-
-[!INCLUDE [PowerShell using REST](../includes/powershell-using-rest.md)]
-
-```azurepowershell
-# User input
-$subscriptionId = 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e'
-$resourceGroupName = 'myResourceGroup'
-$workspaceName = 'myWorkspace'
-$jobId = 'aaaa0000-bb11-2222-33cc-444444dddddd'
-$apiVersion = '2025-06-01-preview'
+# Get the subscription ID from the current Azure PowerShell context
+$subscriptionId = (Get-AzContext).Subscription.Id
 
 # Build request URL
 $apiEndpoint = 'https://api.loganalytics.io'
@@ -654,16 +684,33 @@ $provider = "Microsoft.OperationalInsights/workspaces/$workspaceName"
 $queryString = "?api-version=$apiVersion"
 $url = "$apiEndpoint$path/providers/$provider/jobs/export/$jobId/retry$queryString"
 
-# Set subscription context
-Set-AzContext -Subscription $subscriptionId
-
 # Send request
-$retryParams = @{
+$invokeAzRestMethodParams = @{
   Method   = 'POST'
   Uri      = $url
 }
 
-Invoke-AzRestMethod @retryParams
+Invoke-AzRestMethod @invokeAzRestMethodParams
+```
+
+# [REST](#tab/rest-2)
+
+The following REST example uses the [`/retry`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-export-jobs) REST API operation.
+
+```REST
+POST https://api.loganalytics.azure.com/v2/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/jobs/export/{jobId}/retry?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+Content-Type: application/json
+```
+
+**Response**
+
+```output
+202 Accepted
+
+{
+  "operationId": "aaaa0000-bb11-2222-33cc-444444dddddd"
+}
 ```
 
 ---
@@ -699,7 +746,7 @@ To configure the diagnostic setting:
 
 <!-- TODO: screenshot from Yossi - Diagnostic settings page with Jobs category selected -->
 
-## `LAJobLogs` schema
+### `LAJobLogs` schema
 
 The following key fields in the `LAJobLogs` table relate to export jobs. For the complete schema, see [LAJobLogs](../reference/tables/lajoblogs.md).
 
@@ -740,21 +787,21 @@ After your export job completes, query the exported Parquet blobs by using Log A
 
 Use the [externaldata](/kusto/query/externaldata-operator?view=azure-monitor&preserve-view=true) operator in Log Analytics when:
 
-- You need to validate a specific hour or a small set of logs.
-- You want ad-hoc analysis without setting up additional infrastructure.
+* You need to validate a specific hour or a small set of logs.
+* You want ad-hoc analysis without setting up additional infrastructure.
 
 ```kusto
 externaldata (
-    TimeGenerated: datetime,
-    Message: string,
-    Severity: string,
-    Facility: string
+  TimeGenerated: datetime,
+  Message: string,
+  Severity: string,
+  Facility: string
 )
 [
-    @"https://<storage-account-name>.blob.core.windows.net/<container-name>/workspaceId/<workspace-id>/jobId/<job-id>/timestamp=2026-05-01T00/aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb.gz.parquet?<blob-sas-token>"
+  @"https://<storage-account-name>.blob.core.windows.net/<container-name>/workspaceId/<workspace-id>/jobId/<job-id>/timestamp=2026-05-01T00/aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb.gz.parquet?<blob-sas-token>"
 ]
 with (
-    format="parquet"
+  format="parquet"
 )
 ```
 
@@ -762,15 +809,15 @@ with (
 
 Define an [external table](/kusto/management/external-tables-azure-storage?view=azure-data-explorer&preserve-view=true) in an Azure Data Explorer (ADX) cluster and query it with the `external_table()` function (no data movement required). Use this approach when:
 
-- You need broad analysis across many blobs or large datasets.
-- You want persistent schema and optimized performance for repeated queries.
+* You need broad analysis across many blobs or large datasets.
+* You want persistent schema and optimized performance for repeated queries.
 
 ```kusto
 .create external table ExportedLogs (TimeGenerated:datetime, Level:string, Message:string)
 kind=blob
 dataformat=parquet
 (
-    h@"https://<storage-account-name>.blob.core.windows.net/<container-name>;<storage-account-key>"
+  h@"https://<storage-account-name>.blob.core.windows.net/<container-name>;<storage-account-key>"
 )
 
 external_table("ExportedLogs")
@@ -792,8 +839,8 @@ Use [LightIngest](/azure/data-explorer/lightingest) to ingest export job output 
 
 ## Related content
 
-- [Log Analytics workspace data export in Azure Monitor](logs-data-export.md)
-- [Run search jobs in Azure Monitor](search-jobs.md)
-- [Restore logs in Azure Monitor](restore.md)
-- [Export data to a storage account by using Logic Apps](logs-export-logic-app.md)
-- [LAJobLogs reference](../reference/tables/lajoblogs.md)
+* [Log Analytics workspace data export in Azure Monitor](logs-data-export.md)
+* [Run search jobs in Azure Monitor](search-jobs.md)
+* [Restore logs in Azure Monitor](restore.md)
+* [Export data to a storage account by using Logic Apps](logs-export-logic-app.md)
+* [LAJobLogs reference](../reference/tables/lajoblogs.md)

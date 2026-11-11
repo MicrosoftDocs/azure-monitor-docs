@@ -1,6 +1,6 @@
 ---
-title: Azure Monitor health model CLI quickstart (preview)
-description: In this quickstart, use Azure CLI to create and verify an Azure Monitor health model while the extension remains in preview.
+title: Azure Monitor health model CLI quickstart
+description: In this quickstart, use Azure CLI to create and verify an Azure Monitor health model.
 ms.topic: quickstart
 ms.reviewer: anbossar
 ms.date: 08/26/2026
@@ -10,12 +10,9 @@ ms.custom:
 #customer intent: As an Azure user, I want to create my first health model with Azure CLI so that I can automate Health Models deployment.
 ---
 
-# Quickstart: Create a health model with Azure CLI (preview)
+# Quickstart: Create a health model with Azure CLI
 
 In this quickstart, you use Azure CLI to create an Azure Monitor health model with a system-assigned managed identity, verify the deployment, and delete the resources.
-
-> [!IMPORTANT]
-> The `health-models` Azure CLI extension is in preview and might change. Microsoft provides limited support for this feature. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to features that are in preview or otherwise not yet released into general availability.
 
 ## Prerequisites
 

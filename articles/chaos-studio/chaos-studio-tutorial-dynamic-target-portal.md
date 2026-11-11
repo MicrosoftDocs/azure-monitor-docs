@@ -11,9 +11,9 @@ ms.custom: template-how-to
 
 # Configure dynamic targets in the portal (classic)
 
-This portal guide uses dynamic targeting in Azure Chaos Studio Experiments (classic). For current-model zone tests, explore [Workspaces Compute Zone Down Scenarios](chaos-studio-scenarios.md#compute-zone-down). Workspaces doesn't support classic dynamic targeting; review [Workspaces limitations](chaos-studio-workspaces-limitations.md#limitations) before choosing a model.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This portal guide uses dynamic targeting in Azure Chaos Studio Experiments (classic). For current-model zone tests, explore [Workspaces Compute Zone Down Scenarios](chaos-studio-scenarios.md#compute-zone-down). Workspaces doesn't support classic dynamic targeting; review [Workspaces limitations](chaos-studio-workspaces-limitations.md#limitations) before choosing a model.
 
 You can use dynamic targeting in a chaos experiment to choose a set of targets to run an experiment against, based on criteria evaluated at experiment runtime. This article shows how you can dynamically target a virtual machine scale set to shut down instances based on availability zone. Running this experiment can help you test failover to an Azure Virtual Machine Scale Sets instance in a different region if there's an outage.
 
@@ -66,7 +66,7 @@ Now you can create your experiment. A chaos experiment defines the actions you w
 
 ## Give the experiment permission to your virtual machine scale sets
 
-When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. This identity must be given [appropriate permissions](chaos-studio-fault-providers.md) to the target resource for the experiment to run successfully. To use these steps for any resource and target type, modify the role assignment in step 3 to match the [appropriate role for that resource and target type](chaos-studio-fault-providers.md).
+When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. You must give this identity [appropriate permissions](chaos-studio-workspaces-supported-resources.md) to the target resource for the experiment to run successfully. To use these steps for any resource and target type, modify the role assignment in step 3 to match the [appropriate role for that resource and target type](chaos-studio-workspaces-supported-resources.md).
 
 1. Go to your virtual machine scale set resource and select **Access control (IAM)** > **Add role assignment**.
 

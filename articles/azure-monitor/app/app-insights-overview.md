@@ -3,6 +3,7 @@ title: Application Insights OpenTelemetry observability overview
 description: Learn how Azure Monitor Application Insights integrates with OpenTelemetry (OTel) for comprehensive application observability.
 ms.topic: overview
 ms.date: 11/14/2025
+ai-usage: ai-assisted
 
 #customer intent: As a developer or site reliability engineer, I want to use OpenTelemetry (OTel), often searched as 'Open Telemetry', with Application Insights so that I can collect, analyze, and monitor application telemetry in a standardized way for improved observability and performance diagnostics.
 
@@ -83,7 +84,7 @@ Entry points include:
 > - AI Agents
 
 > [!TIP]
-> - For most code-based server-side scenarios, the recommended setup uses the Azure Monitor OpenTelemetry Distro.
+> - For most code-based server-side scenarios, use the Microsoft OpenTelemetry Distro for .NET, Node.js, and Python, or the Azure Monitor OpenTelemetry Distro for Java.
 > - Scenarios where OpenTelemetry isn't available are clearly identified.
 
 Choose the tab that best matches your workload or hosting model. Each tab shows the recommended data-collection path for that scenario.
@@ -96,11 +97,11 @@ Use this path for server-side web apps that you instrument in code.
 
 1. Create an [Application Insights resource](create-workspace-resource.md).
 1. Get the resource's [connection string](connection-strings.md).
-1. Add the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) to your app.
+1. For .NET, Node.js, and Python, add the [Microsoft OpenTelemetry Distro](opentelemetry-enable.md) to your app. For Java, use the Azure Monitor OpenTelemetry Distro.
 1. Configure the [connection string](opentelemetry-configuration.md#connection-string).
 
 > [!TIP]
-> Some platforms enable data collection automatically through [automatic instrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) if you want more configuration and extensibility options.
+> Some platforms enable data collection automatically through [automatic instrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the [Microsoft OpenTelemetry Distro](opentelemetry-enable.md) for .NET, Node.js, and Python, or the Azure Monitor OpenTelemetry Distro for Java, if you want more configuration and extensibility options.
 
 #### [VM](#tab/vm)
 
@@ -108,11 +109,11 @@ Use this path when your app runs on a virtual machine or virtual machine scale s
 
 1. Create an [Application Insights resource](create-workspace-resource.md).
 1. Get the resource's [connection string](connection-strings.md).
-1. Add the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) to your app.
+1. For .NET, Node.js, and Python, add the [Microsoft OpenTelemetry Distro](opentelemetry-enable.md) to your app. For Java, use the Azure Monitor OpenTelemetry Distro.
 1. Configure the [connection string](opentelemetry-configuration.md#connection-string).
 
 > [!TIP]
-> Some platforms enable data collection automatically through [automatic instrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) if you want more configuration and extensibility options.
+> Some platforms enable data collection automatically through [automatic instrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the [Microsoft OpenTelemetry Distro](opentelemetry-enable.md) for .NET, Node.js, and Python, or the Azure Monitor OpenTelemetry Distro for Java, if you want more configuration and extensibility options.
 
 #### [JavaScript](#tab/js)
 
@@ -143,7 +144,7 @@ Use this path for apps running on Azure Kubernetes Service (AKS). The code-based
 
 1. Create an [Application Insights resource](create-workspace-resource.md).
 1. Get the resource's [connection string](connection-strings.md).
-1. Add the [OpenTelemetry Distro](opentelemetry-enable.md) to your app.
+1. For .NET, Node.js, and Python, add the [Microsoft OpenTelemetry Distro](opentelemetry-enable.md) to your app. For Java, use the Azure Monitor OpenTelemetry Distro.
 1. Configure the [connection string](opentelemetry-configuration.md#connection-string).
 
 > [!NOTE]
@@ -154,7 +155,7 @@ Use this path for apps running on Azure Kubernetes Service (AKS). The code-based
 Use this path for AI agents. Choose the setup that matches your hosting model.
 
 - **Managed hosting**
-  - **Azure AI Foundry:** For Foundry-managed agents and workflows, start with [tracing setup in Foundry](/azure/foundry/observability/how-to/trace-agent-setup). For app-side instrumentation, you can also use the Azure Monitor OpenTelemetry Distro with the [Foundry SDK](/azure/foundry-classic/how-to/develop/trace-agents-sdk).
+  - **Azure AI Foundry:** For Foundry-managed agents and workflows, start with [tracing setup in Foundry](/azure/foundry/observability/how-to/trace-agent-setup). For app-side instrumentation, you can also use the Microsoft OpenTelemetry Distro with the [Foundry SDK](/azure/foundry-classic/how-to/develop/trace-agents-sdk).
 
 - **Self-hosting**
   - **Microsoft Agent Framework:** If you're building an agent from scratch and self-hosting, use the [Microsoft Agent Framework](/agent-framework/agents/observability) to orchestrate your agent and emit telemetry to Azure Monitor.

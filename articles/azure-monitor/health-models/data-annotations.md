@@ -1,5 +1,5 @@
 ---
-title: Add data annotations to Azure Monitor health models (preview)
+title: Add data annotations to Azure Monitor health models
 description: Learn how to add, retrieve, and view data annotations that correlate operational events with entity health in Azure Monitor health models.
 ms.topic: how-to
 ms.reviewer: megangoode
@@ -9,9 +9,9 @@ ai-usage: ai-assisted
 #customer intent: As an operator, I want to add context to an entity's health history so that I can correlate health changes with deployments and other operational events.
 ---
 
-# Add data annotations to Azure Monitor health models (preview)
+# Add data annotations to Azure Monitor health models
 
-Data annotations attach point-in-time context to an entity in Azure Monitor health models (preview). Use an annotation to correlate an entity's health history with a deployment, configuration change, incident, or other operational event.
+Data annotations attach point-in-time context to an entity in Azure Monitor health models. Use an annotation to correlate an entity's health history with a deployment, configuration change, incident, or other operational event.
 
 ## Prerequisites
 

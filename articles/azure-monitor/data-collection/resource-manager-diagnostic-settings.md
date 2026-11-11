@@ -1,8 +1,8 @@
 ---
-title: Resource Manager template samples for diagnostic settings
+title: Resource Manager Template Samples for Diagnostic Settings
 description: Sample Azure Resource Manager templates to apply Azure Monitor diagnostic settings to an Azure resource.
 ms.topic: sample
-ms.custom: devx-track-arm-template
+ms.custom: devx-track-arm-template, cbo-v1.6
 ms.date: 08/07/2026
 ms.reviewer: lualderm
 ai-usage: ai-assisted
@@ -12,7 +12,20 @@ ai-usage: ai-assisted
 
 This article includes sample [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to create diagnostic settings for an Azure resource. Each sample includes a template file and a parameters file with sample values to provide to the template.
 
+> [!NOTE]
+> Before you deploy a sample:
+>
+> * Ensure that the monitored resource and each selected destination already exist. The Bicep `existing` declarations reference monitored resources; they don't create or update them.
+> * Provide the destination subscription, resource group, and resource names used to compose the resource IDs. The resource-group templates target a monitored resource in the deployment resource group unless their scope says otherwise.
+> * Check the resource's supported log and metric categories and the [destination requirements](diagnostic-settings.md#destinations).
+> * Use a new diagnostic-setting name to add a setting. Reusing an existing name updates that setting, so preserve its required destinations, logs, metrics, retention configuration, and other settings.
+>
+> Each named API-version placeholder corresponds to its resource declaration. Use the resource type's [template reference](/azure/templates/) to resolve that version. The Storage sample also uses a separately named API version for its endpoint lookup and its nested deployment.
+
 To create a diagnostic setting for an Azure resource, add a resource of type `<resource namespace>/providers/diagnosticSettings` to the template. This article provides examples for some resource types, but the same pattern can be applied to other resource types. The collection of allowed logs and metrics varies for each resource type.
+
+> [!IMPORTANT]
+> Template deployments create or update the named diagnostic setting; they aren't partial PATCH operations. When updating a setting, preserve its required destinations and complete log and metric collections.
 
 The following table lists the resource types with samples in this article.
 
@@ -32,34 +45,64 @@ The following table lists the resource types with samples in this article.
 
 ## Diagnostic setting for an activity log
 
-The following sample creates a diagnostic setting for an activity log by adding a resource of type `Microsoft.Insights/diagnosticSettings` to the template.
-
 > [!IMPORTANT]
 > Diagnostic settings for activity logs are created for a subscription, not for a resource group like settings for Azure resources. To deploy the Resource Manager template, use `New-AzSubscriptionDeployment` for PowerShell or `az deployment sub create` for the Azure CLI.
 
-### Activity log template file
+### Activity log
+
+The following sample creates a diagnostic setting for an activity log by adding a resource of type `Microsoft.Insights/diagnosticSettings` to the template.
 
 # [Bicep](#tab/bicep)
+
+The following Bicep example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-bicep) resource type.
+
+<br>
+<details>
+<summary>Configure diagnostic destinations for the activity log</summary>
 
 ```bicep
 targetScope = 'subscription'
 
-@description('The name of the diagnostic setting.')
-param settingName string
+param settingName string = '<SettingName>'
 
-@description('The resource Id for the workspace.')
-param workspaceId string
+param destinationWorkspaceSubscriptionId string = '<DestinationWorkspaceSubscriptionId>'
+param destinationWorkspaceResourceGroupName string = '<DestinationWorkspaceResourceGroupName>'
+param destinationWorkspaceName string = '<DestinationWorkspaceName>'
 
-@description('The resource Id for the storage account.')
-param storageAccountId string
+param destinationStorageSubscriptionId string = '<DestinationStorageSubscriptionId>'
+param destinationStorageResourceGroupName string = '<DestinationStorageResourceGroupName>'
+param destinationStorageAccountName string = '<DestinationStorageAccountName>'
 
-@description('The resource Id for the event hub authorization rule.')
-param eventHubAuthorizationRuleId string
+param eventHubSubscriptionId string = '<EventHubSubscriptionId>'
+param eventHubResourceGroupName string = '<EventHubResourceGroupName>'
+param eventHubNamespaceName string = '<EventHubNamespaceName>'
+param eventHubAuthorizationRuleName string = '<EventHubAuthorizationRuleName>'
 
-@description('The name of the event hub.')
-param eventHubName string
+param eventHubName string = '<EventHubName>'
 
-resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
+var workspaceId = resourceId(
+  destinationWorkspaceSubscriptionId,
+  destinationWorkspaceResourceGroupName,
+  'Microsoft.OperationalInsights/workspaces',
+  destinationWorkspaceName
+)
+
+var storageAccountId = resourceId(
+  destinationStorageSubscriptionId,
+  destinationStorageResourceGroupName,
+  'Microsoft.Storage/storageAccounts',
+  destinationStorageAccountName
+)
+
+var eventHubAuthorizationRuleId = resourceId(
+  eventHubSubscriptionId,
+  eventHubResourceGroupName,
+  'Microsoft.EventHub/namespaces/authorizationRules',
+  eventHubNamespaceName,
+  eventHubAuthorizationRuleName
+)
+
+resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@<DiagnosticSettingsApiVersion>' = {
   name: settingName
   properties: {
     workspaceId: workspaceId
@@ -104,7 +147,15 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
 }
 ```
 
-# [JSON](#tab/json)
+</details>
+
+# [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Configure diagnostic destinations for the activity log</summary>
 
 ```json
 {
@@ -113,44 +164,62 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   "parameters": {
     "settingName": {
       "type": "string",
-      "metadata": {
-        "description": "The name of the diagnostic setting."
-      }
+      "defaultValue": "<SettingName>"
     },
-    "workspaceId": {
+    "destinationWorkspaceSubscriptionId": {
       "type": "string",
-      "metadata": {
-        "description": "The resource Id for the workspace."
-      }
+      "defaultValue": "<DestinationWorkspaceSubscriptionId>"
     },
-    "storageAccountId": {
+    "destinationWorkspaceResourceGroupName": {
       "type": "string",
-      "metadata": {
-        "description": "The resource Id for the storage account."
-      }
+      "defaultValue": "<DestinationWorkspaceResourceGroupName>"
     },
-    "eventHubAuthorizationRuleId": {
+    "destinationWorkspaceName": {
       "type": "string",
-      "metadata": {
-        "description": "The resource Id for the event hub authorization rule."
-      }
+      "defaultValue": "<DestinationWorkspaceName>"
+    },
+    "destinationStorageSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageSubscriptionId>"
+    },
+    "destinationStorageResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageResourceGroupName>"
+    },
+    "destinationStorageAccountName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageAccountName>"
+    },
+    "eventHubSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<EventHubSubscriptionId>"
+    },
+    "eventHubResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<EventHubResourceGroupName>"
+    },
+    "eventHubNamespaceName": {
+      "type": "string",
+      "defaultValue": "<EventHubNamespaceName>"
+    },
+    "eventHubAuthorizationRuleName": {
+      "type": "string",
+      "defaultValue": "<EventHubAuthorizationRuleName>"
     },
     "eventHubName": {
       "type": "string",
-      "metadata": {
-        "description": "The name of the event hub."
-      }
+      "defaultValue": "<EventHubName>"
     }
   },
   "resources": [
     {
       "type": "Microsoft.Insights/diagnosticSettings",
-      "apiVersion": "2021-05-01-preview",
+      "apiVersion": "<DiagnosticSettingsApiVersion>",
       "name": "[parameters('settingName')]",
       "properties": {
-        "workspaceId": "[parameters('workspaceId')]",
-        "storageAccountId": "[parameters('storageAccountId')]",
-        "eventHubAuthorizationRuleId": "[parameters('eventHubAuthorizationRuleId')]",
+        "workspaceId": "[variables('workspaceId')]",
+        "storageAccountId": "[variables('storageAccountId')]",
+        "eventHubAuthorizationRuleId": "[variables('eventHubAuthorizationRuleId')]",
         "eventHubName": "[parameters('eventHubName')]",
         "logs": [
           {
@@ -188,61 +257,128 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
         ]
       }
     }
-  ]
+  ],
+  "variables": {
+    "workspaceId": "[resourceId(parameters('destinationWorkspaceSubscriptionId'), parameters('destinationWorkspaceResourceGroupName'), 'Microsoft.OperationalInsights/workspaces', parameters('destinationWorkspaceName'))]",
+    "storageAccountId": "[resourceId(parameters('destinationStorageSubscriptionId'), parameters('destinationStorageResourceGroupName'), 'Microsoft.Storage/storageAccounts', parameters('destinationStorageAccountName'))]",
+    "eventHubAuthorizationRuleId": "[resourceId(parameters('eventHubSubscriptionId'), parameters('eventHubResourceGroupName'), 'Microsoft.EventHub/namespaces/authorizationRules', parameters('eventHubNamespaceName'), parameters('eventHubAuthorizationRuleName'))]"
+  }
 }
 ```
 
+</details>
+
 ---
 
-### Activity log parameter file
+<br>
+<details>
+<summary><strong>Activity log parameter file</strong></summary>
 
 ```json
 {
-  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
     "settingName": {
-      "value": "Send to all locations"
+      "value": "<SettingName>"
     },
-    "workspaceId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/MyResourceGroup/providers/microsoft.operationalinsights/workspaces/MyWorkspace"
+    "destinationWorkspaceSubscriptionId": {
+      "value": "<DestinationWorkspaceSubscriptionId>"
     },
-    "storageAccountId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.Storage/storageAccounts/mystorageaccount"
+    "destinationWorkspaceResourceGroupName": {
+      "value": "<DestinationWorkspaceResourceGroupName>"
     },
-    "eventHubAuthorizationRuleId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.EventHub/namespaces/MyNameSpace/authorizationrules/RootManageSharedAccessKey"
+    "destinationWorkspaceName": {
+      "value": "<DestinationWorkspaceName>"
+    },
+    "destinationStorageSubscriptionId": {
+      "value": "<DestinationStorageSubscriptionId>"
+    },
+    "destinationStorageResourceGroupName": {
+      "value": "<DestinationStorageResourceGroupName>"
+    },
+    "destinationStorageAccountName": {
+      "value": "<DestinationStorageAccountName>"
+    },
+    "eventHubSubscriptionId": {
+      "value": "<EventHubSubscriptionId>"
+    },
+    "eventHubResourceGroupName": {
+      "value": "<EventHubResourceGroupName>"
+    },
+    "eventHubNamespaceName": {
+      "value": "<EventHubNamespaceName>"
+    },
+    "eventHubAuthorizationRuleName": {
+      "value": "<EventHubAuthorizationRuleName>"
     },
     "eventHubName": {
-      "value": "my-eventhub"
+      "value": "<EventHubName>"
     }
   }
 }
 ```
 
+</details>
+
 ## Diagnostic setting for Azure Data Explorer
 
 The following sample creates a diagnostic setting for an Azure Data Explorer cluster by adding a resource of type `Microsoft.Kusto/clusters/providers/diagnosticSettings` to the template.
 
-### Azure Data Explorer template file
+### Azure Data Explorer
 
 # [Bicep](#tab/bicep)
 
-```bicep
-param clusterName string
-param settingName string
-param workspaceId string
-param storageAccountId string
-param eventHubAuthorizationRuleId string
-param eventHubName string
+The following Bicep example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-bicep) resource type.
 
-resource cluster 'Microsoft.Kusto/clusters@2022-02-01' existing = {
+<br>
+<details>
+<summary>Configure diagnostic categories for Azure Data Explorer</summary>
+
+```bicep
+param clusterName string = '<ClusterName>'
+param settingName string = '<SettingName>'
+param destinationWorkspaceSubscriptionId string = '<DestinationWorkspaceSubscriptionId>'
+param destinationWorkspaceResourceGroupName string = '<DestinationWorkspaceResourceGroupName>'
+param destinationWorkspaceName string = '<DestinationWorkspaceName>'
+param destinationStorageSubscriptionId string = '<DestinationStorageSubscriptionId>'
+param destinationStorageResourceGroupName string = '<DestinationStorageResourceGroupName>'
+param destinationStorageAccountName string = '<DestinationStorageAccountName>'
+param eventHubSubscriptionId string = '<EventHubSubscriptionId>'
+param eventHubResourceGroupName string = '<EventHubResourceGroupName>'
+param eventHubNamespaceName string = '<EventHubNamespaceName>'
+param eventHubAuthorizationRuleName string = '<EventHubAuthorizationRuleName>'
+param eventHubName string = '<EventHubName>'
+
+var workspaceId = resourceId(
+  destinationWorkspaceSubscriptionId,
+  destinationWorkspaceResourceGroupName,
+  'Microsoft.OperationalInsights/workspaces',
+  destinationWorkspaceName
+)
+
+var storageAccountId = resourceId(
+  destinationStorageSubscriptionId,
+  destinationStorageResourceGroupName,
+  'Microsoft.Storage/storageAccounts',
+  destinationStorageAccountName
+)
+
+var eventHubAuthorizationRuleId = resourceId(
+  eventHubSubscriptionId,
+  eventHubResourceGroupName,
+  'Microsoft.EventHub/namespaces/authorizationRules',
+  eventHubNamespaceName,
+  eventHubAuthorizationRuleName
+)
+
+resource dataExplorerCluster 'Microsoft.Kusto/clusters@<DataExplorerClusterApiVersion>' existing = {
   name: clusterName
 }
 
-resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
+resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@<DiagnosticSettingsApiVersion>' = {
   name: settingName
-  scope: cluster
+  scope: dataExplorerCluster
   properties: {
     workspaceId: workspaceId
     storageAccountId: storageAccountId
@@ -327,7 +463,15 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
 }
 ```
 
-# [JSON](#tab/json)
+</details>
+
+# [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Configure diagnostic categories for Azure Data Explorer</summary>
 
 ```json
 {
@@ -335,34 +479,68 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   "contentVersion": "1.0.0.0",
   "parameters": {
     "clusterName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<ClusterName>"
     },
     "settingName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<SettingName>"
     },
-    "workspaceId": {
-      "type": "string"
+    "destinationWorkspaceSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceSubscriptionId>"
     },
-    "storageAccountId": {
-      "type": "string"
+    "destinationWorkspaceResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceResourceGroupName>"
     },
-    "eventHubAuthorizationRuleId": {
-      "type": "string"
+    "destinationWorkspaceName": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceName>"
+    },
+    "destinationStorageSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageSubscriptionId>"
+    },
+    "destinationStorageResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageResourceGroupName>"
+    },
+    "destinationStorageAccountName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageAccountName>"
+    },
+    "eventHubSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<EventHubSubscriptionId>"
+    },
+    "eventHubResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<EventHubResourceGroupName>"
+    },
+    "eventHubNamespaceName": {
+      "type": "string",
+      "defaultValue": "<EventHubNamespaceName>"
+    },
+    "eventHubAuthorizationRuleName": {
+      "type": "string",
+      "defaultValue": "<EventHubAuthorizationRuleName>"
     },
     "eventHubName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<EventHubName>"
     }
   },
   "resources": [
     {
       "type": "Microsoft.Insights/diagnosticSettings",
-      "apiVersion": "2021-05-01-preview",
+      "apiVersion": "<DiagnosticSettingsApiVersion>",
       "scope": "[format('Microsoft.Kusto/clusters/{0}', parameters('clusterName'))]",
       "name": "[parameters('settingName')]",
       "properties": {
-        "workspaceId": "[parameters('workspaceId')]",
-        "storageAccountId": "[parameters('storageAccountId')]",
-        "eventHubAuthorizationRuleId": "[parameters('eventHubAuthorizationRuleId')]",
+        "workspaceId": "[variables('workspaceId')]",
+        "storageAccountId": "[variables('storageAccountId')]",
+        "eventHubAuthorizationRuleId": "[variables('eventHubAuthorizationRuleId')]",
         "eventHubName": "[parameters('eventHubName')]",
         "metrics": [],
         "logs": [
@@ -441,13 +619,22 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
         ]
       }
     }
-  ]
+  ],
+  "variables": {
+    "workspaceId": "[resourceId(parameters('destinationWorkspaceSubscriptionId'), parameters('destinationWorkspaceResourceGroupName'), 'Microsoft.OperationalInsights/workspaces', parameters('destinationWorkspaceName'))]",
+    "storageAccountId": "[resourceId(parameters('destinationStorageSubscriptionId'), parameters('destinationStorageResourceGroupName'), 'Microsoft.Storage/storageAccounts', parameters('destinationStorageAccountName'))]",
+    "eventHubAuthorizationRuleId": "[resourceId(parameters('eventHubSubscriptionId'), parameters('eventHubResourceGroupName'), 'Microsoft.EventHub/namespaces/authorizationRules', parameters('eventHubNamespaceName'), parameters('eventHubAuthorizationRuleName'))]"
+  }
 }
 ```
 
+</details>
+
 ---
 
-### Azure Data Explorer parameter file
+<br>
+<details>
+<summary><strong>Azure Data Explorer parameter file</strong></summary>
 
 ```json
 {
@@ -455,46 +642,107 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   "contentVersion": "1.0.0.0",
   "parameters": {
     "clusterName": {
-      "value": "kustoClusterName"
+      "value": "<ClusterName>"
     },
     "settingName": {
-      "value": "A new Diagnostic Settings configuration"
+      "value": "<SettingName>"
     },
-    "workspaceId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/MyResourceGroup/providers/microsoft.operationalinsights/workspaces/MyWorkspace"
+    "destinationWorkspaceSubscriptionId": {
+      "value": "<DestinationWorkspaceSubscriptionId>"
     },
-    "storageAccountId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.Storage/storageAccounts/mystorageaccount"
+    "destinationWorkspaceResourceGroupName": {
+      "value": "<DestinationWorkspaceResourceGroupName>"
     },
-    "eventHubAuthorizationRuleId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.EventHub/namespaces/MyNameSpace/authorizationrules/RootManageSharedAccessKey"
+    "destinationWorkspaceName": {
+      "value": "<DestinationWorkspaceName>"
+    },
+    "destinationStorageSubscriptionId": {
+      "value": "<DestinationStorageSubscriptionId>"
+    },
+    "destinationStorageResourceGroupName": {
+      "value": "<DestinationStorageResourceGroupName>"
+    },
+    "destinationStorageAccountName": {
+      "value": "<DestinationStorageAccountName>"
+    },
+    "eventHubSubscriptionId": {
+      "value": "<EventHubSubscriptionId>"
+    },
+    "eventHubResourceGroupName": {
+      "value": "<EventHubResourceGroupName>"
+    },
+    "eventHubNamespaceName": {
+      "value": "<EventHubNamespaceName>"
+    },
+    "eventHubAuthorizationRuleName": {
+      "value": "<EventHubAuthorizationRuleName>"
     },
     "eventHubName": {
-      "value": "myEventhub"
+      "value": "<EventHubName>"
     }
   }
 }
 ```
 
-### Azure Data Explorer template file: enabling the 'audit' category group
+</details>
+
+### Azure Data Explorer: enabling the 'audit' category group
+
+> [!NOTE]
+> Use this variant instead of the individual-category example when you want the `audit` category group. Both variants use the Azure Data Explorer parameter file.
 
 # [Bicep](#tab/bicep)
 
-```bicep
-param clusterName string
-param settingName string
-param workspaceId string
-param storageAccountId string
-param eventHubAuthorizationRuleId string
-param eventHubName string
+The following Bicep example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-bicep) resource type.
 
-resource cluster 'Microsoft.Kusto/clusters@2022-02-01' existing = {
+<br>
+<details>
+<summary>Enable the Azure Data Explorer audit category group</summary>
+
+```bicep
+param clusterName string = '<ClusterName>'
+param settingName string = '<SettingName>'
+param destinationWorkspaceSubscriptionId string = '<DestinationWorkspaceSubscriptionId>'
+param destinationWorkspaceResourceGroupName string = '<DestinationWorkspaceResourceGroupName>'
+param destinationWorkspaceName string = '<DestinationWorkspaceName>'
+param destinationStorageSubscriptionId string = '<DestinationStorageSubscriptionId>'
+param destinationStorageResourceGroupName string = '<DestinationStorageResourceGroupName>'
+param destinationStorageAccountName string = '<DestinationStorageAccountName>'
+param eventHubSubscriptionId string = '<EventHubSubscriptionId>'
+param eventHubResourceGroupName string = '<EventHubResourceGroupName>'
+param eventHubNamespaceName string = '<EventHubNamespaceName>'
+param eventHubAuthorizationRuleName string = '<EventHubAuthorizationRuleName>'
+param eventHubName string = '<EventHubName>'
+
+var workspaceId = resourceId(
+  destinationWorkspaceSubscriptionId,
+  destinationWorkspaceResourceGroupName,
+  'Microsoft.OperationalInsights/workspaces',
+  destinationWorkspaceName
+)
+
+var storageAccountId = resourceId(
+  destinationStorageSubscriptionId,
+  destinationStorageResourceGroupName,
+  'Microsoft.Storage/storageAccounts',
+  destinationStorageAccountName
+)
+
+var eventHubAuthorizationRuleId = resourceId(
+  eventHubSubscriptionId,
+  eventHubResourceGroupName,
+  'Microsoft.EventHub/namespaces/authorizationRules',
+  eventHubNamespaceName,
+  eventHubAuthorizationRuleName
+)
+
+resource dataExplorerCluster 'Microsoft.Kusto/clusters@<DataExplorerClusterApiVersion>' existing = {
   name: clusterName
 }
 
-resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
+resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@<DiagnosticSettingsApiVersion>' = {
   name: settingName
-  scope: cluster
+  scope: dataExplorerCluster
   properties: {
     workspaceId: workspaceId
     storageAccountId: storageAccountId
@@ -515,7 +763,15 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
 }
 ```
 
-# [JSON](#tab/json)
+</details>
+
+# [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Enable the Azure Data Explorer audit category group</summary>
 
 ```json
 {
@@ -523,34 +779,68 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   "contentVersion": "1.0.0.0",
   "parameters": {
     "clusterName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<ClusterName>"
     },
     "settingName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<SettingName>"
     },
-    "workspaceId": {
-      "type": "string"
+    "destinationWorkspaceSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceSubscriptionId>"
     },
-    "storageAccountId": {
-      "type": "string"
+    "destinationWorkspaceResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceResourceGroupName>"
     },
-    "eventHubAuthorizationRuleId": {
-      "type": "string"
+    "destinationWorkspaceName": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceName>"
+    },
+    "destinationStorageSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageSubscriptionId>"
+    },
+    "destinationStorageResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageResourceGroupName>"
+    },
+    "destinationStorageAccountName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageAccountName>"
+    },
+    "eventHubSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<EventHubSubscriptionId>"
+    },
+    "eventHubResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<EventHubResourceGroupName>"
+    },
+    "eventHubNamespaceName": {
+      "type": "string",
+      "defaultValue": "<EventHubNamespaceName>"
+    },
+    "eventHubAuthorizationRuleName": {
+      "type": "string",
+      "defaultValue": "<EventHubAuthorizationRuleName>"
     },
     "eventHubName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<EventHubName>"
     }
   },
   "resources": [
     {
       "type": "Microsoft.Insights/diagnosticSettings",
-      "apiVersion": "2021-05-01-preview",
+      "apiVersion": "<DiagnosticSettingsApiVersion>",
       "scope": "[format('Microsoft.Kusto/clusters/{0}', parameters('clusterName'))]",
       "name": "[parameters('settingName')]",
       "properties": {
-        "workspaceId": "[parameters('workspaceId')]",
-        "storageAccountId": "[parameters('storageAccountId')]",
-        "eventHubAuthorizationRuleId": "[parameters('eventHubAuthorizationRuleId')]",
+        "workspaceId": "[variables('workspaceId')]",
+        "storageAccountId": "[variables('storageAccountId')]",
+        "eventHubAuthorizationRuleId": "[variables('eventHubAuthorizationRuleId')]",
         "eventHubName": "[parameters('eventHubName')]",
         "logs": [
           {
@@ -565,49 +855,85 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
         ]
       }
     }
-  ]
+  ],
+  "variables": {
+    "workspaceId": "[resourceId(parameters('destinationWorkspaceSubscriptionId'), parameters('destinationWorkspaceResourceGroupName'), 'Microsoft.OperationalInsights/workspaces', parameters('destinationWorkspaceName'))]",
+    "storageAccountId": "[resourceId(parameters('destinationStorageSubscriptionId'), parameters('destinationStorageResourceGroupName'), 'Microsoft.Storage/storageAccounts', parameters('destinationStorageAccountName'))]",
+    "eventHubAuthorizationRuleId": "[resourceId(parameters('eventHubSubscriptionId'), parameters('eventHubResourceGroupName'), 'Microsoft.EventHub/namespaces/authorizationRules', parameters('eventHubNamespaceName'), parameters('eventHubAuthorizationRuleName'))]"
+  }
 }
 ```
+
+</details>
 
 ---
 
 ## Diagnostic setting for Azure Key Vault
 
-The following sample creates a diagnostic setting for an instance of Azure Key Vault by adding a resource of type `Microsoft.KeyVault/vaults/providers/diagnosticSettings` to the template.
-
 > [!IMPORTANT]
 > For Azure Key Vault, the event hub must be in the same region as the key vault.
 
-### Azure Key Vault template file
+### Azure Key Vault
+
+The following sample creates a diagnostic setting for an instance of Azure Key Vault by adding a resource of type `Microsoft.KeyVault/vaults/providers/diagnosticSettings` to the template.
 
 # [Bicep](#tab/bicep)
 
+The following Bicep example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-bicep) resource type.
+
+<br>
+<details>
+<summary>Configure diagnostic destinations for Azure Key Vault</summary>
+
 ```bicep
-@description('The name of the diagnostic setting.')
-param settingName string
+param settingName string = '<SettingName>'
 
-@description('The name of the key vault.')
-param vaultName string
+param vaultName string = '<VaultName>'
 
-@description('The resource Id of the workspace.')
-param workspaceId string
+param destinationWorkspaceSubscriptionId string = '<DestinationWorkspaceSubscriptionId>'
+param destinationWorkspaceResourceGroupName string = '<DestinationWorkspaceResourceGroupName>'
+param destinationWorkspaceName string = '<DestinationWorkspaceName>'
 
-@description('The resource Id of the storage account.')
-param storageAccountId string
+param destinationStorageSubscriptionId string = '<DestinationStorageSubscriptionId>'
+param destinationStorageResourceGroupName string = '<DestinationStorageResourceGroupName>'
+param destinationStorageAccountName string = '<DestinationStorageAccountName>'
 
-@description('The resource Id for the event hub authorization rule.')
-param eventHubAuthorizationRuleId string
+param eventHubSubscriptionId string = '<EventHubSubscriptionId>'
+param eventHubResourceGroupName string = '<EventHubResourceGroupName>'
+param eventHubNamespaceName string = '<EventHubNamespaceName>'
+param eventHubAuthorizationRuleName string = '<EventHubAuthorizationRuleName>'
 
-@description('The name of the event hub.')
-param eventHubName string
+param eventHubName string = '<EventHubName>'
 
-resource vault 'Microsoft.KeyVault/vaults@2021-11-01-preview' existing = {
+var workspaceId = resourceId(
+  destinationWorkspaceSubscriptionId,
+  destinationWorkspaceResourceGroupName,
+  'Microsoft.OperationalInsights/workspaces',
+  destinationWorkspaceName
+)
+
+var storageAccountId = resourceId(
+  destinationStorageSubscriptionId,
+  destinationStorageResourceGroupName,
+  'Microsoft.Storage/storageAccounts',
+  destinationStorageAccountName
+)
+
+var eventHubAuthorizationRuleId = resourceId(
+  eventHubSubscriptionId,
+  eventHubResourceGroupName,
+  'Microsoft.EventHub/namespaces/authorizationRules',
+  eventHubNamespaceName,
+  eventHubAuthorizationRuleName
+)
+
+resource keyVault 'Microsoft.KeyVault/vaults@<KeyVaultApiVersion>' existing = {
   name: vaultName
 }
 
-resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
+resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@<DiagnosticSettingsApiVersion>' = {
   name: settingName
-  scope: vault
+  scope: keyVault
   properties: {
     workspaceId: workspaceId
     storageAccountId: storageAccountId
@@ -629,7 +955,15 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
 }
 ```
 
-# [JSON](#tab/json)
+</details>
+
+# [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Configure diagnostic destinations for Azure Key Vault</summary>
 
 ```json
 {
@@ -638,51 +972,67 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   "parameters": {
     "settingName": {
       "type": "string",
-      "metadata": {
-        "description": "The name of the diagnostic setting."
-      }
+      "defaultValue": "<SettingName>"
     },
     "vaultName": {
       "type": "string",
-      "metadata": {
-        "description": "The name of the key vault."
-      }
+      "defaultValue": "<VaultName>"
     },
-    "workspaceId": {
+    "destinationWorkspaceSubscriptionId": {
       "type": "string",
-      "metadata": {
-        "description": "The resource Id of the workspace."
-      }
+      "defaultValue": "<DestinationWorkspaceSubscriptionId>"
     },
-    "storageAccountId": {
+    "destinationWorkspaceResourceGroupName": {
       "type": "string",
-      "metadata": {
-        "description": "The resource Id of the storage account."
-      }
+      "defaultValue": "<DestinationWorkspaceResourceGroupName>"
     },
-    "eventHubAuthorizationRuleId": {
+    "destinationWorkspaceName": {
       "type": "string",
-      "metadata": {
-        "description": "The resource Id for the event hub authorization rule."
-      }
+      "defaultValue": "<DestinationWorkspaceName>"
+    },
+    "destinationStorageSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageSubscriptionId>"
+    },
+    "destinationStorageResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageResourceGroupName>"
+    },
+    "destinationStorageAccountName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageAccountName>"
+    },
+    "eventHubSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<EventHubSubscriptionId>"
+    },
+    "eventHubResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<EventHubResourceGroupName>"
+    },
+    "eventHubNamespaceName": {
+      "type": "string",
+      "defaultValue": "<EventHubNamespaceName>"
+    },
+    "eventHubAuthorizationRuleName": {
+      "type": "string",
+      "defaultValue": "<EventHubAuthorizationRuleName>"
     },
     "eventHubName": {
       "type": "string",
-      "metadata": {
-        "description": "The name of the event hub."
-      }
+      "defaultValue": "<EventHubName>"
     }
   },
   "resources": [
     {
       "type": "Microsoft.Insights/diagnosticSettings",
-      "apiVersion": "2021-05-01-preview",
+      "apiVersion": "<DiagnosticSettingsApiVersion>",
       "scope": "[format('Microsoft.KeyVault/vaults/{0}', parameters('vaultName'))]",
       "name": "[parameters('settingName')]",
       "properties": {
-        "workspaceId": "[parameters('workspaceId')]",
-        "storageAccountId": "[parameters('storageAccountId')]",
-        "eventHubAuthorizationRuleId": "[parameters('eventHubAuthorizationRuleId')]",
+        "workspaceId": "[variables('workspaceId')]",
+        "storageAccountId": "[variables('storageAccountId')]",
+        "eventHubAuthorizationRuleId": "[variables('eventHubAuthorizationRuleId')]",
         "eventHubName": "[parameters('eventHubName')]",
         "logs": [
           {
@@ -698,13 +1048,22 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
         ]
       }
     }
-  ]
+  ],
+  "variables": {
+    "workspaceId": "[resourceId(parameters('destinationWorkspaceSubscriptionId'), parameters('destinationWorkspaceResourceGroupName'), 'Microsoft.OperationalInsights/workspaces', parameters('destinationWorkspaceName'))]",
+    "storageAccountId": "[resourceId(parameters('destinationStorageSubscriptionId'), parameters('destinationStorageResourceGroupName'), 'Microsoft.Storage/storageAccounts', parameters('destinationStorageAccountName'))]",
+    "eventHubAuthorizationRuleId": "[resourceId(parameters('eventHubSubscriptionId'), parameters('eventHubResourceGroupName'), 'Microsoft.EventHub/namespaces/authorizationRules', parameters('eventHubNamespaceName'), parameters('eventHubAuthorizationRuleName'))]"
+  }
 }
 ```
 
+</details>
+
 ---
 
-### Azure Key Vault parameter file
+<br>
+<details>
+<summary><strong>Azure Key Vault parameter file</strong></summary>
 
 ```json
 {
@@ -712,69 +1071,120 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   "contentVersion": "1.0.0.0",
   "parameters": {
     "settingName": {
-        "value": "Send to all locations"
+      "value": "<SettingName>"
     },
     "vaultName": {
-      "value": "MyVault"
+      "value": "<VaultName>"
     },
-    "workspaceId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/MyResourceGroup/providers/microsoft.operationalinsights/workspaces/MyWorkspace"
+    "destinationWorkspaceSubscriptionId": {
+      "value": "<DestinationWorkspaceSubscriptionId>"
     },
-    "storageAccountId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.Storage/storageAccounts/mystorageaccount"
+    "destinationWorkspaceResourceGroupName": {
+      "value": "<DestinationWorkspaceResourceGroupName>"
     },
-    "eventHubAuthorizationRuleId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.EventHub/namespaces/MyNameSpace/authorizationrules/RootManageSharedAccessKey"
+    "destinationWorkspaceName": {
+      "value": "<DestinationWorkspaceName>"
+    },
+    "destinationStorageSubscriptionId": {
+      "value": "<DestinationStorageSubscriptionId>"
+    },
+    "destinationStorageResourceGroupName": {
+      "value": "<DestinationStorageResourceGroupName>"
+    },
+    "destinationStorageAccountName": {
+      "value": "<DestinationStorageAccountName>"
+    },
+    "eventHubSubscriptionId": {
+      "value": "<EventHubSubscriptionId>"
+    },
+    "eventHubResourceGroupName": {
+      "value": "<EventHubResourceGroupName>"
+    },
+    "eventHubNamespaceName": {
+      "value": "<EventHubNamespaceName>"
+    },
+    "eventHubAuthorizationRuleName": {
+      "value": "<EventHubAuthorizationRuleName>"
     },
     "eventHubName": {
-      "value": "my-eventhub"
+      "value": "<EventHubName>"
     }
   }
 }
 ```
 
+</details>
+
 ## Diagnostic setting for Azure SQL Database
 
 The following sample creates a diagnostic setting for an instance of Azure SQL Database by adding a resource of type `microsoft.sql/servers/databases/providers/diagnosticSettings` to the template.
 
-### Azure SQL Database template file
+### Azure SQL Database
 
 # [Bicep](#tab/bicep)
 
+The following Bicep example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-bicep) resource type.
+
+<br>
+<details>
+<summary>Configure diagnostic destinations for Azure SQL Database</summary>
+
 ```bicep
-@description('The name of the diagnostic setting.')
-param settingName string
+param settingName string = '<SettingName>'
 
-@description('The name of the Azure SQL database server.')
-param serverName string
+param serverName string = '<ServerName>'
 
-@description('The name of the SQL database.')
-param dbName string
+param dbName string = '<DbName>'
 
-@description('The resource Id of the workspace.')
-param workspaceId string
+param destinationWorkspaceSubscriptionId string = '<DestinationWorkspaceSubscriptionId>'
+param destinationWorkspaceResourceGroupName string = '<DestinationWorkspaceResourceGroupName>'
+param destinationWorkspaceName string = '<DestinationWorkspaceName>'
 
-@description('The resource Id of the storage account.')
-param storageAccountId string
+param destinationStorageSubscriptionId string = '<DestinationStorageSubscriptionId>'
+param destinationStorageResourceGroupName string = '<DestinationStorageResourceGroupName>'
+param destinationStorageAccountName string = '<DestinationStorageAccountName>'
 
-@description('The resource Id of the event hub authorization rule.')
-param eventHubAuthorizationRuleId string
+param eventHubSubscriptionId string = '<EventHubSubscriptionId>'
+param eventHubResourceGroupName string = '<EventHubResourceGroupName>'
+param eventHubNamespaceName string = '<EventHubNamespaceName>'
+param eventHubAuthorizationRuleName string = '<EventHubAuthorizationRuleName>'
 
-@description('The name of the event hub.')
-param eventHubName string
+param eventHubName string = '<EventHubName>'
 
-resource dbServer 'Microsoft.Sql/servers@2021-11-01-preview' existing = {
+var workspaceId = resourceId(
+  destinationWorkspaceSubscriptionId,
+  destinationWorkspaceResourceGroupName,
+  'Microsoft.OperationalInsights/workspaces',
+  destinationWorkspaceName
+)
+
+var storageAccountId = resourceId(
+  destinationStorageSubscriptionId,
+  destinationStorageResourceGroupName,
+  'Microsoft.Storage/storageAccounts',
+  destinationStorageAccountName
+)
+
+var eventHubAuthorizationRuleId = resourceId(
+  eventHubSubscriptionId,
+  eventHubResourceGroupName,
+  'Microsoft.EventHub/namespaces/authorizationRules',
+  eventHubNamespaceName,
+  eventHubAuthorizationRuleName
+)
+
+resource sqlServer 'Microsoft.Sql/servers@<SqlServerApiVersion>' existing = {
   name: serverName
 }
 
-resource db 'Microsoft.Sql/servers/databases@2021-11-01-preview' existing = {
-  parent: dbServer
+resource sqlDatabase 'Microsoft.Sql/servers/databases@<SqlDatabaseApiVersion>' existing = {
+  parent: sqlServer
   name: dbName
 }
 
-resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
+resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@<DiagnosticSettingsApiVersion>' = {
   name: settingName
-  scope: db
+  scope: sqlDatabase
   properties: {
     workspaceId: workspaceId
     storageAccountId: storageAccountId
@@ -836,7 +1246,15 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
 }
 ```
 
-# [JSON](#tab/json)
+</details>
+
+# [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Configure diagnostic destinations for Azure SQL Database</summary>
 
 ```json
 {
@@ -845,57 +1263,71 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   "parameters": {
     "settingName": {
       "type": "string",
-      "metadata": {
-        "description": "The name of the diagnostic setting."
-      }
+      "defaultValue": "<SettingName>"
     },
     "serverName": {
       "type": "string",
-      "metadata": {
-        "description": "The name of the Azure SQL database server."
-      }
+      "defaultValue": "<ServerName>"
     },
     "dbName": {
       "type": "string",
-      "metadata": {
-        "description": "The name of the SQL database."
-      }
+      "defaultValue": "<DbName>"
     },
-    "workspaceId": {
+    "destinationWorkspaceSubscriptionId": {
       "type": "string",
-      "metadata": {
-        "description": "The resource Id of the workspace."
-      }
+      "defaultValue": "<DestinationWorkspaceSubscriptionId>"
     },
-    "storageAccountId": {
+    "destinationWorkspaceResourceGroupName": {
       "type": "string",
-      "metadata": {
-        "description": "The resource Id of the storage account."
-      }
+      "defaultValue": "<DestinationWorkspaceResourceGroupName>"
     },
-    "eventHubAuthorizationRuleId": {
+    "destinationWorkspaceName": {
       "type": "string",
-      "metadata": {
-        "description": "The resource Id of the event hub authorization rule."
-      }
+      "defaultValue": "<DestinationWorkspaceName>"
+    },
+    "destinationStorageSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageSubscriptionId>"
+    },
+    "destinationStorageResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageResourceGroupName>"
+    },
+    "destinationStorageAccountName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageAccountName>"
+    },
+    "eventHubSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<EventHubSubscriptionId>"
+    },
+    "eventHubResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<EventHubResourceGroupName>"
+    },
+    "eventHubNamespaceName": {
+      "type": "string",
+      "defaultValue": "<EventHubNamespaceName>"
+    },
+    "eventHubAuthorizationRuleName": {
+      "type": "string",
+      "defaultValue": "<EventHubAuthorizationRuleName>"
     },
     "eventHubName": {
       "type": "string",
-      "metadata": {
-        "description": "The name of the event hub."
-      }
+      "defaultValue": "<EventHubName>"
     }
   },
   "resources": [
     {
       "type": "Microsoft.Insights/diagnosticSettings",
-      "apiVersion": "2021-05-01-preview",
+      "apiVersion": "<DiagnosticSettingsApiVersion>",
       "scope": "[format('Microsoft.Sql/servers/{0}/databases/{1}', parameters('serverName'), parameters('dbName'))]",
       "name": "[parameters('settingName')]",
       "properties": {
-        "workspaceId": "[parameters('workspaceId')]",
-        "storageAccountId": "[parameters('storageAccountId')]",
-        "eventHubAuthorizationRuleId": "[parameters('eventHubAuthorizationRuleId')]",
+        "workspaceId": "[variables('workspaceId')]",
+        "storageAccountId": "[variables('storageAccountId')]",
+        "eventHubAuthorizationRuleId": "[variables('eventHubAuthorizationRuleId')]",
         "eventHubName": "[parameters('eventHubName')]",
         "logs": [
           {
@@ -951,13 +1383,22 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
         ]
       }
     }
-  ]
+  ],
+  "variables": {
+    "workspaceId": "[resourceId(parameters('destinationWorkspaceSubscriptionId'), parameters('destinationWorkspaceResourceGroupName'), 'Microsoft.OperationalInsights/workspaces', parameters('destinationWorkspaceName'))]",
+    "storageAccountId": "[resourceId(parameters('destinationStorageSubscriptionId'), parameters('destinationStorageResourceGroupName'), 'Microsoft.Storage/storageAccounts', parameters('destinationStorageAccountName'))]",
+    "eventHubAuthorizationRuleId": "[resourceId(parameters('eventHubSubscriptionId'), parameters('eventHubResourceGroupName'), 'Microsoft.EventHub/namespaces/authorizationRules', parameters('eventHubNamespaceName'), parameters('eventHubAuthorizationRuleName'))]"
+  }
 }
 ```
 
+</details>
+
 ---
 
-### Azure SQL Database parameter file
+<br>
+<details>
+<summary><strong>Azure SQL Database parameter file</strong></summary>
 
 ```json
 {
@@ -965,53 +1406,111 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   "contentVersion": "1.0.0.0",
   "parameters": {
     "settingName": {
-        "value": "Send to all locations"
+      "value": "<SettingName>"
     },
     "serverName": {
-      "value": "MySqlServer"
+      "value": "<ServerName>"
     },
     "dbName": {
-      "value": "MySqlDb"
+      "value": "<DbName>"
     },
-    "workspaceId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/MyResourceGroup/providers/microsoft.operationalinsights/workspaces/MyWorkspace"
+    "destinationWorkspaceSubscriptionId": {
+      "value": "<DestinationWorkspaceSubscriptionId>"
     },
-    "storageAccountId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.Storage/storageAccounts/mystorageaccount"
+    "destinationWorkspaceResourceGroupName": {
+      "value": "<DestinationWorkspaceResourceGroupName>"
     },
-    "eventHubAuthorizationRuleId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.EventHub/namespaces/MyNameSpace/authorizationrules/RootManageSharedAccessKey"
+    "destinationWorkspaceName": {
+      "value": "<DestinationWorkspaceName>"
+    },
+    "destinationStorageSubscriptionId": {
+      "value": "<DestinationStorageSubscriptionId>"
+    },
+    "destinationStorageResourceGroupName": {
+      "value": "<DestinationStorageResourceGroupName>"
+    },
+    "destinationStorageAccountName": {
+      "value": "<DestinationStorageAccountName>"
+    },
+    "eventHubSubscriptionId": {
+      "value": "<EventHubSubscriptionId>"
+    },
+    "eventHubResourceGroupName": {
+      "value": "<EventHubResourceGroupName>"
+    },
+    "eventHubNamespaceName": {
+      "value": "<EventHubNamespaceName>"
+    },
+    "eventHubAuthorizationRuleName": {
+      "value": "<EventHubAuthorizationRuleName>"
     },
     "eventHubName": {
-      "value": "my-eventhub"
+      "value": "<EventHubName>"
     }
   }
 }
 ```
 
+</details>
+
 ## Diagnostic setting for Azure SQL Managed Instance
 
 The following sample creates a diagnostic setting for an instance of Azure SQL Managed Instance by adding a resource of type `microsoft.sql/managedInstances/providers/diagnosticSettings` to the template.
 
-### Azure SQL Managed Instance template file
+### Azure SQL Managed Instance
 
 # [Bicep](#tab/bicep)
 
-```bicep
-param sqlManagedInstanceName string
-param diagnosticSettingName string
-param diagnosticWorkspaceId string
-param storageAccountId string
-param eventHubAuthorizationRuleId string
-param eventHubName string
+The following Bicep example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-bicep) resource type.
 
-resource instance 'Microsoft.Sql/managedInstances@2021-11-01-preview' existing = {
+<br>
+<details>
+<summary>Configure diagnostics for Azure SQL Managed Instance</summary>
+
+```bicep
+param sqlManagedInstanceName string = '<SqlManagedInstanceName>'
+param diagnosticSettingName string = '<DiagnosticSettingName>'
+param destinationWorkspaceSubscriptionId string = '<DestinationWorkspaceSubscriptionId>'
+param destinationWorkspaceResourceGroupName string = '<DestinationWorkspaceResourceGroupName>'
+param destinationWorkspaceName string = '<DestinationWorkspaceName>'
+param destinationStorageSubscriptionId string = '<DestinationStorageSubscriptionId>'
+param destinationStorageResourceGroupName string = '<DestinationStorageResourceGroupName>'
+param destinationStorageAccountName string = '<DestinationStorageAccountName>'
+param eventHubSubscriptionId string = '<EventHubSubscriptionId>'
+param eventHubResourceGroupName string = '<EventHubResourceGroupName>'
+param eventHubNamespaceName string = '<EventHubNamespaceName>'
+param eventHubAuthorizationRuleName string = '<EventHubAuthorizationRuleName>'
+param eventHubName string = '<EventHubName>'
+
+var diagnosticWorkspaceId = resourceId(
+  destinationWorkspaceSubscriptionId,
+  destinationWorkspaceResourceGroupName,
+  'Microsoft.OperationalInsights/workspaces',
+  destinationWorkspaceName
+)
+
+var storageAccountId = resourceId(
+  destinationStorageSubscriptionId,
+  destinationStorageResourceGroupName,
+  'Microsoft.Storage/storageAccounts',
+  destinationStorageAccountName
+)
+
+var eventHubAuthorizationRuleId = resourceId(
+  eventHubSubscriptionId,
+  eventHubResourceGroupName,
+  'Microsoft.EventHub/namespaces/authorizationRules',
+  eventHubNamespaceName,
+  eventHubAuthorizationRuleName
+)
+
+resource sqlManagedInstance 'Microsoft.Sql/managedInstances@<SqlManagedInstanceApiVersion>' existing = {
   name: sqlManagedInstanceName
 }
 
-resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
+resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@<DiagnosticSettingsApiVersion>' = {
   name: diagnosticSettingName
-  scope: instance
+  scope: sqlManagedInstance
   properties: {
     workspaceId: diagnosticWorkspaceId
     storageAccountId: storageAccountId
@@ -1035,7 +1534,15 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
 }
 ```
 
-# [JSON](#tab/json)
+</details>
+
+# [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Configure diagnostics for Azure SQL Managed Instance</summary>
 
 ```json
 {
@@ -1043,34 +1550,68 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   "contentVersion": "1.0.0.0",
   "parameters": {
     "sqlManagedInstanceName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<SqlManagedInstanceName>"
     },
     "diagnosticSettingName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<DiagnosticSettingName>"
     },
-    "diagnosticWorkspaceId": {
-      "type": "string"
+    "destinationWorkspaceSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceSubscriptionId>"
     },
-    "storageAccountId": {
-      "type": "string"
+    "destinationWorkspaceResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceResourceGroupName>"
     },
-    "eventHubAuthorizationRuleId": {
-      "type": "string"
+    "destinationWorkspaceName": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceName>"
+    },
+    "destinationStorageSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageSubscriptionId>"
+    },
+    "destinationStorageResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageResourceGroupName>"
+    },
+    "destinationStorageAccountName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageAccountName>"
+    },
+    "eventHubSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<EventHubSubscriptionId>"
+    },
+    "eventHubResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<EventHubResourceGroupName>"
+    },
+    "eventHubNamespaceName": {
+      "type": "string",
+      "defaultValue": "<EventHubNamespaceName>"
+    },
+    "eventHubAuthorizationRuleName": {
+      "type": "string",
+      "defaultValue": "<EventHubAuthorizationRuleName>"
     },
     "eventHubName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<EventHubName>"
     }
   },
   "resources": [
     {
       "type": "Microsoft.Insights/diagnosticSettings",
-      "apiVersion": "2021-05-01-preview",
+      "apiVersion": "<DiagnosticSettingsApiVersion>",
       "scope": "[format('Microsoft.Sql/managedInstances/{0}', parameters('sqlManagedInstanceName'))]",
       "name": "[parameters('diagnosticSettingName')]",
       "properties": {
-        "workspaceId": "[parameters('diagnosticWorkspaceId')]",
-        "storageAccountId": "[parameters('storageAccountId')]",
-        "eventHubAuthorizationRuleId": "[parameters('eventHubAuthorizationRuleId')]",
+        "workspaceId": "[variables('diagnosticWorkspaceId')]",
+        "storageAccountId": "[variables('storageAccountId')]",
+        "eventHubAuthorizationRuleId": "[variables('eventHubAuthorizationRuleId')]",
         "eventHubName": "[parameters('eventHubName')]",
         "logs": [
           {
@@ -1088,13 +1629,22 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
         ]
       }
     }
-  ]
+  ],
+  "variables": {
+    "diagnosticWorkspaceId": "[resourceId(parameters('destinationWorkspaceSubscriptionId'), parameters('destinationWorkspaceResourceGroupName'), 'Microsoft.OperationalInsights/workspaces', parameters('destinationWorkspaceName'))]",
+    "storageAccountId": "[resourceId(parameters('destinationStorageSubscriptionId'), parameters('destinationStorageResourceGroupName'), 'Microsoft.Storage/storageAccounts', parameters('destinationStorageAccountName'))]",
+    "eventHubAuthorizationRuleId": "[resourceId(parameters('eventHubSubscriptionId'), parameters('eventHubResourceGroupName'), 'Microsoft.EventHub/namespaces/authorizationRules', parameters('eventHubNamespaceName'), parameters('eventHubAuthorizationRuleName'))]"
+  }
 }
 ```
 
+</details>
+
 ---
 
-### Azure SQL Managed Instance parameter file
+<br>
+<details>
+<summary><strong>Azure SQL Managed Instance parameter file</strong></summary>
 
 ```json
 {
@@ -1102,56 +1652,114 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   "contentVersion": "1.0.0.0",
   "parameters": {
     "sqlManagedInstanceName": {
-        "value": "MyInstanceName"
+      "value": "<SqlManagedInstanceName>"
     },
     "diagnosticSettingName": {
-        "value": "Send to all locations"
+      "value": "<DiagnosticSettingName>"
     },
-    "diagnosticWorkspaceId": {
-        "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/MyResourceGroup/providers/microsoft.operationalinsights/workspaces/MyWorkspace"
+    "destinationWorkspaceSubscriptionId": {
+      "value": "<DestinationWorkspaceSubscriptionId>"
     },
-    "storageAccountId": {
-        "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.Storage/storageAccounts/mystorageaccount"
+    "destinationWorkspaceResourceGroupName": {
+      "value": "<DestinationWorkspaceResourceGroupName>"
     },
-    "eventHubAuthorizationRuleId": {
-        "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.EventHub/namespaces/MyNameSpace/authorizationrules/RootManageSharedAccessKey"
+    "destinationWorkspaceName": {
+      "value": "<DestinationWorkspaceName>"
+    },
+    "destinationStorageSubscriptionId": {
+      "value": "<DestinationStorageSubscriptionId>"
+    },
+    "destinationStorageResourceGroupName": {
+      "value": "<DestinationStorageResourceGroupName>"
+    },
+    "destinationStorageAccountName": {
+      "value": "<DestinationStorageAccountName>"
+    },
+    "eventHubSubscriptionId": {
+      "value": "<EventHubSubscriptionId>"
+    },
+    "eventHubResourceGroupName": {
+      "value": "<EventHubResourceGroupName>"
+    },
+    "eventHubNamespaceName": {
+      "value": "<EventHubNamespaceName>"
+    },
+    "eventHubAuthorizationRuleName": {
+      "value": "<EventHubAuthorizationRuleName>"
     },
     "eventHubName": {
-        "value": "myEventhub"
+      "value": "<EventHubName>"
     }
   }
 }
 ```
 
+</details>
+
 ## Diagnostic setting for a managed instance of Azure SQL Database
 
 The following sample creates a diagnostic setting for a managed instance of Azure SQL Database by adding a resource of type `microsoft.sql/managedInstances/databases/providers/diagnosticSettings` to the template.
 
-### Managed instance of Azure SQL Database template file
+### Managed instance of Azure SQL Database
 
 # [Bicep](#tab/bicep)
 
-```bicep
-param sqlManagedInstanceName string
-param sqlManagedDatabaseName string
-param diagnosticSettingName string
-param diagnosticWorkspaceId string
-param storageAccountId string
-param eventHubAuthorizationRuleId string
-param eventHubName string
+The following Bicep example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-bicep) resource type.
 
-resource dbInstance 'Microsoft.Sql/managedInstances@2021-11-01-preview' existing = {
+<br>
+<details>
+<summary>Configure diagnostics for a managed SQL database</summary>
+
+```bicep
+param sqlManagedInstanceName string = '<SqlManagedInstanceName>'
+param sqlManagedDatabaseName string = '<SqlManagedDatabaseName>'
+param diagnosticSettingName string = '<DiagnosticSettingName>'
+param destinationWorkspaceSubscriptionId string = '<DestinationWorkspaceSubscriptionId>'
+param destinationWorkspaceResourceGroupName string = '<DestinationWorkspaceResourceGroupName>'
+param destinationWorkspaceName string = '<DestinationWorkspaceName>'
+param destinationStorageSubscriptionId string = '<DestinationStorageSubscriptionId>'
+param destinationStorageResourceGroupName string = '<DestinationStorageResourceGroupName>'
+param destinationStorageAccountName string = '<DestinationStorageAccountName>'
+param eventHubSubscriptionId string = '<EventHubSubscriptionId>'
+param eventHubResourceGroupName string = '<EventHubResourceGroupName>'
+param eventHubNamespaceName string = '<EventHubNamespaceName>'
+param eventHubAuthorizationRuleName string = '<EventHubAuthorizationRuleName>'
+param eventHubName string = '<EventHubName>'
+
+var diagnosticWorkspaceId = resourceId(
+  destinationWorkspaceSubscriptionId,
+  destinationWorkspaceResourceGroupName,
+  'Microsoft.OperationalInsights/workspaces',
+  destinationWorkspaceName
+)
+
+var storageAccountId = resourceId(
+  destinationStorageSubscriptionId,
+  destinationStorageResourceGroupName,
+  'Microsoft.Storage/storageAccounts',
+  destinationStorageAccountName
+)
+
+var eventHubAuthorizationRuleId = resourceId(
+  eventHubSubscriptionId,
+  eventHubResourceGroupName,
+  'Microsoft.EventHub/namespaces/authorizationRules',
+  eventHubNamespaceName,
+  eventHubAuthorizationRuleName
+)
+
+resource sqlManagedInstance 'Microsoft.Sql/managedInstances@<SqlManagedInstanceApiVersion>' existing = {
   name:sqlManagedInstanceName
 }
 
-resource db 'Microsoft.Sql/managedInstances/databases@2021-11-01-preview' existing = {
+resource sqlManagedDatabase 'Microsoft.Sql/managedInstances/databases@<SqlManagedDatabaseApiVersion>' existing = {
   name: sqlManagedDatabaseName
-  parent: dbInstance
+  parent: sqlManagedInstance
 }
 
-resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
+resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@<DiagnosticSettingsApiVersion>' = {
   name: diagnosticSettingName
-  scope: db
+  scope: sqlManagedDatabase
   properties: {
     workspaceId: diagnosticWorkspaceId
     storageAccountId: storageAccountId
@@ -1179,52 +1787,88 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
 }
 ```
 
-# [JSON](#tab/json)
+</details>
+
+# [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Configure diagnostics for a managed SQL database</summary>
 
 ```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "metadata": {
-    "_generator": {
-      "name": "bicep",
-      "version": "0.5.6.12127",
-      "templateHash": "10835183659402804631"
-    }
-  },
   "parameters": {
     "sqlManagedInstanceName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<SqlManagedInstanceName>"
     },
     "sqlManagedDatabaseName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<SqlManagedDatabaseName>"
     },
     "diagnosticSettingName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<DiagnosticSettingName>"
     },
-    "diagnosticWorkspaceId": {
-      "type": "string"
+    "destinationWorkspaceSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceSubscriptionId>"
     },
-    "storageAccountId": {
-      "type": "string"
+    "destinationWorkspaceResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceResourceGroupName>"
     },
-    "eventHubAuthorizationRuleId": {
-      "type": "string"
+    "destinationWorkspaceName": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceName>"
+    },
+    "destinationStorageSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageSubscriptionId>"
+    },
+    "destinationStorageResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageResourceGroupName>"
+    },
+    "destinationStorageAccountName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageAccountName>"
+    },
+    "eventHubSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<EventHubSubscriptionId>"
+    },
+    "eventHubResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<EventHubResourceGroupName>"
+    },
+    "eventHubNamespaceName": {
+      "type": "string",
+      "defaultValue": "<EventHubNamespaceName>"
+    },
+    "eventHubAuthorizationRuleName": {
+      "type": "string",
+      "defaultValue": "<EventHubAuthorizationRuleName>"
     },
     "eventHubName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<EventHubName>"
     }
   },
   "resources": [
     {
       "type": "Microsoft.Insights/diagnosticSettings",
-      "apiVersion": "2021-05-01-preview",
+      "apiVersion": "<DiagnosticSettingsApiVersion>",
       "scope": "[format('Microsoft.Sql/managedInstances/{0}/databases/{1}', parameters('sqlManagedInstanceName'), parameters('sqlManagedDatabaseName'))]",
       "name": "[parameters('diagnosticSettingName')]",
       "properties": {
-        "workspaceId": "[parameters('diagnosticWorkspaceId')]",
-        "storageAccountId": "[parameters('storageAccountId')]",
-        "eventHubAuthorizationRuleId": "[parameters('eventHubAuthorizationRuleId')]",
+        "workspaceId": "[variables('diagnosticWorkspaceId')]",
+        "storageAccountId": "[variables('storageAccountId')]",
+        "eventHubAuthorizationRuleId": "[variables('eventHubAuthorizationRuleId')]",
         "eventHubName": "[parameters('eventHubName')]",
         "logs": [
           {
@@ -1246,13 +1890,22 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
         ]
       }
     }
-  ]
+  ],
+  "variables": {
+    "diagnosticWorkspaceId": "[resourceId(parameters('destinationWorkspaceSubscriptionId'), parameters('destinationWorkspaceResourceGroupName'), 'Microsoft.OperationalInsights/workspaces', parameters('destinationWorkspaceName'))]",
+    "storageAccountId": "[resourceId(parameters('destinationStorageSubscriptionId'), parameters('destinationStorageResourceGroupName'), 'Microsoft.Storage/storageAccounts', parameters('destinationStorageAccountName'))]",
+    "eventHubAuthorizationRuleId": "[resourceId(parameters('eventHubSubscriptionId'), parameters('eventHubResourceGroupName'), 'Microsoft.EventHub/namespaces/authorizationRules', parameters('eventHubNamespaceName'), parameters('eventHubAuthorizationRuleName'))]"
+  }
 }
 ```
 
+</details>
+
 ---
 
-### Managed instance of Azure SQL Database parameter file
+<br>
+<details>
+<summary><strong>Managed instance of Azure SQL Database parameter file</strong></summary>
 
 ```json
 {
@@ -1260,53 +1913,111 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   "contentVersion": "1.0.0.0",
   "parameters": {
     "sqlManagedInstanceName": {
-      "value": "MyInstanceName"
+      "value": "<SqlManagedInstanceName>"
     },
     "sqlManagedDatabaseName": {
-      "value": "MyManagedDatabaseName"
+      "value": "<SqlManagedDatabaseName>"
     },
     "diagnosticSettingName": {
-      "value": "Send to all locations"
+      "value": "<DiagnosticSettingName>"
     },
-    "diagnosticWorkspaceId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/MyResourceGroup/providers/microsoft.operationalinsights/workspaces/MyWorkspace"
+    "destinationWorkspaceSubscriptionId": {
+      "value": "<DestinationWorkspaceSubscriptionId>"
     },
-    "storageAccountId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.Storage/storageAccounts/mystorageaccount"
+    "destinationWorkspaceResourceGroupName": {
+      "value": "<DestinationWorkspaceResourceGroupName>"
     },
-    "eventHubAuthorizationRuleId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.EventHub/namespaces/MyNameSpace/authorizationrules/RootManageSharedAccessKey"
+    "destinationWorkspaceName": {
+      "value": "<DestinationWorkspaceName>"
+    },
+    "destinationStorageSubscriptionId": {
+      "value": "<DestinationStorageSubscriptionId>"
+    },
+    "destinationStorageResourceGroupName": {
+      "value": "<DestinationStorageResourceGroupName>"
+    },
+    "destinationStorageAccountName": {
+      "value": "<DestinationStorageAccountName>"
+    },
+    "eventHubSubscriptionId": {
+      "value": "<EventHubSubscriptionId>"
+    },
+    "eventHubResourceGroupName": {
+      "value": "<EventHubResourceGroupName>"
+    },
+    "eventHubNamespaceName": {
+      "value": "<EventHubNamespaceName>"
+    },
+    "eventHubAuthorizationRuleName": {
+      "value": "<EventHubAuthorizationRuleName>"
     },
     "eventHubName": {
-      "value": "myEventhub"
+      "value": "<EventHubName>"
     }
   }
 }
 ```
 
+</details>
+
 ## Diagnostic setting for Recovery Services vault
 
 The following sample creates a diagnostic setting for an Azure Recovery Services vault by adding a resource of type `microsoft.recoveryservices/vaults/providers/diagnosticSettings` to the template. This example specifies the collection mode as described in [Azure resource logs](../logs/resource-logs.md#destinations). Specify `Dedicated` or `AzureDiagnostics` for the `logAnalyticsDestinationType` property.
 
-### Recovery Services vault template file
+### Recovery Services vault
 
 # [Bicep](#tab/bicep)
 
-```bicep
-param recoveryServicesName string
-param settingName string
-param workspaceId string
-param storageAccountId string
-param eventHubAuthorizationRuleId string
-param eventHubName string
+The following Bicep example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-bicep) resource type.
 
-resource vault 'Microsoft.RecoveryServices/vaults@2021-08-01' existing = {
+<br>
+<details>
+<summary>Configure diagnostic destinations for a Recovery Services vault</summary>
+
+```bicep
+param recoveryServicesName string = '<RecoveryServicesName>'
+param settingName string = '<SettingName>'
+param destinationWorkspaceSubscriptionId string = '<DestinationWorkspaceSubscriptionId>'
+param destinationWorkspaceResourceGroupName string = '<DestinationWorkspaceResourceGroupName>'
+param destinationWorkspaceName string = '<DestinationWorkspaceName>'
+param destinationStorageSubscriptionId string = '<DestinationStorageSubscriptionId>'
+param destinationStorageResourceGroupName string = '<DestinationStorageResourceGroupName>'
+param destinationStorageAccountName string = '<DestinationStorageAccountName>'
+param eventHubSubscriptionId string = '<EventHubSubscriptionId>'
+param eventHubResourceGroupName string = '<EventHubResourceGroupName>'
+param eventHubNamespaceName string = '<EventHubNamespaceName>'
+param eventHubAuthorizationRuleName string = '<EventHubAuthorizationRuleName>'
+param eventHubName string = '<EventHubName>'
+
+var workspaceId = resourceId(
+  destinationWorkspaceSubscriptionId,
+  destinationWorkspaceResourceGroupName,
+  'Microsoft.OperationalInsights/workspaces',
+  destinationWorkspaceName
+)
+
+var storageAccountId = resourceId(
+  destinationStorageSubscriptionId,
+  destinationStorageResourceGroupName,
+  'Microsoft.Storage/storageAccounts',
+  destinationStorageAccountName
+)
+
+var eventHubAuthorizationRuleId = resourceId(
+  eventHubSubscriptionId,
+  eventHubResourceGroupName,
+  'Microsoft.EventHub/namespaces/authorizationRules',
+  eventHubNamespaceName,
+  eventHubAuthorizationRuleName
+)
+
+resource recoveryServicesVault 'Microsoft.RecoveryServices/vaults@<RecoveryServicesVaultApiVersion>' existing = {
   name: recoveryServicesName
 }
 
-resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
+resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@<DiagnosticSettingsApiVersion>' = {
   name: settingName
-  scope: vault
+  scope: recoveryServicesVault
   properties: {
     workspaceId: workspaceId
     storageAccountId: storageAccountId
@@ -1375,7 +2086,15 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
 }
 ```
 
-# [JSON](#tab/json)
+</details>
+
+# [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Configure diagnostic destinations for a Recovery Services vault</summary>
 
 ```json
 {
@@ -1383,34 +2102,68 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   "contentVersion": "1.0.0.0",
   "parameters": {
     "recoveryServicesName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<RecoveryServicesName>"
     },
     "settingName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<SettingName>"
     },
-    "workspaceId": {
-      "type": "string"
+    "destinationWorkspaceSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceSubscriptionId>"
     },
-    "storageAccountId": {
-      "type": "string"
+    "destinationWorkspaceResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceResourceGroupName>"
     },
-    "eventHubAuthorizationRuleId": {
-      "type": "string"
+    "destinationWorkspaceName": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceName>"
+    },
+    "destinationStorageSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageSubscriptionId>"
+    },
+    "destinationStorageResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageResourceGroupName>"
+    },
+    "destinationStorageAccountName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageAccountName>"
+    },
+    "eventHubSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<EventHubSubscriptionId>"
+    },
+    "eventHubResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<EventHubResourceGroupName>"
+    },
+    "eventHubNamespaceName": {
+      "type": "string",
+      "defaultValue": "<EventHubNamespaceName>"
+    },
+    "eventHubAuthorizationRuleName": {
+      "type": "string",
+      "defaultValue": "<EventHubAuthorizationRuleName>"
     },
     "eventHubName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<EventHubName>"
     }
   },
   "resources": [
     {
       "type": "Microsoft.Insights/diagnosticSettings",
-      "apiVersion": "2021-05-01-preview",
+      "apiVersion": "<DiagnosticSettingsApiVersion>",
       "scope": "[format('Microsoft.RecoveryServices/vaults/{0}', parameters('recoveryServicesName'))]",
       "name": "[parameters('settingName')]",
       "properties": {
-        "workspaceId": "[parameters('workspaceId')]",
-        "storageAccountId": "[parameters('storageAccountId')]",
-        "eventHubAuthorizationRuleId": "[parameters('eventHubAuthorizationRuleId')]",
+        "workspaceId": "[variables('workspaceId')]",
+        "storageAccountId": "[variables('storageAccountId')]",
+        "eventHubAuthorizationRuleId": "[variables('eventHubAuthorizationRuleId')]",
         "eventHubName": "[parameters('eventHubName')]",
         "logs": [
           {
@@ -1473,13 +2226,22 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
         "logAnalyticsDestinationType": "Dedicated"
       }
     }
-  ]
+  ],
+  "variables": {
+    "workspaceId": "[resourceId(parameters('destinationWorkspaceSubscriptionId'), parameters('destinationWorkspaceResourceGroupName'), 'Microsoft.OperationalInsights/workspaces', parameters('destinationWorkspaceName'))]",
+    "storageAccountId": "[resourceId(parameters('destinationStorageSubscriptionId'), parameters('destinationStorageResourceGroupName'), 'Microsoft.Storage/storageAccounts', parameters('destinationStorageAccountName'))]",
+    "eventHubAuthorizationRuleId": "[resourceId(parameters('eventHubSubscriptionId'), parameters('eventHubResourceGroupName'), 'Microsoft.EventHub/namespaces/authorizationRules', parameters('eventHubNamespaceName'), parameters('eventHubAuthorizationRuleName'))]"
+  }
 }
 ```
 
+</details>
+
 ---
 
-### Recovery Services vault parameter file
+<br>
+<details>
+<summary><strong>Recovery Services vault parameter file</strong></summary>
 
 ```json
 {
@@ -1487,49 +2249,107 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   "contentVersion": "1.0.0.0",
   "parameters": {
     "settingName": {
-      "value": "Send to all locations"
+      "value": "<SettingName>"
     },
     "recoveryServicesName": {
-      "value": "my-vault"
+      "value": "<RecoveryServicesName>"
     },
-    "workspaceId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/MyResourceGroup/providers/microsoft.operationalinsights/workspaces/MyWorkspace"
+    "destinationWorkspaceSubscriptionId": {
+      "value": "<DestinationWorkspaceSubscriptionId>"
     },
-    "storageAccountId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.Storage/storageAccounts/mystorageaccount"
+    "destinationWorkspaceResourceGroupName": {
+      "value": "<DestinationWorkspaceResourceGroupName>"
     },
-    "eventHubAuthorizationRuleId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.EventHub/namespaces/MyNameSpace/authorizationrules/RootManageSharedAccessKey"
+    "destinationWorkspaceName": {
+      "value": "<DestinationWorkspaceName>"
+    },
+    "destinationStorageSubscriptionId": {
+      "value": "<DestinationStorageSubscriptionId>"
+    },
+    "destinationStorageResourceGroupName": {
+      "value": "<DestinationStorageResourceGroupName>"
+    },
+    "destinationStorageAccountName": {
+      "value": "<DestinationStorageAccountName>"
+    },
+    "eventHubSubscriptionId": {
+      "value": "<EventHubSubscriptionId>"
+    },
+    "eventHubResourceGroupName": {
+      "value": "<EventHubResourceGroupName>"
+    },
+    "eventHubNamespaceName": {
+      "value": "<EventHubNamespaceName>"
+    },
+    "eventHubAuthorizationRuleName": {
+      "value": "<EventHubAuthorizationRuleName>"
     },
     "eventHubName": {
-      "value": "my-eventhub"
+      "value": "<EventHubName>"
     }
   }
 }
 ```
 
+</details>
+
 ## Diagnostic setting for a Log Analytics workspace
 
 The following sample creates a diagnostic setting for a Log Analytics workspace by adding a resource of type `Microsoft.OperationalInsights/workspaces/providers/diagnosticSettings` to the template. This example sends audit data about queries executed in the workspace to the same workspace.
 
-### Log Analytics workspace template file
+### Log Analytics workspace
 
 # [Bicep](#tab/bicep)
 
-```bicep
-param workspaceName string
-param settingName string
-param workspaceId string
-param storageAccountId string
-param eventHubAuthorizationRuleId string
-param eventHubName string
+The following Bicep example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-bicep) resource type.
 
-resource workspace 'Microsoft.OperationalInsights/workspaces@2021-12-01-preview' existing = {
+<br>
+<details>
+<summary>Configure query auditing for a Log Analytics workspace</summary>
+
+```bicep
+param workspaceName string = '<WorkspaceName>'
+param settingName string = '<SettingName>'
+param destinationWorkspaceSubscriptionId string = '<DestinationWorkspaceSubscriptionId>'
+param destinationWorkspaceResourceGroupName string = '<DestinationWorkspaceResourceGroupName>'
+param destinationWorkspaceName string = '<DestinationWorkspaceName>'
+param destinationStorageSubscriptionId string = '<DestinationStorageSubscriptionId>'
+param destinationStorageResourceGroupName string = '<DestinationStorageResourceGroupName>'
+param destinationStorageAccountName string = '<DestinationStorageAccountName>'
+param eventHubSubscriptionId string = '<EventHubSubscriptionId>'
+param eventHubResourceGroupName string = '<EventHubResourceGroupName>'
+param eventHubNamespaceName string = '<EventHubNamespaceName>'
+param eventHubAuthorizationRuleName string = '<EventHubAuthorizationRuleName>'
+param eventHubName string = '<EventHubName>'
+
+var workspaceId = resourceId(
+  destinationWorkspaceSubscriptionId,
+  destinationWorkspaceResourceGroupName,
+  'Microsoft.OperationalInsights/workspaces',
+  destinationWorkspaceName
+)
+
+var storageAccountId = resourceId(
+  destinationStorageSubscriptionId,
+  destinationStorageResourceGroupName,
+  'Microsoft.Storage/storageAccounts',
+  destinationStorageAccountName
+)
+
+var eventHubAuthorizationRuleId = resourceId(
+  eventHubSubscriptionId,
+  eventHubResourceGroupName,
+  'Microsoft.EventHub/namespaces/authorizationRules',
+  eventHubNamespaceName,
+  eventHubAuthorizationRuleName
+)
+
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@<WorkspaceApiVersion>' existing = {
   name: workspaceName
 }
-resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
+resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@<DiagnosticSettingsApiVersion>' = {
   name: settingName
-  scope: workspace
+  scope: logAnalyticsWorkspace
   properties: {
     workspaceId: workspaceId
     storageAccountId: storageAccountId
@@ -1545,7 +2365,15 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
 }
 ```
 
-# [JSON](#tab/json)
+</details>
+
+# [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Configure query auditing for a Log Analytics workspace</summary>
 
 ```json
 {
@@ -1553,34 +2381,68 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   "contentVersion": "1.0.0.0",
   "parameters": {
     "workspaceName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<WorkspaceName>"
     },
     "settingName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<SettingName>"
     },
-    "workspaceId": {
-      "type": "string"
+    "destinationWorkspaceSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceSubscriptionId>"
     },
-    "storageAccountId": {
-      "type": "string"
+    "destinationWorkspaceResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceResourceGroupName>"
     },
-    "eventHubAuthorizationRuleId": {
-      "type": "string"
+    "destinationWorkspaceName": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceName>"
+    },
+    "destinationStorageSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageSubscriptionId>"
+    },
+    "destinationStorageResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageResourceGroupName>"
+    },
+    "destinationStorageAccountName": {
+      "type": "string",
+      "defaultValue": "<DestinationStorageAccountName>"
+    },
+    "eventHubSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<EventHubSubscriptionId>"
+    },
+    "eventHubResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<EventHubResourceGroupName>"
+    },
+    "eventHubNamespaceName": {
+      "type": "string",
+      "defaultValue": "<EventHubNamespaceName>"
+    },
+    "eventHubAuthorizationRuleName": {
+      "type": "string",
+      "defaultValue": "<EventHubAuthorizationRuleName>"
     },
     "eventHubName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<EventHubName>"
     }
   },
   "resources": [
     {
       "type": "Microsoft.Insights/diagnosticSettings",
-      "apiVersion": "2021-05-01-preview",
+      "apiVersion": "<DiagnosticSettingsApiVersion>",
       "scope": "[format('Microsoft.OperationalInsights/workspaces/{0}', parameters('workspaceName'))]",
       "name": "[parameters('settingName')]",
       "properties": {
-        "workspaceId": "[parameters('workspaceId')]",
-        "storageAccountId": "[parameters('storageAccountId')]",
-        "eventHubAuthorizationRuleId": "[parameters('eventHubAuthorizationRuleId')]",
+        "workspaceId": "[variables('workspaceId')]",
+        "storageAccountId": "[variables('storageAccountId')]",
+        "eventHubAuthorizationRuleId": "[variables('eventHubAuthorizationRuleId')]",
         "eventHubName": "[parameters('eventHubName')]",
         "logs": [
           {
@@ -1590,13 +2452,22 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
         ]
       }
     }
-  ]
+  ],
+  "variables": {
+    "workspaceId": "[resourceId(parameters('destinationWorkspaceSubscriptionId'), parameters('destinationWorkspaceResourceGroupName'), 'Microsoft.OperationalInsights/workspaces', parameters('destinationWorkspaceName'))]",
+    "storageAccountId": "[resourceId(parameters('destinationStorageSubscriptionId'), parameters('destinationStorageResourceGroupName'), 'Microsoft.Storage/storageAccounts', parameters('destinationStorageAccountName'))]",
+    "eventHubAuthorizationRuleId": "[resourceId(parameters('eventHubSubscriptionId'), parameters('eventHubResourceGroupName'), 'Microsoft.EventHub/namespaces/authorizationRules', parameters('eventHubNamespaceName'), parameters('eventHubAuthorizationRuleName'))]"
+  }
 }
 ```
 
+</details>
+
 ---
 
-### Log Analytics workspace parameter file
+<br>
+<details>
+<summary><strong>Log Analytics workspace parameter file</strong></summary>
 
 ```json
 {
@@ -1604,26 +2475,49 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   "contentVersion": "1.0.0.0",
   "parameters": {
     "settingName": {
-        "value": "Send to all locations"
+      "value": "<SettingName>"
     },
     "workspaceName": {
-      "value": "MyWorkspace"
+      "value": "<WorkspaceName>"
     },
-    "workspaceId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/MyResourceGroup/providers/microsoft.operationalinsights/workspaces/MyWorkspace"
+    "destinationWorkspaceSubscriptionId": {
+      "value": "<DestinationWorkspaceSubscriptionId>"
     },
-    "storageAccountId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.Storage/storageAccounts/mystorageaccount"
+    "destinationWorkspaceResourceGroupName": {
+      "value": "<DestinationWorkspaceResourceGroupName>"
     },
-    "eventHubAuthorizationRuleId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup/providers/Microsoft.EventHub/namespaces/MyNameSpace/authorizationrules/RootManageSharedAccessKey"
+    "destinationWorkspaceName": {
+      "value": "<DestinationWorkspaceName>"
+    },
+    "destinationStorageSubscriptionId": {
+      "value": "<DestinationStorageSubscriptionId>"
+    },
+    "destinationStorageResourceGroupName": {
+      "value": "<DestinationStorageResourceGroupName>"
+    },
+    "destinationStorageAccountName": {
+      "value": "<DestinationStorageAccountName>"
+    },
+    "eventHubSubscriptionId": {
+      "value": "<EventHubSubscriptionId>"
+    },
+    "eventHubResourceGroupName": {
+      "value": "<EventHubResourceGroupName>"
+    },
+    "eventHubNamespaceName": {
+      "value": "<EventHubNamespaceName>"
+    },
+    "eventHubAuthorizationRuleName": {
+      "value": "<EventHubAuthorizationRuleName>"
     },
     "eventHubName": {
-      "value": "my-eventhub"
+      "value": "<EventHubName>"
     }
   }
 }
 ```
+
+</details>
 
 ## Diagnostic setting for Azure Storage
 
@@ -1631,49 +2525,74 @@ The following sample creates a diagnostic setting for each storage service endpo
 
 This template creates a diagnostic setting for a storage service in the account only if it exists for the account. For each available service, the diagnostic setting enables transaction metrics, and the collection of resource logs for read, write, and delete operations.
 
-### Azure Storage template file
+### Azure Storage
 
 # [Bicep](#tab/bicep)
 
+The following Bicep example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-bicep) resource type.
+
 **main.bicep**
 
+> [!NOTE]
+> Keep `main.bicep` and `module.bicep` in the same directory. The main file retrieves the existing account's service endpoints and passes them, along with the destination parameters, to the module.
+
 ```bicep
-param storageAccountName string
-param settingName string
-param storageSyncName string
-param workspaceId string
+param storageAccountName string = '<StorageAccountName>'
+param settingName string = '<SettingName>'
+param storageSyncName string = '<StorageSyncName>'
+param destinationWorkspaceSubscriptionId string = '<DestinationWorkspaceSubscriptionId>'
+param destinationWorkspaceResourceGroupName string = '<DestinationWorkspaceResourceGroupName>'
+param destinationWorkspaceName string = '<DestinationWorkspaceName>'
 
 module nested './module.bicep' = {
   name: 'nested'
   params: {
-    endpoints: reference(resourceId('Microsoft.Storage/storageAccounts', storageAccountName), '2019-06-01', 'Full').properties.primaryEndpoints
+    endpoints: reference(resourceId('Microsoft.Storage/storageAccounts', storageAccountName), '<StorageEndpointReadApiVersion>', 'Full').properties.primaryEndpoints
     settingName: settingName
     storageAccountName: storageAccountName
     storageSyncName: storageSyncName
-    workspaceId: workspaceId
+    destinationWorkspaceSubscriptionId: destinationWorkspaceSubscriptionId
+    destinationWorkspaceResourceGroupName: destinationWorkspaceResourceGroupName
+    destinationWorkspaceName: destinationWorkspaceName
   }
 }
 ```
 
 **module.bicep**
 
+> [!NOTE]
+> This module is invoked by `main.bicep`; it isn't a separate deployment entry point. Its `endpoints` object comes from the existing storage account. `storageSyncName` identifies a separate destination storage account in the same deployment resource group.
+
+<br>
+<details>
+<summary>Configure diagnostics for available storage services</summary>
+
 ```bicep
 param endpoints object
-param settingName string
-param storageAccountName string
-param storageSyncName string
-param workspaceId string
+param settingName string = '<SettingName>'
+param storageAccountName string = '<StorageAccountName>'
+param storageSyncName string = '<StorageSyncName>'
+param destinationWorkspaceSubscriptionId string = '<DestinationWorkspaceSubscriptionId>'
+param destinationWorkspaceResourceGroupName string = '<DestinationWorkspaceResourceGroupName>'
+param destinationWorkspaceName string = '<DestinationWorkspaceName>'
 
-var hasblob = contains(endpoints, 'blob')
-var hastable = contains(endpoints, 'table')
-var hasfile = contains(endpoints, 'file')
-var hasqueue = contains(endpoints, 'queue')
+var workspaceId = resourceId(
+  destinationWorkspaceSubscriptionId,
+  destinationWorkspaceResourceGroupName,
+  'Microsoft.OperationalInsights/workspaces',
+  destinationWorkspaceName
+)
 
-resource storageAccount 'Microsoft.Storage/storageAccounts@2021-09-01' existing = {
+var hasBlob = contains(endpoints, 'blob')
+var hasTable = contains(endpoints, 'table')
+var hasFile = contains(endpoints, 'file')
+var hasQueue = contains(endpoints, 'queue')
+
+resource storageAccount 'Microsoft.Storage/storageAccounts@<StorageAccountApiVersion>' existing = {
   name: storageAccountName
 }
 
-resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
+resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@<DiagnosticSettingsApiVersion>' = {
   name: settingName
   scope: storageAccount
   properties: {
@@ -1688,12 +2607,12 @@ resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-pre
   }
 }
 
-resource blob 'Microsoft.Storage/storageAccounts/blobServices@2021-09-01' existing = {
+resource blob 'Microsoft.Storage/storageAccounts/blobServices@<StorageBlobServiceApiVersion>' existing = {
   name:'default'
   parent:storageAccount
 }
 
-resource blobSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = if (hasblob) {
+resource blobSetting 'Microsoft.Insights/diagnosticSettings@<DiagnosticSettingsApiVersion>' = if (hasBlob) {
   name: settingName
   scope: blob
   properties: {
@@ -1722,12 +2641,12 @@ resource blobSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' 
   }
 }
 
-resource table 'Microsoft.Storage/storageAccounts/tableServices@2021-09-01' existing = {
+resource table 'Microsoft.Storage/storageAccounts/tableServices@<StorageTableServiceApiVersion>' existing = {
   name:'default'
   parent:storageAccount
 }
 
-resource tableSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = if (hastable) {
+resource tableSetting 'Microsoft.Insights/diagnosticSettings@<DiagnosticSettingsApiVersion>' = if (hasTable) {
   name: settingName
   scope: table
   properties: {
@@ -1756,12 +2675,12 @@ resource tableSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview'
   }
 }
 
-resource file 'Microsoft.Storage/storageAccounts/fileServices@2021-09-01' existing = {
+resource file 'Microsoft.Storage/storageAccounts/fileServices@<StorageFileServiceApiVersion>' existing = {
   name:'default'
   parent:storageAccount
 }
 
-resource fileSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = if (hasfile) {
+resource fileSetting 'Microsoft.Insights/diagnosticSettings@<DiagnosticSettingsApiVersion>' = if (hasFile) {
   name: settingName
   scope: file
   properties: {
@@ -1790,12 +2709,12 @@ resource fileSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' 
   }
 }
 
-resource queue 'Microsoft.Storage/storageAccounts/queueServices@2021-09-01' existing = {
+resource queue 'Microsoft.Storage/storageAccounts/queueServices@<StorageQueueServiceApiVersion>' existing = {
   name:'default'
   parent:storageAccount
 }
 
-resource queueSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = if (hasqueue) {
+resource queueSetting 'Microsoft.Insights/diagnosticSettings@<DiagnosticSettingsApiVersion>' = if (hasQueue) {
   name: settingName
   scope: queue
   properties: {
@@ -1825,7 +2744,15 @@ resource queueSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview'
 }
 ```
 
-# [JSON](#tab/json)
+</details>
+
+# [ARM template](#tab/arm)
+
+The following ARM template example uses the [`Microsoft.Insights/diagnosticSettings`](/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-template) resource type.
+
+<br>
+<details>
+<summary>Configure diagnostics for available storage services</summary>
 
 ```json
 {
@@ -1833,22 +2760,34 @@ resource queueSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview'
   "contentVersion": "1.0.0.0",
   "parameters": {
     "storageAccountName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<StorageAccountName>"
     },
     "settingName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<SettingName>"
     },
     "storageSyncName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "<StorageSyncName>"
     },
-    "workspaceId": {
-      "type": "string"
+    "destinationWorkspaceSubscriptionId": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceSubscriptionId>"
+    },
+    "destinationWorkspaceResourceGroupName": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceResourceGroupName>"
+    },
+    "destinationWorkspaceName": {
+      "type": "string",
+      "defaultValue": "<DestinationWorkspaceName>"
     }
   },
   "resources": [
     {
       "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2020-10-01",
+      "apiVersion": "<DeploymentApiVersion>",
       "name": "nested",
       "properties": {
         "expressionEvaluationOptions": {
@@ -1857,7 +2796,7 @@ resource queueSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview'
         "mode": "Incremental",
         "parameters": {
           "endpoints": {
-            "value": "[reference(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '2019-06-01', 'Full').properties.primaryEndpoints]"
+            "value": "[reference(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '<StorageEndpointReadApiVersion>', 'Full').properties.primaryEndpoints]"
           },
           "settingName": {
             "value": "[parameters('settingName')]"
@@ -1868,8 +2807,14 @@ resource queueSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview'
           "storageSyncName": {
             "value": "[parameters('storageSyncName')]"
           },
-          "workspaceId": {
-            "value": "[parameters('workspaceId')]"
+          "destinationWorkspaceSubscriptionId": {
+            "value": "[parameters('destinationWorkspaceSubscriptionId')]"
+          },
+          "destinationWorkspaceResourceGroupName": {
+            "value": "[parameters('destinationWorkspaceResourceGroupName')]"
+          },
+          "destinationWorkspaceName": {
+            "value": "[parameters('destinationWorkspaceName')]"
           }
         },
         "template": {
@@ -1880,32 +2825,45 @@ resource queueSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview'
               "type": "object"
             },
             "settingName": {
-              "type": "string"
+              "type": "string",
+              "defaultValue": "<SettingName>"
             },
             "storageAccountName": {
-              "type": "string"
+              "type": "string",
+              "defaultValue": "<StorageAccountName>"
             },
             "storageSyncName": {
-              "type": "string"
+              "type": "string",
+              "defaultValue": "<StorageSyncName>"
             },
-            "workspaceId": {
-              "type": "string"
+            "destinationWorkspaceSubscriptionId": {
+              "type": "string",
+              "defaultValue": "<DestinationWorkspaceSubscriptionId>"
+            },
+            "destinationWorkspaceResourceGroupName": {
+              "type": "string",
+              "defaultValue": "<DestinationWorkspaceResourceGroupName>"
+            },
+            "destinationWorkspaceName": {
+              "type": "string",
+              "defaultValue": "<DestinationWorkspaceName>"
             }
           },
           "variables": {
-            "hasblob": "[contains(parameters('endpoints'), 'blob')]",
-            "hastable": "[contains(parameters('endpoints'), 'table')]",
-            "hasfile": "[contains(parameters('endpoints'), 'file')]",
-            "hasqueue": "[contains(parameters('endpoints'), 'queue')]"
+            "hasBlob": "[contains(parameters('endpoints'), 'blob')]",
+            "hasTable": "[contains(parameters('endpoints'), 'table')]",
+            "hasFile": "[contains(parameters('endpoints'), 'file')]",
+            "hasQueue": "[contains(parameters('endpoints'), 'queue')]",
+            "workspaceId": "[resourceId(parameters('destinationWorkspaceSubscriptionId'), parameters('destinationWorkspaceResourceGroupName'), 'Microsoft.OperationalInsights/workspaces', parameters('destinationWorkspaceName'))]"
           },
           "resources": [
             {
               "type": "Microsoft.Insights/diagnosticSettings",
-              "apiVersion": "2021-05-01-preview",
+              "apiVersion": "<DiagnosticSettingsApiVersion>",
               "scope": "[format('Microsoft.Storage/storageAccounts/{0}', parameters('storageAccountName'))]",
               "name": "[parameters('settingName')]",
               "properties": {
-                "workspaceId": "[parameters('workspaceId')]",
+                "workspaceId": "[variables('workspaceId')]",
                 "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageSyncName'))]",
                 "metrics": [
                   {
@@ -1916,13 +2874,13 @@ resource queueSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview'
               }
             },
             {
-              "condition": "[variables('hasblob')]",
+              "condition": "[variables('hasBlob')]",
               "type": "Microsoft.Insights/diagnosticSettings",
-              "apiVersion": "2021-05-01-preview",
+              "apiVersion": "<DiagnosticSettingsApiVersion>",
               "scope": "[format('Microsoft.Storage/storageAccounts/{0}/blobServices/{1}', parameters('storageAccountName'), 'default')]",
               "name": "[parameters('settingName')]",
               "properties": {
-                "workspaceId": "[parameters('workspaceId')]",
+                "workspaceId": "[variables('workspaceId')]",
                 "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageSyncName'))]",
                 "logs": [
                   {
@@ -1947,13 +2905,13 @@ resource queueSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview'
               }
             },
             {
-              "condition": "[variables('hastable')]",
+              "condition": "[variables('hasTable')]",
               "type": "Microsoft.Insights/diagnosticSettings",
-              "apiVersion": "2021-05-01-preview",
+              "apiVersion": "<DiagnosticSettingsApiVersion>",
               "scope": "[format('Microsoft.Storage/storageAccounts/{0}/tableServices/{1}', parameters('storageAccountName'), 'default')]",
               "name": "[parameters('settingName')]",
               "properties": {
-                "workspaceId": "[parameters('workspaceId')]",
+                "workspaceId": "[variables('workspaceId')]",
                 "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageSyncName'))]",
                 "logs": [
                   {
@@ -1978,13 +2936,13 @@ resource queueSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview'
               }
             },
             {
-              "condition": "[variables('hasfile')]",
+              "condition": "[variables('hasFile')]",
               "type": "Microsoft.Insights/diagnosticSettings",
-              "apiVersion": "2021-05-01-preview",
+              "apiVersion": "<DiagnosticSettingsApiVersion>",
               "scope": "[format('Microsoft.Storage/storageAccounts/{0}/fileServices/{1}', parameters('storageAccountName'), 'default')]",
               "name": "[parameters('settingName')]",
               "properties": {
-                "workspaceId": "[parameters('workspaceId')]",
+                "workspaceId": "[variables('workspaceId')]",
                 "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageSyncName'))]",
                 "logs": [
                   {
@@ -2009,13 +2967,13 @@ resource queueSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview'
               }
             },
             {
-              "condition": "[variables('hasqueue')]",
+              "condition": "[variables('hasQueue')]",
               "type": "Microsoft.Insights/diagnosticSettings",
-              "apiVersion": "2021-05-01-preview",
+              "apiVersion": "<DiagnosticSettingsApiVersion>",
               "scope": "[format('Microsoft.Storage/storageAccounts/{0}/queueServices/{1}', parameters('storageAccountName'), 'default')]",
               "name": "[parameters('settingName')]",
               "properties": {
-                "workspaceId": "[parameters('workspaceId')]",
+                "workspaceId": "[variables('workspaceId')]",
                 "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageSyncName'))]",
                 "logs": [
                   {
@@ -2047,9 +3005,13 @@ resource queueSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview'
 }
 ```
 
+</details>
+
 ---
 
-### Azure Storage parameter file
+<br>
+<details>
+<summary><strong>Azure Storage parameter file</strong></summary>
 
 ```json
 {
@@ -2057,20 +3019,29 @@ resource queueSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview'
   "contentVersion": "1.0.0.0",
   "parameters": {
     "storageAccountName": {
-      "value": "mymonitoredstorageaccount"
+      "value": "<StorageAccountName>"
     },
     "settingName": {
-      "value": "Send to all locations"
+      "value": "<SettingName>"
     },
     "storageSyncName": {
-      "value": "mystorageaccount"
+      "value": "<StorageSyncName>"
     },
-    "workspaceId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/MyResourceGroup/providers/microsoft.operationalinsights/workspaces/MyWorkspace"
+    "destinationWorkspaceSubscriptionId": {
+      "value": "<DestinationWorkspaceSubscriptionId>"
+    },
+    "destinationWorkspaceResourceGroupName": {
+      "value": "<DestinationWorkspaceResourceGroupName>"
+    },
+    "destinationWorkspaceName": {
+      "value": "<DestinationWorkspaceName>"
     }
   }
 }
 ```
+
+
+</details>
 
 ## Next steps
 

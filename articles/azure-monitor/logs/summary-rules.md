@@ -1,10 +1,12 @@
 ---
-title: Aggregate data in a Log Analytics workspace with summary rules
+title: Aggregate Data in a Log Analytics Workspace with Summary Rules
 description: Aggregate data in Log Analytics workspace with summary rules feature in Azure Monitor, including creating, starting, stopping, and troubleshooting rules.
 ms.subservice: logs
 ms.topic: how-to
+ms.custom: cbo-v1.6
 ms.reviewer: yossi-y
 ms.date: 05/27/2026
+ai-usage: ai-assisted
 
 # Customer intent: As a Log Analytics workspace administrator or developer, I want to optimize my query performance, cost-effectiveness, security, and analysis capabilities by using summary rules to aggregate data I ingest to specific tables.
 ---
@@ -13,11 +15,11 @@ ms.date: 05/27/2026
 
 A summary rule lets you aggregate log data at a regular cadence and send the aggregated results to a custom log table in your Log Analytics workspace. Use summary rules to optimize your data for:
 
-- **Analysis and reports**, especially over large data sets and time ranges, for example, security and incident analysis or month-over-month and annual business reports. Complex queries on a large data set often time out. It's easier and more efficient to analyze and report on _cleaned_ and _aggregated_ summarized data. 
+* **Analysis and reports**, especially over large data sets and time ranges, such as security and incident analysis or month-over-month and annual business reports. Complex queries on a large data set often time out. It's easier and more efficient to analyze and report on _cleaned_ and _aggregated_ summarized data.
 
-- **Cost savings** on verbose logs, which you retain for as little or as long as you need in a low-cost Basic log table, while sending summarized data to an Analytics table for analysis and reports. 
+* **Cost savings** on verbose logs, which you retain for as little or as long as you need in a low-cost Basic log table, while sending summarized data to an Analytics table for analysis and reports.
 
-- **Security and data privacy** by removing or obfuscating privacy details in summarized shareable data and limiting access to tables with raw data.
+* **Security and data privacy** by removing or obfuscating privacy details in summarized shareable data and limiting access to tables with raw data.
 
 This article describes how summary rules work and how to define and view summary rules, and provides some examples of the use and benefits of summary rules.
 
@@ -28,18 +30,18 @@ Here's a video that provides an overview of some of the benefits of summary rule
 
 ## How summary rules work
 
-Summary rules perform batch processing directly in your Log Analytics workspace. The summary rule aggregates chunks of data, defined by bin size, based on a KQL query, and re-ingests the summarized results into a custom table with an [Analytics log plan](logs-table-plans.md) in your Log Analytics workspace. 
+Summary rules perform batch processing directly in your Log Analytics workspace. The summary rule aggregates chunks of data, defined by bin size, based on a KQL query, and re-ingests the summarized results into a custom table with an [Analytics log plan](logs-table-plans.md) in your Log Analytics workspace.
 
 :::image type="content" source="media/summary-rules/summary-rule-azure-monitor.png" alt-text="A diagram that shows how data is ingested into a Log Analytics workspace and is aggregated and re-ingested into the workspace by using a summary rule." lightbox="media/summary-rules/summary-rule-azure-monitor.png":::
 
-Summary rules aggregate data from any table, regardless of whether the table has an [Analytics or Basic data plan](basic-logs-query.md). Azure Monitor creates the destination table schema based on the query you define. If the destination table already exists, Azure Monitor appends any columns required to support the query results. All destination tables also include a set of standard fields with summary rule information, including: 
+Summary rules aggregate data from any table, regardless of whether the table has an [Analytics or Basic data plan](basic-logs-query.md). Azure Monitor creates the destination table schema based on the query you define. If the destination table already exists, Azure Monitor appends any columns required to support the query results. All destination tables also include a set of standard fields with summary rule information, including:
 
-- `_RuleName`: The summary rule that generated the aggregated log entry.
-- `_RuleLastModifiedTime`: When the rule was last modified. 
-- `_BinSize`: The aggregation interval.  
-- `_BinStartTime`: The aggregation start time.
+* `_RuleName`: The summary rule that generated the aggregated log entry.
+* `_RuleLastModifiedTime`: When the rule was last modified.
+* `_BinSize`: The aggregation interval.
+* `_BinStartTime`: The aggregation start time.
 
-Configure up to 100 active rules to aggregate data from multiple tables and send the aggregated data to separate destination tables or the same table. 
+Configure up to 100 active rules to aggregate data from multiple tables and send the aggregated data to separate destination tables or the same table.
 
 To export summarized data from a custom log table to a storage account or Event Hubs for further integrations, define a [data export rule](logs-data-export.md).
 
@@ -50,15 +52,15 @@ If you're monitoring containers, you ingest a large volume of verbose logs into 
 You might use this query in your summary rule to aggregate unique records within 60 minutes, only promoting the data that's useful for analysis to the destination table:
 
 ```kusto
-ContainerLogV2 
-| summarize Count = count() 
+ContainerLogV2
+| summarize Count = count()
   by
-  Computer, 
+  Computer,
   ContainerName,
-  PodName, 
-  PodNamespace, 
-  LogSource, 
-  LogLevel, 
+  PodName,
+  PodNamespace,
+  LogSource,
+  LogLevel,
   Message = tostring(LogMessage.Message)
 ```
 
@@ -76,7 +78,7 @@ Instead of logging hundreds of similar entries within an hour, the destination t
 
 | Action | Permissions required |
 | --- | --- |
-| Create or update summary rule | `Microsoft.Operationalinsights/workspaces/summarylogs/write` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](manage-access.md#log-analytics-contributor), for example |
+| Create or update summary rule | `Microsoft.Operationalinsights/workspaces/summaryLogs/write` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](manage-access.md#log-analytics-contributor), for example |
 | Create or update destination table | `Microsoft.OperationalInsights/workspaces/tables/write` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](manage-access.md#log-analytics-contributor), for example |
 | Enable query operation in workspace | `Microsoft.OperationalInsights/workspaces/query/read` permissions to the Log Analytics workspace, as provided by the [Log Analytics Reader built-in role](manage-access.md#log-analytics-reader), for example |
 | Query all tables in workspace | `Microsoft.OperationalInsights/workspaces/query/*/read` permissions to the Log Analytics workspace, as provided by the [Log Analytics Reader built-in role](manage-access.md#log-analytics-reader), for example |
@@ -87,12 +89,12 @@ Instead of logging hundreds of similar entries within an hour, the destination t
 
 ## Implementation considerations
 
-- The maximum number of active rules in a workspace is 100.
-- Summary rules are currently only available in the public cloud.
-- The summary rule processes incoming data and doesn't allow a historical time range. Data can only be processed from the recent past up to 24 hours. This corresponds to a maximum `binSize` of 1440 minutes when `binStartTime` is set to the full 24-hour window.
-- Creating a summary rule with a query across another tenant under Lighthouse isn't supported.
-- Adding [workspace transformation](tutorial-workspace-transformations-portal.md#add-a-transformation-to-the-table) to a summary rule's destination table isn't supported.
-- Using `union *` and `isfuzzy=true` in summary rule queries isn't supported.
+* The maximum number of active rules in a workspace is 100.
+* Summary rules are currently only available in the public cloud.
+* The summary rule processes incoming data and doesn't allow a historical time range. Data can only be processed from the recent past up to 24 hours. This corresponds to a maximum `binSize` of 1440 minutes when `binStartTime` is set to the full 24-hour window.
+* Creating a summary rule with a query across another tenant under Lighthouse isn't supported.
+* Adding [workspace transformation](tutorial-workspace-transformations-portal.md#add-a-transformation-to-the-table) to a summary rule's destination table isn't supported.
+* Using `union *` and `isfuzzy=true` in summary rule queries isn't supported.
 
 ## Summary rule pricing model
 
@@ -100,15 +102,15 @@ Summary rules incur no extra cost. You only pay for the query and the ingestion 
 
 | Source table plan | Query cost | Summary results ingestion cost |
 | --- | --- | --- |
-| Analytics | No cost    | Ingestion of Analytics logs | 
-| Basic and Auxiliary    | Data scan | Ingestion of Analytics logs | 
+| Analytics | No cost    | Ingestion of Analytics logs |
+| Basic and Auxiliary    | Data scan | Ingestion of Analytics logs |
 
 For example, the cost calculation for an hourly rule that returns 100 records per bin is:
 
 | Source table plan | Monthly price calculation |
 | --- | --- |
-| Analytics  | Ingestion price x record volume x number of records x 24 hours x 30 days. | 
-| Basic and Auxiliary | Data scan price x scanned volume + Ingestion price x record volume x number of records x 24 hours x 30 days. For continuously running rule, all incoming data to source table is scanned. | 
+| Analytics  | Ingestion price x record volume x number of records x 24 hours x 30 days. |
+| Basic and Auxiliary | Data scan price x scanned volume + Ingestion price x record volume x number of records x 24 hours x 30 days. For continuously running rule, all incoming data to source table is scanned. |
 
 For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
@@ -116,16 +118,16 @@ For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pr
 
 The operators available in your summary rule query depend on the plan of the source table in the query.
 
-- Analytics: Supports all KQL operators and functions, except for:
-  - [Cross-resource queries](cross-workspace-query.md), which use the `workspaces()`, `app()`, and `resource()` expressions, and [cross-service queries](azure-monitor-data-explorer-proxy.md), which use the `ADX()` and `ARG()` expressions.
-  - Plugins that reshape the data schema, including [bag unpack](/azure/data-explorer/kusto/query/bag-unpack-plugin), [narrow](/azure/data-explorer/kusto/query/narrow-plugin), and [pivot](/azure/data-explorer/kusto/query/pivot-plugin).
-- Basic: Supports all KQL operators on a single table. Join up to five Analytics tables using the [lookup](/azure/data-explorer/kusto/query/lookup-operator) operator.
-- Functions: User-defined functions aren't supported. System functions provided by Microsoft are supported.
+* Analytics: Supports all KQL operators and functions, except for:
+  * [Cross-resource queries](cross-workspace-query.md), which use the `workspaces()`, `app()`, and `resource()` expressions, and [cross-service queries](azure-monitor-data-explorer-proxy.md), which use the `ADX()` and `ARG()` expressions.
+  * Plugins that reshape the data schema, including [bag unpack](/azure/data-explorer/kusto/query/bag-unpack-plugin), [narrow](/azure/data-explorer/kusto/query/narrow-plugin), and [pivot](/azure/data-explorer/kusto/query/pivot-plugin).
+* Basic: Supports all KQL operators on a single table. Join up to five Analytics tables by using the [lookup](/azure/data-explorer/kusto/query/lookup-operator) operator.
+* Functions: User-defined functions aren't supported. System functions provided by Microsoft are supported.
 
 Summary rules deliver the most cost and query benefits when the rule query includes the `summarize` operator and the result count or volume is reduced significantly. For example, aim for a result volume of 0.01% or less of the source. Before you create a rule, test the query in [Log Analytics](log-analytics-overview.md) and verify the following:
 
 1. The query produces the intended results and schema.
-1. The query doesn't reach or come near the [query API limits](../service-limits.md#log-analytics-workspaces). If the query is close to the query limits, consider using a smaller `binSize` to process less data per bin. As an alternative, modify the query to return fewer records or fewer high-volume fields.
+1. The query doesn't reach or come near the [query API limits](../fundamentals/service-limits.md#log-analytics-workspaces). If the query is close to the query limits, consider using a smaller `binSize` to process less data per bin. As an alternative, modify the query to return fewer records or fewer high-volume fields.
 1. The record size in the results is less than 1 MB.
 
 > [!NOTE]
@@ -133,9 +135,11 @@ Summary rules deliver the most cost and query benefits when the rule query inclu
 
 When you update a query and the summary results contain fewer fields, Azure Monitor doesn't automatically remove the columns from the destination table. [Delete columns from your table](create-custom-table.md#add-or-delete-a-custom-column) manually if needed.
 
+After you create, update, start, or stop a rule, retrieve its configuration and wait until `properties.provisioningState` is `Succeeded` before making another change. A successful request can return while the rule is still `Updating`.
+
 To create or update a summary rule:
 
-# [Azure portal](#tab/portal-1)
+# [Portal](#tab/portal)
 
 1. From the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
 1. In the left menu under **Settings**, select **Rules**.
@@ -143,37 +147,41 @@ To create or update a summary rule:
 
    :::image type="content" source="media/summary-rules/summary-rules-overview.png" alt-text="Screenshot that shows the overview of the summary rule experience in the Azure portal." lightbox="media/summary-rules/summary-rules-overview.png":::
 
-1. Select **+ Create** to create a new summary rule. 
+1. Select **+ Create** to create a new summary rule.
 1. Fill in the **Rule name**, **Description**, and **Destination table**, then select **Next: Set rule logic**.
 
    :::image type="content" source="media/summary-rules/summary-rules-create-basics.png" alt-text="Screenshot that shows the create summary rule experience in the Azure portal." lightbox="media/summary-rules/summary-rules-create-basics.png":::
 
-1. The **Rule logic** step starts in the query experience of Log Analytics. Craft and test your query here, then **Apply** once it produces the results you expect. 
+1. The **Rule logic** step starts in the query experience of Log Analytics. Craft and test your query here, and then select **Apply** once it produces the results you expect.
 
    :::image type="content" source="media/summary-rules/summary-rules-create-rule-logic.png" alt-text="Screenshot that shows the create summary rule logic experience in the Azure portal." lightbox="media/summary-rules/summary-rules-create-rule-logic.png":::
 
 1. Select the **Run summary every** value which corresponds to `binSize` and adjust other scheduling options as needed. Then select **Next: Review + create**.
 1. Review the summary rule settings, then select **Create**.
 
-# [Azure CLI](#tab/azure-cli-1)
+# [Azure CLI](#tab/cli)
 
-Use the following command to create or update a summary rule by using Azure CLI. The `<RuleName>` becomes the `name` property for the rule, while the optional `displayName` is a user-friendly name shown in the Azure portal for easier identification.
+The following Azure CLI example uses [`az rest`](/cli/azure/reference-index#az-rest) to call the [`Summary Logs - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation. The `ruleName` value becomes the rule's `name` property. The optional `displayName` is its user-friendly name in the Azure portal.
 
 ```bash
-# User input variables - update values in <AngleBrackets>
+# Set variables
 resourceGroupName="<ResourceGroupName>"
 workspaceName="<WorkspaceName>"
 ruleName="<RuleName>"
-apiVersion="2025-07-01"
+apiVersion="<ApiVersion>"
 
 # Get the subscription ID from the current Azure CLI context
 subscriptionId=$(az account show --query id --output tsv)
 
 # Build request URL
+apiEndpoint="https://management.azure.com"
 path="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 provider="Microsoft.OperationalInsights/workspaces/$workspaceName"
-url="$path/providers/$provider/summarylogs/$ruleName?api-version=$apiVersion"
+provider+="/summaryLogs/$ruleName"
+queryString="?api-version=$apiVersion"
+url="$apiEndpoint$path/providers/$provider$queryString"
 
+# Send request
 az rest --method put --url "$url" --body @body.json
 ```
 
@@ -183,80 +191,131 @@ Save the following JSON as **body.json** in the same directory before running th
 {
   "properties": {
     "ruleType": "User",
-    "description": "My test rule",
+    "description": "<RuleDescription>",
     "ruleDefinition": {
       "query": "StorageBlobLogs | summarize count() by AccountName",
       "binSize": 30,
-      "destinationTable": "MySummaryLogs_CL"
+      "destinationTable": "<DestinationTableName>_CL"
     }
   }
 }
 ```
 
-# [Azure PowerShell](#tab/powershell-1)
+# [Azure PowerShell](#tab/powershell)
 
-Use the following command to create or update a summary rule by using Azure PowerShell. The `<RuleName>` becomes the `name` property for the rule, while the optional `displayName` is a user-friendly name shown in the Azure portal for easier identification.
+The following Azure PowerShell example uses [`Invoke-AzRestMethod`](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Summary Logs - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation. The `ruleName` value becomes the rule's `name` property. The optional `displayName` is its user-friendly name in the Azure portal.
 
 ```powershell
-# User input variables - update values in <AngleBrackets>
-$resourceGroupName = '<ResourceGroupName>'
-$workspaceName = '<WorkspaceName>'
-$ruleName = '<RuleName>'
-$apiVersion = "2025-07-01"
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$ruleName = "<RuleName>"
+$apiVersion = "<ApiVersion>"
 
 # Get the subscription ID from the current Azure PowerShell context
 $subscriptionId = (Get-AzContext).Subscription.Id
 
 # Build request URL
+$apiEndpoint = "https://management.azure.com"
 $path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 $provider = "Microsoft.OperationalInsights/workspaces/$workspaceName"
-$url = "$path/providers/$provider/summarylogs/$ruleName?api-version=$apiVersion"
+$provider += "/summaryLogs/$ruleName"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider$queryString"
 
+# Build request body
 $body = @{
     properties = @{
         ruleType = "User"
-        description = "My test rule"
+        description = "<RuleDescription>"
         ruleDefinition = @{
             query = "StorageBlobLogs | summarize count() by AccountName"
             binSize = 30
-            destinationTable = "MySummaryLogs_CL"
+            destinationTable = "<DestinationTableName>_CL"
         }
     }
 } | ConvertTo-Json -Depth 10
 
-Invoke-AzRestMethod -Method PUT -Path $url -Payload $body
+# Send request
+Invoke-AzRestMethod -Method PUT -Uri $url -Payload $body
 ```
 
-# [REST API](#tab/rest-1)
+# [REST](#tab/rest)
 
-Use the following `PUT` request for the [Logs management API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) **Summary rules** operation group to `create or update` a summary rule. The `<RuleName>` becomes the `name` property for the rule, while the optional `displayName` is a user-friendly name shown in the Azure portal for easier identification.
+The following REST example uses the [`Summary Logs - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation. The `ruleName` value becomes the rule's `name` property. The optional `displayName` is its user-friendly name in the Azure portal.
 
 ```REST
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/summarylogs/{ruleName}?api-version=2025-07-01
-Authorization: Bearer {token}
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/summaryLogs/{ruleName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
   "properties": {
     "ruleType": "User",
-    "description": "My test rule",
+    "description": "<RuleDescription>",
     "ruleDefinition": {
       "query": "StorageBlobLogs | summarize count() by AccountName",
       "binSize": 30,
-      "destinationTable": "MySummaryLogs_CL"
+      "destinationTable": "<DestinationTableName>_CL"
     }
   }
 }
 ```
 
-# [ARM template](#tab/json-1)
+# [Bicep](#tab/bicep)
 
-Use this template to create or update a summary rule. For more information about using and deploying Azure Resource Manager templates, see [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax). The `summaryRuleName` parameter, which corresponds to your input `<RuleName>`, becomes the `name` property for the rule, while the optional `displayName` is a user-friendly name shown in the Azure portal for easier identification.
+> [!NOTE]
+> Template deployments create or update a summary rule. They aren't partial PATCH operations. Include the rule's configuration when updating an existing rule.
 
+The following Bicep example uses the [`Microsoft.OperationalInsights/workspaces/summaryLogs`](/azure/templates/microsoft.operationalinsights/workspaces/summaryLogs?pivots=deployment-language-bicep) resource type. Deploy it to the existing workspace's resource group. The `summaryRuleName` parameter sets the rule's `name` property.
+
+For an existing rule:
+
+* Apply the intended change within its complete resource definition.
+* Retain all other `ruleDefinition` properties, including the query, destination table, bin size, and any configured scheduling options such as `binDelay` and `binStartTime`.
+* Keep other configured resource properties instead of replacing the rule with the sample defaults.
+
+```bicep
+param workspaceName string = '<WorkspaceName>'
+param summaryRuleName string = '<RuleName>'
+param description string = '<RuleDescription>'
+param ruleType string = 'User'
+param query string = '<Query>'
+param binSize int = 60
+param destinationTable string = '<DestinationTableName>_CL'
+
+resource logRule 'Microsoft.OperationalInsights/workspaces/summaryLogs@<ApiVersion>' = {
+  name: '${workspaceName}/${summaryRuleName}'
+  properties: {
+    ruleType: ruleType
+    description: description
+    ruleDefinition: {
+      query: query
+      binSize: binSize
+      destinationTable: destinationTable
+    }
+  }
+}
+```
+
+# [ARM template](#tab/arm)
+
+> [!NOTE]
+> Template deployments create or update a summary rule. They aren't partial PATCH operations. Include the rule's configuration when updating an existing rule.
+
+The following ARM template example uses the [`Microsoft.OperationalInsights/workspaces/summaryLogs`](/azure/templates/microsoft.operationalinsights/workspaces/summaryLogs?pivots=deployment-language-arm-template) resource type. Deploy it to the existing workspace's resource group. The `summaryRuleName` parameter sets the rule's `name` property.
+
+<br>
 <details>
 <summary>Create or update a summary rule template</summary>
 
 #### Template file
+
+For an existing rule:
+
+* Apply the intended change within its complete resource definition.
+* Retain all other `ruleDefinition` properties, including the query, destination table, bin size, and any configured scheduling options such as `binDelay` and `binStartTime`.
+* Keep other configured resource properties instead of replacing the rule with the sample defaults.
 
 ```json
 {
@@ -264,106 +323,39 @@ Use this template to create or update a summary rule. For more information about
   "contentVersion": "1.0.0.0",
   "parameters": {
     "workspaceName": {
-      "type": "String",
-      "metadata": {
-        "description": "The workspace name where summary rule is deployed."
-      }
+      "type": "string",
+      "defaultValue": "<WorkspaceName>"
     },
     "summaryRuleName": {
-      "type": "String",
-      "metadata": {
-        "description": "The summary rule name."
-      }
+      "type": "string",
+      "defaultValue": "<RuleName>"
     },
     "description": {
-      "type": "String",
-      "metadata": {
-        "description": "A description of the rule."
-      }
-    },
-    "location": {
-      "defaultValue": "[resourceGroup().location]",
-      "type": "String",
-      "metadata": {
-        "description": "The Location of the workspace summary rule is deployed."
-      }
+      "type": "string",
+      "defaultValue": "<RuleDescription>"
     },
     "ruleType": {
-      "defaultValue": "User",
-      "allowedValues": [
-        "User"
-      ],
-      "type": "String",
-      "metadata": {
-        "description": "The summary rule type (User,System). Should be 'User' for and rule with query that you define."
-      }
+      "type": "string",
+      "defaultValue": "User"
     },
     "query": {
-      "type": "String",
-      "metadata": {
-      "description": "The query used in summary rules."
-      }
+      "type": "string",
+      "defaultValue": "<Query>"
     },
     "binSize": {
-      "defaultValue": 60,
-      "allowedValues": [
-        20,
-        30,
-        60,
-        120,
-        180,
-        360,
-        720,
-        1440
-      ],
-      "type": "Int",
-      "metadata": {
-        "description": "The execution interval in minutes, and the lookback time range."
-      }
+      "type": "int",
+      "defaultValue": 60
     },
     "destinationTable": {
-      "type": "String",
-      "metadata": {
-        "description": "The name of the custom log table that the summary results are sent to. Name must end with '_CL'."
-      }
+      "type": "string",
+      "defaultValue": "<DestinationTableName>_CL"
     }
-    // ----- optional -----
-    // "displayName": {
-    //   "type": "String",
-    //   "metadata": {
-    //     "description": "Optional - The summary rule display name when provided."
-    //   }
-    // },
-    // "binDelay": {
-    //   "type": "Int",
-    //   "metadata": {
-    //     "description": "Optional - The minimum wait time in minutes before bin execution. For example, value of '10' cause bin (01:00-02:00) to be executed after 02:10."
-    //   }
-    // },
-    // "timeSelector": {
-    //   "defaultValue": "TimeGenerated",
-    //   "allowedValues": [
-    //     "TimeGenerated"
-    //   ],
-    //   "type": "String",  
-    //   "metadata": {
-    //     "description": "Optional - The time field to be used by the summary rule. Must be 'TimeGenerated'."
-    //   }
-    // },
-    // "binStartTime": {
-    //   "type": "String",
-    //   "metadata": {
-    //     "description": "Optional - The Time of initial bin. Can start at current time minus binSize, or future, and in whole hours. For example: '2024-01-01T08:00'."
-    //   }
-    // }
   },
-  "variables": {},
   "resources": [
     {
       "type": "Microsoft.OperationalInsights/workspaces/summaryLogs",
-      "apiVersion": "2025-07-01",
-      //"name": "[format('{0}/{1}', parameters('workspaceName'), parameters('summaryRuleName'))]",
-      "name": "[concat(parameters('workspaceName'), '/', parameters('summaryRuleName'))]",
+      "apiVersion": "<ApiVersion>",
+      "name": "[format('{0}/{1}', parameters('workspaceName'), parameters('summaryRuleName'))]",
       "properties": {
         "ruleType": "[parameters('ruleType')]",
         "description": "[parameters('description')]",
@@ -371,10 +363,6 @@ Use this template to create or update a summary rule. For more information about
           "query": "[parameters('query')]",
           "binSize": "[parameters('binSize')]",
           "destinationTable": "[parameters('destinationTable')]"
-          // ----- optional -----
-          //"binDelay": "[parameters('binDelay')]",
-          //"timeSelector": "[parameters('timeSelector')]",
-          //"binStartTime": "[parameters('binStartTime')]"
         }
       }
     }
@@ -382,6 +370,7 @@ Use this template to create or update a summary rule. For more information about
 }
 ```
 
+</details>
 
 #### Parameter file
 
@@ -397,10 +386,7 @@ Use this template to create or update a summary rule. For more information about
       "value": "<RuleName>"
     },
     "description": {
-      "value": "My rule description"
-    },
-    "location": {
-      "value": "<AzureRegion>" //Log Analytics workspace region
+      "value": "<RuleDescription>"
     },
     "ruleType": {
       "value": "User"
@@ -412,13 +398,11 @@ Use this template to create or update a summary rule. For more information about
       "value": 20
     },
     "destinationTable": {
-      "value": "MySummaryLogs_CL"
+      "value": "<DestinationTableName>_CL"
     }
   }
 }
 ```
-
-</details>
 
 ---
 
@@ -442,20 +426,20 @@ This table describes the parameters available for summary rule creation and mana
 
 ### Configure the aggregation timing
 
-By default, the summary rule creates the first aggregation shortly after the next whole hour. 
+By default, the summary rule creates the first aggregation shortly after the next whole hour.
 
 The short delay Azure Monitor adds accounts for ingestion latency, which is the time between when the data is created in the monitored system and the time it becomes available for analysis in Azure Monitor. By default, this delay is between three and a half minutes and 10% of the bin size value before aggregating each bin. In most cases, this delay ensures that Azure Monitor aggregates all data logged within each bin period.
 
-For example: 
+For example:
 
-- You create a summary rule with a bin size of 30 minutes at 14:44. The first aggregation is generated at 15:04, which is the next whole hour plus 4 minutes delay.
-- You create a summary rule with a bin size of 720 minutes at 14:44. The first aggregation is generated at 16:12, which is the next whole hour plus 72 minutes (10% of the 720 bin size) delay. 
+* You create a summary rule with a bin size of 30 minutes at 14:44. The first aggregation is generated at 15:04, which is the next whole hour plus 4 minutes delay.
+* You create a summary rule with a bin size of 720 minutes at 14:44. The first aggregation is generated at 16:12, which is the next whole hour plus 72 minutes (10% of the 720 bin size) delay.
 
 Use the `binStartTime` and `binDelay` parameters to change the timing of the first aggregation and the delay Azure Monitor adds before each aggregation.
 
 The next sections provide examples of the default aggregation timing and the more advanced aggregation timing options.
 
-#### Use default aggregation timing 
+#### Use default aggregation timing
 
 In this example, the summary rule is created on 2023-06-07 at 14:44, and Azure Monitor adds a default delay of **four minutes**.
 
@@ -473,8 +457,8 @@ In this example, the summary rule is created on 2023-06-07 at 14:44, and Azure M
 #### Set optional aggregation timing parameters
 
 In this example, the summary rule is created on 2023-06-07 at 14:44, and the rule includes these advanced configuration settings:
-- `binStartTime`: 2023-06-08 07:00
-- `binDelay`: **8 minutes**
+* `binStartTime`: 2023-06-08 07:00
+* `binDelay`: **8 minutes**
 
 | binSize (minutes) | Initial rule run | First aggregation | Second aggregation |
 | --- | --- | --- | --- |
@@ -489,11 +473,11 @@ In this example, the summary rule is created on 2023-06-07 at 14:44, and the rul
 
 ## View all summary rules
 
-View or enumerate all the summary rules in your workspace. 
+View or list all the summary rules in your workspace.
 
 The `displayName` property of the summary rule visible in the Azure portal is different from the `name` property used in API calls, especially if you created the rule through the portal. The `name` property is the unique identifier for the rule and is used in API calls to manage the rule. The `displayName` is a user-friendly name shown in the Azure portal for easier identification.
 
-# [Azure portal](#tab/portal-2)
+# [Portal](#tab/portal-2)
 
 1. From the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
 1. In the left menu under **Settings**, select **Rules**.
@@ -501,55 +485,63 @@ The `displayName` property of the summary rule visible in the Azure portal is di
 
 :::image type="content" source="media/summary-rules/view-all-summary-rules.png" alt-text="Screenshot that shows the Summary rules pane with all summary rules in the Azure portal." lightbox="media/summary-rules/view-all-summary-rules.png":::
 
-# [Azure CLI](#tab/azure-cli-2)
+# [Azure CLI](#tab/cli-2)
 
-Use the following command to view all summary rules by using Azure CLI.
+The following Azure CLI example uses [`az rest`](/cli/azure/reference-index#az-rest) to call the [`Summary Logs - List By Workspace`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation.
 
 ```bash
-# User input variables - update values in <AngleBrackets>
+# Set variables
 resourceGroupName="<ResourceGroupName>"
 workspaceName="<WorkspaceName>"
-apiVersion="2025-07-01"
+apiVersion="<ApiVersion>"
 
 # Get the subscription ID from the current Azure CLI context
 subscriptionId=$(az account show --query id --output tsv)
 
 # Build request URL
+apiEndpoint="https://management.azure.com"
 path="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 provider="Microsoft.OperationalInsights/workspaces/$workspaceName"
-url="$path/providers/$provider/summarylogs?api-version=$apiVersion"
+provider+="/summaryLogs"
+queryString="?api-version=$apiVersion"
+url="$apiEndpoint$path/providers/$provider$queryString"
 
+# Send request
 az rest --method get --url "$url"
 ```
 
 # [Azure PowerShell](#tab/powershell-2)
 
-Use the following command to view all summary rules by using Azure PowerShell.
+The following Azure PowerShell example uses [`Invoke-AzRestMethod`](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Summary Logs - List By Workspace`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation.
 
 ```powershell
-# User input variables - update values in <AngleBrackets>
-$resourceGroupName = '<ResourceGroupName>'
-$workspaceName = '<WorkspaceName>'
-$apiVersion = "2025-07-01"
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$apiVersion = "<ApiVersion>"
 
 # Get the subscription ID from the current Azure PowerShell context
 $subscriptionId = (Get-AzContext).Subscription.Id
 
 # Build request URL
+$apiEndpoint = "https://management.azure.com"
 $path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 $provider = "Microsoft.OperationalInsights/workspaces/$workspaceName"
-$url = "$path/providers/$provider/summarylogs?api-version=$apiVersion"
+$provider += "/summaryLogs"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider$queryString"
 
-Invoke-AzRestMethod -Method GET -Path $url
+# Send request
+Invoke-AzRestMethod -Method GET -Uri $url
 ```
 
-# [REST API](#tab/rest-2)
+# [REST](#tab/rest-2)
 
-Use the following `GET` request for the [Logs management API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) **Summary rules** operation group to `view` all summary rules.
+The following REST example uses the [`Summary Logs - List By Workspace`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation.
 
 ```REST
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/summarylogs?api-version=2025-07-01
-Authorization: Bearer {token}
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/summaryLogs?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 ```
 
@@ -559,7 +551,7 @@ Content-Type: application/json
 
 View or update the configuration for a specific summary rule.
 
-# [Azure portal](#tab/portal-2)
+# [Portal](#tab/portal-2)
 
 1. From the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
 1. In the left menu under **Settings**, select **Rules**.
@@ -571,57 +563,65 @@ View or update the configuration for a specific summary rule.
 
 1. Select **Next: Set rule logic** to view the query used in the summary rule.
 
-# [Azure CLI](#tab/azure-cli-2)
+# [Azure CLI](#tab/cli-2)
 
-Use the following command to view a summary rule by using Azure CLI. The `<RuleName>` is the `name` property for the rule, while the `displayName` is a user-friendly name shown in the Azure portal for easier identification.
+The following Azure CLI example uses [`az rest`](/cli/azure/reference-index#az-rest) to call the [`Summary Logs - Get`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation. Use the rule's `name`, not its `displayName`, for `ruleName`.
 
 ```bash
-# User input variables - update values in <AngleBrackets>
+# Set variables
 resourceGroupName="<ResourceGroupName>"
 workspaceName="<WorkspaceName>"
 ruleName="<RuleName>"
-apiVersion="2025-07-01"
+apiVersion="<ApiVersion>"
 
 # Get the subscription ID from the current Azure CLI context
 subscriptionId=$(az account show --query id --output tsv)
 
 # Build request URL
+apiEndpoint="https://management.azure.com"
 path="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 provider="Microsoft.OperationalInsights/workspaces/$workspaceName"
-url="$path/providers/$provider/summarylogs/$ruleName?api-version=$apiVersion"
+provider+="/summaryLogs/$ruleName"
+queryString="?api-version=$apiVersion"
+url="$apiEndpoint$path/providers/$provider$queryString"
 
+# Send request
 az rest --method get --url "$url"
 ```
 
 # [Azure PowerShell](#tab/powershell-2)
 
-Use the following command to view a summary rule by using Azure PowerShell.
+The following Azure PowerShell example uses [`Invoke-AzRestMethod`](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Summary Logs - Get`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation.
 
 ```powershell
-# User input variables - update values in <AngleBrackets>
-$resourceGroupName = '<ResourceGroupName>'
-$workspaceName = '<WorkspaceName>'
-$ruleName = '<RuleName>'
-$apiVersion = "2025-07-01"
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$ruleName = "<RuleName>"
+$apiVersion = "<ApiVersion>"
 
 # Get the subscription ID from the current Azure PowerShell context
 $subscriptionId = (Get-AzContext).Subscription.Id
 
 # Build request URL
+$apiEndpoint = "https://management.azure.com"
 $path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 $provider = "Microsoft.OperationalInsights/workspaces/$workspaceName"
-$url = "$path/providers/$provider/summarylogs/$ruleName?api-version=$apiVersion"
+$provider += "/summaryLogs/$ruleName"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider$queryString"
 
-Invoke-AzRestMethod -Method GET -Path $url
+# Send request
+Invoke-AzRestMethod -Method GET -Uri $url
 ```
 
-# [REST API](#tab/rest-2)
+# [REST](#tab/rest-2)
 
-Use the following `GET` request for the [Logs management API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) **Summary rules** operation group to `view` a summary rule.
+The following REST example uses the [`Summary Logs - Get`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation.
 
 ```REST
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/summarylogs/{ruleName}?api-version=2025-07-01
-Authorization: Bearer {token}
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/summaryLogs/{ruleName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 ```
 
@@ -634,7 +634,7 @@ Stop a rule for a period of time. One example use case is when you want to verif
 
 To stop a rule:
 
-# [Azure portal](#tab/portal-2)
+# [Portal](#tab/portal-2)
 
 1. From the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
 1. In the left menu under **Settings**, select **Rules**.
@@ -643,57 +643,65 @@ To stop a rule:
 
 :::image type="content" source="media/summary-rules/stop-summary-rule.png" alt-text="Screenshot that shows the selected summary rule in the Azure portal with the status toggle button set to inactive." lightbox="media/summary-rules/stop-summary-rule.png":::
 
-# [Azure CLI](#tab/azure-cli-2)
+# [Azure CLI](#tab/cli-2)
 
-Use the following command to stop a summary rule by using Azure CLI.
+The following Azure CLI example uses [`az rest`](/cli/azure/reference-index#az-rest) to call the [`Summary Logs - Stop`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation.
 
 ```bash
-# User input variables - update values in <AngleBrackets>
+# Set variables
 resourceGroupName="<ResourceGroupName>"
 workspaceName="<WorkspaceName>"
 ruleName="<RuleName>"
-apiVersion="2025-07-01"
+apiVersion="<ApiVersion>"
 
 # Get the subscription ID from the current Azure CLI context
 subscriptionId=$(az account show --query id --output tsv)
 
 # Build request URL
+apiEndpoint="https://management.azure.com"
 path="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 provider="Microsoft.OperationalInsights/workspaces/$workspaceName"
-url="$path/providers/$provider/summarylogs/$ruleName/stop?api-version=$apiVersion"
+provider+="/summaryLogs/$ruleName/stop"
+queryString="?api-version=$apiVersion"
+url="$apiEndpoint$path/providers/$provider$queryString"
 
+# Send request
 az rest --method post --url "$url"
 ```
 
 # [Azure PowerShell](#tab/powershell-2)
 
-Use the following command to stop a summary rule by using Azure PowerShell.
+The following Azure PowerShell example uses [`Invoke-AzRestMethod`](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Summary Logs - Stop`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation.
 
 ```powershell
-# User input variables - update values in <AngleBrackets>
-$resourceGroupName = '<ResourceGroupName>'
-$workspaceName = '<WorkspaceName>'
-$ruleName = '<RuleName>'
-$apiVersion = "2025-07-01"
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$ruleName = "<RuleName>"
+$apiVersion = "<ApiVersion>"
 
 # Get the subscription ID from the current Azure PowerShell context
 $subscriptionId = (Get-AzContext).Subscription.Id
 
 # Build request URL
+$apiEndpoint = "https://management.azure.com"
 $path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 $provider = "Microsoft.OperationalInsights/workspaces/$workspaceName"
-$url = "$path/providers/$provider/summarylogs/$ruleName/stop?api-version=$apiVersion"
+$provider += "/summaryLogs/$ruleName/stop"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider$queryString"
 
-Invoke-AzRestMethod -Method POST -Path $url
+# Send request
+Invoke-AzRestMethod -Method POST -Uri $url
 ```
 
-# [REST API](#tab/rest-2)
+# [REST](#tab/rest-2)
 
-Use the following `POST` request for the [Logs management API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) **Summary rules** operation group to `stop` a summary rule.
+The following REST example uses the [`Summary Logs - Stop`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation.
 
 ```REST
-POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/summarylogs/{ruleName}/stop?api-version=2025-07-01
-Authorization: Bearer {token}
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/summaryLogs/{ruleName}/stop?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 ```
 
@@ -705,7 +713,7 @@ When you restart the rule, Azure Monitor starts processing data from the next wh
 
 To start a rule:
 
-# [Azure portal](#tab/portal-2)
+# [Portal](#tab/portal-2)
 
 1. From the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
 1. In the left menu under **Settings**, select **Rules**.
@@ -714,57 +722,65 @@ To start a rule:
 
 :::image type="content" source="media/summary-rules/start-summary-rule.png" alt-text="Screenshot that shows the selected summary rule in the Azure portal with the status toggle button set to active." lightbox="media/summary-rules/start-summary-rule.png":::
 
-# [Azure CLI](#tab/azure-cli-2)
+# [Azure CLI](#tab/cli-2)
 
-Use the following command to start a summary rule by using Azure CLI.
+The following Azure CLI example uses [`az rest`](/cli/azure/reference-index#az-rest) to call the [`Summary Logs - Start`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation.
 
 ```bash
-# User input variables - update values in <AngleBrackets>
+# Set variables
 resourceGroupName="<ResourceGroupName>"
 workspaceName="<WorkspaceName>"
 ruleName="<RuleName>"
-apiVersion="2025-07-01"
+apiVersion="<ApiVersion>"
 
 # Get the subscription ID from the current Azure CLI context
 subscriptionId=$(az account show --query id --output tsv)
 
 # Build request URL
+apiEndpoint="https://management.azure.com"
 path="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 provider="Microsoft.OperationalInsights/workspaces/$workspaceName"
-url="$path/providers/$provider/summarylogs/$ruleName/start?api-version=$apiVersion"
+provider+="/summaryLogs/$ruleName/start"
+queryString="?api-version=$apiVersion"
+url="$apiEndpoint$path/providers/$provider$queryString"
 
+# Send request
 az rest --method post --url "$url"
 ```
 
 # [Azure PowerShell](#tab/powershell-2)
 
-Use the following command to start a summary rule by using Azure PowerShell.
+The following Azure PowerShell example uses [`Invoke-AzRestMethod`](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Summary Logs - Start`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation.
 
 ```powershell
-# User input variables - update values in <AngleBrackets>
-$resourceGroupName = '<ResourceGroupName>'
-$workspaceName = '<WorkspaceName>'
-$ruleName = '<RuleName>'
-$apiVersion = "2025-07-01"
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$ruleName = "<RuleName>"
+$apiVersion = "<ApiVersion>"
 
 # Get the subscription ID from the current Azure PowerShell context
 $subscriptionId = (Get-AzContext).Subscription.Id
 
 # Build request URL
+$apiEndpoint = "https://management.azure.com"
 $path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 $provider = "Microsoft.OperationalInsights/workspaces/$workspaceName"
-$url = "$path/providers/$provider/summarylogs/$ruleName/start?api-version=$apiVersion"
+$provider += "/summaryLogs/$ruleName/start"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider$queryString"
 
-Invoke-AzRestMethod -Method POST -Path $url
+# Send request
+Invoke-AzRestMethod -Method POST -Uri $url
 ```
 
-# [REST API](#tab/rest-2)
+# [REST](#tab/rest-2)
 
-Use the following `POST` request for the [Logs management API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) **Summary rules** operation group to `start` a summary rule.
+The following REST example uses the [`Summary Logs - Start`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation.
 
 ```REST
-POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/summarylogs/{ruleName}/start?api-version=2025-07-01
-Authorization: Bearer {token}
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/summaryLogs/{ruleName}/start?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 ```
 
@@ -772,11 +788,11 @@ Content-Type: application/json
 
 ## Delete a summary rule
 
-A Log Analytics workspace supports up to 100 active summary rules. If you already have 100 active rules and want to create a new one, you must first stop or delete an active summary rule. 
+A Log Analytics workspace supports up to 100 active summary rules. If you already have 100 active rules and want to create a new one, you must first stop or delete an active summary rule.
 
 To delete a rule:
 
-# [Azure portal](#tab/portal-2)
+# [Portal](#tab/portal-2)
 
 1. From the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
 1. In the left menu under **Settings**, select **Rules**.
@@ -784,57 +800,65 @@ To delete a rule:
 1. Select the **ellipsis (...)** next to the summary rule you want to view from the list.
 1. Select **Delete**.
 
-# [Azure CLI](#tab/azure-cli-2)
+# [Azure CLI](#tab/cli-2)
 
-Use the following command to delete a summary rule by using Azure CLI.
+The following Azure CLI example uses [`az rest`](/cli/azure/reference-index#az-rest) to call the [`Summary Logs - Delete`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation.
 
 ```bash
-# User input variables - update values in <AngleBrackets>
+# Set variables
 resourceGroupName="<ResourceGroupName>"
 workspaceName="<WorkspaceName>"
 ruleName="<RuleName>"
-apiVersion="2025-07-01"
+apiVersion="<ApiVersion>"
 
 # Get the subscription ID from the current Azure CLI context
 subscriptionId=$(az account show --query id --output tsv)
 
 # Build request URL
+apiEndpoint="https://management.azure.com"
 path="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 provider="Microsoft.OperationalInsights/workspaces/$workspaceName"
-url="$path/providers/$provider/summarylogs/$ruleName?api-version=$apiVersion"
+provider+="/summaryLogs/$ruleName"
+queryString="?api-version=$apiVersion"
+url="$apiEndpoint$path/providers/$provider$queryString"
 
+# Send request
 az rest --method delete --url "$url"
 ```
 
 # [Azure PowerShell](#tab/powershell-2)
 
-Use the following command to delete a summary rule by using Azure PowerShell.
+The following Azure PowerShell example uses [`Invoke-AzRestMethod`](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Summary Logs - Delete`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation.
 
 ```powershell
-# User input variables - update values in <AngleBrackets>
-$resourceGroupName = '<ResourceGroupName>'
-$workspaceName = '<WorkspaceName>'
-$ruleName = '<RuleName>'
-$apiVersion = "2025-07-01"
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$ruleName = "<RuleName>"
+$apiVersion = "<ApiVersion>"
 
 # Get the subscription ID from the current Azure PowerShell context
 $subscriptionId = (Get-AzContext).Subscription.Id
 
 # Build request URL
+$apiEndpoint = "https://management.azure.com"
 $path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 $provider = "Microsoft.OperationalInsights/workspaces/$workspaceName"
-$url = "$path/providers/$provider/summarylogs/$ruleName?api-version=$apiVersion"
+$provider += "/summaryLogs/$ruleName"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider$queryString"
 
-Invoke-AzRestMethod -Method DELETE -Path $url
+# Send request
+Invoke-AzRestMethod -Method DELETE -Uri $url
 ```
 
-# [REST API](#tab/rest-2)
+# [REST](#tab/rest-2)
 
-Use the following `DELETE` request for the [Logs management API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) **Summary rules** operation group to `delete` a summary rule.
+The following REST example uses the [`Summary Logs - Delete`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation.
 
 ```REST
-DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/summarylogs/{ruleName}?api-version=2025-07-01
-Authorization: Bearer {token}
+DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/summaryLogs/{ruleName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 ```
 
@@ -842,7 +866,7 @@ Content-Type: application/json
 
 ## Monitor summary rules
 
-To monitor summary rules, enable the **Summary Logs** category in the [diagnostic settings](../essentials/create-diagnostic-settings.md) of your Log Analytics workspace. Azure Monitor sends summary rule execution details, including summary rule run Start, Succeeded, and Failed information, to the [LASummaryLogs](/azure/azure-monitor/reference/tables/lasummarylogs) table in your workspace. 
+To monitor summary rules, enable the **Summary Logs** category in the [diagnostic settings](../data-collection/diagnostic-settings.md) of your Log Analytics workspace. Azure Monitor sends summary rule execution details, including the `Started`, `Succeeded`, and `Failed` run statuses, to the [LASummaryLogs](/azure/azure-monitor/reference/tables/lasummarylogs) table in your workspace.
 
 [Set up log alert rules](../alerts/alerts-create-log-alert-rule.md) to receive notifications of bin failures or when bin execution nears time-out, as shown in the following examples. Depending on the failure reason, either reduce the bin size to process less data on each execution, or modify the query to return fewer records or fewer high-volume fields.
 
@@ -860,7 +884,7 @@ LASummaryLogs | where QueryDurationMs > 0.9 * 600000
 
 ### Verify data completeness
 
-Summary rules are designed for scale and include a retry mechanism to overcome transient service or query failures related to [query limits](../service-limits.md#log-analytics-workspaces). The retry mechanism makes 10 attempts to aggregate a failed bin within eight hours and skips the bin if all attempts are exhausted. The rule is set to `isActive: false` and put on hold after eight consecutive bin retries.
+Summary rules are designed for scale and include a retry mechanism to overcome transient service or query failures related to [query limits](../fundamentals/service-limits.md#log-analytics-workspaces). The retry mechanism makes 10 attempts to aggregate a failed bin within eight hours and skips the bin if all attempts are exhausted. The rule is set to `isActive: false` and put on hold after eight consecutive bin retries.
 
 If you enable the diagnostic setting to [monitor summary rules](#monitor-summary-rules), Azure Monitor logs events in the `LASummaryLogs` table in your workspace, letting you view runs and [retry failed ones](#retry-a-summary-rule-bin). View runs with the following query or through the portal.
 
@@ -885,7 +909,9 @@ See the [Monitor summary rules](#monitor-summary-rules) section for rule remedia
 
 Summary rules are designed for scale and include a retry mechanism to overcome transient service issues or query limit failures. When service retries are exhausted, retry the failed run (or *bin*) manually.
 
-# [Azure portal](#tab/portal-1)
+Retry is an action on an existing rule, not a resource deployment. Find the `BinStartTime` of the failed bin and use it as `retryBinStartTime`. For example, for a 60-minute bin covering `2026-02-16T10:00:00Z` to `2026-02-16T11:00:00Z`, use `2026-02-16T10:00:00Z`.
+
+# [Portal](#tab/portal-2)
 
 1. Select the **ellipsis (...)** at the far right of the summary rule you want to retry.
 1. Select **View runs** from the menu.
@@ -895,149 +921,91 @@ Summary rules are designed for scale and include a retry mechanism to overcome t
 
 :::image type="content" source="media/summary-rules/summary-rules-rerun-bin.png" alt-text="Screenshot that shows a failed summary rule run selected in the Azure portal, with the menu option to rerun the bin." lightbox="media/summary-rules/summary-rules-rerun-bin.png":::
 
-# [Azure CLI](#tab/azure-cli-1)
+# [Azure CLI](#tab/cli-2)
 
-To retry a specific run of a summary rule, find the `BinStartTime` of the bin that failed and provide it as the `retryBinStartTime` value. For example, if you have a summary rule with a `binSize` of 60 minutes and you want to retry the bin that includes data from `2026-02-16T10:00:00Z` to `2026-02-16T11:00:00Z`, set the `retryBinStartTime` value to `2026-02-16T10:00:00Z`.
-
-Use the following command to retry the summary rule bin by using Azure CLI.
+The following Azure CLI example uses [`az rest`](/cli/azure/reference-index#az-rest) to call the [`Summary Logs - Retry Bin`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation.
 
 ```bash
-# User input variables - update values in <AngleBrackets>
+# Set variables
 resourceGroupName="<ResourceGroupName>"
 workspaceName="<WorkspaceName>"
 ruleName="<RuleName>"
-apiVersion="2025-07-01"
+apiVersion="<ApiVersion>"
 
 # Get the subscription ID from the current Azure CLI context
 subscriptionId=$(az account show --query id --output tsv)
 
 # Build request URL
+apiEndpoint="https://management.azure.com"
 path="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 provider="Microsoft.OperationalInsights/workspaces/$workspaceName"
-url="$path/providers/$provider/summarylogs/$ruleName?api-version=$apiVersion"
+provider+="/summaryLogs/$ruleName/retrybin"
+queryString="?api-version=$apiVersion"
+url="$apiEndpoint$path/providers/$provider$queryString"
 
-az rest --method put --url "$url" --body @body.json
+# Send request
+az rest --method post --url "$url" --body @body.json
 ```
 
-Save the following JSON as **body.json**, replacing the `retryBinStartTime` value with the `BinStartTime` to retry:
+Save the following JSON as **body.json**:
 
 ```json
 {
   "properties": {
-    "retryBinStartTime": "2026-02-16T10:00:00Z"
+    "retryBinStartTime": "<RetryBinStartTime>"
   }
 }
 ```
 
-# [Azure PowerShell](#tab/powershell-1)
+# [Azure PowerShell](#tab/powershell-2)
 
-To retry a specific run of a summary rule, find the `BinStartTime` of the bin that failed and provide it as the `retryBinStartTime` value. For example, if you have a summary rule with a `binSize` of 60 minutes and you want to retry the bin that includes data from `2026-02-16T10:00:00Z` to `2026-02-16T11:00:00Z`, set the `retryBinStartTime` value to `2026-02-16T10:00:00Z`.
-
-Use the following command to retry a summary rule bin by using Azure PowerShell.
+The following Azure PowerShell example uses [`Invoke-AzRestMethod`](/powershell/module/az.accounts/invoke-azrestmethod) to call the [`Summary Logs - Retry Bin`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation.
 
 ```powershell
-# User input variables - update values in <AngleBrackets>
-$resourceGroupName = '<ResourceGroupName>'
-$workspaceName = '<WorkspaceName>'
-$ruleName = '<RuleName>'
-$retryBinStartTime = "2026-02-16T10:00:00Z"
-$apiVersion = "2025-07-01"
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$ruleName = "<RuleName>"
+$retryBinStartTime = "<RetryBinStartTime>"
+$apiVersion = "<ApiVersion>"
 
 # Get the subscription ID from the current Azure PowerShell context
 $subscriptionId = (Get-AzContext).Subscription.Id
 
 # Build request URL
+$apiEndpoint = "https://management.azure.com"
 $path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 $provider = "Microsoft.OperationalInsights/workspaces/$workspaceName"
-$url = "$path/providers/$provider/summarylogs/$ruleName?api-version=$apiVersion"
+$provider += "/summaryLogs/$ruleName/retrybin"
+$queryString = "?api-version=$apiVersion"
+$url = "$apiEndpoint$path/providers/$provider$queryString"
 
+# Build request body
 $body = @{
     properties = @{
         retryBinStartTime = $retryBinStartTime
     }
 } | ConvertTo-Json -Depth 10
 
-Invoke-AzRestMethod -Method PUT -Path $url -Payload $body
+# Send request
+Invoke-AzRestMethod -Method POST -Uri $url -Payload $body
 ```
 
-# [REST API](#tab/rest-1)
+# [REST](#tab/rest-2)
 
-To retry a specific run of a summary rule, find the `BinStartTime` of the bin that failed and provide it as the `retryBinStartTime` value. For example, if you have a summary rule with a `binSize` of 60 minutes and you want to retry the bin that includes data from `2026-02-16T10:00:00Z` to `2026-02-16T11:00:00Z`, set the `retryBinStartTime` value to `2026-02-16T10:00:00Z`.
-
-Use the following `PUT` request for the [Logs management API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) **Summary rules** operation group to `retry` a summary rule bin.
+The following REST example uses the [`Summary Logs - Retry Bin`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-summary-rules) REST API operation.
 
 ```REST
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/summarylogs/{ruleName}?api-version=2025-07-01
-Authorization: Bearer {token}
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/summaryLogs/{ruleName}/retrybin?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
   "properties": {
-    "retryBinStartTime": "2026-02-16T10:00:00Z"
+    "retryBinStartTime": "<RetryBinStartTime>"
   }
 }
 ```
-
-# [ARM template](#tab/json-1)
-
-To retry a specific run of a summary rule, find the `BinStartTime` of the bin that failed and provide it as the `retryBinStartTime` value. For example, if you have a summary rule with a `binSize` of 60 minutes and you want to retry the bin that includes data from `2026-02-16T10:00:00Z` to `2026-02-16T11:00:00Z`, set the `retryBinStartTime` value to `2026-02-16T10:00:00Z`.
-
-Use this template and parameters to retry a bin:
-
-<details>
-<summary>Retry a summary rule bin</summary>
-
-#### Template file
-
-```json
-{
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "workspaceName": {
-      "type": "string"
-    },
-    "ruleName": {
-      "type": "string"
-    },
-    "retryBinStartTime": {
-      "type": "string"
-    }
-  },
-  "resources": [
-    {
-      "type": "Microsoft.OperationalInsights/workspaces/summarylogs",
-      "apiVersion": "2025-07-01",
-      "name": "[format('{0}/{1}', parameters('workspaceName'), parameters('ruleName'))]",
-      "properties": {
-        "retryBinStartTime": "[parameters('retryBinStartTime')]"
-      }
-    }
-  ]
-}
-```
-
-#### Parameter file
-
-```json
-{
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "workspaceName": {
-      "value": "my-law-workspace"
-    },
-    "ruleName": {
-      "value": "my-summary-rule"
-    },
-    "retryBinStartTime": {
-      "value": "<YYYY-MM-DDTHH:mm:ssZ>"
-    }
-  }
-}
-```
-
-</details>
 
 ---
 
@@ -1047,10 +1015,10 @@ A KQL query can contain sensitive information in comments or in the query syntax
 
 Considerations when you work with encrypted queries:
 
-- Linking a storage account to encrypt your queries doesn't interrupt existing rules.
-- By default, Azure Monitor stores summary rule queries in Log Analytics storage. If you have existing summary rules before you link a storage account to your Log Analytics workspace, update those rules so the queries are saved in the storage account.
-- Queries that you save in a storage account are located in the `CustomerConfigurationStoreTable` table. These queries are considered service artifacts and their format might change.
-- The same storage account supports summary rule queries, [saved queries in Log Analytics](save-query.md), and [log alerts](../alerts/alerts-types.md#log-alerts).
+* Linking a storage account to encrypt your queries doesn't interrupt existing rules.
+* By default, Azure Monitor stores summary rule queries in Log Analytics storage. If you have existing summary rules before you link a storage account to your Log Analytics workspace, update those rules so the queries are saved in the storage account.
+* Queries that you save in a storage account are located in the `CustomerConfigurationStoreTable` table. These queries are considered service artifacts and their format might change.
+* The same storage account supports summary rule queries, [saved queries in Log Analytics](save-query.md), and [log alerts](../alerts/alerts-types.md#log-alerts).
 
 ## Troubleshoot summary rules
 
@@ -1058,7 +1026,7 @@ This section provides tips for troubleshooting summary rules.
 
 ### Summary rule destination table accidentally deleted
 
-If you delete the destination table while the summary rule is active, the rule gets suspended and Azure Monitor sends an event to the `LASummaryLogs` table with a message indicating that the rule was suspended. 
+If you delete the destination table while the summary rule is active, the rule gets suspended and Azure Monitor sends an event to the `LASummaryLogs` table with a message indicating that the rule was suspended.
 
 If you don't need the summary results in the destination table, delete the rule and table. If you need the summary results, follow the steps in the [Create or update summary rules](#create-or-update-a-summary-rule) section to recreate the destination table and restore all data, including the data ingested before the delete, depending on the retention policy in the table.
 
@@ -1072,7 +1040,7 @@ When you remove a field from the query, the columns and data remain in the desti
 
 ## Related content
 
-- [Azure Monitor Logs data plans](logs-table-plans.md)
-- [Log Analytics tutorial](log-analytics-tutorial.md)
-- [KQL reference documentation](/azure/kusto/query/)
+* [Azure Monitor Logs data plans](logs-table-plans.md)
+* [Log Analytics tutorial](log-analytics-tutorial.md)
+* [KQL reference documentation](/azure/kusto/query/)
 

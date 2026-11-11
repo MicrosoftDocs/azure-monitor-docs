@@ -4,18 +4,22 @@ description: Troubleshoot Azure Chaos Studio Experiments (classic), including ta
 author: c-ashton
 ms.reviewer: nikhilkaul
 ms.topic: troubleshooting-general
-ms.date: 09/05/2026
+ms.date: 09/25/2026
 ms.custom: template-troubleshooting
 ai-usage: ai-assisted
 ---
 
 # Troubleshoot Experiments (classic)
 
-Use this Azure Chaos Studio troubleshooting guide for Experiments (classic), targets, capabilities, and agents. For the current model, use [Chaos Studio Workspaces and Scenarios troubleshooting](troubleshoot-workspaces-scenarios.md), which covers discovery, permissions, failed runs, and skipped Actions.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
 
+Use this Azure Chaos Studio troubleshooting guide for Experiments (classic), targets, capabilities, and agents. For the current model, use [Chaos Studio Workspaces and Scenarios troubleshooting](troubleshoot-workspaces-scenarios.md), which covers discovery, permissions, failed runs, and skipped Actions.
+
 As you use Experiments (classic), you might encounter problems with targets, capabilities, experiment runs, or the Chaos Studio agent. This article explains common problems and troubleshooting steps.
+
+## Confirm that you're using Experiments (classic)
+
+This article covers `Microsoft.Chaos/experiments` and `Microsoft.Chaos/targets` resources. If your resource type is `Microsoft.Chaos/workspaces` or `Microsoft.Chaos/workspaces/scenarios`, use [Troubleshoot Chaos Studio Workspaces and Scenarios](troubleshoot-workspaces-scenarios.md) instead. That guide also applies if you run tests from **Chaos Studio** > **Workspaces** in the Azure portal. To compare the models, see [Identify which resource model you use](chaos-studio-migrate-from-classic.md#identify-which-resource-model-you-use).
 
 ## General troubleshooting tips
 
@@ -36,7 +40,7 @@ You might encounter the following problems when you add a resource.
 ### Resources don't show up in the targets list in the Azure portal
 If you don't see the resources you want to enable in the Chaos Studio targets list, it might be because of any of the following problems:
 * The resources aren't in [a supported region for Chaos Studio](https://azure.microsoft.com/global-infrastructure/services/?products=chaos-studio).
-* The resources aren't of [a supported resource type in Chaos Studio](chaos-studio-fault-providers.md).
+* The resources aren't of [a supported resource type in Chaos Studio](chaos-studio-workspaces-supported-resources.md).
 * The resources are in a subscription or resource group that's filtered out in the filters for the target list. Change the subscription and resource group filters to see your resources.
 
 ### Target or capability enablement fails or doesn't show correctly in the target list
@@ -56,7 +60,7 @@ Some problems are caused by missing prerequisites.
 
 ### Agent-based faults fail on a virtual machine
 Agent-based faults might fail for various reasons related to missing prerequisites:
-* On Linux VMs, the [CPU Pressure](chaos-studio-fault-library.md#cpu-pressure), [Physical Memory Pressure](chaos-studio-fault-library.md#physical-memory-pressure), [Disk I/O pressure](chaos-studio-fault-library.md#linux-disk-io-pressure), and [Arbitrary Stress-ng Stress](chaos-studio-fault-library.md#arbitrary-stress-ng-stressor) faults all require that the [stress-ng utility](https://wiki.ubuntu.com/Kernel/Reference/stress-ng) is installed on your VM. For more information on how to install stress-ng, see the fault prerequisite sections.
+* On Linux VMs, the [CPU Pressure](chaos-studio-fault-library.md#cpu-pressure), [Physical Memory Pressure](chaos-studio-fault-library.md#physical-memory-pressure), [Disk I/O pressure](chaos-studio-fault-library.md#linux-disk-io-pressure), and [Arbitrary Stress-ng Stress](chaos-studio-fault-library.md#arbitrary-stress-ng-stressor) faults all require that the [stress-ng utility](https://github.com/ColinIanKing/stress-ng) is installed on your VM. For more information on how to install stress-ng, see the fault prerequisite sections.
 * On either Linux or Windows VMs, the user-assigned managed identity provided during agent-based target enablement must also be added to the VM.
 * On either Linux or Windows VMs, the system-assigned managed identity for the experiment must be granted the Reader role on the VM. (Seemingly elevated roles like Virtual Machine Contributor don't include the \*/Read operation that's necessary for the Chaos Studio agent to read the microsoft-agent target proxy resource on the VM.)
 

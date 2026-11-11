@@ -34,7 +34,7 @@ Subcategory: Other
 
 #### An issue has been detected that is preventing the renewal of your Managed Certificate.  
   
-We detected the managed certificate used by the Container App has failed to auto renew. Follow the documentation link to make sure that the DNS settings of your custom domain are correct.  
+The managed certificate used by the Container App didn't renew automatically. Check the DNS settings for your custom domain to ensure they're correct.
   
 **Potential benefits**: Avoid downtime due to an expired certificate.  
 
@@ -116,7 +116,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.app/containerapps  
 Recommendation ID: ce97546e-2d8f-4534-99dd-c5bbb584d568  
-Subcategory: undefined
 
 <!--ce97546e-2d8f-4534-99dd-c5bbb584d568_end-->
 
@@ -124,11 +123,11 @@ Subcategory: undefined
 
 #### The public preview add-ons feature in Container Apps are being retired  
   
-Container Apps running add-ons are going to be deleted along with associated application data. Transition to Azure-managed services, such as Azure Managed Redis or Azure Database for PostgreSQL if you're ready to use a production-level service.  
+Container Apps running add-ons are going to be deleted along with associated application data. Transition to Azure-managed services, such as Azure Cache for Redis or Azure Database for PostgreSQL if you're ready to use a production-level service.  
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485683)  
 
@@ -142,7 +141,7 @@ Subcategory: ServiceUpgradeAndRetirement
 
 #### Transition to Azure managed services or open-source quick starts  
   
-The public preview add-ons feature in Azure Container Apps is retiring. Move to Azure managed services (for example, Azure Managed Redis, Azure Database for PostgreSQL) or use open-source quickstarts for dev/test purposes.  
+The public preview add-ons feature in Azure Container Apps is retiring. Move to Azure managed services (for example, Azure Cache for Redis, Azure Database for PostgreSQL) or use open-source quickstarts for dev/test purposes.  
   
 **Potential benefits**: Avoid service disruption  
 
@@ -152,7 +151,6 @@ For more information, see [Azure updates](https://azure.microsoft.com/updates/?i
 
 ResourceType: microsoft.app/containerapps  
 Recommendation ID: ea0bf0e5-dc1b-446f-a1e8-eff1b913eb31  
-Subcategory: undefined
 
 <!--ea0bf0e5-dc1b-446f-a1e8-eff1b913eb31_end-->
 

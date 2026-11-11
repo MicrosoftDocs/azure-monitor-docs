@@ -2,8 +2,9 @@
 title: Delete and Recover a Log Analytics Workspace
 description: Learn how to delete your Log Analytics workspace if you created one in a personal subscription or restructure your workspace model.
 ms.topic: how-to
+ms.custom: cbo-v1.5, code-validator-v1.4
 ms.reviewer: yossi-y
-ms.date: 10/31/2024
+ms.date: 10/28/2026
 ai-usage: ai-assisted
 ---
 
@@ -11,23 +12,34 @@ ai-usage: ai-assisted
 
 This article explains the concept of Azure Log Analytics workspace soft-delete and how to recover a deleted workspace in a soft-delete state. It also explains how to delete a workspace permanently instead of deleting it into a soft-delete state.
 
+## Choose the right action
+
+Use soft delete by default so that you can recover the workspace if needed. Use the following table to choose an action.
+
+| Action | When to use it | Can it be reversed? | Recovery window | When the workspace name becomes reusable |
+|:-------|:---------------|:--------------------|:----------------|:----------------------------------------|
+| [Soft delete](#delete-a-workspace-into-a-soft-delete-state) | Remove a workspace while keeping the option to recover it. | Yes, recover the workspace during the soft-delete period. | 14 days after deletion. | After the 14-day period, unless you recover the workspace. Permanent deletion releases the name sooner. |
+| [Recover](#recover-a-workspace-in-a-soft-delete-state) | Restore a workspace that's in a soft-delete state. | You can delete the recovered workspace again. | Recovery must occur within the original 14-day soft-delete period. | The name remains assigned to the recovered workspace. |
+| [Permanently delete](#delete-a-workspace-permanently) | Reuse the name immediately when permanent loss of the workspace and its data is acceptable. | No. | None. | After permanent deletion, without waiting for the soft-delete period to end. |
+
 ## Permissions required
 
-* To delete a Log Analytics workspace into a soft-delete state or permanently, you need `microsoft.operationalinsights/workspaces/delete` permissions to the workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example.
-* To recover a Log Analytics workspace in a soft-delete state, you need `Microsoft.OperationalInsights/workspaces/write` permissions to the workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example.
+* To delete a Log Analytics workspace into a soft-delete state or permanently, you need `Microsoft.OperationalInsights/workspaces/delete` permissions on the workspace, either assigned directly or inherited from its resource group or subscription. The [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor) provides this permission.
+* To recover a Log Analytics workspace in a soft-delete state, you need `Microsoft.OperationalInsights/workspaces/write` permissions assigned at the containing resource group or subscription scope. The [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor) provides this permission.
+
+Before deletion, ensure that the person who will recover the workspace has the required access at the resource group or subscription scope. A role assignment on the workspace alone doesn't provide recovery access after deletion removes the workspace resource.
 
 ## Considerations when you delete a workspace
 
-When you delete a Log Analytics workspace into a soft-delete state, a soft-delete operation is performed to allow the recovery of the workspace, including its data and connected agents, within 14 days. This process occurs whether the deletion was accidental or intentional.
-
-After the soft-delete period, the workspace resource and its data are non-recoverable and queued for purge completely within 30 days. The workspace name is released and you can use it to create a new workspace.
+Soft delete gives you 14 days to recover a workspace, whether deletion is accidental or intentional. For the deletion lifecycle and data cleanup timing, see [Recover a workspace in a soft-delete state](#recover-a-workspace-in-a-soft-delete-state).
 
 > [!NOTE]
 > A replicated workspace can't be deleted. To properly delete a workspace, first disable replication. For more information, see [Disable workspace replication](workspace-replication.md#disable-workspace-replication).
->
-> If you want to override the soft-delete behavior and permanently delete your workspace, follow the steps in [Delete a workspace permanently](#delete-a-workspace-permanently). Use this method with caution since it's a non-recoverable operation.
 
-The soft-delete operation deletes the workspace resource, and any associated users' permission is broken. If users are associated with other workspaces, they can continue using Log Analytics with those other workspaces.
+> [!WARNING]
+> [Permanent deletion](#delete-a-workspace-permanently) bypasses the recovery window. You can't recover the workspace or its data, and the workspace won't appear in the recycle bin.
+
+Users with access to other workspaces retain access to Log Analytics through those workspaces.
 
 Be careful when you delete a workspace because there might be important data and configuration that might negatively affect your service operation. Review what agents, solutions, and other Azure services store their data in Log Analytics, such as:
 
@@ -39,10 +51,18 @@ Be careful when you delete a workspace because there might be important data and
 
 ## Delete a workspace into a soft-delete state
 
-The workspace delete operation removes the workspace Azure Resource Manager resource. Its configuration and data are kept for 14 days, although it will look as if the workspace is deleted. Any agents and System Center Operations Manager management groups configured to report to the workspace remain in an orphaned state during the soft-delete period. The service provides a mechanism for [recovering the deleted workspace](#recover-a-workspace-in-a-soft-delete-state), including its data and connected resources, essentially undoing the deletion.
+The workspace delete operation removes the workspace Azure Resource Manager resource. Its configuration and data are kept for 14 days, although it looks as if the workspace is deleted. Any agents and System Center Operations Manager management groups configured to report to the workspace remain in an orphaned state during the soft-delete period. You can [recover the deleted workspace](#recover-a-workspace-in-a-soft-delete-state) during this period, but recovery doesn't restore every connected resource.
 
-> [!NOTE]
-> Installed solutions and linked services like your Azure Automation account are permanently removed from the workspace at deletion time and can't be recovered. These resources should be reconfigured after the recovery operation to bring the workspace back to its previously configured state. Data related to these solutions remains in workspace for the soft-delete period and can be recovered.
+### Recovery behavior
+
+The following table summarizes what happens when you recover a soft-deleted workspace.
+
+| Recovery behavior | Resources or data |
+|:------------------|:------------------|
+| Recovered automatically | Workspace configuration and retained data, including data associated with solutions.<br><br>Connections to agents and System Center Operations Manager management groups. |
+| Must be reconfigured | Installed solutions: deletion permanently removes them, so reinstall the solutions and their schemas.<br><br>Linked services, such as the link to an Azure Automation account: deletion permanently removes the links, so reconfigure the linked services. |
+
+Some data might remain unavailable for queries until you reinstall the associated solutions and add their schemas.
 
 # [Portal](#tab/portal)
 
@@ -56,7 +76,7 @@ The workspace delete operation removes the workspace Azure Resource Manager reso
 
 # [Azure CLI](#tab/cli)
 
-The following Azure CLI example uses the [az monitor log-analytics workspace delete](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-delete) command. It deletes a workspace into a soft-delete state.
+The following Azure CLI example uses the [`az monitor log-analytics workspace delete`](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-delete) command. It deletes a workspace and moves it to a soft-delete state.
 
 ```bash
 # Set variables
@@ -73,9 +93,9 @@ az monitor log-analytics workspace delete \
 
 # [Azure PowerShell](#tab/powershell)
 
-The following Azure PowerShell example uses the [Remove-AzOperationalInsightsWorkspace](/powershell/module/az.operationalinsights/remove-azoperationalinsightsworkspace) cmdlet. It deletes a workspace into a soft-delete state.
+The following Azure PowerShell example uses the [`Remove-AzOperationalInsightsWorkspace`](/powershell/module/az.operationalinsights/remove-azoperationalinsightsworkspace) cmdlet. It deletes a workspace and moves it to a soft-delete state.
 
-```PowerShell
+```powershell
 # Set variables
 $resourceGroupName = "<ResourceGroupName>"
 $workspaceName = "<WorkspaceName>"
@@ -94,14 +114,15 @@ Remove-AzOperationalInsightsWorkspace @removeAzOperationalInsightsWorkspaceParam
 
 # [REST](#tab/rest)
 
-The following REST example uses the [Workspaces - Delete](/rest/api/loganalytics/workspaces/delete) REST API operation. It deletes a workspace into a soft-delete state.
+The following REST example uses the [`Workspaces - Delete`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation. It deletes a workspace and moves it to a soft-delete state.
 
 ```REST
-DELETE https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}?api-version=2025-07-01
-Authorization: Bearer {AccessToken}
+DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 ```
 
 ---
+
 <!--
 | Variable | Example value | Purpose |
 |----------|---------------|---------|
@@ -110,11 +131,19 @@ Authorization: Bearer {AccessToken}
 | workspaceName | \<WorkspaceName\> | User input |
 | apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 -->
+
+**Expected result:** The workspace appears in the Azure portal's recycle bin, and its name remains reserved during the 14-day recovery window.
+
 ## Recover a workspace in a soft-delete state
 
-When you delete a Log Analytics workspace accidentally or intentionally, the service places the workspace in a soft-delete state and makes it inaccessible. The name of the deleted workspace is preserved during the soft-delete period and can't be used to create a new workspace. After the soft-delete period, the workspace is non-recoverable, data is permanently purged, and name can be used in new workspace.
+When you delete a Log Analytics workspace, it follows this timeline:
 
-You can recover your workspace during the soft-delete period, including its data, configuration, and connected agents. The workspace recovery is performed by re-creating the Log Analytics workspace with the details of the deleted workspace, including:
+1. **At deletion:** The workspace becomes inaccessible. Azure reserves its name, so you can't use it to create another workspace. Workspace-scoped role assignments no longer provide access.
+1. **During the next 14 days:** You can recover the workspace, its retained data, and its connections to agents. Some resources require reconfiguration, as described in the [recovery behavior table](#recovery-behavior).
+1. **After the 14-day recovery window:** The workspace and its data can't be recovered. Azure releases the workspace name for reuse.
+1. **Subsequent cleanup:** Azure initiates cleanup of dedicated resources. Data in shared clusters expires under its existing retention policy.
+
+Recover the workspace during the soft-delete period, including its data, configuration, and connected agents. Recovery re-creates the Log Analytics workspace with the details of the deleted workspace, including:
 
 * Subscription ID
 * Resource group name
@@ -124,7 +153,7 @@ You can recover your workspace during the soft-delete period, including its data
 > [!IMPORTANT]
 > If your workspace was deleted as part of a resource group delete operation, you must first re-create the resource group.
 
-The workspace and all its data are brought back after the recovery operation. However, solutions and linked services were permanently removed from the workspace when it was deleted into a soft-delete state. These resources should be reconfigured to bring the workspace to its previously configured state. After you recover the workspace, some of the data might not be available for query until the associated solutions are reinstalled and their schemas are added to the workspace.
+Recovery restores the workspace and its retained data, but solutions and linked services require reconfiguration. See [Recovery behavior](#recovery-behavior) for details.
 
 # [Portal](#tab/portal)
 
@@ -144,7 +173,7 @@ The workspace and all its data are brought back after the recovery operation. Ho
 
 # [Azure CLI](#tab/cli)
 
-The following Azure CLI example uses the [az monitor log-analytics workspace recover](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-recover) command. It recovers a workspace from a soft-delete state.
+The following Azure CLI example uses the [`az monitor log-analytics workspace recover`](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-recover) command. It recovers a workspace from a soft-delete state.
 
 ```bash
 # Set variables
@@ -159,9 +188,9 @@ az monitor log-analytics workspace recover \
 
 # [Azure PowerShell](#tab/powershell)
 
-The following Azure PowerShell example uses the [Restore-AzOperationalInsightsWorkspace](/powershell/module/az.operationalinsights/restore-azoperationalinsightsworkspace) cmdlet. It recovers a workspace from a soft-delete state.
+The following Azure PowerShell example uses the [`Restore-AzOperationalInsightsWorkspace`](/powershell/module/az.operationalinsights/restore-azoperationalinsightsworkspace) cmdlet. It recovers a workspace from a soft-delete state.
 
-```PowerShell
+```powershell
 # Set variables
 $resourceGroupName = "<ResourceGroupName>"
 $workspaceName = "<WorkspaceName>"
@@ -180,11 +209,11 @@ Restore-AzOperationalInsightsWorkspace @restoreAzOperationalInsightsWorkspacePar
 
 # [REST](#tab/rest)
 
-The following REST example uses the [Workspaces - Create Or Update](/rest/api/loganalytics/workspaces/create-or-update) REST API operation. It recovers a workspace from a soft-delete state by recreating it with the same name, resource group, and location.
+The following REST example uses the [`Workspaces - Create Or Update`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation. It recovers a workspace from a soft-delete state by re-creating it with the same name, resource group, and location.
 
 ```REST
-PUT https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}?api-version=2025-07-01
-Authorization: Bearer {AccessToken}
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
@@ -193,6 +222,7 @@ Content-Type: application/json
 ```
 
 ---
+
 <!--
 | Variable | Example value | Purpose |
 |----------|---------------|---------|
@@ -202,14 +232,17 @@ Content-Type: application/json
 | azureRegion | \<AzureRegion\> | User input |
 | apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 -->
+
+**Expected result:** The workspace returns to the list of Log Analytics workspaces, with its retained data and agent connections restored. Reinstall solutions and reconfigure linked services as described in [Recovery behavior](#recovery-behavior).
+
 ## Delete a workspace permanently
 
-The soft-delete method might not fit in some scenarios, such as development and testing, where you need to repeat deployment with the same settings and workspace name. In such cases, you can permanently delete your workspace and "override" the soft-delete wait period by selecting 'Delete workspace permanently' in Azure portal, or using `force` parameter in programmatic calls. The permanent workspace delete operation releases the workspace name, and you can create a new workspace with the same name.
+Use soft delete by default. Permanently delete a workspace only when immediate name reuse is required and permanent loss of the workspace and its data is acceptable. Permanent deletion releases the workspace name for reuse without waiting for the 14-day soft-delete period to end.
 
-> [!IMPORTANT]
-> * Permanent workspace delete should be done with caution since non-recoverable.
->
-> * If the workspace is in soft-delete state, you must [recover the workspace](#recover-a-workspace-in-a-soft-delete-state) first and permanently delete it then.
+> [!WARNING]
+> Permanent deletion can't be reversed. You can't recover the workspace or its data, and the workspace won't appear in the recycle bin.
+
+If the workspace is in a soft-delete state, [recover the workspace](#recover-a-workspace-in-a-soft-delete-state) before you permanently delete it.
 
 # [Portal](#tab/portal)
 
@@ -226,7 +259,7 @@ To permanently delete a workspace by using the Azure portal:
 
 # [Azure CLI](#tab/cli)
 
-The following Azure CLI example uses the [az monitor log-analytics workspace delete](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-delete) command. The `--force` parameter permanently deletes the workspace.
+The following Azure CLI example uses the [`az monitor log-analytics workspace delete`](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-delete) command. The `--force` parameter permanently deletes the workspace.
 
 ```bash
 # Set variables
@@ -242,10 +275,7 @@ az monitor log-analytics workspace delete \
 
 # [Azure PowerShell](#tab/powershell)
 
-The following Azure PowerShell example uses the [Remove-AzOperationalInsightsWorkspace](/powershell/module/az.operationalinsights/remove-azoperationalinsightsworkspace) cmdlet. The `-ForceDelete` parameter permanently deletes the workspace.
-
-> [!NOTE]
-> The `-ForceDelete` parameter requires Az.OperationalInsights 2.3.0 or higher.
+The following Azure PowerShell example uses the [`Remove-AzOperationalInsightsWorkspace`](/powershell/module/az.operationalinsights/remove-azoperationalinsightsworkspace) cmdlet. The `-ForceDelete` parameter permanently deletes the workspace and requires Az.OperationalInsights 2.3.0 or later.
 
 ```powershell
 # Set variables
@@ -265,14 +295,15 @@ Remove-AzOperationalInsightsWorkspace @removeAzOperationalInsightsWorkspaceParam
 
 # [REST](#tab/rest)
 
-The following REST example uses the [Workspaces - Delete](/rest/api/loganalytics/workspaces/delete) REST API operation. The `force=true` query parameter permanently deletes the workspace.
+The following REST example uses the [`Workspaces - Delete`](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation. The `force=true` query parameter permanently deletes the workspace.
 
 ```REST
-DELETE https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}?api-version=2025-07-01&force=true
-Authorization: Bearer {AccessToken}
+DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}?api-version={apiVersion}&force=true
+Authorization: Bearer {accessToken}
 ```
 
 ---
+
 <!--
 | Variable | Example value | Purpose |
 |----------|---------------|---------|
@@ -281,13 +312,16 @@ Authorization: Bearer {AccessToken}
 | workspaceName | \<WorkspaceName\> | User input |
 | apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 -->
+
+**Expected result:** The workspace doesn't appear in the recycle bin and can't be recovered. Its name is available for reuse.
+
 ## Troubleshooting
 
 Use the following section to troubleshoot issues with deleting or recovering a Log Analytics workspace.
 
 ### I'm not sure if the workspace I deleted can be recovered
 
-If you aren't sure if a deleted workspace is in a soft-delete state and can be recovered, in the Azure portal, select [Open recycle bin](?tabs=azure-portal#recover-a-workspace-in-a-soft-delete-state) on the **Log Analytics workspaces** page to see a list of soft-deleted workspaces per subscription. Permanently deleted workspaces aren't included in the list.
+To check whether you can recover a deleted workspace, in the Azure portal, select [Open recycle bin](?tabs=portal#recover-a-workspace-in-a-soft-delete-state) on the **Log Analytics workspaces** page to see a list of soft-deleted workspaces for each subscription. The list doesn't include permanently deleted workspaces.
 
 ### Resolve the "This workspace name is already in use" or "conflict" error message
 
@@ -301,16 +335,14 @@ If you receive one of these error messages when you create a workspace, it could
     1. [Permanently delete](#delete-a-workspace-permanently) the workspace you recovered. When you delete a workspace permanently, its name is no longer reserved.
     1. [Create a new workspace](./quick-create-workspace.md) by using the same workspace name.
 
-  After the deletion call is successfully completed on the back end, you can restore the workspace and finish the permanent delete operation by using one of the methods suggested earlier.
-
 ### I'm receiving 204 response code with "Resource not found" when deleting a workspace
 
-If you get a 204 response code with "Resource not found" when you delete a workspace, consecutive retries operations might have occurred. The 204 code is an empty response, which usually means that the resource doesn't exist, so the delete finished without doing anything.
+If you get a 204 response code with "Resource not found" when you delete a workspace, consecutive retry operations might have occurred. The 204 code is an empty response, which usually means that the resource doesn't exist, so the delete finished without doing anything.
 
 ### I'm receiving error code 404 when attempting to recover my workspace
 
-If you deleted your resource group and your workspace was included, you can see the deleted workspace on the [Open recycle bin](?tabs=azure-portal#recover-a-workspace-in-a-soft-delete-state) page in the Azure portal. The recovery operation will fail with the error code 404 because the resource group doesn't exist. [Re-create your resource group](/azure/azure-resource-manager/management/manage-resource-groups-portal) and try the recovery again.
+If you deleted your resource group and it included your workspace, view the deleted workspace on the [Open recycle bin](?tabs=portal#recover-a-workspace-in-a-soft-delete-state) page in the Azure portal. In this state, recovery operations fail with a 404 HTTP status code because the resource group doesn't exist. [Re-create your resource group](/azure/azure-resource-manager/management/manage-resource-groups-portal) and try the recovery again.
 
-## Next steps
+## Related content
 
 If you need to create a new Log Analytics workspace, see [Create a Log Analytics workspace](./quick-create-workspace.md).

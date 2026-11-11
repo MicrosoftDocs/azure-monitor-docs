@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="500" viewBox="0 0 1380 500" role="img" aria-labelledby="title desc">
+  <title id="title">Three Azure Monitor collection approaches</title>
+  <desc id="desc">Three compact rows converge on a common cloud ingestion endpoint inside Azure Monitor. Azure automatically collects platform telemetry. An instrumented application or client uses SDKs or client APIs to send directly. In collector-based collection, an agent runs inside the source and sends to a shared pipeline outside the source, which forwards data to the endpoint.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#000000"/>
+    </marker>
+  </defs>
+
+  <rect width="1380" height="500" fill="#ffffff"/>
+  <g font-family="Segoe UI, Arial, sans-serif" fill="#000000">
+    <text x="30" y="36" font-size="24" font-weight="600">Who moves the telemetry to Azure Monitor?</text>
+
+    <!-- Row and Azure Monitor boundaries -->
+    <rect x="30" y="55" width="990" height="125" rx="8" fill="#f7f7f7" stroke="#d2d2d2" stroke-width="1.5"/>
+    <rect x="30" y="190" width="990" height="125" rx="8" fill="#f7f7f7" stroke="#d2d2d2" stroke-width="1.5"/>
+    <rect x="30" y="325" width="990" height="145" rx="8" fill="#f7f7f7" stroke="#d2d2d2" stroke-width="1.5"/>
+    <rect x="1050" y="55" width="300" height="415" rx="8" fill="#ffffff" stroke="#0078d4" stroke-width="2"/>
+
+    <!-- Collection labels -->
+    <rect x="387.5" y="69" width="275" height="30" rx="15" fill="#eef8ed" stroke="#107c10" stroke-width="1.5"/>
+    <rect x="387.5" y="204" width="275" height="30" rx="15" fill="#eef8ed" stroke="#107c10" stroke-width="1.5"/>
+    <rect x="387.5" y="339" width="275" height="30" rx="15" fill="#eef8ed" stroke="#107c10" stroke-width="1.5"/>
+
+    <!-- Source and Azure Monitor component boxes -->
+    <rect x="55" y="112" width="420" height="50" rx="5" fill="#ffffff" stroke="#a6a6a6" stroke-width="1.5"/>
+    <rect x="55" y="242" width="420" height="60" rx="5" fill="#ffffff" stroke="#a6a6a6" stroke-width="1.5"/>
+    <rect x="280" y="250" width="175" height="44" rx="5" fill="#eaf4fc" stroke="#0078d4" stroke-width="1.5"/>
+    <rect x="55" y="383" width="420" height="69" rx="5" fill="#ffffff" stroke="#a6a6a6" stroke-width="1.5"/>
+    <rect x="280" y="391" width="175" height="53" rx="5" fill="#eaf4fc" stroke="#0078d4" stroke-width="1.5"/>
+    <rect x="555" y="397" width="320" height="55" rx="5" fill="#eaf4fc" stroke="#0078d4" stroke-width="1.5"/>
+    <rect x="1080" y="205" width="150" height="130" rx="6" fill="#eaf4fc" stroke="#0078d4" stroke-width="1.5"/>
+
+    <!-- Connectors are drawn above all boxes so no segment or arrowhead is hidden -->
+    <polyline points="475,137 990,137 990,225 1080,225" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+    <polyline points="475,272 1025,272 1025,255 1080,255" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+    <line x1="455" y1="417" x2="555" y2="417" stroke="#000000" stroke-width="2" marker-end="url(#arrow)"/>
+    <polyline points="875,425 1000,425 1000,315 1080,315" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+    <line x1="1230" y1="270" x2="1260" y2="270" stroke="#000000" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <!-- Text -->
+    <text x="525" y="91" font-size="16" font-weight="600" text-anchor="middle">Platform-native collection</text>
+    <text x="525" y="226" font-size="16" font-weight="600" text-anchor="middle">Direct collection</text>
+    <text x="525" y="361" font-size="16" font-weight="600" text-anchor="middle">Collector-based collection</text>
+
+    <text x="265" y="133" font-size="17" font-weight="600" text-anchor="middle">Azure resource</text>
+    <text x="265" y="153" font-size="14" text-anchor="middle">Platform logs + metrics</text>
+    <text x="780" y="126" font-size="16" font-weight="600" text-anchor="middle">Automatically collects</text>
+
+    <text x="165" y="278" font-size="16" font-weight="600" text-anchor="middle">Instrumented app / client</text>
+    <text x="367.5" y="278" font-size="15" font-weight="600" text-anchor="middle">SDKs / client APIs</text>
+    <text x="800" y="260" font-size="14" font-weight="600" text-anchor="middle">Direct • no separate collector</text>
+
+    <text x="165" y="407" font-size="16" font-weight="600" text-anchor="middle">Instrumented apps +</text>
+    <text x="165" y="429" font-size="16" font-weight="600" text-anchor="middle">telemetry producers</text>
+    <text x="367.5" y="413" font-size="16" font-weight="600" text-anchor="middle">Agent</text>
+    <text x="367.5" y="434" font-size="13" text-anchor="middle">On source</text>
+    <text x="715" y="420" font-size="17" font-weight="600" text-anchor="middle">Pipeline</text>
+    <text x="715" y="441" font-size="13" text-anchor="middle">Shared and off source</text>
+
+    <text x="1155" y="250" font-size="17" font-weight="600" text-anchor="middle">Cloud ingestion</text>
+    <text x="1155" y="274" font-size="17" font-weight="600" text-anchor="middle">endpoint</text>
+    <text x="1155" y="305" font-size="13" text-anchor="middle">Common entry point</text>
+    <text x="1300" y="263" font-size="20" font-weight="600" text-anchor="middle">Azure</text>
+    <text x="1300" y="287" font-size="20" font-weight="600" text-anchor="middle">Monitor</text>
+  </g>
+</svg>

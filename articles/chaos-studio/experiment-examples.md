@@ -11,9 +11,9 @@ ms.custom: none, devx-track-azurecli
 
 # Experiment examples for the CLI and portal (classic)
 
-These Azure Chaos Studio experiment examples use Experiments (classic). For current-model templates, use the [Chaos Studio Workspaces Scenario catalog](chaos-studio-scenarios.md) or [custom Scenario designer](chaos-studio-scenarios.md#create-a-custom-scenario). Classic experiment JSON isn't a Workspaces Scenario definition.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+These Azure Chaos Studio experiment examples use Experiments (classic). For current-model templates, use the [Chaos Studio Workspaces Scenario catalog](chaos-studio-scenarios.md) or [custom Scenario designer](chaos-studio-scenarios.md#create-a-custom-scenario). Classic experiment JSON isn't a Workspaces Scenario definition.
 
 This article provides examples for creating experiments from your command line (CLI) and Azure portal parameter examples for various experiments. You can copy and paste the following commands into the CLI or Azure portal, and edit them for your specific resources. 
 
@@ -32,7 +32,7 @@ az rest --method put --uri https://management.azure.com/subscriptions/aaaa0a0a-b
 > Make sure your experiment has permission to operate on **ALL** resources within the experiment. These examples exclusively use **System-assigned managed identity**, but we also support User-assigned managed identity. For more information, see [Experiment permissions](chaos-studio-permissions-security.md). These experiments will **NOT** run without granting the experiment permission to run on the target resources. 
 ><br>
 ><br>
->View all available role assignments [here](chaos-studio-fault-providers.md) to determine which permissions are required for your target resources. 
+>To determine which permissions your target resources require, see [Supported resources and Actions for Chaos Studio Workspaces](chaos-studio-workspaces-supported-resources.md).
 
 
 

@@ -2,7 +2,7 @@
 title: Log Analytics Agent Migration
 description: Learn how to migrate from the Log Analytics agent (MMA/OMS) to Azure Monitor Agent (AMA), including prerequisites, migration tools, and validation steps.
 ms.topic: upgrade-and-migration-article
-ms.date: 05/08/2026
+ms.date: 10/22/2026
 ms.reviewer: shseth, nmangum
 ai-usage: ai-assisted
 
@@ -77,7 +77,7 @@ Before migrating, determine which services depend on the Log Analytics agent and
 
 | Service | Migration action |
 |---|---|
-| **Azure Automation Update Management** | Migrate to [Azure Update Manager](/azure/update-manager/guidance-migration-automation-update-management-azure-update-manager). It has its own agent, independent of Azure Monitor Agent. Microsoft deprecated Update Management in August 2024. The [Migration Helper workbook](./azure-monitor-agent-migration-helper-workbook.md#automation-update-management) shows which machines use Update Management. |
+| **Azure Automation Update Management** | Use [Azure Update Manager](/azure/update-manager/overview). It doesn't use Azure Monitor Agent. For steps, see [Manage operating system updates with Azure Update Manager](./azure-monitor-agent-migration-helper-workbook.md#manage-operating-system-updates-with-azure-update-manager). |
 | **Change Tracking and Inventory** | Create a data collection rule for the Azure Monitor Agent change tracking solution. For more information, see [Manage change tracking and inventory using Azure Monitor Agent](/azure/automation/change-tracking/manage-change-tracking-monitoring-agent). |
 | **Microsoft Defender for Cloud** | If you use Defender for Servers Plan 2, change your agent deployment in Defender for Cloud from the Log Analytics agent to agentless scanning. If you use Defender for Cloud to collect security events, create a custom data collection rule to collect them. |
 | **Microsoft Sentinel** | Solutions that previously used the Log Analytics agent now support Azure Monitor Agent. Update these solutions to use the latest versions. |

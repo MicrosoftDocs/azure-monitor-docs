@@ -1,12 +1,12 @@
 ---
-title: Configure an Azure Monitor health model using the designer (Preview)
+title: Configure an Azure Monitor health model using the designer
 description: Learn how to use the designer to configure an Azure Monitor health model.
 ms.topic: how-to
 ms.date: 05/25/2026
 ai-usage: ai-assisted
 ---
 
-# Configure an Azure Monitor health model using the designer (preview)
+# Configure an Azure Monitor health model using the designer
 The **Designer** is the primary tool for visually configuring [Azure Monitor health models](./overview.md). This article provides the details of different operations and common tasks that you can perform in the designer. Before you read this article, you should be familiar with the [concepts of health models](./concepts.md).
 
 ## Canvas

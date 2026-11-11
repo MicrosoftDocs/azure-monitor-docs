@@ -1,117 +1,158 @@
 ---
-title: Configure autoscale using PowerShell
+title: Configure Autoscale with Azure PowerShell
 description: Configure autoscale for a Virtual Machine Scale Set using PowerShell
 ms.topic: how-to
-ms.date: 08/19/2026
-ms.custom: devx-track-azurepowershell
+ms.custom: devx-track-azurepowershell, cbo-v1.6
 ms.reviewer: akkumari
+ms.date: 08/19/2026
+ai-usage: ai-assisted
 
 # Customer intent: As a user or dev ops administrator, I want to use powershell to set up autoscale so I can scale my Virtual Machine Scale Set.
 ---
 
-# Configure autoscale with PowerShell
+# Configure autoscale with Azure PowerShell
 
-Autoscale ensures that you have the right amount of resources running to handle the fluctuating load of your application. You can configure autoscale using the Azure portal, Azure CLI, PowerShell or ARM or Bicep templates.  
+Autoscale ensures that you have the right amount of resources running to handle the fluctuating load of your application. You can configure autoscale by using the Azure portal, Azure CLI, Azure PowerShell, or ARM or Bicep templates.
 
 This article shows you how to configure autoscale for a Virtual Machine Scale Set with PowerShell. The configurations use the following steps:
 
-+ Create a scale set that you can autoscale
-+ Create rules to scale in and scale out
-+ Create a profile that uses your rules
-+ Apply the autoscale settings
-+ Update your autoscale settings with notifications
+* Create a scale set that you can autoscale.
+* Create rules to scale in and scale out.
+* Create a profile that uses your rules.
+* Apply the autoscale settings.
+* Update your autoscale settings with notifications.
 
-## Prerequisites  
+## Prerequisites
 
 To configure autoscale using PowerShell, you need an Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Set up your environment
 
-```azurepowershell
-#Set the subscription Id, VMSS name, and resource group name
+# [Azure Cloud Shell](#tab/cloud-shell)
+
+Use PowerShell in [Azure Cloud Shell](/azure/cloud-shell/overview).
+
+# [Local PowerShell](#tab/local-powershell)
+
+[Install Azure PowerShell](/powershell/azure/install-azure-powershell) and [sign in](/powershell/azure/authenticate-azureps).
+
+---
+
+> [!NOTE]
+> Run the examples in the same PowerShell session with your intended subscription selected.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$vmssName = "<VirtualMachineScaleSetName>"
+$autoscaleName = "<AutoscaleSettingName>"
+$azureRegion = "<AzureRegion>"
+$virtualNetworkName = "<VirtualNetworkName>"
+$subnetName = "<SubnetName>"
+$publicIpAddressName = "<PublicIpAddressName>"
+$loadBalancerName = "<LoadBalancerName>"
+
+# Get the subscription ID from the current Azure PowerShell context
 $subscriptionId = (Get-AzContext).Subscription.Id
-$resourceGroupName="rg-powershell-autoscale"
-$vmssName="vmss-001"
+
+# Build virtual machine scale set resource ID
+$vmssPath = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$vmssProvider = "Microsoft.Compute/virtualMachineScaleSets/$vmssName"
+$vmssResourceId = "$vmssPath/providers/$vmssProvider"
 ```
 
 ## Create a Virtual Machine Scale Set
 
-Create a scale set using the following cmdlets. Set the `$resourceGroupName` and `$vmssName` variables to suite your environment.
+The following Azure PowerShell example uses the [`New-AzResourceGroup`](/powershell/module/az.resources/new-azresourcegroup) and [`New-AzVmss`](/powershell/module/az.compute/new-azvmss) cmdlets.
 
-```azurepowershell
-# create a new resource group
-New-AzResourceGroup -ResourceGroupName $resourceGroupName -Location "EastUS"
+> [!NOTE]
+> Use a dedicated resource group for this example so that you can delete its resources when you're finished.
+>
+> The example creates a public IP address. For management access, use [Azure Bastion](/azure/bastion/bastion-overview) instead of exposing RDP or SSH ports to the internet.
 
-# Create login credentials for the VMSS
-$Cred = Get-Credential
-$vmCred = New-Object System.Management.Automation.PSCredential($Cred.UserName, $Cred.Password)
+```powershell
+# Create the resource group
+New-AzResourceGroup -ResourceGroupName $resourceGroupName -Location $azureRegion
 
+# Get credentials for the virtual machine scale set
+$vmCredential = Get-Credential
 
-New-AzVmss `
- -ResourceGroupName $resourceGroupName `
- -Location "EastUS" `
- -VMScaleSetName $vmssName `
- -Credential $vmCred `
- -VirtualNetworkName "myVnet" `
- -SubnetName "mySubnet" `
- -PublicIpAddressName "myPublicIPAddress" `
- -LoadBalancerName "myLoadBalancer" `
- -OrchestrationMode "Flexible"
+# Define parameters for New-AzVmss
+$newAzVmssParams = @{
+    ResourceGroupName   = $resourceGroupName
+    Location            = $azureRegion
+    VMScaleSetName      = $vmssName
+    Credential          = $vmCredential
+    VirtualNetworkName  = $virtualNetworkName
+    SubnetName          = $subnetName
+    PublicIpAddressName = $publicIpAddressName
+    LoadBalancerName   = $loadBalancerName
+    OrchestrationMode  = "Flexible"
+}
 
+# Create the virtual machine scale set
+New-AzVmss @newAzVmssParams
 ```
 
 ## Create autoscale settings
 
 To create autoscale setting using PowerShell, follow the sequence below:
 
-1. Create rules using `New-AzAutoscaleScaleRuleObject`
-1. Create a profile using `New-AzAutoscaleProfileObject`
-1. Create the autoscale settings using `New-AzAutoscaleSetting`
-1. Update the settings using `Update-AzAutoscaleSetting`
+1. Create rules by using `New-AzAutoscaleScaleRuleObject`.
+1. Create a profile by using `New-AzAutoscaleProfileObject`.
+1. Create the autoscale settings by using `New-AzAutoscaleSetting`.
+1. Update the settings by using `Update-AzAutoscaleSetting`.
 
 ### Create rules
 
-Create scale in and scale out rules then associated them with a profile.
-Rules are created using the [`New-AzAutoscaleScaleRuleObject`](/powershell/module/az.monitor/new-azautoscalescaleruleobject).
+Create scale-in and scale-out rules, and then associate them with a profile.
 
-The following PowerShell script creates two rules.
+The following Azure PowerShell example uses the [`New-AzAutoscaleScaleRuleObject`](/powershell/module/az.monitor/new-azautoscalescaleruleobject) cmdlet.
 
-+ Scale out when Percentage CPU exceeds 70%
-+ Scale in when Percentage CPU is less than 30%
+> [!NOTE]
+> It creates two rules:
+>
+> * Scale out when Percentage CPU exceeds 70%.
+> * Scale in when Percentage CPU is less than 30%.
 
-```azurepowershell
+```powershell
+# Define parameters for New-AzAutoscaleScaleRuleObject
+$newAzAutoscaleScaleRuleObjectParams = @{
+    MetricTriggerMetricName        = "Percentage CPU"
+    MetricTriggerMetricResourceUri  = $vmssResourceId
+    MetricTriggerTimeGrain          = New-TimeSpan -Minutes 1
+    MetricTriggerStatistic         = "Average"
+    MetricTriggerTimeWindow         = New-TimeSpan -Minutes 5
+    MetricTriggerTimeAggregation    = "Average"
+    MetricTriggerOperator          = "GreaterThan"
+    MetricTriggerThreshold         = 70
+    MetricTriggerDividePerInstance = $false
+    ScaleActionDirection           = "Increase"
+    ScaleActionType                = "ChangeCount"
+    ScaleActionValue               = "1"
+    ScaleActionCooldown            = New-TimeSpan -Minutes 5
+}
+$scaleOutRule = New-AzAutoscaleScaleRuleObject @newAzAutoscaleScaleRuleObjectParams
 
-$rule1=New-AzAutoscaleScaleRuleObject `
-    -MetricTriggerMetricName "Percentage CPU" `
-    -MetricTriggerMetricResourceUri "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Compute/virtualMachineScaleSets/$vmssName"  `
-    -MetricTriggerTimeGrain ([System.TimeSpan]::New(0,1,0)) `
-    -MetricTriggerStatistic "Average" `
-    -MetricTriggerTimeWindow ([System.TimeSpan]::New(0,5,0)) `
-    -MetricTriggerTimeAggregation "Average" `
-    -MetricTriggerOperator "GreaterThan" `
-    -MetricTriggerThreshold 70 `
-    -MetricTriggerDividePerInstance $false `
-    -ScaleActionDirection "Increase" `
-    -ScaleActionType "ChangeCount" `
-    -ScaleActionValue 1 `
-    -ScaleActionCooldown ([System.TimeSpan]::New(0,5,0))
-
-
-$rule2=New-AzAutoscaleScaleRuleObject `
-    -MetricTriggerMetricName "Percentage CPU" `
-    -MetricTriggerMetricResourceUri "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Compute/virtualMachineScaleSets/$vmssName"  `
-    -MetricTriggerTimeGrain ([System.TimeSpan]::New(0,1,0)) `
-    -MetricTriggerStatistic "Average" `
-    -MetricTriggerTimeWindow ([System.TimeSpan]::New(0,5,0)) `
-    -MetricTriggerTimeAggregation "Average" `
-    -MetricTriggerOperator "LessThan" `
-    -MetricTriggerThreshold 30 `
-    -MetricTriggerDividePerInstance $false `
-    -ScaleActionDirection "Decrease" `
-    -ScaleActionType "ChangeCount" `
-    -ScaleActionValue 1 `
-    -ScaleActionCooldown ([System.TimeSpan]::New(0,5,0))
+# Define parameters for New-AzAutoscaleScaleRuleObject
+$newAzAutoscaleScaleRuleObjectParams = @{
+    MetricTriggerMetricName        = "Percentage CPU"
+    MetricTriggerMetricResourceUri  = $vmssResourceId
+    MetricTriggerTimeGrain          = New-TimeSpan -Minutes 1
+    MetricTriggerStatistic         = "Average"
+    MetricTriggerTimeWindow         = New-TimeSpan -Minutes 5
+    MetricTriggerTimeAggregation    = "Average"
+    MetricTriggerOperator          = "LessThan"
+    MetricTriggerThreshold         = 30
+    MetricTriggerDividePerInstance = $false
+    ScaleActionDirection           = "Decrease"
+    ScaleActionType                = "ChangeCount"
+    ScaleActionValue               = "1"
+    ScaleActionCooldown            = New-TimeSpan -Minutes 5
+}
+$scaleInRule = New-AzAutoscaleScaleRuleObject @newAzAutoscaleScaleRuleObjectParams
 ```
+
 The table below describes the parameters used in the `New-AzAutoscaleScaleRuleObject` cmdlet.
 
 |Parameter| Description|
@@ -132,15 +173,23 @@ The table below describes the parameters used in the `New-AzAutoscaleScaleRuleOb
 
 ### Create a default autoscale profile and associate the rules
 
-After defining the scale rules, create a profile. The profile specifies the default, upper, and lower instance count limits, and the times that the associated rules can be applied. Use the [`New-AzAutoscaleProfileObject`](/powershell/module/az.monitor/new-azautoscaleprofileobject) cmdlet to create a new autoscale profile. As this is a default profile, it doesn't have any schedule parameters. The default profile is active at times that no other profiles are active
+After you define the scale rules, create a profile. The profile specifies the default, upper, and lower instance count limits, and the times that the associated rules can be applied.
 
-```azurepowershell
-$defaultProfile=New-AzAutoscaleProfileObject `
-    -Name "default" `
-    -CapacityDefault 1 `
-    -CapacityMaximum 10 `
-    -CapacityMinimum 1 `
-    -Rule $rule1, $rule2
+The following Azure PowerShell example uses the [`New-AzAutoscaleProfileObject`](/powershell/module/az.monitor/new-azautoscaleprofileobject) cmdlet.
+
+> [!NOTE]
+> As this profile is a default profile, it doesn't have any schedule parameters. The default profile is active at times that no other profiles are active.
+
+```powershell
+# Define parameters for New-AzAutoscaleProfileObject
+$newAzAutoscaleProfileObjectParams = @{
+    Name            = "default"
+    CapacityDefault = "1"
+    CapacityMaximum = "10"
+    CapacityMinimum = "1"
+    Rule            = @($scaleOutRule, $scaleInRule)
+}
+$defaultProfile = New-AzAutoscaleProfileObject @newAzAutoscaleProfileObjectParams
 ```
 
 The table below describes the parameters used in the `New-AzAutoscaleProfileObject` cmdlet.
@@ -154,160 +203,226 @@ The table below describes the parameters used in the `New-AzAutoscaleProfileObje
 |`FixedDateStart` |The start time for the profile in ISO 8601 format.
 | `Rule` |A collection of rules that provide the triggers and parameters for the scaling action when this profile is active. A maximum of 10, comma separated rules can be specified.
 |`RecurrenceFrequency` | How often the scheduled profile takes effect. This value must be `week`. 
-|`ScheduleDay`| A collection of days that the profile takes effect on when specifying a recurring schedule. Possible values are Sunday through Saturday. For more information on recurring schedules, see [Add a recurring profile using CLI](./autoscale-multiprofile.md?tabs=powershell#powershell-recurring-profile).
+|`ScheduleDay`| A collection of days that the profile takes effect on when specifying a recurring schedule. Possible values are Sunday through Saturday. For more information about recurring schedules, see [Recurring profiles using PowerShell](./autoscale-multiprofile.md?tabs=powershell#configure-weekday-and-weekend-scaling).
 |`ScheduleHour`| A collection of hours that the profile takes effect on. Values supported are 0 to 23.
 |`ScheduleMinute`| A collection of minutes at which the profile takes effect.
 |`ScheduleTimeZone` |The timezone for the hours of the profile.
 
 ### Apply the autoscale settings
 
-After fining the rules and profile, apply the autoscale settings using  [`New-AzAutoscaleSetting`](/powershell/module/az.monitor/new-azautoscalesetting). To update existing autoscale setting use [`Update-AzAutoscaleSetting`](/powershell/module/az.monitor/add-azautoscalesetting)
+After you define the rules and profile, apply the autoscale settings. To update an existing autoscale setting, use [`Update-AzAutoscaleSetting`](/powershell/module/az.monitor/update-azautoscalesetting).
 
-```azurepowershell
-New-AzAutoscaleSetting `
-    -Name vmss-autoscalesetting1 `
-    -ResourceGroupName $resourceGroupName `
-    -Location eastus `
-    -Profile $defaultProfile `
-    -Enabled `
-    -PropertiesName "vmss-autoscalesetting1" `
-    -TargetResourceUri "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Compute/virtualMachineScaleSets/$vmssName"
+The following Azure PowerShell example uses the [`New-AzAutoscaleSetting`](/powershell/module/az.monitor/new-azautoscalesetting) cmdlet.
+
+```powershell
+# Define parameters for New-AzAutoscaleSetting
+$newAzAutoscaleSettingParams = @{
+    Name              = $autoscaleName
+    ResourceGroupName = $resourceGroupName
+    Location          = $azureRegion
+    Profile           = @($defaultProfile)
+    Enabled           = $true
+    PropertiesName    = $autoscaleName
+    TargetResourceUri = $vmssResourceId
+}
+
+# Create the autoscale setting
+New-AzAutoscaleSetting @newAzAutoscaleSettingParams
 ```
 
-### Add notifications to your autoscale settings  
+### Add notifications to your autoscale settings
 
-Add notifications to your sale setting to trigger a webhook or send email notifications when a scale event occurs.
-For more information on webhook notifications, see [`New-AzAutoscaleWebhookNotificationObject`](/powershell/module/az.monitor/new-azautoscalewebhooknotificationobject)
+Add notifications to your autoscale setting to trigger a webhook or send email notifications when a scale event occurs.
 
-Set a webhook using the following cmdlet;
-```azurepowershell
+The following Azure PowerShell example uses the [`New-AzAutoscaleWebhookNotificationObject`](/powershell/module/az.monitor/new-azautoscalewebhooknotificationobject) cmdlet.
 
-  $webhook1=New-AzAutoscaleWebhookNotificationObject -Property @{} -ServiceUri "http://contoso.com/webhook1"
+```powershell
+# Set variables
+$webhookUri = "<WebhookUri>"
+
+# Create the webhook notification
+$webhook = New-AzAutoscaleWebhookNotificationObject -Property @{} -ServiceUri $webhookUri
 ```
 
-Configure the notification using the webhook and set up email notification using the [`New-AzAutoscaleNotificationObject`](/powershell/module/az.monitor/new-azautoscalenotificationobject) cmdlet:
+The following Azure PowerShell example uses the [`New-AzAutoscaleNotificationObject`](/powershell/module/az.monitor/new-azautoscalenotificationobject) cmdlet to configure webhook and email notifications.
 
-```azurepowershell
+> [!NOTE]
+> Use an HTTPS endpoint for the webhook.
 
-    $notification1=New-AzAutoscaleNotificationObject `
-    -EmailCustomEmail "jason@contoso.com" `
-    -EmailSendToSubscriptionAdministrator $true `
-    -EmailSendToSubscriptionCoAdministrator $true `
-    -Webhook $webhook1
+```powershell
+# Set variables
+$notificationEmail = "<NotificationEmail>"
+
+# Define parameters for New-AzAutoscaleNotificationObject
+$newAzAutoscaleNotificationObjectParams = @{
+    EmailCustomEmail                      = @($notificationEmail)
+    EmailSendToSubscriptionAdministrator   = $true
+    EmailSendToSubscriptionCoAdministrator = $true
+    Webhook                               = @($webhook)
+}
+$notification = New-AzAutoscaleNotificationObject @newAzAutoscaleNotificationObjectParams
 ```
 
-Update your autoscale settings to apply the notification
+The following Azure PowerShell example uses the [`Update-AzAutoscaleSetting`](/powershell/module/az.monitor/update-azautoscalesetting) cmdlet to apply the notification.
 
-```azurepowershell
+```powershell
+# Define parameters for Update-AzAutoscaleSetting
+$updateAzAutoscaleSettingParams = @{
+    Name              = $autoscaleName
+    ResourceGroupName = $resourceGroupName
+    Notification      = @($notification)
+}
 
-Update-AzAutoscaleSetting  `
-    -Name vmss-autoscalesetting1 `
-    -ResourceGroupName $resourceGroupName `
-    -Profile $defaultProfile `
-    -Notification $notification1 `
-    -TargetResourceUri "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Compute/virtualMachineScaleSets/$vmssName"  
-
+# Update the autoscale notification
+Update-AzAutoscaleSetting @updateAzAutoscaleSettingParams
 ```
 
 ## Review your autoscale settings
 
-To review your autoscale settings, load the settings into a variable using `Get-AzAutoscaleSetting` then output the variable as follows:
+The following Azure PowerShell example uses the [`Get-AzAutoscaleSetting`](/powershell/module/az.monitor/get-azautoscalesetting) cmdlet to retrieve the autoscale setting.
 
-```azurepowershell
-    $autoscaleSetting=Get-AzAutoscaleSetting  -ResourceGroupName $resourceGroupName -Name vmss-autoscalesetting1 
-    $autoscaleSetting | Select-Object -Property *
+```powershell
+# Define parameters for Get-AzAutoscaleSetting
+$getAzAutoscaleSettingParams = @{
+    ResourceGroupName = $resourceGroupName
+    Name              = $autoscaleName
+}
+$autoscaleSetting = Get-AzAutoscaleSetting @getAzAutoscaleSettingParams
+$autoscaleSetting | Select-Object -Property *
 ```
 
-Get your autoscale history using `AzAutoscaleHistory`
-```azurepowershell
-Get-AzAutoscaleHistory -ResourceId  /subscriptions/<subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Compute/virtualMachineScaleSets/$vmssName
+The following Azure PowerShell example uses the [`Get-AzAutoscaleHistory`](/powershell/module/az.monitor/get-azautoscalehistory) cmdlet.
+
+> [!NOTE]
+> It queries the autoscale setting's history, not the scale set's resource ID.
+
+```powershell
+# Build autoscale setting resource ID
+$autoscalePath = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+$autoscaleProvider = "Microsoft.Insights/autoscaleSettings/$autoscaleName"
+$autoscaleResourceId = "$autoscalePath/providers/$autoscaleProvider"
+
+# Retrieve the autoscale history
+Get-AzAutoscaleHistory -ResourceId $autoscaleResourceId
 ```
 
 ## Scheduled and recurring profiles
+
+> [!NOTE]
+> When you update `Profile`, include every profile you want to keep. The following examples add profiles to the setting created earlier in this article. Keep any other profiles when adapting them to another autoscale setting.
 
 ### Add a scheduled profile for a special event
 
 Set up autoscale profiles to scale differently for specific events. For example, for a day when demand will be higher than usual, create a profile with increased maximum and minimum instance limits.
 
-The following example uses the same rules as the default profile defined above, but sets new instance limits for a specific date. You can also configure different rules to be used with the new profile.
+The following Azure PowerShell example uses the [`New-AzAutoscaleProfileObject`](/powershell/module/az.monitor/new-azautoscaleprofileobject) and [`Update-AzAutoscaleSetting`](/powershell/module/az.monitor/update-azautoscalesetting) cmdlets.
 
-```azurepowershell
-$highDemandDay=New-AzAutoscaleProfileObject `
-    -Name "High-demand-day" `
-    -CapacityDefault 7 `
-    -CapacityMaximum 30 `
-    -CapacityMinimum 5 `
-    -FixedDateEnd ([System.DateTime]::Parse("2023-12-31T14:00:00Z")) `
-    -FixedDateStart ([System.DateTime]::Parse("2023-12-31T13:00:00Z")) `
-    -FixedDateTimeZone "UTC" `
-    -Rule $rule1, $rule2
+> [!NOTE]
+> The following example uses the same rules as the default profile defined earlier, but sets new instance limits for a specific date. You can also configure different rules to use with the new profile. The start and end values use ISO 8601 timestamps in UTC.
 
-Update-AzAutoscaleSetting  `
-    -Name vmss-autoscalesetting1 `
-    -ResourceGroupName $resourceGroupName `
-    -Profile $defaultProfile, $highDemandDay `
-    -Notification $notification1 `
-    -TargetResourceUri "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Compute/virtualMachineScaleSets/$vmssName"  
+```powershell
+# Set variables
+$startTime = "<StartTime>"
+$endTime = "<EndTime>"
 
+# Define parameters for New-AzAutoscaleProfileObject
+$newAzAutoscaleProfileObjectParams = @{
+    Name              = "High-demand-day"
+    CapacityDefault   = "7"
+    CapacityMaximum   = "30"
+    CapacityMinimum   = "5"
+    FixedDateEnd      = [datetime]::Parse($endTime)
+    FixedDateStart    = [datetime]::Parse($startTime)
+    FixedDateTimeZone = "UTC"
+    Rule              = @($scaleOutRule, $scaleInRule)
+}
+$highDemandDay = New-AzAutoscaleProfileObject @newAzAutoscaleProfileObjectParams
+
+# Define parameters for Update-AzAutoscaleSetting
+$updateAzAutoscaleSettingParams = @{
+    Name              = $autoscaleName
+    ResourceGroupName = $resourceGroupName
+    Profile           = @($defaultProfile, $highDemandDay)
+}
+
+# Update the autoscale profiles
+Update-AzAutoscaleSetting @updateAzAutoscaleSettingParams
 ```
 
 ### Add a recurring scheduled profile
 
-Recurring profiles let you schedule a scaling profile that repeats each week. For example, scale to a single instance on the weekend from Friday night to Monday morning.
+Recurring profiles let you schedule a scaling profile that repeats each week.
 
 While scheduled profiles have a start and end date, recurring profiles don't have an end time. A profile remains active until the next profile's start time. Therefore, when you create a recurring profile you must create a recurring default profile that starts when you want the previous recurring profile to finish.
 
-For example, to configure a weekend profile that starts on Friday nights and ends on Monday mornings, create a profile that starts on Friday night, then create recurring profile with your default settings that starts on Monday morning.
+The following Azure PowerShell example uses the [`New-AzAutoscaleProfileObject`](/powershell/module/az.monitor/new-azautoscaleprofileobject) and [`Update-AzAutoscaleSetting`](/powershell/module/az.monitor/update-azautoscalesetting) cmdlets.
 
-The following script creates a weekend profile and an addition default profile to end the weekend profile.
-```azurepowershell
-$fridayProfile=New-AzAutoscaleProfileObject `
-    -Name "Weekend" `
-    -CapacityDefault 1 `
-    -CapacityMaximum 1 `
-    -CapacityMinimum 1 `
-    -RecurrenceFrequency week  `
-    -ScheduleDay "Friday" `
-    -ScheduleHour 22  `
-    -ScheduleMinute 00  `
-    -ScheduleTimeZone  "Pacific Standard Time" `
-    -Rule $rule1, $rule2
+> [!NOTE]
+> For example, scale to a single instance on the weekend from Friday night to Monday morning. To configure a weekend profile that starts on Friday nights and ends on Monday mornings, create a profile that starts on Friday night, then create recurring profile with your default settings that starts on Monday morning.
+>
+> It creates a weekend profile and a recurring default profile to end the weekend profile, while retaining the default and fixed-date profiles from the earlier steps.
 
+```powershell
+# Define parameters for New-AzAutoscaleProfileObject
+$newAzAutoscaleProfileObjectParams = @{
+    Name                = "Weekend"
+    CapacityDefault     = "1"
+    CapacityMaximum     = "1"
+    CapacityMinimum     = "1"
+    RecurrenceFrequency = "Week"
+    ScheduleDay         = @("Friday")
+    ScheduleHour        = @(22)
+    ScheduleMinute      = @(0)
+    ScheduleTimeZone    = "Pacific Standard Time"
+    Rule                = @($scaleOutRule, $scaleInRule)
+}
+$fridayProfile = New-AzAutoscaleProfileObject @newAzAutoscaleProfileObjectParams
 
-$defaultRecurringProfile=New-AzAutoscaleProfileObject `
-    -Name "default recurring profile" `
-    -CapacityDefault 2 `
-    -CapacityMaximum 10 `
-    -CapacityMinimum 2 `
-    -RecurrenceFrequency week  `
-    -ScheduleDay "Monday" `
-    -ScheduleHour 00  `
-    -ScheduleMinute 00  `
-    -ScheduleTimeZone  "Pacific Standard Time" `
-    -Rule $rule1, $rule2
+# Define parameters for New-AzAutoscaleProfileObject
+$newAzAutoscaleProfileObjectParams = @{
+    Name                = "default recurring profile"
+    CapacityDefault     = "2"
+    CapacityMaximum     = "10"
+    CapacityMinimum     = "2"
+    RecurrenceFrequency = "Week"
+    ScheduleDay         = @("Monday")
+    ScheduleHour        = @(0)
+    ScheduleMinute      = @(0)
+    ScheduleTimeZone    = "Pacific Standard Time"
+    Rule                = @($scaleOutRule, $scaleInRule)
+}
+$defaultRecurringProfile = New-AzAutoscaleProfileObject @newAzAutoscaleProfileObjectParams
 
-New-AzAutoscaleSetting  `
-    -Location eastus `
-    -Name vmss-autoscalesetting1 `
-    -ResourceGroupName $resourceGroupName `
-    -Profile $defaultRecurringProfile, $fridayProfile `
-    -Notification $notification1 `
-    -TargetResourceUri "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Compute/virtualMachineScaleSets/$vmssName"  
+# Define parameters for Update-AzAutoscaleSetting
+$updateAzAutoscaleSettingParams = @{
+    Name              = $autoscaleName
+    ResourceGroupName = $resourceGroupName
+    Profile           = @(
+        $defaultProfile
+        $highDemandDay
+        $defaultRecurringProfile
+        $fridayProfile
+    )
+}
 
+# Update the autoscale profiles
+Update-AzAutoscaleSetting @updateAzAutoscaleSettingParams
 ```
 
-For more information on scheduled profiles, see [Autoscale with multiple profiles](./autoscale-multiprofile.md)
+For more information on scheduled profiles, see [Autoscale with multiple profiles](./autoscale-multiprofile.md).
 
 ## Other autoscale commands
 
-For a complete list of PowerShell cmdlets for autoscale, see the [PowerShell Module Browser](/powershell/module/?term=azautoscale)
+For a complete list of PowerShell cmdlets for autoscale, see the [PowerShell Module Browser](/powershell/module/?term=azautoscale).
 
 ## Clean up resources
 
-To clean up the resources you created in this tutorial, delete the resource group that you created. 
+To clean up the resources you created in this tutorial, delete the dedicated resource group that you created.
 The following cmdlet deletes the resource group and all of its resources.
-```azurecli
 
+The following Azure PowerShell example uses the [`Remove-AzResourceGroup`](/powershell/module/az.resources/remove-azresourcegroup) cmdlet.
+
+```powershell
+# Delete the example resource group
 Remove-AzResourceGroup -Name $resourceGroupName
-
 ```

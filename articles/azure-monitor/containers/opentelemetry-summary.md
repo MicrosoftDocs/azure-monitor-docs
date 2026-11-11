@@ -1,8 +1,8 @@
 ---
-title: OpenTelemetry ingestion options (preview)
+title: OpenTelemetry ingestion options
 description: Compare OpenTelemetry Protocol (OTLP) ingestion options in Azure Monitor, including AKS monitoring, Azure Monitor Agent, and the OpenTelemetry Collector.
 ms.topic: concept-article
-ms.date: 03/30/2026
+ms.date: 10/28/2026
 ms.reviewer: kaprince
 ai-usage: ai-assisted
 
@@ -10,17 +10,13 @@ ai-usage: ai-assisted
 
 ---
 
-# OpenTelemetry ingestion options for Azure Monitor (preview)
+# OpenTelemetry ingestion options for Azure Monitor
 
 OpenTelemetry Protocol (OTLP) is an open standard for transmitting traces, metrics, and logs from applications and infrastructure to observability backends. Azure Monitor supports OTLP ingestion so you can collect telemetry from your workloads without proprietary instrumentation.
 
 Different compute environments—Azure Kubernetes Service (AKS), virtual machines, Azure Arc-enabled servers, hybrid clouds—call for different ingestion approaches. Choosing the wrong path can mean extra infrastructure to manage or gaps in the telemetry you collect.
 
 This article describes each ingestion option and when to use it, so you can pick the approach that matches your environment and operational requirements.
-
-> [!IMPORTANT]
-> OTLP ingestion in Azure Monitor is currently in preview.
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 > [!TIP]
 > For a conceptual overview of OpenTelemetry options in Azure Monitor — native OTLP ingestion, the Microsoft OpenTelemetry distro, and end-to-end observability experiences — see [OpenTelemetry with Azure Monitor](opentelemetry-options.md).

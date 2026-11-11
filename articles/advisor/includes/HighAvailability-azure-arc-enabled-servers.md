@@ -14,7 +14,7 @@ ms.custom: HighAvailability Azure Arc-enabled servers
   
 <!--9d5717d2-4708-4e3f-bdda-93b3e6f1715b_begin-->
 
-#### Upgrade to the latest version of the Azure Connected Machine agent  
+#### Upgrade the Azure Connected Machine agent  
   
 The Azure Connected Machine agent is updated regularly with bug fixes, stability enhancements, and new functionality. For the best Azure Arc experience, upgrade your agent to the latest version.  
   
@@ -29,5 +29,39 @@ Recommendation ID: 9d5717d2-4708-4e3f-bdda-93b3e6f1715b
 Subcategory: Other
 
 <!--9d5717d2-4708-4e3f-bdda-93b3e6f1715b_end-->
+
+<!--a8ffbd6c-08e0-4a66-b1d5-249719ab9899_begin-->
+
+#### Migrate from Dependency Agent and VM Insights Map  
+  
+Dependency Agent and VM Insights Map are retiring. To continue collecting data about processes running on virtual machines and external process dependencies, consider a replacement solution from the Azure Marketplace.
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [VM Insights Map and Dependency Agent retirement guidance - Azure Monitor](https://aka.ms/DependencyAgentRetirement)  
+
+ResourceType: microsoft.hybridcompute/machines  
+Recommendation ID: a8ffbd6c-08e0-4a66-b1d5-249719ab9899  
+
+<!--a8ffbd6c-08e0-4a66-b1d5-249719ab9899_end-->
+
+<!--02500231-6047-40b1-9cef-c9b1c1f217f8_begin-->
+
+#### Migrate from Legacy Purview access policies to access SQL databases  
+  
+Legacy Purview access policies (DevOps policies and data owner policies) for Azure SQL DB, SQL MI and Arc-enabled SQL Server 2022 are retiring. Customers can no longer use Purview access policies to manage access to their SQL databases. Migrate to fixed server roles instead.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Retirement of Microsoft Purview access policies for SQL - Azure SQL Database & Azure SQL Managed Instance & SQL Server enabled by Azure Arc](https://aka.ms/retirePurviewRBACforSQL)  
+
+ResourceType: microsoft.hybridcompute/machines  
+Recommendation ID: 02500231-6047-40b1-9cef-c9b1c1f217f8  
+
+<!--02500231-6047-40b1-9cef-c9b1c1f217f8_end-->
 
 <!--articleBody-->

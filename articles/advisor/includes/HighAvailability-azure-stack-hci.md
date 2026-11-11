@@ -18,9 +18,9 @@ ms.custom: HighAvailability Azure Stack HCI
   
 Upgrade to the latest version of API/SDK of AKS enabled by Azure Arc for new functionality and improved stability.  
   
-**Potential benefits**: The latest version of AKS enabled by Azure Arc with new functionality and improved stability.  
+**Potential benefits**: AKS enabled by Azure Arc has improved stability.  
 
-**Impact:** Low
+**Impact:** High
   
 For more information, see [Azure SDK Releases ](https://azure.github.io/azure-sdk/releases/latest/index.html)  
 

@@ -1,5 +1,5 @@
 ---
-title: Azure Monitor health models with Azure PowerShell (preview)
+title: Azure Monitor health models with Azure PowerShell
 description: In this quickstart, use Azure PowerShell and an ARM template to create, verify, and delete an Azure Monitor health model.
 ms.topic: quickstart
 ms.date: 08/26/2026
@@ -8,12 +8,9 @@ ms.custom: devx-track-azurepowershell
 #customer intent: As an Azure user, I want to deploy my first health model with Azure PowerShell so that I can automate Health Models deployment.
 ---
 
-# Quickstart: Create a health model with Azure PowerShell (preview)
+# Quickstart: Create a health model with Azure PowerShell
 
 In this quickstart, you use Azure PowerShell and an Azure Resource Manager template (ARM template) to create an Azure Monitor health model with a system-assigned managed identity, verify the deployment, and delete the resources.
-
-> [!IMPORTANT]
-> Azure Monitor health models are in preview and might change. Microsoft provides limited support for preview features. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to features that are in preview or otherwise not yet released into general availability.
 
 ## Prerequisites
 

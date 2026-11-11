@@ -4,7 +4,8 @@ description: Get information about creating near-real time metric alerts on popu
 ms.topic: how-to
 ms.reviewer: harelbr
 ms.date: 08/27/2026
-ms.custom: references_regions, cbo-v1.5
+ms.custom: references_regions, cbo-v1.6
+ai-usage: ai-assisted
 ---
 
 # Create a metric alert in Azure Monitor Logs
@@ -15,16 +16,16 @@ You can use metric alert capabilities on a predefined set of logs in Azure Monit
 
 A Log Analytics workspace supports these log types:
 
-- [Performance counters](./../agents/data-sources-performance-counters.md) for Windows and Linux machines (corresponding with the supported [Log Analytics workspace metrics](../essentials/metrics-supported.md#microsoftoperationalinsightsworkspaces))
-- [Heartbeat records for Agent Health](../insights/solution-agenthealth.md)
-- [Update management](/azure/automation/update-management/overview) records
-- [Event data](./../agents/data-sources-windows-events.md) logs
+* [Performance counters](./../agents/data-sources-performance-counters.md) for Windows and Linux machines (corresponding with the supported [Log Analytics workspace metrics](../essentials/metrics-supported.md#microsoftoperationalinsightsworkspaces))
+* [Heartbeat records for Agent Health](../insights/solution-agenthealth.md)
+* [Update management](/azure/automation/update-management/overview) records
+* [Event data](./../agents/data-sources-windows-events.md) logs
 
 Benefits of using metric alerts for logs over query-based [log search alerts](./alerts-log.md) in Azure include:
 
-- Metric alerts offer a near real-time monitoring capability. They fork data from the log source to ensure this capability.
-- Metric alerts notify you once when an alert is fired and once when the alert is resolved. Log search alerts also support stateful behavior. For more information on stateful and stateless alerts, see [Alerts and state](./alerts-overview.md#alerts-and-state).
-- Metric alerts provide multiple dimensions. They allow filtering to specific values like computers and OS types without the need for defining a complex query in Log Analytics.
+* Metric alerts offer a near real-time monitoring capability. They fork data from the log source to ensure this capability.
+* Metric alerts notify you once when an alert is fired and once when the alert is resolved. Log search alerts also support stateful behavior. For more information on stateful and stateless alerts, see [Alerts and state](./alerts-overview.md#alerts-and-state).
+* Metric alerts provide multiple dimensions. They allow filtering to specific values like computers and OS types without the need for defining a complex query in Log Analytics.
 
 > [!NOTE]
 > A specific metric or dimension appears only if data for it exists in the chosen period. These metrics are available for customers who have Log Analytics workspaces.
@@ -49,10 +50,10 @@ The process for creating metric alerts for logs has two steps:
 
 Before you create a metric alert for logs, make sure that you set up and have the following items:
 
-- **Log Analytics workspace**: You must have a valid and active Log Analytics workspace. For more information, see [Create a Log Analytics workspace](../logs/quick-create-workspace.md).
-- **Agent configured for the Log Analytics workspace**: You need to configure an agent for Azure virtual machines or on-premises machines to send data to the Log Analytics workspace. For more information, see [Azure Monitor Agent overview](./../agents/agents-overview.md).
-- **Supported Log Analytics solution**: You should configure a Log Analytics solution and send data to the Log Analytics workspace. Supported solutions are [performance counters for Windows and Linux](./../agents/data-sources-performance-counters.md), [heartbeat records for Agent Health](../insights/solution-agenthealth.md), [Azure Automation Update Management](/azure/automation/update-management/overview), and [event data](./../agents/data-sources-windows-events.md).
-- **Logs configured for the Log Analytics solution**: The Log Analytics solution should have the required logs and data that correspond to [metrics supported for Log Analytics workspaces](../essentials/metrics-supported.md#microsoftoperationalinsightsworkspaces) enabled. For example, you must first configure the *% Available Memory* counter in the [performance counters](./../agents/data-sources-performance-counters.md) solution.
+* **Log Analytics workspace**: You must have a valid and active Log Analytics workspace. For more information, see [Create a Log Analytics workspace](../logs/quick-create-workspace.md).
+* **Agent configured for the Log Analytics workspace**: You need to configure an agent for Azure virtual machines or on-premises machines to send data to the Log Analytics workspace. For more information, see [Azure Monitor Agent overview](./../agents/agents-overview.md).
+* **Supported Log Analytics solution**: You should configure a Log Analytics solution and send data to the Log Analytics workspace. Supported solutions are [performance counters for Windows and Linux](./../agents/data-sources-performance-counters.md), [heartbeat records for Agent Health](../insights/solution-agenthealth.md), [Azure Automation Update Management](/azure/automation/update-management/overview), and [event data](./../agents/data-sources-windows-events.md).
+* **Logs configured for the Log Analytics solution**: The Log Analytics solution should have the required logs and data that correspond to [metrics supported for Log Analytics workspaces](../essentials/metrics-supported.md#microsoftoperationalinsightsworkspaces) enabled. For example, you must first configure the *% Available Memory* counter in the [performance counters](./../agents/data-sources-performance-counters.md) solution.
 
 ## Methods for creating a metric alert for logs
 
@@ -62,11 +63,11 @@ After you create metric alerts for logs for a specified Log Analytics workspace,
 
 For step-by-step details and samples, see [Create or edit a metric alert rule](./alerts-create-metric-alert-rule.md). Follow the instructions for managing metric alerts and note the following considerations:
 
-- The target for a metric alert must be a valid Log Analytics workspace.
-- The signal chosen for a metric alert for a selected Log Analytics workspace must be of type **Metric**.
-- You can filter for specific conditions or resources by using dimension filters, because metrics for logs are multidimensional.
-- When you're configuring signal logic, you can create a single alert to span multiple values of dimension (like computer).
-- When you're creating a metric alert for logs by using the Azure portal, a corresponding rule for converting log data into a metric via `scheduledQueryRules` is automatically created in the background, without the need for any user intervention or action.
+* The target for a metric alert must be a valid Log Analytics workspace.
+* The signal chosen for a metric alert for a selected Log Analytics workspace must be of type **Metric**.
+* You can filter for specific conditions or resources by using dimension filters, because metrics for logs are multidimensional.
+* When you're configuring signal logic, you can create a single alert to span multiple values of dimension (like computer).
+* When you're creating a metric alert for logs by using the Azure portal, a corresponding rule for converting log data into a metric via `scheduledQueryRules` is automatically created in the background, without the need for any user intervention or action.
 
   If you're *not* using the Azure portal to create a metric alert for a selected Log Analytics workspace, you must first manually create an explicit rule for converting log data into a metric by using `scheduledQueryRules`.
 
@@ -76,9 +77,19 @@ To create a metric alert for logs, use the following sample Resource Manager tem
 
 For metric alerts for logs created through means other than the Azure portal, use these sample templates to create a `scheduledQueryRules`-based log-to-metric conversion rule before you create a metric alert. If you don't, the metric alert has no data in the logs.
 
+Each template creates both rules and uses the supplied `resourceId` for the source workspace and alert scope. When adapting a template to existing rules:
+
+* Retain the existing resource names, locations, tags, enabled state, and other configured properties.
+* Keep unrelated metric criteria, dimensions, action groups, and array entries. Include the complete intended configuration of both resources.
+* Review both resource definitions before redeploying. An [incremental template deployment](/azure/azure-resource-manager/templates/deployment-modes#incremental-mode) isn't a property-level patch.
+
 ### Metric alert for logs with a static threshold
 
 In the following sample template, creation of a metric alert for a static threshold depends on successful creation of the rule for extracting metrics from logs via `scheduledQueryRules`.
+
+<br>
+<details>
+<summary>Create a log-to-metric rule and static-threshold alert</summary>
 
 ```json
 {
@@ -235,7 +246,7 @@ In the following sample template, creation of a metric alert for a static thresh
     },
     "variables": {
         "convertRuleSourceWorkspace": {
-            "SourceId": "/subscriptions/1234-56789-1234-567a/resourceGroups/resourceGroupName/providers/Microsoft.OperationalInsights/workspaces/workspaceName"
+            "SourceId": "[parameters('resourceId')]"
         }
     },
     "resources": [
@@ -299,7 +310,13 @@ In the following sample template, creation of a metric alert for a static thresh
 }
 ```
 
+</details>
+
 If you save the preceding JSON as *metricfromLogsAlertStatic.json*, you can couple it with a parameter JSON file for creation based on a Resource Manager template. Here's a sample parameter JSON file:
+
+<br>
+<details>
+<summary>Set parameters for the static-threshold alert</summary>
 
 ```json
 {
@@ -331,7 +348,7 @@ If you save the preceding JSON as *metricfromLogsAlertStatic.json*, you can coup
             "value": true
         },
         "resourceId": {
-            "value": "/subscriptions/1234-56789-1234-567a/resourceGroups/myRG/providers/Microsoft.OperationalInsights/workspaces/workspaceName"
+            "value": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>"
         },
         "metricName":{
             "value": "Average_% Idle Time"
@@ -346,29 +363,63 @@ If you save the preceding JSON as *metricfromLogsAlertStatic.json*, you can coup
             "value": "Average"
         },
         "actionGroupId": {
-            "value": "/subscriptions/1234-56789-1234-567a/resourceGroups/myRG/providers/microsoft.insights/actionGroups/actionGroupName"
+            "value": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.Insights/actionGroups/<ActionGroupName>"
         }
     }
 }
 ```
 
-Assuming that you saved the preceding parameter file as *metricfromLogsAlertStatic.parameters.json*, you can create metric alerts for logs by using the [Resource Manager template for creation in the Azure portal](/azure/azure-resource-manager/templates/deploy-portal).
+</details>
 
-Alternatively, you can use this Azure PowerShell command:
+Save the preceding parameter file as *metricfromLogsAlertStatic.parameters.json*, and then choose a deployment method.
 
-```powershell
-New-AzResourceGroupDeployment -ResourceGroupName "myRG" -TemplateFile metricfromLogsAlertStatic.json TemplateParameterFile metricfromLogsAlertStatic.parameters.json
-```
+# [Portal](#tab/portal)
 
-Or, you can deploy the Resource Manager template by using the Azure CLI:
+You can create metric alerts for logs by using the [Resource Manager template for creation in the Azure portal](/azure/azure-resource-manager/templates/deploy-portal).
+
+# [Azure CLI](#tab/cli)
+
+The following Azure CLI example uses the [`az deployment group create`](/cli/azure/deployment/group#az-deployment-group-create) command.
 
 ```bash
-az deployment group create --resource-group myRG --template-file metricfromLogsAlertStatic.json --parameters @metricfromLogsAlertStatic.parameters.json
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+
+# Deploy the metric alert and log-to-metric rule
+az deployment group create \
+    --resource-group "$resourceGroupName" \
+    --template-file metricfromLogsAlertStatic.json \
+    --parameters @metricfromLogsAlertStatic.parameters.json
 ```
+
+# [Azure PowerShell](#tab/powershell)
+
+The following Azure PowerShell example uses the [`New-AzResourceGroupDeployment`](/powershell/module/az.resources/new-azresourcegroupdeployment) cmdlet.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+
+# Define parameters for New-AzResourceGroupDeployment
+$newAzResourceGroupDeploymentParams = @{
+    ResourceGroupName     = $resourceGroupName
+    TemplateFile          = "metricfromLogsAlertStatic.json"
+    TemplateParameterFile = "metricfromLogsAlertStatic.parameters.json"
+}
+
+# Deploy the metric alert and log-to-metric rule
+New-AzResourceGroupDeployment @newAzResourceGroupDeploymentParams
+```
+
+---
 
 ### Metric alert for logs with dynamic thresholds
 
 In the following sample template, creation of a metric alert for dynamic thresholds depends on successful creation of the rule for extracting metrics from logs via `scheduledQueryRules`.
+
+<br>
+<details>
+<summary>Create a log-to-metric rule and dynamic-threshold alert</summary>
 
 ```json
 {
@@ -541,7 +592,7 @@ In the following sample template, creation of a metric alert for dynamic thresho
     },
     "variables": {
         "convertRuleSourceWorkspace": {
-            "SourceId": "/subscriptions/1234-56789-1234-567a/resourceGroups/resourceGroupName/providers/Microsoft.OperationalInsights/workspaces/workspaceName"
+            "SourceId": "[parameters('resourceId')]"
         }
     },
     "resources": [
@@ -609,7 +660,13 @@ In the following sample template, creation of a metric alert for dynamic thresho
 }
 ```
 
+</details>
+
 If you save the preceding JSON as *metricfromLogsAlertDynamic.json*, you can couple it with a parameter JSON file for creation based on a Resource Manager template. Here's a sample parameter JSON file:
+
+<br>
+<details>
+<summary>Set parameters for the dynamic-threshold alert</summary>
 
 ```json
 {
@@ -641,7 +698,7 @@ If you save the preceding JSON as *metricfromLogsAlertDynamic.json*, you can cou
             "value": true
         },
         "resourceId": {
-            "value": "/subscriptions/1234-56789-1234-567a/resourceGroups/myRG/providers/Microsoft.OperationalInsights/workspaces/workspaceName"
+            "value": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>"
         },
         "metricName":{
             "value": "Average_% Idle Time"
@@ -662,28 +719,58 @@ If you save the preceding JSON as *metricfromLogsAlertDynamic.json*, you can cou
             "value": "Average"
         },
         "actionGroupId": {
-            "value": "/subscriptions/1234-56789-1234-567a/resourceGroups/myRG/providers/microsoft.insights/actionGroups/actionGroupName"
+            "value": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.Insights/actionGroups/<ActionGroupName>"
         }
     }
 }
 ```
 
-Assuming that you saved the preceding parameter file as *metricfromLogsAlertDynamic.parameters.json*, you can create metric alerts for logs by using the [Resource Manager template for creation in the Azure portal](/azure/azure-resource-manager/templates/deploy-portal).
+</details>
 
-Alternatively, you can use this Azure PowerShell command:
+Save the preceding parameter file as *metricfromLogsAlertDynamic.parameters.json*, and then choose a deployment method.
 
-```powershell
-New-AzResourceGroupDeployment -ResourceGroupName "myRG" -TemplateFile metricfromLogsAlertDynamic.json TemplateParameterFile metricfromLogsAlertDynamic.parameters.json
-```
+# [Portal](#tab/portal)
 
-Or, you can deploy the Resource Manager template by using the Azure CLI:
+You can create metric alerts for logs by using the [Resource Manager template for creation in the Azure portal](/azure/azure-resource-manager/templates/deploy-portal).
+
+# [Azure CLI](#tab/cli)
+
+The following Azure CLI example uses the [`az deployment group create`](/cli/azure/deployment/group#az-deployment-group-create) command.
 
 ```bash
-az deployment group create --resource-group myRG --template-file metricfromLogsAlertDynamic.json --parameters @metricfromLogsAlertDynamic.parameters.json
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+
+# Deploy the metric alert and log-to-metric rule
+az deployment group create \
+    --resource-group "$resourceGroupName" \
+    --template-file metricfromLogsAlertDynamic.json \
+    --parameters @metricfromLogsAlertDynamic.parameters.json
 ```
+
+# [Azure PowerShell](#tab/powershell)
+
+The following Azure PowerShell example uses the [`New-AzResourceGroupDeployment`](/powershell/module/az.resources/new-azresourcegroupdeployment) cmdlet.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+
+# Define parameters for New-AzResourceGroupDeployment
+$newAzResourceGroupDeploymentParams = @{
+    ResourceGroupName     = $resourceGroupName
+    TemplateFile          = "metricfromLogsAlertDynamic.json"
+    TemplateParameterFile = "metricfromLogsAlertDynamic.parameters.json"
+}
+
+# Deploy the metric alert and log-to-metric rule
+New-AzResourceGroupDeployment @newAzResourceGroupDeploymentParams
+```
+
+---
 
 ## Related content
 
-- Learn more about [metric alerts](../alerts/alerts-metric.md).
-- Learn about [log search alerts in Azure](./alerts-types.md#log-alerts).
-- Learn about [alerts in Azure](./alerts-overview.md).
+* Learn more about [metric alerts](../alerts/alerts-metric.md).
+* Learn about [log search alerts in Azure](./alerts-types.md#log-alerts).
+* Learn about [alerts in Azure](./alerts-overview.md).

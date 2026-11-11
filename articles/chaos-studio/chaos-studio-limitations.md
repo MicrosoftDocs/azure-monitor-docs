@@ -11,9 +11,9 @@ ai-usage: ai-assisted
 
 # Limitations and known issues for Experiments (classic)
 
-These Azure Chaos Studio limitations apply to Experiments (classic). For current-model constraints, use [Chaos Studio Workspaces limitations and known issues](chaos-studio-workspaces-limitations.md). Classic target, agent, and automation restrictions don't define Workspaces support.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+These Azure Chaos Studio limitations apply to Experiments (classic). For current-model constraints, use [Chaos Studio Workspaces limitations and known issues](chaos-studio-workspaces-limitations.md). Classic target, agent, and automation restrictions don't define Workspaces support.
 
 The following limitations and known issues apply to Experiments (classic).
 
@@ -34,7 +34,7 @@ The following limitations and known issues apply to Experiments (classic).
 - **Private Link** - We don't support Azure portal UI experiments for Agent-based experiments using Private Link. These restrictions DON'T apply to our Service-direct faults
 - **Customer-Managed Keys** You need to use our 2023-10-27-preview REST API via a CLI to create CMK-enabled experiments. We don't support portal UI experiments using CMK at this time. Experiment info will appear in ARG within the subscription - this is a known issue today, but is limited to only ARG and only viewable by the subscription. 
 - **Java SDK** At present, there's no dedicated Java SDK. If this is something you would use, reach out to us with your [feature request](https://github.com/microsoft/chaos-studio/issues). 
-- **Built-in roles** - While Chaos Studio does have [built-in roles to manage access to Chaos Studio operations](chaos-studio-permissions-security.md#azure-resource-manager-operations-and-roles), we don't have least-privileged built-in roles to grant access to fault injection on Azure resources. Permissions can be attained to run a chaos experiment by either assigning an existing [Azure built-in role](chaos-studio-fault-providers.md) or a created custom role to the experiment's identity.
+- **Built-in roles** - While Chaos Studio does have [built-in roles to manage access to Chaos Studio operations](chaos-studio-permissions-security.md#azure-resource-manager-operations-and-roles), we don't have least-privileged built-in roles to grant access to fault injection on Azure resources. Permissions can be attained to run a chaos experiment by either assigning an existing [Azure built-in role](chaos-studio-workspaces-supported-resources.md) or a created custom role to the experiment's identity.
 - **Agent Service Tags** Currently we don't have service tags available for our Agent-based faults.
 - **Chaos Studio Private Accesses (CSPA)** - For the CSPA resource type, there's a **strict 1:1 mapping of Chaos Target:CSPA Resource (abstraction for private endpoint).** We only allow **5 CSPA resources to be created per Subscription** to maintain the expected experience for all of our customers.  
 

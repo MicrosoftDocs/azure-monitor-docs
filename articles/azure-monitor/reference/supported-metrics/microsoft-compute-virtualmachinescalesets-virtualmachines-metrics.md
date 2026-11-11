@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Compute/virtualMachineScaleSets/virtualMachines
 description: Reference for Microsoft.Compute/virtualMachineScaleSets/virtualMachines metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 11/09/2026
 ms.custom: Microsoft.Compute/virtualMachineScaleSets/virtualMachines, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.

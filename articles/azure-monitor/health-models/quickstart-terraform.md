@@ -1,5 +1,5 @@
 ---
-title: Azure Monitor health model Terraform quickstart (preview)
+title: Azure Monitor health model Terraform quickstart
 description: Use Terraform and the AzAPI provider to deploy and verify an Azure Monitor health model with resource entities and metric signals.
 ms.topic: quickstart
 ms.date: 09/10/2026
@@ -10,14 +10,11 @@ ms.custom:
 #customer intent: As an Azure user, I want to deploy a health model with Terraform so that I can automate Health Models deployment.
 ---
 
-# Quickstart: Create a health model with Terraform (preview)
+# Quickstart: Create a health model with Terraform
 
 In this quickstart, you use Terraform to create an Azure Monitor health model that represents an application and two Azure resources. The model uses the `Availability` metric from a storage account and key vault to evaluate their health and propagate it to the application.
 
 The sample uses the [AzAPI Terraform provider](https://registry.terraform.io/providers/Azure/azapi/latest/docs) for Health Models resources because the AzureRM provider doesn't currently provide a native Health Models resource.
-
-> [!IMPORTANT]
-> Azure Monitor health models are in preview and might change. Microsoft provides limited support for preview features. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to features that are in preview or otherwise not yet released into general availability.
 
 ## Prerequisites
 

@@ -11,9 +11,9 @@ ms.custom: template-how-to
 
 # Create service-direct faults in the portal (classic)
 
-This portal guide tests Azure Cosmos DB failover with Azure Chaos Studio Experiments (classic). For current-model tests, check the [Chaos Studio Workspaces Scenario catalog](chaos-studio-scenarios.md) and [Workspaces quickstart](quickstart-create-workspace.md). Choose a Scenario only if its Actions cover your required outage pattern.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This portal guide tests Azure Cosmos DB failover with Azure Chaos Studio Experiments (classic). For current-model tests, check the [Chaos Studio Workspaces Scenario catalog](chaos-studio-scenarios.md) and [Workspaces quickstart](quickstart-create-workspace.md). Choose a Scenario only if its Actions cover your required outage pattern.
 
 You can use a chaos experiment to verify that your application is resilient to failures by causing those failures in a controlled environment. In this article, you cause a multi-read, single-write Azure Cosmos DB failover by using a chaos experiment and Azure Chaos Studio. Running this experiment can help you defend against data loss when a failover event occurs.
 
@@ -69,7 +69,7 @@ Now you can create your experiment. A chaos experiment defines the actions you w
    ![Screenshot that shows reviewing and creating an experiment.](images/tutorial-service-direct-add-review.png)
 
 ## Give the experiment permission to your target resource
-When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. This identity must be given [appropriate permissions](chaos-studio-fault-providers.md) to the target resource for the experiment to run successfully. You can use these steps for any resource and target type by modifying the role assignment in step 3 to match the [appropriate role for that resource and target type.](chaos-studio-fault-providers.md).
+When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. You must give this identity [appropriate permissions](chaos-studio-workspaces-supported-resources.md) to the target resource for the experiment to run successfully. You can use these steps for any resource and target type by modifying the role assignment in step 3 to match the [appropriate role for that resource and target type.](chaos-studio-workspaces-supported-resources.md)
 
 1. Go to your Azure Cosmos DB account and select **Access control (IAM)**.
 

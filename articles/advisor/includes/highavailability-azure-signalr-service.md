@@ -26,7 +26,6 @@ For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/re
 
 ResourceType: microsoft.signalrservice/webpubsub  
 Recommendation ID: b2bab712-303b-486c-b9fc-3588fa47c00d  
-Subcategory: undefined
 
 <!--b2bab712-303b-486c-b9fc-3588fa47c00d_end-->
 

@@ -1,5 +1,5 @@
 ---
-title: Health modeling with Azure Monitor health models (preview)
+title: Health modeling with Azure Monitor health models
 description: Learn how health modeling connects technical telemetry to customer commitments and meaningful workload health in Azure Monitor health models.
 ms.topic: concept-article
 ms.reviewer: megangoode
@@ -9,11 +9,11 @@ ai-usage: ai-assisted
 #customer intent: As someone adopting Azure Monitor health models, I want to understand how health modeling connects technical evidence to customer commitments so that I can apply it to my workload.
 ---
 
-# Health modeling with Azure Monitor health models (preview)
+# Health modeling with Azure Monitor health models
 
 Health modeling translates the technical signals that a workload produces into meaningful health states that stakeholders can understand and act on. Instead of asking which metric crossed a threshold, a health model answers questions about outcomes, such as whether customers can place orders right now.
 
-Azure Monitor health models (preview) provide a way to represent these outcomes and connect them to the workload components and telemetry that support them. This article explains the commitment-first approach to health modeling. It assumes that you're familiar with basic monitoring concepts, such as metrics, logs, and alerts.
+Azure Monitor health models provide a way to represent these outcomes and connect them to the workload components and telemetry that support them. This article explains the commitment-first approach to health modeling. It assumes that you're familiar with basic monitoring concepts, such as metrics, logs, and alerts.
 
 ## Telemetry doesn't describe customer impact
 
@@ -35,7 +35,7 @@ Health isn't the same as whether a component is running. A running component mig
 
 ## How health modeling maps to product capabilities
 
-Azure Monitor health models (preview) provide the following capabilities to connect customer commitments, workload components, and technical evidence. The linked sections explain the product behavior and configuration in detail.
+Azure Monitor health models provide the following capabilities to connect customer commitments, workload components, and technical evidence. The linked sections explain the product behavior and configuration in detail.
 
 | Health modeling need | Azure Monitor health models capability | Supporting guidance |
 |---|---|---|

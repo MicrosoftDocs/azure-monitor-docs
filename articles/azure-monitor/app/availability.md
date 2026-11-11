@@ -2,7 +2,7 @@
 title: Application Insights availability tests
 description: Set up recurring web tests to monitor availability and responsiveness of your app or website.
 ms.topic: how-to
-ms.date: 02/27/2026
+ms.date: 09/28/2026
 ms.custom:
   - sfi-ropc-nochange
 ---
@@ -26,7 +26,7 @@ Application Insights supports Standard tests for current availability monitoring
 
 
 > [!IMPORTANT]
-> - **URL ping tests are deprecated:** On September 30, 2026, [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) in Application Insights will be retired. Existing URL ping tests are removed from your resources. Review the [pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing) for standard tests and [transition](#migrate-classic-url-ping-tests-to-standard-tests) to using them before September 30, 2026 to ensure you can continue to run single-step availability tests in your Application Insights resources.
+> - **URL ping tests are deprecated:** [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) in Application Insights were originally planned for retirement on September 30, 2026. In response to customer feedback requesting more time to complete migration, the retirement date has been extended by 24 months to September 30, 2028. On September 30, 2028, existing URL ping tests are removed from your resources. Review the [pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing) for standard tests and [transition](#migrate-classic-url-ping-tests-to-standard-tests) to using them before September 30, 2028, to ensure you can continue to run single-step availability tests in your Application Insights resources.
 > - **Custom availability tests with `TrackAvailability()` are archived Classic API guidance:** For existing implementations, see [Custom availability tests with `TrackAvailability()`](/previous-versions/azure/azure-monitor/app/classic-api?tabs=dotnet%2Cnet#custom-availability-tests-with-trackavailability). Use standard tests for current availability monitoring when possible.
 
 ## Create an availability test
@@ -219,7 +219,7 @@ You can use Log Analytics to view your availability results (`availabilityResult
 
 ## Migrate classic URL ping tests to standard tests
 
-URL ping tests retire on September 30, 2026. Use the following procedure to identify existing [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) and create [standard tests](#types-of-availability-tests) that replicate the functionality of your URL ping tests. By using this process, you can more easily start using the advanced features of standard tests while using your previously created URL ping tests.
+URL ping tests retire on September 30, 2028. Use the following procedure to identify existing [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) and create [standard tests](#types-of-availability-tests) that replicate the functionality of your URL ping tests. By using this process, you can more easily start using the advanced features of standard tests while using your previously created URL ping tests.
 
 Review each migrated test before enabling it. Standard tests support capabilities that aren't represented in URL ping tests, including custom headers, request bodies, and proactive TLS/SSL certificate checks. Some URL ping test validation rules might require manual conversion.
 

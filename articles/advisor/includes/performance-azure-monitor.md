@@ -14,9 +14,9 @@ ms.custom: Performance Azure Monitor
   
 <!--a74bb2bd-d97d-4f3e-9c70-063dd7dce6e0_begin-->
 
-#### Optimize the application code to reduce CPU and memory usage  
+#### Optimize your application code to reduce CPU and memory usage  
   
-Application Insights Code Optimizations analyzes .NET Profiler traces to detect CPU and memory bottlenecks in cloud apps, providing actionable code-level recommendations via GitHub Copilot to improve performance.  
+Application Insights Code Optimizations analyzes your .NET Profiler traces and identifies CPU and memory bottlenecks that limit performance. You get code-level recommendations through GitHub Copilot to optimize hot paths and improve app responsiveness.  
   
 **Potential benefits**: Improve application performance through targeted code fixes.  
 

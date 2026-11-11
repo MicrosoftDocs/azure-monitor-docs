@@ -11,9 +11,9 @@ ms.custom: template-how-to
 
 # Create agent-based faults in the portal (classic)
 
-This portal guide creates agent-based faults with Azure Chaos Studio Experiments (classic). For current-model tests, use the [CPU Pressure Scenario in Chaos Studio Workspaces](chaos-studio-scenarios.md#cpu-pressure), where the Scenario manages agent installation for supported virtual machines.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This portal guide creates agent-based faults with Azure Chaos Studio Experiments (classic). For current-model tests, use the [CPU Pressure Scenario in Chaos Studio Workspaces](chaos-studio-scenarios.md#cpu-pressure), where the Scenario manages agent installation for supported virtual machines.
 
 You can use a chaos experiment to verify that your application is resilient to failures by causing those failures in a controlled environment. In this article, you cause a high % of CPU utilization event on a Linux virtual machine (VM) by using a chaos experiment and Azure Chaos Studio. Running this experiment can help you defend against an application from becoming resource starved.
 
@@ -81,7 +81,7 @@ Now you can create your experiment. A chaos experiment defines the actions you w
    ![Screenshot that shows reviewing and creating the experiment.](images/tutorial-agent-based-add-review.png)
 
 ## Give the experiment permission to your virtual machine
-When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. This identity must be given [appropriate permissions](chaos-studio-fault-providers.md) to the target resource for the experiment to run successfully.
+When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. You must give this identity [appropriate permissions](chaos-studio-workspaces-supported-resources.md) to the target resource for the experiment to run successfully.
 
 1. Go to your VM and select **Access control (IAM)**.
 

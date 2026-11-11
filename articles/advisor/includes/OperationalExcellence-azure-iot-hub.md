@@ -27,7 +27,6 @@ For more information, see [Understand Azure IoT Hub message routing - Azure IoT 
 ResourceType: microsoft.devices/iothubs  
 Recommendation ID: 31e5d980-53b5-4475-855e-b6d71b70c2af  
 
-
 <!--31e5d980-53b5-4475-855e-b6d71b70c2af_end-->
 
 <!--articleBody-->

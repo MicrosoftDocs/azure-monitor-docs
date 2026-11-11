@@ -253,7 +253,7 @@ In addition to developing the application, the *developer* maintains the applica
 
 This layer covers the application code running in your containers, including its performance, failures, and availability.
 
-Implement the [Azure Monitor OpenTelemetry Distro](../app/opentelemetry-enable.md) to enable [Application Insights experiences](../app/app-insights-overview.md#application-insights-experiences) and configure [sampling](../app/opentelemetry-sampling.md#sampling-in-azure-monitor-application-insights-with-opentelemetry) to control costs.
+Implement the [Microsoft OpenTelemetry Distro](../app/opentelemetry-enable.md) for .NET, Node.js, and Python, or the Azure Monitor OpenTelemetry Distro for Java, to enable [Application Insights experiences](../app/app-insights-overview.md#application-insights-experiences) and configure [sampling](../app/opentelemetry-sampling.md#sampling-in-azure-monitor-application-insights-with-opentelemetry) to control costs.
 
 #### Application Insights experiences
 - Check the [overview dashboard](../app/overview-dashboard.md) for at-a-glance assessment of application health and performance.

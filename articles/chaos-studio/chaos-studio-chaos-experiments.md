@@ -11,9 +11,9 @@ ai-usage: ai-assisted
 
 # Experiments (classic) overview
 
-Azure Chaos Studio Experiments (classic) defines resilience tests with faults, targets, steps, and branches. For current-model tests, use [Chaos Studio Workspaces Scenarios](chaos-studio-scenarios.md), or [compare Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md) to choose the model that fits your requirements.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+Azure Chaos Studio Experiments (classic) defines resilience tests with faults, targets, steps, and branches. For current-model tests, use [Chaos Studio Workspaces Scenarios](chaos-studio-scenarios.md), or [compare Workspaces and Experiments (classic)](chaos-studio-workspaces-vs-experiments.md) to choose the model that fits your requirements.
 
 In Experiments (classic), you create and run chaos experiments. A chaos experiment is an Azure resource that describes the faults to run and the resources to target.
 

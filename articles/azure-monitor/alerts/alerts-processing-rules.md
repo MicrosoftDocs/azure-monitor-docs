@@ -75,8 +75,7 @@ Severity |  The rule applies only to alerts with the selected severities. |
 
 * If you define multiple filters in a rule, all the rules apply. There's a logical AND between all filters.  
   For example, if you set both `resource type = "Virtual Machines"` and `severity = "Sev0"`, then the rule applies only for `Sev0` alerts on virtual machines in the scope.
-* Each filter can include up to five values. There's a logical OR between the values.  
-  For example, if your set description contains "this, that" (in the field there's no need to write the apostrophes), then the rule applies only to alerts whose description contains either "this" or "that".
+* Each filter can include up to five values. There's a logical OR between the values. For the  `Alert context (payload)` filter with the Contains operator, configure each server name or prefix as a separate value. When using an API or deployment template, `"values": ["server-a", "server-b"]` matches an alert context containing either prefix. By contrast, `"values": ["server-a,server-b"]` supplies one combined string. The service doesn't split it at the comma, so an alert context containing only server-a won't match that value.
 * Notice that you don't have any spaces (before, after or between) the string that is matched it effects the matching of the filter.
 
 ### What should this rule do?

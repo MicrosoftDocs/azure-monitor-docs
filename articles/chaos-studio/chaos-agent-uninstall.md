@@ -12,9 +12,9 @@ ms.custom:
 
 # Uninstall the Chaos Studio agent (classic)
 
-Remove an Azure Chaos Studio agent that you manage for Experiments (classic) with these steps. In the current model, [Workspaces agent-based Scenarios](chaos-studio-scenarios.md#agent-based-scenario-requirements) install and remove the agent as part of each run.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+Remove an Azure Chaos Studio agent that you manage for Experiments (classic) with these steps. In the current model, [Workspaces agent-based Scenarios](chaos-studio-scenarios.md#agent-based-scenario-requirements) install and remove the agent as part of each run.
 
 This article describes how to remove the Chaos Agent from your virtual machine (VM) or virtual machine scale set.
 

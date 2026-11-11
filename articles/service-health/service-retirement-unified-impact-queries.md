@@ -168,7 +168,7 @@ advisorresources
 ### Query sample payload
 ```json
 {
-  "resourceId": "/subscriptions/f2a74056-fc6e-41fd-ae49-248688b52f01/resourcegroups/rg-loadtesting/providers/microsoft.storage/storageaccounts/rgloadtestinga4ee",
+  "resourceId": "/subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourcegroups/rg-loadtesting/providers/microsoft.storage/storageaccounts/rgloadtestinga4ee",
   "title": "Retirement notice: Migrate your legacy Azure general-purpose v1 account to a general-purpose v2 account",
   "retirementDate": "2026-10-13T00:00:00Z",
   "status": "Active",

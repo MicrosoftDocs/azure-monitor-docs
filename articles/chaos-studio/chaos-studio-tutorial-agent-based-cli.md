@@ -11,9 +11,9 @@ ms.devlang: azurecli
 
 # Create agent-based faults with Azure CLI (classic)
 
-This Azure CLI guide creates agent-based faults with Azure Chaos Studio Experiments (classic). For current-model CPU tests, use the [Workspaces CPU Pressure Scenario](chaos-studio-scenarios.md#cpu-pressure) and [Workspaces CLI guide](chaos-studio-manage-cli.md). Check Scenario requirements before choosing a model.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This Azure CLI guide creates agent-based faults with Azure Chaos Studio Experiments (classic). For current-model CPU tests, use the [Workspaces CPU Pressure Scenario](chaos-studio-scenarios.md#cpu-pressure) and [Workspaces CLI guide](chaos-studio-manage-cli.md). Check Scenario requirements before choosing a model.
 
 You can use a chaos experiment to verify that your application is resilient to failures by causing those failures in a controlled environment. In this article, you cause a high % of CPU utilization event on a Linux virtual machine (VM) by using a chaos experiment and Azure Chaos Studio. Run this experiment to help you defend against an application from becoming resource starved.
 
@@ -262,7 +262,7 @@ After you've successfully deployed your VM, now you can create your experiment. 
 
 ## Give the experiment permission to your virtual machine
 
-When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. This identity must be given [appropriate permissions](chaos-studio-fault-providers.md) to the target resource for the experiment to run successfully. The Reader role is required for agent-based faults. Other roles that don't have */Read permission, such as Virtual Machine Contributor, won't grant appropriate permission for agent-based faults.
+When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. You must give this identity [appropriate permissions](chaos-studio-workspaces-supported-resources.md) to the target resource for the experiment to run successfully. The Reader role is required for agent-based faults. Other roles that don't have */Read permission, such as Virtual Machine Contributor, don't grant appropriate permission for agent-based faults.
 
 Give the experiment access to your VM or virtual machine scale set by using the following command. Replace `$EXPERIMENT_PRINCIPAL_ID` with the principal ID from the previous step. Replace `$RESOURCE_ID` with the resource ID of the target VM or virtual machine scale set. Be sure to use the resource ID of the VM, not the resource ID of the chaos agent used in the experiment definition. Run this command for each VM or virtual machine scale set targeted in your experiment.
 

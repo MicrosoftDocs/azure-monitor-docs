@@ -9,14 +9,11 @@ ms.custom:
   - devx-track-azurecli
 ---
 
-# Submit data for externally evaluated signals by using the Health Report Ingestion API (preview)
+# Submit data for externally evaluated signals by using the Health Report Ingestion API
 
 Use the [Health Report Ingestion API](/rest/api/health-models/entities/ingest-health-report?view=rest-health-models-2026-05-01-preview&preserve-view=true) to add health signals that an external system calculates to an existing [Azure Monitor health model](./overview.md). For example, a synthetic test or an on-premises monitoring system can report the current state of a component that Azure Monitor doesn't evaluate directly.
 
 Each report applies to a named signal on an entity. The health model includes the signal in the entity's health calculation and propagates the resulting state through the model's relationships. Reports expire unless the external system refreshes them.
-
-> [!IMPORTANT]
-> Azure Monitor health models and the `health-models` Azure CLI extension are in preview and might change. Microsoft provides limited support for preview features. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to features that are in preview or otherwise not yet released into general availability.
 
 ## Prerequisites
 

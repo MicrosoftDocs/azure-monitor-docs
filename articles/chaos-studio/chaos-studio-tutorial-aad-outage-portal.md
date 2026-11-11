@@ -11,9 +11,9 @@ ms.custom: template-how-to
 
 # Simulate a Microsoft Entra ID outage (classic)
 
-This Azure Chaos Studio template tests Microsoft Entra ID connectivity with Experiments (classic). For the current model, use the [Microsoft Entra ID Outage Scenario in Chaos Studio Workspaces](chaos-studio-scenarios.md#microsoft-entra-id-outage). Both tests affect connectivity to identity endpoints, not the identity service itself.
-
 [!INCLUDE [chaos-studio-classic-note](includes/chaos-studio-classic-note.md)]
+
+This Azure Chaos Studio template tests Microsoft Entra ID connectivity with Experiments (classic). For the current model, use the [Microsoft Entra ID Outage Scenario in Chaos Studio Workspaces](chaos-studio-scenarios.md#microsoft-entra-id-outage). Both tests affect connectivity to identity endpoints, not the identity service itself.
 
 You can use a chaos experiment to verify that your application is resilient to failures by causing those failures in a controlled environment. In this article, you induce an outage on a Microsoft Entra ID resource using a pre-populated experiment template and Azure Chaos Studio.
 

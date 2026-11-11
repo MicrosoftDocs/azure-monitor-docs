@@ -37,6 +37,8 @@ You can get these recommendations on the **Operational Excellence** tab of the A
 
 [!INCLUDE [OperationalExcellence-azure-arc-enabled-kubernetes.md](./includes/OperationalExcellence-azure-arc-enabled-kubernetes.md)]
 
+[!INCLUDE [operationalexcellence-azure-arc-enabled-servers.md](./includes/operationalexcellence-azure-arc-enabled-servers.md)]
+
 [!INCLUDE [OperationalExcellence-azure-cache-for-redis.md](./includes/OperationalExcellence-azure-cache-for-redis.md)]
 
 [!INCLUDE [OperationalExcellence-azure-container-apps.md](./includes/OperationalExcellence-azure-container-apps.md)]
@@ -48,6 +50,8 @@ You can get these recommendations on the **Operational Excellence** tab of the A
 [!INCLUDE [OperationalExcellence-azure-database-for-mysql.md](./includes/OperationalExcellence-azure-database-for-mysql.md)]
 
 [!INCLUDE [OperationalExcellence-azure-dedicated-hsm.md](./includes/OperationalExcellence-azure-dedicated-hsm.md)]
+
+[!INCLUDE [operational-excellence-azure-documentdb.md](./includes/operational-excellence-azure-documentdb.md)]
 
 [!INCLUDE [OperationalExcellence-azure-iot-hub.md](./includes/OperationalExcellence-azure-iot-hub.md)]
 
@@ -75,9 +79,9 @@ You can get these recommendations on the **Operational Excellence** tab of the A
 
 [!INCLUDE [OperationalExcellence-event-hubs.md](./includes/OperationalExcellence-event-hubs.md)]
 
-[!INCLUDE [OperationalExcellence-key-vault.md](./includes/OperationalExcellence-key-vault.md)]
+[!INCLUDE [operationalexcellence-hdinsight.md](./includes/operationalexcellence-hdinsight.md)]
 
-[!INCLUDE [OperationalExcellence-media-services.md](./includes/OperationalExcellence-media-services.md)]
+[!INCLUDE [OperationalExcellence-key-vault.md](./includes/OperationalExcellence-key-vault.md)]
 
 [!INCLUDE [OperationalExcellence-microsoft.apicenter.md](./includes/OperationalExcellence-microsoft.apicenter.md)]
 
