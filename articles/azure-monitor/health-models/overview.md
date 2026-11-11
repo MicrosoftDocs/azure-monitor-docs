@@ -2,7 +2,7 @@
 title: Health models in Azure Monitor (preview)
 description: Overview of health models in Azure Monitor that allow you to track the health of your Azure resources and workloads.
 ms.topic: overview
-ms.date: 05/21/2025
+ms.date: 11/11/2026
 ai-usage: ai-assisted
 ---
 
