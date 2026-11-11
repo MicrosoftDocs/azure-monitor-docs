@@ -3,7 +3,7 @@ title: What is Azure Monitor pipeline?
 description: Learn what Azure Monitor pipeline is, when to use it, and the recommended setup sequence for edge and multicloud data collection.
 ai-usage: ai-assisted
 ms.topic: overview
-ms.date: 09/22/2026
+ms.date: 11/09/2026
 ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 ---
 
@@ -13,6 +13,8 @@ ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 Azure Monitor can already collect telemetry from on-premises, edge, and multicloud environments. In many enterprise environments, sending large volumes of telemetry directly to the cloud can increase ingestion costs, introduce reliability risks during connectivity loss, and limit your control over what data is collected. Azure Monitor pipeline builds on existing Azure Monitor collection capabilities for these scenarios.
 
 Azure Monitor pipeline provides centralized governance and a single point of control that runs close to your data sources, so you can filter, transform, aggregate, and route telemetry before it's sent to Azure Monitor. This approach helps you reduce ingestion volume, improve reliability in disconnected environments, and apply consistent data processing across hybrid and multicloud deployments. Built on OpenTelemetry technology, the pipeline supports standard ingestion protocols including Syslog and OTLP, enabling it to receive telemetry from a wide range of clients and environments.
+
+Azure Monitor pipeline runs on Arc-enabled Kubernetes. You can also deploy it on a Linux VM in Azure or an Arc-enabled Linux server (public preview) without Kubernetes. For deployment guidance, supported configurations, and preview limitations, see [Configure Azure Monitor pipeline on Linux VMs](./pipeline-configure-vm.md).
 
 :::image type="content" source="media/pipeline-overview/architecture.png" alt-text="Diagram showing typical Azure Monitor pipeline architecture with multiple locations and devices." lightbox="media/pipeline-overview/architecture.png" border="false":::
 
@@ -50,12 +52,12 @@ Azure Monitor pipeline includes a set of capabilities that help address common i
 
 ## How Azure Monitor pipeline works
 
-The pipeline is a containerized solution that runs on an [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your datacenter, edge location, or another cloud provider. It receives telemetry from clients over standard protocols such as Syslog and OpenTelemetry (OTLP), processes that telemetry, and sends it to Azure Monitor. The pipeline is configured through the Azure portal, ARM templates, Bicep, or Azure CLI.
+The Kubernetes-hosted pipeline is a containerized solution that runs on an [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your datacenter, edge location, or another cloud provider. It receives telemetry from clients over standard protocols such as Syslog and OpenTelemetry (OTLP), processes that telemetry, and sends it to Azure Monitor. The pipeline is configured through the Azure portal, ARM templates, Bicep, or Azure CLI.
 
 > [!NOTE]
 > Azure provides Azure Monitor pipeline with management and integration to Azure Monitor, but you're responsible for operating and maintaining the Kubernetes environment where the pipeline runs. This shared responsibility model allows you to retain control over your local infrastructure.
 
-A typical deployment is shown in the preceding image and includes the following components:
+A typical Kubernetes deployment is shown in the preceding image and includes the following components:
 
 - The pipeline runs on an Arc-enabled Kubernetes cluster at each on-premises, edge, or multicloud location.
 - Clients send Syslog data, including CEF, to the pipeline over TCP or UDP on port 514 by default.
@@ -78,7 +80,7 @@ Azure Monitor pipeline runs off the monitored resources as centralized collectio
 
 | Aspect | Azure Monitor agent | Azure Monitor pipeline |
 |:---|:---|:---|
-| Deployment scope | On each monitored machine or Kubernetes cluster | Centrally on an Arc-enabled Kubernetes cluster |
+| Deployment scope | On each monitored machine or Kubernetes cluster | Centrally on Arc-enabled Kubernetes, or on Linux VMs in Azure and Arc-enabled Linux servers (preview) |
 | Collection pattern | Collects locally from the monitored resource | Receives supported telemetry over the network from many producers |
 | Use when | You need data from inside each resource or per-resource collection and resilience | You need centralized governance, high-volume fan-in, processing, or persistent buffering |
 
@@ -88,7 +90,7 @@ For guidance on selecting a collection architecture, see [Choose a topology for 
 
 ## Supported configurations
 
-Azure Monitor pipeline runs on Arc-enabled Kubernetes. Support depends on both the region and the Kubernetes distribution versions supported for the required `cert-manager` extension.
+The following table applies to Arc-enabled Kubernetes deployments. Support depends on both the region and the Kubernetes distribution versions supported for the required `cert-manager` extension. For Azure VM and Arc-enabled Linux server requirements and preview limitations, see [Configure Azure Monitor pipeline on Linux VMs](./pipeline-configure-vm.md).
 
 | Supported Kubernetes distributions | Supported regions |
 |:---|:---|
@@ -99,6 +101,7 @@ Supported regions, see [Product availability by region](https://azure.microsoft.
 ## Related articles
 
 - Complete the cluster setup in [Configure Azure Monitor pipeline](./pipeline-configure.md).
+- Configure the VM hosting options in [Configure Azure Monitor pipeline on Linux VMs (preview)](./pipeline-configure-vm.md).
 - Review gateway guidance in [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
 - Review encryption options in [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
 - Review data shaping options in [Transform data with Azure Monitor pipeline](./pipeline-transformations.md).
