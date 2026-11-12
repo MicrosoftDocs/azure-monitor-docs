@@ -78,7 +78,7 @@ Send sensitive records to an alternate table with different role-based access co
 
 ## Enrich data
 
-Use a transformation to add information to data that provides business context or simplifies querying the data later. Use [string functions](data-collection-transformations-kql.md#scalar-functions) to extract critical information from a column and then use the `extend` statement to add a new column to the data source. The following example labels addresses in the [RFC1918 private IPv4 ranges](/kusto/query/ipv4-is-private-function#private-ipv4-addresses) as `Internal` and other valid IPv4 addresses as `External`. Adjust the ranges to match your organization's network.
+Use a transformation to add information to data that provides business context or simplifies querying the data later. Use [string functions](data-collection-transformations-kql.md#scalar-functions) to extract critical information from a column and then use the `extend` statement to add a new column to the data source. The following example labels addresses in the [RFC 1918 private IPv4 ranges](/kusto/query/ipv4-is-private-function?view=azure-monitor&preserve-view=true#private-ipv4-addresses) as `Internal` and all other values as `External`. The `ipv4_is_private()` function isn't in the list of functions supported in transformations, so the example compares the address octets directly. Adjust the ranges to match your organization's network.
 
 ```kusto
 source
