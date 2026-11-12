@@ -78,10 +78,15 @@ Send sensitive records to an alternate table with different role-based access co
 
 ## Enrich data
 
-Use a transformation to add information to data that provides business context or simplifies querying the data later. Use [string functions](data-collection-transformations-kql.md#scalar-functions) to extract critical information from a column and then use the `extend` statement to add a new column to the data source. The following example adds a column identifying whether an IP address in another column is internal or external.
+Use a transformation to add information to data that provides business context or simplifies querying the data later. Use [string functions](data-collection-transformations-kql.md#scalar-functions) to extract critical information from a column and then use the `extend` statement to add a new column to the data source. The following example labels addresses in the [RFC1918 private IPv4 ranges](/kusto/query/ipv4-is-private-function#private-ipv4-addresses) as `Internal` and other valid IPv4 addresses as `External`. Adjust the ranges to match your organization's network.
 
 ```kusto
-source | extend IpLocation = iff(split(ClientIp,".")[0] in ("10","192"), "Internal", "External")
+source
+| extend IpLocation = iff(
+    split(ClientIp, ".")[0] == "10"
+        or (split(ClientIp, ".")[0] == "172" and toint(split(ClientIp, ".")[1]) >= 16 and toint(split(ClientIp, ".")[1]) <= 31)
+        or (split(ClientIp, ".")[0] == "192" and split(ClientIp, ".")[1] == "168"),
+    "Internal", "External")
 ```
 
 ## Normalize data
