@@ -2,7 +2,7 @@
 title: Azure Monitor Agent extension versions
 description: Release notes and version history for the Azure Monitor Agent virtual machine extension, including Windows, Linux, and metrics updates.
 ms.topic: release-notes
-ms.date: 11/06/2026
+ms.date: 11/17/2026
 ms.custom: references_region
 ms.reviewer: shseth, nmangum
 ai-usage: ai-assisted
@@ -47,7 +47,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 | Month | Windows | Linux | Metrics | Highlights |
 |---|---|---|---|---|
-| [November 2026](#november-2026) | 1.47.1 | — | 2.2026.1020.841 | Security updates, log-configuration cleanup, histogram reliability fixes |
+| [November 2026](#november-2026) | 1.47.1 | 1.46.1 | 2.2026.1020.841 | Security updates, metrics configuration support, log-collection reliability and histogram fixes |
 | [October 2026](#october-2026) | 1.46.1 | — | 2.2026.921.1606 | Custom-log ingestion fix, Delos Cloud support, security updates |
 | [September 2026](#september-2026) | — | 1.45.0, 1.45.1 | 2.2026.807.1915, 2.2026.921.1606 | Guest-metric hotfix, log-data reliability fixes, protected-settings security fix |
 | [Aug 2026](#aug-2026) | 1.45 | 1.44 | 2.2026.703.954 | Windows data-integrity and reliability fixes, Linux distribution support, OTLP metrics improvements |
@@ -69,7 +69,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 ## November 2026
 
-**Versions:** Windows 1.47.1
+**Versions:** Windows 1.47.1, Linux 1.46.1
 
 ### Windows 1.47.1 (Rollout start date: Nov 5, 2026)
 
@@ -91,6 +91,40 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 - Fixed an issue where stale log-collection configuration could remain active after all data collection rule (DCR) associations were removed from a machine.
 - Fixed a metrics-collection crash when the same metric was reported with conflicting histogram types. Conflicting datapoints are now discarded instead of crashing the metrics collector.
+
+### Linux 1.46.1 (Rollout start date: Nov 16, 2026)
+
+> [!IMPORTANT]
+> This release tightens permissions on agent configuration and buffered-data directories. If custom tooling accesses these directories, review its access permissions before upgrading.
+
+**Customer action:** Upgrade to Linux 1.46.1 when it becomes available in your region to receive these security updates and reliability fixes.
+
+#### Security
+
+- Updated bundled .NET components to address [CVE-2026-111497](https://github.com/dotnet/announcements/issues/494): Buffer overflow in Brotli decompression.
+- Updated the bundled OpenTelemetry Collector to a version built with Go 1.27.3, addressing [CVE-2026-111943](https://pkg.go.dev/vuln/GO-2026-6809): Certificate validation involving untrusted intermediate certificates.
+- Strengthened validation of extension settings and custom-log file patterns.
+
+#### New features
+
+- Added metric configuration support for Prometheus metrics and OpenTelemetry performance-counter metrics sent to Azure Monitor workspaces.
+
+#### Improvements
+
+- Updated Metrics Extension to 2.2026.1020.841.
+- Updated the bundled OpenTelemetry Collector to 1.20261030.114814, which includes OpenTelemetry Collector 0.164.0.
+
+#### Fixes
+
+- Fixed custom text log collection stalls during log rotation and when many configured file paths don't exist.
+- Fixed stale custom-log configuration remaining active after all data collection rule (DCR) associations are removed.
+- Reduced duplicate log records after partial upload failures by retrying only the failed portions of an upload.
+- Fixed a condition that could stall log uploads and avoided unnecessary reloads of unchanged collection configuration.
+- Fixed an intermittent agent crash during shutdown.
+- Fixed rejection of proxy URLs with a trailing slash.
+- Fixed metrics-collection restart loops caused by leftover service configuration.
+- Fixed false RPM package-integrity warnings for agent files legitimately changed during installation or operation.
+- Fixed a metrics-collection crash when the same metric is reported with conflicting histogram types.
 
 ## October 2026
 
