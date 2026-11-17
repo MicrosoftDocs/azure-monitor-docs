@@ -1,14 +1,15 @@
 ---
 title: Azure Monitor REST API Index
-description: Lists the operation groups for the Azure Monitor REST API, which includes Application Insights, Log Analytics, and Monitor.
+description: Lists the operation groups for the Azure Monitor REST API, which includes health models, Application Insights, Log Analytics, and Monitor.
 ms.topic: reference
 ms.custom: cbo-v1.6
-ms.date: 04/29/2026
+ms.date: 11/12/2026
+ai-usage: ai-assisted
 ---
 
 # Azure Monitor REST API index
 
-Azure Monitor has a wide assortment of APIs. This index separates them into three primary sections, Azure Monitor, Application Insights, and Azure Monitor Logs.
+Azure Monitor has a wide assortment of APIs. This index includes APIs for Azure Monitor, Azure Monitor health models, Application Insights, and Azure Monitor Logs.
 
 > [!NOTE]
 > The Azure Monitor section does include the managed service *Managed Prometheus*, but other managed services such as *Azure Managed Grafana* and *Azure Monitor SCOM Managed Instance* use their own REST APIs and aren't included in this index.
@@ -103,6 +104,22 @@ These management APIs support related workflows in Azure Monitor and Azure Servi
 |------------------|-------------|
 | <a name="op-monitor-advisor-recommendation-metadata"></a>[Advisor recommendation metadata](/rest/api/advisor/recommendation-metadata/list?view=rest-advisor-2025-01-01&preserve-view=true) | Lists Azure Advisor recommendation metadata. Stable API version `2025-01-01` supports the `trackingIds/any` filter for Service Health retirement events. |
 | <a name="op-monitor-resource-graph"></a>[Resource Graph - Resources](/rest/api/azureresourcegraph/resourcegraph/resources/resources) | Query Azure resource and policy data. Omit `subscriptions` and `managementGroups` to use tenant scope, or specify one of those properties to restrict the query. |
+
+## Azure Monitor health models APIs
+
+These Azure Monitor health models APIs are part of the Azure Resource Manager (ARM) control plane and allow you to manage [health models](../health-models/overview.md) and retrieve entity health data.
+
+API endpoint is `management.azure.com`.
+
+| Operation groups | Description |
+|------------------|-------------|
+| <a name="op-health-models-authentication-settings"></a>[Authentication settings](/rest/api/health-models/authentication-settings) | Create, update, delete, and retrieve authentication settings for a health model. |
+| <a name="op-health-models-discovery-rules"></a>[Discovery rules](/rest/api/health-models/discovery-rules) | Manage discovery rules that automatically add entities to a health model. |
+| <a name="op-health-models-entities"></a>[Entities](/rest/api/health-models/entities) | Manage entities, retrieve health state and signal history, and submit health reports for externally evaluated signals. |
+| <a name="op-health-models-health-models"></a>[Health models](/rest/api/health-models/health-models) | Create, update, delete, and retrieve health models within a resource group or subscription. |
+| <a name="op-health-models-operations"></a>[Operations](/rest/api/health-models/operations) | List the available operations for the health models resource provider. |
+| <a name="op-health-models-relationships"></a>[Relationships](/rest/api/health-models/relationships) | Manage relationships between entities in a health model. |
+| <a name="op-health-models-signal-definitions"></a>[Signal definitions](/rest/api/health-models/signal-definitions) | Manage signal definitions used to evaluate entity health in a health model. |
 
 ## Application Insights APIs
 
