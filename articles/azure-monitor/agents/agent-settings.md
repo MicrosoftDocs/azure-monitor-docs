@@ -2,9 +2,10 @@
 title: Azure Monitor Agent Configuration
 description: Learn how to change Azure Monitor Agent configuration settings, including proxy, performance, and logging options on Azure VMs and Arc-enabled servers.
 ms.topic: install-set-up-deploy
-ms.date: 09/21/2026
+ms.date: 11/16/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: shseth, nmangum
+ai-usage: ai-assisted
 
 ---
 
@@ -32,18 +33,19 @@ These settings configure the Azure Monitor Agent and are organized by telemetry 
 
 | Telemetry type | Agent Settings collection | Setting name | Supported values and validation | Description |
 |:---|:---|:---|:---|:---|
-| General | `logs` | `MaxDiskQuotaInMB` | Integer from 4,000 through 1,000,000. Default is 10,000 MB. | Maximum disk space used by the Azure Monitor Agent local cache. The cache grows if cloud connectivity is lost, and the agent sends data after connectivity is restored. The agent loses data that exceeds the cache limit. |
-| Logs | `logs` | `UseTimeReceivedForForwardedEvents` | `0` or `1`. `0` uses `TimeGenerated`; `1` uses `TimeReceived`. | Controls the timestamp behavior for Microsoft Sentinel Windows Event Forwarding (WEF) data. |
-| General | `logs` | `Tags` | Any non-empty string. The service doesn't validate the format or delimiter. | User-defined tags associated with the agent configuration. |
-| General | `logs` | `DiskQuotaUsageInPercent` | Integer from 50 through 100. | Percentage of the configured disk quota at which the agent's quota behavior is controlled. |
+| General | `logs` | `MaxDiskQuotaInMB` | Integer from 4,000 through 1,000,000. Default is 10,000 MB on Windows and 10,240 MB on Linux. | Sets the local log-cache quota on Windows and Linux. The cache grows if cloud connectivity is lost, and the agent sends data after connectivity is restored. The agent loses data that exceeds the cache limit. On Linux, the effective log-buffer quota uses a percentage of the configured value, as described in `DiskQuotaUsageInPercent`. |
+| Logs | `logs` | `UseTimeReceivedForForwardedEvents` | `0` or `1`. `0` uses `TimeGenerated`; `1` uses `TimeReceived`. | Windows only. Controls the timestamp behavior for Microsoft Sentinel Windows Event Forwarding (WEF) data. |
+| General | `logs` | `Tags` | Any non-empty string. The service doesn't validate the format or delimiter. | Controls agent behavior through recognized feature flags. This setting isn't a general-purpose tagging mechanism. |
+| General | `logs` | `DiskQuotaUsageInPercent` | Integer from 50 through 100. | Linux only. Percentage of `MaxDiskQuotaInMB` used for the log-buffer quota. Specify both settings in the same Agent Settings DCR. If this setting is omitted, the agent uses a percentage based on the configured quota size. |
 | Logs and traces | `logs` | `OtlpGrpcLogsTracesPort` | Integer TCP port from 1,024 through 65,535. Must be unique across all OTLP port settings in the DCR. | Overrides the OTLP gRPC listener port for logs and traces. |
 | Logs and traces | `logs` | `OtlpHttpProtobufLogsTracesPort` | Integer TCP port from 1,024 through 65,535. Must be unique across all OTLP port settings in the DCR. | Overrides the OTLP HTTP/Protobuf listener port for logs and traces. |
 | Metrics | `metrics` | `OtlpGrpcMetricsPort` | Integer TCP port from 1,024 through 65,535. Must be unique across all OTLP port settings in the DCR. | Overrides the OTLP gRPC listener port for metrics. |
 | Metrics | `metrics` | `OtlpHttpProtobufMetricsPort` | Integer TCP port from 1,024 through 65,535. Must be unique across all OTLP port settings in the DCR. | Overrides the OTLP HTTP/Protobuf listener port for metrics. |
-| Metrics | `metrics` | `OtlpGrpcPrometheusMetricsPort` | Integer TCP port from 1,024 through 65,535. Must be unique across all OTLP port settings in the DCR. | Overrides the OTLP gRPC listener port for Prometheus metrics. |
 
 > [!NOTE]
-> OTLP port settings require DCR API version `2025-05-11` or later. OTLP metrics port settings require Azure Monitor Agent Linux 1.44, Windows 1.45, or later.
+> OTLP port settings require DCR API version `2025-05-11` or later. OTLP metrics port settings require Azure Monitor Agent version 1.45 or later on both Windows and Linux.
+
+To use the OTLP metrics listeners, also associate a DCR that enables the corresponding metrics collection. An Agent Settings DCR alone doesn't enable metrics collection. Explicit environment-variable or command-line settings for metrics ports take precedence over DCR settings.
 
 ### Create an Agent Settings DCR
 
@@ -65,7 +67,7 @@ Currently not supported.
 
 1. Create the Agent Settings DCR.
 
-The following example shows settings in both the `logs` and `metrics` categories, including overrides for all OTLP listener ports.
+The following example shows settings in both the `logs` and `metrics` categories, including overrides for the OTLP logs, traces, and metrics listener ports. Include only settings that apply to your operating system and collection scenario.
 
 **Step 1** - Use the search bar to find the **Deploy a custom template** option.
 
@@ -102,10 +104,6 @@ Here's example JSON code to create the Agent Settings DCR:
             "defaultValue": "0",
             "type": "string"
         },
-        "tags": {
-            "defaultValue": "environment=production",
-            "type": "string"
-        },
         "diskQuotaUsageInPercent": {
             "defaultValue": "80",
             "type": "string"
@@ -124,10 +122,6 @@ Here's example JSON code to create the Agent Settings DCR:
         },
         "otlpHttpProtobufMetricsPort": {
             "defaultValue": "15318",
-            "type": "string"
-        },
-        "otlpGrpcPrometheusMetricsPort": {
-            "defaultValue": "15316",
             "type": "string"
         }
     },
@@ -152,10 +146,6 @@ Here's example JSON code to create the Agent Settings DCR:
                             "value": "[parameters('useTimeReceivedForForwardedEvents')]"
                         },
                         {
-                            "name": "Tags",
-                            "value": "[parameters('tags')]"
-                        },
-                        {
                             "name": "DiskQuotaUsageInPercent",
                             "value": "[parameters('diskQuotaUsageInPercent')]"
                         },
@@ -176,10 +166,6 @@ Here's example JSON code to create the Agent Settings DCR:
                         {
                             "name": "OtlpHttpProtobufMetricsPort",
                             "value": "[parameters('otlpHttpProtobufMetricsPort')]"
-                        },
-                        {
-                            "name": "OtlpGrpcPrometheusMetricsPort",
-                            "value": "[parameters('otlpGrpcPrometheusMetricsPort')]"
                         }
                     ]
                 }
@@ -219,10 +205,10 @@ Validate and deploy the template. Make sure that you don't get any errors.
     {
       "type": "Microsoft.Insights/dataCollectionRuleAssociations",
       "apiVersion": "2021-09-01-preview",
-      "scope": "[format('Microsoft.Compute/virtualMachines/{0}', parameters('vmResourceId'))]",
+      "scope": "[format('Microsoft.Compute/virtualMachines/{0}', parameters('vmName'))]",
       "name": "agentSettings",
       "properties": {
-        "description": "Association of data collection rule. Deleting this association will break the data collection for this virtual machine."
+        "description": "Association of data collection rule. Deleting this association will break the data collection for this virtual machine.",
         "dataCollectionRuleId": "[parameters('dataCollectionResourceId')]"
       }
     }
@@ -232,7 +218,7 @@ Validate and deploy the template. Make sure that you don't get any errors.
 
 Validate and deploy the template. Make sure you don't get any errors.
 
-**Step 5** – Apply the changes and restart AMA on the VM.
+**Step 5** – Allow AMA to refresh its configuration. OTLP metrics port changes apply automatically and don't require a full AMA restart.
 
 ---
 
