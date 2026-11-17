@@ -402,6 +402,13 @@ After the policy is assigned to the subscription, whenever you create a new clus
 
 ---
 
+> [!NOTE]
+> TLS is not supported for the default scrape targets including node exporters. To scrape an exporter endpoint that has TLS enabled, first disable the default target by setting `nodeexporter = false` (Linux) or `windowsexporter = false` (Windows) in [`ama-metrics-settings-configmap`](https://aka.ms/azureprometheus-addon-settings-configmap). For details, see [Enable and disable default targets](./prometheus-metrics-scrape-configuration.md#enable-and-disable-default-targets). Then add the endpoint as a custom scrape job in [`ama-metrics-prometheus-config-node` ConfigMap (Linux)](https://github.com/Azure/prometheus-collector/blob/main/otelcollector/configmaps/ama-metrics-prometheus-config-node-configmap.yaml) or [the `ama-metrics-prometheus-config-node-windows` ConfigMap (Windows)](https://github.com/Azure/prometheus-collector/blob/main/otelcollector/configmaps/ama-metrics-prometheus-config-node-windows-configmap.yaml). Use "job_name: node" (Linux), and "job_name: windows-exporter" (Windows) as the default dashboards and recording rules rely on these labels. See [TLS-based scraping](./prometheus-metrics-scrape-configmap.md#tls-based-scraping) for more details.
+>
+> For Windows nodes, see [additional steps](#enable-windows-metrics-preview) needed to enable Prometheus metrics collection.
+> 
+> The add-on scrapes each node's exporter locally on that same node, so this scrape traffic doesn't travel between nodes. Metrics that the add-on sends to your Azure Monitor workspace are always encrypted over HTTPS.
+
 ## Enable container insights and logging on an AKS cluster
 
 ### [Azure CLI](#tab/azure-cli)
