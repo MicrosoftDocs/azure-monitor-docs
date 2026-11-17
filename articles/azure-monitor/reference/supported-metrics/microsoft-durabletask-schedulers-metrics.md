@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.DurableTask/schedulers
 description: Reference for Microsoft.DurableTask/schedulers metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 11/16/2026
 ms.custom: Microsoft.DurableTask/schedulers, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -37,17 +37,29 @@ For a list of supported logs, see [Supported log categories - Microsoft.DurableT
 |---|---|---|---|---|---|---|---|
 |**Activity Actions**<br><br>Number of activity actions |`ActivityActions` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
 |**Activity Active Items**<br><br>Number of active work items being actively processed |`ActivityActiveItems` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
+|**Activity Completion Latency**<br><br>Time in milliseconds from scheduling an activity until its result is accepted. |`ActivityCompletionLatencyMs` | No | Milliseconds |Count, Total (Sum), Average, Maximum, Minimum |`TaskHubName`, `ActivityName`, `ActivityVersion`, `OrchestrationName`, `OrchestrationVersion`, `Outcome`|PT1M |Yes|
 |**Activity Pending Items**<br><br>Number of activity work items ready to be processed |`ActivityPendingItems` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
+|**Client Fault Requests**<br><br>Number of requests that failed due to a client error |`ClientFaultRequests` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
+|**Completed Work Items**<br><br>Number of work items with an accepted result, including failed results. |`CompletedWorkItems` | No | Count |Total (Sum) |`TaskHubName`, `WorkItemType`|PT1M |Yes|
 |**Connected Workers**<br><br>Number of connected workers to a task hub |`ConnectedWorkers` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
 |**Data Used In Bytes**<br><br>Size of payloads table in bytes |`DataUsedInBytes` | No | Bytes |Total (Sum), Average, Maximum, Minimum |\<none\>|PT1M |Yes|
+|**Dispatched Work Items**<br><br>Number of work items successfully sent to a worker. |`DispatchedWorkItems` | No | Count |Total (Sum) |`TaskHubName`, `WorkItemType`|PT1M |Yes|
 |**Entity Actions**<br><br>Number of entity actions |`EntityActions` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
 |**Entity Active Items**<br><br>Number of entity work items being actively processed |`EntityActiveItems` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
 |**Entity Pending Items**<br><br>Number of entity work items ready to be processed |`EntityPendingItems` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
+|**In-Flight Work Items**<br><br>Number of work items assigned to local workers that are currently in flight. |`InflightWorkItems` | No | Count |Average, Maximum, Minimum |`TaskHubName`, `WorkItemType`|PT1M |Yes|
 |**Orchestration Actions**<br><br>Number of orchestration actions |`OrchestrationActions` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
 |**Orchestrator Active Items**<br><br>Number of orchestrator work items being actively processed |`OrchestratorActiveItems` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
 |**Orchestrator Pending Items**<br><br>Number of orchestrator work items ready to be processed |`OrchestratorPendingItems` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
+|**Permission Denied Requests**<br><br>Number of requests that failed due to insufficient permissions |`PermissionDeniedRequests` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
+|**Request Duration**<br><br>Duration of requests in milliseconds |`RequestDurationMs` | No | Milliseconds |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
+|**Requests**<br><br>Total number of requests processed by the scheduler |`Requests` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
+|**Server Fault Requests**<br><br>Number of requests that failed due to a server error |`ServerFaultRequests` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
+|**Successful Requests**<br><br>Number of requests that completed successfully |`SuccessfulRequests` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
 |**Timer Actions**<br><br>Number of timer actions |`TimerActions` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
 |**Total Actions**<br><br>Total number of actions across orchestration, activity, timer, and entity work |`TotalActions` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
+|**Unauthenticated Requests**<br><br>Number of requests that failed due to missing or invalid authentication |`UnauthenticatedRequests` | No | Count |Total (Sum), Average, Maximum, Minimum |`TaskHubName`|PT1M |Yes|
+|**Work Items Capacity**<br><br>Maximum number of work items that can be assigned to local workers at a time; draining or disconnecting workers contribute zero. |`WorkItemsCapacity` | No | Count |Average, Maximum, Minimum |`TaskHubName`, `WorkItemType`|PT1M |Yes|
 
 ## Next steps
 

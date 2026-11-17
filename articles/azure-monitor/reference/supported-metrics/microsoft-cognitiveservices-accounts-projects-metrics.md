@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.CognitiveServices/accounts/projects
 description: Reference for Microsoft.CognitiveServices/accounts/projects metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 11/09/2026
+ms.date: 11/16/2026
 ms.custom: Microsoft.CognitiveServices/accounts/projects, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -47,7 +47,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Cognitiv
 |**Agent Output Tokens (Preview)**<br><br>Number of output tokens for AI Agents in this project. |`AgentOutputTokens` | No | Count |Total (Sum), Average, Maximum, Minimum |`AgentId`, `ModelName`, `TokenType`|PT1M |No|
 |**Agent Publication Operations (Preview)**<br><br>Number of successful direct Microsoft 365/Teams publish and unpublish operations in this project, including republishes, split by resulting publication state. Not a current count of published agents. |`AgentPublishedState` | No | Count |Total (Sum) |`AgentId`, `State`|PT1M |No|
 |**Agent Response Duration (Preview)**<br><br>Time in milliseconds from request receipt to successful AI Agent response completion in this project. |`AgentResponseDurationInMs` | No | MilliSeconds |Average, Maximum, Minimum |`AgentName`, `AgentVersion`, `ModelDeploymentName`|PT1M |No|
-|**Agent Responses (Preview)**<br><br>Number of responses by AI Agents in this project. |`AgentResponses` | No | Count |Count, Total (Sum), Average, Maximum, Minimum |`AgentId`, `ModelName`, `ResponseStatus`|PT1M |No|
+|**Agent Responses (Preview)**<br><br>Number of responses by AI Agents in this project. |`AgentResponses` | No | Count |Count, Total (Sum), Average, Maximum, Minimum |`AgentId`, `AgentName`, `AgentVersion`, `ModelName`, `ResponseStatus`|PT1M |No|
 |**Agent Runs (Preview)**<br><br>Number of runs by AI Agents in this project. |`AgentRuns` | No | Count |Count, Total (Sum), Average, Maximum, Minimum |`AgentId`, `ModelName`, `RunStatus`, `StatusCode`, `ThreadId`, `StreamType`|PT1M |No|
 |**Hosted Agents Memory GiB Hours (Preview)**<br><br>Total GiB-hours of memory consumed by Foundry Hosted Agents in this project. |`AgentsHostedMemoryUsage` | No | Count |Total (Sum), Average, Maximum, Minimum |`AgentId`|PT1M |No|
 |**Hosted Agents vCPU Hours (Preview)**<br><br>Total vCPU core-hours consumed by Foundry Hosted Agents in this project. |`AgentsHostedvCPUUsage` | No | Count |Total (Sum), Average, Maximum, Minimum |`AgentId`|PT1M |No|

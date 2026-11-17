@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.NetworkCloud/clusters
 description: Reference for Microsoft.NetworkCloud/clusters metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 09/15/2026
+ms.date: 11/16/2026
 ms.custom: Microsoft.NetworkCloud/clusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -140,6 +140,14 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 |**Kubelet Runtime Operations Errors Total**<br><br>Cumulative number of runtime operation errors by operation type. |`KubeletRuntimeOperationsErrorsTotal2` | No | Count |Average |`Host`, `Operation Type`, `MachineRole`|PT1M |No|
 |**Kubelet Started Pods Errors Total (Deprecated)**<br><br>Cumulative number of errors when starting pods. |`KubeletStartedPodsErrorsTotal` | No | Count |Average |`Host`|PT1M |No|
 |**Kubelet Started Pods Errors Total**<br><br>Cumulative number of errors when starting pods. |`KubeletStartedPodsErrorsTotal2` | No | Count |Average |`Host`, `MachineRole`|PT1M |No|
+
+### Category: Network
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**CNI Packet Drop Bytes/Min (Preview)**<br><br>Number of bytes dropped by Cilium per minute. |`CniPacketDropBytesPerMinute` | No | Bytes |Average |`Direction`, `Host`, `Reason`|PT1M |No|
+|**CNI Packet Drops/Min (Preview)**<br><br>Number of packets dropped by Cilium per minute. |`CniPacketDropPerMinute` | No | Count |Average |`Direction`, `Host`, `Reason`|PT1M |No|
+|**CNI Packet Forward Bytes/Min (Preview)**<br><br>Number of bytes forwarded by Cilium per minute. |`CniPacketForwardBytesPerMinute` | No | Bytes |Average |`Direction`, `Host`|PT1M |No|
+|**CNI Packets Forwarded/Min (Preview)**<br><br>Number of packets forwarded by Cilium per minute. |`CniPacketForwardPerMinute` | No | Count |Average |`Direction`, `Host`|PT1M |No|
 
 ### Category: Network Cloud
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
