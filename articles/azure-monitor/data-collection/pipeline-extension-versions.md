@@ -41,7 +41,7 @@ This article describes the version details for the Azure Monitor pipeline Arc-en
 > Self-monitoring metric names changed in this release. Update queries, alerts, dashboards, and workbooks that use `exporter_sent_log_records` or `exporter_send_failed_log_records`. Use `exported_log_records` and `log_records_failed_to_export` instead.
 
 - **Expanded pipeline self-monitoring** — added preview metrics for accepted and rejected logs, export results, records awaiting export, processor activity, processing duration, persistent-storage utilization, and records dropped from persistent storage.
-- **Fewer unnecessary rollouts** — stabilized generated configuration when multiple Syslog receivers are present, preventing unchanged pipeline groups from restarting.
+- **Fewer unnecessary rollouts** — stabilized generated configuration when multiple Syslog receivers are present, preventing unchanged pipeline instances from restarting.
 - **Security and reliability improvements** — updated the pipeline runtime, collector authentication components, Azure Linux base image, and supporting dependencies.
 
 ### Version 1.5.2 - August 4, 2026

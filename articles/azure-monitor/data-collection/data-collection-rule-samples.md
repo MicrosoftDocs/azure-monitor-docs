@@ -2,9 +2,10 @@
 title: Sample data collection rules (DCRs) in Azure Monitor
 description: Sample data collection rule for different Azure Monitor data collection scenarios.
 ms.topic: sample
-ms.date: 01/20/2026
+ms.date: 11/03/2026
 ms.custom: references_region
 ms.reviewer: jeffwo
+ai-usage: ai-assisted
 
 ---
 
@@ -407,7 +408,7 @@ The following sample DCR performs the following actions:
 
 ## Logs ingestion API
 
-DCRs for the Logs ingestion API must define the schema of the incoming stream in the `streamDeclarations` section of the DCR definition. The incoming data must be formatted in JSON with a schema matching the columns in this definition. No transformation is required if this schema matches the schema of the target table. If the schemas don't match, then you must add a transformation to the `dataFlows` property to format the data. See [Logs Ingestion API in Azure Monitor](../logs/logs-ingestion-api-overview.md) for more details.
+DCRs for the Logs ingestion API must define the schema of the incoming stream in the `streamDeclarations` section of the DCR definition. Format the incoming data in JSON. By default, declare the properties you want to use in the transformation. To capture undeclared properties, use the [schemaless ingestion example](#capture-undeclared-properties-in-an-overflow-column-preview). If the input schema matches the schema of the target table, no transformation is required. If the schemas don't match, add a transformation to the `dataFlows` property to format the data. For more information, see [Logs Ingestion API in Azure Monitor](../logs/logs-ingestion-api-overview.md).
 
 The sample DCR below has the following details:
 
@@ -467,6 +468,127 @@ The sample DCR below has the following details:
     }
 }
 ```
+
+### Capture undeclared properties in an overflow column (preview)
+
+Use [schemaless ingestion](data-collection-transformations.md#schemaless-ingestion-preview) to retain evolving attributes without declaring a column for each one. This example uses a custom JSON stream sent through the Logs Ingestion API. It declares core fields and a `dynamic` input column named `OverflowAttributes`, then projects the generated bag into the destination column `Attributes`.
+
+Before creating this DCR:
+
+- [Create a custom table](../logs/create-custom-table.md) named `AppEvents_CL` with the following columns.
+- Replace the workspace resource ID and set `location` to the workspace's region.
+- Create or update the DCR by using the latest DCR API version (`2025-05-11` or later). See [Enable schemaless ingestion](data-collection-transformations-create.md#enable-schemaless-ingestion-for-a-custom-stream-preview) for deployment steps. The Azure portal doesn't support configuring this feature.
+
+| Destination column | Type |
+| :------------------- | :----- |
+| `TimeGenerated` | `datetime` |
+| `EventId` | `string` |
+| `Body` | `string` |
+| `Attributes` | `dynamic` |
+
+The following JSON is a DCR create-or-update request body, not a complete ARM deployment template. The destination table must already exist. Preserve any other configuration you need when adapting an existing DCR.
+
+```json
+{
+    "location": "eastus",
+    "kind": "Direct",
+    "properties": {
+        "streamDeclarations": {
+            "Custom-AppEvents": {
+                "columns": [
+                    { "name": "TimeGenerated", "type": "datetime" },
+                    { "name": "EventId", "type": "string" },
+                    { "name": "Body", "type": "string" },
+                    { "name": "OverflowAttributes", "type": "dynamic" }
+                ]
+            }
+        },
+        "destinations": {
+            "logAnalytics": [
+                {
+                    "name": "workspace",
+                    "workspaceResourceId": "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<workspaceName>"
+                }
+            ]
+        },
+        "transformations": [
+            {
+                "name": "captureAppAttributes",
+                "headerProcessor": {
+                    "processor": "header.CustomStream",
+                    "configuration": {
+                        "streamId": "Custom-AppEvents",
+                        "dynamicSchema": true,
+                        "overflowColumn": "OverflowAttributes"
+                    }
+                },
+                "processors": [
+                    {
+                        "processor": "transform.KQL",
+                        "configuration": {
+                            "expression": "source | project TimeGenerated, EventId, Body, Attributes = OverflowAttributes"
+                        }
+                    }
+                ]
+            }
+        ],
+        "dataFlows": [
+            {
+                "streams": ["Custom-AppEvents"],
+                "destinations": ["workspace"],
+                "transform": "captureAppAttributes",
+                "outputStream": "Custom-AppEvents_CL"
+            }
+        ]
+    }
+}
+```
+
+For example, send the following JSON array to the DCR's `Custom-AppEvents` stream. Use a current timestamp when testing.
+
+```json
+[
+    {
+        "TimeGenerated": "2026-11-03T12:00:00Z",
+        "EventId": "example-001",
+        "Body": "Request completed",
+        "deployment_ring": "canary",
+        "service": {
+            "name": "checkout",
+            "labels": ["web", "payments"]
+        },
+        "probe.value": "literal-dot"
+    }
+]
+```
+
+The core fields remain typed columns. The `Attributes` column contains the following bag:
+
+```json
+{
+    "deployment_ring": "canary",
+    "service": {
+        "name": "checkout",
+        "labels": ["web", "payments"]
+    },
+    "probe.value": "literal-dot"
+}
+```
+
+The DCR doesn't create columns named `deployment_ring`, `service`, or `probe.value`. A later request can introduce another undeclared property without changing the DCR. Don't include `OverflowAttributes` in the request: the generated bag replaces any supplied value.
+
+Query the destination table to verify both the core fields and the captured attributes:
+
+```kusto
+AppEvents_CL
+| where EventId == "example-001"
+| project TimeGenerated, EventId, Body, Attributes,
+    Ring = tostring(Attributes.deployment_ring),
+    ServiceName = tostring(Attributes.service.name),
+    LiteralKey = tostring(Attributes['probe.value'])
+```
+
+The expected extracted values are `canary`, `checkout`, and `literal-dot`. A successful upload response alone doesn't verify that the expected fields were stored; inspect the destination record. For ingestion endpoint, authentication, and upload instructions, see [Logs Ingestion API in Azure Monitor](../logs/logs-ingestion-api-overview.md).
 
 ## Workspace transformation DCR
 

@@ -3,7 +3,7 @@ title: Configure a Kubernetes gateway for Azure Monitor pipeline
 description: Deploy a dedicated Kubernetes gateway for a new Azure Monitor pipeline receiver.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 03/20/2026
+ms.date: 10/21/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
@@ -11,7 +11,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 Azure Monitor pipeline services deploy as Kubernetes `ClusterIP` services, so clients outside the cluster can't reach them directly. A gateway exposes the receiver endpoint to external clients such as network devices, firewalls, and other telemetry sources.
 
-This article shows how to deploy and manage a Traefik gateway for Azure Monitor pipeline. It covers a first deployment, adding a receiver to an existing gateway, onboarding another client to an existing receiver, and deploying another pipeline group on the same cluster.
+This article shows how to deploy and manage a Traefik gateway for Azure Monitor pipeline. It covers a first deployment, adding a receiver to an existing gateway, onboarding another client to an existing receiver, and deploying another pipeline instance on the same cluster.
 
 > [!NOTE]
 > This article uses Traefik as an example gateway implementation. You can use another gateway if it can expose the pipeline service to external clients and meet your security and routing requirements.
@@ -20,10 +20,13 @@ This article shows how to deploy and manage a Traefik gateway for Azure Monitor 
 
 ## Prerequisites
 
+> [!IMPORTANT]
+> The TLS-enabled examples in this article secure the gateway-to-pipeline connection. They don't configure TLS on the client-facing connection. To accept TLS from external clients, configure a separate client-facing certificate and TLS termination on the Traefik TCP route, or use TLS passthrough to the pipeline. Don't send a client's TLS handshake through the plaintext client-facing route shown in the following section.
+
 - Azure Monitor pipeline installed and working. See [Configure Azure Monitor pipeline](./pipeline-configure.md).
 - Access to `kubectl`, `helm`, and the target cluster.
 - Access to the Traefik Helm repository from the workstation that runs `helm`.
-- A deployed pipeline group and its Kubernetes service.
+- A deployed pipeline instance and its Kubernetes service.
 - A namespace label that allows the pipeline trust bundle to be distributed. Here's an example command:
   ```bash
   kubectl label namespace <pipeline-namespace> arc-amp-trust-bundle=true
@@ -31,9 +34,9 @@ This article shows how to deploy and manage a Traefik gateway for Azure Monitor 
 
 ## When to use this article
 
-Use this article when clients outside the cluster need to send data to a pipeline receiver and the pipeline group doesn't already have a gateway. The recommended starting design is one dedicated gateway per pipeline group. That design keeps the setup easier and avoids sharing ports, upgrades, and failures across unrelated pipelines.
+Use this article when clients outside the cluster need to send data to a pipeline receiver and the pipeline instance doesn't already have a gateway. The recommended starting design is one dedicated gateway per pipeline instance. That design keeps the setup easier and avoids sharing ports, upgrades, and failures across unrelated pipelines.
 
-Use the later sections in this article if you already have a gateway and need to add a new receiver, onboard another client to an existing receiver, or deploy another pipeline group on the same cluster.
+Use the later sections in this article if you already have a gateway and need to add a new receiver, onboard another client to an existing receiver, or deploy another pipeline instance on the same cluster.
 
 ## Placeholders
 
@@ -41,7 +44,7 @@ This procedure uses multiple YAML files to define configuration. Placeholders in
 
 | Placeholder | Description | Example |
 |---|---|---|
-| `<pipeline-name>` | Name of the Azure Monitor Pipeline Group resource | `syslog-pipeline` |
+| `<pipeline-name>` | Name of the Azure Monitor pipeline instance | `syslog-pipeline` |
 | `<pipeline-namespace>` | Kubernetes namespace where both the pipeline and the Traefik gateway are deployed | `test` |
 | `<receiver-port>` | TCP port the pipeline receiver listens on | `514` syslog<br>`4317` OTLP |
 | `<entrypoint-name>` | Name of the Traefik entrypoint for the receiver port | `tcp-syslog`, `tcp-otlp` |
@@ -49,9 +52,9 @@ This procedure uses multiple YAML files to define configuration. Placeholders in
 
 
 
-## Single gateway for a new pipeline group
+## Single gateway for a new pipeline instance
 
-The cluster starts with no existing gateway or Azure Monitor pipeline. Deploy one gateway to one Azure Monitor pipeline group to start with. This deployment might include a backend TLS config of server-only TLS or mutual TLS (mTLS) configuration to secure ingestion, but the same steps apply for non-TLS ingestion.
+The cluster starts with no existing gateway or Azure Monitor pipeline. Deploy one gateway to one Azure Monitor pipeline instance to start with. This deployment might include a backend TLS config of server-only TLS or mutual TLS (mTLS) configuration to secure ingestion, but the same steps apply for non-TLS ingestion.
 
 ```text
 TLS-enabled:
@@ -86,7 +89,7 @@ If the pipeline uses mTLS, the gateway needs a client certificate so it can auth
 > a `gateway-client-tls` Secret (with `tls.crt` and `tls.key` signed by your
 > BYOC client CA) exists in the pipeline namespace.
 
-Save the following code as `certificates.yaml`:
+Save the following code as `certificates.yaml`:
 
 ```yaml
 # certificates.yaml
@@ -350,8 +353,9 @@ If the external IP remains pending, verify that the cluster supports `LoadBalanc
 
 </details>
 
-## Add a new receiver to an existing pipeline group
-You can configure the existing pipeline group with a new receiver. For example, you can add an OTLP receiver on port 4317 alongside an existing Syslog receiver on 514. The gateway must expose the new port.
+## Add a new receiver to an existing pipeline instance
+
+Add the listening endpoint to the pipeline's settings DCR, and reference it from the dataflow DCR. For example, you can add an OTLP listener on port 4317 alongside an existing Syslog listener on 514. The gateway must expose the new port.
 
 
 ### Create routing resources for the new receiver
@@ -388,7 +392,7 @@ helm upgrade traefik-<pipeline-name> traefik/traefik \
 ```
 
 > [!WARNING]
-> This `helm upgrade` command triggers a pod restart. Existing client connections (including those on the syslog port) are briefly interrupted. Perform this action during a maintenance window.
+> This `helm upgrade` command triggers a pod restart. Existing client connections (including those on the syslog port) are briefly interrupted. Perform this action during a maintenance window.
 
 #### Verify
 
@@ -400,9 +404,9 @@ kubectl get ingressroutetcp -n <pipeline-namespace>
 Confirm the service now exposes both ports (514 and 4317). Clients can connect to `$GATEWAY_IP:4317` for OTLP traffic.
 
 ## Add a new client to an existing receiver
-An additional client needs to send data to the same receiver on the same port. For example, this client could be a second network switch sending syslog to port 514.
+An extra client needs to send data to the same receiver on the same port. For example, this client could be a second network switch sending syslog to port 514.
 
-In this case, the gateway and the pipeline group require no changes. The new client connects to the same gateway external IP and port used by the existing client:
+In this case, the gateway and the pipeline configuration require no changes. The new client connects to the same gateway external IP and port used by the existing client:
 
 ```text
 Existing Client → GATEWAY_IP:514 → Traefik → pipeline-service:514
@@ -417,14 +421,15 @@ GATEWAY_IP=$(kubectl get svc traefik-<pipeline-name> \
   -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 echo "Gateway IP: $GATEWAY_IP"
 ```
-Point the new client at `$GATEWAY_IP:514`. No Helm upgrade, routing changes, or certificate changes are needed.
+Point the new client at `$GATEWAY_IP:514`. You don't need a Helm upgrade, routing changes, or certificate changes.
 
-## New pipeline group instance
-Deploy a new pipeline group alongside an existing pipeline group on the same cluster.
+## New pipeline instance
+
+Deploy a new pipeline instance alongside an existing pipeline instance on the same cluster.
 
 Deploy a new dedicated gateway for the new pipeline, one gateway per pipeline. This approach provides full isolation between the existing and new pipelines, including independent scaling, independent upgrades, and no shared failure domain.
 
-Follow the preceding procedure for [Single gateway for new pipeline group](#single-gateway-for-a-new-pipeline-group), adjusting the following values for the new pipeline:
+Follow the preceding procedure for [Single gateway for a new pipeline instance](#single-gateway-for-a-new-pipeline-instance), adjusting the following values for the new pipeline:
 
 | Task | Guidance |
 |---|---|

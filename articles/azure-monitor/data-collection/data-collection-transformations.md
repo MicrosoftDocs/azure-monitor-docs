@@ -2,7 +2,7 @@
 title: Transformations in Azure Monitor
 description: Use transformations in a data collection rule in Azure Monitor to filter and modify incoming data, including multi-stage transformations with processors.
 ms.topic: concept-article
-ms.date: 10/12/2026
+ms.date: 11/03/2026
 ms.reviewer: nikeist
 ai-usage: ai-assisted
 ---
@@ -51,7 +51,7 @@ Transformations in multi-stage DCRs are defined using *processors* - small, decl
 
 - **Composable.** Multiple processors can be chained together in a single transformation.
 - **Ordered.** Processors run sequentially in the order defined in the transformation.
-- **Stage-agnostic.** The same processor type can be used across different data sources, stages, or scenarios, with some limitations during preview.
+- **Stage-specific support.** Each processor is available at specific execution stages. See the [processor applicability table](data-collection-rule-structure.md#processor-types).
 
 Every transformation starts with a *header processor* that converts raw data into a known schematized tabular format. After the header, you can chain additional processors to filter, map, parse, aggregate, enrich, or apply KQL expressions to the data.
 
@@ -66,8 +66,12 @@ The following processor families are available:
 | Aggregation | `aggregate.Basic` | Summarize records using aggregation operators with grouping dimensions. |
 | Enrichment | `enrich.DNSLookup` | Look up an IP address and add a DNS name column. |
 | Custom transform | `transform.KQL` | Apply an arbitrary KQL expression. Ingestion-side only. |
+| Scan | [`scan.SensitiveInfo`](data-collection-rule-structure.md#scansensitiveinfo) | Replace selected sensitive-information patterns. Ingestion-side only; signup-based preview. |
 
 For the complete processor reference, including configuration schemas and output schemas, see [DCR structure - Transformations](data-collection-rule-structure.md#transformations).
+
+> [!NOTE]
+> PII redaction is a signup-based preview. Any customer can apply through the [PII redaction preview signup form](https://aka.ms/pii-redaction-preview). For setup steps, see [Redact sensitive information in Azure Monitor Logs](data-collection-transformations-pii-redaction.md).
 
 ### Client-side vs. ingestion-side transformations
 
@@ -97,6 +101,47 @@ Follow these steps when designing a multi-stage DCR:
 1. **Plan for differential processing.** If you need to process portions of the same logs differently, create multiple data sources of the same type with different collection settings and apply different client-side transformations to each.
 1. **Author client-side transformations.** Use standard streams (`Microsoft-*`) if the output retains the header schema, or custom streams (`Custom-*`) if it doesn't. Define custom streams in `streamDeclarations`.
 1. **Define data flows.** For each stream, create a data flow. Use ingestion-time data flows to split a single stream across multiple destination tables by applying different filter criteria per data flow.
+
+## Schemaless ingestion (preview)
+
+Schemaless ingestion captures undeclared top-level properties from a custom input stream in a declared `dynamic` column, called the *overflow column*. Use it when your source emits evolving or sparse attributes and you don't want to update the DCR for every new property.
+
+Declare the stable fields that need typed columns in `streamDeclarations`, along with a `dynamic` overflow column. Set `dynamicSchema` to `true` and specify `overflowColumn` on an ingestion-time `header.CustomStream` processor. The header collects undeclared properties before the following KQL processors run.
+
+> [!NOTE]
+> Schemaless ingestion is in public preview. Configure it through an ARM or Bicep template, Azure CLI, Azure PowerShell, or the REST API, using the latest DCR API version (`2025-05-11` or later). The Azure portal doesn't support configuring schemaless ingestion.
+
+### Input schema and overflow behavior
+
+The following table describes how schemaless ingestion processes input. The [complete Logs Ingestion API example](data-collection-rule-samples.md#capture-undeclared-properties-in-an-overflow-column-preview) shows a request and its expected output.
+
+| Input | Behavior |
+| :------ | :--------- |
+| Property declared in `streamDeclarations` | Uses the existing type conversion for that column. Enabling capture doesn't move values from declared columns into overflow when their types don't match. |
+| Undeclared top-level property | Becomes a key in the overflow bag, available to the following transformation processors. |
+| Nested JSON object or array sent through the Logs Ingestion API | Retains its structure inside the captured property. Capture doesn't create columns for nested properties. |
+| Record with no undeclared properties | The overflow column is `null`, not an empty bag. |
+| Record supplies a value for the configured overflow column | The generated bag replaces the supplied value, without merging. If there are no undeclared properties, the supplied value is replaced with `null`. Don't populate this column in source records. |
+| Property name differs in case from a declared name | Name matching is case-sensitive. For example, `body` is captured when the declared column is `Body`. |
+
+Other declared `dynamic` columns remain separate from the overflow column. Different records can have different captured keys or different JSON types for the same key without changing the stream declaration.
+
+### Output schema and attribute promotion
+
+Schemaless ingestion doesn't create or modify destination tables or columns. Create the destination table first, and project the overflow column into a compatible `dynamic` table column. The input and destination column names don't have to be the same.
+
+To promote an attribute into a typed input column, add it to `streamDeclarations`. Subsequent records map that property to the declared column instead of including it in the overflow bag. Update the transformation's output projection and the destination schema as needed to retain it. Promotion doesn't change historical records.
+
+You can also extract values from the bag in KQL without changing the input declaration. Use explicit casts when projecting bag values into typed output columns. See [Work with captured attributes](data-collection-transformations-samples.md#work-with-captured-attributes).
+
+### Considerations
+
+- Schemaless ingestion is input processing in a named transformation referenced by `dataFlows[].transform`. It isn't an option on inline `transformKql` or on the stream declaration itself.
+- Without capture, undeclared input properties aren't available to the transformation. Functions such as `pack_all()` only work on fields already available to KQL; they can't recover discarded input properties.
+- Capture runs at ingestion time, not in an agent-side transformation. It can't recover fields removed or changed by a collector or an earlier processing stage. Don't assume that every collection path forwards the same JSON structure as a Logs Ingestion API request.
+- Captured attributes aren't checked against individual typed column declarations. Declare fields that require a fixed type, and use upstream validation or a transformation to enforce any additional data-governance rules.
+
+For the configuration rules, see [`header.CustomStream`](data-collection-rule-structure.md#headercustomstream). To enable the feature on an existing DCR, see [Enable schemaless ingestion](data-collection-transformations-create.md#enable-schemaless-ingestion-for-a-custom-stream-preview). If you're migrating from the HTTP Data Collector API, see [Handle source data schema changes](../logs/custom-logs-migrate.md#handle-source-data-schema-changes).
 
 ## Workspace transformation DCR
 

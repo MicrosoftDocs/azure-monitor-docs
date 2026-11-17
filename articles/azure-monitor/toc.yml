@@ -816,6 +816,9 @@ items:
       - name: Best practices and samples
         displayName: Transformations
         href: data-collection/data-collection-transformations-samples.md
+    - name: Redact sensitive information (preview)
+      displayName: PII, redaction, sensitive information, signup, transformations
+      href: data-collection/data-collection-transformations-pii-redaction.md
     - name: Monitor DCRs
       displayName: Data collection rules
       href: data-collection/data-collection-monitor.md
@@ -1078,6 +1081,8 @@ items:
       - name: Configure with CLI or ARM templates
         displayName: Azure Monitor pipeline
         href: data-collection/pipeline-configure-cli.md
+      - name: Legacy pipeline configuration
+        href: data-collection/pipeline-configure-legacy.md
       - name: Configure on Linux VMs (preview)
         displayName: Azure Monitor pipeline, virtual machine, VM extension, Azure Arc, Arc-enabled servers, Syslog, CEF
         href: data-collection/pipeline-configure-vm.md

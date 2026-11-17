@@ -3,7 +3,7 @@ title: Logs Ingestion API in Azure Monitor
 description: Send data to a Log Analytics workspace using REST API or client libraries.
 ms.topic: concept-article
 ms.custom: cbo-v1.6
-ms.date: 08/13/2026
+ms.date: 11/03/2026
 ai-usage: ai-assisted
 ---
 
@@ -19,6 +19,8 @@ The Logs Ingestion API in Azure Monitor lets you send data to a Log Analytics wo
 Data can be sent to the Logs Ingestion API from any application that can make a REST API call. This may be a custom application that you create, or it may be an application or agent that understands how to send data to the API. It specifies a [data collection rule (DCR)](../data-collection/data-collection-rule-overview.md) that includes the target table and workspace and the credentials of an app registration with access to the specified DCR. It sends the data to an endpoint specified by the DCR, or to a [data collection endpoint (DCE)](../data-collection/data-collection-endpoint-overview.md) if you're using private link. 
 
 The data sent by your application to the API must be formatted in JSON and match the structure expected by the DCR. It doesn't necessarily need to match the structure of the target table because the DCR can include a [transformation](../data-collection/data-collection-transformations.md) to convert the data to match the table's structure. You can modify the target table and workspace by modifying the DCR without any change to the API call or source data.
+
+By default, the transformation can use only properties declared in the DCR's input stream. By using [schemaless ingestion (preview)](../data-collection/data-collection-transformations.md#schemaless-ingestion-preview), you can also capture undeclared top-level properties in a declared `dynamic` overflow column. The destination schema remains explicit; capture doesn't automatically create table columns.
 
 :::image type="content" source="media/logs-ingestion-api-overview/overview-log-ingestion-api.png" lightbox="media/logs-ingestion-api-overview/overview-log-ingestion-api.png" alt-text="Diagram that shows an overview of logs ingestion API." border="false":::
 
@@ -119,6 +121,12 @@ When you [create a custom table](create-custom-table.md#create-a-custom-table) i
 }
 ```
 
+### Capture evolving attributes
+
+To retain new properties without adding each one to the stream declaration, use [schemaless ingestion (preview)](../data-collection/data-collection-transformations.md#schemaless-ingestion-preview). Configure it in a named transformation referenced through `dataFlows[].transform`, not in `transformKql`. Create or update the DCR with the latest DCR API version (`2025-05-11` or later). This version is the management API version for the DCR, not the upload API version in your ingestion request.
+
+The Azure portal doesn't support configuring this feature. Use the [authoring procedure](../data-collection/data-collection-transformations-create.md#enable-schemaless-ingestion-for-a-custom-stream-preview) and [complete DCR example](../data-collection/data-collection-rule-samples.md#capture-undeclared-properties-in-an-overflow-column-preview). Keep using the normal ingestion endpoint, authentication, and [request format](#rest-api-call).
+
 ## Client libraries
 
 In addition to making a REST API call, you can use the following client libraries to send data to the Logs ingestion API. The libraries require the same components described in [Configuration](#configuration). For examples using each of these libraries, see [Sample code to send data to Azure Monitor using Logs ingestion API](tutorial-logs-ingestion-code.md).
@@ -174,6 +182,8 @@ The following table describes request headers for your API call.
 ### Request body
 
 The body of the call includes the custom data to send to Azure Monitor. The data must be a JSON array with an item structure that matches the format expected by the stream in the DCR.
+
+When schemaless ingestion is enabled, the system captures undeclared top-level properties in the configured overflow column before KQL runs. Don't supply that column in your input records: generated capture replaces any supplied value. See [Input schema and overflow behavior](../data-collection/data-collection-transformations.md#input-schema-and-overflow-behavior).
 
 > [!NOTE]
 > Here's an example of a single-item array that matches the `streamDeclarations` in the [Data collection rule](#data-collection-rule) section. `Time` uses an ISO 8601 timestamp, and `NestedJson` is a JSON object.
