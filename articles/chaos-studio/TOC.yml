@@ -190,6 +190,8 @@
           href: https://www.npmjs.com/package/@azure/arm-chaos/
 - name: Azure Chaos Studio shared reference
   items:
+    - name: Fault support matrix
+      href: chaos-studio-fault-support-matrix.md
     - name: Regional availability by resource model
       href: chaos-studio-region-availability.md
     - name: Reliability
