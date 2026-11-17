@@ -3,7 +3,7 @@ title: Permissions and identity in Chaos Studio Workspaces
 description: Configure Chaos Studio Workspaces permissions with managed identities, discovery scopes, and Azure RBAC roles before you run resilience Scenarios.
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 10/14/2026
+ms.date: 11/16/2026
 ai-usage: ai-assisted
 ---
 
@@ -64,7 +64,7 @@ To create role assignments with any of these methods, you need Owner or User Acc
 
 ## Permissions for the Chaos Studio extension for AKS
 
-To use the [Chaos Studio extension for AKS (preview)](chaos-studio-aks-extension-overview.md), the Workspace scope must include the AKS cluster resource. When you install the extension, installation assigns a custom role to the Workspace's user-assigned managed identity at the cluster scope. During the preview, the role is named `Chaos Studio Kubernetes Operator (<subscription-id>)`. You don't assign roles for the extension's pod fault Actions yourself. The role assignments listed earlier in this article apply to other Actions. As the installer, you need the [permissions for installation](chaos-studio-aks-extension-install.md#review-the-permissions-for-installation).
+To use the [Chaos Studio extension for AKS](chaos-studio-aks-extension-overview.md), the Workspace scope must include the AKS cluster resource. When you install the extension, installation assigns the built-in role **Chaos Kubernetes Extension Operator** to the Workspace's managed identity at the cluster scope. For the permissions in the role, see [Role permissions](chaos-studio-aks-extension-install.md#role-permissions). You don't assign roles for the extension's pod fault Actions yourself. The role assignments listed earlier in this article apply to other Actions. As the installer, you need the [permissions for installation](chaos-studio-aks-extension-install.md#review-the-permissions-for-installation).
 
 ## Who can use a Workspace
 

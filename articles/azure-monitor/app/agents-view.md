@@ -2,7 +2,7 @@
 title: Monitor AI Agents with Application Insights
 description: Learn how to monitor AI agents across multiple sources with Application Insights for performance tracking and troubleshooting.
 ms.topic: overview
-ms.date: 10/16/2026
+ms.date: 11/16/2026
 ai-usage: ai-assisted
 ---
 
@@ -10,16 +10,16 @@ ai-usage: ai-assisted
 
 The **Agent details** view in Application Insights provides a unified experience for monitoring AI agents across multiple sources, including [Microsoft Foundry](/azure/ai-foundry/what-is-azure-ai-foundry), [Copilot Studio](/microsoft-copilot-studio/fundamentals-what-is-copilot-studio), and third-party agents.
 
-This feature consolidates telemetry and diagnostics, enabling you to track agent performance, analyze token usage and costs, troubleshoot errors, and optimize your agent's behavior.
+While Microsoft Foundry is a toolchain for building and observing agents, Azure Monitor provides a full-stack view of agents, from any source or location, in the context of your distributed service for a more complete view of service health.
 
 > [!NOTE]
 > Azure Monitor Agent Observability is based on [OpenTelemetry Generative AI Semantics](https://opentelemetry.io/docs/specs/semconv/gen-ai/).
 
 ## Prerequisites
 
-Before you can use the Agents details view, [implement AI agent data collection](app-insights-overview.md?tabs=agents#getting-started).
+Before you can use the **Agents** details view, [implement AI agent data collection](app-insights-overview.md?tabs=agents#getting-started).
 
-## Monitor your AI agents
+## Agent operations
 
 ### Access the Agent details view
 
@@ -31,13 +31,13 @@ After telemetry flows to Application Insights:
     :::image type="content" source="media/agents-view/agent-details-goto.png" lightbox="media/agents-view/agent-details-goto.png" alt-text="Screenshot of the Application Insights navigation menu with Agents (Preview) selected to open the Agent details view.":::
 
 > [!NOTE]
-> You can also get to the Agent details view from Foundry. From your agent, go to the **Monitoring** tab, and then select **View in Azure Monitor**.
+> You can also get to the **Agent details** view from Foundry. From your agent, go to the **Monitoring** tab, and then select **View in Azure Monitor**.
 
 ### Investigate traces
 
 To explore specific agent runs:
 
-1. Select an option from the Agent details view:
+1. Select an option from the **Agent details** view:
 
    * **View Traces with Agent Runs** - See all agent executions.
    * **View Traces with Gen AI Errors** - Focus on failed or problematic runs.
@@ -70,9 +70,46 @@ Simple view helps you quickly find the relevant telemetry and transition to Foun
 
 In this example, you research high token use. Transaction details help you identify that large prompt context and an expensive model drive up token use and costs.
 
+## Agent cost
+
+Use the token consumption charts to understand usage across models and agents and identify opportunities to reduce repeated input.
+
+1. In the **Agent details** view, select **Dashboard**, and then expand **Token consumption**. Select a time range and filter by agent to focus your analysis.
+1. Review the charts:
+
+   * **Token consumption by model**: Compare token usage across models over time.
+   * **Input vs output tokens**: Identify whether input or generated output accounts for most token usage.
+   * **Tokens per agent invocation**: Compare average token usage per invocation across agents and spot changes over time.
+   * **Cached vs uncached input tokens**: Review input token caching, including the **Cache ratio** and **Repeat input avoided** metrics.
+
+1. Select **View traces** on a chart to investigate the underlying agent runs. Open an individual trace to inspect the model calls and prompts that contribute to token usage.
+
+   :::image type="content" source="media/agents-view/agent-details-tokens.png" lightbox="media/agents-view/agent-details-tokens.png" alt-text="Screenshot of Token consumption charts in the Agent details Dashboard, each with a View traces option for investigating underlying agent runs.":::
+
+## Agent quality (preview)
+
+The Evaluations view brings together Microsoft Foundry-powered evaluation results on production telemetry, including continuous evaluations and scheduled evaluations over production traces. For supported agent types and enablement guidance, see [Configure continuous and scheduled evaluations in Microsoft Foundry](/azure/foundry/observability/how-to/how-to-monitor-agents-dashboard#set-up-continuous-evaluation).
+
+To investigate evaluation results:
+
+1. In the **Agent details** view, select **Evaluations (Preview)**.
+2. Compare evaluation results across your agents:
+
+   * Review scores normalized on a single axis to identify low-scoring results.
+   * Filter by time range, evaluator, status, or source to focus your investigation.
+   * Review evaluation counts, pass rates, and average scores by agent.
+      
+   :::image type="content" source="media/agents-view/evaluations-view.png" lightbox="media/agents-view/evaluations-view.png" alt-text="Screenshot of the Evaluations (Preview) view in Azure Monitor showing normalized agent evaluation scores on a single axis.":::
+   
+3. Select a low-scoring or failed evaluation to review its score and the reason for the result.
+4. Open the correlated trace to investigate the agent's behavior:
+
+   * Follow the trace to the relevant model or tool call and inspect its response.
+   * Look for quality issues, such as incomplete responses, even when the call succeeds without errors.
+      
 ## Customize monitoring views with Grafana
 
-The Agent details view in Application Insights provides an opinionated, out-of-the-box experience for monitoring your AI agents. For more advanced customization and visualization needs, select **Explore in Grafana** from the top navigation bar on the Agent details view.
+The Agent details view in Application Insights provides a default experience for monitoring your AI agents. For more advanced customization and visualization needs, select **Explore in Grafana** from the top navigation bar on the Agent details view.
 
 Azure Monitor includes prebuilt Grafana dashboards designed for Gen AI monitoring to help you get started:
 
@@ -114,7 +151,7 @@ Azure Monitor includes ready-to-use Grafana dashboards for coding agent monitori
 * [Claude Code dashboard](/azure/managed-grafana/grafana-opentelemetry-app-insights#claude-code)
 * [OpenClaw dashboard](/azure/managed-grafana/grafana-opentelemetry-app-insights#openclaw)
 
-:::image type="content" source="media/agents-view/coding-agents-grafana-dashboard.png" lightbox="media/agents-view/coding-agents-grafana-dashboard.png" alt-text="Screenshot of the coding agent Grafana dashboard showing operations, tokens, sessions, and per-model latency.":::
+:::image type="content" source="media/agents-view/coding-agents-grafana-dashboard.png" lightbox="media/agents-view/coding-agents-grafana-dashboard.png" alt-text="Screenshot of an Azure Managed Grafana coding agent dashboard with panels visualizing telemetry from Application Insights.":::
 
 You can find these dashboards in [Dashboards with Grafana in Application Insights](grafana-dashboards.md) and in [Azure Managed Grafana](/azure/managed-grafana/overview).
 

@@ -34,12 +34,14 @@
       href: chaos-studio-tutorial-postgresql-failover.md
     - name: Test AKS resilience with Chaos Studio Workspaces
       href: chaos-studio-aks-guidance.md
-    - name: Chaos Studio extension for AKS (limited preview)
+    - name: Chaos Studio extension for AKS
       items:
         - name: Overview
           href: chaos-studio-aks-extension-overview.md
-        - name: Prepare and install
+        - name: Install and run a pod fault
           href: chaos-studio-aks-extension-install.md
+        - name: Troubleshoot
+          href: chaos-studio-aks-extension-troubleshoot.md
     - name: Chaos Studio Workspaces (Azure portal)
       href: https://portal.azure.com/#view/Microsoft_Azure_Chaos/ChaosStudio.MenuView/~/workspaces
     - name: Chaos Studio AI plugin
@@ -188,6 +190,8 @@
           href: https://www.npmjs.com/package/@azure/arm-chaos/
 - name: Azure Chaos Studio shared reference
   items:
+    - name: Fault support matrix
+      href: chaos-studio-fault-support-matrix.md
     - name: Regional availability by resource model
       href: chaos-studio-region-availability.md
     - name: Reliability

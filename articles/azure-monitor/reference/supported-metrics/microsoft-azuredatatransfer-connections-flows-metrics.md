@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.AzureDataTransfer/connections/flows
 description: Reference for Microsoft.AzureDataTransfer/connections/flows metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 11/16/2026
 ms.custom: Microsoft.AzureDataTransfer/connections/flows, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -34,10 +34,12 @@ For a list of supported logs, see [Supported log categories - Microsoft.AzureDat
 
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
+|**Bit rate**<br><br>The average number of bits sent or received per second. |`BitRate` | No | BitsPerSecond |Average |`Protocol`, `Direction`|PT1M |Yes|
 |**Delivered Byte count**<br><br>The number of bytes delivered. |`DeliveredBytes` | No | Bytes |Total (Sum), Average, Minimum, Maximum, Count |\<none\>|PT1M |Yes|
 |**Delivered object count**<br><br>The number of objects delivered. |`DeliveredObjects` | No | Count |Total (Sum), Average, Minimum, Maximum, Count |\<none\>|PT1M |Yes|
 |**End to end latency**<br><br>The amount of time for an object to be transferred, from object discovery to object delivery |`EndToEndLatency` | No | Milliseconds |Average, Minimum, Maximum, Total (Sum) |\<none\>|PT1M |Yes|
 |**Errors**<br><br>The number of errors. |`Errors` | No | Count |Total (Sum), Average, Minimum, Maximum, Count |`StatusCode`, `StatusText`|PT1M |Yes|
+|**Packets**<br><br>The number of packets sent or received. |`Packets` | No | Count |Total (Sum), Average, Count |`Protocol`, `Direction`|PT1M |Yes|
 |**Rejected object count**<br><br>The number of rejected objects. |`RejectedObjects` | No | Count |Total (Sum), Average, Minimum, Maximum, Count |`StatusCode`, `StatusText`|PT1M |Yes|
 
 ## Next steps
