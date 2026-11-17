@@ -3,7 +3,7 @@ title: Test AKS resilience with Chaos Studio Workspaces
 description: Test AKS node resilience with Chaos Studio Workspaces by scoping Compute Zone Down to node scale sets and measuring application behavior during disruption.
 author: nikhilkaul-msft
 ms.topic: how-to
-ms.date: 10/14/2026
+ms.date: 11/16/2026
 ai-usage: ai-assisted
 ---
 
@@ -23,7 +23,7 @@ For node-level tests during the Workspaces public preview, review these limitati
 
 For the full list of preview limitations, see [Limitations and known issues in Chaos Studio Workspaces](chaos-studio-workspaces-limitations.md).
 
-This node-level approach doesn't require the AKS extension. The extension's pod-level tests have a separate, allow-listed preview; access to the Workspaces public preview doesn't grant extension access. See [Chaos Studio extension for AKS (preview) overview](chaos-studio-aks-extension-overview.md).
+This node-level approach doesn't require the AKS extension. For pod-level tests inside the cluster, see [Chaos Studio extension for AKS overview](chaos-studio-aks-extension-overview.md).
 
 ## Before you start: verify your cluster topology
 
@@ -93,7 +93,7 @@ Because Workspace discovery is bounded by the [scope](chaos-studio-workspace-per
 
 ## Alternatives
 
-For pod-level testing through Workspaces, [request access and prepare for the AKS extension preview](chaos-studio-aks-extension-install.md). Confirm which faults and cluster configurations are available for your approved version before designing the test. A pod disruption doesn't substitute for a node-level zone test.
+For pod-level testing through Workspaces, [install the Chaos Studio extension for AKS](chaos-studio-aks-extension-install.md). Check the [requirements and validated configurations](chaos-studio-aks-extension-overview.md#requirements-and-limitations) before you design the test. A pod disruption doesn't substitute for a node-level zone test.
 
 [AKS Chaos Mesh faults with Experiments (classic)](chaos-studio-tutorial-aks-portal.md) remain available through their existing workflow and don't require this extension.
 
