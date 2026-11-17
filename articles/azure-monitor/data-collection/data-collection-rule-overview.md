@@ -131,6 +131,8 @@ For supported resources, destinations, regions, and configuration steps, see [Co
 
 **Data path:** A client sends a payload to a Logs Ingestion API endpoint and identifies the DCR in the request URI.
 
+For evolving JSON attributes, [schemaless ingestion (preview)](data-collection-transformations.md#schemaless-ingestion-preview) can capture undeclared properties in a `dynamic` column before the ingestion-time transformation. Destination tables still have an explicit schema.
+
 **DCR role:** The DCR declares the structure of the incoming data, includes any transformation instructions, and specifies the destination workspace and table.
 
 For more information, see [Logs ingestion API](../logs/logs-ingestion-api-overview.md).

@@ -72,6 +72,10 @@ In addition to the Azure portal browse experience, you can create a new associat
 > [!NOTE]
 > To associate DCRs with a virtual machine scale set with flexible orchestration, use a policy to deploy the agent and associate the DCR with each VM. The policy will install the agent and associate the DCR with VMs as during scale out.
 
+> [!IMPORTANT]
+> For Azure Monitor pipeline, associate both the settings DCR and dataflow DCR with the same pipeline extension. Create both associations under the Arc connected cluster, and set `properties.scopeToResourceId` to the extension's resource ID. To deploy the DCRs and associations together, use the [pipeline ARM template](./pipeline-configure-cli.md#deploy-the-arm-template).
+
+
 ### [CLI](#tab/cli)
 
 ### Create association with CLI

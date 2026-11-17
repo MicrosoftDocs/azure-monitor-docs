@@ -1,8 +1,9 @@
 ---
 title: Azure Monitor pipeline TLS configuration
 description: Secure data ingestion to Azure Monitor pipeline by configuring TLS.
+ai-usage: ai-assisted
 ms.topic: article
-ms.date: 01/15/2026
+ms.date: 10/22/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
@@ -10,8 +11,8 @@ ms.custom: references_regions, devx-track-azurecli
 
 Use this article to choose how to secure TCP-based ingestion for [Azure Monitor pipeline](./pipeline-overview.md). The pipeline supports TLS and mutual TLS (mTLS) for TCP-based receivers through two certificate management approaches:
 
-- **Default TLS**: Automated certificate management with zero-downtime rotation, managed by the Certificate Manager extension
-- **Bring Your Own Certificates (BYOC)**: Customer-managed certificates and keys that users create with their own PKI for the Azure Monitor pipeline receiver TLS endpoint to use
+- **Default TLS**: Automated certificate management with zero-downtime rotation, managed by the Certificate Manager extension.
+- **Bring Your Own Certificates (BYOC)**: Customer-managed certificates and keys that you create with your own PKI for the Azure Monitor pipeline receiver TLS endpoint to use.
 
 Choose one of the following approaches:
 
@@ -27,24 +28,75 @@ See the prerequisites in [Configure Azure Monitor pipeline](./pipeline-configure
 Additionally, add the following to your cluster:
 
 - Access to `kubectl` and the Azure CLI for the Arc-enabled cluster context.
+- For automated certificate management, the [cert-manager extension](/azure/azure-arc/kubernetes/cert-manager-overview) installed on the cluster.
 
 ## TLS modes
 
-The Azure Monitor pipeline supports three TLS configuration modes:
+TLS controls encryption and client authentication on the pipeline's listening endpoints:
 
-| `tlsConfigurations` value | Description |
-|:-------------------------------|:------------|
-| `"mode": "mutualTls"` | Full mTLS with both server and client certificate authentication (default) |
-| `"mode": "serverOnly"` | TLS encryption without client certificate validation |
-| `"mode": "disabled"` | Plain text communication |
+| Connection security | Description |
+|:---|:---|
+| Mutual TLS (mTLS) | Encrypts traffic and authenticates both the server and the client with certificates. |
+| Server-only TLS | Encrypts traffic and authenticates the server without requiring a client certificate. |
+| No TLS | Sends traffic without encryption or certificate authentication. |
 
-After you assign a name to a `tlsConfiguration`, any TCP-based receiver in the pipeline configuration can reference it. If you don't specify a TLS configuration for a receiver, the receiver defaults to `mutualTls` mode.
+Enable **transport security (TLS)** when you [configure the pipeline](./pipeline-configure-portal.md#configure-basics). To require client certificates, also enable **Require client authentication within cluster**. Configure clients to trust the server certificate's issuing CA.
+
+In DCR mode, TCP receivers use the operator's default mTLS material unless a named TLS configuration overrides that behavior. Select a named mode explicitly when you need server-only TLS or unencrypted TCP. UDP traffic isn't protected by TLS; use UDP only on trusted networks.
+
+## Store TLS configuration in the settings DCR
+
+TLS is an instance-specific runtime setting. Store it in the `PipelineSettings` DCR alongside the listening endpoints, not in each dataflow DCR or in the extension's installation parameters.
+
+1. Add a named entry to `properties.pipelineSettings.tlsConfigurations`. Set its `mode` to `serverOnly` or `mutualTls`. Omit certificate references to use the operator's automatically managed material, or supply your own certificate references as described in [Using your own certificate management](./pipeline-tls-custom.md).
+1. Set `properties.pipelineSettings.endpoints[].networkingConfig.tlsConfiguration` to that entry's name on the TCP endpoint you want to secure.
+1. Keep the dataflow DCR's endpoint routing pointed at that endpoint. Collection logic references the endpoint; it doesn't need its own copy of the TLS settings.
+1. Associate the settings DCR and dataflow DCR with the same extension so that the instance receives both configurations.
+
+Endpoints can select the same named TLS configuration or different configurations when they need different certificates or client-authentication requirements. Certificate material stays in Kubernetes Secrets or ConfigMaps in the pipeline namespace; the DCR stores references. Keep private keys in Secrets.
+
+Use the [server-only TLS example](./pipeline-configure-cli.md#example-collect-syslog-over-tls) to configure encrypted Syslog collection, or the [mTLS settings DCR example](./pipeline-tls-custom.md#configure-pipeline) to also require client certificates. For the wider resource model and associations, see [Understand the configuration model](./pipeline-configure-cli.md#understand-the-configuration-model).
 
 ## Option 1: Default TLS (automated certificate management)
 
 Use this option when you want the Certificate Manager extension to manage certificate issuance and rotation for you.
 
 For more information about how to set up automated certificate management, see [TLS configuration - Using automated certificate management](./pipeline-tls-automated.md).
+
+For example, use this `properties.pipelineSettings` object for Syslog with explicit default mTLS. It references a named configuration without embedding certificates:
+
+```json
+{
+  "endpoints": [
+    {
+      "name": "syslog6514",
+      "type": "syslog",
+      "networkingConfig": {
+        "endpoint": "0.0.0.0:6514",
+        "transportProtocol": "tcp",
+        "tlsConfiguration": "managed-mtls"
+      }
+    }
+  ],
+  "tlsConfigurations": [
+    {
+      "name": "managed-mtls",
+      "mode": "mutualTls"
+    }
+  ]
+}
+```
+
+The operator supplies the server certificate, matching private key, and client CA. Configure clients to trust the managed server CA and present a certificate from the managed client CA. See [Client certificate setup](./pipeline-tls-automated.md#step-3-create-client-certificate-for-mtls).
+
+To use default server-only TLS, replace the configuration entry with the following and change the endpoint's `tlsConfiguration` to `managed-server-tls`. Clients still validate the server certificate, but don't present client certificates:
+
+```json
+{
+  "name": "managed-server-tls",
+  "mode": "serverOnly"
+}
+```
 
 ## Option 2: BYOC (Bring Your Own Certificates)
 
@@ -58,30 +110,39 @@ For more information about how this works and how to set up, see [TLS configurat
 
 ## Option 3: Disable TLS and mTLS
 
-Disable TLS and mTLS only if your environment doesn't require encrypted ingestion or if you're trying to test your workflow before locking it down securely.
+Disable TLS only on a trusted network where unencrypted ingestion meets your security requirements. Clear **Enable transport security (TLS)** when you configure the pipeline, and configure clients to use an unencrypted connection.
 
-1. Disable the configuration by using the following settings.
-1. You must have the CME extension and gateway installed, even for non-TLS ingestion from your resources. [Review prerequisites](./pipeline-configure.md#prerequisites) for detailed guidance.
-
-**Disable TLS**
+For ARM configuration, use this `properties.pipelineSettings` object to explicitly disable TLS on a TCP listener. The disabled configuration contains no certificate references:
 
 ```json
-"tlsConfigurations": [
+{
+  "endpoints": [
     {
-        "name": "tls-disabled",
-        "mode": "disabled"
+      "name": "syslog514",
+      "type": "syslog",
+      "networkingConfig": {
+        "endpoint": "0.0.0.0:514",
+        "transportProtocol": "tcp",
+        "tlsConfiguration": "unencrypted"
+      }
     }
-],
-"receivers": [
+  ],
+  "tlsConfigurations": [
     {
-        "type": "Syslog",
-        "name": "receiverSyslog",
-        "tlsConfiguration": "tls-disabled",
-          ....
+      "name": "unencrypted",
+      "mode": "disabled"
     }
-]
- 
+  ]
+}
 ```
+
+Private Link secures the pipeline-to-Azure Monitor connection, not client-to-pipeline traffic. It doesn't replace TLS on a listening endpoint.
+
+## Connect directly or through a gateway
+
+A client can connect directly to a reachable collector TLS endpoint when it trusts the issuing CA and the certificate covers the hostname it uses. For mTLS, it must also present a trusted client certificate. An external connection isn't required to use a gateway solely because it originates outside the cluster; reachability, certificate names, trust, and certificate rotation must all be handled.
+
+The [gateway examples](./pipeline-kubernetes-gateway.md) configure TLS or mTLS on the gateway-to-collector connection. That protects the backend hop only. To encrypt the external client-to-gateway hop, configure client-facing TLS termination or TLS passthrough and the corresponding certificate and client-trust requirements. Don't treat backend TLS alone as end-to-end protection.
 
 ## Related articles
 
@@ -89,6 +150,3 @@ Disable TLS and mTLS only if your environment doesn't require encrypted ingestio
 - Use customer-managed certificates in [TLS configuration - Using your own certificate management](./pipeline-tls-custom.md).
 - Expose secure receivers to external clients by using [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
 - Configure client connections in [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
-
-
-

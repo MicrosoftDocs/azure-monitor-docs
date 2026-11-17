@@ -1016,12 +1016,12 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/data-collection/pipeline-kubernetes-gateway-brownfield.md",
-   "redirect_url": "/azure/azure-monitor/data-collection/pipeline-kubernetes-gateway#add-a-new-receiver-to-existing-pipeline-group",
+   "redirect_url": "/azure/azure-monitor/data-collection/pipeline-kubernetes-gateway#add-a-new-receiver-to-an-existing-pipeline-instance",
    "redirect_document_id": true
   },
   {
    "source_path_from_root": "/articles/azure-monitor/data-collection/pipeline-kubernetes-gateway-multiple.md",
-   "redirect_url": "/azure/azure-monitor/data-collection/pipeline-kubernetes-gateway#new-pipeline-group-instance",
+   "redirect_url": "/azure/azure-monitor/data-collection/pipeline-kubernetes-gateway#new-pipeline-instance",
    "redirect_document_id": false
   },
   {

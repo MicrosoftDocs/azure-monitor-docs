@@ -3,7 +3,7 @@ title: Migrate From the HTTP Data Collector API to the Logs Ingestion API
 description: Learn how to migrate Azure Monitor custom log ingestion from the deprecated HTTP Data Collector API to the Logs ingestion API.
 ms.topic: how-to
 ms.custom: cbo-v1.6
-ms.date: 07/07/2026
+ms.date: 11/03/2026
 ai-usage: ai-assisted
 
 #customer intent: As a developer, I want to migrate from the HTTP Data Collector API to the Logs ingestion API so that I can continue ingesting custom logs after the Data Collector API retirement.
@@ -24,6 +24,7 @@ The Logs ingestion API provides the following advantages over the Data Collector
 * Supports [transformations](../data-collection/data-collection-transformations.md), which enable you to modify the data before you ingest it into the destination table, including filtering and data manipulation.
 * Lets you send data to multiple destinations.
 * Lets you manage the destination table schema, including column names, and whether to add new columns to the destination table when the source data schema changes.
+* Supports [schemaless ingestion (preview)](../data-collection/data-collection-transformations.md#schemaless-ingestion-preview) to capture undeclared input properties in a `dynamic` column without automatically creating table columns.
 * Supports role-based access control (RBAC) to restrict data ingestion by data collection rule and identity.
 
 ## Prerequisites
@@ -220,6 +221,8 @@ The `migrate` operation enables all DCR-based custom logs features on the table.
 > * Custom columns you add to an Azure table must have the suffix `_CF`.
 > * If you update the table schema in your Log Analytics workspace, you must also update the input stream definition in the data collection rule to ingest data into new or modified columns.
 
+If you plan to add a `dynamic` column for [schemaless ingestion](#capture-new-properties-with-schemaless-ingestion-preview), add it after you stop sending data to this table through the Data Collector API. Alternatively, create a separate destination table for the Logs Ingestion API. Adding the column is a table schema change and is subject to the migration warning above.
+
 ## Reduce data size per call
 
 The Logs ingestion API accepts up to 1 MB of compressed or uncompressed data per call. If you need to send more than 1 MB of data, send multiple calls in parallel. This limit differs from the Data Collector API, which accepts up to 30 MB of data per call.
@@ -237,11 +240,41 @@ The Data Collector API automatically adjusts a destination legacy table's schema
 When the source data schema changes, choose one of these options:
 
 * [Modify destination table schemas](../logs/create-custom-table.md) and [data collection rules](../data-collection/data-collection-rule-create-edit.md) to align with source data schema changes.
-* [Define a transformation](../data-collection/data-collection-transformations.md) in the data collection rule to send the new data into existing columns in the destination table.
-* Leave the destination table and data collection rule unchanged. In this case, you don't ingest the new data.
+* Declare new input properties in the DCR and [define a transformation](../data-collection/data-collection-transformations.md) to map them into existing destination columns. Without capture, a transformation can't reference input properties that the stream doesn't declare.
+* Enable [schemaless ingestion (preview)](#capture-new-properties-with-schemaless-ingestion-preview) to collect undeclared properties in a `dynamic` column. Once enabled, new bag keys don't require a DCR or table update.
+* Leave the destination table and data collection rule unchanged. If schemaless ingestion isn't enabled, new undeclared properties aren't retained. If capture is enabled and projected to the destination, those properties are retained in the bag.
 
 > [!NOTE]
 > You can't reuse a column name with a data type that differs from the column's original data type.
+
+### Compare schema-change behavior
+
+The HTTP Data Collector API's automatic column creation is different from schemaless ingestion. The latter preserves new attributes as bag keys, not as new typed columns.
+
+| Contract | HTTP Data Collector API | Logs Ingestion API, default | Logs Ingestion API with schemaless ingestion |
+| :--------- | :------------------------ | :---------------------------- | :------------------------------------------- |
+| Destination table | Can create a legacy custom table from incoming data. | The table must already exist. | The table must already exist and include a compatible column for any bag you retain. |
+| New input property | Creates a type-suffixed column, such as `deployment_ring_s`. | Declare it in the DCR before using it in a transformation. No automatic table-column creation. | Captures it as a key such as `deployment_ring` in the overflow bag. No automatic table-column creation. |
+| Data types | Uses type suffixes and can create another suffixed column for a different type. | Declared input columns use their specified types; the transformation output must match the table. | Declared columns keep their typed behavior. Undeclared bag entries don't have individual typed column declarations. |
+| Transformation input | Doesn't use the DCR custom-stream input contract. | KQL can use the declared input columns. | KQL can use the declared columns and the generated overflow bag. |
+| Output | Uses the legacy table's naming and schema behavior. | Project to the existing destination schema, including existing suffixed column names when reusing a migrated table. | Explicitly project the bag or selected attributes into the destination schema. Existing column names don't change automatically. |
+
+### Capture new properties with schemaless ingestion (preview)
+
+Use this option if you previously relied on automatic columns and want to retain evolving attributes without a schema update for each new property. Keep stable fields in typed input columns and capture the rest in a `dynamic` overflow column.
+
+For example, after capture is configured, a new input property `deployment_ring: "canary"` becomes a bag entry rather than a new `deployment_ring_s` table column. A later record can add another key without changing the DCR.
+
+To configure capture:
+
+1. Create or choose a destination table with a `dynamic` column, following the [migration schema warning](#migrate-existing-custom-tables-or-create-new-tables).
+1. Declare the core input fields and a `dynamic` overflow column in the DCR.
+1. Configure a named transformation with `header.CustomStream`, `dynamicSchema: true`, and `overflowColumn`. Reference it through `dataFlows[].transform` instead of `transformKql`.
+1. Project the overflow bag into the destination `dynamic` column. Preserve any existing filtering, casts, timestamp handling, and output column names in the transformation.
+
+Follow [Enable schemaless ingestion](../data-collection/data-collection-transformations-create.md#enable-schemaless-ingestion-for-a-custom-stream-preview) for the before-and-after configuration and deployment steps, and [Capture undeclared properties in an overflow column](../data-collection/data-collection-rule-samples.md#capture-undeclared-properties-in-an-overflow-column-preview) for a complete Logs Ingestion API example.
+
+Only fields available to the transformation can be packed or projected. Adding `pack_all()` to an existing transformation doesn't recover undeclared fields that were discarded before KQL. Capturing new fields also changes the data-governance boundary: use explicit declarations and validation for fields that require a fixed type, and review which additional attributes you retain.
 
 ## Related content
 

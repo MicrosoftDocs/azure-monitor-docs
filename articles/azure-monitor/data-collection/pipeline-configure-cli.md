@@ -3,7 +3,7 @@ title: Configure Azure Monitor pipeline with CLI or ARM templates
 description: Learn how to configure Azure Monitor pipeline with CLI or ARM templates for automation and advanced scenarios.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 09/21/2026
+ms.date: 10/22/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
@@ -24,1526 +24,1194 @@ Use CLI or ARM templates when you need a repeatable deployment process or more c
 
 ## Configuration workflow
 
-Follow these tasks to configure a pipeline by using CLI or ARM templates.
+Azure Monitor pipeline uses data collection rules (DCRs) to configure the `microsoft.monitor.pipeline` Arc extension.
 
-| Step | Purpose | Output |
-|:-----|:--------|:-------|
-| Prepare workspace tables | Create destination tables in Log Analytics workspace. | Tables ready for incoming data |
-| Add the pipeline extension | Enable Azure Monitor pipeline support on the cluster. | Pipeline extension resource |
-| Create a custom location | Make the Arc-enabled Kubernetes cluster targetable by Azure resources. | Custom location resource |
-| Create a data collection endpoint | Define the ingestion endpoint in Azure Monitor. | DCE resource and logs ingestion URL |
-| Create a data collection rule | Define the schema, routing, and optional transformations in Azure Monitor. | DCR resource and immutable ID |
-| Give the pipeline access to the DCR | Allow the pipeline extension to send data to the DCR. | Role assignment |
-| Create the pipeline configuration | Deploy the pipeline instance and dataflows. | Running pipeline instance |
-| Configure clients | Point your data sources to the pipeline endpoint. | Data flowing through the pipeline |
+Install the extension to run a pipeline instance. Store its instance specific settings, including listening endpoints and TLS configuration, in a `PipelineSettings` DCR. Define what to collect and where to send it in one or more dataflow DCRs. Associate each DCR with the same extension instance through a data collection rule association (DCRA).
 
+## Prerequisites
 
-## Prepare workspace tables
+- An existing [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview).
+- The [Certificate Manager extension](/azure/azure-arc/kubernetes/cert-manager-overview) installed on the cluster **before** you install the pipeline extension. The pipeline operator uses it to provision default certificates. For client trust and mTLS certificate setup, see [Automated certificate management](./pipeline-tls-automated.md).
+- An existing Log Analytics workspace in a region supported by Azure Monitor pipeline. The DCR region must match the workspace region.
+- Permission to create Arc extensions, DCRs, DCRAs, and role assignments. The deployment uses these permissions to create the resources, including the ingestion role assignment.
+- Azure CLI and `kubectl` access to the cluster.
 
-Before you configure the data collection process for the pipeline, confirm or create the destination tables in the Log Analytics workspace. The Azure Monitor pipeline supports sending data to the following tables:
+Use the examples in this article to collect Syslog over UDP or TLS, [collect CEF into Microsoft Sentinel](#collect-cef-into-microsoft-sentinel), or [collect OpenTelemetry logs, metrics, and traces](#collect-otel-logs-metrics-and-traces).
 
-- [Syslog](/azure/azure-monitor/reference/tables/syslog)
-- [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog)
-- Any custom table in the Log Analytics workspace
+## Understand the configuration model
 
+The extension is the running pipeline instance; the DCRs describe its configuration. Installing the extension, defining the configuration, and assigning the configuration to the extension are separate operations.
 
-If you're sending data to a new custom table, create that table before you create any data flows that send to it. The schema of the table must match the data that it receives but not necessarily the schema of the source data that you're collecting from. Multiple steps in the collection process allow you to modify the incoming data before it's received. The only requirement for the table in the Log Analytics workspace is that it has a `TimeGenerated` column.
+| Question | Resource | What you configure |
+|:---|:---|:---|
+| What runs the pipeline? | The `microsoft.monitor.pipeline` Arc extension. | Install a named extension instance on the connected cluster. Its deployment specifies the extension version, release train, namespace, and managed identity. |
+| What runtime settings does the instance use? | A DCR with `kind: PipelineSettings`. | Store listening endpoints and TLS configuration in `properties.pipelineSettings`. Endpoints select named TLS configurations that specify encryption, client authentication, and certificate references. |
+| What happens to the data? | One or more dataflow DCRs. | `dataSources` defines collection, parsing, and streams, `destinations` identifies the workspace, and `dataFlows` connects streams to destinations. |
+| How are DCRs connected to the Arc extension? | A DCRA for each DCR. | Create the association under the Arc connected cluster, and set `properties.scopeToResourceId` to the full resource ID of the pipeline extension. |
+| What authorizes ingestion? | A role assignment on the dataflow DCR. | The ARM template automatically assigns **Monitoring Metrics Publisher** to the extension's managed identity. No separate manual role assignment is required when you deploy the template. This permission is separate from the associations that deliver configuration. |
 
-For details on different methods for creating a table, see [Add or delete tables and columns in Azure Monitor Logs](../logs/create-custom-table.md). For example, use the following CLI command to create a table with the three columns called `Body`, `TimeGenerated`, and `SeverityText`.
+Create both DCRs as `Microsoft.Insights/dataCollectionRules` resources. Set `kind` to `PipelineSettings` on the settings DCR, and omit `kind` on the dataflow DCR.
 
-```azurecli
-az monitor log-analytics workspace table create --workspace-name my-workspace --resource-group my-resource-group --name OTelLogs_CL --columns TimeGenerated=datetime Body=string SeverityText=string
+```text
+Arc connected cluster
+  |
+  +-- Pipeline extension: azure-monitor-pipeline
+  |     Runs the instance and uses its own managed identity.
+  |
+  +-- Settings DCRA
+  |     dataCollectionRuleId --> basic-syslog-pipeline-settings
+  |     scopeToResourceId ----> azure-monitor-pipeline extension
+  |
+  +-- Dataflow DCRA
+        dataCollectionRuleId --> basic-syslog-pipeline-datasources
+        scopeToResourceId ----> same extension
+
+Runtime configuration applied by the extension:
+  Settings DCR: endpoints + named TLS configurations
+                    ^
+                    | endpoint reference
+  Dataflow DCR: sources --> streams --> destinations
+
+Telemetry path:
+  Clients --> configured listener --> collection and routing --> workspace
 ```
 
-## Create pipeline resources
-Use the following tasks to configure the Azure Monitor pipeline resources on your cluster.
+### Separate instance settings from dataflows
 
-### Add the pipeline extension
+Use one settings DCR for an extension instance. It can define multiple endpoints and reusable TLS configurations. A named endpoint identifies a listener, such as Syslog over TCP on port 6514. Its TLS reference selects the server certificate and, for mTLS, the CA used to validate client certificates.
 
-Start by adding the pipeline extension to your Arc-enabled Kubernetes cluster. Use the same namespace for the pipeline extension and the Azure Monitor pipeline instance that you deploy later in this article. The `releaseNamespace` that you specify for the extension must match the namespace used by the pipeline instance.
+Use a separate dataflow DCR for collection and destination routing. Multiple dataflow DCRs can use endpoints from the same settings DCR. For example, you can manage two collection configurations independently while sharing the instance's listener and TLS configuration. When extending the template with another dataflow DCR, include its association and role-assignment resources so that deployment automatically connects it to the extension and grants the extension identity ingestion permission.
 
-### [CLI](#tab/cli)
+This separation lets you update a certificate reference or listener setting in the settings DCR without putting TLS configuration in every dataflow DCR. To change parsing or a destination, update the relevant dataflow DCR instead. Extension installation settings remain on the extension resource.
 
-```azurecli
-az k8s-extension create --name <pipeline-extension-name> --extension-type microsoft.monitor.pipelinecontroller --scope cluster --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --release-train Preview
+### Connect the two DCRs
 
-## Example
-az k8s-extension create --name my-pipeline --extension-type microsoft.monitor.pipelinecontroller --scope cluster --cluster-name my-cluster --resource-group my-resource-group --cluster-type connectedClusters --release-train Preview
-```
+For example, create two DCRs named `basic-syslog-pipeline-settings` and `basic-syslog-pipeline-datasources`. The first defines a listener named `syslog514`; the second selects it and routes its records to the workspace.
 
-### [ARM](#tab/arm)
+Use the same endpoint name in three places:
 
-```json
-{
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "resources": [
-        {
-            "type": "Microsoft.KubernetesConfiguration/extensions",
-            "apiVersion": "2022-11-01",
-            "name": "my-extension",
-            "scope": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/aks/providers/Microsoft.Kubernetes/connectedClusters/my-cluster",
-            "identity": {
-                "type": "SystemAssigned"
-            },
-            "properties": {
-                "aksAssignedIdentity": {
-                    "type": "SystemAssigned"
-                },
-                "autoUpgradeMinorVersion": false,
-                "extensionType": "microsoft.monitor.pipelinecontroller",
-                "releaseTrain": "preview",
-                "scope": {
-                    "cluster": {
-                        "releaseNamespace": "my-strato-ns"
-                    }
-                }
-            }
-        }
-    ]
-}
-```
+* The settings DCR defines `pipelineSettings.endpoints[].name` as `syslog514`.
+* The dataflow DCR defines a `references.pipelineSettingsEndpointRouting` entry with that name and the settings DCR's full ARM resource ID in `pipelineSettingsResourceId`.
+* The Syslog data source selects that reference with `endpointRouting: ["syslog514"]` and sets `mode` to `pipeline`.
 
----
+The endpoint reference connects collection logic to a listener. Associate **both** DCRs with the same extension instance to apply the listener and collection configuration.
 
-### Create a custom location
-An [Azure custom location](/azure/azure-arc/kubernetes/custom-locations) lets Azure treat the Arc-enabled Kubernetes clusters as targetable locations for Azure resources.
+Keep the identifiers distinct:
 
-### [CLI](#tab/cli)
-
-```azurecli
-az customlocation create --name <custom-location-name> --resource-group <resource-group-name> --namespace <name of namespace> --host-resource-id <connectedClusterId> --cluster-extension-ids <extensionId>
-
-## Example
-az customlocation create --name my-cluster-custom-location --resource-group my-resource-group --namespace my-cluster-custom-location --host-resource-id /subscriptions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster --cluster-extension-ids /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster/providers/Microsoft.KubernetesConfiguration/extensions/my-cluster
-```
-
-### [ARM](#tab/arm)
-
-```json
-{
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "resources": [
-        {
-            "type": "Microsoft.ExtendedLocation/customLocations",
-            "apiVersion": "2021-08-15",
-            "name": "my-customlocation-eastus2",
-            "location": "eastus",
-            "properties": {
-                "hostResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster",
-                "namespace": "my-customlocation-eastus2",
-                "clusterExtensionIds": ["/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster/Providers/Microsoft.KubernetesConfiguration/extensions/my-pipeline"],
-                "hostType": "Kubernetes"
-            }
-        }
-    ]
-}
-```
-
----
-
-### Create a data collection endpoint (DCE)
-
-Use the following command to create the [data collection endpoint (DCE)](data-collection-endpoint-overview.md) required for the pipeline to connect to the cloud. You can use an existing DCE if you already have one in the same region.
-
-### [CLI](#tab/cli)
-
-```azurecli
-az monitor data-collection endpoint create --name <dce-name> --resource-group <resource-group-name> --location <location> --public-network-access "Enabled"
-
-## Example
- az monitor data-collection endpoint create --name strato-06-dce --resource-group strato --location eastus --public-network-access "Enabled"
-```
-
-### [ARM](#tab/arm)
-
-```json
-{
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "resources": [
-        {
-            "type": "Microsoft.Insights/dataCollectionEndpoints",
-            "name": "my-pipeline-dce",
-            "location": "eastus",
-            "apiVersion": "2021-04-01",
-            "properties": {
-                "configurationAccess": {},
-                "logsIngestion": {},
-                "networkAcls": {
-                    "publicNetworkAccess": "Enabled"
-                }
-            }
-        }
-    ]
-}
-```
-
----
-
-## Create a data collection rule (DCR)
-Azure Monitor stores the DCR and defines how to process the received data from the pipeline. The pipeline configuration specifies the `immutable ID` of this DCR and the `stream` in the DCR that processes the data.
+| Identifier | Where it's used |
+|:---|:---|
+| Endpoint name, such as `syslog514`. | Joins the data source's `endpointRouting`, the DCR's endpoint-routing reference, and the settings DCR's endpoint definition. It isn't a resource ID. |
+| Settings DCR ARM resource ID. | `references.pipelineSettingsEndpointRouting[].pipelineSettingsResourceId` identifies which settings DCR owns the endpoint. |
+| DCR ARM resource ID. | Each association's `dataCollectionRuleId` identifies the DCR to deliver. |
+| Extension ARM resource ID. | Each association's `scopeToResourceId` identifies the instance that receives that DCR. |
+| Destination name, such as `law`. | Joins `dataFlows[].destinations` to an entry in the same DCR's `destinations.logAnalytics` array. That entry contains the workspace resource ID. |
 
 
-### Define the DCR
-You need to create the DCR before you can create the pipeline configuration. The pipeline configuration needs the immutable ID of the DCR, which is automatically generated when you create the DCR. Define DCRs in JSON. Start with the following sample DCR and update the sections outlined in the table. Then create the DCR by using one of the following methods.
+### Configure TLS in the settings DCR
 
-| Parameter | Description |
-|:----------|:------------|
-| `name` | Name of the DCR. Must be unique for the subscription. |
-| `location` | Location of the DCR. Must match the location of the DCE. |
-| `dataCollectionEndpointId` | Resource ID of the DCE that you previously created. |
-| `streamDeclarations` | Schema of the data being received. One stream is required for each dataflow in the pipeline configuration. The name must be unique in the DCR and must begin with *Custom-*. The `column` sections in the following samples should be used for the OTLP and Syslog data flows. If the schema for your destination table is different, modify it by using a transformation defined in the `transformKql` parameter. |
-| `destinations` | Details of one or more Log Analytics workspaces where the data is sent.
-| `dataFlows` | One or more data flows that each match a set of streams and destinations. The data flow can include an optional transformation to modify the data before it's sent to the destination. The output stream specifies the destination table in the Log Analytics workspace. The table must already exist in the workspace. For custom tables, prefix the table name with *Custom-*. For Azure tables, prefix the table name with *Microsoft-*.  |
+TLS is part of the pipeline settings DCR, not just a property of the extension installation or the dataflow DCR:
 
-### [CLI](#tab/cli)
-Replace the properties in the sample template and save them in a JSON file before running the CLI command to create the DCR. For more information about the structure of a DCR, see [Structure of a data collection rule in Azure Monitor](data-collection-rule-overview.md).
+- Define named TLS configurations in `properties.pipelineSettings.tlsConfigurations`.
+- Select a TLS configuration from an endpoint with `properties.pipelineSettings.endpoints[].networkingConfig.tlsConfiguration`.
+- Store certificate and private-key references in the named TLS configuration. For mTLS, also reference the client CA bundle. Store the certificate material in Kubernetes resources, not inline in the DCR.
 
-```azurecli
-az monitor data-collection rule create --name 'myDCRName' --location <location> --resource-group <resource-group> --rule-file '<dcr-file-path.json>'
+Use the [TCP Syslog example](#example-collect-syslog-over-tls) to add server-only TLS to the deployment in this article. For client certificate authentication, see the [mTLS settings DCR example](./pipeline-tls-custom.md#configure-pipeline). Keep the dataflow DCR's endpoint reference aligned with the endpoint name when you add or change the listener.
 
-## Example
-az monitor data-collection rule create --name my-pipeline-dcr --location westus2 --resource-group 'my-resource-group' --rule-file 'C:\MyDCR.json'
-```
+Syslog over UDP sends telemetry without encryption. Use UDP endpoints only on trusted networks, and restrict access to the intended data sources.
 
-### [ARM](#tab/arm)
+Setting an endpoint's `transportProtocol` to `tcp` selects the transport protocol; it doesn't enable TLS or mutual TLS (mTLS). Before sending sensitive telemetry, verify that the client-to-pipeline connection is encrypted.
 
-```json
-{
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "dataCollectionRuleName": {
-            "type": "string",
-            "metadata": {
-                "description": "Specifies the name of the Data Collection Rule to create."
-            }
-        },
-        "location": {
-            "type": "string",
-            "metadata": {
-                "description": "Specifies the location in which to create the Data Collection Rule."
-            }
-        }
-    },
-    "resources": [
-        {
-            "type": "Microsoft.Insights/dataCollectionRules",
-            "name": "[parameters('dataCollectionRuleName')]",
-            "location": "[parameters('location')]",
-            "apiVersion": "2024-03-11",
-            "properties": {
-                "dataCollectionEndpointId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce",
-                "streamDeclarations": {
-                    "Custom-OTLP": {
-                        "columns": [
-                            {
-                                "name": "Body",
-                                "type": "string"
-                            },
-                            {
-                                "name": "TimeGenerated",
-                                "type": "datetime"
-                            },
-                            {
-                                "name": "SeverityText",
-                                "type": "string"
-                            }
-                        ]
-                    },
-                    "Custom-Syslog": {
-                        "columns": [
-                            {
-                                "name": "Body",
-                                "type": "string"
-                            },
-                            {
-                                "name": "TimeGenerated",
-                                "type": "datetime"
-                            },
-                            {
-                                "name": "SeverityText",
-                                "type": "string"
-                            }
-                        ]
-                    }
-                },
-                "dataSources": {},
-                "destinations": {
-                    "logAnalytics": [
-                        {
-                            "name": "LogAnayticsWorkspace01",
-                            "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
-                        }
-                    ]
-                },
-                "dataFlows": [
-                    {
-                        "streams": [
-                            "Custom-OTLP"
-                        ],
-                        "destinations": [
-                            "LogAnayticsWorkspace01"
-                        ],
-                        "transformKql": "source",
-                        "outputStream": "Custom-OTelLogs_CL"
-                    },
-                    {
-                        "streams": [
-                            "Custom-Syslog"
-                        ],
-                        "destinations": [
-                            "LogAnayticsWorkspace01"
-                        ],
-                        "transformKql": "source",
-                        "outputStream": "Custom-Syslog_CL"
-                    }
-                ]
-            }
-        }
-    ]
-}
-```
+### Associate both DCRs with the extension
 
----
+Each association has two distinct scopes:
 
-<br>
+- The ARM `scope` is the Arc connected cluster. The DCRA is a child resource of that cluster.
+- `properties.scopeToResourceId` is the full ARM resource ID of the particular pipeline extension installed on that cluster.
+
+For each association, set `properties.dataCollectionRuleId` to the full ARM resource ID of the corresponding DCR, not its immutable ID. Use the same extension resource ID for both `scopeToResourceId` values.
+
+For the single-dataflow sample, create two associations: one for the settings DCR and one for the dataflow DCR. If you add another dataflow DCR, create an additional association targeting the same extension; don't create another settings DCR for that instance.
+
+To change endpoints, TLS, or other instance-specific runtime settings, update the settings DCR. To change collection or destination routing, update the relevant dataflow DCR. Keep endpoint references and associations consistent when you make changes.
+
+## Deploy the ARM template
+
+Deploy the following resources to collect Syslog:
+
+* The Arc pipeline extension with a system-assigned managed identity.
+* A settings DCR defining a UDP listener on port 514.
+* A dataflow DCR accepting RFC 3164 and RFC 5424 Syslog and routing it to Log Analytics.
+* Two DCRAs scoped to the same extension.
+* A **Monitoring Metrics Publisher** role assignment on the dataflow DCR, created automatically by the template for the extension's managed identity.
+
+You don't need to assign this role manually after deployment.
+
+Save the following ARM template as `basic-syslog-arm-template.json`. Deploy it to the resource group containing the existing Arc connected cluster. The workspace can be in a different resource group.
 
 <details>
-<summary><b>Expand for DCR sample</b></summary>
+<summary>Expand the complete Syslog ARM template.</summary>
 
 ```json
 {
-    "properties": {
-        "dataCollectionEndpointId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce",
-        "streamDeclarations": {
-            "Custom-OTLP": {
-                "columns": [
-                    {
-                        "name": "Body",
-                        "type": "string"
-                    },
-                    {
-                        "name": "TimeGenerated",
-                        "type": "datetime"
-                    },
-                    {
-                        "name": "SeverityText",
-                        "type": "string"
-                    }
-                ]
-            },
-            "Custom-Syslog": {
-                "columns": [
-                    {
-                        "name": "Body",
-                        "type": "string"
-                    },
-                    {
-                        "name": "TimeGenerated",
-                        "type": "datetime"
-                    },
-                    {
-                        "name": "SeverityText",
-                        "type": "string"
-                    }
-                ]
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "description": "Deploy an Azure Monitor Pipeline Arc extension and a basic UDP Syslog-to-Log-Analytics DCR set. Deploy this template to the resource group containing the existing Arc connected cluster."
+  },
+  "parameters": {
+    "connectedClusterName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the existing Microsoft.Kubernetes/connectedClusters resource in the deployment resource group."
+      }
+    },
+    "logAnalyticsWorkspaceResourceId": {
+      "type": "string",
+      "metadata": {
+        "description": "Full ARM resource ID of the existing Log Analytics workspace."
+      }
+    },
+    "dcrLocation": {
+      "type": "string",
+      "defaultValue": "centraluseuap",
+      "metadata": {
+        "description": "Azure region for the DCRs. This must match the Log Analytics workspace region and support Azure Monitor pipeline."
+      }
+    },
+    "extensionName": {
+      "type": "string",
+      "defaultValue": "azure-monitor-pipeline",
+      "metadata": {
+        "description": "Name of the Arc extension instance."
+      }
+    },
+    "extensionType": {
+      "type": "string",
+      "defaultValue": "microsoft.monitor.pipeline",
+      "metadata": {
+        "description": "Registered Arc extension type."
+      }
+    },
+    "extensionVersion": {
+      "type": "string",
+      "defaultValue": "0.1.4",
+      "metadata": {
+        "description": "Pinned Arc extension version."
+      }
+    },
+    "extensionReleaseTrain": {
+      "type": "string",
+      "defaultValue": "stable",
+      "metadata": {
+        "description": "Arc extension release train."
+      }
+    },
+    "extensionNamespace": {
+      "type": "string",
+      "defaultValue": "default",
+      "metadata": {
+        "description": "Kubernetes namespace where the extension Helm release is installed."
+      }
+    },
+    "extensionConfigurationSettings": {
+      "type": "object",
+      "defaultValue": {},
+      "metadata": {
+        "description": "Arc extension settings as a flat map of Helm value paths to string values."
+      }
+    },
+    "namePrefix": {
+      "type": "string",
+      "defaultValue": "basic-syslog-pipeline",
+      "metadata": {
+        "description": "Prefix used for the PipelineSettings DCR, datasource DCR, and DCRA names."
+      }
+    }
+  },
+  "variables": {
+    "connectedClusterResourceId": "[resourceId('Microsoft.Kubernetes/connectedClusters', parameters('connectedClusterName'))]",
+    "extensionResourceId": "[extensionResourceId(variables('connectedClusterResourceId'), 'Microsoft.KubernetesConfiguration/extensions', parameters('extensionName'))]",
+    "settingsDcrName": "[concat(parameters('namePrefix'), '-settings')]",
+    "dataSourcesDcrName": "[concat(parameters('namePrefix'), '-datasources')]",
+    "settingsDcrResourceId": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('settingsDcrName'))]",
+    "dataSourcesDcrResourceId": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dataSourcesDcrName'))]",
+    "settingsAssociationName": "[concat('pipelineSettings-', parameters('namePrefix'))]",
+    "dataSourcesAssociationName": "[concat(variables('dataSourcesDcrName'), '-assoc')]",
+    "syslogEndpointName": "syslog514",
+    "monitoringMetricsPublisherRoleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '3913510d-42f4-4e42-8a64-420c390055eb')]",
+    "publisherRoleAssignmentName": "[guid(variables('dataSourcesDcrResourceId'), variables('extensionResourceId'), variables('monitoringMetricsPublisherRoleDefinitionId'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.KubernetesConfiguration/extensions",
+      "apiVersion": "2023-05-01",
+      "name": "[parameters('extensionName')]",
+      "scope": "[format('Microsoft.Kubernetes/connectedClusters/{0}', parameters('connectedClusterName'))]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "extensionType": "[parameters('extensionType')]",
+        "autoUpgradeMinorVersion": false,
+        "releaseTrain": "[parameters('extensionReleaseTrain')]",
+        "version": "[parameters('extensionVersion')]",
+        "configurationSettings": "[parameters('extensionConfigurationSettings')]",
+        "scope": {
+          "cluster": {
+            "releaseNamespace": "[parameters('extensionNamespace')]"
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "apiVersion": "2025-05-11",
+      "name": "[variables('settingsDcrName')]",
+      "location": "[parameters('dcrLocation')]",
+      "kind": "PipelineSettings",
+      "properties": {
+        "description": "Pipeline settings for the basic Syslog pipeline.",
+        "pipelineSettings": {
+          "endpoints": [
+            {
+              "name": "[variables('syslogEndpointName')]",
+              "type": "syslog",
+              "networkingConfig": {
+                "endpoint": "0.0.0.0:514",
+                "transportProtocol": "udp"
+              }
             }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "apiVersion": "2025-05-11",
+      "name": "[variables('dataSourcesDcrName')]",
+      "location": "[parameters('dcrLocation')]",
+      "dependsOn": [
+        "[variables('settingsDcrResourceId')]"
+      ],
+      "properties": {
+        "description": "Collect RFC3164 and RFC5424 Syslog over UDP and send it to Log Analytics.",
+        "dataSources": {
+          "syslog": [
+            {
+              "name": "udpSyslog",
+              "mode": "pipeline",
+              "allowedFormats": [
+                "syslogRfc3164",
+                "syslogRfc5424"
+              ],
+              "allowSkipPriHeader": false,
+              "endpointRouting": [
+                "[variables('syslogEndpointName')]"
+              ],
+              "streams": [
+                "Microsoft-Syslog-FullyFormed"
+              ]
+            }
+          ]
         },
-        "dataSources": {},
         "destinations": {
-            "logAnalytics": [
-                {
-                    "name": "LogAnayticsWorkspace01",
-                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
-                }
-            ]
+          "logAnalytics": [
+            {
+              "name": "law",
+              "workspaceResourceId": "[parameters('logAnalyticsWorkspaceResourceId')]"
+            }
+          ]
         },
         "dataFlows": [
+          {
+            "streams": [
+              "Microsoft-Syslog-FullyFormed"
+            ],
+            "destinations": [
+              "law"
+            ]
+          }
+        ],
+        "references": {
+          "pipelineSettingsEndpointRouting": [
             {
-                "streams": [
-                    "Custom-OTLP"
-                ],
-                "destinations": [
-                    "LogAnayticsWorkspace01"
-                ],
-                "transformKql": "source",
-                "outputStream": "Custom-OTelLogs_CL"
-            },
-            {
-                "streams": [
-                    "Custom-Syslog"
-                ],
-                "destinations": [
-                    "LogAnayticsWorkspace01"
-                ],
-                "transformKql": "source",
-                "outputStream": "Custom-Syslog_CL"
+              "name": "[variables('syslogEndpointName')]",
+              "pipelineSettingsResourceId": "[variables('settingsDcrResourceId')]"
             }
-        ]
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Insights/dataCollectionRuleAssociations",
+      "apiVersion": "2025-05-11",
+      "name": "[variables('settingsAssociationName')]",
+      "scope": "[format('Microsoft.Kubernetes/connectedClusters/{0}', parameters('connectedClusterName'))]",
+      "dependsOn": [
+        "[variables('extensionResourceId')]",
+        "[variables('settingsDcrResourceId')]"
+      ],
+      "properties": {
+        "description": "Scope the PipelineSettings DCR to this pipeline extension instance.",
+        "dataCollectionRuleId": "[variables('settingsDcrResourceId')]",
+        "scopeToResourceId": "[variables('extensionResourceId')]"
+      }
+    },
+    {
+      "type": "Microsoft.Insights/dataCollectionRuleAssociations",
+      "apiVersion": "2025-05-11",
+      "name": "[variables('dataSourcesAssociationName')]",
+      "scope": "[format('Microsoft.Kubernetes/connectedClusters/{0}', parameters('connectedClusterName'))]",
+      "dependsOn": [
+        "[variables('extensionResourceId')]",
+        "[variables('dataSourcesDcrResourceId')]"
+      ],
+      "properties": {
+        "description": "Scope the Syslog datasource DCR to this pipeline extension instance.",
+        "dataCollectionRuleId": "[variables('dataSourcesDcrResourceId')]",
+        "scopeToResourceId": "[variables('extensionResourceId')]"
+      }
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[variables('publisherRoleAssignmentName')]",
+      "scope": "[variables('dataSourcesDcrResourceId')]",
+      "dependsOn": [
+        "[variables('extensionResourceId')]",
+        "[variables('dataSourcesDcrResourceId')]"
+      ],
+      "properties": {
+        "roleDefinitionId": "[variables('monitoringMetricsPublisherRoleDefinitionId')]",
+        "principalId": "[reference(variables('extensionResourceId'), '2023-05-01', 'Full').identity.principalId]",
+        "principalType": "ServicePrincipal"
+      }
     }
+  ],
+  "outputs": {
+    "extensionResourceId": {
+      "type": "string",
+      "value": "[variables('extensionResourceId')]"
+    },
+    "extensionPrincipalId": {
+      "type": "string",
+      "value": "[reference(variables('extensionResourceId'), '2023-05-01', 'Full').identity.principalId]"
+    },
+    "settingsDcrResourceId": {
+      "type": "string",
+      "value": "[variables('settingsDcrResourceId')]"
+    },
+    "dataSourcesDcrResourceId": {
+      "type": "string",
+      "value": "[variables('dataSourcesDcrResourceId')]"
+    },
+    "syslogEndpoint": {
+      "type": "string",
+      "value": "udp://0.0.0.0:514"
+    }
+  }
 }
 ```
 
 </details>
 
+### Configure extension settings
 
+Configure the installed Arc extension through the `Microsoft.KubernetesConfiguration/extensions` resource. Set the following values in the [ARM deployment parameters file](#set-deployment-parameters):
 
+| Parameter | Extension resource field | Description |
+|:---|:---|:---|
+| `extensionName` | `name` | Name of the extension instance on the connected cluster. |
+| `extensionType` | `properties.extensionType` | Registered extension type. Set this value to `microsoft.monitor.pipeline`. |
+| `extensionVersion` | `properties.version` | Extension version to install. |
+| `extensionReleaseTrain` | `properties.releaseTrain` | Extension release train. Set this value to `stable`. |
+| `extensionNamespace` | `properties.scope.cluster.releaseNamespace` | Kubernetes namespace where the extension's Helm release is installed. Retain the existing namespace when you update an installed extension. |
+| `extensionConfigurationSettings` | `properties.configurationSettings` | Flat string map for extension settings, including collector replicas, placement, and PV selection. Preserve required existing settings when redeploying. |
 
+The extension uses a system-assigned managed identity. The template automatically assigns **Monitoring Metrics Publisher** to that identity on the dataflow DCR; no separate manual assignment is required.
 
-## Give the pipeline access to the DCR
+Automatic minor-version upgrades are disabled with `properties.autoUpgradeMinorVersion: false`. To change the installed version, update `extensionVersion`, review the deployment changes, and redeploy.
 
-The Arc-enabled Kubernetes cluster must have access to the DCR to send data to the cloud. Provide this access by assigning the **Monitoring Metrics Publisher** role to the System Assigned Identity of the pipeline extension on your cluster.
+The example targets version `0.1.4`. Confirm that this version is registered for your extension type, region, and release train before deploying.
 
-You need the object ID of your cluster's System Assigned Identity. Get it from the Azure portal or use the following CLI command:
+Extension deployment settings configure the installed extension. Store instance-specific runtime settings, including listening endpoints and TLS configuration, in the `PipelineSettings` DCR, and collection and routing settings in the dataflow DCR. The template automatically creates the DCR associations and ingestion role assignment as part of the same deployment; installing the extension alone doesn't create them.
 
-```azurecli
-az k8s-extension show --name <extension-name> --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --query "identity.principalId" -o tsv 
+### Set deployment parameters
 
-## Example:
-az k8s-extension show --name my-pipeline-extension --cluster-name my-cluster --resource-group my-resource-group --cluster-type connectedClusters --query "identity.principalId" -o tsv 
-```
-
-:::image type="content" source="./media/pipeline-configure/extension-object-id.png" lightbox="./media/pipeline-configure/extension-object-id.png" alt-text="Screenshot showing the object ID of the pipeline extension on the Arc-enabled cluster." border="false":::
-
-
-### [CLI](#tab/cli)
-
-Use the output from this command as input to the following command. It gives Azure Monitor pipeline the authority to send its telemetry to the DCR.
-
-```azurecli
-az role assignment create --assignee "<extension principal ID>" --role "Monitoring Metrics Publisher" --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Insights/dataCollectionRules/<dcr-name>" 
-
-## Example:
-az role assignment create --assignee "aaaaaaaa-bbbb-cccc-1111-222222222222" --role "Monitoring Metrics Publisher" --scope "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr"
-```
-
-
-### [ARM](#tab/arm)
+Save the following as `basic-syslog-arm-parameters.json` and replace the placeholders. Set `dcrLocation` to the workspace region.
 
 ```json
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "resources": [
-        {
-            "type": "Microsoft.Insights/dataCollectionRules/providers/roleAssignments",
-            "apiVersion": "2022-04-01",
-            "name": "my-dcr-role-assignment",
-            "properties": {
-                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions','3913510d-42f4-4e42-8a64-420c390055eb')]",
-                "principalId": "aaaaaaaa-bbbb-cccc-1111-222222222222",
-                "scope": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr""
-            }
-        }
-    ]
-}
-```
-
----
-
-## Create the pipeline configuration
-
-The pipeline configuration defines the details of the pipeline instance and deploys the data flows necessary to receive and send telemetry to the cloud. Format the configuration in JSON, similar to the structure of a DCR. You can only install it by using an ARM template.
-
-#### Data sources
-To collect Syslog and CEF data, use the `MicrosoftSyslog` or `MicrosoftCommonSecurityLog` processors shown in the following samples. The incoming data is automatically converted to the appropriate format.
-
-<br>
-
-<details>
-<summary><b>Expand for Syslog processor sample</b></summary>
-
-``` json
-"processors": [
-    {
-    "type": "MicrosoftSyslog",
-    "name": "ms-syslog-processor"
-    }
-]
-```
-</details>
-
-<details>
-<summary><b>Expand for CEF processor sample</b></summary>
-
-``` json
-"processors": [
-    {
-    "type": "MicrosoftCommonSecurityLog",
-    "name": "ms-cef-processor"
-    }
-]
-```
-</details>
-
-#### Destinations
-To send data to the Azure `Syslog` and `CommonSecurityLog` tables, use either `Microsoft-Syslog-FullyFormed` or `Microsoft-CommonSecurityLog-FullyFormed` for the `stream`. This outputs all columns for the table without requiring any record mapping. The following samples include complete record mappings for sample purposes, but you can omit them if you're sending to the Azure tables.
-
-
-The following table describes the sections of the pipeline configuration and critical properties. See the sample configuration files that follow the table for the structure of each section.
-
-| Property | Description |
-|:---------|:------------|
-| `name` | Name of the pipeline instance. Must be unique in the subscription. |
-| `location` | Location of the pipeline instance. |
-| `extendedLocation` | The `name` property includes the resource ID of the custom location created above. The `type` property is always `CustomLocation`.  |
-| `receivers` | One entry for each receiver in the pipeline. Each receiver specifies the type of data being received, the port it will listen on, and a unique name that will be used in the `pipelines` section of the configuration. |
-| `processors` | Processors modify the data in some way before it's sent to the cloud. This section should be empty if no processors are used. Valid processors include the following:<br><br>`MicrosoftSyslog`<br>Converts data to Syslog format.<br><br>`MicrosoftCommonSecurityLog`<br>Converts data to CEF format.<br><br>`Batch`<br>Specifies the batch time in milliseconds. Default is one minute if this processor isn't specified. A batch processor is required to perform aggregation and customize its interval.  Avoid using batch processor in all other scenarios if you want to send data with minimum latency.<br><br>`TransformLanguage`<br>Specifies a transformation applied to the data before it's sent to the cloud. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
-| `exporters` | Includes the details of the DCR that the pipeline will send data to. Includes the following properties.<br><br>`dataCollectionEndpointUrl`<br>Locate this in the Azure portal by navigating to the DCE and copying the **Logs Ingestion** value.<br><br>`dataCollectionRule`<br>Immutable ID of the DCR that defines the data collection in the cloud. From the JSON view of your DCR in the Azure portal, copy the value of the **immutable ID** in the **General** section.<br><br>`stream`<br>Name of the stream in your DCR that will accept the data.<br><br>`maxStorageUsage`<br> Capacity of the persistent volume. When 80% of this capacity is reached, the oldest data is pruned to make room for more data.<br><br>`retentionPeriod`<br> Retention period in minutes. Data is pruned after this amount of time.<br>`schema`: Schema of the data being sent to the cloud. This must match the schema defined in the stream in the DCR. The schema used in the example is valid for both Syslog and OTLP. |
-| `service` | `pipelines`<br>Includes one entry for each pipeline instance. Each entry matches a `receiver` with an `exporter`, including any `processors` that should be used.<br><br>`persistence`<br>Specifies the name of the persistent volume if persistent storage is enabled. |
-
-<br>
-
-<details>
-<summary><b>Expand for Syslog sample</b></summary>
-
-``` json
-{
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "metadata": {
-        "description": "This template deploys an edge pipeline for azure monitor."
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "connectedClusterName": {
+      "value": "<ARC_CONNECTED_CLUSTER_NAME>"
     },
-    "resources": [
-        {
-            "type": "Microsoft.monitor/pipelineGroups",
-            "location": "eastus2euap",
-            "apiVersion": "2026-04-01",
-            "extendedLocation": {
-                "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
-                "type": "CustomLocation"
-            },
-            "name": "my-pipeline-eastus2euap",
-            "properties": {
-                "receivers": [
-                    {
-                        "type": "Syslog",
-                        "name": "syslog-receiver",
-                        "syslog": {
-                            "endpoint": "0.0.0.0:514"
-                        }
-                    }
-                ],
-                "processors": [
-                    {
-                        "type": "MicrosoftSyslog",
-                        "name": "ms-syslog-processor"
-                    },
-                    {
-                        "type": "Batch",
-                        "name": "batch-processor",
-                        "batch": {
-                            "timeout": 60000
-                        }
-                    },
-                    {
-                        "type": "TransformLanguage",
-                        "name": "my-transform",
-                        "transformLanguage": {
-                            "transformStatement": "source"
-                        }
-                    }
-                ],
-                "exporters": [
-                    {
-                        "type": "AzureMonitorWorkspaceLogs",
-                        "name": "syslog-eus2",
-                        "azureMonitorWorkspaceLogs": {
-                            "api": {
-                                "dataCollectionEndpointUrl": "https://my-dce-eastus2-t9si.eastus2-1.ingest.monitor.azure.com",
-                                "dataCollectionRule": "dcr-00000000000000000000000000000000",
-                                "stream": "Microsoft-Syslog-FullyFormed",
-                                "schema": {
-                                    "recordMap": [
-                                        {
-                                            "from": "attributes.CollectorHostName",
-                                            "to": "CollectorHostName"
-                                        },
-                                        {
-                                            "from": "attributes.Computer",
-                                            "to": "Computer"
-                                        },
-                                        {
-                                            "from": "attributes.EventTime",
-                                            "to": "EventTime"
-                                        },
-                                        {
-                                            "from": "attributes.Facility",
-                                            "to": "Facility"
-                                        },
-                                        {
-                                            "from": "attributes.HostIP",
-                                            "to": "HostIP"
-                                        },
-                                        {
-                                            "from": "attributes.HostName",
-                                            "to": "HostName"
-                                        },
-                                        {
-                                            "from": "attributes.ProcessID",
-                                            "to": "ProcessID"
-                                        },
-                                        {
-                                            "from": "attributes.ProcessName",
-                                            "to": "ProcessName"
-                                        },
-                                        {
-                                            "from": "attributes.SeverityLevel",
-                                            "to": "SeverityLevel"
-                                        },
-                                        {
-                                            "from": "attributes.SourceSystem",
-                                            "to": "SourceSystem"
-                                        },
-                                        {
-                                            "from": "attributes.SyslogMessage",
-                                            "to": "SyslogMessage"
-                                        },
-                                        {
-                                            "from": "attributes.TimeGenerated",
-                                            "to": "TimeGenerated"
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                ],
-                "service": {
-                    "pipelines": [
-                        {
-                            "name": "syslog-pipeline",
-                            "receivers": [
-                                "syslog-receiver"
-                            ],
-                            "processors": [
-                                "ms-syslog-processor",
-                                "batch-processor",
-                                "my-transform"
-                            ],
-                            "exporters": [
-                                "syslog-eus2"
-                            ],
-                            "type": "Logs"
-                        }
-                    ]
-                }
-            }
-        }
-    ]
-}
-```
-
-</details>
-
-<details>
-<summary><b>Expand for CEF sample</b></summary>
-
-``` json
-{
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "metadata": {
-        "description": "This template deploys an edge pipeline for azure monitor."
+    "logAnalyticsWorkspaceResourceId": {
+      "value": "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<WORKSPACE_RESOURCE_GROUP>/providers/Microsoft.OperationalInsights/workspaces/<WORKSPACE_NAME>"
     },
-    "resources": [
-        {
-            "type": "Microsoft.monitor/pipelineGroups",
-            "location": "eastus2",
-            "apiVersion": "2026-04-01",
-            "extendedLocation": {
-                "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
-                "type": "CustomLocation"
-            },
-            "name": "my-pipeline-eastus2",
-            "properties": {
-                "receivers": [
-                    {
-                        "type": "Syslog",
-                        "name": "cef-receiver",
-                        "syslog": {
-                            "endpoint": "0.0.0.0:515"
-                        }
-                    }
-                ],
-                "processors": [
-                    {
-                        "type": "MicrosoftCommonSecurityLog",
-                        "name": "ms-cef-processor"
-                    },
-                    {
-                        "type": "Batch",
-                        "name": "batch-processor",
-                        "batch": {
-                            "timeout": 60000
-                        }
-                    },
-                    {
-                        "type": "TransformLanguage",
-                        "name": "my-transform",
-                        "transformLanguage": {
-                            "transformStatement": "source"
-                        }
-                    }
-                ],
-                "exporters": [
-                    {
-                        "type": "AzureMonitorWorkspaceLogs",
-                        "name": "cef-eus2",
-                        "azureMonitorWorkspaceLogs": {
-                            "api": {
-                                "dataCollectionEndpointUrl": "https://my-dce-eastus2-t9si.eastus2-1.ingest.monitor.azure.com",
-                                "dataCollectionRule": "dcr-9f8a459b3c224fddb626170fc08d66f9",
-                                "stream": "Microsoft-CommonSecurityLog-FullyFormed",
-                                "schema": {
-                                    "recordMap": [
-                                        {
-                                            "from": "attributes.Computer",
-                                            "to": "Computer"
-                                        },
-                                        {
-                                            "from": "attributes.TimeGenerated",
-                                            "to": "TimeGenerated"
-                                        },
-                                        {
-                                            "from": "attributes.CollectorHostName",
-                                            "to": "CollectorHostName"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceVendor",
-                                            "to": "DeviceVendor"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceProduct",
-                                            "to": "DeviceProduct"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceVersion",
-                                            "to": "DeviceVersion"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceEventClassID",
-                                            "to": "DeviceEventClassID"
-                                        },
-                                        {
-                                            "from": "attributes.Activity",
-                                            "to": "Activity"
-                                        },
-                                        {
-                                            "from": "attributes.LogSeverity",
-                                            "to": "LogSeverity"
-                                        },
-                                        {
-                                            "from": "attributes.OriginalLogSeverity",
-                                            "to": "OriginalLogSeverity"
-                                        },
-                                        {
-                                            "from": "attributes.AdditionalExtensions",
-                                            "to": "AdditionalExtensions"
-                                        },
-                                        {
-                                            "from": "attributes.ApplicationProtocol",
-                                            "to": "ApplicationProtocol"
-                                        },
-                                        {
-                                            "from": "attributes.EventCount",
-                                            "to": "EventCount"
-                                        },
-                                        {
-                                            "from": "attributes.DestinationDnsDomain",
-                                            "to": "DestinationDnsDomain"
-                                        },
-                                        {
-                                            "from": "attributes.DestinationServiceName",
-                                            "to": "DestinationServiceName"
-                                        },
-                                        {
-                                            "from": "attributes.DestinationTranslatedAddress",
-                                            "to": "DestinationTranslatedAddress"
-                                        },
-                                        {
-                                            "from": "attributes.DestinationTranslatedPort",
-                                            "to": "DestinationTranslatedPort"
-                                        },
-                                        {
-                                            "from": "attributes.CommunicationDirection",
-                                            "to": "CommunicationDirection"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceDnsDomain",
-                                            "to": "DeviceDnsDomain"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceExternalID",
-                                            "to": "DeviceExternalID"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceFacility",
-                                            "to": "DeviceFacility"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceInboundInterface",
-                                            "to": "DeviceInboundInterface"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceName",
-                                            "to": "DeviceName"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceNtDomain",
-                                            "to": "DeviceNtDomain"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceOutboundInterface",
-                                            "to": "DeviceOutboundInterface"
-                                        },
-                                        {
-                                            "from": "attributes.DevicePayloadId",
-                                            "to": "DevicePayloadId"
-                                        },
-                                        {
-                                            "from": "attributes.ProcessName",
-                                            "to": "ProcessName"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceTranslatedAddress",
-                                            "to": "DeviceTranslatedAddress"
-                                        },
-                                        {
-                                            "from": "attributes.DestinationHostName",
-                                            "to": "DestinationHostName"
-                                        },
-                                        {
-                                            "from": "attributes.DestinationMACAddress",
-                                            "to": "DestinationMACAddress"
-                                        },
-                                        {
-                                            "from": "attributes.DestinationNTDomain",
-                                            "to": "DestinationNTDomain"
-                                        },
-                                        {
-                                            "from": "attributes.DestinationProcessId",
-                                            "to": "DestinationProcessId"
-                                        },
-                                        {
-                                            "from": "attributes.DestinationUserPrivileges",
-                                            "to": "DestinationUserPrivileges"
-                                        },
-                                        {
-                                            "from": "attributes.DestinationProcessName",
-                                            "to": "DestinationProcessName"
-                                        },
-                                        {
-                                            "from": "attributes.DestinationPort",
-                                            "to": "DestinationPort"
-                                        },
-                                        {
-                                            "from": "attributes.DestinationIP",
-                                            "to": "DestinationIP"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceTimeZone",
-                                            "to": "DeviceTimeZone"
-                                        },
-                                        {
-                                            "from": "attributes.DestinationUserID",
-                                            "to": "DestinationUserID"
-                                        },
-                                        {
-                                            "from": "attributes.DestinationUserName",
-                                            "to": "DestinationUserName"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceAddress",
-                                            "to": "DeviceAddress"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceMacAddress",
-                                            "to": "DeviceMacAddress"
-                                        },
-                                        {
-                                            "from": "attributes.ProcessID",
-                                            "to": "ProcessID"
-                                        },
-                                        {
-                                            "from": "attributes.ExternalID",
-                                            "to": "ExternalID"
-                                        },
-                                        {
-                                            "from": "attributes.ExtID",
-                                            "to": "ExtID"
-                                        },
-                                        {
-                                            "from": "attributes.FileCreateTime",
-                                            "to": "FileCreateTime"
-                                        },
-                                        {
-                                            "from": "attributes.FileHash",
-                                            "to": "FileHash"
-                                        },
-                                        {
-                                            "from": "attributes.FileID",
-                                            "to": "FileID"
-                                        },
-                                        {
-                                            "from": "attributes.FileModificationTime",
-                                            "to": "FileModificationTime"
-                                        },
-                                        {
-                                            "from": "attributes.FilePath",
-                                            "to": "FilePath"
-                                        },
-                                        {
-                                            "from": "attributes.FilePermission",
-                                            "to": "FilePermission"
-                                        },
-                                        {
-                                            "from": "attributes.FileType",
-                                            "to": "FileType"
-                                        },
-                                        {
-                                            "from": "attributes.FileName",
-                                            "to": "FileName"
-                                        },
-                                        {
-                                            "from": "attributes.FileSize",
-                                            "to": "FileSize"
-                                        },
-                                        {
-                                            "from": "attributes.ReceivedBytes",
-                                            "to": "ReceivedBytes"
-                                        },
-                                        {
-                                            "from": "attributes.Message",
-                                            "to": "Message"
-                                        },
-                                        {
-                                            "from": "attributes.OldFileCreateTime",
-                                            "to": "OldFileCreateTime"
-                                        },
-                                        {
-                                            "from": "attributes.OldFileHash",
-                                            "to": "OldFileHash"
-                                        },
-                                        {
-                                            "from": "attributes.OldFileID",
-                                            "to": "OldFileID"
-                                        },
-                                        {
-                                            "from": "attributes.OldFileModificationTime",
-                                            "to": "OldFileModificationTime"
-                                        },
-                                        {
-                                            "from": "attributes.OldFileName",
-                                            "to": "OldFileName"
-                                        },
-                                        {
-                                            "from": "attributes.OldFilePath",
-                                            "to": "OldFilePath"
-                                        },
-                                        {
-                                            "from": "attributes.OldFilePermission",
-                                            "to": "OldFilePermission"
-                                        },
-                                        {
-                                            "from": "attributes.OldFileSize",
-                                            "to": "OldFileSize"
-                                        },
-                                        {
-                                            "from": "attributes.OldFileType",
-                                            "to": "OldFileType"
-                                        },
-                                        {
-                                            "from": "attributes.SentBytes",
-                                            "to": "SentBytes"
-                                        },
-                                        {
-                                            "from": "attributes.EventOutcome",
-                                            "to": "EventOutcome"
-                                        },
-                                        {
-                                            "from": "attributes.Protocol",
-                                            "to": "Protocol"
-                                        },
-                                        {
-                                            "from": "attributes.Reason",
-                                            "to": "Reason"
-                                        },
-                                        {
-                                            "from": "attributes.RequestURL",
-                                            "to": "RequestURL"
-                                        },
-                                        {
-                                            "from": "attributes.RequestClientApplication",
-                                            "to": "RequestClientApplication"
-                                        },
-                                        {
-                                            "from": "attributes.RequestContext",
-                                            "to": "RequestContext"
-                                        },
-                                        {
-                                            "from": "attributes.RequestCookies",
-                                            "to": "RequestCookies"
-                                        },
-                                        {
-                                            "from": "attributes.RequestMethod",
-                                            "to": "RequestMethod"
-                                        },
-                                        {
-                                            "from": "attributes.ReceiptTime",
-                                            "to": "ReceiptTime"
-                                        },
-                                        {
-                                            "from": "attributes.SourceHostName",
-                                            "to": "SourceHostName"
-                                        },
-                                        {
-                                            "from": "attributes.SourceMACAddress",
-                                            "to": "SourceMACAddress"
-                                        },
-                                        {
-                                            "from": "attributes.SourceNTDomain",
-                                            "to": "SourceNTDomain"
-                                        },
-                                        {
-                                            "from": "attributes.SourceDnsDomain",
-                                            "to": "SourceDnsDomain"
-                                        },
-                                        {
-                                            "from": "attributes.SourceServiceName",
-                                            "to": "SourceServiceName"
-                                        },
-                                        {
-                                            "from": "attributes.SourceTranslatedAddress",
-                                            "to": "SourceTranslatedAddress"
-                                        },
-                                        {
-                                            "from": "attributes.SourceTranslatedPort",
-                                            "to": "SourceTranslatedPort"
-                                        },
-                                        {
-                                            "from": "attributes.SourceProcessId",
-                                            "to": "SourceProcessId"
-                                        },
-                                        {
-                                            "from": "attributes.SourceUserPrivileges",
-                                            "to": "SourceUserPrivileges"
-                                        },
-                                        {
-                                            "from": "attributes.SourceProcessName",
-                                            "to": "SourceProcessName"
-                                        },
-                                        {
-                                            "from": "attributes.SourcePort",
-                                            "to": "SourcePort"
-                                        },
-                                        {
-                                            "from": "attributes.SourceIP",
-                                            "to": "SourceIP"
-                                        },
-                                        {
-                                            "from": "attributes.SourceUserID",
-                                            "to": "SourceUserID"
-                                        },
-                                        {
-                                            "from": "attributes.SourceUserName",
-                                            "to": "SourceUserName"
-                                        },
-                                        {
-                                            "from": "attributes.EventType",
-                                            "to": "EventType"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceEventCategory",
-                                            "to": "DeviceEventCategory"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomIPv6Address1",
-                                            "to": "DeviceCustomIPv6Address1"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomIPv6Address1Label",
-                                            "to": "DeviceCustomIPv6Address1Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomIPv6Address2",
-                                            "to": "DeviceCustomIPv6Address2"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomIPv6Address2Label",
-                                            "to": "DeviceCustomIPv6Address2Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomIPv6Address3",
-                                            "to": "DeviceCustomIPv6Address3"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomIPv6Address3Label",
-                                            "to": "DeviceCustomIPv6Address3Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomIPv6Address4",
-                                            "to": "DeviceCustomIPv6Address4"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomIPv6Address4Label",
-                                            "to": "DeviceCustomIPv6Address4Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomFloatingPoint1",
-                                            "to": "DeviceCustomFloatingPoint1"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomFloatingPoint1Label",
-                                            "to": "DeviceCustomFloatingPoint1Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomFloatingPoint2",
-                                            "to": "DeviceCustomFloatingPoint2"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomFloatingPoint2Label",
-                                            "to": "DeviceCustomFloatingPoint2Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomFloatingPoint3",
-                                            "to": "DeviceCustomFloatingPoint3"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomFloatingPoint3Label",
-                                            "to": "DeviceCustomFloatingPoint3Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomFloatingPoint4",
-                                            "to": "DeviceCustomFloatingPoint4"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomFloatingPoint4Label",
-                                            "to": "DeviceCustomFloatingPoint4Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomNumber1",
-                                            "to": "DeviceCustomNumber1"
-                                        },
-                                        {
-                                            "from": "attributes.FieldDeviceCustomNumber1",
-                                            "to": "FieldDeviceCustomNumber1"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomNumber1Label",
-                                            "to": "DeviceCustomNumber1Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomNumber2",
-                                            "to": "DeviceCustomNumber2"
-                                        },
-                                        {
-                                            "from": "attributes.FieldDeviceCustomNumber2",
-                                            "to": "FieldDeviceCustomNumber2"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomNumber2Label",
-                                            "to": "DeviceCustomNumber2Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomNumber3",
-                                            "to": "DeviceCustomNumber3"
-                                        },
-                                        {
-                                            "from": "attributes.FieldDeviceCustomNumber3",
-                                            "to": "FieldDeviceCustomNumber3"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomNumber3Label",
-                                            "to": "DeviceCustomNumber3Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomString1",
-                                            "to": "DeviceCustomString1"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomString1Label",
-                                            "to": "DeviceCustomString1Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomString2",
-                                            "to": "DeviceCustomString2"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomString2Label",
-                                            "to": "DeviceCustomString2Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomString3",
-                                            "to": "DeviceCustomString3"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomString3Label",
-                                            "to": "DeviceCustomString3Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomString4",
-                                            "to": "DeviceCustomString4"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomString4Label",
-                                            "to": "DeviceCustomString4Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomString5",
-                                            "to": "DeviceCustomString5"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomString5Label",
-                                            "to": "DeviceCustomString5Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomString6",
-                                            "to": "DeviceCustomString6"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomString6Label",
-                                            "to": "DeviceCustomString6Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomDate1",
-                                            "to": "DeviceCustomDate1"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomDate1Label",
-                                            "to": "DeviceCustomDate1Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomDate2",
-                                            "to": "DeviceCustomDate2"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceCustomDate2Label",
-                                            "to": "DeviceCustomDate2Label"
-                                        },
-                                        {
-                                            "from": "attributes.FlexDate1",
-                                            "to": "FlexDate1"
-                                        },
-                                        {
-                                            "from": "attributes.FlexDate1Label",
-                                            "to": "FlexDate1Label"
-                                        },
-                                        {
-                                            "from": "attributes.FlexNumber1",
-                                            "to": "FlexNumber1"
-                                        },
-                                        {
-                                            "from": "attributes.FlexNumber1Label",
-                                            "to": "FlexNumber1Label"
-                                        },
-                                        {
-                                            "from": "attributes.FlexNumber2",
-                                            "to": "FlexNumber2"
-                                        },
-                                        {
-                                            "from": "attributes.FlexNumber2Label",
-                                            "to": "FlexNumber2Label"
-                                        },
-                                        {
-                                            "from": "attributes.FlexString1",
-                                            "to": "FlexString1"
-                                        },
-                                        {
-                                            "from": "attributes.FlexString1Label",
-                                            "to": "FlexString1Label"
-                                        },
-                                        {
-                                            "from": "attributes.FlexString2",
-                                            "to": "FlexString2"
-                                        },
-                                        {
-                                            "from": "attributes.FlexString2Label",
-                                            "to": "FlexString2Label"
-                                        },
-                                        {
-                                            "from": "attributes.DeviceAction",
-                                            "to": "DeviceAction"
-                                        },
-                                        {
-                                            "from": "attributes.SimplifiedDeviceAction",
-                                            "to": "SimplifiedDeviceAction"
-                                        },
-                                        {
-                                            "from": "attributes.RemoteIP",
-                                            "to": "RemoteIP"
-                                        },
-                                        {
-                                            "from": "attributes.RemotePort",
-                                            "to": "RemotePort"
-                                        },
-                                        {
-                                            "from": "attributes.SourceSystem",
-                                            "to": "SourceSystem"
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                ],
-                "service": {
-                    "pipelines": [
-                        {
-                            "name": "cef-pipeline",
-                            "receivers": [
-                                "cef-receiver"
-                            ],
-                            "processors": [
-                                "ms-cef-processor",
-                                "batch-processor",
-                                "my-transform"
-                            ],
-                            "exporters": [
-                                "cef-eus2"
-                            ],
-                            "type": "Logs"
-                        }
-                    ]
-                }
-            }
-        }
-    ]
+    "dcrLocation": {
+      "value": "centraluseuap"
+    },
+    "extensionName": {
+      "value": "azure-monitor-pipeline"
+    },
+    "extensionType": {
+      "value": "microsoft.monitor.pipeline"
+    },
+    "extensionVersion": {
+      "value": "0.1.4"
+    },
+    "extensionReleaseTrain": {
+      "value": "stable"
+    },
+    "extensionNamespace": {
+      "value": "default"
+    },
+    "extensionConfigurationSettings": {
+      "value": {}
+    },
+    "namePrefix": {
+      "value": "basic-syslog-pipeline"
+    }
+  }
 }
 ```
 
-</details>
+Use a unique `extensionName` to avoid changing an existing extension. Use a unique `namePrefix` unless you intend to update existing DCRs and associations. If you manage an existing extension with this template, retain its namespace and review the pinned version and release train. The template references the existing cluster and workspace; it doesn't create or reconfigure them.
 
-<details>
-<summary><b>Expand for OpenTelemetry sample</b></summary>
+### Preview and deploy
 
-``` json
+Select the subscription. Run `what-if`, review the proposed changes, and then deploy to the cluster's resource group.
+
+```azurecli
+az account set --subscription <subscription-id>
+
+az deployment group what-if --resource-group <cluster-resource-group> --template-file basic-syslog-arm-template.json --parameters @basic-syslog-arm-parameters.json
+
+az deployment group create --name azure-monitor-pipeline --resource-group <cluster-resource-group> --template-file basic-syslog-arm-template.json --parameters @basic-syslog-arm-parameters.json
+```
+
+## Example: collect Syslog over TLS
+
+To encrypt client-to-pipeline traffic, configure a TCP endpoint and a named TLS configuration in the settings DCR. The dataflow DCR continues to select the endpoint and route its Syslog records to the workspace; it doesn't contain the TLS configuration.
+
+Create a Kubernetes TLS secret named `collector-server-tls` in the extension's namespace. The certificate must match the hostname clients use to connect.
+
+```bash
+kubectl create secret tls collector-server-tls --cert=tls.crt --key=tls.key --namespace <extension-namespace>
+```
+
+In the ARM template, set the `syslogEndpointName` variable to `syslog6514`. Replace the settings DCR's `properties.pipelineSettings` object with the following:
+
+```json
 {
-    "properties": {
-        "dataCollectionEndpointId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce",
-        "streamDeclarations": {
-            "Custom-OTLP": {
-                "columns": [
-                    {
-                        "name": "Body",
-                        "type": "string"
-                    },
-                    {
-                        "name": "TimeGenerated",
-                        "type": "datetime"
-                    },
-                    {
-                        "name": "SeverityText",
-                        "type": "string"
-                    }
-                ]
-            }
+  "endpoints": [
+    {
+      "name": "[variables('syslogEndpointName')]",
+      "type": "syslog",
+      "networkingConfig": {
+        "endpoint": "0.0.0.0:6514",
+        "transportProtocol": "tcp",
+        "tlsConfiguration": "syslog-server-tls"
+      }
+    }
+  ],
+  "tlsConfigurations": [
+    {
+      "name": "syslog-server-tls",
+      "mode": "serverOnly",
+      "tlsCertificate": {
+        "certificate": {
+          "type": "kubernetesSecret",
+          "location": "collector-server-tls",
+          "subLocation": "tls.crt"
         },
-        "dataSources": {},
-        "destinations": {
-            "logAnalytics": [
-                {
-                    "name": "LogAnayticsWorkspace01",
-                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
-                }
-            ]
-        },
-        "dataFlows": [
-            {
-                "streams": [
-                    "Custom-OTLP"
-                ],
-                "destinations": [
-                    "LogAnayticsWorkspace01"
-                ],
-                "transformKql": "source",
-                "outputStream": "Custom-OTelLogs_CL"
-            }
+        "privateKey": {
+          "type": "kubernetesSecret",
+          "location": "collector-server-tls",
+          "subLocation": "tls.key"
+        }
+      }
+    }
+  ]
+}
+```
+
+The endpoint's `tlsConfiguration` value, `syslog-server-tls`, selects the entry with that name in `tlsConfigurations`. The certificate and private key stay in the Kubernetes Secret; the settings DCR stores their references.
+
+The dataflow DCR already uses `syslogEndpointName` in both `dataSources.syslog[].endpointRouting` and `references.pipelineSettingsEndpointRouting[].name`. Changing that variable to `syslog6514` keeps the dataflow connected to the new listener without duplicating the TLS settings. Retain the settings DCR resource ID, both associations, and the role-assignment resource that the template deploys automatically.
+
+Update the template's `outputs.syslogEndpoint` entry to describe the TCP listener:
+
+```json
+{
+  "type": "string",
+  "value": "tcp://0.0.0.0:6514"
+}
+```
+
+Review the deployment changes and redeploy the template. For a direct collector connection, expose TCP port 6514 and use a reachable hostname covered by the collector certificate, not `0.0.0.0`. Configure clients to use TLS and trust the issuing CA. A gateway-to-collector TLS connection protects only that backend hop; external clients also need client-facing TLS termination or TLS passthrough. See [Configure a Kubernetes gateway](./pipeline-kubernetes-gateway.md).
+
+`serverOnly` encrypts traffic without requiring client certificates. To require client authentication, use `mutualTls` and add a `clientCa` reference as shown in [Configure TLS or mTLS](./pipeline-tls-custom.md#configure-pipeline).
+
+<a id="configure-persistent-storage"></a>
+
+## Configure persistent storage
+
+Configure both the extension's volume selection and the Syslog data source's buffering limits. Selecting a volume alone doesn't enable buffering. These changes extend the complete Syslog ARM template and parameters file above; retain its DCRs, associations, and ingestion role assignment.
+
+Before deploying, prepare an existing, available **ReadWriteMany** filesystem PersistentVolume (PV) with durable storage accessible from every eligible collector node. Size it for all replicas, buffers, and filesystem overhead. A node-local `hostPath` isn't suitable for collectors on different hosts. Supply the **PV name**, not a PVC name, StorageClass, Azure disk resource ID, or file-share URL.
+
+The controller creates its own persistent volume claim (PVC), copies the PV's StorageClass, and binds the claim to the selected PV. Don't pre-create a competing claim. The ARM template doesn't create the backing storage or Kubernetes PV.
+
+1. Merge the following entry into the parameters file's `parameters.extensionConfigurationSettings.value` object. Preserve other required extension settings:
+
+   ```json
+   {
+     "controllerManager.manager.env.pipelinePersistentVolume": "<existing-read-write-many-pv-name>"
+   }
+   ```
+
+   The template passes this map to the extension's `properties.configurationSettings`. Keep PV selection out of the settings DCR and dataflow DCR. To configure replicas and node constraints, see [Pod placement](./pipeline-pod-placement.md#configure-collector-placement).
+
+1. Add the following parameter declarations to the ARM template's `parameters` object:
+
+   ```json
+   {
+     "maxStorageUsageMb": {
+       "type": "int",
+       "defaultValue": 1024,
+       "minValue": 1
+     },
+     "retentionPeriodMin": {
+       "type": "int",
+       "defaultValue": 1440,
+       "minValue": 1
+     }
+   }
+   ```
+
+1. Add the following `persistence` property directly to the existing `properties.dataSources.syslog[0]` object in the dataflow DCR. Retain its name, mode, streams, formats, and endpoint routing:
+
+   ```json
+   {
+     "persistence": {
+       "maxStorageUsageMb": "[parameters('maxStorageUsageMb')]",
+       "retentionPeriodMin": "[parameters('retentionPeriodMin')]"
+     }
+   }
+   ```
+
+   Don't nest this object under `configuration` in the ARM request. The defaults cap the buffer at 1024 MB with 1440-minute retention. The size limit doesn't provision storage; the buffer drops the oldest records when it reaches the cap.
+
+1. Run the [preview and deployment commands](#preview-and-deploy) with the updated template and parameters.
+1. Verify that the controller-created PVC is `Bound` to the selected PV:
+
+   ```bash
+   kubectl get pvc --namespace <extension-namespace> --selector app.kubernetes.io/instance=<extension-name> -o wide
+   kubectl get pv <existing-read-write-many-pv-name> -o yaml
+   ```
+
+1. Read the dataflow DCR back with API `2025-05-11` and confirm that `properties.dataSources.syslog[].persistence` retains the requested limits. Inspect the generated collector configuration for a durable buffer and its mount at `/var/azurepipelines/durable_buffer`. Check collector logs for storage and export errors, and verify Syslog ingestion.
+
+Persistence buffers records after receipt; it doesn't recover UDP packets lost before they reach the collector. Successful ingestion and a bound claim don't prove recovery after a restart. Test recovery separately before relying on it. Don't assume that the claim survives DCR removal or extension deletion. Drain buffered data before teardown, and use a PV reclaim policy of `Retain` when backing data must survive claim deletion.
+
+## Collect CEF into Microsoft Sentinel
+
+Before you create a CEF dataflow DCR, enable Microsoft Sentinel on the destination workspace and confirm that the `CommonSecurityLog` table is available. Enabling Sentinel can affect workspace billing. Set `dcrLocation` to the workspace's region.
+
+To collect CEF instead of Syslog, replace the dataflow DCR's `properties` with the following configuration. Retain the settings DCR, both extension-scoped associations, and the role-assignment resource that the template deploys automatically. Keep the endpoint name `syslog514` consistent across both DCRs.
+
+```json
+{
+  "description": "Collect CEF and send it to Microsoft Sentinel CommonSecurityLog.",
+  "dataSources": {
+    "syslog": [
+      {
+        "name": "cefSyslog",
+        "mode": "pipeline",
+        "allowedFormats": [
+          "cefRfc3164",
+          "cefRfc5424"
+        ],
+        "allowSkipPriHeader": false,
+        "endpointRouting": [
+          "[variables('syslogEndpointName')]"
+        ],
+        "streams": [
+          "Microsoft-CommonSecurityLog-FullyFormed"
         ]
+      }
+    ]
+  },
+  "destinations": {
+    "logAnalytics": [
+      {
+        "name": "sentinelLaw",
+        "workspaceResourceId": "[parameters('logAnalyticsWorkspaceResourceId')]"
+      }
+    ]
+  },
+  "dataFlows": [
+    {
+      "streams": [
+        "Microsoft-CommonSecurityLog-FullyFormed"
+      ],
+      "destinations": [
+        "sentinelLaw"
+      ],
+      "outputStream": "Microsoft-CommonSecurityLog"
     }
+  ],
+  "references": {
+    "pipelineSettingsEndpointRouting": [
+      {
+        "name": "[variables('syslogEndpointName')]",
+        "pipelineSettingsResourceId": "[variables('settingsDcrResourceId')]"
+      }
+    ]
+  }
 }
 ```
 
-</details>
+## Collect OTel logs, metrics, and traces
 
+Use one OTLP/gRPC listener to receive OpenTelemetry (OTel) logs, metrics, and traces. The settings DCR defines the listener. A primary dataflow DCR routes logs and traces to the primary Log Analytics workspace and metrics to an Azure Monitor workspace. A separate dataflow DCR routes the logs to the secondary Log Analytics workspace.
 
-## Enable persistent storage
+Each dataflow DCR routes a given stream to only one Log Analytics workspace. Don't list both workspaces as destinations for `Microsoft-OTel-Logs` in the same DCR. This example doesn't rely on a pipeline-mode exception to that restriction.
 
-Edge devices in some environments might experience intermittent connectivity due to various factors such as network congestion, signal interference, power outage, or mobility. In these environments, you can configure the pipeline to write data to persistent storage by creating a [persistent volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) in your cluster. The process for this configuration varies based on your particular environment, but it must meet the following requirements:
+| Signal | Data source and streams | Destination |
+|:---|:---|:---|
+| Logs | `otelLogs` with `Microsoft-OTel-Logs`. | Both the primary and secondary Log Analytics workspaces, in the `OTelLogs` table. |
+| Traces | `otelTraces` with `Microsoft-OTel-Traces-Spans`, `Microsoft-OTel-Traces-Events`, and `Microsoft-OTel-Traces-Resources`. | The primary Log Analytics workspace, in the `OTelSpans`, `OTelEvents`, and `OTelResources` tables. |
+| Metrics | `otelMetrics` with an author-named stream that starts with `Custom-Metrics-`. | An Azure Monitor workspace (`Microsoft.Monitor/accounts`). |
 
-* Metadata namespace must be the same as the specified instance of Azure Monitor pipeline.
-* Access mode must support `ReadWriteMany`.
+All data sources use `mode: pipeline` and select the same endpoint, `otlp-grpc`, through `endpointRouting`. Each dataflow DCR's `references.pipelineSettingsEndpointRouting` connects that name to the settings DCR. Its `dataFlows` entries then route the streams to destinations in that DCR.
 
-| Persistent storage elements | Default value and units | Max value |
-|---|---|---|
-| persistence.RetentionPeriod (optional) | 2880 minutes (48 hours) | 2880 |
-| persistence.MaxStorageUsage (optional) | no limit (in GB)  | no max |
+### Prepare the OTel deployment
 
-After you create the volume in the appropriate namespace, configure it by using parameters in the pipeline configuration file. The pipeline reads data from persistent storage by using first-in-first-out (FIFO). The pipeline discards any data that's older than the maximum retention period.
+Before deploying:
 
-> [!WARNING]
-> When upgrading from a pipeline version earlier than 1.5, data already stored in a durable buffer remains under the previous storage path and isn't forwarded after the upgrade. Allow the durable buffer to drain before upgrading.
+- Install the `microsoft.monitor.pipeline` extension with a system-assigned managed identity. This example configures an existing extension; it doesn't install one.
+- Provide two distinct Log Analytics workspaces and an Azure Monitor workspace. Create all three DCRs in the same region as the destination workspaces and, if supplied, the data collection endpoint (DCE).
+- Choose an extension instance for this configuration. Use one settings DCR per extension. Don't deploy this as an additional settings DCR for an instance already configured by the Syslog example. Use a separate extension instance or update its existing configuration deliberately.
+- Ensure that the deployment identity can create DCRs, associations, and role assignments. The template automatically creates **Monitoring Metrics Publisher** for the extension's identity on each dataflow DCR; no separate manual role assignments are required.
 
-> [!CAUTION]
-> Each replica of the pipeline stores data in a location in the persistent volume specific to that replica. Decreasing the number of replicas while the cluster is disconnected from the cloud prevents that data from being backfilled when connectivity is restored.
+The listener uses TCP port 4317 by default and the extension's default certificates for mTLS. Configure clients to trust the issuing CA and present a trusted client certificate. See [Automated certificate management](./pipeline-tls-automated.md) for trust-bundle distribution and client-certificate issuance. For customer-managed certificates, see [Configure TLS or mTLS](./pipeline-tls-custom.md#configure-pipeline).
 
+Confirm that the deployed extension version supports the OTel data sources and shared-listener routing before using this example. Don't assume that a version used for Syslog also supports OTLP. Template structure alone doesn't validate end-to-end OTel delivery.
+
+### Deploy the OTel ARM template
 
 <details>
-<summary><b>Expand for persistent storage sample using the previous Syslog configuration</b></summary>
+<summary>Expand the complete OTel ARM template.</summary>
 
-``` json
+```json
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "metadata": {
-        "description": "This template deploys an edge pipeline with a persistent volume for Azure Monitor."
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "description": "Configure an existing Azure Monitor pipeline extension with one OTLP/gRPC listener. Use separate dataflow DCRs for the two log workspaces. Create three DCRs, extension-scoped associations, and ingestion role assignments on both dataflow DCRs."
+  },
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Region of all three DCRs. Must match the region of the destination workspaces and the optional DCE and support Azure Monitor pipeline."
+      }
     },
-    "resources": [
+    "namePrefix": {
+      "type": "string",
+      "defaultValue": "otel",
+      "metadata": {
+        "description": "Prefix of the DCR and association names."
+      }
+    },
+    "connectedClusterName": {
+      "type": "string",
+      "metadata": {
+        "description": "Arc connected cluster in this resource group."
+      }
+    },
+    "extensionName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the existing microsoft.monitor.pipeline extension instance that receives this DCR set."
+      }
+    },
+    "otlpPort": {
+      "type": "int",
+      "defaultValue": 4317,
+      "minValue": 1,
+      "maxValue": 65535,
+      "metadata": {
+        "description": "Port of the OTLP/gRPC listener, which uses the extension's default certificates for mutual TLS."
+      }
+    },
+    "primaryWorkspaceResourceId": {
+      "type": "string",
+      "metadata": {
+        "description": "Log Analytics workspace receiving OTelLogs, OTelSpans, OTelEvents, and OTelResources."
+      }
+    },
+    "secondaryWorkspaceResourceId": {
+      "type": "string",
+      "metadata": {
+        "description": "Second Log Analytics workspace receiving OTelLogs. Must differ from the primary workspace."
+      }
+    },
+    "metricsAccountResourceId": {
+      "type": "string",
+      "metadata": {
+        "description": "Azure Monitor workspace (Microsoft.Monitor/accounts) receiving OTel metrics."
+      }
+    },
+    "metricsStreamName": {
+      "type": "string",
+      "defaultValue": "Custom-Metrics-Otel",
+      "metadata": {
+        "description": "The author-named metrics stream. Must start with Custom-Metrics-."
+      }
+    },
+    "dataCollectionEndpointResourceId": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Optional DCE. When supplied, logs and traces use its logs ingestion host and metrics use its metrics ingestion host. Otherwise, regional default ingestion endpoints are used."
+      }
+    }
+  },
+  "variables": {
+    "settingsDcrName": "[format('{0}-pipeline-settings', parameters('namePrefix'))]",
+    "dataSourcesDcrName": "[format('{0}-datasources', parameters('namePrefix'))]",
+    "dataSourcesDcrResourceId": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dataSourcesDcrName'))]",
+    "secondaryLogsDcrName": "[format('{0}-secondary-logs', parameters('namePrefix'))]",
+    "secondaryLogsDcrResourceId": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('secondaryLogsDcrName'))]",
+    "otlpEndpointName": "otlp-grpc",
+    "primaryDestinationName": "primaryWorkspace",
+    "secondaryDestinationName": "secondaryWorkspace",
+    "metricsDestinationName": "metricsWorkspace",
+    "traceStreams": [
+      "Microsoft-OTel-Traces-Spans",
+      "Microsoft-OTel-Traces-Events",
+      "Microsoft-OTel-Traces-Resources"
+    ],
+    "connectedClusterResourceId": "[resourceId('Microsoft.Kubernetes/connectedClusters', parameters('connectedClusterName'))]",
+    "extensionResourceId": "[format('{0}/providers/Microsoft.KubernetesConfiguration/extensions/{1}', variables('connectedClusterResourceId'), parameters('extensionName'))]",
+    "monitoringMetricsPublisherRoleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '3913510d-42f4-4e42-8a64-420c390055eb')]",
+    "publisherRoleAssignmentName": "[guid(variables('dataSourcesDcrResourceId'), variables('extensionResourceId'), variables('monitoringMetricsPublisherRoleDefinitionId'))]",
+    "secondaryPublisherRoleAssignmentName": "[guid(variables('secondaryLogsDcrResourceId'), variables('extensionResourceId'), variables('monitoringMetricsPublisherRoleDefinitionId'))]",
+    "dataSourcesDcrBaseProperties": {
+      "description": "OTel logs and traces to the primary Log Analytics workspace, and metrics to an Azure Monitor workspace.",
+      "references": {
+        "pipelineSettingsEndpointRouting": [
+          {
+            "name": "[variables('otlpEndpointName')]",
+            "pipelineSettingsResourceId": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('settingsDcrName'))]"
+          }
+        ]
+      },
+      "dataSources": {
+        "otelLogs": [
+          {
+            "name": "otelLogs",
+            "mode": "pipeline",
+            "streams": [
+              "Microsoft-OTel-Logs"
+            ],
+            "endpointRouting": [
+              "[variables('otlpEndpointName')]"
+            ]
+          }
+        ],
+        "otelTraces": [
+          {
+            "name": "otelTraces",
+            "mode": "pipeline",
+            "streams": "[variables('traceStreams')]",
+            "endpointRouting": [
+              "[variables('otlpEndpointName')]"
+            ]
+          }
+        ],
+        "otelMetrics": [
+          {
+            "name": "otelMetrics",
+            "mode": "pipeline",
+            "streams": [
+              "[parameters('metricsStreamName')]"
+            ],
+            "endpointRouting": [
+              "[variables('otlpEndpointName')]"
+            ]
+          }
+        ]
+      },
+      "destinations": {
+        "logAnalytics": [
+          {
+            "name": "[variables('primaryDestinationName')]",
+            "workspaceResourceId": "[parameters('primaryWorkspaceResourceId')]"
+          }
+        ],
+        "monitoringAccounts": [
+          {
+            "name": "[variables('metricsDestinationName')]",
+            "accountResourceId": "[parameters('metricsAccountResourceId')]"
+          }
+        ]
+      },
+      "dataFlows": [
         {
-            "type": "Microsoft.monitor/pipelineGroups",
-            "location": "eastus2",
-            "apiVersion": "2026-04-01",
-            "extendedLocation": {
-                "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
-                "type": "CustomLocation"
-            },
-            "name": "my-pipeline-eastus2",
-            "properties": {
-                "receivers": [
-                    {
-                        "type": "Syslog",
-                        "name": "syslog-receiver",
-                        "syslog": {
-                            "endpoint": "0.0.0.0:514"
-                        }
-                    }
-                ],
-                "processors": [
-                    {
-                        "type": "MicrosoftSyslog",
-                        "name": "ms-syslog-processor"
-                    },
-                    {
-                        "type": "Batch",
-                        "name": "batch-processor",
-                        "batch": {
-                            "timeout": 60000
-                        }
-                    },
-                    {
-                        "type": "TransformLanguage",
-                        "name": "my-transform",
-                        "transformLanguage": {
-                            "transformStatement": "source"
-                        }
-                    }
-                ],
-                "exporters": [
-                    {
-                        "type": "AzureMonitorWorkspaceLogs",
-                        "name": "syslog-eus2",
-                        "azureMonitorWorkspaceLogs": {
-                            "api": {
-                                "dataCollectionEndpointUrl": "https://my-dce-eastus2-t9si.eastus2-1.ingest.monitor.azure.com",
-                                "dataCollectionRule": "dcr-00000000000000000000000000000000",
-                                "stream": "Custom-MyTableRawData_CL",
-                                "schema": {
-                                    "recordMap": [
-                                        {
-                                            "from": "attributes.CollectorHostName",
-                                            "to": "CollectorHostName"
-                                        },
-                                        {
-                                            "from": "attributes.Computer",
-                                            "to": "Computer"
-                                        },
-                                        {
-                                            "from": "attributes.EventTime",
-                                            "to": "EventTime"
-                                        },
-                                        {
-                                            "from": "attributes.Facility",
-                                            "to": "Facility"
-                                        },
-                                        {
-                                            "from": "attributes.HostIP",
-                                            "to": "HostIP"
-                                        },
-                                        {
-                                            "from": "attributes.HostName",
-                                            "to": "HostName"
-                                        },
-                                        {
-                                            "from": "attributes.ProcessID",
-                                            "to": "ProcessID"
-                                        },
-                                        {
-                                            "from": "attributes.ProcessName",
-                                            "to": "ProcessName"
-                                        },
-                                        {
-                                            "from": "attributes.SeverityLevel",
-                                            "to": "SeverityLevel"
-                                        },
-                                        {
-                                            "from": "attributes.SourceSystem",
-                                            "to": "SourceSystem"
-                                        },
-                                        {
-                                            "from": "attributes.SyslogMessage",
-                                            "to": "SyslogMessage"
-                                        },
-                                        {
-                                            "from": "attributes.TimeGenerated",
-                                            "to": "TimeGenerated"
-                                        }
-                                    ]
-                                }
-                            },
-                            "persistence": {
-                              "maxStorageUsage": 100,
-                              "retentionPeriod": 10
-                            }
-                        }
-                    }
-                ],
-                "service": {
-                    "pipelines": [
-                        {
-                            "name": "syslog-pipeline",
-                            "receivers": [
-                                "syslog-receiver"
-                            ],
-                            "processors": [
-                                "ms-syslog-processor",
-                                "batch-processor",
-                                "my-transform"
-                            ],
-                            "exporters": [
-                                "syslog-eus2"
-                            ],
-                            "type": "Logs"
-                        }
-                    ],
-                    "persistence": {
-                        "persistentVolumeName": "my-pv"
-                    }
-                }
-            }
+          "streams": [
+            "Microsoft-OTel-Logs"
+          ],
+          "destinations": [
+            "[variables('primaryDestinationName')]"
+          ]
+        },
+        {
+          "streams": "[variables('traceStreams')]",
+          "destinations": [
+            "[variables('primaryDestinationName')]"
+          ]
+        },
+        {
+          "streams": [
+            "[parameters('metricsStreamName')]"
+          ],
+          "destinations": [
+            "[variables('metricsDestinationName')]"
+          ]
         }
-    ]
+      ]
+    },
+    "dataSourcesDcrProperties": "[if(empty(parameters('dataCollectionEndpointResourceId')), variables('dataSourcesDcrBaseProperties'), union(variables('dataSourcesDcrBaseProperties'), createObject('dataCollectionEndpointId', parameters('dataCollectionEndpointResourceId'))))]",
+    "secondaryLogsDcrBaseProperties": {
+      "description": "OTel logs from the shared listener to the secondary Log Analytics workspace.",
+      "references": {
+        "pipelineSettingsEndpointRouting": [
+          {
+            "name": "[variables('otlpEndpointName')]",
+            "pipelineSettingsResourceId": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('settingsDcrName'))]"
+          }
+        ]
+      },
+      "dataSources": {
+        "otelLogs": [
+          {
+            "name": "secondaryOtelLogs",
+            "mode": "pipeline",
+            "streams": [
+              "Microsoft-OTel-Logs"
+            ],
+            "endpointRouting": [
+              "[variables('otlpEndpointName')]"
+            ]
+          }
+        ]
+      },
+      "destinations": {
+        "logAnalytics": [
+          {
+            "name": "[variables('secondaryDestinationName')]",
+            "workspaceResourceId": "[parameters('secondaryWorkspaceResourceId')]"
+          }
+        ]
+      },
+      "dataFlows": [
+        {
+          "streams": [
+            "Microsoft-OTel-Logs"
+          ],
+          "destinations": [
+            "[variables('secondaryDestinationName')]"
+          ]
+        }
+      ]
+    },
+    "secondaryLogsDcrProperties": "[if(empty(parameters('dataCollectionEndpointResourceId')), variables('secondaryLogsDcrBaseProperties'), union(variables('secondaryLogsDcrBaseProperties'), createObject('dataCollectionEndpointId', parameters('dataCollectionEndpointResourceId'))))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "apiVersion": "2025-05-11",
+      "name": "[variables('settingsDcrName')]",
+      "location": "[parameters('location')]",
+      "kind": "PipelineSettings",
+      "properties": {
+        "description": "OTLP/gRPC listener for the pipeline extension.",
+        "pipelineSettings": {
+          "endpoints": [
+            {
+              "name": "[variables('otlpEndpointName')]",
+              "type": "otlp",
+              "networkingConfig": {
+                "endpoint": "[format('0.0.0.0:{0}', parameters('otlpPort'))]",
+                "transportProtocol": "tcp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "apiVersion": "2025-05-11",
+      "name": "[variables('dataSourcesDcrName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/dataCollectionRules', variables('settingsDcrName'))]"
+      ],
+      "properties": "[variables('dataSourcesDcrProperties')]"
+    },
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "apiVersion": "2025-05-11",
+      "name": "[variables('secondaryLogsDcrName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/dataCollectionRules', variables('settingsDcrName'))]"
+      ],
+      "properties": "[variables('secondaryLogsDcrProperties')]"
+    },
+    {
+      "type": "Microsoft.Insights/dataCollectionRuleAssociations",
+      "apiVersion": "2025-05-11",
+      "scope": "[format('Microsoft.Kubernetes/connectedClusters/{0}', parameters('connectedClusterName'))]",
+      "name": "[format('pipelineSettings-{0}', parameters('extensionName'))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/dataCollectionRules', variables('settingsDcrName'))]"
+      ],
+      "properties": {
+        "description": "PipelineSettings DCR scoped to one pipeline extension instance.",
+        "dataCollectionRuleId": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('settingsDcrName'))]",
+        "scopeToResourceId": "[variables('extensionResourceId')]"
+      }
+    },
+    {
+      "type": "Microsoft.Insights/dataCollectionRuleAssociations",
+      "apiVersion": "2025-05-11",
+      "scope": "[format('Microsoft.Kubernetes/connectedClusters/{0}', parameters('connectedClusterName'))]",
+      "name": "[format('{0}-{1}', parameters('extensionName'), variables('dataSourcesDcrName'))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dataSourcesDcrName'))]"
+      ],
+      "properties": {
+        "description": "OTel data-sources DCR scoped to one pipeline extension instance.",
+        "dataCollectionRuleId": "[variables('dataSourcesDcrResourceId')]",
+        "scopeToResourceId": "[variables('extensionResourceId')]"
+      }
+    },
+    {
+      "type": "Microsoft.Insights/dataCollectionRuleAssociations",
+      "apiVersion": "2025-05-11",
+      "scope": "[format('Microsoft.Kubernetes/connectedClusters/{0}', parameters('connectedClusterName'))]",
+      "name": "[format('{0}-{1}', parameters('extensionName'), variables('secondaryLogsDcrName'))]",
+      "dependsOn": [
+        "[variables('secondaryLogsDcrResourceId')]"
+      ],
+      "properties": {
+        "description": "Secondary OTel logs DCR scoped to the same pipeline extension.",
+        "dataCollectionRuleId": "[variables('secondaryLogsDcrResourceId')]",
+        "scopeToResourceId": "[variables('extensionResourceId')]"
+      }
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[variables('publisherRoleAssignmentName')]",
+      "scope": "[variables('dataSourcesDcrResourceId')]",
+      "dependsOn": [
+        "[variables('dataSourcesDcrResourceId')]"
+      ],
+      "properties": {
+        "roleDefinitionId": "[variables('monitoringMetricsPublisherRoleDefinitionId')]",
+        "principalId": "[reference(variables('extensionResourceId'), '2023-05-01', 'Full').identity.principalId]",
+        "principalType": "ServicePrincipal"
+      }
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[variables('secondaryPublisherRoleAssignmentName')]",
+      "scope": "[variables('secondaryLogsDcrResourceId')]",
+      "dependsOn": [
+        "[variables('secondaryLogsDcrResourceId')]"
+      ],
+      "properties": {
+        "roleDefinitionId": "[variables('monitoringMetricsPublisherRoleDefinitionId')]",
+        "principalId": "[reference(variables('extensionResourceId'), '2023-05-01', 'Full').identity.principalId]",
+        "principalType": "ServicePrincipal"
+      }
+    }
+  ],
+  "outputs": {
+    "secondaryLogsDcrId": {
+      "type": "string",
+      "value": "[variables('secondaryLogsDcrResourceId')]"
+    },
+    "pipelineSettingsDcrId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('settingsDcrName'))]"
+    },
+    "dataSourcesDcrId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dataSourcesDcrName'))]"
+    },
+    "dataSourcesDcrImmutableId": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.Insights/dataCollectionRules', variables('dataSourcesDcrName')), '2025-05-11').immutableId]"
+    },
+    "extensionResourceId": {
+      "type": "string",
+      "value": "[variables('extensionResourceId')]"
+    }
+  }
 }
 ```
 
 </details>
 
-## Related articles
+### Set OTel parameters and deploy
 
-- [Configure a Kubernetes gateway](./pipeline-kubernetes-gateway.md) to expose the pipeline to external clients.
-- [Configure TLS](./pipeline-tls.md) to encrypt incoming traffic.
-- [Modify data before it's sent to the cloud](./pipeline-transformations.md).
-- [Set up a gateway](./pipeline-kubernetes-gateway.md) for clients outside the cluster.
-- [Configure Azure Monitor pipeline with the Azure portal](./pipeline-configure-portal.md) if you want a simpler guided experience.
+Save the following as `otel-all-signals.parameters.json` and replace the placeholders. Set `location` to the destination workspaces' region, even if the cluster's resource group is in a different region.
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "<workspace-region>"
+    },
+    "namePrefix": {
+      "value": "otel"
+    },
+    "connectedClusterName": {
+      "value": "<connected-cluster-name>"
+    },
+    "extensionName": {
+      "value": "<existing-pipeline-extension-name>"
+    },
+    "primaryWorkspaceResourceId": {
+      "value": "/subscriptions/<subscription-id>/resourceGroups/<workspace-resource-group>/providers/Microsoft.OperationalInsights/workspaces/<primary-workspace-name>"
+    },
+    "secondaryWorkspaceResourceId": {
+      "value": "/subscriptions/<subscription-id>/resourceGroups/<workspace-resource-group>/providers/Microsoft.OperationalInsights/workspaces/<secondary-workspace-name>"
+    },
+    "metricsAccountResourceId": {
+      "value": "/subscriptions/<subscription-id>/resourceGroups/<metrics-resource-group>/providers/Microsoft.Monitor/accounts/<metrics-workspace-name>"
+    }
+  }
+}
+```
+
+The default `metricsStreamName` is `Custom-Metrics-Otel`. If you change it, retain the `Custom-Metrics-` prefix. The template uses the parameter consistently in both the metrics data source and its data flow.
+
+To use a DCE, add `dataCollectionEndpointResourceId` to the parameters file with its full resource ID. If you omit it or supply an empty string, the template omits `dataCollectionEndpointId` from both dataflow DCRs and uses regional default ingestion endpoints.
+
+Save the expanded ARM template as `otel-all-signals-split-destinations.arm.json`, and run the following commands against the resource group containing the connected cluster:
+
+```azurecli
+az account set --subscription <subscription-id>
+
+az deployment group what-if --resource-group <cluster-resource-group> --template-file otel-all-signals-split-destinations.arm.json --parameters @otel-all-signals.parameters.json
+
+az deployment group create --name azure-monitor-pipeline-otel --resource-group <cluster-resource-group> --template-file otel-all-signals-split-destinations.arm.json --parameters @otel-all-signals.parameters.json
+```
+
+The template creates three associations under the connected cluster: `pipelineSettings-<extensionName>`, `<extensionName>-<namePrefix>-datasources`, and `<extensionName>-<namePrefix>-secondary-logs`. All target the existing extension through `scopeToResourceId`. It also grants the extension identity **Monitoring Metrics Publisher** on each dataflow DCR. Use these association names when you [check the extension and associations](#check-the-extension-and-associations).
+
+Expose the configured OTLP/gRPC port through the collector service or gateway. For direct TLS, use a reachable hostname covered by the collector certificate, not the listener's `0.0.0.0` bind address. If a gateway terminates the client connection, configure its client-facing TLS separately from backend TLS or mTLS. For network exposure, see [Configure a Kubernetes gateway](./pipeline-kubernetes-gateway.md).
+
+### Verify OTel routing
+
+Send test logs, metrics, and traces with identifiable attributes through the OTLP listener. Check each destination separately:
+
+* Confirm that the test logs appear in `OTelLogs` in both Log Analytics workspaces.
+* Confirm that the test traces appear in `OTelSpans` and `OTelResources` in the primary workspace, and check `OTelEvents` if the test traces include events.
+* Confirm that test metrics appear in the Azure Monitor workspace.
+
+For example, run the following query in each Log Analytics workspace to inspect recent logs:
+
+```kusto
+OTelLogs
+| where TimeGenerated > ago(30m)
+| take 20
+```
+
+Use your test attributes to distinguish test telemetry from existing data. Extension provisioning success alone doesn't confirm delivery of all three signals or successful delivery to both log destinations.
+
+## Verify the deployment
+
+Verify configuration delivery and data delivery separately. Extension provisioning success alone doesn't confirm that telemetry reaches the workspace.
+
+### Check the extension and associations
+
+Check the extension's provisioning state and identity:
+
+```azurecli
+az k8s-extension show --name <extension-name> --cluster-name <cluster-name> --resource-group <cluster-resource-group> --cluster-type connectedClusters --query "{provisioningState:provisioningState,version:version,principalId:identity.principalId}"
+```
+
+Read each association with API version `2025-05-11`. For the Syslog template, substitute `pipelineSettings-<namePrefix>` and `<namePrefix>-datasources-assoc` into the following command. For the OTel template, use `pipelineSettings-<extensionName>` and `<extensionName>-<namePrefix>-datasources` instead.
+
+```azurecli
+az rest --method get --url "https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<cluster-resource-group>/providers/Microsoft.Kubernetes/connectedClusters/<cluster-name>/providers/Microsoft.Insights/dataCollectionRuleAssociations/<association-name>?api-version=2025-05-11" --query "{dcr:properties.dataCollectionRuleId,extension:properties.scopeToResourceId}"
+```
+
+For both results, require `extension` to equal:
+
+```text
+/subscriptions/<subscription-id>/resourceGroups/<cluster-resource-group>/providers/Microsoft.Kubernetes/connectedClusters/<cluster-name>/providers/Microsoft.KubernetesConfiguration/extensions/<extension-name>
+```
+
+Confirm that each result's `dcr` is the intended DCR's ARM resource ID. The template automatically grants the extension principal **Monitoring Metrics Publisher** on the dataflow DCR. Verify that this deployment-created assignment is present rather than creating another assignment manually. Role-assignment propagation can take some time; the collector can be running while exports still receive authorization failures.
+
+### Check the pipeline and ingestion
+
+List the generated controller, pipeline, services, and configuration:
+
+```bash
+kubectl get deployments,statefulsets,pods,services,configmaps --namespace <extension-namespace>
+kubectl rollout status statefulset/<collector-statefulset-name> --namespace <extension-namespace> --timeout 5m
+```
+
+Send a valid RFC 3164 Syslog message with a unique marker from a temporary in-cluster pod. Replace the namespace and collector service name, and use a new marker for each test:
+
+```bash
+kubectl run syslog-smoke --namespace <extension-namespace> --rm --stdin --restart Never --image busybox:1.36 -- sh -c 'printf "<13>%s smokehost pipeline[123]: pipeline-dcr-smoke-unique-marker\n" "$(date -u "+%b %e %T")" | nc -u -w 1 <collector-service-name> 514'
+```
+
+After allowing several minutes for ingestion, query the destination workspace:
+
+```kusto
+Syslog
+| where TimeGenerated > ago(30m)
+| where SyslogMessage contains "pipeline-dcr-smoke-unique-marker"
+| project TimeGenerated, HostName, Facility, SeverityLevel, SyslogMessage
+| order by TimeGenerated desc
+```
+
+A row containing your marker confirms end-to-end delivery. For CEF, send a valid CEF message and query `CommonSecurityLog` instead.
+
+The listener address `0.0.0.0:514` binds to all network interfaces inside the collector. Connect external sources to the collector service's reachable IP address and port, not to `0.0.0.0`. Configure service exposure and network access before connecting external sources.
+
+## Troubleshoot the DCR configuration
+
+| Symptom | Check |
+|:---|:---|
+| No pipeline configuration or resources appear. | Confirm that both DCRs are associated and both `scopeToResourceId` values identify the same extension. Check the endpoint name and settings DCR reference. |
+| Association readback has no `scopeToResourceId`. | Recreate the association with API `2025-05-11`, with the field directly under `properties`. |
+| Export returns `403`. | Check the **Monitoring Metrics Publisher** role assignment that the template creates automatically on the dataflow DCR. Confirm that it targets the extension's managed identity, not the cluster identity. Check for a failed role-assignment deployment and allow for role propagation before retrying. |
+| No Syslog records arrive. | Confirm that the message matches an allowed format and includes the PRI header. Inspect the collector logs for parsing, authorization, and export errors. |
+| CEF DCR creation returns `InvalidOutputTable` or `InvalidInputSchema`. | Enable Sentinel and wait for the `CommonSecurityLog` table to become available before creating the DCR. |
+
+## Related content
+
+- [Azure Monitor pipeline overview](./pipeline-overview.md).
+- [Data collection rule associations](./data-collection-rule-associations.md).

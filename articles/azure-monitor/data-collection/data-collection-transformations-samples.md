@@ -2,7 +2,7 @@
 title: Sample transformations in Azure Monitor
 description: Sample transformations for common scenarios in Azure Monitor.
 ms.topic: how-to
-ms.date: 05/15/2026
+ms.date: 11/03/2026
 ms.reviewer: nikeist
 ai-usage: ai-assisted
 ---
@@ -123,6 +123,45 @@ source
 > Multi-stage transformations are currently in public preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 The following samples demonstrate processor-based multi-stage transformations. Each sample shows the `transformations` section of a DCR definition. For the complete DCR structure and how to reference these transformations from data sources and data flows, see [Create a multi-stage transformation](data-collection-transformations-create.md#create-a-multi-stage-transformation-preview).
+
+### Work with captured attributes
+
+These queries run in an ingestion-time `transform.KQL` processor after `header.CustomStream` captures undeclared properties. Start with the [schemaless ingestion DCR example](data-collection-rule-samples.md#capture-undeclared-properties-in-an-overflow-column-preview). Its input column is `OverflowAttributes`, and its destination column is `Attributes`.
+
+To retain the entire bag, including nested JSON values received through the Logs Ingestion API, map it to the destination column:
+
+```kusto
+source
+| project TimeGenerated, EventId, Body, Attributes = OverflowAttributes
+```
+
+To extract attributes into typed destination columns, use dot notation for nested properties and brackets for a literal key containing a dot. Add `Ring`, `ServiceName`, and `LiteralKey` as `string` columns in the destination table before using this query:
+
+```kusto
+source
+| project TimeGenerated, EventId, Body, Attributes = OverflowAttributes,
+    Ring = tostring(OverflowAttributes.deployment_ring),
+    ServiceName = tostring(OverflowAttributes.service.name),
+    LiteralKey = tostring(OverflowAttributes['probe.value'])
+```
+
+Extraction doesn't remove the keys from the bag. To omit selected top-level keys, use `bag_remove_keys()`:
+
+```kusto
+source
+| project TimeGenerated, EventId, Body,
+    Attributes = bag_remove_keys(OverflowAttributes, parse_json('["deployment_ring","probe.value"]'))
+```
+
+You can also merge another bag into the captured attributes. If a key occurs in both bags, `bag_merge()` uses the value from the leftmost bag. In this example, a captured `deployment_ring` takes precedence over the fallback:
+
+```kusto
+source
+| project TimeGenerated, EventId, Body,
+    Attributes = bag_merge(OverflowAttributes, parse_json('{"deployment_ring":"unknown","source":"app"}'))
+```
+
+For the supported function set, see [Bag functions](data-collection-transformations-kql.md#bag-functions). These queries operate on properties already captured before KQL. They can't recover fields discarded by an earlier collection or processing stage. Always project output that matches the destination table schema.
 
 ### Filter syslog by facility on the client
 

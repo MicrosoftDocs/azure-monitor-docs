@@ -2,7 +2,7 @@
 title: Structure of a data collection rule (DCR) in Azure Monitor
 description: Learn about data collection rule (DCR) types and properties to determine the data sources, streams, transformations, and destinations in Azure Monitor.
 ms.topic: reference
-ms.date: 10/28/2026
+ms.date: 11/05/2026
 ms.reviewer: msundaram
 ai-usage: ai-assisted
 ---
@@ -127,7 +127,9 @@ The ARM reference also lists OpenTelemetry logs, metrics, and traces under `data
 
 ### Stream declarations
 
-Declare the different types of data you send into the Log Analytics workspace. Each stream is an object whose key represents the stream name, which must begin with *Custom-*. The stream contains a full list of top-level properties that are contained in the JSON data you send. The shape of the data you send to the endpoint doesn't need to match that of the destination table. Instead, the output of the transform that's applied on top of the input data needs to match the destination shape.
+Declare the different types of data you send into the Log Analytics workspace. Each stream is an object whose key represents the stream name, which must begin with *Custom-*. By default, declare every top-level input property that a transformation needs. Undeclared properties aren't available to the transformation unless you enable [schemaless ingestion](data-collection-transformations.md#schemaless-ingestion-preview), which captures them in a declared `dynamic` overflow column.
+
+The shape of the data you send to the endpoint doesn't need to match that of the destination table. Instead, the output of the transform that's applied on top of the input data needs to match the destination shape. Schemaless ingestion doesn't change this output contract.
 
 #### Data types
 
@@ -284,6 +286,7 @@ The following table shows which processors are available on the client side and 
 | [`aggregate.Basic`](#aggregatebasic) | Aggregate | Yes | Yes |
 | [`enrich.DNSLookup`](#enrichdnslookup) | Enrich | Yes | Yes |
 | [`transform.KQL`](#transformkql) | Transform | No | Yes |
+| [`scan.SensitiveInfo`](#scansensitiveinfo) | Scan | No | Yes, signup-based preview |
 
 ### Header processors
 
@@ -483,8 +486,35 @@ Used when the input is a custom stream defined in `streamDeclarations`.
 ```
 
 | Property | Type | Required | Description |
-|:---------|:-----|:---------|:------------|
+| :--------- | :----- | :--------- | :------------ |
 | `streamId` | string | Yes | Identifier of the custom stream. Must match a stream defined in `streamDeclarations`. |
+| `dynamicSchema` | boolean | No | Enables [schemaless ingestion (preview)](data-collection-transformations.md#schemaless-ingestion-preview) when `true`. If omitted or `false`, capture is disabled. |
+| `overflowColumn` | string | When `dynamicSchema` is `true` | Name of the declared `dynamic` column that receives undeclared top-level properties. The name must exactly match the declared column name, including case. |
+
+For schemaless ingestion, configure the header as follows:
+
+```json
+{
+    "processor": "header.CustomStream",
+    "configuration": {
+        "streamId": "Custom-AppEvents",
+        "dynamicSchema": true,
+        "overflowColumn": "OverflowAttributes"
+    }
+}
+```
+
+The following configuration rules apply:
+
+- If `dynamicSchema` is omitted, omit `overflowColumn` too.
+- If `dynamicSchema` is `false`, `overflowColumn` is optional. If supplied, it must be a nonblank string, but it doesn't need to name a declared column.
+- If `dynamicSchema` is `true`, `overflowColumn` must be a nonblank string naming a declared column of type `dynamic`. You can declare additional `dynamic` columns.
+- Supply `dynamicSchema` as a JSON boolean, not a string. Explicit `null` values for either setting are invalid.
+- All custom-stream transformations that reference the same stream must use identical settings. Omitted values and explicit values, including an omitted flag versus `false`, are different configurations.
+
+Reference the transformation from `dataFlows[].transform` for ingestion-time processing and include at least one body processor, such as `transform.KQL`. Don't specify `transformKql` on the same data flow.
+
+The overflow column is part of the transformation's input schema, not a destination-table setting. The transformation output must still match the destination table. For a complete DCR and sample records, see [Capture undeclared properties in an overflow column](data-collection-rule-samples.md#capture-undeclared-properties-in-an-overflow-column-preview).
 
 ### After header processors
 
@@ -743,6 +773,79 @@ Applies a custom KQL expression for advanced scenarios. This processor is ingest
 | `expression` | string | Yes | KQL query string applied to the input data. |
 
 Output schema: Defined by the KQL and can't be statically validated.
+
+#### scan.SensitiveInfo
+
+Detects sensitive-information patterns in string values and replaces the matches before the record is stored in its destination Log Analytics table. The processor runs in the Azure Monitor service.
+
+> [!IMPORTANT]
+> PII redaction is a signup-based preview. Any customer can apply through the [PII redaction preview signup form](https://aka.ms/pii-redaction-preview). After your subscription is enabled, see [Redact sensitive information in Azure Monitor Logs](data-collection-transformations-pii-redaction.md) for setup steps.
+
+Place the scanner as the last processor in the transformation's `processors` array.
+
+```json
+{
+    "processor": "scan.SensitiveInfo",
+    "configuration": {
+        "defaultStrategy": "obfuscate",
+        "types": [
+            "Email",
+            "PhoneNumber",
+            "CreditCardNumber",
+            "NationalId.US.SSN",
+            "IPAddress.v4"
+        ]
+    }
+}
+```
+
+The processor supports the following configuration properties:
+
+| Property | Type | Description |
+| :--- | :--- | :--- |
+| `defaultStrategy` | string | `obfuscate` replaces matches with placeholders. `hash` replaces matches with deterministic tokens. |
+| `types` | array | Type IDs to detect. Each entry is a type ID string or an object with `typeId` and an optional `placeholder`. |
+| `types[].typeId` | string | Type ID, when the entry is an object. |
+| `types[].placeholder` | string | Replacement text for obfuscation. If omitted, the type's default placeholder is used. An empty string removes the matched text. |
+
+The preview catalog contains these five types:
+
+| Type ID | Pattern category | Default placeholder |
+| :--- | :--- | :--- |
+| `Email` | Email address | `[REDACTED_EMAIL]` |
+| `PhoneNumber` | Phone number | `[REDACTED_PHONE]` |
+| `CreditCardNumber` | Payment card number | `[REDACTED_CREDITCARD]` |
+| `NationalId.US.SSN` | US Social Security number | `[REDACTED_SSN]` |
+| `IPAddress.v4` | IPv4 address | `[REDACTED_IPV4]` |
+
+For example, override the email placeholder while keeping the default IPv4 replacement:
+
+```json
+{
+    "processor": "scan.SensitiveInfo",
+    "configuration": {
+        "defaultStrategy": "obfuscate",
+        "types": [
+            { "typeId": "Email", "placeholder": "[EMAIL_REMOVED]" },
+            "IPAddress.v4"
+        ]
+    }
+}
+```
+
+To select hashing instead, set `defaultStrategy` to `hash`:
+
+```json
+{
+    "processor": "scan.SensitiveInfo",
+    "configuration": {
+        "defaultStrategy": "hash",
+        "types": ["Email"]
+    }
+}
+```
+
+The processor replaces matches in string values, including string values inside dynamic objects and arrays, and keeps the record's columns and structure. For setup and verification steps, see [Redact sensitive information in Azure Monitor Logs](data-collection-transformations-pii-redaction.md).
 
 ## Related content
 

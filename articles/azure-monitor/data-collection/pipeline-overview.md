@@ -12,12 +12,13 @@ ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 
 Azure Monitor can already collect telemetry from on-premises, edge, and multicloud environments. In many enterprise environments, sending large volumes of telemetry directly to the cloud can increase ingestion costs, introduce reliability risks during connectivity loss, and limit your control over what data is collected. Azure Monitor pipeline builds on existing Azure Monitor collection capabilities for these scenarios.
 
-Azure Monitor pipeline provides centralized governance and a single point of control that runs close to your data sources, so you can filter, transform, aggregate, and route telemetry before it's sent to Azure Monitor. This approach helps you reduce ingestion volume, improve reliability in disconnected environments, and apply consistent data processing across hybrid and multicloud deployments. Built on OpenTelemetry technology, the pipeline supports standard ingestion protocols including Syslog and OTLP, enabling it to receive telemetry from a wide range of clients and environments.
+Azure Monitor pipeline provides centralized governance and a single point of control that runs close to your data sources, so you can filter, transform, aggregate, and route telemetry before you send it to Azure Monitor. This approach helps you reduce ingestion volume, improve reliability in disconnected environments, and apply consistent data processing across hybrid and multicloud deployments. Built on OpenTelemetry technology, the pipeline supports standard ingestion protocols including Syslog and OTLP. It can receive OpenTelemetry (OTel) logs, metrics, and traces from a wide range of clients and environments.
+
+The following diagram shows an example that sends Syslog and OTLP data to a Log Analytics workspace. OTel metrics use an Azure Monitor workspace as their destination.
 
 Azure Monitor pipeline runs on Arc-enabled Kubernetes. You can also deploy it on a Linux VM in Azure or an Arc-enabled Linux server (public preview) without Kubernetes. For deployment guidance, supported configurations, and preview limitations, see [Configure Azure Monitor pipeline on Linux VMs](./pipeline-configure-vm.md).
 
 :::image type="content" source="media/pipeline-overview/architecture.png" alt-text="Diagram showing typical Azure Monitor pipeline architecture with multiple locations and devices." lightbox="media/pipeline-overview/architecture.png" border="false":::
-
 
 ## Why use Azure Monitor pipeline?
 
@@ -34,10 +35,12 @@ Use Azure Monitor pipeline when direct-to-cloud collection doesn't meet your sec
 
 Azure Monitor pipeline currently receives and processes the following data source types:
 
-| Data source | Details | Status |
-|:---|:---|:---|
-| Syslog | Supports RFC 3164 and RFC 5424 over TCP and UDP. CEF is supported as Syslog data through the same receiver. | Generally available |
-| OpenTelemetry logs (OTLP) | Supports ingestion of OpenTelemetry logs from clients to Azure Monitor. | Preview |
+| Data source | Details | Destination | Status |
+|:---|:---|:---|:---|
+| Syslog | Supports RFC 3164 and RFC 5424 over TCP and UDP. CEF is supported as Syslog data through the same receiver. | The `Syslog` or `CommonSecurityLog` table, or a custom table in a Log Analytics workspace. | Generally available |
+| OTel logs (OTLP) | Supports ingestion of OTel logs from clients to Azure Monitor. | The [`OTelLogs`](../reference/tables/otellogs.md) table or a custom table in a Log Analytics workspace. | Preview |
+| OTel metrics (OTLP) | Supports ingestion of OTel metrics from clients to Azure Monitor. | An [Azure Monitor workspace](../metrics/azure-monitor-workspace-overview.md). | Preview |
+| OTel traces (OTLP) | Supports ingestion of OTel traces from clients to Azure Monitor. | The [`OTelEvents`](../reference/tables/otelevents.md), [`OTelSpans`](../reference/tables/otelspans.md), and [`OTelResources`](../reference/tables/otelresources.md) tables in a Log Analytics workspace. | Preview |
 
 ## Key capabilities
 
@@ -61,14 +64,33 @@ A typical Kubernetes deployment is shown in the preceding image and includes the
 
 - The pipeline runs on an Arc-enabled Kubernetes cluster at each on-premises, edge, or multicloud location.
 - Clients send Syslog data, including CEF, to the pipeline over TCP or UDP on port 514 by default.
-- Clients send OpenTelemetry logs (OTLP) data to the pipeline on TCP port 4317 by default (this feature is in Preview).
+- Clients send OTel logs, metrics, and traces over OTLP to the pipeline on TCP port 4317 by default (this feature is in preview).
 - An optional gateway exposes pipeline receivers to clients outside the cluster.
 - Optional TLS or mutual TLS (mTLS) secures ingestion traffic.
-- Optional transformations filter or reshape data before it's sent to a Log Analytics workspace.
-- The pipeline forwards data across local firewalls to a Log Analytics workspace in Azure Monitor.
-- Once data is collected, it's available to any Azure Monitor feature that accesses that workspace.
+- Optional transformations filter or reshape data before it's sent to its Azure Monitor destination.
+- The pipeline forwards data across local firewalls to a Log Analytics workspace or Azure Monitor workspace.
+- Once data is collected, it's available to Azure Monitor features that access the destination workspace.
 
 
+
+## Pipeline configuration
+
+Each pipeline instance runs through a `microsoft.monitor.pipeline` Arc extension. Configure the instance with one pipeline settings DCR and one or more dataflow DCRs. The settings DCR describes the instance's runtime settings; the dataflow DCRs describe what to collect and where to send it. Associations deliver that configuration to the extension.
+
+| Component | Purpose |
+|:---|:---|
+| **Arc extension** | Deploy and run a pipeline instance with its own namespace and managed identity. Configure the extension's version. |
+| **Pipeline settings DCR** | Store instance-specific runtime settings in `properties.pipelineSettings`, including named listening endpoints and TLS configurations with certificate references. This DCR has `kind: PipelineSettings`. Endpoints select a named TLS configuration. |
+| **Dataflow DCR** | Define data sources, transformations, streams, and destination routing. Reference a named endpoint in the settings DCR to connect collection logic to a listener. |
+| **DCR associations** | Deliver the settings DCR and each dataflow DCR to the same pipeline extension. Create each association under the Arc connected cluster and set `properties.scopeToResourceId` to the full resource ID of that extension. |
+
+For example, a settings DCR opens a UDP Syslog endpoint named `syslog514`. The dataflow DCR selects that endpoint, accepts RFC 3164 and RFC 5424 messages, and routes the Syslog stream to a Log Analytics workspace. Both DCRs are associated with the same extension instance so the endpoint and collection configuration are applied together.
+
+For encrypted TCP ingestion, define a named TLS configuration in the settings DCR and reference it from the endpoint. Dataflow DCRs reference the endpoint, not the certificate. You can manage collection and routing in multiple dataflow DCRs while sharing the instance's settings.
+
+The extension applies the combined runtime configuration from its associated DCRs. Configuration delivery and telemetry delivery are separate: DCR associations select the configuration for the instance, while clients send telemetry to the instance's exposed listeners.
+
+For deployment examples, see [Syslog over UDP](./pipeline-configure-cli.md#deploy-the-arm-template), [Syslog over TLS](./pipeline-configure-cli.md#example-collect-syslog-over-tls), [Syslog with mTLS](./pipeline-tls-custom.md#configure-pipeline), [CEF into Microsoft Sentinel](./pipeline-configure-cli.md#collect-cef-into-microsoft-sentinel), and [OTel logs, metrics, and traces](./pipeline-configure-cli.md#collect-otel-logs-metrics-and-traces).
 
 ## Azure Monitor pipeline compared to Azure Monitor agent
 

@@ -1,8 +1,9 @@
 ---
 title: Troubleshoot Azure Monitor pipeline
 description: Guidance for troubleshooting issues with Azure Monitor pipeline deployment, configuration, data collection, and connectivity.
+ai-usage: ai-assisted
 ms.topic: troubleshooting-general
-ms.date: 09/21/2026
+ms.date: 10/21/2026
 ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 ---
 
@@ -21,19 +22,19 @@ In the Azure portal, open your Azure Monitor pipeline resource and select **Moni
 > [!IMPORTANT]
 > Starting with pipeline version 1.6.1, use `exported_log_records` instead of `exporter_sent_log_records` and `log_records_failed_to_export` instead of `exporter_send_failed_log_records`. Update any queries, alerts, dashboards, or workbooks that use the previous metric names.
 
-| Component | Metric name | Display name | Description | Dimensions |
+| Area | Metric name | Function | Description | Dimensions |
 |:---|:---|:---|:---|:---|
-| Pipeline group process | `process_cpu_utilization` | CPU utilization | The percentage of CPU utilized by the pipeline group process, normalized across all cores. | Instance ID |
-| Pipeline group process | `process_memory_usage` | Memory used | Total physical memory (resident set size) used by the pipeline group process. | Instance ID |
-| Pipeline group process | `process_uptime` | Process uptime | Uptime of the pipeline group process since last start. | Instance ID |
-| Receiver | `accepted_log_records` | Logs accepted (preview) | Number of log records accepted into the pipeline. | Instance ID, Component name |
-| Receiver | `rejected_log_records` | Logs rejected (preview) | Number of log records rejected by validation while entering the pipeline. | Instance ID, Component name |
-| Processor | `processor_input_log_records` | Logs entering processor (preview) | Number of log records entering the configured processor. | Instance ID, Pipeline name, Component name |
-| Processor | `processor_output_log_records` | Logs leaving processor (preview) | Number of log records leaving the configured processor. | Instance ID, Pipeline name, Component name |
-| Processor | `processing_duration` | Logs processing duration (preview) | Time spent processing log records in the configured processor. | Instance ID, Pipeline name, Component name |
-| Exporter | `exported_log_records` | Logs exported (preview) | Number of log records successfully sent to the destination. | Instance ID, Pipeline name, Component name |
-| Exporter | `log_records_failed_to_export` | Logs failed to export (preview) | Number of log records the pipeline couldn't deliver after exhausting its own retries, if any. The same logs might be counted more than once if an upstream retry or buffering mechanism resubmits them. A nonzero value indicates export issues but not necessarily data loss because the pipeline might still retry successfully. | Instance ID, Pipeline name, Component name |
-| Exporter | `log_records_pending_export` | Logs currently pending export (preview) | Current number of log records queued or in flight for export. | Instance ID, Pipeline name, Component name |
+| Pipeline process | `process_cpu_utilization` | CPU utilization | The percentage of CPU utilized by the pipeline process, normalized across all cores. | Instance ID |
+| Pipeline process | `process_memory_usage` | Memory used | Total physical memory (resident set size) used by the pipeline process. | Instance ID |
+| Pipeline process | `process_uptime` | Process uptime | Uptime of the pipeline process since last start. | Instance ID |
+| Log ingestion | `accepted_log_records` | Logs accepted (preview) | Number of log records accepted into the pipeline. | Instance ID, Component name |
+| Log ingestion | `rejected_log_records` | Logs rejected (preview) | Number of log records rejected by validation while entering the pipeline. | Instance ID, Component name |
+| Data processing | `processor_input_log_records` | Processing input (preview) | Number of log records entering a configured processing step. | Instance ID, Pipeline name, Component name |
+| Data processing | `processor_output_log_records` | Processing output (preview) | Number of log records leaving a configured processing step. | Instance ID, Pipeline name, Component name |
+| Data processing | `processing_duration` | Processing duration (preview) | Time spent processing log records in a configured step. | Instance ID, Pipeline name, Component name |
+| Data delivery | `exported_log_records` | Logs exported (preview) | Number of log records successfully sent to the destination. | Instance ID, Pipeline name, Component name |
+| Data delivery | `log_records_failed_to_export` | Logs failed to export (preview) | Number of log records the pipeline couldn't deliver after exhausting its own retries, if any. The same logs might be counted more than once if an upstream retry or buffering mechanism resubmits them. A nonzero value indicates export issues but not necessarily data loss because the pipeline might still retry successfully. | Instance ID, Pipeline name, Component name |
+| Data delivery | `log_records_pending_export` | Logs currently pending export (preview) | Current number of log records queued or in flight for delivery. | Instance ID, Pipeline name, Component name |
 | Persistent storage | `persistent_storage_utilization` | Persistent storage utilization (preview) | Percentage of configured persistent storage currently in use. | Instance ID, Pipeline name, Component name |
 | Persistent storage | `log_records_dropped_from_storage` | Logs dropped from persistent storage (preview) | Number of log records dropped from persistent storage. | Loss reason, Instance ID, Pipeline name, Component name |
 
@@ -97,71 +98,56 @@ These logs often contain detailed error messages that can help identify the root
 
 ## No data arriving in Azure Monitor
 
-If data isn't appearing in your Log Analytics workspace from Azure Monitor pipeline, the issue might be at any stage in the collection process. An Azure Monitor pipeline group processes data through the following stages:
+Check the destination that corresponds to the signal:
 
-```
-Receiver → Processor → Exporter → Data Collection Endpoint → Data Collection Rule → Log Analytics Workspace
-```
+- Send Syslog and OpenTelemetry (OTel) logs to a Log Analytics workspace. OTel logs can use the `OTelLogs` table or a custom table.
+- Send OTel metrics to an Azure Monitor workspace.
+- Send OTel traces to the `OTelEvents`, `OTelSpans`, and `OTelResources` tables in a Log Analytics workspace.
 
 Work through the following checks in order to locate the source of the issue.
 
-### Verify pipeline group provisioning status
+### Verify extension provisioning status
 
-Before anything else, confirm the resource deployed successfully.
+Confirm that the pipeline extension deployed successfully:
 
 ```bash
-az resource show \
-  --ids "/subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.Monitor/pipelineGroups/{name}" \
-  --query "properties.provisioningState"
+az k8s-extension show --name <extension-name> \
+  --cluster-name <cluster-name> \
+  --resource-group <resource-group> \
+  --cluster-type connectedClusters \
+  --query "{provisioningState:provisioningState,principalId:identity.principalId}"
 ```
 
-- If not `Succeeded`, check the deployment error details in the Activity Log.
-- Confirm `extendedLocation.type` is `"CustomLocation"` and the custom location resource ID is valid and points to an Arc-enabled Kubernetes cluster.
+- If the provisioning state isn't `Succeeded`, check the deployment error details in the Activity Log.
+- Confirm that the extension's managed identity is available.
 
-### Validate exporter to Log Analytics configuration
+### Verify DCR associations
 
-This is the **most common area for mistakes**. The exporter must specify three things correctly:
+Associate both the settings DCR and dataflow DCR with the same pipeline extension.
 
-| Field | What to check |
-|---|---|
-| `dataCollectionEndpointUrl` | Must be a valid DCE URL (e.g., `https://logs-ingestion-xxxx.eastus-1.ingest.monitor.azure.com`). Confirm the DCE exists and is in the same region. |
-| `dataCollectionRule` | Must be the immutable ID of the DCR (e.g., `dcr-6ed97ddc...`), **not** the resource ID. Confirm the DCR exists and hasn't been deleted. |
-| `stream` | Must match a stream declared in the DCR (e.g., `Custom-MyTableRawData` or `Microsoft-Syslog`). A mismatch means data is silently dropped. |
+- Create each association under the Arc connected cluster with Monitor API version `2025-05-11`.
+- Set `properties.dataCollectionRuleId` to the full ARM resource ID of the corresponding DCR.
+- Set `properties.scopeToResourceId` to the full ARM resource ID of the pipeline extension.
+- Confirm that both associations retain the same extension scope after an update.
 
-**Common mistake:** Using the DCR resource name instead of its immutable ID.
+For commands to inspect both associations, see [Check the extension and associations](./pipeline-configure-cli.md#check-the-extension-and-associations).
 
-### Example: Correct exporter configuration
+### Verify ingestion permissions
 
-```json
-{
-  "name": "myExporter",
-  "type": "AzureMonitorWorkspaceLogs",
-  "azureMonitorWorkspaceLogs": {
-    "api": {
-      "dataCollectionEndpointUrl": "https://logs-ingestion-eb0s.eastus-1.ingest.monitor.azure.com",
-      "dataCollectionRule": "dcr-6ed97ddc4a3f45b991ad89ea6930a949",
-      "stream": "Custom-MyTableRawData",
-      "schema": {
-        "recordMap": [
-          { "from": "body", "to": "Body" },
-          { "from": "severity_text", "to": "SeverityText" },
-          { "from": "time_unix_nano", "to": "TimeGenerated" }
-        ]
-      }
-    }
-  }
-}
-```
+The deployment automatically assigns **Monitoring Metrics Publisher** to the extension's managed identity on the dataflow DCR. The provided ARM template includes this role assignment; it isn't a separate manual setup step.
 
-### Check the record map schema mapping
+An association delivers configuration; it doesn't grant permission to send telemetry. If exports return `403`, verify that the deployment-created role assignment targets the extension's identity, not the cluster identity. Check for a failed role-assignment deployment and allow time for permission changes to propagate before retrying.
 
-The `recordMap` in the exporter's `api.schema` must:
+### Validate dataflow routing
 
-- **Include a mapping to `TimeGenerated`** — Log Analytics rejects records without this column.
-  Example: `{ "from": "time_unix_nano", "to": "TimeGenerated" }`
-- **Map `from` fields correctly** — Valid sources include `body`, `severity_text`, `time_unix_nano`, and `attributes.{fieldName}`.
-  - Multi-level dot notation like `attributes.foo.bar` is **not supported**. Use bracket notation: `attributes['foo.bar']`.
-- **Map `to` fields that exist in the destination table** — Column names must match the DCR/table schema.
+Confirm that:
+
+- The endpoint name in `dataSources.syslog[].endpointRouting` matches a reference in `references.pipelineSettingsEndpointRouting`.
+- The reference's `pipelineSettingsResourceId` identifies the settings DCR.
+- The named endpoint exists in `properties.pipelineSettings.endpoints`.
+- The data source streams are connected to the intended destinations through `dataFlows`.
+- The workspace resource ID and region are correct.
+- Microsoft Sentinel is enabled if you send CEF data to `CommonSecurityLog`.
 
 ### Validate the custom table schema
 
@@ -169,33 +155,6 @@ The `recordMap` in the exporter's `api.schema` must:
 // Check if the custom table exists and has expected columns
 CustomTable_CL
 | getschema
-```
-
-### Verify the pipeline wiring in the service section
-
-In the `service.pipelines` array, confirm:
-
-- **Every receiver, processor, and exporter referenced in the pipeline actually exists** in the top-level arrays. A typo in a name (e.g., `"otlp1"` vs `"OTLP1"`) causes `MissingReceiverReference` / `MissingExporterReference` errors.
-- **No duplicate references** within a single pipeline (e.g., listing the same receiver twice).
-- **All defined components are referenced** in at least one pipeline — orphaned receivers/exporters are rejected.
-- **Pipeline type matches the data** — Use `"Logs"` for log data flowing to Log Analytics.
-
-### Example: Correct pipeline wiring
-
-```json
-{
-  "service": {
-    "pipelines": [
-      {
-        "name": "MyPipeline1",
-        "type": "Logs",
-        "receivers": ["otlp1", "MySyslog1"],
-        "processors": ["batchproc1"],
-        "exporters": ["myExporter"]
-      }
-    ]
-  }
-}
 ```
 
 ### Check receiver endpoints and network connectivity
@@ -224,11 +183,11 @@ grpcurl -plaintext <pipeline-endpoint-ip>:4317 list
 
 ### Validate the data collection rule and endpoint
 
-Even if the pipeline is configured correctly, the DCR/DCE layer can block ingestion:
+Check workspace routing and network access:
 
-- **DCR stream name must match** the exporter's `stream` value exactly.
-- **DCR must be associated** with the correct Log Analytics workspace.
-- **DCE must be accessible** from the Kubernetes cluster — check firewall/private endpoint configuration.
+- **DCR stream name must match**: The data source's `streams` values must match the corresponding `dataFlows[].streams` values exactly.
+- **DCR workspace must be correct**: Confirm that each data flow references the intended destination and that its workspace resource ID is correct.
+- **DCE must be accessible**: If the deployment uses a data collection endpoint, check firewall and private endpoint configuration from the Kubernetes cluster. Also verify access to the Azure Monitor ingestion endpoints.
 - **For private link setups**: Confirm the DCE is added to the Azure Monitor Private Link Scope (AMPLS) and DNS resolves correctly.
 
 ### Check DCR ingestion health
@@ -258,7 +217,7 @@ Usage
 
 ### Validate transform statements
 
-If your pipeline uses a `TransformLanguage` processor:
+If your dataflow includes a transformation:
 
 - The KQL transform statement must be syntactically valid.
 - When targeting **standard tables** (e.g., `Syslog`, `CommonSecurityLog`), the transform must preserve all required columns — particularly `TimeGenerated`.
@@ -266,15 +225,17 @@ If your pipeline uses a `TransformLanguage` processor:
 
 ### Check persistent storage configuration
 
-If the exporter has persistent storage configured:
+If the pipeline uses persistent storage:
 
-- A `persistentVolumeName` **must** be specified in `service.persistence`. Without it, you'll get `PersistenceRequiredForExporterPersistence`.
-- The `retentionPeriod` must not exceed 2,880 minutes (2 days).
-- Verify the Kubernetes PersistentVolume exists and is bound.
+- Set `controllerManager.manager.env.pipelinePersistentVolume` in the extension's `properties.configurationSettings` to the name of an existing, available **ReadWriteMany PersistentVolume**. Don't supply a PVC or StorageClass name; the controller creates and binds its own PVC.
+- Set `properties.dataSources.syslog[].persistence.maxStorageUsageMb` and `retentionPeriodMin` in the dataflow DCR. The [persistent Syslog example](./pipeline-configure-cli.md#configure-persistent-storage) uses 1,024 MB and 1,440 minutes (24 hours).
+- Verify that persistent volume claims are bound.
+- Confirm that the pipeline can mount and write to the volume.
+- Check available storage and look for write or backfill errors in pod logs.
 
 ### Check TLS configuration
 
-If receivers reference a `tlsConfiguration`:
+If the pipeline's listening endpoints use TLS:
 
 - The certificate and private key must be valid and accessible.
 - Private keys must be stored in a **Kubernetes Secret** (not a ConfigMap).
@@ -282,7 +243,7 @@ If receivers reference a `tlsConfiguration`:
 
 ### Inspect Arc extension health
 
-The pipeline group runs as an Arc extension on Kubernetes. Verify the extension status and the health of the pods on the cluster:
+The pipeline runs as an Arc extension on Kubernetes. Verify the extension status and the health of the pods on the cluster:
 
 ```bash
 # Check extension status

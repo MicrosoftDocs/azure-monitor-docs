@@ -2,7 +2,7 @@
 title: Create a transformation in Azure Monitor
 description: Create a transformation in Azure Monitor and add it to a data collection rule (DCR).
 ms.topic: how-to
-ms.date: 05/15/2026
+ms.date: 11/03/2026
 ms.reviewer: nikeist
 ai-usage: ai-assisted
 
@@ -325,6 +325,92 @@ Invoke-AzRestMethod `
 
 ---
 
+### Enable schemaless ingestion for a custom stream (preview)
+
+[Schemaless ingestion](data-collection-transformations.md#schemaless-ingestion-preview) captures undeclared properties in a `dynamic` input column before the KQL processors execute. The following steps adapt a custom stream used by the Logs Ingestion API. For a complete definition, input records, and expected output, see [Capture undeclared properties in an overflow column](data-collection-rule-samples.md#capture-undeclared-properties-in-an-overflow-column-preview).
+
+Use the latest DCR API version (`2025-05-11` or later) with ARM/Bicep, Azure CLI, Azure PowerShell, or REST. The Azure portal doesn't support configuring schemaless ingestion. The commands below use the REST API explicitly so that the API version is selected.
+
+1. Verify that the destination table exists and has a `dynamic` column for the attributes you want to retain. The complete example uses `AppEvents_CL` and a destination column named `Attributes`.
+1. Export the current DCR by using the supported API version. If you already have its deployment template, edit that template instead. Preserve all unrelated streams, destinations, data flows, and other settings.
+
+    ```azurecli
+    az rest --method get --url "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}?api-version=2025-05-11" --output json
+    ```
+
+    Build the create-or-update request body with the resource's `location`, `kind`, `properties`, and any other writable settings you use. Don't copy read-only response properties such as `id`, `etag`, `properties.immutableId`, or generated `properties.endpoints` into that body.
+
+1. In `streamDeclarations`, add a column of type `dynamic` named `OverflowAttributes` to the custom stream. Keep the existing declarations for core fields that require typed columns.
+1. Add a named transformation with the following header and at least one body processor. If the data flow already has `transformKql`, move its query into a `transform.KQL` processor and adapt its output to include the bag.
+
+    ```json
+    {
+        "name": "captureAppAttributes",
+        "headerProcessor": {
+            "processor": "header.CustomStream",
+            "configuration": {
+                "streamId": "Custom-AppEvents",
+                "dynamicSchema": true,
+                "overflowColumn": "OverflowAttributes"
+            }
+        },
+        "processors": [
+            {
+                "processor": "transform.KQL",
+                "configuration": {
+                    "expression": "source | project TimeGenerated, EventId, Body, Attributes = OverflowAttributes"
+                }
+            }
+        ]
+    }
+    ```
+
+    `OverflowAttributes` must exactly match the declared input column name, including case. The transformation projects it into `Attributes` in the destination table. Review the [header configuration rules](data-collection-rule-structure.md#headercustomstream) if multiple transformations reference the stream.
+
+1. Reference the named transformation from the data flow. For example, replace this inline transformation:
+
+    ```json
+    {
+        "streams": ["Custom-AppEvents"],
+        "destinations": ["workspace"],
+        "transformKql": "source | project TimeGenerated, EventId, Body",
+        "outputStream": "Custom-AppEvents_CL"
+    }
+    ```
+
+    With this data flow:
+
+    ```json
+    {
+        "streams": ["Custom-AppEvents"],
+        "destinations": ["workspace"],
+        "transform": "captureAppAttributes",
+        "outputStream": "Custom-AppEvents_CL"
+    }
+    ```
+
+    Don't specify both `transformKql` and `transform` on the same data flow.
+
+1. Save the complete create-or-update request body in `dcr.json`, then deploy it with Azure CLI:
+
+    ```azurecli
+    az rest --method put --url "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}?api-version=2025-05-11" --body @dcr.json
+    ```
+
+    Alternatively, use Azure PowerShell:
+
+    ```powershell
+    $dcr = Get-Content -Path "dcr.json" -Raw
+    Invoke-AzRestMethod `
+        -Path "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}?api-version=2025-05-11" `
+        -Method PUT `
+        -Payload $dcr
+    ```
+
+1. Send a record with an undeclared property, then query the destination table to verify that the property appears in the projected bag. Also test a record with only declared fields; its overflow value should be `null`. Use the [sample request and verification query](data-collection-rule-samples.md#capture-undeclared-properties-in-an-overflow-column-preview), and [monitor DCR collection](data-collection-monitor.md) rather than relying only on a successful upload response.
+
+When updating this DCR later, continue using an API version that supports named transformations. Don't use an older API version that doesn't expose these settings.
+
 ## Create workspace transformation DCR
 
 The [workspace transformation data collection rule (DCR)](data-collection-transformations.md#workspace-transformation-dcr) is a special [DCR](data-collection-rule-overview.md) that you apply directly to a Log Analytics workspace. Each workspace can have only one workspace transformation DCR, but it can include transformations for any number of tables.
@@ -450,6 +536,9 @@ The following tables list common transformation errors and their resolutions.
 | Processor not recognized | Invalid processor type name (for example, `filter.basic` instead of `filter.Basic`). | Processor names are case-sensitive. See [Processor types](data-collection-rule-structure.md#processor-types) for valid names. |
 | Named transformation not found | The `transform` property references a name that doesn't exist in the `transformations` section. | Verify the `transform` value on the data source or data flow matches a `name` in the `transformations` array exactly. |
 | Client-side transformation not applied | Agent version doesn't support multi-stage transformations. | Update Azure Monitor Agent to the latest version. Multi-stage transformations require API version `2025-05-11` or later. |
+| Schemaless ingestion header rejected | Invalid `dynamicSchema` or `overflowColumn` configuration. | Supply a JSON boolean for the flag. When enabled, name a declared `dynamic` column exactly. Check the [header configuration rules](data-collection-rule-structure.md#headercustomstream), including consistency across transformations for the same stream. |
+| New input property missing from the destination | The property wasn't declared or captured before KQL, or the output projection omitted it. | Declare the property or enable [schemaless ingestion](#enable-schemaless-ingestion-for-a-custom-stream-preview). Verify the header, then project the bag or extracted value into a compatible destination column. `pack_all()` can't recover fields discarded before KQL. |
+| Supplied overflow value missing or replaced | The input record populated the column reserved for generated capture. | Don't send values in the configured overflow column. Capture replaces that value. If there are no undeclared properties, capture produces `null`. See [Input schema and overflow behavior](data-collection-transformations.md#input-schema-and-overflow-behavior). |
 
 ## Transformation guides by data source
 
