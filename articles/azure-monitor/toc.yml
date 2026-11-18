@@ -191,6 +191,8 @@ items:
         href: app/traces-attribute-analysis.md
       - name: Trace derived metrics
         href: app/trace-derived-metrics.md
+      - name: Connect Azure SRE Agent to traces
+        href: app/traces-sre-agent-mcp-connector.md
       - name: Query Azure Monitor Traces with an MCP Server
         href: app/traces-mcp-server.md
     - name: Code analysis
