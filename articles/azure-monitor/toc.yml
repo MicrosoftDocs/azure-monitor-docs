@@ -840,24 +840,25 @@ items:
     items:
     - name: Metrics
       items:
-      - name: Metrics export using DCRs
-        displayName: data collection rules, metrics
+      - name: Platform Metrics Export
+        displayName: data collection rules, metrics, platform metrics export
         href: data-collection/metrics-export-create.md
       - name: Supported resources and regions
-        displayName: metrics export, supported resources, supported regions
+        displayName: platform metrics export, supported resources, supported regions
         href: data-collection/metrics-export-reference.md
-      - name: Metrics export DCR structure
-        displayName: metrics export
+      - name: Platform Metrics Export DCR structure
+        displayName: platform metrics export
         href: data-collection/metrics-export-structure.md
       - name: Compare metrics strategies
+        displayName: platform metrics export, data plane API
         href: data-collection/data-plane-versus-metrics-export.md
     - name: Logs
       items:
-      - name: Collect logs using DCRs
-        displayName: data collection rules, platform logs, resource logs
+      - name: Platform Logs Export
+        displayName: data collection rules, platform logs, resource logs, platform logs export
         href: data-collection/platform-logs-collect.md
       - name: Supported resources and regions
-        displayName: data collection rules, platform logs, resource logs, categories, regions
+        displayName: data collection rules, platform logs export, resource logs, categories, regions
         href: data-collection/platform-logs-reference.md
     - name: Diagnostic settings
       items:

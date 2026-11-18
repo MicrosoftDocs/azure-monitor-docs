@@ -1,14 +1,15 @@
 ---
-title: Data collection rule (DCR) structure for metrics export 
-description: Details on DCR structure for metrics export in Azure Monitor.
+title: Data Collection Rule (DCR) Structure for Platform Metrics Export
+description: Details on DCR structure for Platform Metrics Export in Azure Monitor.
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 08/27/2026
 ms.reviewer: nikeist
 ms.custom: references_regions
 ---
 
-# Data collection rule (DCR) structure for metrics export
-[Metrics export](./metrics-export-create.md) in Azure Monitor uses [data collection rules (DCRs)](./data-collection-rule-overview.md) to define which metrics to collect from which resources and where to send them. When you use the Azure portal to configure this feature, you don't need to understand the structure of DCR. Using other methods though, you may need to understand the structure so you can modify it for your requirements. This article describes the details of DCRs used for metrics export.
+# Data collection rule (DCR) structure for Platform Metrics Export
+
+[Platform Metrics Export](./metrics-export-create.md) in Azure Monitor uses [data collection rules (DCRs)](./data-collection-rule-overview.md) to define which metrics to export from which resources and where to send them. When you use the Azure portal to configure this feature, you don't need to understand the structure of DCR. Using other methods though, you might need to understand the structure to modify it for your requirements. This article describes the details of DCRs used for Platform Metrics Export.
 
 ## DCR properties 
 
@@ -20,7 +21,7 @@ ms.custom: references_regions
 | `dataflows.streams` | A list of streams to pass to the destination in the format: `<resource type>:Metrics-Group-All \| <metric name>`<br><br>Example: `Microsoft.Compute/virtualMachines:Percentage CPU` |
 | `dataflows.destinations` | The destination to pass the streams to as defined in the `destinations` property. |
 | `identity.type` | The identity type to use for the DCR. Required for storage account destinations.<br>Valid values:<br>`systemAssigned`<br>`userAssigned` |
-| `kind` | The kind of data collection rule. Set to `PlatformTelemetry` for metrics export. |
+| `kind` | The kind of data collection rule. Set to `PlatformTelemetry` for Platform Metrics Export. |
 | `location`| The location of the DCR. |
 
 > [!NOTE] 
@@ -28,7 +29,7 @@ ms.custom: references_regions
 
 ## JSON structure
 
-Use the format in the following generic JSON object to create a DCR for metrics export. Remove the unwanted destinations when copying the example. 
+Use the format in the following generic JSON object to create a DCR for Platform Metrics Export. Remove the unwanted destinations when copying the example. 
 
 ```JSON
 {
@@ -93,11 +94,11 @@ Use the format in the following generic JSON object to create a DCR for metrics 
 ```
  
 > [!NOTE]
-> When creating a DCR for metrics export using the CLI, `kind`, `location`, and `identity` are passed as arguments and must be removed from the JSON object.
+> When creating a DCR for Platform Metrics Export by using the CLI, pass `kind`, `location`, and `identity` as arguments and remove them from the JSON object.
 
 ## User and system assigned identities 
 
-Both user and system assigned identities are supported when creating DCRs. An identity is required for Storage Account and Event Hubs destinations. You can use a system assigned or user assigned identity. For more information, see [Assign Azure roles to a managed identity](/azure/role-based-access-control/role-assignments-portal-managed-identity).
+You can use both user-assigned and system-assigned identities when you create DCRs. Storage Account and Event Hubs destinations require an identity. Use either a system-assigned or user-assigned identity. For more information, see [Assign Azure roles to a managed identity](/azure/role-based-access-control/role-assignments-portal-managed-identity).
 
 To use a system assigned identity, add the `identity` object as follows:
 
@@ -123,7 +124,7 @@ To use a user assigned identity, add the `identity` object as follows:
 
 ## Filtering metrics
 
-When specifying the metrics to export, you can filter the metrics by name or request all metrics by using `Metrics-Group-All`. For a list of supported metrics, see [Supported metrics and log categories by resource type](/azure/azure-monitor/reference/supported-metrics/metrics-index#supported-metrics-and-log-categories-by-resource-type).
+When you specify the metrics to export, filter the metrics by name or request all metrics by using `Metrics-Group-All`. For a list of supported metrics, see [Supported metrics and log categories by resource type](/azure/azure-monitor/reference/supported-metrics/metrics-index#supported-metrics-and-log-categories-by-resource-type).
 
 To specify more than one metric from the same resource type, create a separate stream item for each metric.
 
@@ -174,9 +175,9 @@ The following example shows how to filter metrics by name.
 }
 ```
 
-## Metrics export samples
+## Platform Metrics Export samples
 
-The following examples show sample DCR JSON objects for metrics export to each destination type.
+The following examples show sample DCR JSON objects for Platform Metrics Export to each destination type.
 
 ### [Log Analytics workspaces](#tab/log-analytics-workspaces)
 
@@ -292,7 +293,7 @@ The following example shows a data collection rule for metrics that sends`Percen
 
 ### Event Hubs
 
-The following example shows a data collection rule for metrics export that sends all metrics from virtual machines, and the `ServiceApiHit` and `Availability` metrics from Key Vaults to Event Hubs.
+The following example shows a data collection rule for Platform Metrics Export that sends all metrics from virtual machines, and the `ServiceApiHit` and `Availability` metrics from Key Vaults to Event Hubs.
 
 ```json
 {
@@ -342,7 +343,9 @@ The following example shows a data collection rule for metrics export that sends
 
 --- 
 
-## Next steps
+## Related content
 
+* [Platform Metrics Export using data collection rules](metrics-export-create.md).
+* [Platform Metrics Export supported resources and regions](metrics-export-reference.md).
 * [Read about the detailed structure of a data collection rule](data-collection-rule-structure.md).
 * [Get details on transformations in a data collection rule](data-collection-transformations.md).

@@ -1,14 +1,14 @@
 ---
-title: Platform logs supported resource types and regions (Preview)
-description: Reference for resource types, category streams, destination tables, and regions supported for platform logs export by using data collection rules.
+title: Platform Logs Export Supported Resource Types and Regions (Preview)
+description: Reference for resource types, category streams, destination tables, and regions supported for Platform Logs Export by using data collection rules.
 ms.topic: reference
-ms.date: 05/28/2026
+ms.date: 08/27/2026
 ms.custom: ai-assisted, references_regions
 ---
 
-# Platform logs supported resource types and regions (Preview)
+# Platform Logs Export supported resource types and regions (Preview)
 
-This article lists resource types, category streams, destination tables, and regions currently supported for [platform log export by using data collection rules (DCRs)](./platform-logs-collect.md).
+This article lists resource types, category streams, destination tables, and regions currently supported for [Platform Logs Export by using data collection rules (DCRs)](./platform-logs-collect.md).
 
 ## Supported resource types
 
@@ -24,8 +24,8 @@ To collect a specific log category, use the category name:
 
 Examples:
 
-`microsoft.app/managedenvironments:Logs-Group-All'
-'microsoft.dbformysql/flexibleservers:Logs-MySqlAuditLogs'
+- `microsoft.app/managedenvironments:Logs-Group-All`
+- `microsoft.dbformysql/flexibleservers:Logs-MySqlAuditLogs`
 
 
 | Resource name | Resource provider | Log categories | Log table |
@@ -55,7 +55,7 @@ Examples:
 
 ## Supported regions
 
-You can create platform telemetry DCRs and monitor resources in the following Azure regions. The DCR must be deployed in a supported region.
+Create platform telemetry DCRs and monitor resources in the following Azure regions. The DCR must be deployed in a supported region.
 
 - Australia Central
 - Australia East
@@ -104,4 +104,4 @@ You can create platform telemetry DCRs and monitor resources in the following Az
 
 ## Related content
 
-- [Collect platform logs with data collection rules](platform-logs-collect.md)
+- [Platform Logs Export using data collection rules](platform-logs-collect.md)

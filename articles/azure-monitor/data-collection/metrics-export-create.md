@@ -1,32 +1,32 @@
 ---
-title: Metrics Export Using Data Collection Rules
-description: Learn how to create data collection rules for metrics.
+title: Platform Metrics Export Using Data Collection Rules
+description: Learn how to export Azure platform metrics to a Log Analytics workspace, storage account, or Event Hubs by using data collection rules.
 ms.topic: how-to
-ms.date: 05/29/2026
+ms.date: 08/27/2026
 ms.custom: ai-assisted, cbo-v1.6
 ai-usage: ai-assisted
 ---
 
-# Metrics export using data collection rules
+# Platform Metrics Export using data collection rules
 
-Platform metrics measure the performance of different aspects of your Azure resources. Platform telemetry [data collection rules (DCRs)](./data-collection-rule-overview.md) let you collect and export platform metrics from supported Azure resources. This article shows you how to create a DCR for metrics export.
+Platform metrics measure the performance of different aspects of your Azure resources. Platform Metrics Export uses platform telemetry [data collection rules (DCRs)](./data-collection-rule-overview.md) to export platform metrics from supported Azure resources. This article shows how to create a DCR for Platform Metrics Export.
 
 > [!NOTE]
-> While you can use DCRs and diagnostic settings at the same time, you should disable any diagnostic settings for metrics when using DCRs to avoid duplicate data collection.
+> DCRs and diagnostic settings run at the same time, so disable any diagnostic settings for metrics when you use DCRs to avoid duplicate data collection.
 
 ## Compare to diagnostic settings
 
-Before this feature, you could only export platform metrics by using [diagnostic settings](diagnostic-settings.md). Diagnostic settings are still required for resource types that don't yet support DCRs.
+Before this feature, [diagnostic settings](../platform/diagnostic-settings.md) were the only way to export platform metrics. Diagnostic settings are still required for resource types that don't yet support DCRs.
 
 Platform telemetry DCRs provide several benefits over diagnostic settings:
 
 * DCR configuration enables exporting metrics with dimensions.
-* DCR configuration enables filtering based on metric name so you can export only the metrics that you need.
+* DCR configuration enables filtering based on metric name, so only the metrics you need are exported.
 * DCRs are more flexible and scalable than diagnostic settings. Use a single DCR with multiple resources, while a separate diagnostic setting is required for each resource.
 * End-to-end latency for DCRs is within three minutes, while diagnostic settings export latency is six to ten minutes.
 
 > [!NOTE]
-> Use metrics export with DCRs for continuous export of metrics data as it's created. To query historical data that's already been collected, use the [Data plane Metrics Batch API](/rest/api/monitor/metrics-batch/batch). See [Data plane Metrics Batch API query versus Metrics export](data-plane-versus-metrics-export.md) for a comparison of the two strategies.
+> Use Platform Metrics Export for continuous export of metrics data as it's created. To query historical data that's already been collected, use the [Data plane Metrics Batch API](/rest/api/monitor/metrics-batch/batch). See [Platform Metrics Export feature comparison](data-plane-versus-metrics-export.md) for a comparison of the two strategies.
 
 ## Export destinations
 
@@ -41,21 +41,21 @@ Metrics can be exported to the following destinations.
 > [!NOTE]
 > Latency for exporting metrics is approximately 3 minutes. Allow up to 15 minutes for metrics to begin to appear in the destination after the initial setup.
 
-## Limitations
+## Considerations
 
-DCRs for metrics export have the following limitations:
+Platform Metrics Export has the following limitations:
 
 * Only one destination type can be specified per DCR. To send to multiple destinations, create multiple DCRs.
 * A maximum of 5 DCRs can be associated with a single Azure resource.
-* Metrics export with DCR doesn't support the export of hourly grain metrics.
+* Platform Metrics Export doesn't support exporting hourly grain metrics.
 
 ## Supported resources and regions
 
-For the current list of supported resources and supported regions, see [Metrics export supported resources and regions](metrics-export-reference.md).
+For the current list of supported resources and regions, see [Platform Metrics Export supported resources and regions](metrics-export-reference.md).
 
-## Create a data collection rule (DCR) for metrics export
+## Create a data collection rule (DCR) for Platform Metrics Export
 
-Create a [data collection rule (DCR)](data-collection-rule-overview.md) for metrics export by using the Azure portal, Azure CLI, Azure PowerShell, REST API, Bicep, or an ARM template. The command-line examples use the currently selected subscription.
+Create a [data collection rule (DCR)](data-collection-rule-overview.md) for Platform Metrics Export by using the Azure portal, Azure CLI, Azure PowerShell, REST API, Bicep, or an ARM template. The command-line examples use the currently selected subscription.
 
 > [!IMPORTANT]
 > To send Platform Telemetry data to Storage Accounts or Event Hubs, the resource, data collection rule, and the destination Storage Account or the Event Hubs must all be in the same region.
@@ -101,7 +101,7 @@ The following Azure CLI example uses the [`az monitor data-collection rule creat
 
 ### Create a data collection rule using Azure CLI
 
-Create a JSON file containing the collection rule specification. For more information, see [Data collection rule (DCR) structure for metrics export](metrics-export-structure.md). For sample JSON files, see [Sample Metrics Export JSON objects](metrics-export-structure.md#metrics-export-samples).
+Create a JSON file containing the collection rule specification. For more information, see [Data collection rule (DCR) structure for Platform Metrics Export](metrics-export-structure.md). For sample JSON files, see [Sample Platform Metrics Export JSON objects](metrics-export-structure.md#platform-metrics-export-samples).
 
 > [!IMPORTANT]
 > The rule file has the same format as used for PowerShell and the REST API, however the file must not contain `identity`, the `location`, or `kind`. These parameters are specified in the `az monitor data-collection rule create` command.
@@ -218,7 +218,7 @@ The following Azure PowerShell example uses the [`New-AzDataCollectionRule`](/po
 
 ### Create a data collection rule using Azure PowerShell
 
-Create a JSON file containing the collection rule specification. For more information, see [Data collection rule (DCR) structure for metrics export](metrics-export-structure.md). For sample JSON files, see [Sample Metrics Export JSON objects](metrics-export-structure.md#metrics-export-samples).
+Create a JSON file containing the collection rule specification. For more information, see [Data collection rule (DCR) structure for Platform Metrics Export](metrics-export-structure.md). For sample JSON files, see [Sample Platform Metrics Export JSON objects](metrics-export-structure.md#platform-metrics-export-samples).
 
 ```powershell
 # Set variables
@@ -350,7 +350,7 @@ Authorization: Bearer {accessToken}
 Content-Type: application/json
 ```
 
-The payload is a JSON object that defines a collection rule. The payload is sent in the body of the request. For more information on the JSON structure, see [Data collection rule (DCR) structure for metrics export](metrics-export-structure.md). For sample DCR JSON objects, see [Sample Metrics Export JSON objects](metrics-export-structure.md#metrics-export-samples).
+The payload is a JSON object that defines a collection rule. You send the payload in the body of the request. For more information about the JSON structure, see [Data collection rule (DCR) structure for Platform Metrics Export](metrics-export-structure.md). For sample DCR JSON objects, see [Sample Platform Metrics Export JSON objects](metrics-export-structure.md#platform-metrics-export-samples).
 
 ### Grant write permissions to the managed identity
 
@@ -858,9 +858,11 @@ The following example shows a metric exported to Event Hubs.
 
 [!INCLUDE [data-collection-rule-troubleshoot](includes/data-collection-rule-troubleshoot.md)]
 
-## Next steps
+## Related content
 
+* [Platform Metrics Export supported resources and regions](metrics-export-reference.md).
+* [Data collection rule (DCR) structure for Platform Metrics Export](metrics-export-structure.md).
+* [Platform Logs Export using data collection rules](platform-logs-collect.md).
+* [Platform Logs Export supported resource types and regions](platform-logs-reference.md).
 * [Read about the detailed structure of a data collection rule](data-collection-rule-structure.md).
 * [Get details on transformations in a data collection rule](data-collection-transformations.md).
-* [Collect platform logs using data collection rules](platform-logs-collect.md).
-* [Review supported platform logs resource types and categories](platform-logs-reference.md).

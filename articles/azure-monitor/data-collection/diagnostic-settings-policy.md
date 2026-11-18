@@ -115,4 +115,4 @@ After the assignment and any remediation task complete, confirm that diagnostic 
 
 * [Azure Monitor data sources and data collection methods](../fundamentals/data-sources.md)
 * [Diagnostic settings in Azure Monitor](diagnostic-settings.md)
-* [Metrics export using data collection rules](metrics-export-create.md)
+* [Platform Metrics Export using data collection rules](metrics-export-create.md)
