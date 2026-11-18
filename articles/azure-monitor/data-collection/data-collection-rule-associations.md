@@ -2,7 +2,7 @@
 title: Manage data collection rule associations in Azure Monitor
 description: Describes different options for viewing data collection rules (DCRs) and data collection rule associations (DCRA) in Azure Monitor.
 ms.topic: how-to
-ms.date: 07/07/2026
+ms.date: 11/17/2026
 ms.reviewer: nikeist
 ai-usage: ai-assisted
 ---
@@ -73,7 +73,7 @@ In addition to the Azure portal browse experience, you can create a new associat
 > To associate DCRs with a virtual machine scale set with flexible orchestration, use a policy to deploy the agent and associate the DCR with each VM. The policy will install the agent and associate the DCR with VMs as during scale out.
 
 > [!IMPORTANT]
-> For Azure Monitor pipeline, associate both the settings DCR and dataflow DCR with the same pipeline extension. Create both associations under the Arc connected cluster, and set `properties.scopeToResourceId` to the extension's resource ID. To deploy the DCRs and associations together, use the [pipeline ARM template](./pipeline-configure-cli.md#deploy-the-arm-template).
+> For DCR-based Azure Monitor pipeline on Arc-enabled Kubernetes, associate the settings DCR and each dataflow DCR with the same pipeline extension. Create these associations under the connected cluster, and set `properties.scopeToResourceId` to the extension's resource ID. To deploy the DCRs and associations together, use the [pipeline ARM template](./pipeline-configure-cli.md#deploy-the-arm-template). For pipeline deployments on Linux VMs or Arc-enabled Linux servers, associate the DCRs with the VM or Arc machine resource instead. See [Configure Azure Monitor pipeline on Linux VMs](./pipeline-configure-vm.md).
 
 
 ### [CLI](#tab/cli)

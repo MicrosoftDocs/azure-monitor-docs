@@ -3,7 +3,7 @@ title: Azure Monitor pipeline pod placement
 description: Inspect Azure Monitor pipeline pod placement and troubleshoot Kubernetes scheduling issues.
 ai-usage: ai-assisted
 ms.topic: article
-ms.date: 10/23/2026
+ms.date: 11/17/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
@@ -38,7 +38,7 @@ For capacity guidance, see [Size Azure Monitor pipeline](./pipeline-sizing.md). 
 
 ## Configure collector placement
 
-Execution placement requires pipeline extension version **0.1.4 or later**. Confirm that the version is registered for your extension type, region, and release train. These settings control collector pods, not the controller Deployment.
+Install the extension by using the [DCR-based preview extension settings](./pipeline-configure-cli.md#configure-extension-settings). Preserve that version and release train when you update placement. These settings control collector pods, not the controller Deployment.
 
 For example, label at least two schedulable nodes that have sufficient CPU and memory for two collector replicas:
 
@@ -51,9 +51,6 @@ In the [CLI ARM template](./pipeline-configure-cli.md#deploy-the-arm-template), 
 
 ```json
 {
-  "extensionVersion": {
-    "value": "0.1.4"
-  },
   "extensionConfigurationSettings": {
     "value": {
       "controllerManager.manager.env.pipelineReplicas": "2",

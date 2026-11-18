@@ -3,15 +3,15 @@ title: Configure Azure Monitor pipeline with PipelineGroup (legacy)
 description: Configuration reference for existing Azure Monitor PipelineGroup deployments, including setup, TLS, storage, pod placement, gateways, and troubleshooting.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 10/21/2026
+ms.date: 11/17/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
 # Configure Azure Monitor pipeline with PipelineGroup (legacy)
 
-Use this guide to maintain existing `Microsoft.Monitor/pipelineGroups` deployments that run the `microsoft.monitor.pipelinecontroller` Arc extension. It brings together the configuration and operational procedures for those deployments.
+Use this guide for `Microsoft.Monitor/pipelineGroups` deployments that run the `microsoft.monitor.pipelinecontroller` Arc extension. This configuration model is used by the current Azure portal experience.
 
-For the `microsoft.monitor.pipeline` extension, use [Configure Azure Monitor pipeline](./pipeline-configure.md).
+For DCR-based configuration and native OpenTelemetry (OTel) logs, metrics, and traces with the `microsoft.monitor.pipeline` extension (public preview), use [Configure Azure Monitor pipeline with CLI or ARM templates](./pipeline-configure-cli.md).
 
 ## Check the installed extension
 
@@ -105,9 +105,8 @@ Complete deployment of an Azure Monitor pipeline includes the following steps:
 - [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your environment with an external IP address. To connect a cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster).
   - For clusters that enforce the Kubernetes Pod Security `restricted` profile, including Tanzu environments, use Azure Monitor pipeline version 1.7.0 or later. These versions run the operator as a non-root user.
 - Custom locations enabled on the Arc-enabled Kubernetes cluster. See [Create and manage custom locations on Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/custom-locations#enable-custom-locations-on-your-cluster).
-- Log Analytics workspace to receive Syslog, OpenTelemetry (OTel) logs, and OTel traces from the pipeline. To create a workspace, see [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md).
-  - (Optional) A custom table in the Log Analytics workspace if you don't want to use the default `Syslog` or `CommonSecurityLog` tables for Syslog data or the `OTelLogs` table for OTel logs. To create a custom table, see [Create a custom log table in Azure Monitor](../logs/create-custom-table.md). The workspace must be onboarded to Microsoft Sentinel for the `CommonSecurityLog` table to be available.
-- Azure Monitor workspace to receive OTel metrics from the pipeline. To create a workspace, see [Create an Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md#create-an-azure-monitor-workspace).
+- Log Analytics workspace to receive logs from the pipeline. To create a workspace, see [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md).
+  - A custom table for OTLP logs, or if you don't want to use the default `Syslog` or `CommonSecurityLog` tables for Syslog data. To create a custom table, see [Create a custom log table in Azure Monitor](../logs/create-custom-table.md). The workspace must be onboarded to Microsoft Sentinel for the `CommonSecurityLog` table to be available.
 
 
 <a id="legacy-setup-choose-a-configuration-method"></a>
@@ -135,23 +134,42 @@ After you complete the configuration by using your chosen method, use the follow
 
 #### Verify pipeline components running in the cluster
 
-In the Azure portal, go to the **Kubernetes services** menu and select your Azure Arc-enabled Kubernetes cluster. Select **Services and ingresses** and make sure that you see the following services:
+In the Azure portal, go to the **Kubernetes services** menu and select your Azure Arc-enabled Kubernetes cluster. Select **Services and ingresses** and verify that `<pipeline-name>-service` exists in the pipeline namespace and has type `ClusterIP`.
 
-* \<pipeline name\>-external-service
-* \<pipeline name\>-service
+You can also check the service by using `kubectl`:
 
-:::image type="content" source="./media/pipeline-configure/pipeline-cluster-components.png" lightbox="./media/pipeline-configure/pipeline-cluster-components.png" alt-text="Screenshot of cluster components supporting Azure Monitor pipeline.":::
+```bash
+kubectl get service <pipeline-name>-service -n <pipeline-namespace>
+```
+
+Current pipeline deployments don't automatically create `<pipeline-name>-external-service`. For clients outside the cluster, configure and verify a separate [Kubernetes gateway](#legacy-gateway).
 
 
 <a id="legacy-setup-verify-heartbeat"></a>
 
 #### Verify heartbeat
 
-Each pipeline that you configure in your pipeline instance sends a heartbeat record to the `Heartbeat` table in your Log Analytics workspace every minute. The contents of the `OSMajorVersion` column should match the name of your pipeline instance. If the pipeline instance has multiple workspaces, the first configured workspace is used.
+Each pipeline that you configure in your pipeline instance sends a heartbeat record to the `Heartbeat` table in your Log Analytics workspace every minute. If the pipeline instance has multiple workspaces, the first configured workspace is used.
 
-To retrieve the heartbeat records, use a log query as shown in the following example:
+The `OSName`, `OSMajorVersion`, and `OSMinorVersion` columns describe the operating system in the collector container, not the pipeline name or the Kubernetes node's operating system.
 
-:::image type="content" source="./media/pipeline-configure/heartbeat-records.png" lightbox="./media/pipeline-configure/heartbeat-records.png" alt-text="Screenshot of log query that returns heartbeat records for Azure Monitor pipeline.":::
+Find the collector pod names:
+
+```bash
+kubectl get pods -n <pipeline-namespace> -l pipeline=<pipeline-name>
+```
+
+Query recent heartbeat records for each collector pod:
+
+```kusto
+Heartbeat
+| where TimeGenerated > ago(15m)
+| where Computer == "<collector-pod-name>"
+| project TimeGenerated, Computer, OSName, OSMajorVersion, OSMinorVersion
+| order by TimeGenerated desc
+```
+
+Heartbeat delivery doesn't by itself verify end-to-end ingestion of client data.
 
 <a id="legacy-setup-configure-private-link"></a>
 
@@ -252,7 +270,7 @@ Follow these tasks to configure a pipeline by using CLI or ARM templates.
 
 | Step | Purpose | Output |
 |:-----|:--------|:-------|
-| Prepare destinations | Prepare the Log Analytics workspace, Azure Monitor workspace, and destination tables required for the signals that you collect. | Destinations ready for incoming data |
+| Prepare destinations | Prepare the Log Analytics workspace and destination tables. | Destinations ready for incoming data |
 | Add the pipeline extension | Enable Azure Monitor pipeline support on the cluster. | Pipeline extension resource |
 | Create a custom location | Make the Arc-enabled Kubernetes cluster targetable by Azure resources. | Custom location resource |
 | Create a data collection endpoint | Define the ingestion endpoint in Azure Monitor. | DCE resource and logs ingestion URL |
@@ -266,14 +284,12 @@ Follow these tasks to configure a pipeline by using CLI or ARM templates.
 
 ### Prepare destinations
 
-Before you configure the data collection process for the pipeline, confirm or create the destination required for each OpenTelemetry (OTel) signal.
+Before you configure the pipeline, confirm or create the destination for each log source.
 
 | Signal | Destination |
-|:-------|:------------|
+| :--- | :--- |
 | Syslog | The [Syslog](/azure/azure-monitor/reference/tables/syslog) or [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog) table, or a custom table in a Log Analytics workspace. |
-| OTel logs | The [OTelLogs](/azure/azure-monitor/reference/tables/otellogs) table or a custom table in a Log Analytics workspace. |
-| OTel metrics | An [Azure Monitor workspace](../metrics/azure-monitor-workspace-overview.md). |
-| OTel traces | The [OTelEvents](/azure/azure-monitor/reference/tables/otelevents), [OTelSpans](/azure/azure-monitor/reference/tables/otelspans), and [OTelResources](/azure/azure-monitor/reference/tables/otelresources) tables in a Log Analytics workspace. |
+| OTel logs | A custom table in a Log Analytics workspace. |
 
 If you're sending Syslog or OTel logs to a new custom table, create that table before you create any data flows that send to it. The schema of the table must match the data that it receives but not necessarily the schema of the source data that you're collecting from. Multiple steps in the collection process allow you to modify the incoming data before it's received. The only requirement for the table in the Log Analytics workspace is that it has a `TimeGenerated` column.
 
@@ -1839,15 +1855,14 @@ On the **Dataflows** tab, create one or more dataflows for the pipeline instance
 | Property | Description |
 |:---------|:------------|
 | Name | Name for the dataflow. Must be unique for this pipeline. |
-| Source type | Type of data to collect. Supported values are `Syslog` and `OTLP` (Preview). An OTLP source can receive OpenTelemetry (OTel) logs, metrics, and traces. |
+| Source type | Type of data to collect. Supported values are `Syslog` and `OTLP` (preview). The OTLP source receives logs for a custom table. |
 | Port | Port that the pipeline listens on for incoming data. If two dataflows use the same port, they both receive and process the data. |
 | Protocol<br>(Syslog only) | Whether the dataflow collects TCP or UDP traffic. |
 | Format<br>(Syslog only) | Syslog message formats to collect. `5424` is the newer structured format. `3164` is the older, less structured format. |
 | Collect messages with PRI header<br>(Syslog only) | Collect Syslog messages that don't include the PRI header. |
-| Log Analytics workspace | Destination for Syslog, OTel logs, and OTel traces. |
-| Azure Monitor workspace<br>(OTLP metrics only) | Destination for OTel metrics. |
-| Table<br>(Syslog and OTLP logs only) | Destination table. For Syslog, select [Syslog](/azure/azure-monitor/reference/tables/syslog), [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog), or a custom table. For OTel logs, select [OTelLogs](/azure/azure-monitor/reference/tables/otellogs) or a custom table. |
-| Table name | Table name in the Log Analytics workspace. Specify this value when you send Syslog or OTel logs to a custom table. |
+| Log Analytics workspace | Log Analytics workspace that receives the data. |
+| Table<br>(Syslog only) | Destination table. Select [Syslog](/azure/azure-monitor/reference/tables/syslog), [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog), or a custom table. |
+| Table name | Table name in the Log Analytics workspace. Must match **Table** when the destination is `Syslog` or `CommonSecurityLog`. |
 | Add Data Transformations | Add a transformation to the dataflow. See [Azure Monitor pipeline transformations](#legacy-transformations). |
 
 <a id="legacy-portal-choose-a-destination-table"></a>
@@ -1857,9 +1872,7 @@ On the **Dataflows** tab, create one or more dataflows for the pipeline instance
 Choose the destination table based on the data that you want to collect.
 
 - To send Syslog or CEF data to standard Azure Monitor tables, select `Syslog` as the **Source type**, and then select `Syslog` or `CommonSecurityLog` as the **Table**. The incoming data is converted automatically to the required format.
-- To send OTel logs, select `OTel Logs` as the **Source type**. In the **Log Analytics workspace** destination menu, select the `OTelLogs` table or specify a custom table. For a custom table, add a transformation to shape the incoming data to match the custom table schema. See [Azure Monitor pipeline transformations](#legacy-transformations).
-- To send OTel metrics, select `OTel metrics` as the **Source type**, and then select an Azure Monitor workspace as the destination.
-- To send OTel traces, select `OTel traces` as the **Source type**, and then select a Log Analytics workspace as the destination. Azure Monitor stores the trace data in the `OTelEvents`, `OTelSpans`, and `OTelResources` tables.
+- To send data to a custom table, select `Syslog` or `OTLP` as the **Source type**, and then specify a custom table name in the **Table name** field. Add a transformation to shape the incoming data to match the custom table schema. See [PipelineGroup transformations](#legacy-transformations).
 
 <a id="legacy-portal-add-transformations"></a>
 
@@ -3669,11 +3682,7 @@ These logs often contain detailed error messages that can help identify the root
 
 ### No data arriving in Azure Monitor
 
-Check the destination that corresponds to the signal:
-
-- Syslog and OpenTelemetry (OTel) logs are sent to a Log Analytics workspace. OTel logs can use the `OTelLogs` table or a custom table.
-- OTel metrics are sent to an Azure Monitor workspace.
-- OTel traces are sent to the `OTelEvents`, `OTelSpans`, and `OTelResources` tables in a Log Analytics workspace.
+Check the destination Log Analytics workspace. Syslog can use the `Syslog` or `CommonSecurityLog` table, or a custom table. OTLP logs use a custom table.
 
 Work through the following checks in order to locate the source of the issue.
 
@@ -3762,7 +3771,7 @@ In the `service.pipelines` array, confirm:
 - **Every receiver, processor, and exporter referenced in the pipeline actually exists** in the top-level arrays. A typo in a name (e.g., `"otlp1"` vs `"OTLP1"`) causes `MissingReceiverReference` / `MissingExporterReference` errors.
 - **No duplicate references** within a single pipeline (e.g., listing the same receiver twice).
 - **All defined components are referenced** in at least one pipeline — orphaned receivers/exporters are rejected.
-- **Pipeline type matches the data** — Use `"Logs"` for Syslog or OTel logs, `"Metrics"` for OTel metrics, and `"Traces"` for OTel traces.
+- **Pipeline type matches the data** — Use `"Logs"` for Syslog or OTLP logs in this configuration model.
 
 <a id="legacy-troubleshooting-example-correct-pipeline-wiring"></a>
 
@@ -3821,7 +3830,7 @@ grpcurl -plaintext <pipeline-endpoint-ip>:4317 list
 Even if the pipeline is configured correctly, the DCR/DCE layer can block ingestion:
 
 - **DCR stream name must match** the exporter's `stream` value exactly.
-- **DCR must be associated** with the correct Log Analytics workspace or Azure Monitor workspace for the signal.
+- **DCR destination must reference** the correct Log Analytics workspace.
 - **DCE must be accessible** from the Kubernetes cluster — check firewall/private endpoint configuration.
 - **For private link setups**: Confirm the DCE is added to the Azure Monitor Private Link Scope (AMPLS) and DNS resolves correctly.
 

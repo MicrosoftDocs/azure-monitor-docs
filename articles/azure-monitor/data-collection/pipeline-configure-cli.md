@@ -3,17 +3,17 @@ title: Configure Azure Monitor pipeline with CLI or ARM templates
 description: Learn how to configure Azure Monitor pipeline with CLI or ARM templates for automation and advanced scenarios.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 10/22/2026
+ms.date: 11/17/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
 # Configure Azure Monitor pipeline with CLI or ARM templates
 
-Use this article after you complete the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md). This method is best for automation, custom tables, persistent storage, and other advanced scenarios.
+Use this article to deploy the DCR-based public preview on Arc-enabled Kubernetes after you complete the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md).
 
 ## When to use this method
 
-Use CLI or ARM templates when you need a repeatable deployment process or more control over the pipeline resources. If you want the fastest guided experience for a standard deployment, use [Configure Azure Monitor pipeline with the Azure portal](./pipeline-configure-portal.md).
+Use CLI or ARM templates for this preview. The [current Azure portal experience](./pipeline-configure-portal.md) uses PipelineGroup-based configuration and doesn't configure the DCR-based preview.
 
 | Need | Why use CLI or ARM templates |
 |:-----|:-----------------------------|
@@ -194,14 +194,14 @@ Save the following ARM template as `basic-syslog-arm-template.json`. Deploy it t
     },
     "extensionVersion": {
       "type": "string",
-      "defaultValue": "0.1.4",
+      "defaultValue": "0.1.7",
       "metadata": {
         "description": "Pinned Arc extension version."
       }
     },
     "extensionReleaseTrain": {
       "type": "string",
-      "defaultValue": "stable",
+      "defaultValue": "preview",
       "metadata": {
         "description": "Arc extension release train."
       }
@@ -424,7 +424,7 @@ Configure the installed Arc extension through the `Microsoft.KubernetesConfigura
 | `extensionName` | `name` | Name of the extension instance on the connected cluster. |
 | `extensionType` | `properties.extensionType` | Registered extension type. Set this value to `microsoft.monitor.pipeline`. |
 | `extensionVersion` | `properties.version` | Extension version to install. |
-| `extensionReleaseTrain` | `properties.releaseTrain` | Extension release train. Set this value to `stable`. |
+| `extensionReleaseTrain` | `properties.releaseTrain` | Extension release train. Set this value to `preview`. |
 | `extensionNamespace` | `properties.scope.cluster.releaseNamespace` | Kubernetes namespace where the extension's Helm release is installed. Retain the existing namespace when you update an installed extension. |
 | `extensionConfigurationSettings` | `properties.configurationSettings` | Flat string map for extension settings, including collector replicas, placement, and PV selection. Preserve required existing settings when redeploying. |
 
@@ -432,7 +432,7 @@ The extension uses a system-assigned managed identity. The template automaticall
 
 Automatic minor-version upgrades are disabled with `properties.autoUpgradeMinorVersion: false`. To change the installed version, update `extensionVersion`, review the deployment changes, and redeploy.
 
-The example targets version `0.1.4`. Confirm that this version is registered for your extension type, region, and release train before deploying.
+The examples target version `0.1.7` on the `preview` release train. Confirm that this version is available in your region before deploying. For Azure CLI commands that accept a release train, specify `--release-train preview`; don't rely on the default train.
 
 Extension deployment settings configure the installed extension. Store instance-specific runtime settings, including listening endpoints and TLS configuration, in the `PipelineSettings` DCR, and collection and routing settings in the dataflow DCR. The template automatically creates the DCR associations and ingestion role assignment as part of the same deployment; installing the extension alone doesn't create them.
 
@@ -461,10 +461,10 @@ Save the following as `basic-syslog-arm-parameters.json` and replace the placeho
       "value": "microsoft.monitor.pipeline"
     },
     "extensionVersion": {
-      "value": "0.1.4"
+      "value": "0.1.7"
     },
     "extensionReleaseTrain": {
-      "value": "stable"
+      "value": "preview"
     },
     "extensionNamespace": {
       "value": "default"
@@ -694,14 +694,28 @@ All data sources use `mode: pipeline` and select the same endpoint, `otlp-grpc`,
 
 Before deploying:
 
-- Install the `microsoft.monitor.pipeline` extension with a system-assigned managed identity. This example configures an existing extension; it doesn't install one.
+- Install the `microsoft.monitor.pipeline` extension with a system-assigned managed identity and the [preview extension settings](#configure-extension-settings). The OTel ARM template configures an existing extension; it doesn't install one.
 - Provide two distinct Log Analytics workspaces and an Azure Monitor workspace. Create all three DCRs in the same region as the destination workspaces and, if supplied, the data collection endpoint (DCE).
 - Choose an extension instance for this configuration. Use one settings DCR per extension. Don't deploy this as an additional settings DCR for an instance already configured by the Syslog example. Use a separate extension instance or update its existing configuration deliberately.
 - Ensure that the deployment identity can create DCRs, associations, and role assignments. The template automatically creates **Monitoring Metrics Publisher** for the extension's identity on each dataflow DCR; no separate manual role assignments are required.
 
-The listener uses TCP port 4317 by default and the extension's default certificates for mTLS. Configure clients to trust the issuing CA and present a trusted client certificate. See [Automated certificate management](./pipeline-tls-automated.md) for trust-bundle distribution and client-certificate issuance. For customer-managed certificates, see [Configure TLS or mTLS](./pipeline-tls-custom.md#configure-pipeline).
+To install a separate extension for this example, run the following command. Replace the placeholders and use the same extension name in the OTel deployment parameters:
 
-Confirm that the deployed extension version supports the OTel data sources and shared-listener routing before using this example. Don't assume that a version used for Syslog also supports OTLP. Template structure alone doesn't validate end-to-end OTel delivery.
+```azurecli
+az k8s-extension create --subscription <subscription-id> \
+  --resource-group <cluster-resource-group> \
+  --cluster-name <cluster-name> \
+  --cluster-type connectedClusters \
+  --name <extension-name> \
+  --extension-type Microsoft.Monitor.Pipeline \
+  --scope cluster \
+  --release-namespace <extension-namespace> \
+  --release-train preview \
+  --version 0.1.7 \
+  --auto-upgrade false
+```
+
+The listener uses TCP port 4317 by default and the extension's default certificates for mTLS. Configure clients to trust the issuing CA and present a trusted client certificate. To learn about trust-bundle distribution and client-certificate issuance, see [Automated certificate management](./pipeline-tls-automated.md). For customer-managed certificates, see [Configure TLS or mTLS](./pipeline-tls-custom.md#configure-pipeline).
 
 ### Deploy the OTel ARM template
 
@@ -951,7 +965,8 @@ Confirm that the deployed extension version supports the OTel data sources and s
               "type": "otlp",
               "networkingConfig": {
                 "endpoint": "[format('0.0.0.0:{0}', parameters('otlpPort'))]",
-                "transportProtocol": "tcp"
+                "transportProtocol": "tcp",
+                "ingressProtocol": "grpc"
               }
             }
           ]
@@ -1152,25 +1167,25 @@ Verify configuration delivery and data delivery separately. Extension provisioni
 
 ### Check the extension and associations
 
-Check the extension's provisioning state and identity:
+Check the extension's type, version, release train, provisioning state, and identity against the [extension settings](#configure-extension-settings):
 
 ```azurecli
-az k8s-extension show --name <extension-name> --cluster-name <cluster-name> --resource-group <cluster-resource-group> --cluster-type connectedClusters --query "{provisioningState:provisioningState,version:version,principalId:identity.principalId}"
+az k8s-extension show --name <extension-name> --cluster-name <cluster-name> --resource-group <cluster-resource-group> --cluster-type connectedClusters --query "{extensionType:extensionType,version:version,releaseTrain:releaseTrain,provisioningState:provisioningState,principalId:identity.principalId}"
 ```
 
-Read each association with API version `2025-05-11`. For the Syslog template, substitute `pipelineSettings-<namePrefix>` and `<namePrefix>-datasources-assoc` into the following command. For the OTel template, use `pipelineSettings-<extensionName>` and `<extensionName>-<namePrefix>-datasources` instead.
+Read each association with API version `2025-05-11`. For the Syslog template, substitute `pipelineSettings-<namePrefix>` and `<namePrefix>-datasources-assoc` into the following command. For the OTel template, check all three: `pipelineSettings-<extensionName>`, `<extensionName>-<namePrefix>-datasources`, and `<extensionName>-<namePrefix>-secondary-logs`.
 
 ```azurecli
 az rest --method get --url "https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<cluster-resource-group>/providers/Microsoft.Kubernetes/connectedClusters/<cluster-name>/providers/Microsoft.Insights/dataCollectionRuleAssociations/<association-name>?api-version=2025-05-11" --query "{dcr:properties.dataCollectionRuleId,extension:properties.scopeToResourceId}"
 ```
 
-For both results, require `extension` to equal:
+For every result, require `extension` to equal:
 
 ```text
 /subscriptions/<subscription-id>/resourceGroups/<cluster-resource-group>/providers/Microsoft.Kubernetes/connectedClusters/<cluster-name>/providers/Microsoft.KubernetesConfiguration/extensions/<extension-name>
 ```
 
-Confirm that each result's `dcr` is the intended DCR's ARM resource ID. The template automatically grants the extension principal **Monitoring Metrics Publisher** on the dataflow DCR. Verify that this deployment-created assignment is present rather than creating another assignment manually. Role-assignment propagation can take some time; the collector can be running while exports still receive authorization failures.
+Confirm that each result's `dcr` is the intended DCR's ARM resource ID. The template automatically grants the extension principal **Monitoring Metrics Publisher** on each dataflow DCR. Verify that these deployment-created assignments are present rather than creating another assignment manually. Role-assignment propagation can take some time; the collector can be running while exports still receive authorization failures.
 
 ### Check the pipeline and ingestion
 
@@ -1181,7 +1196,7 @@ kubectl get deployments,statefulsets,pods,services,configmaps --namespace <exten
 kubectl rollout status statefulset/<collector-statefulset-name> --namespace <extension-namespace> --timeout 5m
 ```
 
-Send a valid RFC 3164 Syslog message with a unique marker from a temporary in-cluster pod. Replace the namespace and collector service name, and use a new marker for each test:
+For the unencrypted UDP Syslog example, send a valid RFC 3164 Syslog message with a unique marker from a temporary in-cluster pod. Replace the namespace and collector service name, and use a new marker for each test:
 
 ```bash
 kubectl run syslog-smoke --namespace <extension-namespace> --rm --stdin --restart Never --image busybox:1.36 -- sh -c 'printf "<13>%s smokehost pipeline[123]: pipeline-dcr-smoke-unique-marker\n" "$(date -u "+%b %e %T")" | nc -u -w 1 <collector-service-name> 514'
@@ -1205,7 +1220,7 @@ The listener address `0.0.0.0:514` binds to all network interfaces inside the co
 
 | Symptom | Check |
 |:---|:---|
-| No pipeline configuration or resources appear. | Confirm that both DCRs are associated and both `scopeToResourceId` values identify the same extension. Check the endpoint name and settings DCR reference. |
+| No pipeline configuration or resources appear. | Confirm that the settings DCR and every dataflow DCR are associated and all `scopeToResourceId` values identify the same extension. Check the endpoint name and settings DCR reference. |
 | Association readback has no `scopeToResourceId`. | Recreate the association with API `2025-05-11`, with the field directly under `properties`. |
 | Export returns `403`. | Check the **Monitoring Metrics Publisher** role assignment that the template creates automatically on the dataflow DCR. Confirm that it targets the extension's managed identity, not the cluster identity. Check for a failed role-assignment deployment and allow for role propagation before retrying. |
 | No Syslog records arrive. | Confirm that the message matches an allowed format and includes the PRI header. Inspect the collector logs for parsing, authorization, and export errors. |

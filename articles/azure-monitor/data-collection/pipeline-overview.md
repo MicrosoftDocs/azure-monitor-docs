@@ -3,7 +3,7 @@ title: What is Azure Monitor pipeline?
 description: Learn what Azure Monitor pipeline is, when to use it, and the recommended setup sequence for edge and multicloud data collection.
 ai-usage: ai-assisted
 ms.topic: overview
-ms.date: 11/09/2026
+ms.date: 11/17/2026
 ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 ---
 
@@ -62,7 +62,7 @@ The Kubernetes-hosted pipeline is a containerized solution that runs on an [Arc-
 
 A typical Kubernetes deployment is shown in the preceding image and includes the following components:
 
-- The pipeline runs on an Arc-enabled Kubernetes cluster at each on-premises, edge, or multicloud location.
+- The pipeline runs on an Azure Arc-enabled Kubernetes cluster at each on-premises, edge, or multicloud location.
 - Clients send Syslog data, including CEF, to the pipeline over TCP or UDP on port 514 by default.
 - Clients send OTel logs, metrics, and traces over OTLP to the pipeline on TCP port 4317 by default (this feature is in preview).
 - An optional gateway exposes pipeline receivers to clients outside the cluster.
@@ -75,7 +75,9 @@ A typical Kubernetes deployment is shown in the preceding image and includes the
 
 ## Pipeline configuration
 
-Each pipeline instance runs through a `microsoft.monitor.pipeline` Arc extension. Configure the instance with one pipeline settings DCR and one or more dataflow DCRs. The settings DCR describes the instance's runtime settings; the dataflow DCRs describe what to collect and where to send it. Associations deliver that configuration to the extension.
+For DCR-based configuration on Arc-enabled Kubernetes (public preview), each pipeline instance runs through a `microsoft.monitor.pipeline` Arc extension. Configure the instance with one pipeline settings DCR and one or more dataflow DCRs. The settings DCR describes the instance's runtime settings; the dataflow DCRs describe what to collect and where to send it. Associations deliver that configuration to the extension.
+
+This preview includes native OTel logs, metrics, and traces and is configured through [Azure CLI or ARM templates](./pipeline-configure-cli.md). The [current Azure portal experience](./pipeline-configure-portal.md) continues to use PipelineGroup-based configuration. For Linux VMs and Arc-enabled Linux servers, follow the separate [VM extension guidance](./pipeline-configure-vm.md).
 
 | Component | Purpose |
 |:---|:---|
