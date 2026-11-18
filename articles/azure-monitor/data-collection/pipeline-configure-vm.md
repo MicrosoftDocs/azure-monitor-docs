@@ -279,7 +279,7 @@ To buffer received Syslog or CEF records on disk before export, configure both a
 
 The custom-directory setting requires VM extension version **0.2.8 or later**. Confirm that a suitable version is available for your hosting option and region before deploying; Azure VM and Arc extension availability can differ.
 
-1. Prepare persistent local storage before installing the extension. For Azure VMs, you can [attach and mount a managed data disk](/azure/virtual-machines/linux/attach-disk-portal). For Arc-enabled servers, use the host's persistent storage. The example below uses `/srv/azuremonitor-pipeline` as the mount point; substitute your own path if different. Ensure the filesystem mounts before the pipeline starts, including after a reboot. Don't use a VM temporary disk, an ephemeral OS disk, or a temporary directory.
+1. Prepare persistent local storage before installing the extension. For Azure VMs, you can [attach and mount a managed data disk](/azure/virtual-machines/linux/attach-disk-portal). For Arc-enabled servers, use the host's persistent storage. The following example uses `/srv/azuremonitor-pipeline` as the mount point; substitute your own path if different. Ensure the filesystem mounts before the pipeline starts, including after a reboot. Don't use a VM temporary disk, an ephemeral OS disk, or a temporary directory.
 
 1. Choose a dedicated directory on that filesystem, such as `/srv/azuremonitor-pipeline/buffer`. Add `pipelinePersistenceLocation` to the extension's existing `settings` object in the Bicep template:
 
