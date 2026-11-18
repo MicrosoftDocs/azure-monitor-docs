@@ -59,7 +59,7 @@ Health models allow you to create alerts based on health state instead of indivi
 
 ## Billing and cost management
 
-Azure Monitor health models billing is based on _active signals_. Your monthly cost depends on the number and type of signals you configure across your health models.
+The total cost of an Azure Monitor health model is the sum of the charges for each _monitored signal_, plus any enabled features.​ Your monthly cost depends on the number and type of signals you configure across your health models. For current rates, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 ### Signals
 
@@ -69,9 +69,9 @@ Signals enable health models to monitor and evaluate operational conditions acro
 - Log Query signals
 - Prometheus Query signals
 
-Each active signal contributes to billable inventory according to its signal type, each with its different characteristics and billing category. As you increase the number of configured signals, signal-related costs can also increase.
+Each active signal contributes to billable inventory according to its signal type, each with its different characteristics and billing category. As you increase the number of active signals, signal-related costs can also increase.
 
-Prices differ by signal type. Signal charges are prorated: each signal evaluation is billed as a fraction of the monthly price for that signal type. If you add or delete a signal partway through a billing cycle, its charges reflect the evaluations performed during that cycle, rather than whether it exists at month-end.
+Prices differ by signal type. Metric signals and Log signals are billed per month, and there is no charge for Resource Health signals or for signals while they are disabled. If you add or delete a signal partway through a billing cycle, its charges reflect the evaluations performed during that cycle.
 
 Billing records are stored in Azure's commerce system and follow the same process as other Azure services, with no health-model-specific retention process.
 
@@ -79,7 +79,7 @@ As a health modeling practice, choose the signals necessary to represent the hea
 
 ### How do costs appear in your invoice?
 
-Charges for signals appear alongside your other Azure Monitor costs on your invoice. Use [Cost analysis](../fundamentals/cost-usage.md) in Cost Management to view usage by [meter](../fundamentals/cost-meters.md#azure-monitor-health-models-meters) and reconcile charges against active signal inventory. For current rates, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
+Charges for signals appear alongside your other Azure Monitor costs on your invoice. Use [Cost analysis](../fundamentals/cost-usage.md) in Cost Management to view usage by [meter](../fundamentals/cost-meters.md#azure-monitor-health-models-meters) and reconcile charges against active signal inventory.
 
 ## Next steps
 

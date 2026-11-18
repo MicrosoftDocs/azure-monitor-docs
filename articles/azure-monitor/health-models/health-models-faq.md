@@ -239,15 +239,11 @@ Health models use the standard Azure Resource Manager API, so tools such as GitH
 
 ## Pricing
 
-Find current pricing information for Azure Monitor health models.
-
-### What is the pricing for Azure Monitor health models?
-
-See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
+These questions cover pricing information for Azure Monitor health models
 
 ### How will I be charged for my health model?
 
-Charges are based on the number and type of signals configured in your health model. Prices differ by signal type. Charges are prorated, with each signal evaluation billed as a fraction of the monthly price for that signal type. See [Billing and cost management](./overview.md#billing-and-cost-management).
+Charges are based on the number and type of signals configured in your health model.​ Metric signals and Log signals are billed per month and there is no charge for Resource Health signals or for signals while they are disabled. See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 ### What happens to charges if I add or delete a signal partway through the month?
 
