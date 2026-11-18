@@ -3,7 +3,7 @@ title: Configure Azure Monitor pipeline with CLI or ARM templates
 description: Learn how to configure Azure Monitor pipeline with CLI or ARM templates for automation and advanced scenarios.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/17/2026
+ms.date: 11/18/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
@@ -37,6 +37,8 @@ Install the extension to run a pipeline instance. Store its instance specific se
 - Azure CLI and `kubectl` access to the cluster.
 
 Use the examples in this article to collect Syslog over UDP or TLS, [collect CEF into Microsoft Sentinel](#collect-cef-into-microsoft-sentinel), or [collect OpenTelemetry logs, metrics, and traces](#collect-otel-logs-metrics-and-traces).
+
+For the current list, see [Regions supported using DCR-based configuration](./pipeline-configure.md#supported-regions).
 
 ## Understand the configuration model
 
@@ -173,7 +175,7 @@ Save the following ARM template as `basic-syslog-arm-template.json`. Deploy it t
     },
     "dcrLocation": {
       "type": "string",
-      "defaultValue": "centraluseuap",
+      "defaultValue": "eastus2",
       "metadata": {
         "description": "Azure region for the DCRs. This must match the Log Analytics workspace region and support Azure Monitor pipeline."
       }
@@ -452,7 +454,7 @@ Save the following as `basic-syslog-arm-parameters.json` and replace the placeho
       "value": "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<WORKSPACE_RESOURCE_GROUP>/providers/Microsoft.OperationalInsights/workspaces/<WORKSPACE_NAME>"
     },
     "dcrLocation": {
-      "value": "centraluseuap"
+      "value": "eastus2"
     },
     "extensionName": {
       "value": "azure-monitor-pipeline"
@@ -687,6 +689,18 @@ Each dataflow DCR routes a given stream to only one Log Analytics workspace. Don
 | Logs | `otelLogs` with `Microsoft-OTel-Logs`. | Both the primary and secondary Log Analytics workspaces, in the `OTelLogs` table. |
 | Traces | `otelTraces` with `Microsoft-OTel-Traces-Spans`, `Microsoft-OTel-Traces-Events`, and `Microsoft-OTel-Traces-Resources`. | The primary Log Analytics workspace, in the `OTelSpans`, `OTelEvents`, and `OTelResources` tables. |
 | Metrics | `otelMetrics` with an author-named stream that starts with `Custom-Metrics-`. | An Azure Monitor workspace (`Microsoft.Monitor/accounts`). |
+
+### Understand OTel log field mapping
+
+The following `OTelLogs` columns populate independently:
+
+| `OTelLogs` column | Source |
+|:---|:---|
+| `ServiceName` | The OTel resource attribute `service.name`. |
+| `ResourceAttributes` | The normalized pipeline item's `resourceAttributes` field (`item.resourceAttributes`). |
+| `Attributes` | Attributes on the individual OTel log record. |
+
+You can populate `ServiceName` even when `ResourceAttributes` is null. Don't use a populated `ServiceName` value as evidence that the complete OTel resource-attribute bag was stored. For the complete destination schema, see the [`OTelLogs` table reference](../reference/tables/otellogs.md).
 
 All data sources use `mode: pipeline` and select the same endpoint, `otlp-grpc`, through `endpointRouting`. Each dataflow DCR's `references.pipelineSettingsEndpointRouting` connects that name to the settings DCR. Its `dataFlows` entries then route the streams to destinations in that DCR.
 
@@ -1156,6 +1170,7 @@ For example, run the following query in each Log Analytics workspace to inspect 
 ```kusto
 OTelLogs
 | where TimeGenerated > ago(30m)
+| project TimeGenerated, ServiceName, ResourceAttributes, Attributes, Body
 | take 20
 ```
 

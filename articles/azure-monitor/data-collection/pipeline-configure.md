@@ -3,7 +3,7 @@ title: Configure Azure Monitor pipeline
 description: Configure Azure Monitor pipeline with settings and dataflow DCRs, associate them with the pipeline extension, and verify data collection.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/17/2026
+ms.date: 11/18/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
@@ -20,12 +20,37 @@ For an explanation of how endpoints, TLS configurations, streams, destinations, 
 > [!NOTE]
 > For an existing installation that uses the `microsoft.monitor.pipelinecontroller` extension, see [Legacy pipeline configuration](./pipeline-configure-legacy.md). That guide includes a command to check your installed extension type and version.
 
+## Supported regions
+
+During the public preview of DCR-based configuration, the `microsoft.monitor.pipeline` extension is deployed in the following regions. Availability also depends on Azure Arc-enabled Kubernetes and the required Certificate Manager extension being supported in the cluster region.
+
+| Region | Region | Region |
+|:---|:---|:---|
+| Australia Central | Australia East | Australia Southeast |
+| Austria East | Belgium Central | Brazil South |
+| Canada Central | Canada East | Central India |
+| Central US | Chile Central | Denmark East |
+| East Asia | East US | East US 2 |
+| France Central | Germany West Central | Indonesia Central |
+| Italy North | Japan East | Japan West |
+| Jio India West | Korea Central | Korea South |
+| Malaysia West | Mexico Central | New Zealand North |
+| North Central US | North Europe | Norway East |
+| Poland Central | Qatar Central | South Africa North |
+| South Central US | South India | Southeast Asia |
+| Spain Central | Sweden Central | Switzerland North |
+| UAE North | UK South | UK West |
+| West Central US | West Europe | West India |
+| West US | West US 2 | West US 3 |
+
+For current public-region availability, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
+
 ## Prerequisites
 
 - An Azure subscription and permission to create pipeline extensions, DCRs, DCR associations, and role assignments. Deployment uses these permissions to create the resources, including the ingestion role assignment.
 - An [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview). To connect a cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster).
 - [Install cert-manager](/azure/azure-arc/kubernetes/cert-manager-overview) on your Arc-enabled Kubernetes cluster before installing the pipeline extension.
-- A Log Analytics workspace in a region supported by Azure Monitor pipeline. Create the DCRs in the workspace's region. To create a workspace, see [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md).
+- A Log Analytics workspace in a [supported region](#supported-regions). Create the DCRs in the workspace's region. To create a workspace, see [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md).
 - An Azure Monitor workspace if you collect OpenTelemetry metrics. To create one, see [Create an Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md#create-an-azure-monitor-workspace).
 - A custom table if your dataflow sends logs to a custom destination table. See [Create a custom log table in Azure Monitor](../logs/create-custom-table.md).
 - Microsoft Sentinel enabled on the workspace if you collect CEF into the `CommonSecurityLog` table.

@@ -1416,7 +1416,7 @@ items:
           href: visualize/workbooks-resources.md
         - name: Multi-value parameters
           href: visualize/workbooks-multi-value.md
-      - name: Workbook result limits
+      - name: Workbook limits
         href: visualize/workbooks-limits.md
     - name: Workbook Samples
       href: visualize/workbooks-samples.md

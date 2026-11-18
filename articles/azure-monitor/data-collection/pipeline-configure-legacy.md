@@ -3,7 +3,7 @@ title: Configure Azure Monitor pipeline with PipelineGroup (legacy)
 description: Configuration reference for existing Azure Monitor PipelineGroup deployments, including setup, TLS, storage, pod placement, gateways, and troubleshooting.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/17/2026
+ms.date: 11/18/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
@@ -57,13 +57,13 @@ For the architecture, capabilities, and comparison with Azure Monitor agent, see
 
 ### Supported configurations
 
-Azure Monitor pipeline runs on Arc-enabled Kubernetes. Support depends on both the region and the Kubernetes distribution versions supported for the required `cert-manager` extension.
+The following region list applies only to PipelineGroup-based configuration with the `microsoft.monitor.pipelinecontroller` extension. Support depends on both the region and the Kubernetes distribution versions supported for the required `cert-manager` extension.
 
 | Supported Kubernetes distributions | Supported regions |
 |:---|:---|
-| - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11<br>- SUSE Rancher K3s v1.33.3+k3s1<br>- AKS Arc v1.32.7 | - Australia East<br>- Brazil South<br>- Canada Central<br>- Central India<br>- Central US<br>- Central US EUAP<br>- East Asia<br>- East US<br>- East US 2<br>- East US 2 EUAP<br>- France Central<br>- Germany West Central<br>- Italy North<br>- Japan East<br>- Korea Central<br>- North Central US<br>- North Europe<br>- Norway East<br>- South Africa North<br>- South India<br>- Sweden Central<br>- Switzerland North<br>- UK South<br>- UK West<br>- West Central US<br>- West Europe<br>- West US<br>- West US 2<br>- West US 3 |
+| - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11<br>- SUSE Rancher K3s v1.33.3+k3s1<br>- AKS Arc v1.32.7 | - Australia East<br>- Brazil South<br>- Canada Central<br>- Central India<br>- Central US<br>- East Asia<br>- East US<br>- East US 2<br>- France Central<br>- Germany West Central<br>- Italy North<br>- Japan East<br>- Korea Central<br>- North Central US<br>- North Europe<br>- Norway East<br>- South Africa North<br>- South India<br>- Sweden Central<br>- Switzerland North<br>- UK South<br>- UK West<br>- West Central US<br>- West Europe<br>- West US<br>- West US 2<br>- West US 3 |
 
-Supported regions, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
+For current public-region availability, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). For regions supported using DCR-based configuration, see [Configure Azure Monitor pipeline](./pipeline-configure.md#supported-regions).
 
 <a id="legacy-setup"></a>
 
@@ -777,13 +777,13 @@ The following table describes the sections of the pipeline configuration and cri
     "resources": [
         {
             "type": "Microsoft.monitor/pipelineGroups",
-            "location": "eastus2euap",
+            "location": "eastus2",
             "apiVersion": "2026-04-01",
             "extendedLocation": {
                 "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
                 "type": "CustomLocation"
             },
-            "name": "my-pipeline-eastus2euap",
+            "name": "my-pipeline-eastus2",
             "properties": {
                 "receivers": [
                     {
