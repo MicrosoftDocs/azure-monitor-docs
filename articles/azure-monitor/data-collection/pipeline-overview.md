@@ -3,7 +3,7 @@ title: What is Azure Monitor pipeline?
 description: Learn what Azure Monitor pipeline is, when to use it, and the recommended setup sequence for edge and multicloud data collection.
 ai-usage: ai-assisted
 ms.topic: overview
-ms.date: 11/17/2026
+ms.date: 11/18/2026
 ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 ---
 
@@ -114,13 +114,13 @@ For guidance on selecting a collection architecture, see [Choose a topology for 
 
 ## Supported configurations
 
-The following table applies to Arc-enabled Kubernetes deployments. Support depends on both the region and the Kubernetes distribution versions supported for the required `cert-manager` extension. For Azure VM and Arc-enabled Linux server requirements and preview limitations, see [Configure Azure Monitor pipeline on Linux VMs](./pipeline-configure-vm.md).
+The following table applies to Arc-enabled Kubernetes deployments. Support depends on both the region and the Kubernetes distribution versions supported for the required `cert-manager` extension. Regions marked **Feature flag required** are available only to subscriptions enabled for that region. For Azure VM and Arc-enabled Linux server requirements and preview limitations, see [Configure Azure Monitor pipeline on Linux VMs](./pipeline-configure-vm.md).
 
 | Supported Kubernetes distributions | Supported regions |
 |:---|:---|
-| - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11<br>- SUSE Rancher K3s v1.33.3+k3s1<br>- AKS Arc v1.32.7 | - Australia East<br>- Brazil South<br>- Canada Central<br>- Central India<br>- Central US<br>- Central US EUAP<br>- East Asia<br>- East US<br>- East US 2<br>- East US 2 EUAP<br>- France Central<br>- Germany West Central<br>- Italy North<br>- Japan East<br>- Korea Central<br>- North Central US<br>- North Europe<br>- Norway East<br>- South Africa North<br>- South India<br>- Sweden Central<br>- Switzerland North<br>- UK South<br>- UK West<br>- West Central US<br>- West Europe<br>- West US<br>- West US 2<br>- West US 3 |
+| - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11<br>- SUSE Rancher K3s v1.33.3+k3s1<br>- AKS Arc v1.32.7 | - Australia East<br>- Brazil South<br>- Canada Central<br>- Central India<br>- Central US<br>- Central US EUAP (**Feature flag required**)<br>- East Asia<br>- East US<br>- East US 2<br>- East US 2 EUAP (**Feature flag required**)<br>- France Central<br>- Germany West Central<br>- Italy North<br>- Japan East<br>- Korea Central<br>- North Central US<br>- North Europe<br>- Norway East<br>- South Africa North<br>- South India<br>- Sweden Central<br>- Switzerland North<br>- UK South<br>- UK West<br>- West Central US<br>- West Europe<br>- West US (**Feature flag required**)<br>- West US 2<br>- West US 3 |
 
-Supported regions, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
+For current public-region availability, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). The product availability table doesn't include EUAP regions.
 
 ## Related articles
 
