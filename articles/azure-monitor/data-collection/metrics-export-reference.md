@@ -1,14 +1,14 @@
 ---
-title: Metrics export supported resources and regions
-description: Reference for resource types and regions supported for metrics export by using data collection rules.
+title: Platform Metrics Export Supported Resources and Regions
+description: Reference for resource types and regions supported for Platform Metrics Export by using data collection rules.
 ms.topic: reference
-ms.date: 05/29/2026
+ms.date: 08/27/2026
 ms.custom: ai-assisted, references_regions
 ---
 
-# Metrics export supported resources and regions
+# Platform Metrics Export supported resources and regions
 
-This article lists the resources and regions currently supported for metrics export by using data collection rules (DCRs).
+This article lists the resources and regions currently supported for Platform Metrics Export by using data collection rules (DCRs).
 
 ## Supported resources
 
@@ -27,7 +27,7 @@ This article lists the resources and regions currently supported for metrics exp
 
 ## Supported regions
 
-You can create a DCR for metrics export in any region, but the resources that you want to export metrics from must be in one of the following regions:
+Create a DCR for Platform Metrics Export in any region. The resources that you want to export metrics from must be in one of the following regions:
 
 - australiaeast
 - australiacentral
@@ -77,5 +77,5 @@ You can create a DCR for metrics export in any region, but the resources that yo
 
 ## Related content
 
-- [Collect metrics using DCRs](metrics-export-create.md)
-- [Metrics export DCR structure](metrics-export-structure.md)
+- [Platform Metrics Export using data collection rules](metrics-export-create.md)
+- [Data collection rule (DCR) structure for Platform Metrics Export](metrics-export-structure.md)

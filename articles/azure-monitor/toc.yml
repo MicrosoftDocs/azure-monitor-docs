@@ -840,24 +840,25 @@ items:
     items:
     - name: Metrics
       items:
-      - name: Metrics export using DCRs
-        displayName: data collection rules, metrics
+      - name: Platform Metrics Export
+        displayName: data collection rules, metrics, platform metrics export
         href: data-collection/metrics-export-create.md
       - name: Supported resources and regions
-        displayName: metrics export, supported resources, supported regions
+        displayName: platform metrics export, supported resources, supported regions
         href: data-collection/metrics-export-reference.md
-      - name: Metrics export DCR structure
-        displayName: metrics export
+      - name: Platform Metrics Export DCR structure
+        displayName: platform metrics export
         href: data-collection/metrics-export-structure.md
       - name: Compare metrics strategies
+        displayName: platform metrics export, data plane API
         href: data-collection/data-plane-versus-metrics-export.md
     - name: Logs
       items:
-      - name: Collect logs using DCRs
-        displayName: data collection rules, platform logs, resource logs
+      - name: Platform Logs Export
+        displayName: data collection rules, platform logs, resource logs, platform logs export
         href: data-collection/platform-logs-collect.md
       - name: Supported resources and regions
-        displayName: data collection rules, platform logs, resource logs, categories, regions
+        displayName: data collection rules, platform logs export, resource logs, categories, regions
         href: data-collection/platform-logs-reference.md
     - name: Diagnostic settings
       items:
@@ -918,8 +919,51 @@ items:
         href: agents/azure-monitor-agent-policy.md
       - name: Configure agent settings
         href: agents/agent-settings.md
+      - name: Configure data collection
+        displayName: Azure Monitor agent,AMA,data collection rule,DCR
+        href: vm/data-collection.md
       - name: Log Analytics gateway
         href: agents/gateway.md
+    - name: Data sources
+      items:
+      - name: Performance counters
+        displayName: data collection rule,Azure Monitor agent
+        href: vm/data-collection-performance.md
+      - name: Windows events
+        displayName: data collection rule,Azure Monitor agent
+        href: vm/data-collection-windows-events.md
+      - name: Syslog events
+        displayName: data collection rule,Azure Monitor agent
+        href: vm/data-collection-syslog.md
+      - name: IIS logs
+        displayName: data collection rule,Azure Monitor agent,IIS logs
+        href: vm/data-collection-iis.md
+      - name: Text logs
+        displayName: data collection rule,Azure Monitor agent,text logs,file-based logs
+        href: vm/data-collection-log-text.md
+      - name: JSON logs
+        displayName: data collection rule,Azure Monitor agent,JSON logs,file-based logs
+        href: vm/data-collection-log-json.md
+      - name: SNMP traps
+        displayName: data collection rule,Azure Monitor agent
+        href: vm/data-collection-snmp-data.md
+      - name: Windows Firewall logs
+        displayName: data collection rule,Azure Monitor agent,firewall logs
+        href: vm/data-collection-firewall-logs.md
+    - name: Transform data
+      displayName: Azure Monitor agent,AMA,data collection rule,DCR,transformations
+      href: agents/azure-monitor-agent-transformations.md
+    - name: OpenTelemetry
+      displayName: Azure Monitor agent,AMA,OpenTelemetry,OTel,OTLP
+      items:
+      - name: Overview
+        href: agents/azure-monitor-agent-opentelemetry.md
+      - name: Guest OS metrics reference
+        displayName: Azure Monitor agent,AMA,OpenTelemetry,OTel,metrics
+        href: vm/metrics-guest-reference.md
+      - name: Ingest OTLP data
+        displayName: Azure Monitor agent,AMA,OpenTelemetry,OTel,OTLP
+        href: containers/opentelemetry-ingest-agent.md
     - name: Monitor
       href: agents/azure-monitor-agent-health.md
     - name: Performance
