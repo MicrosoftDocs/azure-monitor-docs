@@ -32,11 +32,13 @@ Install the extension to run a pipeline instance. Store its instance specific se
 
 - An existing [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview).
 - The [Certificate Manager extension](/azure/azure-arc/kubernetes/cert-manager-overview) installed on the cluster **before** you install the pipeline extension. The pipeline operator uses it to provision default certificates. For client trust and mTLS certificate setup, see [Automated certificate management](./pipeline-tls-automated.md).
-- An existing Log Analytics workspace in a [region supported for DCR-based configuration](./pipeline-configure.md#supported-regions). The DCR region must match the workspace region.
+- An existing Log Analytics workspace in a region supported by Azure Monitor pipeline. The DCR region must match the workspace region.
 - Permission to create Arc extensions, DCRs, DCRAs, and role assignments. The deployment uses these permissions to create the resources, including the ingestion role assignment.
 - Azure CLI and `kubectl` access to the cluster.
 
 Use the examples in this article to collect Syslog over UDP or TLS, [collect CEF into Microsoft Sentinel](#collect-cef-into-microsoft-sentinel), or [collect OpenTelemetry logs, metrics, and traces](#collect-otel-logs-metrics-and-traces).
+
+For the current list, see [Regions supported using DCR-based configuration](./pipeline-configure.md#supported-regions).
 
 ## Understand the configuration model
 
@@ -173,7 +175,7 @@ Save the following ARM template as `basic-syslog-arm-template.json`. Deploy it t
     },
     "dcrLocation": {
       "type": "string",
-      "defaultValue": "centraluseuap",
+      "defaultValue": "eastus2",
       "metadata": {
         "description": "Azure region for the DCRs. This must match the Log Analytics workspace region and support Azure Monitor pipeline."
       }
@@ -452,7 +454,7 @@ Save the following as `basic-syslog-arm-parameters.json` and replace the placeho
       "value": "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<WORKSPACE_RESOURCE_GROUP>/providers/Microsoft.OperationalInsights/workspaces/<WORKSPACE_NAME>"
     },
     "dcrLocation": {
-      "value": "centraluseuap"
+      "value": "eastus2"
     },
     "extensionName": {
       "value": "azure-monitor-pipeline"

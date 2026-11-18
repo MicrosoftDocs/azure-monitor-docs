@@ -22,7 +22,7 @@ For an explanation of how endpoints, TLS configurations, streams, destinations, 
 
 ## Supported regions
 
-During public preview, DCR-based configuration with the `microsoft.monitor.pipeline` extension is deployed in the following regions. Availability also depends on Azure Arc-enabled Kubernetes and the required Certificate Manager extension being supported in the cluster region.
+During public preview of DCR-based configuration, the `microsoft.monitor.pipeline` extension is deployed in the following regions. Availability also depends on Azure Arc-enabled Kubernetes and the required Certificate Manager extension being supported in the cluster region.
 
 - Australia Central
 - Australia East
@@ -34,13 +34,11 @@ During public preview, DCR-based configuration with the `microsoft.monitor.pipel
 - Canada East
 - Central India
 - Central US
-- Central US EUAP
 - Chile Central
 - Denmark East
 - East Asia
 - East US
 - East US 2
-- East US 2 EUAP
 - France Central
 - Germany West Central
 - Indonesia Central
@@ -74,6 +72,8 @@ During public preview, DCR-based configuration with the `microsoft.monitor.pipel
 - West US
 - West US 2
 - West US 3
+
+For current public-region availability, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
 
 ## Prerequisites
 
