@@ -57,11 +57,11 @@ For the architecture, capabilities, and comparison with Azure Monitor agent, see
 
 ### Supported configurations
 
-The following region list applies only to PipelineGroup-based configuration with the `microsoft.monitor.pipelinecontroller` extension. Support depends on both the region and the Kubernetes distribution versions supported for the required `cert-manager` extension. Regions marked **Feature flag required** are available only to subscriptions enabled for that region.
+The following region list applies only to PipelineGroup-based configuration with the `microsoft.monitor.pipelinecontroller` extension. Support depends on both the region and the Kubernetes distribution versions supported for the required `cert-manager` extension.
 
 | Supported Kubernetes distributions | Supported regions |
 |:---|:---|
-| - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11<br>- SUSE Rancher K3s v1.33.3+k3s1<br>- AKS Arc v1.32.7 | - Australia East<br>- Brazil South<br>- Canada Central<br>- Central India<br>- Central US<br>- East Asia<br>- East US<br>- East US 2<br>- France Central<br>- Germany West Central<br>- Italy North<br>- Japan East<br>- Korea Central<br>- North Central US<br>- North Europe<br>- Norway East<br>- South Africa North<br>- South India<br>- Sweden Central<br>- Switzerland North<br>- UK South<br>- UK West<br>- West Central US<br>- West Europe<br>- West US (**Feature flag required**)<br>- West US 2<br>- West US 3 |
+| - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11<br>- SUSE Rancher K3s v1.33.3+k3s1<br>- AKS Arc v1.32.7 | - Australia East<br>- Brazil South<br>- Canada Central<br>- Central India<br>- Central US<br>- East Asia<br>- East US<br>- East US 2<br>- France Central<br>- Germany West Central<br>- Italy North<br>- Japan East<br>- Korea Central<br>- North Central US<br>- North Europe<br>- Norway East<br>- South Africa North<br>- South India<br>- Sweden Central<br>- Switzerland North<br>- UK South<br>- UK West<br>- West Central US<br>- West Europe<br>- West US<br>- West US 2<br>- West US 3 |
 
 For current public-region availability, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). For regions supported using DCR-based configuration, see [Configure Azure Monitor pipeline](./pipeline-configure.md#supported-regions).
 
