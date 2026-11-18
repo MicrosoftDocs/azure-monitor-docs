@@ -4,7 +4,7 @@ metadata:
   description: Frequently asked questions for Azure Monitor pipeline, including architecture, deployment, data collection, and configuration.
   ms.service: azure-monitor
   ms.topic: faq
-  ms.date: 11/09/2026
+  ms.date: 11/17/2026
   ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
   ai-usage: ai-assisted
 
@@ -130,13 +130,15 @@ sections:
     questions:
       - question: How is Azure Monitor pipeline configured?
         answer: |
-          Install the `microsoft.monitor.pipeline` Arc extension to run an instance. Use one `PipelineSettings` DCR per extension for its runtime settings, including listening endpoints and TLS configuration, and one or more dataflow DCRs for collection and destination routing. Associate the settings DCR and each dataflow DCR with that extension. Create the associations under the Arc connected cluster and set `properties.scopeToResourceId` to the extension's full resource ID.
+          The configuration method depends on the hosting option and configuration model:
 
-          [Configure the DCR-based pipeline](./pipeline-configure-cli.md).
+          - **Arc-enabled Kubernetes, DCR-based configuration (preview):** Use Azure CLI or ARM templates to deploy the `microsoft.monitor.pipeline` extension, a settings DCR, and one or more dataflow DCRs. Create the associations under the connected cluster and set `properties.scopeToResourceId` to the extension's resource ID. See [Configure with CLI or ARM templates](./pipeline-configure-cli.md).
+          - **Arc-enabled Kubernetes, current portal experience:** The Azure portal continues to use PipelineGroup-based configuration. It doesn't configure the DCR-based preview. See [Configure with the Azure portal](./pipeline-configure-portal.md).
+          - **Linux VMs in Azure and Arc-enabled Linux servers (preview):** Deploy the Azure Monitor pipeline VM extension and associate the settings and dataflow DCRs with the VM or Arc machine resource. See [Configure on Linux VMs](./pipeline-configure-vm.md).
 
       - question: Where are instance-specific settings stored?
         answer: |
-          Instance-specific runtime settings are stored in a DCR with `kind: PipelineSettings`, under `properties.pipelineSettings`. These settings include named listening endpoints and TLS configurations with certificate references. Each encrypted endpoint selects a named TLS configuration. Store the certificates and private keys in Kubernetes resources, not inline in the DCR. Use separate dataflow DCRs for data collection and routing. Extension installation settings, such as version, release train, and namespace, remain on the extension resource.
+          For DCR-based configuration on Arc-enabled Kubernetes, instance-specific runtime settings are stored in a DCR with `kind: PipelineSettings`, under `properties.pipelineSettings`. These settings include named listening endpoints and TLS configurations with certificate references. Each encrypted endpoint selects a named TLS configuration. Store the certificates and private keys in Kubernetes resources, not inline in the DCR. Use separate dataflow DCRs for data collection and routing. Extension installation settings, such as version, release train, and namespace, remain on the extension resource.
 
       - question: Is Azure Monitor pipeline fully managed by Azure?
         answer: |

@@ -3,7 +3,8 @@ title: Azure Monitor billing meter names
 description: Reference of Azure Monitor billing meter names.
 ms.topic: reference
 ms.reviewer: Dale.Koetke
-ms.date: 05/21/2025
+ms.date: 11/11/2026
+ai-usage: ai-assisted
 ---
 
 # Azure Monitor billing meter names
@@ -114,3 +115,19 @@ The **Free Benefit - M365 Defender Data Ingestion** meter is used to record the 
 Most Application Insights usage for both classic and workspace-based resources is reported on meters with **Log Analytics** for **Meter Category** because there's a single log back-end for all Azure Monitor components. Only Application Insights resources on legacy pricing tiers and multiple-step web tests are reported with **Application Insights** for **Meter Category**. The usage is shown in the **Consumed Quantity** column. The unit for each entry is shown in the **Unit of Measure** column. For more information, see [Understand your Microsoft Azure bill](/azure/cost-management-billing/understand/review-individual-bill).
 
 To separate costs from your Log Analytics and classic Application Insights usage, [create a filter](/azure/cost-management-billing/costs/group-filter) on **Resource type**. To see all Application Insights costs, filter **Resource type** to **microsoft.insights/components**. For Log Analytics costs, filter **Resource type** to **microsoft.operationalinsights/workspaces**. (Workspace-based Application Insights is all billed to the Log Analytics workspace resourced.)
+
+## Azure Monitor health models meters
+
+The following meters appear in Cost Management for Azure Monitor health models.
+
+| ServiceName   | MeterName                                         | Regional Meter? |
+|---------------|---------------------------------------------------|-----------------|
+| Azure Monitor | Health Metric Monitored                           | yes             |
+| Azure Monitor | Health Prom Metric Monitored                      | yes             |
+| Azure Monitor | Health System Log Monitored at 1 Minute Frequency  | yes             |
+| Azure Monitor | Health System Log Monitored at 5 Minute Frequency  | yes             |
+| Azure Monitor | Health System Log Monitored at 10 Minute Frequency | yes             |
+| Azure Monitor | Health System Log Monitored at 15 Minute Frequency | yes             |
+| Azure Monitor | Health Dynamic Threshold Signals                  | yes             |
+
+Log signals with an evaluation interval longer than 15 minutes use the **Health System Log Monitored at 15 Minute Frequency** meter. For information about prorated signal charges, see [Health model billing and cost management](../health-models/overview.md#billing-and-cost-management).

@@ -3,7 +3,7 @@ title: Configure a Kubernetes gateway for Azure Monitor pipeline
 description: Deploy a dedicated Kubernetes gateway for a new Azure Monitor pipeline receiver.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 10/21/2026
+ms.date: 11/17/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
@@ -27,9 +27,9 @@ This article shows how to deploy and manage a Traefik gateway for Azure Monitor 
 - Access to `kubectl`, `helm`, and the target cluster.
 - Access to the Traefik Helm repository from the workstation that runs `helm`.
 - A deployed pipeline instance and its Kubernetes service.
-- A namespace label that allows the pipeline trust bundle to be distributed. Here's an example command:
+- For managed TLS, identify the extension's server trust bundle, client-root-CA issuer, and namespace label by following [Get server CA certificate for client validation](./pipeline-tls-automated.md#step-2-get-server-ca-certificate-for-client-validation). Apply that extension-specific label to the gateway namespace so the trust bundle is distributed there:
   ```bash
-  kubectl label namespace <pipeline-namespace> arc-amp-trust-bundle=true
+  kubectl label namespace <pipeline-namespace> <server-bundle-namespace-label-key>=true
   ```
 
 ## When to use this article
@@ -44,13 +44,22 @@ This procedure uses multiple YAML files to define configuration. Placeholders in
 
 | Placeholder | Description | Example |
 |---|---|---|
-| `<pipeline-name>` | Name of the Azure Monitor pipeline instance | `syslog-pipeline` |
+| `<pipeline-name>` | Name used to identify this pipeline's dedicated gateway resources | `syslog-pipeline` |
+| `<extension-name>` | Name of the installed pipeline extension | `azure-monitor-pipeline` |
+| `<collector-service-name>` | Actual receiver service name returned by the discovery command below | `azure-monitor-pipeline-service` |
 | `<pipeline-namespace>` | Kubernetes namespace where both the pipeline and the Traefik gateway are deployed | `test` |
 | `<receiver-port>` | TCP port the pipeline receiver listens on | `514` syslog<br>`4317` OTLP |
 | `<entrypoint-name>` | Name of the Traefik entrypoint for the receiver port | `tcp-syslog`, `tcp-otlp` |
 | `<helm-release>` | Helm release name for the Traefik installation | `traefik-<pipeline-name>` |
+| `<extension-server-trust-bundle-name>` | Server trust bundle ConfigMap for this extension | Use the name discovered in the prerequisites. |
+| `<extension-client-root-ca-cluster-issuer-name>` | Client certificate issuer for this extension | Use the name discovered in the prerequisites. |
 
+Discover the receiver service rather than deriving its name from a DCR or dataflow name:
 
+```bash
+kubectl get services --namespace <pipeline-namespace> \
+  --selector "app.kubernetes.io/instance=<extension-name>,app.kubernetes.io/name=pipeline"
+```
 
 ## Single gateway for a new pipeline instance
 
@@ -105,7 +114,7 @@ spec:
   duration: 48h
   renewBefore: 24h
   issuerRef:
-    name: arc-amp-client-root-ca-cluster-issuer
+    name: <extension-client-root-ca-cluster-issuer-name>
     kind: ClusterIssuer
     group: cert-manager.io
   commonName: traefik-gateway-client
@@ -162,10 +171,10 @@ metadata:
     traefik-instance: <pipeline-name>-gateway
 spec:
   tls:
-    serverName: "<pipeline-name>-service.<pipeline-namespace>.svc.cluster.local"
+    serverName: "<collector-service-name>.<pipeline-namespace>.svc.cluster.local"
     rootCAs:
       # Default TLS: use the managed trust bundle ConfigMap.
-      - configMap: arc-amp-trust-bundle
+      - configMap: <extension-server-trust-bundle-name>
       # BYOC: replace the line above with a reference to your BYOC server
       # root CA — the CA that signed the pipeline's server certificate.
       # Use 'secret' for a Secret or 'configMap' for a ConfigMap:
@@ -193,7 +202,7 @@ spec:
   routes:
     - match: HostSNI(`*`)
       services:
-        - name: <pipeline-name>-service
+        - name: <collector-service-name>
           port: <receiver-port>
           tls: true
           serversTransport: <pipeline-name>-mtls-transport
@@ -232,7 +241,7 @@ spec:
   routes:
     - match: HostSNI(`*`)
       services:
-        - name: <pipeline-name>-service
+        - name: <collector-service-name>
           port: <receiver-port>
 ```
 
@@ -336,8 +345,8 @@ kubectl logs -n <pipeline-namespace> \
 <summary>Check pipeline pods and logs</summary>
 
 ```bash
-kubectl get pods -n <pipeline-namespace> -l pipeline=<pipeline-name>
-kubectl logs -n <pipeline-namespace> -l pipeline=<pipeline-name> --tail=50
+kubectl get pods -n <pipeline-namespace> --selector "app.kubernetes.io/instance=<extension-name>,app.kubernetes.io/name=pipeline"
+kubectl logs -n <pipeline-namespace> --selector "app.kubernetes.io/instance=<extension-name>,app.kubernetes.io/name=pipeline" --tail=50
 ```
 
 </details>
@@ -434,8 +443,8 @@ Follow the preceding procedure for [Single gateway for a new pipeline instance](
 | Task | Guidance |
 |---|---|
 | Install Traefik CRDs | Skip this task if you already installed CRDs during the first gateway deployment. |
-| Create the gateway client certificate | Apply `certificates.yaml` with `namespace` set to the new pipeline's namespace. You can reuse the same certificate spec because only the namespace changes. Skip this task for TLS-disabled ingestion. |
-| Configure Traefik routing | Apply `routing.yaml` with the new pipeline name, namespace, receiver port, and entrypoint name. The `traefik-instance` label value must be unique. |
+| Create the gateway client certificate | Use the new extension's `client-root-CA` issuer and namespace in `certificates.yaml`. Use distinct certificate and Secret names if gateways share a namespace. Skip this task for TLS-disabled ingestion. |
+| Configure Traefik routing | Use the new extension's collector service and server trust bundle, along with the new gateway name, namespace, receiver port, and entrypoint name. Update the client Secret reference if its name changed. The `traefik-instance` label value must be unique. |
 | Install Traefik | Use a distinct Helm release name, such as `traefik-<new-pipeline-name>`. The `labelSelector` must match the label set in the previous task. |
 | Verify | Confirm that the new gateway receives its own LoadBalancer IP. |
 

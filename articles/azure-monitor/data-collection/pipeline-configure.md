@@ -3,13 +3,17 @@ title: Configure Azure Monitor pipeline
 description: Configure Azure Monitor pipeline with settings and dataflow DCRs, associate them with the pipeline extension, and verify data collection.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/11/2026
+ms.date: 11/17/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
 # Configure Azure Monitor pipeline
 
-Configure [Azure Monitor pipeline](./pipeline-overview.md) with data collection rules (DCRs). The Arc extension runs the pipeline instance. Use one settings DCR to store its runtime settings, including listening endpoints and TLS configuration, and one or more dataflow DCRs to define collection and routing. Associate the settings DCR and each dataflow DCR with the same extension to apply the configuration.
+This article describes DCR-based configuration for [Azure Monitor pipeline](./pipeline-overview.md) on Arc-enabled Kubernetes (preview). The `microsoft.monitor.pipeline` extension runs the pipeline instance. Use one settings data collection rule (DCR) for its listening endpoints and TLS configuration, and one or more dataflow DCRs for collection and destination routing. Associate these DCRs with the extension to apply the configuration.
+
+During public preview, use Azure CLI or ARM templates to deploy and manage this configuration, including native OpenTelemetry (OTel) logs, metrics, and traces. The existing Azure portal configuration experience continues to use the PipelineGroup-based model and doesn't configure the DCR-based preview.
+
+For Linux VMs in Azure and Arc-enabled Linux servers, see [Configure Azure Monitor pipeline on Linux VMs (preview)](./pipeline-configure-vm.md). Those deployments use a VM extension and different DCR association scopes.
 
 For an explanation of how endpoints, TLS configurations, streams, destinations, and associations fit together, see [Understand the configuration model](./pipeline-configure-cli.md#understand-the-configuration-model).
 
@@ -31,13 +35,11 @@ For an explanation of how endpoints, TLS configurations, streams, destinations, 
 
 Select the approach that fits your needs:
 
-| Method | When to use | Key features |
-|--------|-------------|--------------|
-| **[Azure portal](./pipeline-configure-portal.md)** | * Getting started<br>* Simple configurations<br>* Quick deployment | * Guided UI experience<br>* Automatic component creation<br>* Built-in validation |
-| **[CLI/ARM templates](./pipeline-configure-cli.md)** | * Advanced scenarios<br>* Automation needed<br>* Custom requirements | * Full configuration control<br>* Buffering to persistent volume<br>* Custom tables<br>* Infrastructure as code |
-
-> [!TIP]
-> **New to Azure Monitor pipeline?** Start with the portal. You can always switch to CLI/ARM templates later for advanced features.
+| Configuration | Method | Guidance |
+| --- | --- | --- |
+| DCR-based configuration on Arc-enabled Kubernetes (preview) | Azure CLI or ARM templates | [DCR-based deployment](./pipeline-configure-cli.md). |
+| PipelineGroup-based configuration on Arc-enabled Kubernetes | Azure portal or existing CLI/ARM procedures | [Portal guide](./pipeline-configure-portal.md) and [PipelineGroup configuration](./pipeline-configure-legacy.md). |
+| Linux VMs and Arc-enabled Linux servers (preview) | VM or Arc-enabled server extension | [Linux VM guide](./pipeline-configure-vm.md). |
 
 ## Set up the pipeline
 
@@ -51,7 +53,7 @@ Deploy the pipeline extension and configure its instance-specific settings and d
 
 Deployment automatically assigns **Monitoring Metrics Publisher** to the extension's managed identity on the dataflow DCR. The provided ARM template includes the role-assignment resource, so you don't need a separate manual assignment. When extending the template with additional dataflow DCRs, include the corresponding role-assignment resources.
 
-For deployment steps, use [Configure Azure Monitor pipeline in the Azure portal](./pipeline-configure-portal.md) or [Configure Azure Monitor pipeline with CLI or ARM templates](./pipeline-configure-cli.md).
+For deployment steps, use [Configure Azure Monitor pipeline with CLI or ARM templates](./pipeline-configure-cli.md).
 
 ### Connect data sources
 
@@ -75,15 +77,14 @@ For commands and a Syslog test, see [Verify the deployment](./pipeline-configure
 
 ### Verify pipeline components running in the cluster
 
-In the Azure portal, go to the **Kubernetes services** menu and select your Azure Arc-enabled Kubernetes cluster. Select **Services and ingresses** and verify that `<pipeline-name>-service` exists in the pipeline namespace and has type `ClusterIP`.
-
-:::image type="content" source="./media/pipeline-configure/pipeline-cluster-components.png" lightbox="./media/pipeline-configure/pipeline-cluster-components.png" alt-text="Screenshot of cluster components supporting Azure Monitor pipeline.":::
-
-You can also check the service by using `kubectl`:
+Discover the collector service and pods by using the namespace and name of the installed pipeline extension, not a DCR or dataflow name:
 
 ```bash
-kubectl get service <pipeline-name>-service -n <pipeline-namespace>
+kubectl get services,pods --namespace <extension-namespace> \
+  --selector "app.kubernetes.io/instance=<extension-name>,app.kubernetes.io/name=pipeline"
 ```
+
+Verify that the collector pods are ready and that the receiver service has type `ClusterIP` and exposes the configured ports.
 
 Current pipeline deployments don't automatically create `<pipeline-name>-external-service`. For clients outside the cluster, configure and verify a separate gateway as described in [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
 
@@ -96,7 +97,8 @@ The `OSName`, `OSMajorVersion`, and `OSMinorVersion` columns describe the operat
 To find the collector pod names for your pipeline, run:
 
 ```bash
-kubectl get pods -n <pipeline-namespace> -l pipeline=<pipeline-name>
+kubectl get pods --namespace <extension-namespace> \
+  --selector "app.kubernetes.io/instance=<extension-name>,app.kubernetes.io/name=pipeline"
 ```
 
 Use the following query to check for recent heartbeat records from a collector pod. Replace `<collector-pod-name>` with a pod name from the command output, and repeat the query for each collector pod.
@@ -190,7 +192,7 @@ The extension should show a `Succeeded` provisioning state.
 
 ## Related articles
 
-- Continue with [Configure Azure Monitor pipeline using the Azure portal](./pipeline-configure-portal.md) or [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md).
+- Continue with [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md).
 - Expose the pipeline to external clients by using [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
 - Configure client connections in [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
 - Modify data before it's sent to the cloud by using [pipeline transformations](./pipeline-transformations.md).
