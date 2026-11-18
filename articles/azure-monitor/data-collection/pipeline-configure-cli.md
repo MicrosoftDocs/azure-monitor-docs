@@ -3,7 +3,7 @@ title: Configure Azure Monitor pipeline with CLI or ARM templates
 description: Learn how to configure Azure Monitor pipeline with CLI or ARM templates for automation and advanced scenarios.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/17/2026
+ms.date: 11/18/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
@@ -32,7 +32,7 @@ Install the extension to run a pipeline instance. Store its instance specific se
 
 - An existing [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview).
 - The [Certificate Manager extension](/azure/azure-arc/kubernetes/cert-manager-overview) installed on the cluster **before** you install the pipeline extension. The pipeline operator uses it to provision default certificates. For client trust and mTLS certificate setup, see [Automated certificate management](./pipeline-tls-automated.md).
-- An existing Log Analytics workspace in a region supported by Azure Monitor pipeline. The DCR region must match the workspace region.
+- An existing Log Analytics workspace in a [region supported for DCR-based configuration](./pipeline-configure.md#supported-regions). The DCR region must match the workspace region.
 - Permission to create Arc extensions, DCRs, DCRAs, and role assignments. The deployment uses these permissions to create the resources, including the ingestion role assignment.
 - Azure CLI and `kubectl` access to the cluster.
 

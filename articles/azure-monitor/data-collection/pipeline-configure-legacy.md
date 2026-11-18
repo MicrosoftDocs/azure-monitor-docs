@@ -57,7 +57,7 @@ For the architecture, capabilities, and comparison with Azure Monitor agent, see
 
 ### Supported configurations
 
-Azure Monitor pipeline runs on Arc-enabled Kubernetes. Support depends on both the region and the Kubernetes distribution versions supported for the required `cert-manager` extension. Regions marked **Feature flag required** are available only to subscriptions enabled for that region.
+The following region list applies only to PipelineGroup-based configuration with the `microsoft.monitor.pipelinecontroller` extension. Support depends on both the region and the Kubernetes distribution versions supported for the required `cert-manager` extension. Regions marked **Feature flag required** are available only to subscriptions enabled for that region.
 
 | Supported Kubernetes distributions | Supported regions |
 |:---|:---|

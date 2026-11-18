@@ -114,13 +114,14 @@ For guidance on selecting a collection architecture, see [Choose a topology for 
 
 ## Supported configurations
 
-The following table applies to Arc-enabled Kubernetes deployments. Support depends on both the region and the Kubernetes distribution versions supported for the required `cert-manager` extension. Regions marked **Feature flag required** are available only to subscriptions enabled for that region. For Azure VM and Arc-enabled Linux server requirements and preview limitations, see [Configure Azure Monitor pipeline on Linux VMs](./pipeline-configure-vm.md).
+Regional support differs between the DCR-based public preview and the PipelineGroup-based configuration. Use the region list for your configuration model:
 
-| Supported Kubernetes distributions | Supported regions |
-|:---|:---|
-| - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11<br>- SUSE Rancher K3s v1.33.3+k3s1<br>- AKS Arc v1.32.7 | - Australia East<br>- Brazil South<br>- Canada Central<br>- Central India<br>- Central US<br>- Central US EUAP (**Feature flag required**)<br>- East Asia<br>- East US<br>- East US 2<br>- East US 2 EUAP (**Feature flag required**)<br>- France Central<br>- Germany West Central<br>- Italy North<br>- Japan East<br>- Korea Central<br>- North Central US<br>- North Europe<br>- Norway East<br>- South Africa North<br>- South India<br>- Sweden Central<br>- Switzerland North<br>- UK South<br>- UK West<br>- West Central US<br>- West Europe<br>- West US (**Feature flag required**)<br>- West US 2<br>- West US 3 |
+- For the `microsoft.monitor.pipeline` extension with DCR-based configuration, see [DCR-based supported regions](./pipeline-configure.md#supported-regions).
+- For the `microsoft.monitor.pipelinecontroller` extension with PipelineGroup-based configuration, see [PipelineGroup supported regions](./pipeline-configure-legacy.md#legacy-overview-supported-configurations).
 
-For current public-region availability, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). The product availability table doesn't include EUAP regions.
+Arc-enabled Kubernetes deployments support VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11, SUSE Rancher K3s v1.33.3+k3s1, and AKS Arc v1.32.7. Regional availability also depends on the required Azure Arc and `cert-manager` capabilities.
+
+For Azure VM and Arc-enabled Linux server requirements and preview limitations, see [Configure Azure Monitor pipeline on Linux VMs](./pipeline-configure-vm.md).
 
 ## Related articles
 
