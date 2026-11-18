@@ -305,7 +305,7 @@ The custom-directory setting requires VM extension version **0.2.8 or later**. C
 
    These example limits apply to each buffer, not to the total disk. Size the filesystem for all buffers and other disk usage. Records expire at the retention limit, and the buffer drops the oldest records when it reaches the size limit. Keep this property in the data source DCR, not in the settings DCR.
 
-Continue with the deployment commands below, then [verify persistent storage](#verify-persistent-storage). These steps don't migrate existing buffered data. Drain existing buffers before changing their location or removing a data source.
+Continue with the deployment commands in the following section, and then [verify persistent storage](#verify-persistent-storage). These steps don't migrate existing buffered data. Drain existing buffers before changing their location or removing a data source.
 
 ### Preview and deploy
 
