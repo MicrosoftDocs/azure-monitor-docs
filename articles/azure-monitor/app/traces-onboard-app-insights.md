@@ -79,7 +79,7 @@ Use the [`az monitor trace-association`](/cli/azure/monitor/trace-association) c
     az monitor trace-association create --resource-uri <application-insights-resource-id> --azure-monitor-workspace <azure-monitor-workspace-resource-id>
     ```
 
-    If the workspace doesn't have a trace container, the command creates one first, with 30 days of retention, a 600-second trace duration window, and trace-derived metrics enabled. To use different settings for the new container, add `--trace-retention-days` with a value from 4 to 730, or add `--trace-metrics Disabled`. If the workspace already has a trace container, the command uses it and returns an error if you pass settings that differ from its current values. To change those settings, see [Change trace settings](#change-trace-settings).
+    If the workspace doesn't have a trace container, the command creates one first, with trace-derived metrics enabled. To turn off trace-derived metrics for the new container, add `--trace-metrics Disabled`. If the workspace already has a trace container, the command uses it and returns an error if you pass a setting that differs from its current value. To change the container's settings, see [Change trace settings](#change-trace-settings).
 
 Run the command for each Application Insights resource that you want to link. The command output lists every workspace that receives traces from the resource.
 
@@ -284,10 +284,10 @@ Trace settings belong to the trace container of the Azure Monitor workspace. The
 
 ```azurecli
 az monitor account trace-container show --resource-group <resource-group-name> --azure-monitor-workspace-name <azure-monitor-workspace-name>
-az monitor account trace-container update --resource-group <resource-group-name> --azure-monitor-workspace-name <azure-monitor-workspace-name> --retention-days 90
+az monitor account trace-container update --resource-group <resource-group-name> --azure-monitor-workspace-name <azure-monitor-workspace-name> --trace-metrics Disabled
 ```
 
-Settings that you don't specify keep their current values. You can also change `--trace-duration-window` and `--trace-metrics`. Retention must be between 4 and 730 days.
+Settings that you don't specify keep their current values.
 
 ## Unlink an Application Insights resource
 
