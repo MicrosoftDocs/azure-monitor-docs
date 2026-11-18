@@ -700,7 +700,7 @@ The following `OTelLogs` columns are populated independently:
 | `ResourceAttributes` | The normalized pipeline item's `resourceAttributes` field (`item.resourceAttributes`). |
 | `Attributes` | Attributes on the individual OTel log record. |
 
-`ServiceName` can be populated even when `ResourceAttributes` is null. Don't use a populated `ServiceName` value as evidence that the complete OTel resource-attribute bag was stored. For the complete destination schema, see the [`OTelLogs` table reference](../reference/tables/otellogs.md).
+You can populate `ServiceName` even when `ResourceAttributes` is null. Don't use a populated `ServiceName` value as evidence that the complete OTel resource-attribute bag was stored. For the complete destination schema, see the [`OTelLogs` table reference](../reference/tables/otellogs.md).
 
 All data sources use `mode: pipeline` and select the same endpoint, `otlp-grpc`, through `endpointRouting`. Each dataflow DCR's `references.pipelineSettingsEndpointRouting` connects that name to the settings DCR. Its `dataFlows` entries then route the streams to destinations in that DCR.
 
