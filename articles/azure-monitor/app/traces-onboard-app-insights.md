@@ -1,8 +1,8 @@
 ---
 title: Onboard Application Insights resources to Azure Monitor traces
-description: Learn how to link Application Insights to an Azure Monitor workspace through the Azure portal or an ARM template to collect and analyze distributed traces.
+description: Learn how to link Application Insights to an Azure Monitor workspace through the Azure portal, Azure CLI, or an ARM template to collect and analyze traces.
 ms.topic: get-started
-ms.date: 11/09/2026
+ms.date: 11/17/2026
 ai-usage: ai-assisted
 ---
 
@@ -13,7 +13,7 @@ Onboard an Application Insights resource to store and analyze its distributed tr
 The process has three stages:
 
 1. Meet the prerequisites.
-1. Link the Application Insights resource to an Azure Monitor workspace through the Azure portal or an Azure Resource Manager (ARM) template.
+1. Link the Application Insights resource to an Azure Monitor workspace through the Azure portal, Azure CLI, or an Azure Resource Manager (ARM) template.
 1. Confirm that trace data appears in **Traces**.
 
 > [!IMPORTANT]
@@ -48,7 +48,7 @@ When possible, use the same Azure Monitor workspace for OpenTelemetry metrics, t
 
 Linking an Application Insights resource with an Azure Monitor workspace associates the two resources. The workspace stores the trace data and metrics derived from those traces.
 
-Choose either the Azure portal or an ARM template to link the resources.
+Choose the Azure portal, Azure CLI, or an ARM template to link the resources.
 
 ### Use the Azure portal
 
@@ -61,6 +61,49 @@ Follow these steps to link the resources in the Azure portal.
 1. Review the configuration, and then select **Save**.
 
 Repeat these steps for each Application Insights resource that you want to include in at-scale end-to-end trace analysis.
+
+### Use Azure CLI
+
+Use the [`az monitor trace-association`](/cli/azure/monitor/trace-association) commands to link an existing Application Insights resource to an existing Azure Monitor workspace. These commands are in preview and require Azure CLI version 2.93.0 or later. To check your version, run `az version`. To upgrade, run `az upgrade`.
+
+1. Get the resource IDs of the Azure Monitor workspace and the Application Insights resource.
+
+    ```azurecli
+    az monitor account show --resource-group <resource-group-name> --name <azure-monitor-workspace-name> --query id --output tsv
+    az resource show --resource-group <resource-group-name> --name <application-insights-name> --resource-type Microsoft.Insights/components --query id --output tsv
+    ```
+
+1. Link the Application Insights resource to the workspace.
+
+    ```azurecli
+    az monitor trace-association create --resource-uri <application-insights-resource-id> --azure-monitor-workspace <azure-monitor-workspace-resource-id>
+    ```
+
+    If the workspace doesn't have a trace container, the command creates one first, with 30 days of retention, a 600-second trace duration window, and trace-derived metrics enabled. To use different settings for the new container, add `--trace-retention-days` with a value from 4 to 730, or add `--trace-metrics Disabled`. If the workspace already has a trace container, the command uses it and returns an error if you pass settings that differ from its current values. To change those settings, see [Change trace settings](#change-trace-settings).
+
+Run the command for each Application Insights resource that you want to link. The command output lists every workspace that receives traces from the resource.
+
+#### Link a resource group or subscription
+
+To send traces from every Application Insights resource in a resource group or subscription to the same workspace, pass the resource group or subscription ID as `--resource-uri`. For example, to link a resource group, run:
+
+```azurecli
+az monitor trace-association create --resource-uri /subscriptions/<subscription-id>/resourceGroups/<resource-group-name> --azure-monitor-workspace <azure-monitor-workspace-resource-id>
+```
+
+The link applies to the Application Insights resources that are in the scope now and to resources that you add later. Application Insights resources in regions that don't support Azure Monitor traces don't send traces through the link.
+
+Links are additive. An Application Insights resource sends traces to the workspace linked to it, and to the workspaces linked to its resource group and subscription. Replacing or deleting the link of a resource group or subscription asks for confirmation. To skip the prompt, add `--yes`.
+
+#### Check which workspaces receive traces
+
+To list the links that apply to an Application Insights resource, including links inherited from its resource group and subscription, run:
+
+```azurecli
+az monitor trace-association list --resource-uri <application-insights-resource-id>
+```
+
+To see only the link configured directly on a resource, resource group, or subscription, run `az monitor trace-association show` with the same `--resource-uri` parameter.
 
 ### Use an ARM template
 
@@ -234,6 +277,27 @@ If no traces appear, confirm the following conditions:
 
 > [!NOTE]
 > If you opened **Traces** from the Application Insights resource, you see only traces with at least one span emitted to that resource.
+
+## Change trace settings
+
+Trace settings belong to the trace container of the Azure Monitor workspace. They apply to every Application Insights resource that sends traces to the workspace. To view or change them, use the [`az monitor account trace-container`](/cli/azure/monitor/account/trace-container) commands.
+
+```azurecli
+az monitor account trace-container show --resource-group <resource-group-name> --azure-monitor-workspace-name <azure-monitor-workspace-name>
+az monitor account trace-container update --resource-group <resource-group-name> --azure-monitor-workspace-name <azure-monitor-workspace-name> --retention-days 90
+```
+
+Settings that you don't specify keep their current values. You can also change `--trace-duration-window` and `--trace-metrics`. Retention must be between 4 and 730 days.
+
+## Unlink an Application Insights resource
+
+To stop sending an Application Insights resource's traces to a workspace, delete its link.
+
+```azurecli
+az monitor trace-association delete --resource-uri <application-insights-resource-id>
+```
+
+The command doesn't change the Azure Monitor workspace or its trace container. If the resource's resource group or subscription is also linked, the resource keeps sending traces through that link. The command output lists any workspaces that still receive the resource's traces.
 
 ## Next step
 
