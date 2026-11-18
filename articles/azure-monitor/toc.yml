@@ -1078,6 +1078,9 @@ items:
       - name: Configure with CLI or ARM templates
         displayName: Azure Monitor pipeline
         href: data-collection/pipeline-configure-cli.md
+      - name: Configure on Linux VMs (preview)
+        displayName: Azure Monitor pipeline, virtual machine, VM extension, Azure Arc, Arc-enabled servers, Syslog, CEF
+        href: data-collection/pipeline-configure-vm.md
     - name: Transformations
       href: data-collection/pipeline-transformations.md
     - name: Configure a Kubernetes gateway

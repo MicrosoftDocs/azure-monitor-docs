@@ -4,7 +4,7 @@ metadata:
   description: Frequently asked questions for Azure Monitor pipeline, including architecture, deployment, data collection, and configuration.
   ms.service: azure-monitor
   ms.topic: faq
-  ms.date: 03/20/2026
+  ms.date: 11/09/2026
   ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
   ai-usage: ai-assisted
 
@@ -19,7 +19,7 @@ sections:
         answer: |
           Azure Monitor pipeline extends enterprise-grade telemetry collection to any environment, providing a **single point of control** to securely ingest data, optimize data before ingestion, optimize costs, and ensure consistent delivery to the cloud.
 
-          It runs on Azure Arc–enabled Kubernetes clusters and uses open-source technologies from the **OpenTelemetry ecosystem**, enabling portability and interoperability across environments.
+          It runs on Azure Arc-enabled Kubernetes clusters or, in public preview, on Linux VMs in Azure and Arc-enabled Linux servers. It uses open-source technologies from the **OpenTelemetry ecosystem**, enabling portability and interoperability across environments.
 
           [Learn more](/azure/azure-monitor/data-collection/pipeline-overview)
 
@@ -70,17 +70,21 @@ sections:
         answer: |
           Azure Monitor pipeline runs as containerized components on an Azure Arc–enabled Kubernetes cluster. This enables deployment close to data sources in on‑premises data centers, edge locations, and other cloud environments.
 
+          You can also deploy the pipeline on a Linux VM in Azure or an Arc-enabled Linux server (public preview) without Kubernetes. For supported configurations and preview limitations, see [Configure Azure Monitor pipeline on Linux VMs](pipeline-configure-vm.md).
+
           [Learn more](/azure/azure-monitor/data-collection/pipeline-overview#how-azure-monitor-pipeline-works)
 
       - question: Do I need to deploy Azure Monitor pipeline on every client resource?
         answer: |
-          No. You don't deploy Azure Monitor pipeline on each client resource. You deploy Azure Monitor pipeline on an Azure Arc-enabled Kubernetes cluster and then configure your clients to send telemetry to the ports exposed by the pipeline instance. The pipeline acts as a centralized component that receives telemetry from multiple resources in your environment and forwards it to Azure Monitor.
+          No. You don't deploy Azure Monitor pipeline on each client resource. Deploy a centralized pipeline instance, and then configure your clients to send telemetry to its listening ports. The pipeline receives telemetry from multiple resources in your environment and forwards it to Azure Monitor.
 
           [Learn more](/azure/azure-monitor/data-collection/pipeline-overview#how-azure-monitor-pipeline-works)
 
       - question: What infrastructure is required to deploy Azure Monitor pipeline?
         answer: |
-          Azure Monitor pipeline is designed to scale with your telemetry needs. You deploy it on an Arc-enabled Kubernetes cluster, and the size and configuration of the cluster depend on expected data volume, throughput, and resiliency requirements.
+          For Kubernetes hosting, deploy an Arc-enabled Kubernetes cluster. The size and configuration of the cluster depend on expected data volume, throughput, and resiliency requirements.
+
+          The VM hosting options (public preview) require a supported Linux VM in Azure or a supported Linux server connected to Azure Arc, not a Kubernetes cluster. See the [Azure VM prerequisites](pipeline-configure-vm.md#prerequisites) and [Arc-enabled Linux server guidance](pipeline-configure-vm.md#arc-enabled-linux-servers).
 
           Using Azure Monitor pipeline sizing guidance, you can start with a small footprint for modest ingestion needs and scale up predictably as volume grows.
 
@@ -124,12 +128,12 @@ sections:
     questions:
       - question: How is Azure Monitor pipeline configured?
         answer: |
-          Azure Monitor pipeline can be configured using the Azure portal for a guided experience, or using CLI or ARM templates for advanced scenarios. This flexibility allows customers to choose the level of operational control that best fits their needs.
+          For Kubernetes hosting, configure Azure Monitor pipeline using the Azure portal for a guided experience, or using CLI or ARM templates for advanced scenarios. For VM hosting (public preview), follow the [Azure VM deployment procedure](pipeline-configure-vm.md#deploy-the-extension-and-dcrs) or the [Arc-enabled Linux server guidance](pipeline-configure-vm.md#arc-enabled-linux-servers).
 
           [Learn more](/azure/azure-monitor/data-collection/pipeline-configure)
 
       - question: Is Azure Monitor pipeline fully managed by Azure?
         answer: |
-          Azure provides a centralized control plane to manage pipeline configuration and integration with Azure Monitor. The service also provides operational benefits such as out-of-band authentication from the pipeline to Log Analytics by using managed identity, the cert-manager extension for certificate management, automated certificate rotation, and zero-downtime TLS rotation. The customer is still responsible for operating and maintaining the environment where the pipeline runs. This shared responsibility model allows customers to retain control over their local infrastructure.
+          Azure provides a centralized control plane to manage pipeline configuration and integration with Azure Monitor. The pipeline authenticates to Log Analytics by using managed identity. Kubernetes deployments also use the cert-manager extension for certificate management, automated certificate rotation, and zero-downtime TLS rotation. The customer is still responsible for operating and maintaining the environment where the pipeline runs. This shared responsibility model allows customers to retain control over their local infrastructure.
 
           [Learn more](/azure/azure-monitor/data-collection/pipeline-overview#how-azure-monitor-pipeline-works)
