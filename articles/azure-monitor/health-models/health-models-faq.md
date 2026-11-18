@@ -239,7 +239,7 @@ Health models use the standard Azure Resource Manager API, so tools such as GitH
 
 ## Pricing
 
-These questions cover pricing information for Azure Monitor health models
+These questions cover pricing information for Azure Monitor health models.
 
 ### How will I be charged for my health model?
 
