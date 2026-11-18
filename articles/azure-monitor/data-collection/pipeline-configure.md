@@ -24,54 +24,24 @@ For an explanation of how endpoints, TLS configurations, streams, destinations, 
 
 During the public preview of DCR-based configuration, the `microsoft.monitor.pipeline` extension is deployed in the following regions. Availability also depends on Azure Arc-enabled Kubernetes and the required Certificate Manager extension being supported in the cluster region.
 
-- Australia Central
-- Australia East
-- Australia Southeast
-- Austria East
-- Belgium Central
-- Brazil South
-- Canada Central
-- Canada East
-- Central India
-- Central US
-- Chile Central
-- Denmark East
-- East Asia
-- East US
-- East US 2
-- France Central
-- Germany West Central
-- Indonesia Central
-- Italy North
-- Japan East
-- Japan West
-- Jio India West
-- Korea Central
-- Korea South
-- Malaysia West
-- Mexico Central
-- New Zealand North
-- North Central US
-- North Europe
-- Norway East
-- Poland Central
-- Qatar Central
-- South Africa North
-- South Central US
-- South India
-- Southeast Asia
-- Spain Central
-- Sweden Central
-- Switzerland North
-- UAE North
-- UK South
-- UK West
-- West Central US
-- West Europe
-- West India
-- West US
-- West US 2
-- West US 3
+| Region | Region | Region |
+|:---|:---|:---|
+| Australia Central | Australia East | Australia Southeast |
+| Austria East | Belgium Central | Brazil South |
+| Canada Central | Canada East | Central India |
+| Central US | Chile Central | Denmark East |
+| East Asia | East US | East US 2 |
+| France Central | Germany West Central | Indonesia Central |
+| Italy North | Japan East | Japan West |
+| Jio India West | Korea Central | Korea South |
+| Malaysia West | Mexico Central | New Zealand North |
+| North Central US | North Europe | Norway East |
+| Poland Central | Qatar Central | South Africa North |
+| South Central US | South India | Southeast Asia |
+| Spain Central | Sweden Central | Switzerland North |
+| UAE North | UK South | UK West |
+| West Central US | West Europe | West India |
+| West US | West US 2 | West US 3 |
 
 For current public-region availability, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
 
