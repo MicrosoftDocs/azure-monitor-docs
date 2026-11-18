@@ -123,7 +123,7 @@ The following meters appear in Cost Management for Azure Monitor health models.
 | ServiceName   | MeterName                                         | Regional Meter? |
 |---------------|---------------------------------------------------|-----------------|
 | Azure Monitor | Health Metric Monitored                           | yes             |
-| Azure Monitor | Health Prom Monitored Metric                      | yes             |
+| Azure Monitor | Health Prom Metric Monitored                      | yes             |
 | Azure Monitor | Health System Log Monitored at 1 Minute Frequency  | yes             |
 | Azure Monitor | Health System Log Monitored at 5 Minute Frequency  | yes             |
 | Azure Monitor | Health System Log Monitored at 10 Minute Frequency | yes             |
