@@ -690,6 +690,18 @@ Each dataflow DCR routes a given stream to only one Log Analytics workspace. Don
 | Traces | `otelTraces` with `Microsoft-OTel-Traces-Spans`, `Microsoft-OTel-Traces-Events`, and `Microsoft-OTel-Traces-Resources`. | The primary Log Analytics workspace, in the `OTelSpans`, `OTelEvents`, and `OTelResources` tables. |
 | Metrics | `otelMetrics` with an author-named stream that starts with `Custom-Metrics-`. | An Azure Monitor workspace (`Microsoft.Monitor/accounts`). |
 
+### Understand OTel log field mapping
+
+The following `OTelLogs` columns are populated independently:
+
+| `OTelLogs` column | Source |
+|:---|:---|
+| `ServiceName` | The OTel resource attribute `service.name`. |
+| `ResourceAttributes` | The normalized pipeline item's `resourceAttributes` field (`item.resourceAttributes`). |
+| `Attributes` | Attributes on the individual OTel log record. |
+
+`ServiceName` can be populated even when `ResourceAttributes` is null. Don't use a populated `ServiceName` value as evidence that the complete OTel resource-attribute bag was stored. For the complete destination schema, see the [`OTelLogs` table reference](../reference/tables/otellogs.md).
+
 All data sources use `mode: pipeline` and select the same endpoint, `otlp-grpc`, through `endpointRouting`. Each dataflow DCR's `references.pipelineSettingsEndpointRouting` connects that name to the settings DCR. Its `dataFlows` entries then route the streams to destinations in that DCR.
 
 ### Prepare the OTel deployment
@@ -1158,6 +1170,7 @@ For example, run the following query in each Log Analytics workspace to inspect 
 ```kusto
 OTelLogs
 | where TimeGenerated > ago(30m)
+| project TimeGenerated, ServiceName, ResourceAttributes, Attributes, Body
 | take 20
 ```
 
