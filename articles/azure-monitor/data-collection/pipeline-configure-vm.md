@@ -2,7 +2,7 @@
 title: Configure Azure Monitor pipeline on Linux VMs (preview)
 description: Learn how to configure Azure Monitor pipeline on Linux VMs in Azure and Arc-enabled Linux servers, and send Syslog and CEF to Log Analytics.
 ms.topic: how-to
-ms.date: 11/09/2026
+ms.date: 11/18/2026
 ms.custom: devx-track-azurecli, devx-track-bicep
 ai-usage: ai-generated
 ---
@@ -273,6 +273,40 @@ output ingestionRoleAssignmentId string = ingestionRole.id
 > [!NOTE]
 > Bicep might report `BCP081` if local type definitions for the DCR resources aren't available. This warning doesn't prevent compilation. Check the deployment result and verify data collection.
 
+### Configure persistent storage (optional)
+
+To buffer received Syslog or CEF records on disk before export, configure both a storage directory and data source persistence. The following steps apply to new Azure VM and Arc-enabled Linux server deployments. Selecting a directory alone doesn't enable buffering.
+
+The custom-directory setting requires VM extension version **0.2.8 or later**. Confirm that a suitable version is available for your hosting option and region before deploying; Azure VM and Arc extension availability can differ.
+
+1. Prepare persistent local storage before installing the extension. For Azure VMs, you can [attach and mount a managed data disk](/azure/virtual-machines/linux/attach-disk-portal). For Arc-enabled servers, use the host's persistent storage. The example below uses `/srv/azuremonitor-pipeline` as the mount point; substitute your own path if different. Ensure the filesystem mounts before the pipeline starts, including after a reboot. Don't use a VM temporary disk, an ephemeral OS disk, or a temporary directory.
+
+1. Choose a dedicated directory on that filesystem, such as `/srv/azuremonitor-pipeline/buffer`. Add `pipelinePersistenceLocation` to the extension's existing `settings` object in the Bicep template:
+
+   ```bicep
+   settings: {
+     dcrMode: true
+     pipelinePersistenceLocation: '/srv/azuremonitor-pipeline/buffer'
+   }
+   ```
+
+   For Arc-enabled servers, supply the same public settings through [Arc extension management](#arc-enabled-linux-servers). The installer creates the directory and assigns ownership to `azmonpipeline`, including its contents. Don't select a shared directory or filesystem root. Parent directories must allow the service account to traverse them; don't use locations under `/root` or `/home`.
+
+   Choose this location before the initial extension installation. Updating the setting alone on an existing installation doesn't change the services' storage location.
+
+1. Add the following property to the existing `Default-Syslog` object in `sourcesDcr.properties.dataSources.syslog`, leaving its other properties unchanged. To buffer CEF, also add it to the `Default-CEF` object when you [add CEF collection](#add-cef-collection).
+
+   ```bicep
+   persistence: {
+     maxStorageUsageMb: 1024
+     retentionPeriodMin: 1440
+   }
+   ```
+
+   These example limits apply to each buffer, not to the total disk. Size the filesystem for all buffers and other disk usage. Records expire at the retention limit, and the buffer drops the oldest records when it reaches the size limit. Keep this property in the data source DCR, not in the settings DCR.
+
+Continue with the deployment commands below, then [verify persistent storage](#verify-persistent-storage). These steps don't migrate existing buffered data. Drain existing buffers before changing their location or removing a data source.
+
 ### Preview and deploy
 
 Review the changes before deploying:
@@ -322,7 +356,8 @@ For an Azure VM deployment, run:
 
 ```azurecli
 az vm extension show --resource-group "$RG" --vm-name "$VM" \
-  --name AzureMonitorPipeline --query provisioningState --output tsv
+  --name AzureMonitorPipeline --instance-view \
+  --query "{state:provisioningState,version:instanceView.typeHandlerVersion}" --output table
 
 VM_ID=$(az vm show --resource-group "$RG" --name "$VM" --query id --output tsv)
 ASSOCIATIONS_URL="https://management.azure.com${VM_ID}/providers/Microsoft.Insights/dataCollectionRuleAssociations"
@@ -332,6 +367,22 @@ az rest --method GET \
 ```
 
 Look for extension state `Succeeded` and associations named `pipelineSettings-<vm-name>` and `<vm-name>-datasources-assoc`, pointing to the correct settings and data source DCRs.
+
+### Verify persistent storage
+
+If you configured a custom storage directory, confirm that the installed extension version meets the [storage prerequisite](#configure-persistent-storage-optional). For Arc-enabled servers, check the installed version through Arc extension management. Run these commands on either type of host, replacing the example directory if needed:
+
+```bash
+findmnt --target /srv/azuremonitor-pipeline/buffer
+sudo -u azmonpipeline test -w /srv/azuremonitor-pipeline/buffer
+sudo systemctl show azuremonitor-dcr --property=Environment
+sudo systemctl show azuremonitor-pipeline --property=ReadWritePaths
+sudo grep -A 8 'urn:otel:processor:durable_buffer' /opt/microsoft/azuremonitor-pipeline/etc/config.dcr.yaml
+```
+
+Confirm that the directory is on the intended persistent filesystem and the write-access check succeeds. `DURABLE_BUFFER_ROOT` and `ReadWritePaths` must include the selected directory. The generated configuration must contain a durable-buffer processor that uses that directory and the requested limits. A directory or successful extension deployment alone doesn't prove buffering is enabled.
+
+Use the [local test](#send-a-local-test) to verify delivery. To verify recovery, use a non-production environment to test a brief export-connectivity outage and collector restart, restore connectivity, and confirm the buffered test records arrive. Buffering can't recover UDP packets lost before the collector receives them.
 
 ### Send a local test
 
@@ -475,7 +526,7 @@ Use the [pipeline sizing guidance](pipeline-sizing.md) to estimate capacity. The
 
 If you place several receivers behind a load balancer, remember that it distributes flows, not individual messages. A single long-lived TCP connection can remain on one receiver. A listener health probe doesn't prove that the receiver can export data to Azure Monitor.
 
-This example doesn't configure durable buffering or high availability. Installing the extension alone doesn't enable persistent storage or protect data against VM deletion, disk failure, or removal of a receiver.
+Durable buffering is optional; follow [Configure persistent storage](#configure-persistent-storage-optional) to enable it. Installing the extension alone doesn't enable buffering. Local storage doesn't provide high availability or protect data against VM deletion, disk failure, or removal of a receiver.
 
 ## Troubleshoot common issues
 
