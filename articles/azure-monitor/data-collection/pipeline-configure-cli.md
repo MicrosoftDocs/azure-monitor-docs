@@ -692,7 +692,7 @@ Each dataflow DCR routes a given stream to only one Log Analytics workspace. Don
 
 ### Understand OTel log field mapping
 
-The following `OTelLogs` columns are populated independently:
+The following `OTelLogs` columns populate independently:
 
 | `OTelLogs` column | Source |
 |:---|:---|
