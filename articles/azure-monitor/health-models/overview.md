@@ -65,13 +65,13 @@ The total cost of an Azure Monitor health model is the sum of the charges for ea
 
 Signals enable health models to monitor and evaluate operational conditions across your environment. Signal billing is based on the active signals you configure within your health models. Supported signal categories include:
 
-- Azure Monitor Metrics signals
+- Metrics signals
 - Log Query signals
 - Prometheus Query signals
 
 Each active signal contributes to billable inventory according to its signal type, each with its different characteristics and billing category. As you increase the number of active signals, signal-related costs can also increase.
 
-Prices differ by signal type. Metric signals and Log signals are billed per month, and there is no charge for Resource Health signals or for signals while they are disabled. If you add or delete a signal partway through a billing cycle, its charges reflect the evaluations performed during that cycle.
+Prices differ by signal type. Metric, Prom and Log signals are billed per month, and there is no charge for Resource Health signals or for signals while they are disabled. If you add or delete a signal partway through a billing cycle, its charges reflect the evaluations performed during that cycle.
 
 Billing records are stored in Azure's commerce system and follow the same process as other Azure services, with no health-model-specific retention process.
 
