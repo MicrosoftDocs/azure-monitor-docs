@@ -51,7 +51,7 @@ You can only configure customer-managed encryption keys when you create a new Ch
 
 ## Azure CLI
 
-The following code sample shows an example `PUT` command for creating or updating a Chaos Studio experiment resource to enable CMKs.
+The following code sample shows an example `PUT` command for creating or updating a Chaos Studio experiment resource to enable CMKs. Replace the resource ID under `userAssignedIdentities` with the resource ID of the same UMI you selected for your storage account's customer-managed key encryption. For the storage account configuration, see [Use a user-assigned managed identity to authorize access](/azure/storage/common/customer-managed-keys-configure-existing-account#use-a-user-assigned-managed-identity-to-authorize-access).
 
 > [!NOTE]
 >The two parameters specific to CMK experiments are under the `CustomerDataStorage` block, in which we ask for the subscription ID of the Azure Blob Storage account that you want to use to store your experiment data and the name of the Blob Storage container to use or create.
@@ -62,7 +62,10 @@ PUT https://management.azure.com/subscriptions/<yourSubscriptionID>/resourceGrou
 {
   "location": "eastus2euap",
   "identity": {
-    "type": "SystemAssigned"
+    "type": "UserAssigned",
+    "userAssignedIdentities": {
+      "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/exampleRG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/exampleIdentity": {}
+    }
   },
   "properties": {
     "steps": [
