@@ -1,23 +1,21 @@
 ---
 title: Chaos Studio Workspaces vs. Experiments (classic)
-description: "Compare Chaos Studio Workspaces vs. Experiments (classic): Scenario coverage, permissions, reports, preview status, and when to choose each model."
+description: "Compare Chaos Studio Workspaces vs. Experiments (classic): Scenario coverage, permissions, reports, servicing state, and when to choose each model."
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 09/29/2026
+ms.date: 11/19/2026
 ai-usage: ai-assisted
 ---
 
 # Chaos Studio Workspaces vs. Experiments (classic)
 
-Compare [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) and [Experiments (classic)](chaos-studio-chaos-experiments.md) to choose an Azure Chaos Studio resource model for each resilience test. Workspaces is the current model: it discovers resources within a scope, runs Scenarios, and generates Scenario reports. Experiments (classic) is the legacy model being replaced by Workspaces. With Experiments (classic), you enable each target individually and combine faults to build custom tests. Workspaces is in public preview; Experiments (classic) is generally available.
-
-[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
+Compare [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) and [Experiments (classic)](chaos-studio-chaos-experiments.md) to choose an Azure Chaos Studio resource model for each resilience test. Workspaces is the current model: it discovers resources within a scope, runs Scenarios, and generates Scenario reports. Experiments (classic) is the legacy model being replaced by Workspaces. With Experiments (classic), you enable each target individually and combine faults to build custom tests. Both models are generally available.
 
 ## How the two models differ
 
 Both models inject real faults against your Azure resources, but they differ in how you get from "I want to test this failure" to a running test.
 
-| Aspect | Chaos Studio Workspaces (preview) | Experiments (classic) |
+| Aspect | Chaos Studio Workspaces | Experiments (classic) |
 |---|---|---|
 | Servicing state | Active development. New Chaos Studio features ship in the Workspaces model. | Legacy model being replaced by Workspaces. There's no further feature development, and only critical fixes, such as security updates, are considered for backport. |
 | Onboarding | Set a scope (subscription, resource group, or service group). The Workspace discovers supported resources automatically. | Enable a target and capabilities on each resource before it can be used in an experiment. |
@@ -59,9 +57,8 @@ Experiments (classic) is being replaced by Workspaces. During the transition, ch
 
 - You need a fault that the scenario catalog doesn't yet cover, such as specific agent-based faults or [AKS Chaos Mesh faults](chaos-studio-tutorial-aks-portal.md) for in-cluster fault injection.
 - You rely on classic-only capabilities such as [dynamic targeting](chaos-studio-tutorial-dynamic-target-portal.md) or [scheduled experiment runs](tutorial-schedule.md).
-- You require a generally available resource model. Chaos Studio Workspaces is in public preview and isn't recommended for production workloads.
 
-Microsoft no longer adds features to Experiments (classic) and considers only critical fixes, such as security updates, for backport to this legacy model. Plan to move each test to Workspaces when it meets your capability and general availability requirements.
+Microsoft no longer adds features to Experiments (classic) and considers only critical fixes, such as security updates, for backport to this legacy model. Plan to move each test to Workspaces when it meets your capability requirements.
 
 ## Move from Experiments (classic)
 
@@ -69,7 +66,7 @@ Follow [Move from Experiments (classic) to Chaos Studio Workspaces](chaos-studio
 
 ## Use both models during the transition
 
-You can run both models side by side as you move your tests. Use Chaos Studio Workspaces when the Scenario catalog covers the outage you want to test and preview use meets your requirements. Keep an experiment in Experiments (classic) if it needs a generally available resource model or a classic-only fault or capability.
+You can run both models side by side as you move your tests. Use Chaos Studio Workspaces when the Scenario catalog covers the outage you want to test. Keep an experiment in Experiments (classic) if it needs a classic-only fault or capability.
 
 ## Next steps
 

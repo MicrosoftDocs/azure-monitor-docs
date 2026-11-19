@@ -11,8 +11,6 @@ ai-usage: ai-assisted
 
 Chaos Studio Workspaces permissions control who can run Scenarios and which Azure resources those Scenarios can affect. Azure role-based access control (RBAC) governs access to the Workspace, while its managed identity needs role assignments on the resources it discovers and tests. Use this guide to configure discovery scope, assign execution roles, and resolve permission-validation errors before a Scenario run.
 
-[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
-
 ## How Workspace identity works
 
 Every Workspace has a managed identity (system-assigned, user-assigned, or both) that acts as the execution principal for Scenarios. When a Scenario runs, Chaos Studio uses the Workspace's managed identity to call Azure management APIs, start agent-based Actions, and interact with resources in scope.
@@ -64,7 +62,7 @@ To create role assignments with any of these methods, you need Owner or User Acc
 
 ## Permissions for the Chaos Studio extension for AKS
 
-To use the [Chaos Studio extension for AKS](chaos-studio-aks-extension-overview.md), the Workspace scope must include the AKS cluster resource. When you install the extension, installation assigns the built-in role **Chaos Kubernetes Extension Operator** to the Workspace's managed identity at the cluster scope. For the permissions in the role, see [Role permissions](chaos-studio-aks-extension-install.md#role-permissions). You don't assign roles for the extension's pod fault Actions yourself. The role assignments listed earlier in this article apply to other Actions. As the installer, you need the [permissions for installation](chaos-studio-aks-extension-install.md#review-the-permissions-for-installation).
+To use the [Chaos Studio extension for AKS (preview)](chaos-studio-aks-extension-overview.md), the Workspace scope must include the AKS cluster resource. When you install the extension, installation assigns the built-in role **Chaos Kubernetes Extension Operator** to the Workspace's managed identity at the cluster scope. For the permissions in the role, see [Role permissions](chaos-studio-aks-extension-install.md#role-permissions). You don't assign roles for the extension's pod fault Actions yourself. The role assignments listed earlier in this article apply to other Actions. As the installer, you need the [permissions for installation](chaos-studio-aks-extension-install.md#review-the-permissions-for-installation).
 
 ## Who can use a Workspace
 

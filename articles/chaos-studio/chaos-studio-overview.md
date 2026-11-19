@@ -5,7 +5,7 @@ services: chaos-studio
 author: prasha-microsoft
 ms.author: nikhilkaul
 ms.topic: overview
-ms.date: 09/25/2026
+ms.date: 11/19/2026
 ms.reviewer: prashabora
 ms.custom: template-overview
 ai-usage: ai-assisted
@@ -14,8 +14,6 @@ ai-usage: ai-assisted
 # What is Azure Chaos Studio?
 
 Azure Chaos Studio is a managed service for chaos engineering and Azure resilience testing. Use [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md), the current resource model, to discover resources, run Scenarios that simulate outages, and review Scenario reports. Workspaces is replacing Experiments (classic), the legacy resource model. If you use Experiments (classic), see [Move from Experiments (classic) to Chaos Studio Workspaces](chaos-studio-migrate-from-classic.md).
-
-[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
 ## Chaos Studio Workspaces and Scenarios
 
@@ -31,7 +29,7 @@ To create your first Workspace and run a Scenario, see [Quickstart: Create a Wor
 
 ## Experiments (classic)
 
-Experiments (classic) is the legacy resource model being replaced by Chaos Studio Workspaces. Use it only when you need a generally available model or when the Scenario catalog doesn't yet cover the combination of faults or capability you need. To get started with the move, follow [Move from Experiments (classic) to Chaos Studio Workspaces](chaos-studio-migrate-from-classic.md). Microsoft no longer develops features for Experiments (classic) and considers only critical fixes, such as security updates, for backport.
+Experiments (classic) is the legacy resource model being replaced by Chaos Studio Workspaces. Use it only when the Scenario catalog doesn't yet cover the combination of faults or capability you need. To get started with the move, follow [Move from Experiments (classic) to Chaos Studio Workspaces](chaos-studio-migrate-from-classic.md). Microsoft no longer develops features for Experiments (classic) and considers only critical fixes, such as security updates, for backport.
 
 Experiments (classic) supports two types of faults:
 

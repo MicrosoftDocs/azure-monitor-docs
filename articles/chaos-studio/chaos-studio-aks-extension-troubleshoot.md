@@ -1,15 +1,17 @@
 ---
-title: Troubleshoot the Chaos Studio extension for AKS
+title: Troubleshoot the Chaos Studio extension for AKS (preview)
 description: Troubleshoot the Chaos Studio extension for AKS by symptom. Fix installation errors, connection problems, and pod fault runs that fail or don't end cleanly.
 author: nikhilkaul-msft
 ms.author: nikhilkaul
 ms.service: azure-chaos-studio
 ms.topic: troubleshooting-general
-ms.date: 11/16/2026
+ms.date: 11/19/2026
 ai-usage: ai-assisted
 ---
 
-# Troubleshoot the Chaos Studio extension for AKS
+# Troubleshoot the Chaos Studio extension for AKS (preview)
+
+[!INCLUDE [chaos-studio-aks-extension-preview](includes/chaos-studio-aks-extension-preview.md)]
 
 Use this article when you can't install the [Chaos Studio extension for Azure Kubernetes Service (AKS)](chaos-studio-aks-extension-overview.md), or when a pod fault fails, doesn't finish, or doesn't end cleanly. Find your symptom or error message in the tables.
 

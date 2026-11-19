@@ -3,7 +3,7 @@ title: Fault support matrix for Azure Chaos Studio
 description: See which failures Azure Chaos Studio can inject for each Azure resource type, in which resource model, how each fault ends, and what each fault doesn't reproduce.
 author: nikhilkaul-msft
 ms.topic: reference
-ms.date: 11/15/2026
+ms.date: 11/19/2026
 ai-usage: ai-assisted
 ---
 
@@ -28,8 +28,8 @@ Chaos Studio provides faults through three delivery paths. The paths have differ
 
 | Label | Delivery path | Support level |
 |---|---|---|
-| **Workspaces** | Actions in [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) Scenarios | Public preview. No service-level agreement. Not meant for production use. |
-| **AKS extension** | Pod faults from the [Chaos Studio extension for AKS](chaos-studio-aks-extension-overview.md), run from a Workspace | Limited preview. Only for allow-listed subscriptions. |
+| **Workspaces** | Actions in [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) Scenarios | Generally available. |
+| **AKS extension** | Pod faults from the [Chaos Studio extension for AKS](chaos-studio-aks-extension-overview.md), run from a Workspace | Public preview. No service-level agreement. Not meant for production use. |
 | **Classic** | Faults in [Experiments (classic)](chaos-studio-chaos-experiments.md) | Generally available. Microsoft no longer adds features and considers only critical fixes. |
 | **—** | No fault in this path | Not available. |
 
@@ -270,6 +270,6 @@ The matrix can lag behind the service. To get the current Workspaces Action cata
 ## Related content
 
 - [Scenarios and outage templates for Chaos Studio Workspaces](chaos-studio-scenarios.md)
-- [Chaos Studio Workspaces limitations (preview)](chaos-studio-workspaces-limitations.md)
+- [Chaos Studio Workspaces limitations](chaos-studio-workspaces-limitations.md)
 - [Limitations and known issues for Experiments (classic)](chaos-studio-limitations.md)
 - [Chaos engineering and resilience in Azure](chaos-studio-chaos-engineering-overview.md)

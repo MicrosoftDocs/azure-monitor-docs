@@ -3,15 +3,13 @@ title: Troubleshoot Chaos Studio Workspaces and Scenarios
 description: "Troubleshoot Chaos Studio Workspaces and Scenarios: empty discovery, missing permissions, failed runs, skipped Actions, and agent connectivity."
 author: nikhilkaul-msft
 ms.topic: troubleshooting-general
-ms.date: 09/25/2026
+ms.date: 11/19/2026
 ai-usage: ai-assisted
 ---
 
 # Troubleshoot Chaos Studio Workspaces and Scenarios
 
 Troubleshoot [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) by symptom: resources aren't discovered, permissions are missing, a Scenario run fails, or Actions are skipped. This guide also covers agent connectivity for Workspaces Scenarios. For experiments, targets, and capabilities in the legacy model, use [Experiments (classic) troubleshooting](troubleshooting.md).
-
-[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
 ## Confirm that you're using Chaos Studio Workspaces
 
@@ -46,7 +44,7 @@ Discovery runs after you create the Workspace or change its scope, and it can ta
 
 ## Fix Permissions fails for a service group scope
 
-For a Workspace scoped to a service group, the **Fix Permissions** option on the Scenario configuration page might fail or report that it can't fix the missing permissions. This is a known issue during the public preview. As a workaround, assign the required roles manually:
+For a Workspace scoped to a service group, the **Fix Permissions** option on the Scenario configuration page might fail or report that it can't fix the missing permissions. This is a known issue. As a workaround, assign the required roles manually:
 
 1. In the Azure portal, go to the scope you want the Workspace to act on (for service groups, assign at the underlying subscriptions or resource groups that contain your target resources).
 1. Select **Access control (IAM)** > **Add** > **Add role assignment**.
@@ -79,7 +77,7 @@ Workspaces are logical resources that can act on resources in any Azure region. 
 
 ## The portal behaves unexpectedly in the Scenario designer or My scenarios
 
-Workspaces and Scenarios are in public preview, and the portal experience is updated frequently as the preview evolves. You might occasionally encounter transient issues when editing or configuring Scenarios. Fixes ship continuously during the preview. (Section last updated: July 2026.)
+The portal experience is updated frequently. You might occasionally encounter transient issues when editing or configuring Scenarios. Fixes ship continuously. (Section last updated: July 2026.)
 
 If you hit an unexpected behavior:
 

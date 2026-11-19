@@ -19,8 +19,6 @@ For example, include resources tagged `chaos-ready=true` and exclude resources t
 
 This article shows you how to create that policy and validate the selected resources before you run the Scenario.
 
-[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
-
 ## Prerequisites
 
 - An Azure subscription. [!INCLUDE [quickstarts-free-trial-note](~/reusable-content/ce-skilling/azure/includes/quickstarts-free-trial-note.md)]
