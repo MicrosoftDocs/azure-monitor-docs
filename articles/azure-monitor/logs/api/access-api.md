@@ -7,7 +7,7 @@ ms.topic: how-to
 
 # Access the Azure Monitor Log Analytics API
 
-You can submit a query request to a workspace by using the Azure Monitor Log Analytics endpoint `https://api.loganalytics.azure.com`. To access the endpoint, you must authenticate through Microsoft Entra ID.
+Submit a query request to a workspace by using the Azure Monitor Log Analytics endpoint `https://api.loganalytics.azure.com`. To access the endpoint, you must authenticate through Microsoft Entra ID.
 
 > [!NOTE]
 > The `api.loganalytics.io` endpoint is being replaced by `api.loganalytics.azure.com`. The `api.loganalytics.io` endpoint will continue to be supported for the foreseeable future.
@@ -69,9 +69,9 @@ Body:
 
 ## Set up authentication
 
-To access the API, you register a client app with Microsoft Entra ID and request a token.
+To access the API, you need the right authentication token.
 
-1. [Register an app in Microsoft Entra ID](register-app-for-token.md).
+1. [Choose an authentication method and set up an identity](register-app-for-token.md).
 
 1. On the app's overview page, select **API permissions**.
 
@@ -118,24 +118,27 @@ Now that your app is registered and has permissions to use the API, grant your a
 
 ## Request an authorization token
 
-Before you begin, make sure you have all the values required to make the request successfully. All requests require:
+Before you begin, make sure you have the values the request requires. The exact set depends on the authentication method you chose in [Authenticate to Azure Monitor APIs](register-app-for-token.md). A managed identity needs none of them, because the platform supplies the token.
+
+For an app registration, all requests require:
 
 * Your Microsoft Entra tenant ID.
 * Your workspace ID.
 * Your Microsoft Entra client ID for the app.
-* A Microsoft Entra client secret for the app.
+* The app's credential, preferably a certificate rather than a client secret.
 
-The Log Analytics API supports Microsoft Entra authentication with three different [Microsoft Entra ID OAuth2](/azure/active-directory/develop/active-directory-protocols-oauth-code) flows:
+The Log Analytics API supports these [Microsoft Entra ID OAuth 2.0](/entra/identity-platform/v2-protocols) flows:
 
-* Client credentials
-* Authorization code
-* Implicit
+* Client credentials, for daemons and background services
+* [Authorization code with PKCE](/entra/identity-platform/v2-oauth2-auth-code-flow), for apps that act on behalf of a signed-in user
+
+The implicit grant flow is deprecated and isn't recommended for new work. Use authorization code with PKCE instead.
 
 ### Client credentials flow
 
-In the client credentials flow, the token is used with the Log Analytics endpoint. A single request is made to receive a token by using the credentials provided for your app in the previous step when you [register an app in Microsoft Entra ID](register-app-for-token.md).
+In the client credentials flow, you authenticate against the Log Analytics endpoint by using a token. A single request receives a token by using the identity you set up in [Authenticate to Azure Monitor APIs](register-app-for-token.md).
 
-Use `resource=https://api.loganalytics.io`.
+Use `https://api.loganalytics.azure.com` as the token audience.
 
 [!INCLUDE [Get a token](../../fundamentals/includes/get-authentication-token.md)]
 
@@ -227,7 +230,7 @@ grant_type=authorization_code
 &client_secret=<app-client-secret>
 ```
 
-All values are the same as before, with some additions. The authorization code is the same code you received in the previous request after a successful redirect. The code is combined with the key obtained from the Microsoft Entra app. If you didn't save the key, you can delete it and create a new one from the keys tab of the Microsoft Entra app menu. The response is a JSON string that contains the token with the following schema. Types are indicated for the token values.
+Use the same values as before, with some additions. The authorization code is the code you receive in the previous request after a successful redirect. Combine the code with the key you get from the Microsoft Entra app. If you don't save the key, delete it and create a new one from the keys tab of the Microsoft Entra app menu. The response is a JSON string that contains the token with the following schema. Types are indicated for the token values.
 
 **Example response:**
 
@@ -245,7 +248,7 @@ All values are the same as before, with some additions. The authorization code i
 }
 ```
 
-The access token portion of this response is what you present to the Log Analytics API in the `Authorization: Bearer` header. You can also use the refresh token in the future to acquire a new access\_token and refresh\_token when yours have gone stale. For this request, the format and endpoint are:
+The access token portion of this response is what you present to the Log Analytics API in the `Authorization: Bearer` header. Use the refresh token in the future to acquire a new access token and refresh token when yours go stale. For this request, use the following format and endpoint:
 
 ```http
 POST /YOUR_AAD_TENANT/oauth2/token HTTP/1.1
@@ -303,7 +306,7 @@ This access\_token can be used as the `Authorization: Bearer` header value when 
 
 ## More information
 
-You can find documentation about OAuth2 with Microsoft Entra here:
+Find documentation about OAuth2 with Microsoft Entra:
 
 * [Microsoft Entra authorization code flow](/azure/active-directory/develop/active-directory-protocols-oauth-code)
 * [Microsoft Entra client credentials flow](/entra/identity-platform/v2-oauth2-client-creds-grant-flow)

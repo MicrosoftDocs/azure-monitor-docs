@@ -16,6 +16,28 @@ Azure Monitor has a wide assortment of APIs. This index includes APIs for Azure 
 >
 > For more information, see [Azure Managed Grafana REST API Reference](/rest/api/managed-grafana/) and [System Center Operations Manager REST API Reference](/rest/operationsmanager/).
 
+## Authentication and token audiences
+
+Every Azure Monitor REST API authenticates with a Microsoft Entra ID access token. Request the token for the audience that matches the API you're calling, because a token issued for one audience is rejected by the others.
+
+The **endpoint** is the host you send the request to. The **token audience** is what you request the token for. The two differ for some APIs, most notably Logs query.
+
+| API group | Endpoint | Token audience |
+|---|---|---|
+| [Azure Monitor ARM APIs](#azure-monitor-apis) | `management.azure.com` | `https://management.azure.com` |
+| [Custom metrics ingestion](#op-monitor-metrics-custom) | `<region>.monitoring.azure.com` | `https://monitoring.azure.com` |
+| [Managed Prometheus query](../metrics/prometheus-api-promql.md) | `<workspace>.<region>.prometheus.monitor.azure.com` | `https://prometheus.monitor.azure.com` |
+| [Application Insights data plane](#application-insights-apis) | `api.applicationinsights.io` | `https://api.applicationinsights.io` |
+| [Logs ingestion](#logs-ingestion) | Data collection endpoint or DCR ingestion endpoint | `https://monitor.azure.com` |
+| [Logs query](#logs-query) | `api.loganalytics.io`<br>`api.loganalytics.azure.com` | `https://api.loganalytics.io` |
+| [Logs management](#logs-management) | `management.azure.com` | `https://management.azure.com` |
+
+On the Microsoft identity platform v2.0 endpoint, append `/.default` to the audience to form the scope, for example `https://monitor.azure.com/.default`.
+
+In sovereign clouds, substitute the matching suffix. Logs ingestion uses `https://monitor.azure.cn` in Microsoft Azure operated by 21Vianet and `https://monitor.azure.us` in Azure Government.
+
+To choose an identity and assign the role an API requires, see [Authenticate to Azure Monitor APIs](../logs/api/register-app-for-token.md).
+
 ## Azure Monitor APIs
 
 These APIs are part of the Azure Resource Manager (ARM) control plane APIs for various Azure Monitor features. See the [Azure Monitor section](/rest/api/monitor/) of the Azure REST APIs documentation to find the latest API versions for these operation groups.
@@ -156,7 +178,7 @@ Scope is `https://monitor.azure.com/.default`.
 
 These are the Azure Monitor Logs data plane APIs for querying data in your Log Analytics workspaces.
 
-API endpoint is `api.loganalytics.io` or `api.loganalytics.azure.com`.
+API endpoint is `api.loganalytics.azure.com`, with the legacy `api.loganalytics.io` still supported. The token audience stays `https://api.loganalytics.io` for both. See [Authentication and token audiences](#authentication-and-token-audiences).
 
 | Operation groups | Description |
 |------------------|-------------|

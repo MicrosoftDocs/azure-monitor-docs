@@ -1598,7 +1598,7 @@ items:
         items:
         - name: API access, authentication and authorization
           href: logs/api/access-api.md
-        - name: Register an app for API access
+        - name: Authenticate to Azure Monitor APIs
           href: logs/api/register-app-for-token.md
         - name: Request format
           href: logs/api/request-format.md

@@ -8,7 +8,7 @@ ms.reviewer: aul
 
 # Query Prometheus metrics using the API and PromQL
 
-Azure Monitor managed service for Prometheus collects metrics from Azure Kubernetes clusters and stores them in an Azure Monitor workspace. Prometheus Query Language (PromQL) is a functional query language that you can use to query and aggregate time-series data. Use PromQL to query and aggregate metrics stored in an Azure Monitor workspace.
+Azure Monitor managed service for Prometheus collects metrics from Azure Kubernetes clusters and stores them in an Azure Monitor workspace. Prometheus Query Language (PromQL) is a functional query language for querying and aggregating time-series data. Use PromQL to query and aggregate metrics stored in an Azure Monitor workspace.
 
 This article describes how to query an Azure Monitor workspace by using PromQL via the REST API. For more information on PromQL, see [Query Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/).
 
@@ -34,7 +34,7 @@ To set up Microsoft Entra authentication, follow these steps:
 
 ### Register an app with Microsoft Entra ID
 
-To register an app, follow the steps in [Register an app to request authorization tokens and work with APIs](../logs/api/register-app-for-token.md?tabs=portal).
+To give an app access, follow the steps in [Authenticate to Azure Monitor APIs](../logs/api/register-app-for-token.md).
 
 ### Allow your app access to your workspace
 
@@ -66,7 +66,7 @@ Assign the Monitoring Data Reader role to your app so that it can query data fro
 
     :::image type="content" source="media/prometheus-api-promql/select-members.png" lightbox="media/prometheus-api-promql/select-members.png" alt-text="Screenshot that shows the Add role assignment page with the Select members pane open.":::
 
-You created your app registration and assigned it access to query data from your Azure Monitor workspace. You can now generate a token and use it in a query.
+You created your app registration and assigned it access to query data from your Azure Monitor workspace. Next, generate a token and use it in a query.
 
 ### Request a token
 
