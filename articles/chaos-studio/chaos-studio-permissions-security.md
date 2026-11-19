@@ -33,7 +33,15 @@ Chaos Studio has three levels of security to help you control how and when fault
 
    When creating a chaos experiment in the Azure portal, you can choose to enable [automatic role assignment using Azure built-in roles or a custom role](chaos-studio-assign-experiment-permissions.md) on either your system-assigned or user-assigned managed identity selection. Enabling this functionality allows Chaos Studio to create and assign Azure built-in roles or a custom role containing any necessary experiment action capabilities to your experiment's identity (that do not already exist in your identity selection). If a chaos experiment is using a user-assigned managed identity, any custom roles assigned to the experiment identity by Chaos Studio will persist after experiment deletion.
   
-  If you choose to grant your experiment permissions manually, you must grant its identity [appropriate permissions](chaos-studio-workspaces-supported-resources.md) to all target resources. If the experiment identity doesn't have appropriate permission to a resource, it can't execute a fault against that resource.
+   If you choose to grant your experiment permissions manually, you must grant its identity the permissions required by each fault in the [Experiments (classic) fault library](chaos-studio-fault-library.md) on all target resources. If the experiment identity doesn't have appropriate permission to a resource, it can't execute a fault against that resource.
+
+   For agent-based faults, assign the **Reader** role to the experiment identity at the target resource scope. For service-direct faults, query the capability type to find the required permissions. Replace `$SUBSCRIPTION_ID`, `$LOCATION`, `$TARGET_TYPE`, and `$CAPABILITY_NAME` with your subscription ID, the region of your target resource, and the target type and capability name from the classic fault library.
+
+   ```azurecli-interactive
+   az rest --method get --uri "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/providers/Microsoft.Chaos/locations/$LOCATION/targetTypes/$TARGET_TYPE/capabilityTypes/$CAPABILITY_NAME?api-version=2024-01-01"
+   ```
+
+   Use the returned `properties.azureRbacActions` and `properties.azureRbacDataActions` to [create a custom role](/azure/role-based-access-control/custom-roles) and assign it to the experiment identity at the target resource scope. For AKS Chaos Mesh role assignments, see [Give the experiment permission to your AKS cluster](chaos-studio-tutorial-aks-cli.md#give-the-experiment-permission-to-your-aks-cluster). The Workspaces Action catalog doesn't describe permissions for Experiments (classic).
 
 * Third, each resource must be onboarded to Chaos Studio as [a target with corresponding capabilities enabled](chaos-studio-targets-capabilities.md). If a target or the capability for the fault being executed doesn't exist, the experiment fails without affecting the resource.
 
