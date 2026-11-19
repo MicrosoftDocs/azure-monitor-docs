@@ -1,16 +1,16 @@
 ### YamlMime:Landing
 
 title: Chaos Studio Workspaces documentation
-summary: Test your Azure application's resilience with Chaos Studio Workspaces, the current resource model in public preview. Discover resources, run outage Scenarios, and review Scenario reports. Experiments (classic) is being replaced by Workspaces. Use Experiments (classic) when you need a generally available resource model or a fault or capability that Workspaces doesn't support yet.
+summary: Test your Azure application's resilience with Chaos Studio Workspaces, the current resource model. Discover resources, run outage Scenarios, and review Scenario reports. Experiments (classic) is being replaced by Workspaces. Use Experiments (classic) when you need a fault or capability that Workspaces doesn't support yet.
 
 metadata:
   title: Chaos Studio Workspaces documentation
   description: Use Azure Chaos Studio Workspaces for resilience testing. Follow the quickstart, explore Scenarios, review reports, and compare Experiments (classic).
   ms.topic: landing-page
-  ms.date: 09/28/2026
+  ms.date: 11/19/2026
 
 landingContent:
-  - title: Chaos Studio Workspaces (preview)
+  - title: Chaos Studio Workspaces
     linkLists:
       - linkListType: overview
         links:
@@ -77,7 +77,7 @@ landingContent:
             url: troubleshoot-workspaces-scenarios.md
       - linkListType: reference
         links:
-          - text: Chaos Studio Workspaces limitations (preview)
+          - text: Chaos Studio Workspaces limitations
             url: chaos-studio-workspaces-limitations.md
 
   - title: Azure Chaos Studio shared reference

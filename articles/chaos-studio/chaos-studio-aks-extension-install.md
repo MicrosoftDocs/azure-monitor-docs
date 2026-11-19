@@ -1,15 +1,17 @@
 ---
-title: Install the Chaos Studio extension for AKS
+title: Install the Chaos Studio extension for AKS (preview)
 description: Install the Chaos Studio extension for AKS, choose workload namespaces, verify the installation, run a pod fault from a Workspace Scenario, and remove it.
 author: nikhilkaul-msft
 ms.author: nikhilkaul
 ms.service: azure-chaos-studio
 ms.topic: how-to
-ms.date: 11/16/2026
+ms.date: 11/19/2026
 ai-usage: ai-assisted
 ---
 
-# Install the Chaos Studio extension for AKS and run a pod fault
+# Install the Chaos Studio extension for AKS (preview) and run a pod fault
+
+[!INCLUDE [chaos-studio-aks-extension-preview](includes/chaos-studio-aks-extension-preview.md)]
 
 This article shows you how to install the [Chaos Studio extension for Azure Kubernetes Service (AKS)](chaos-studio-aks-extension-overview.md) on a cluster, connect it to a Workspace, and run a pod fault. You check the prerequisites and permissions, install and verify the extension, create a Scenario that deletes pods, and run it.
 

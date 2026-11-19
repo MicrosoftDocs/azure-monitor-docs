@@ -4,7 +4,7 @@ description: Check Azure Chaos Studio regions for Workspaces deployment and cros
 author: prasha-microsoft 
 ms.reviewer: prashabora
 ms.topic: concept-article
-ms.date: 09/05/2026
+ms.date: 11/19/2026
 ms.custom: template-concept, references_regions
 ai-usage: ai-assisted
 ---
@@ -15,11 +15,9 @@ Azure Chaos Studio regional availability differs by resource model. Start with t
 
 ## Regional availability of Chaos Studio Workspaces
 
-[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
-
 A Workspace is a logical resource: it can discover and run Scenarios against resources in any Azure region, regardless of where the Workspace itself is deployed. You don't need to create the Workspace in the same region as your target resources.
 
-During public preview, you can create Chaos Studio Workspaces in the following regions:
+You can create Chaos Studio Workspaces in the following regions:
 
 - East US 2
 - West US 2

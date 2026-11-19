@@ -11,19 +11,17 @@ ai-usage: ai-assisted
 
 Use [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) to test how an Azure Kubernetes Service (AKS) workload responds when node virtual machines in a selected availability zone shut down. The Compute Zone Down Scenario targets node scale sets in the cluster's infrastructure resource group. It tests node infrastructure, not in-cluster pod faults, and doesn't reproduce every effect of an availability-zone outage.
 
-[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
-
 ## Limitations
 
-For node-level tests during the Workspaces public preview, review these limitations:
+For node-level tests, review these limitations:
 
 - There isn't yet a first-class AKS zone-down Scenario that understands the cluster as a whole. The [Compute Zone Down Scenario](chaos-studio-scenarios.md#compute-zone-down) targets virtual machines and virtual machine scale sets directly.
 - To test AKS node resilience, scope the Workspace to include the cluster's *infrastructure* resource group (named beginning with `MC_` by default), not just the resource group that contains the cluster resource. For background, see [Why a Workspace scoped to your AKS cluster finds no compute targets](#why-a-workspace-scoped-to-your-aks-cluster-finds-no-compute-targets).
 - This approach targets the node pools' virtual machine scale sets. It doesn't apply to node pools created by node autoprovisioning (NAP).
 
-For the full list of preview limitations, see [Limitations and known issues in Chaos Studio Workspaces](chaos-studio-workspaces-limitations.md).
+For the full list of limitations, see [Limitations and known issues in Chaos Studio Workspaces](chaos-studio-workspaces-limitations.md).
 
-This node-level approach doesn't require the AKS extension. For pod-level tests inside the cluster, see [Chaos Studio extension for AKS overview](chaos-studio-aks-extension-overview.md).
+This node-level approach doesn't require the AKS extension. For pod-level tests inside the cluster, see [Chaos Studio extension for AKS (preview) overview](chaos-studio-aks-extension-overview.md).
 
 ## Before you start: verify your cluster topology
 

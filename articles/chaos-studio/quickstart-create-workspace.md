@@ -11,8 +11,6 @@ ai-usage: ai-assisted
 
 This Azure Chaos Studio quickstart uses [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md), the current resource model, to run your first Scenario. Create a Workspace, set its discovery scope, configure permissions, and simulate an outage in a preproduction environment. By the end, you have a Scenario report showing which Actions ran and their outcomes.
 
-[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
-
 ## Prerequisites
 
 - An Azure subscription. [!INCLUDE [quickstarts-free-trial-note](~/reusable-content/ce-skilling/azure/includes/quickstarts-free-trial-note.md)]

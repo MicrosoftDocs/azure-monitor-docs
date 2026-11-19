@@ -3,15 +3,13 @@ title: Move from Experiments (classic) to Chaos Studio Workspaces
 description: Learn how to move Azure Chaos Studio Experiments (classic) to Chaos Studio Workspaces, map experiments to Scenarios, and clean up classic resources.
 author: nikhilkaul-msft
 ms.topic: how-to
-ms.date: 10/14/2026
+ms.date: 11/19/2026
 ai-usage: ai-assisted
 ---
 
 # Move from Experiments (classic) to Chaos Studio Workspaces
 
 Experiments (classic) is being replaced by [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md), the current resource model for Azure Chaos Studio. It's still Chaos Studio, with the same `Microsoft.Chaos` resource provider and a new way to define and run tests. Use this guide to check which model you use, map your experiments to Scenarios, test them in a Workspace, and remove classic resources you no longer need.
-
-[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
 ## Identify which resource model you use
 
@@ -67,12 +65,12 @@ Use this table to find a starting point for common classic tests, not a one-to-o
 
 ## Check for capabilities that aren't in Workspaces yet
 
-Some classic capabilities aren't available in the Workspaces preview. If an experiment needs one of them, keep it in Experiments (classic) for now. Also keep tests in classic if you require a generally available resource model. Evaluate your other tests in Workspaces in a preproduction environment.
+Some classic capabilities aren't available in Workspaces. If an experiment needs one of them, keep it in Experiments (classic) for now. Evaluate your other tests in Workspaces in a preproduction environment.
 
 | Required capability or configuration | Status in Workspaces |
 |---|---|
 | Faults outside the supported Scenario catalog | The full classic fault library isn't available. Check the [Scenario templates and their Actions](chaos-studio-scenarios.md#supported-scenario-templates) and the [Actions available for custom Scenarios](chaos-studio-scenarios.md#actions-available-for-custom-scenarios) before moving a test. |
-| AKS Chaos Mesh faults and other in-cluster pod faults | Pod delete, pod CPU hog, pod memory hog, pod network latency, and pod network loss are available through the [Chaos Studio extension for AKS](chaos-studio-aks-extension-overview.md). For other faults, use [AKS Chaos Mesh faults with Experiments (classic)](chaos-studio-tutorial-aks-portal.md). |
+| AKS Chaos Mesh faults and other in-cluster pod faults | Pod delete, pod CPU hog, pod memory hog, pod network latency, and pod network loss are available in public preview through the [Chaos Studio extension for AKS](chaos-studio-aks-extension-overview.md). For other faults, use [AKS Chaos Mesh faults with Experiments (classic)](chaos-studio-tutorial-aks-portal.md). |
 | Agent-based faults other than CPU and physical memory pressure, and agent faults on virtual machine scale sets, Arm-based VM sizes, or VMs without public outbound connectivity | Not available. Review [Workspaces agent-based Scenario requirements](chaos-studio-scenarios.md#agent-based-scenario-requirements). If you keep an agent-based test in classic, check the classic [agent OS support](chaos-agent-os-support.md) and [private networking requirements](chaos-studio-private-networking.md). |
 | Dynamic targeting | Not available. Use [dynamic targeting with Experiments (classic)](chaos-studio-tutorial-dynamic-target-portal.md). |
 | Scheduled runs | Not available. Use [scheduled experiments with Experiments (classic)](tutorial-schedule.md). |

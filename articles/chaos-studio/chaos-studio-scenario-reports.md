@@ -11,8 +11,6 @@ ai-usage: ai-assisted
 
 Azure Chaos Studio Scenario reports record what happened during each Scenario run in [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md): Action status, duration, affected resources, and overall run status. View or download a report to document your resilience test, then pair it with application monitoring to assess recovery. A successful run alone doesn't prove that your application recovered.
 
-[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
-
 Scenario reports serve three purposes:
 
 - **Operational evidence**: After a resilience test, you have a concrete artifact showing what was tested, against which resources, and what the outcome was. Pair the report with your own application health checks and monitoring data to assess whether the system recovered within your target recovery time objective (RTO).

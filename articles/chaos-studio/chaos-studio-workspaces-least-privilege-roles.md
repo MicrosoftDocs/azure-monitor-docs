@@ -20,8 +20,6 @@ This article is for customers who opt out of `fixResourcePermissions` and instea
 > * Identify the specific resources the managed identity needs a role on.
 > * Build a least-privilege custom role and assign it to the Workspace managed identity.
 
-[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
-
 ## Why use custom roles instead of fixResourcePermissions
 
 | Approach | What it does | Trade-off |

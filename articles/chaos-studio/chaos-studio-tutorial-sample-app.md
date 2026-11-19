@@ -13,8 +13,6 @@ In this Azure Chaos Studio Scenario tutorial, use [Chaos Studio Workspaces](chao
 
 This tutorial makes a good first demo and reuses the [AKS store demo](https://github.com/Azure-Samples/aks-store-demo) sample application from the AKS quickstarts, so there's no container registry or build step. Plan for about an hour: cluster creation plus two scenario runs of about 5 minutes each.
 
-[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
-
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]

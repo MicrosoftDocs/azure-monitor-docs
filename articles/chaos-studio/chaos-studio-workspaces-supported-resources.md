@@ -11,8 +11,6 @@ ai-usage: ai-assisted
 
 This article lists the Azure resource types that [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) can target. For each resource type, it shows the Actions you can run and the Scenario templates that use them. Use it to check which faults are available for your resources before you build a [custom Scenario](chaos-studio-scenarios.md#create-a-custom-scenario). For example, to test a Service Bus outage, find `Microsoft.ServiceBus/namespaces`, pick an Action, and copy its `actionId`.
 
-[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
-
 ## Find Actions for a resource type
 
 Find your resource type in the following table. The **Scenario templates** column lists the [supported Scenario templates](chaos-studio-scenarios.md#supported-scenario-templates) that use an Action on that resource type. You can use every Action in a custom Scenario.
@@ -41,7 +39,7 @@ Find your resource type in the following table. The **Scenario templates** colum
 | `Microsoft.Storage/storageAccounts` | [Planned failover](#storage) | None |
 | `Microsoft.Web/sites` | [Kill process](#application-and-integration), [Restart](#application-and-integration) | Cache Stampede, Cache Stampede with Process Crash |
 
-Faults inside an Azure Kubernetes Service (AKS) cluster, such as pod delete and network latency, aren't in this catalog. They run through the [Chaos Studio extension for AKS](chaos-studio-aks-extension-overview.md). To shut down AKS nodes, use the scale set Actions. For more information, see [AKS resilience testing with Chaos Studio Workspaces](chaos-studio-aks-guidance.md).
+Faults inside an Azure Kubernetes Service (AKS) cluster, such as pod delete and network latency, aren't in this catalog. They run through the [Chaos Studio extension for AKS (preview)](chaos-studio-aks-extension-overview.md). To shut down AKS nodes, use the scale set Actions. For more information, see [AKS resilience testing with Chaos Studio Workspaces](chaos-studio-aks-guidance.md).
 
 ## Use an Action in a custom Scenario
 

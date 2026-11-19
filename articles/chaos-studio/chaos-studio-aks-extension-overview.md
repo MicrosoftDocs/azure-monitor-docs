@@ -1,15 +1,17 @@
 ---
-title: Chaos Studio extension for AKS overview
+title: Chaos Studio extension for AKS (preview) overview
 description: Learn what the Chaos Studio extension for AKS does, which pod faults it runs, how it connects a cluster to a Workspace, and its requirements and known issues.
 author: nikhilkaul-msft
 ms.author: nikhilkaul
 ms.service: azure-chaos-studio
 ms.topic: concept-article
-ms.date: 11/16/2026
+ms.date: 11/19/2026
 ai-usage: ai-assisted
 ---
 
-# Chaos Studio extension for AKS overview
+# Chaos Studio extension for AKS (preview) overview
+
+[!INCLUDE [chaos-studio-aks-extension-preview](includes/chaos-studio-aks-extension-preview.md)]
 
 The Azure Chaos Studio extension for Azure Kubernetes Service (AKS) injects faults into the pods of your workloads. Use it to check whether your application keeps serving users when pods fail, run out of CPU or memory, or lose network quality. For example, you can delete the pods of a checkout service under test traffic and check that requests still succeed and that every acknowledged order is stored.
 

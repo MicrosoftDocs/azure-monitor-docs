@@ -3,7 +3,7 @@ title: Scenarios and outage templates for Chaos Studio Workspaces
 description: Explore Azure Chaos Studio Scenarios for zone down, DNS outages, and database failovers. Review Workspaces templates, Actions, and resource requirements.
 author: nikhilkaul-msft
 ms.topic: reference
-ms.date: 09/29/2026
+ms.date: 11/19/2026
 ai-usage: ai-assisted
 ---
 
@@ -13,11 +13,9 @@ Azure Chaos Studio Scenarios are resilience tests in [Chaos Studio Workspaces](c
 
 This page lists the Scenarios available in Chaos Studio Workspaces. Chaos Studio ships a set of supported Scenario templates that cover common outage patterns. You can run these templates as-is, or use the [Scenario designer](#create-a-custom-scenario) to customize your own.
 
-[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
-
 ## Supported Scenario templates
 
-The following Scenarios are available in the public preview. Each one is a supported template that you can run without any custom configuration beyond the parameters it requires.
+The following Scenarios are available. Each one is a supported template that you can run without any custom configuration beyond the parameters it requires.
 
 ### Zone and networking Scenarios
 
@@ -405,7 +403,7 @@ Chaos Studio matches Scenarios to resources based on the Workspace scope. A Scen
 
 If you deploy new resources within the Workspace scope, they're discovered automatically, and new Scenarios might appear in your library.
 
-The Scenario catalog also expands regularly during the public preview. When new Scenario templates ship, they appear in your library automatically if they apply to resource types in your scope; no action is needed on your part. To request a Scenario or fault, [file a feature request](https://github.com/microsoft/chaos-studio/issues).
+The Scenario catalog also expands regularly. When new Scenario templates ship, they appear in your library automatically if they apply to resource types in your scope; no action is needed on your part. To request a Scenario or fault, [file a feature request](https://github.com/microsoft/chaos-studio/issues).
 
 ## Resource exclusions
 

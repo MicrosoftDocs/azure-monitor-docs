@@ -11,8 +11,6 @@ ai-usage: ai-assisted
 
 Use [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) to run a PostgreSQL failover Scenario in Azure Chaos Studio. In this tutorial, configure a Workspace scope and managed identity, run **Compute Zone Down + PostgreSQL Failover** against test resources, and review the Scenario report. Assess database and application recovery with your own monitoring and health checks.
 
-[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
-
 ## Prerequisites
 
 - An Azure subscription. If you don't have one, [create a free account](https://azure.microsoft.com/free/).
