@@ -10,9 +10,9 @@ ms.custom: sfi-ropc-nochange, cbo-v1.6
 
 # Microsoft Entra authentication for Application Insights
 
-Application Insights now supports [Microsoft Entra authentication](/entra/identity/authentication/overview-authentication). By using Microsoft Entra ID, you can ensure that only authenticated telemetry is ingested in your Application Insights resources.
+Application Insights now supports [Microsoft Entra authentication](/entra/identity/authentication/overview-authentication). Microsoft Entra ID ensures that only authenticated telemetry is ingested in your Application Insights resources. 
 
-Using various authentication systems can be cumbersome and risky because it's difficult to manage credentials at scale. You can now choose to [opt out of local authentication](#disable-local-authentication) to ensure only telemetry exclusively authenticated by using [managed identities](/azure/active-directory/managed-identities-azure-resources/overview) and [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis) is ingested in your resource.
+Using various authentication systems can be cumbersome and risky because it's difficult to manage credentials at scale. [Opt out of local authentication](#disable-local-authentication) instead, so that your resource ingests only telemetry authenticated exclusively by using [managed identities](/azure/active-directory/managed-identities-azure-resources/overview) and [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis).
 
 This feature enhances the security and reliability of the telemetry used to make critical operational ([alerting](../alerts/alerts-overview.md#what-are-azure-monitor-alerts) and [autoscaling](../autoscale/autoscale-overview.md#overview-of-autoscale-in-azure-monitor)) and business decisions.
 
@@ -453,13 +453,13 @@ The following Software Development Kits (SDKs) and features don't support use wi
 
 ## Query Application Insights by using Microsoft Entra authentication
 
-You can submit a query request by using the Azure Monitor Application Insights endpoint `https://api.applicationinsights.io`. To access the endpoint, you must authenticate through Microsoft Entra ID.
+Submit a query request by using the Azure Monitor Application Insights endpoint `https://api.applicationinsights.io`. To access the endpoint, you must authenticate through Microsoft Entra ID.
 
 ### Set up authentication
 
 To access the API, register a client app with Microsoft Entra ID and request a token.
 
-1. [Register an app in Microsoft Entra ID](../logs/api/register-app-for-token.md).
+1. [Choose an authentication method and set up an identity](../logs/api/register-app-for-token.md).
 
 1. On the app's overview page, select **API permissions**.
 1. Select **Add a permission**.
@@ -484,7 +484,7 @@ After you register your app and grant it permissions to use the API, grant your 
 1. After you finish the Active Directory setup and permissions, request an authorization token.
 
 >[!NOTE]
-> For this example, use the Reader role. This role is one of many built-in roles and might include more permissions than you require. You can create more granular roles and permissions.
+> For this example, use the Reader role. This role is one of many built-in roles and might include more permissions than you require. Create more granular roles and permissions as needed.
 
 ### Request an authorization token
 
@@ -826,7 +826,7 @@ Content-Type: application/x-www-form-urlencoded
 grant_type=authorization_code&client_id=<ClientId>&code=<AuthorizationCode>&redirect_uri=<RedirectUri>&resource=https://api.applicationinsights.io&client_secret=<ClientSecret>
 ```
 
-All values are the same as before, with some additions. The authorization code is the same code you received in the previous request after a successful redirect. Combine the code with the key obtained from the Microsoft Entra app. If you didn't save the key, you can delete it and create a new one from the keys tab of the Microsoft Entra app menu. The response is a JSON string that contains the token with the following schema. Types are indicated for the token values.
+All values are the same as before, with some additions. The authorization code is the same code you received in the previous request after a successful redirect. Combine the code with the key you get from the Microsoft Entra app. If you don't save the key, delete it and create a new one from the keys tab of the Microsoft Entra app menu. The response is a JSON string that contains the token with the following schema. Types are indicated for the token values.
 
 **Response example:**
 
@@ -844,7 +844,7 @@ All values are the same as before, with some additions. The authorization code i
 }
 ```
 
-The access token portion of this response is what you present to the Application Insights API in the `Authorization: Bearer` header. You can also use the refresh token in the future to get a new access\_token and refresh\_token when yours go stale.
+The access token portion of this response is what you present to the Application Insights API in the `Authorization: Bearer` header. Use the refresh token in the future to get a new access\_token and refresh\_token when yours go stale. For this request, the format and endpoint are:
 
 The following REST example uses the Microsoft Entra [authorization code flow](../logs/api/access-api.md#authorization-code-flow) to refresh a token.
 
@@ -891,9 +891,9 @@ This access\_token acts as the `Authorization: Bearer` header value when you sen
 
 ## Disable local authentication
 
-After you enable Microsoft Entra authentication, you can disable local authentication. When you disable local authentication, you can ingest telemetry authenticated exclusively by Microsoft Entra ID. This configuration affects data access, such as through API keys.
+After you enable Microsoft Entra authentication, disable local authentication. Disabling local authentication restricts ingestion to telemetry authenticated exclusively by Microsoft Entra ID. This configuration affects data access, such as through API keys.
 
-You can disable local authentication by using the Azure portal, Azure Policy, or programmatically.
+Disable local authentication by using the Azure portal, Azure Policy, or programmatically.
 
 ### Azure portal
 
@@ -1106,7 +1106,7 @@ When developing a custom client to obtain an access token from Microsoft Entra I
 | Microsoft Azure operated by 21Vianet cloud | `https://monitor.azure.cn`  |
 | Azure US Government cloud                  | `https://monitor.azure.us`  |
 
-If you're using sovereign clouds, you can find the audience information in the connection string as well. The connection string follows this structure:
+If you're using sovereign clouds, find the audience information in the connection string. The connection string uses this structure:
 
 *InstrumentationKey={profile.InstrumentationKey};IngestionEndpoint={ingestionEndpoint};LiveEndpoint={liveDiagnosticsEndpoint};AADAudience={aadAudience}*
 
