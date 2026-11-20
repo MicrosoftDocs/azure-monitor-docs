@@ -12,8 +12,8 @@ There are some limits on the number of metrics and events per application, that 
 | Data retention logs | [30 to 730 days](../../logs/data-retention-configure.md) | 730 days | This resource is for [Logs](../../logs/log-query-overview.md).|
 | Data retention metrics | 90 days | 90 days | This resource is for [Metrics Explorer](../../essentials/metrics-charts.md).|
 | [Availability multistep test](/previous-versions/azure/azure-monitor/app/availability-multistep) detailed results retention | 90 days | 90 days | This resource provides detailed results of each step.|
-| Maximum telemetry item size | 64 KB | 64 KB | |
-| Maximum telemetry items per batch | 64,000 | 64,000 | |
+| Maximum telemetry item size | 1.25 MB | 1.25 MB | |
+| Maximum telemetry items per batch | 65,536 | 65,536 | |
 | Property and metric name length | 150 | 150 | See [type schemas](../data-model.md).|
 | Property value string length | 8,192 | 8,192 | See [type schemas](../data-model.md).|
 | Generative AI content attribute value size | 256 KB | 256 KB | The limit applies separately to the value of each `gen_ai` attribute listed in [Generative AI telemetry](../data-model-complete.md#generative-ai-telemetry). |
