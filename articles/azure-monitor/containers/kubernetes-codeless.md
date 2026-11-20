@@ -63,19 +63,17 @@ az aks update --resource-group={resource_group} --name={cluster_name} --enable-a
 
 #### [Bicep/ARM](#tab/bicep-arm)
 
-##### Download the template and parameter file
+Download the matching template and parameter file:
 
 - **Bicep:** [Template](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/bicep/aks-app-monitoring-profile.bicep) and [parameter file](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/bicep/aks-app-monitoring-profile.parameters.json).
 - **ARM:** [Template](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/arm/aks-app-monitoring-profile.json) and [parameter file](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/arm/aks-app-monitoring-profile.parameters.json).
 
-##### Configure the parameters
+Configure these parameters:
 
 | Parameter | Description |
 | --- | --- |
 | `clusterName` | Name of the existing AKS cluster. |
 | `clusterLocation` | Azure region of the AKS cluster. |
-
-##### Deploy the template
 
 Edit the matching parameter file. Keep the application-monitoring profile values as provided. Deploy the template and parameter file to the resource group that contains the AKS cluster by using any valid Resource Manager deployment method. For examples, see [Deploy the sample templates](../fundamentals/resource-manager-samples.md#deploy-the-sample-templates).
 
@@ -299,12 +297,10 @@ az aks update --resource-group={resource_group} --name={cluster_name} --disable-
 
 #### [Bicep/ARM](#tab/bicep-arm-remove)
 
-##### Download the template and parameter file
+Download the matching template and parameter file:
 
 - **Bicep:** [Template](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/bicep/aks-app-monitoring-profile.bicep) and [parameter file](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/bicep/aks-app-monitoring-profile.parameters.json).
 - **ARM:** [Template](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/arm/aks-app-monitoring-profile.json) and [parameter file](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/application-monitoring/arm/aks-app-monitoring-profile.parameters.json).
-
-##### Deploy the template
 
 Edit the matching parameter file. Set `autoInstrumentationEnabled=false` and keep the other application-monitoring profile values as provided. Deploy the template and parameter file to the resource group that contains the AKS cluster by using any valid Resource Manager deployment method. For examples, see [Deploy the sample templates](../fundamentals/resource-manager-samples.md#deploy-the-sample-templates).
 
@@ -366,9 +362,9 @@ az aks create --resource-group={resource_group} --name={cluster_name} --enable-a
 
 #### [Bicep/ARM](#tab/bicep-arm-create)
 
-Use API version `2026-06-01` or later, and add `azureMonitorProfile` to the `properties` block of the managed cluster resource in your complete cluster template.
+Use API version `2026-06-01` or later, and add the matching `azureMonitorProfile` snippet to the `properties` block of the managed cluster resource in your complete cluster template.
 
-##### Bicep
+**Bicep:**
 
 ```bicep
 azureMonitorProfile: {
@@ -380,7 +376,7 @@ azureMonitorProfile: {
 }
 ```
 
-##### ARM
+**ARM:**
 
 ```json
 "azureMonitorProfile": {
