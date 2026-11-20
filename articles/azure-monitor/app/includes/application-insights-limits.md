@@ -16,6 +16,7 @@ There are some limits on the number of metrics and events per application, that 
 | Maximum telemetry items per batch | 64,000 | 64,000 | |
 | Property and metric name length | 150 | 150 | See [type schemas](../data-model.md).|
 | Property value string length | 8,192 | 8,192 | See [type schemas](../data-model.md).|
+| Generative AI content attribute value size | 256 KB | 256 KB | The limit applies separately to the value of each `gen_ai` attribute listed in [Generative AI telemetry](../data-model-complete.md#generative-ai-telemetry). |
 | Trace and exception message length | 32,768 | 32,768 | See [type schemas](../data-model.md).|
 | [Availability tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) count per Application Insights resource | 100 | 100 | |
 | Availability tests count per resource group | 800 | 800 | See [Azure Resource Manager](/azure/azure-resource-manager/management/resources-without-resource-group-limit) |
