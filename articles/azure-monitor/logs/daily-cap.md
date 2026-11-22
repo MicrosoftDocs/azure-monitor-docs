@@ -73,39 +73,39 @@ Until September 18, 2023, if a workspace enabled the [Microsoft Defenders for Se
 
 ## Set the daily cap
 ### Log Analytics workspace
-To set or change the daily cap for a Log Analytics workspace in the Azure portal:  
+To set or change the daily cap for a Log Analytics workspace in the Azure portal:
 
-1. From the **Log Analytics workspaces** menu, select your workspace, and then **Usage and estimated costs**.
-2. Select **Daily Cap** at the top of the page. 
-3. Select **ON** and then set the data volume limit in GB/day.
+1. From the **Log Analytics workspaces** menu, select your workspace.
+1. Under **Settings**, select **Usage and estimated costs**.
+1. Select **Daily cap** at the top of the page.
+1. Select **ON**, and then set the data volume limit in GB/day.
+1. Select **OK**.
 
-:::image type="content" source="media/manage-cost-storage/set-daily-volume-cap-01.png" lightbox="media/manage-cost-storage/set-daily-volume-cap-01.png" alt-text="Log Analytics configure data limit":::
+:::image type="content" source="media/daily-cap/log-analytics-daily-cap.png" alt-text="Screenshot that shows the Daily cap pane for a Log Analytics workspace with the daily cap turned on and set to 10 GB/day.":::
 
 > [!NOTE]
-> The reset hour for the workspace is displayed but cannot be configured.  
+> The reset hour for the workspace is displayed but can't be configured.
 
-To configure the daily cap with Azure Resource Manager, set the `dailyQuotaGb` parameter under `WorkspaceCapping` as described at [Workspaces - Create Or Update](/rest/api/loganalytics/workspaces/createorupdate#workspacecapping). 
+To configure the daily cap with Azure Resource Manager, set the `dailyQuotaGb` parameter under `WorkspaceCapping` as described at [Workspaces - Create Or Update](/rest/api/loganalytics/workspaces/createorupdate#workspacecapping).
 
+### Application Insights resource
+To set or change the daily cap for an Application Insights resource in the Azure portal:
 
-### Classic Applications Insights resource
-To set or change the daily cap for a classic Application Insights resource in the Azure portal:
+1. From the **Monitor** menu, under **Insights**, select **Applications**, and then select your application.
+1. Under **Configure**, select **Usage and estimated costs**.
+1. Select **Daily cap** at the top of the page.
+1. Select **On**, and then set the data volume limit in GB/day.
+1. To send an email to the subscription administrators when the daily cap is reached, select that option.
+1. Select **OK**.
 
-1. From the **Monitor** menu, select **Applications**, your application, and then **Usage and estimated costs**.
-2. Select **Data Cap** at the top of the page. 
-3. Set the data volume limit in GB/day.
-4. If you want an email sent to the subscription administrator when the daily limit is reached, then select that option.
-3. Set the daily cap warning level in percentage of the data volume limit.
-4. If you want an email sent to the subscription administrator when the daily cap warning level is reached, then select that option.
+:::image type="content" source="media/daily-cap/application-insights-daily-cap.png" alt-text="Screenshot that shows the Daily volume cap pane for an Application Insights resource with the daily cap turned on and set to 10 GB/day.":::
 
-:::image type="content" source="../app/media/pricing/pricing-003.png" lightbox="../app/media/pricing/pricing-003.png" alt-text="Application Insights configure data limit":::
-
-To configure the daily cap with Azure Resource Manager, set the `dailyQuota`, `dailyQuotaResetTime` and `warningThreshold` parameters as described at [Workspaces - Create Or Update](../app/powershell.md#set-the-daily-cap).
-
+To configure the daily cap with Azure PowerShell, see [Set the daily cap](../app/create-workspace-resource.md#set-the-daily-cap).
 
 ## Alert when daily cap is reached
-When the daily cap is reached for a Log Analytics workspace, a banner is displayed in the Azure portal, and an event is written to the **Operations** table in the workspace. You should create an alert rule to proactively notify you when this occurs. 
+When the daily cap is reached for a Log Analytics workspace, a banner is displayed in the Azure portal, and an event is written to the **Operation** table in the workspace. You should create an alert rule to proactively notify you when this occurs.
 
-To receive an alert when the daily cap is reached, create a [log search alert rule](../alerts/alerts-types.md#log-alerts) with the following details.
+To receive an alert when the daily cap is reached, create a [log search alert rule](../alerts/alerts-create-log-alert-rule.md) with the following details.
 
 | Setting | Value |
 |:---|:---|
@@ -114,35 +114,31 @@ To receive an alert when the daily cap is reached, create a [log search alert ru
 | **Condition** | |
 | Signal type | Log |
 | Signal name | Custom log search |
+| Query type | Aggregated logs |
 | Query | `_LogOperation | where Category =~ "Ingestion" | where Detail contains "OverQuota"` |
 | Measurement | Measure: *Table rows*<br>Aggregation type: Count<br>Aggregation granularity: 5 minutes |
-| Alert Logic | Operator: Greater than<br>Threshold value: 0<br>Frequency of evaluation: 5 minutes |
+| Alert logic | Operator: Greater than<br>Threshold value: 0<br>Frequency of evaluation: 5 minutes |
 | Actions | Select or add an [action group](../alerts/action-groups.md) to notify you when the threshold is exceeded. |
 | **Details** | |
-| Severity| Warning |
+| Severity | Warning |
 | Alert rule name | Daily data limit reached |
 
-
-### Classic Application Insights resource
-When the daily cap is reached for a classic Application Insights resource, an event is created in the Azure Activity log with the following signal names. You can also optionally have an email sent to the subscription administrator both when the cap is reached and when a specified percentage of the daily cap has been reached.
+### Application Insights resource
+When the daily cap is reached for an Application Insights resource, an event is created in the Azure Activity log with the following signal names. You can also optionally have an email sent to the subscription administrators when the daily cap is reached.
 
 * Application Insights component daily cap warning threshold reached
 * Application Insights component daily cap reached
 
-To create an alert when the daily cap is reached, create an [Activity log alert rule](../alerts/alerts-activity-log.md#azure-portal) with the following details.
-
+To create an alert when the daily cap is reached, create an [activity log alert rule](../alerts/alerts-create-activity-log-alert-rule.md) with the following details.
 
 | Setting | Value |
 |:---|:---|
 | **Scope** | |
-| Target scope | Select your application. |
+| Target scope | Select your Application Insights resource. |
 | **Condition** | |
 | Signal type | Activity Log |
 | Signal name | Application Insights component daily cap reached<br>Or<br>Application Insights component daily cap warning threshold reached |
-| Severity| Warning |
 | Alert rule name | Daily data limit reached |
-
-
 
 ## View the effect of the daily cap
 The following query can be used to track the data volumes that are subject to the daily cap for a Log Analytics workspace between daily cap resets.  In this example, the workspace's reset hour is 14:00. Change `DailyCapResetHour` to match the reset hour of your workspace which you can see on the Daily Cap configuration page.
