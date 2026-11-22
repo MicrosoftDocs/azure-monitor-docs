@@ -982,9 +982,6 @@ Content-Type: application/json
 }
 ```
 
-> [!IMPORTANT]
-> If you omit `WarningThreshold`, the warning level is reset to 0. To keep your current settings, send a `GET` request to the same URL first and include the returned values in the request body.
-
 **Log Analytics:**
 
 The following REST example uses the [Workspaces](../fundamentals/azure-monitor-rest-api-index.md#op-logs-workspaces) REST API operation.
