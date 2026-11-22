@@ -81,10 +81,10 @@ To set or change the daily cap for a Log Analytics workspace in the Azure portal
 1. Select **ON**, and then set the data volume limit in GB/day.
 1. Select **OK**.
 
-:::image type="content" source="media/daily-cap/log-analytics-daily-cap.png" alt-text="Screenshot that shows the Daily cap pane for a Log Analytics workspace with the daily cap turned on and set to 10 GB/day.":::
+:::image type="content" source="media/daily-cap/log-analytics-daily-cap.png" alt-text="Daily cap pane for a Log Analytics workspace with the daily cap turned on and set to 10 GB/day.":::
 
 > [!NOTE]
-> The reset hour for the workspace is displayed but can't be configured.
+> The reset hour for the workspace is displayed but cannot be configured.
 
 To configure the daily cap with Azure Resource Manager, set the `dailyQuotaGb` parameter under `WorkspaceCapping` as described at [Workspaces - Create Or Update](/rest/api/loganalytics/workspaces/createorupdate#workspacecapping).
 
