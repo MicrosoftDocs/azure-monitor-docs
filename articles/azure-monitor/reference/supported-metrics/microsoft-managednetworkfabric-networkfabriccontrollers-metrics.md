@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.ManagedNetworkFabric/networkFabricControllers
 description: Reference for Microsoft.ManagedNetworkFabric/networkFabricControllers metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/31/2026
+ms.date: 11/23/2026
 ms.custom: Microsoft.ManagedNetworkFabric/networkFabricControllers, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -41,14 +41,22 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |**NFC Redis Restarts**<br><br>Container restart count for Redis. |`kube_pod_container_status_restarts_total_redis` | No | Count |Count, Average, Minimum, Maximum, Total (Sum) |`nfcClusterRole`, `container`|PT1M |No|
 |**NFC XDS Restarts**<br><br>Container restart count for XDS. |`kube_pod_container_status_restarts_total_xds` | No | Count |Count, Average, Minimum, Maximum, Total (Sum) |`nfcClusterRole`, `container`|PT1M |No|
 |**NFC ZooKeeper Restarts**<br><br>Container restart count for ZooKeeper. |`kube_pod_container_status_restarts_total_zk` | No | Count |Count, Average, Minimum, Maximum, Total (Sum) |`nfcClusterRole`, `container`|PT1M |No|
-|**NFC Envoy Availability**<br><br>Composite health state for the Envoy deployments. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_service_replica_state_envoy` | No | Count |Average, Minimum, Maximum |`nfcClusterRole`, `deployment`|PT1M |No|
-|**NFC Geneva Monitoring Infra Availability**<br><br>Composite health state for the Geneva Monitoring Infra deployment. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_service_replica_state_geneva_monitoringinfra` | No | Count |Average, Minimum, Maximum |`nfcClusterRole`, `deployment`|PT1M |No|
-|**NFC gNMI Gateway Availability**<br><br>Composite health state for the gNMI Gateway deployment. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_service_replica_state_gnmigw` | No | Count |Average, Minimum, Maximum |`nfcClusterRole`, `deployment`|PT1M |No|
-|**NFC Operator Availability**<br><br>Composite health state for the NFA Operator. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_service_replica_state_operator` | No | Count |Average, Minimum, Maximum |`nfcClusterRole`, `deployment`|PT1M |No|
-|**NFC XDS Availability**<br><br>Composite health state for the XDS deployment. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_service_replica_state_xds` | No | Count |Average, Minimum, Maximum |`nfcClusterRole`, `deployment`|PT1M |No|
-|**NFC NTP Availability**<br><br>Composite health state for NTP. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_services_statefulset_status_ntp` | No | Count |Average, Minimum, Maximum |`nfcClusterRole`, `statefulset`|PT1M |No|
-|**NFC Redis Availability**<br><br>Composite health state for Redis. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_services_statefulset_status_redis` | No | Count |Average, Minimum, Maximum |`nfcClusterRole`, `statefulset`|PT1M |No|
-|**NFC ZooKeeper Availability**<br><br>Composite health state for ZooKeeper. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_services_statefulset_status_zk` | No | Count |Average, Minimum, Maximum |`nfcClusterRole`, `statefulset`|PT1M |No|
+|**NFC Geneva Monitoring Infra Restart Stability**<br><br>Container restart stability state. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_container_restart_stability_state_geneva_monitoringinfra` | No | Count |Maximum |`nfcClusterRole`, `container`|PT1M |No|
+|**NFC gNMI Gateway Restart Stability**<br><br>Container restart stability state. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_container_restart_stability_state_gnmigw` | No | Count |Maximum |`nfcClusterRole`, `container`|PT1M |No|
+|**NFC Operator Restart Stability**<br><br>Container restart stability state. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_container_restart_stability_state_operator` | No | Count |Maximum |`nfcClusterRole`, `container`|PT1M |No|
+|**NFC Redis Restart Stability**<br><br>Container restart stability state. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_container_restart_stability_state_redis` | No | Count |Maximum |`nfcClusterRole`, `container`|PT1M |No|
+|**NFC ZooKeeper Restart Stability**<br><br>Container restart stability state. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_container_restart_stability_state_zk` | No | Count |Maximum |`nfcClusterRole`, `container`|PT1M |No|
+|**NFC Envoy Availability**<br><br>Composite health state for the Envoy deployments. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_service_replica_state_envoy` | No | Count |Maximum |`nfcClusterRole`, `deployment`|PT1M |No|
+|**NFC Geneva Monitoring Infra Availability**<br><br>Composite health state for the Geneva Monitoring Infra deployment. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_service_replica_state_geneva_monitoringinfra` | No | Count |Maximum |`nfcClusterRole`, `deployment`|PT1M |No|
+|**NFC gNMI Gateway Availability**<br><br>Composite health state for the gNMI Gateway deployment. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_service_replica_state_gnmigw` | No | Count |Maximum |`nfcClusterRole`, `deployment`|PT1M |No|
+|**NFC Operator Availability**<br><br>Composite health state for the NFA Operator. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_service_replica_state_operator` | No | Count |Maximum |`nfcClusterRole`, `deployment`|PT1M |No|
+|**NFC XDS Availability**<br><br>Composite health state for the XDS deployment. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_service_replica_state_xds` | No | Count |Maximum |`nfcClusterRole`, `deployment`|PT1M |No|
+|**NFC Envoy Restart Stability**<br><br>Container restart stability state. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_services_container_restart_stability_state_envoy` | No | Count |Maximum |`nfcClusterRole`, `container`|PT1M |No|
+|**NFC NTP Restart Stability**<br><br>Container restart stability state. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_services_container_restart_stability_state_ntp` | No | Count |Maximum |`nfcClusterRole`, `container`|PT1M |No|
+|**NFC xDS Restart Stability**<br><br>Container restart stability state. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_services_container_restart_stability_state_xds` | No | Count |Maximum |`nfcClusterRole`, `container`|PT1M |No|
+|**NFC NTP Availability**<br><br>Composite health state for NTP. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_services_statefulset_status_ntp` | No | Count |Maximum |`nfcClusterRole`, `statefulset`|PT1M |No|
+|**NFC Redis Availability**<br><br>Composite health state for Redis. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_services_statefulset_status_redis` | No | Count |Maximum |`nfcClusterRole`, `statefulset`|PT1M |No|
+|**NFC ZooKeeper Availability**<br><br>Composite health state for ZooKeeper. 1=Healthy, 2=Degraded, 3=Unhealthy. |`nfc_services_statefulset_status_zk` | No | Count |Maximum |`nfcClusterRole`, `statefulset`|PT1M |No|
 
 ## Next steps
 

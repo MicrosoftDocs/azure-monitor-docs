@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.App/sandboxgroups
 description: Reference for Microsoft.App/sandboxgroups metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 09/15/2026
+ms.date: 11/23/2026
 ms.custom: Microsoft.App/sandboxgroups, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -35,6 +35,8 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |---|---|---|---|---|---|---|---|
 |**Sandbox Assigned Cores**<br><br>CPU cores allocated to a running sandbox. |`Sandbox.AssignedCores` | No | Cores |Average |`SandboxId`|PT1M |Yes|
 |**Sandbox Assigned Memory (GiB)**<br><br>Memory allocated to a running sandbox, in GiB. |`Sandbox.AssignedMemoryGiB` | No | Count |Average |`SandboxId`|PT1M |Yes|
+|**Sandbox CPU Usage Percentage**<br><br>Percentage of CPU used by the sandbox |`Sandbox.CPUUsedPercent` | No | Percent |Average, Minimum, Maximum |`SandboxId`|PT1M |Yes|
+|**Sandbox Memory Usage Percentage**<br><br>Percentage of memory used by the sandbox |`Sandbox.MemoryUsedPercent` | No | Percent |Average, Minimum, Maximum |`SandboxId`|PT1M |Yes|
 |**Running Cores**<br><br>Running Cores by sandbox group |`SandboxGroup.RunningCores` | No | Cores |Average, Total (Sum), Minimum, Maximum |\<none\>|PT1M |Yes|
 |**Running Memory (GiB)**<br><br>Container Apps Sandbox working set memory used in GiB. |`SandboxGroup.RunningMemoryGiB` | No | Count |Average, Total (Sum), Minimum, Maximum |\<none\>|PT1M |Yes|
 
