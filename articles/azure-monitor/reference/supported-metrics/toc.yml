@@ -238,6 +238,8 @@
   href: microsoft-managednetworkfabric-internetgateways-metrics.md
 - name: Microsoft.ManagedNetworkFabric/l3IsolationDomains
   href: microsoft-managednetworkfabric-l3isolationdomains-metrics.md
+- name: Microsoft.ManagedNetworkFabric/networkBootstrapDevices
+  href: microsoft-managednetworkfabric-networkbootstrapdevices-metrics.md
 - name: Microsoft.ManagedNetworkFabric/networkDevices
   href: microsoft-managednetworkfabric-networkdevices-metrics.md
 - name: Microsoft.ManagedNetworkFabric/networkFabricControllers

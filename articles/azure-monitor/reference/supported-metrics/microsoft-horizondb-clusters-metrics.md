@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.HorizonDB/clusters
 description: Reference for Microsoft.HorizonDB/clusters metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 11/03/2026
+ms.date: 11/23/2026
 ms.custom: Microsoft.HorizonDB/clusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -109,7 +109,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.HorizonD
 |**Commit Latency**<br><br>Maximum time taken by the engine to complete commit operations (microseconds) |`CommitLatency` | No | Unspecified |Maximum |\<none\>|PT1M |No|
 |**Page Read Iops**<br><br>Number of page read I/O operations from storage |`PageReadIops` | No | CountPerSecond |Average, Maximum, Minimum |`Pool`, `Node`, `Role`|PT1M |No|
 |**Page Read Throughput**<br><br>Amount of data in pages read from storage |`PageReadThroughput` | No | BytesPerSecond |Average, Maximum, Minimum |`Pool`, `Node`, `Role`|PT1M |No|
-|**SSD Cache Hit Ratio**<br><br>Percentage of reads served by the local SSD cache |`SsdCacheHitRatio` | No | Percent |Average, Maximum, Minimum |`Pool`, `Node`, `Role`|PT1M |No|
+|**SSD Cache Hit Ratio**<br><br>SSD cache hit percentage based on cumulative counters since PostgreSQL startup |`SsdCacheHitRatio` | No | Percent |Average, Maximum, Minimum |`Pool`, `Node`, `Role`|PT1M |No|
 |**SSD Cache Hits**<br><br>Number of reads served by the local SSD cache |`SsdCacheHits` | No | Count |Average, Maximum, Minimum, Total (Sum) |`Pool`, `Node`, `Role`|PT1M |No|
 |**SSD Cache Misses**<br><br>Number of reads that missed the SSD cache and were served from storage |`SsdCacheMisses` | No | Count |Average, Maximum, Minimum, Total (Sum) |`Pool`, `Node`, `Role`|PT1M |No|
 |**SSD Cache Writes**<br><br>Number of writes performed into the SSD cache |`SsdCacheWrites` | No | Count |Average, Maximum, Minimum, Total (Sum) |`Pool`, `Node`, `Role`|PT1M |No|
