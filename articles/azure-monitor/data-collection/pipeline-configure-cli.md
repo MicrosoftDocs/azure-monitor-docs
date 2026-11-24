@@ -1,19 +1,19 @@
 ---
-title: Configure Azure Monitor pipeline with CLI or ARM templates
-description: Learn how to configure Azure Monitor pipeline with CLI or ARM templates for automation and advanced scenarios.
+title: Configure Azure Monitor pipeline with DCRs
+description: Configure a new Azure Monitor pipeline deployment on Arc-enabled Kubernetes by using data collection rules, Azure CLI, and ARM templates.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/18/2026
+ms.date: 11/23/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Configure Azure Monitor pipeline with CLI or ARM templates
+# Configure Azure Monitor pipeline with DCRs
 
-Use this article to deploy the DCR-based public preview on Arc-enabled Kubernetes after you complete the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md).
+Use this article for all new Azure Monitor pipeline deployments on Arc-enabled Kubernetes. This DCR-based configuration is in preview and uses Azure CLI and ARM templates. Complete the shared setup in [Plan and deploy Azure Monitor pipeline](./pipeline-configure.md) before you start.
 
 ## When to use this method
 
-Use CLI or ARM templates for this preview. The [current Azure portal experience](./pipeline-configure-portal.md) uses PipelineGroup-based configuration and doesn't configure the DCR-based preview.
+Use CLI or ARM templates to deploy and manage the DCR-based preview. The Azure portal creates a legacy PipelineGroup deployment and shouldn't be used for new deployments.
 
 | Need | Why use CLI or ARM templates |
 |:-----|:-----------------------------|
@@ -38,7 +38,7 @@ Install the extension to run a pipeline instance. Store its instance specific se
 
 Use the examples in this article to collect Syslog over UDP or TLS, [collect CEF into Microsoft Sentinel](#collect-cef-into-microsoft-sentinel), or [collect OpenTelemetry logs, metrics, and traces](#collect-otel-logs-metrics-and-traces).
 
-For the current list, see [Regions supported using DCR-based configuration](./pipeline-configure.md#supported-regions).
+For the current list, see [Regions supported using DCR-based configuration](./pipeline-support.md#supported-regions-for-dcr-based-kubernetes-deployments).
 
 ## Understand the configuration model
 
@@ -93,7 +93,7 @@ For example, create two DCRs named `basic-syslog-pipeline-settings` and `basic-s
 Use the same endpoint name in three places:
 
 * The settings DCR defines `pipelineSettings.endpoints[].name` as `syslog514`.
-* The dataflow DCR defines a `references.pipelineSettingsEndpointRouting` entry with that name and the settings DCR's full ARM resource ID in `pipelineSettingsResourceId`.
+* The dataflow DCR defines a `references.pipelineSettingsEndpointRouting` entry with that name and the settings DCR's full Azure Resource Manager resource ID in `pipelineSettingsResourceId`.
 * The Syslog data source selects that reference with `endpointRouting: ["syslog514"]` and sets `mode` to `pipeline`.
 
 The endpoint reference connects collection logic to a listener. Associate **both** DCRs with the same extension instance to apply the listener and collection configuration.
@@ -103,9 +103,9 @@ Keep the identifiers distinct:
 | Identifier | Where it's used |
 |:---|:---|
 | Endpoint name, such as `syslog514`. | Joins the data source's `endpointRouting`, the DCR's endpoint-routing reference, and the settings DCR's endpoint definition. It isn't a resource ID. |
-| Settings DCR ARM resource ID. | `references.pipelineSettingsEndpointRouting[].pipelineSettingsResourceId` identifies which settings DCR owns the endpoint. |
-| DCR ARM resource ID. | Each association's `dataCollectionRuleId` identifies the DCR to deliver. |
-| Extension ARM resource ID. | Each association's `scopeToResourceId` identifies the instance that receives that DCR. |
+| Settings DCR Azure Resource Manager resource ID. | `references.pipelineSettingsEndpointRouting[].pipelineSettingsResourceId` identifies which settings DCR owns the endpoint. |
+| DCR Azure Resource Manager resource ID. | Each association's `dataCollectionRuleId` identifies the DCR to deliver. |
+| Extension Azure Resource Manager resource ID. | Each association's `scopeToResourceId` identifies the instance that receives that DCR. |
 | Destination name, such as `law`. | Joins `dataFlows[].destinations` to an entry in the same DCR's `destinations.logAnalytics` array. That entry contains the workspace resource ID. |
 
 
@@ -127,10 +127,10 @@ Setting an endpoint's `transportProtocol` to `tcp` selects the transport protoco
 
 Each association has two distinct scopes:
 
-- The ARM `scope` is the Arc connected cluster. The DCRA is a child resource of that cluster.
-- `properties.scopeToResourceId` is the full ARM resource ID of the particular pipeline extension installed on that cluster.
+- The Azure Resource Manager `scope` is the Arc connected cluster. The DCRA is a child resource of that cluster.
+- `properties.scopeToResourceId` is the full Azure Resource Manager resource ID of the particular pipeline extension installed on that cluster.
 
-For each association, set `properties.dataCollectionRuleId` to the full ARM resource ID of the corresponding DCR, not its immutable ID. Use the same extension resource ID for both `scopeToResourceId` values.
+For each association, set `properties.dataCollectionRuleId` to the full Azure Resource Manager resource ID of the corresponding DCR, not its immutable ID. Use the same extension resource ID for both `scopeToResourceId` values.
 
 For the single-dataflow sample, create two associations: one for the settings DCR and one for the dataflow DCR. If you add another dataflow DCR, create an additional association targeting the same extension; don't create another settings DCR for that instance.
 
@@ -170,7 +170,7 @@ Save the following ARM template as `basic-syslog-arm-template.json`. Deploy it t
     "logAnalyticsWorkspaceResourceId": {
       "type": "string",
       "metadata": {
-        "description": "Full ARM resource ID of the existing Log Analytics workspace."
+        "description": "Full Azure Resource Manager resource ID of the existing Log Analytics workspace."
       }
     },
     "dcrLocation": {
@@ -196,7 +196,7 @@ Save the following ARM template as `basic-syslog-arm-template.json`. Deploy it t
     },
     "extensionVersion": {
       "type": "string",
-      "defaultValue": "0.1.7",
+      "defaultValue": "0.1.8",
       "metadata": {
         "description": "Pinned Arc extension version."
       }
@@ -419,7 +419,7 @@ Save the following ARM template as `basic-syslog-arm-template.json`. Deploy it t
 
 ### Configure extension settings
 
-Configure the installed Arc extension through the `Microsoft.KubernetesConfiguration/extensions` resource. Set the following values in the [ARM deployment parameters file](#set-deployment-parameters):
+Configure the installed Arc extension through the `Microsoft.KubernetesConfiguration/extensions` resource. Set the following values in the [ARM template deployment parameters file](#set-deployment-parameters):
 
 | Parameter | Extension resource field | Description |
 |:---|:---|:---|
@@ -434,7 +434,7 @@ The extension uses a system-assigned managed identity. The template automaticall
 
 Automatic minor-version upgrades are disabled with `properties.autoUpgradeMinorVersion: false`. To change the installed version, update `extensionVersion`, review the deployment changes, and redeploy.
 
-The examples target version `0.1.7` on the `preview` release train. Confirm that this version is available in your region before deploying. For Azure CLI commands that accept a release train, specify `--release-train preview`; don't rely on the default train.
+The examples target version `0.1.8` on the `preview` release train. Confirm that this version is available in your region before deploying. For Azure CLI commands that accept a release train, specify `--release-train preview`; don't rely on the default train.
 
 Extension deployment settings configure the installed extension. Store instance-specific runtime settings, including listening endpoints and TLS configuration, in the `PipelineSettings` DCR, and collection and routing settings in the dataflow DCR. The template automatically creates the DCR associations and ingestion role assignment as part of the same deployment; installing the extension alone doesn't create them.
 
@@ -463,7 +463,7 @@ Save the following as `basic-syslog-arm-parameters.json` and replace the placeho
       "value": "microsoft.monitor.pipeline"
     },
     "extensionVersion": {
-      "value": "0.1.7"
+      "value": "0.1.8"
     },
     "extensionReleaseTrain": {
       "value": "preview"
@@ -562,63 +562,7 @@ Review the deployment changes and redeploy the template. For a direct collector 
 
 ## Configure persistent storage
 
-Configure both the extension's volume selection and the Syslog data source's buffering limits. Selecting a volume alone doesn't enable buffering. These changes extend the complete Syslog ARM template and parameters file above; retain its DCRs, associations, and ingestion role assignment.
-
-Before deploying, prepare an existing, available **ReadWriteMany** filesystem PersistentVolume (PV) with durable storage accessible from every eligible collector node. Size it for all replicas, buffers, and filesystem overhead. A node-local `hostPath` isn't suitable for collectors on different hosts. Supply the **PV name**, not a PVC name, StorageClass, Azure disk resource ID, or file-share URL.
-
-The controller creates its own persistent volume claim (PVC), copies the PV's StorageClass, and binds the claim to the selected PV. Don't pre-create a competing claim. The ARM template doesn't create the backing storage or Kubernetes PV.
-
-1. Merge the following entry into the parameters file's `parameters.extensionConfigurationSettings.value` object. Preserve other required extension settings:
-
-   ```json
-   {
-     "controllerManager.manager.env.pipelinePersistentVolume": "<existing-read-write-many-pv-name>"
-   }
-   ```
-
-   The template passes this map to the extension's `properties.configurationSettings`. Keep PV selection out of the settings DCR and dataflow DCR. To configure replicas and node constraints, see [Pod placement](./pipeline-pod-placement.md#configure-collector-placement).
-
-1. Add the following parameter declarations to the ARM template's `parameters` object:
-
-   ```json
-   {
-     "maxStorageUsageMb": {
-       "type": "int",
-       "defaultValue": 1024,
-       "minValue": 1
-     },
-     "retentionPeriodMin": {
-       "type": "int",
-       "defaultValue": 1440,
-       "minValue": 1
-     }
-   }
-   ```
-
-1. Add the following `persistence` property directly to the existing `properties.dataSources.syslog[0]` object in the dataflow DCR. Retain its name, mode, streams, formats, and endpoint routing:
-
-   ```json
-   {
-     "persistence": {
-       "maxStorageUsageMb": "[parameters('maxStorageUsageMb')]",
-       "retentionPeriodMin": "[parameters('retentionPeriodMin')]"
-     }
-   }
-   ```
-
-   Don't nest this object under `configuration` in the ARM request. The defaults cap the buffer at 1024 MB with 1440-minute retention. The size limit doesn't provision storage; the buffer drops the oldest records when it reaches the cap.
-
-1. Run the [preview and deployment commands](#preview-and-deploy) with the updated template and parameters.
-1. Verify that the controller-created PVC is `Bound` to the selected PV:
-
-   ```bash
-   kubectl get pvc --namespace <extension-namespace> --selector app.kubernetes.io/instance=<extension-name> -o wide
-   kubectl get pv <existing-read-write-many-pv-name> -o yaml
-   ```
-
-1. Read the dataflow DCR back with API `2025-05-11` and confirm that `properties.dataSources.syslog[].persistence` retains the requested limits. Inspect the generated collector configuration for a durable buffer and its mount at `/var/azurepipelines/durable_buffer`. Check collector logs for storage and export errors, and verify Syslog ingestion.
-
-Persistence buffers records after receipt; it doesn't recover UDP packets lost before they reach the collector. Successful ingestion and a bound claim don't prove recovery after a restart. Test recovery separately before relying on it. Don't assume that the claim survives DCR removal or extension deletion. Drain buffered data before teardown, and use a PV reclaim policy of `Retain` when backing data must survive claim deletion.
+Configure durable buffering for Syslog, CEF, and OTel logs, metrics, and traces. See [Configure persistent storage for Azure Monitor pipeline](./pipeline-persistent-storage.md).
 
 ## Collect CEF into Microsoft Sentinel
 
@@ -690,6 +634,8 @@ Each dataflow DCR routes a given stream to only one Log Analytics workspace. Don
 | Traces | `otelTraces` with `Microsoft-OTel-Traces-Spans`, `Microsoft-OTel-Traces-Events`, and `Microsoft-OTel-Traces-Resources`. | The primary Log Analytics workspace, in the `OTelSpans`, `OTelEvents`, and `OTelResources` tables. |
 | Metrics | `otelMetrics` with an author-named stream that starts with `Custom-Metrics-`. | An Azure Monitor workspace (`Microsoft.Monitor/accounts`). |
 
+To improve delivery during destination connectivity interruptions or collector restarts, [configure persistent storage](./pipeline-persistent-storage.md) on the OTel logs, metrics, and traces data sources. To reduce OTel log volume before cloud ingestion, [filter OTel logs with KQL](./pipeline-transformations.md#filter-opentelemetry-logs).
+
 ### Understand OTel log field mapping
 
 The following `OTelLogs` columns populate independently:
@@ -700,7 +646,9 @@ The following `OTelLogs` columns populate independently:
 | `ResourceAttributes` | The normalized pipeline item's `resourceAttributes` field (`item.resourceAttributes`). |
 | `Attributes` | Attributes on the individual OTel log record. |
 
-You can populate `ServiceName` even when `ResourceAttributes` is null. Don't use a populated `ServiceName` value as evidence that the complete OTel resource-attribute bag was stored. For the complete destination schema, see the [`OTelLogs` table reference](../reference/tables/otellogs.md).
+Set `enrichWithResourceAttributes` on every `otelLogs` and `otelTraces` data source that should copy resource attributes onto records in `OTelLogs.ResourceAttributes` or `OTelSpans.ResourceAttributes`. The property accepts an array of resource-attribute names, such as `["service.name", "service.version", "deployment.environment.name"]`. Use `["*"]` to copy all resource attributes. The setting is explicit and isn't enabled by default.
+
+You can populate `ServiceName` even when `ResourceAttributes` is null. Don't use a populated `ServiceName` value as evidence that the complete OTel resource-attribute bag was stored. Trace resource attributes can also be stored separately in `OTelResources` and correlated through `OTelSpans.ResourceAttributesId`. For the complete destination schemas, see the [`OTelLogs`](../reference/tables/otellogs.md), [`OTelSpans`](../reference/tables/otelspans.md), and [`OTelResources`](../reference/tables/otelresources.md) table references.
 
 All data sources use `mode: pipeline` and select the same endpoint, `otlp-grpc`, through `endpointRouting`. Each dataflow DCR's `references.pipelineSettingsEndpointRouting` connects that name to the settings DCR. Its `dataFlows` entries then route the streams to destinations in that DCR.
 
@@ -710,8 +658,21 @@ Before deploying:
 
 - Install the `microsoft.monitor.pipeline` extension with a system-assigned managed identity and the [preview extension settings](#configure-extension-settings). The OTel ARM template configures an existing extension; it doesn't install one.
 - Provide two distinct Log Analytics workspaces and an Azure Monitor workspace. Create all three DCRs in the same region as the destination workspaces and, if supplied, the data collection endpoint (DCE).
-- Choose an extension instance for this configuration. Use one settings DCR per extension. Don't deploy this as an additional settings DCR for an instance already configured by the Syslog example. Use a separate extension instance or update its existing configuration deliberately.
-- Ensure that the deployment identity can create DCRs, associations, and role assignments. The template automatically creates **Monitoring Metrics Publisher** for the extension's identity on each dataflow DCR; no separate manual role assignments are required.
+- Choose an extension instance for this configuration. Use one settings DCR per extension. Don't deploy this configuration as an additional settings DCR for an instance already configured by the Syslog example. Use a separate extension instance or update its existing configuration deliberately.
+- Ensure that the deployment identity can create DCRs, associations, and role assignments. The template automatically creates **Monitoring Metrics Publisher** for the extension's identity on each dataflow DCR; no separate manual role assignments are required. The deployment identity needs `Microsoft.Authorization/roleAssignments/write`, such as **Owner**, **User Access Administrator**, or **Role Based Access Control Administrator**, in addition to resource-deployment permissions.
+
+Before deployment, print and compare the three destination locations:
+
+```azurecli
+az resource show --ids <primary-log-analytics-workspace-resource-id> \
+  --query "{name:name,location:location}" --output table
+az resource show --ids <secondary-log-analytics-workspace-resource-id> \
+  --query "{name:name,location:location}" --output table
+az resource show --ids <azure-monitor-workspace-resource-id> \
+  --query "{name:name,location:location}" --output table
+```
+
+Use the exact location returned by Azure CLI for all three DCRs. Don't infer equality from display names or abbreviations. For example, `westcentralus` and `westus2` are different regions. A mismatch fails deployment with an `InvalidWorkspace` error.
 
 To install a separate extension for this example, run the following command. Replace the placeholders and use the same extension name in the OTel deployment parameters:
 
@@ -725,11 +686,11 @@ az k8s-extension create --subscription <subscription-id> \
   --scope cluster \
   --release-namespace <extension-namespace> \
   --release-train preview \
-  --version 0.1.7 \
-  --auto-upgrade false
+  --version 0.1.8 \
+  --auto-upgrade-mode none
 ```
 
-The listener uses TCP port 4317 by default and the extension's default certificates for mTLS. Configure clients to trust the issuing CA and present a trusted client certificate. To learn about trust-bundle distribution and client-certificate issuance, see [Automated certificate management](./pipeline-tls-automated.md). For customer-managed certificates, see [Configure TLS or mTLS](./pipeline-tls-custom.md#configure-pipeline).
+The listener uses TCP port 4317 and requires mTLS by default. Configure clients to trust the issuing CA and present a trusted client certificate. Follow [Get the server CA certificate](./pipeline-tls-automated.md#step-2-get-server-ca-certificate-for-client-validation) and [Create a client certificate](./pipeline-tls-automated.md#step-3-create-client-certificate-for-mtls). A client that trusts the server but doesn't present a certificate is rejected during the TLS handshake, typically with `tls: certificate required`, and no record is ingested. For customer-managed certificates, see [Configure TLS or mTLS](./pipeline-tls-custom.md#configure-pipeline).
 
 ### Deploy the OTel ARM template
 
@@ -847,6 +808,9 @@ The listener uses TCP port 4317 by default and the extension's default certifica
           {
             "name": "otelLogs",
             "mode": "pipeline",
+            "enrichWithResourceAttributes": [
+              "*"
+            ],
             "streams": [
               "Microsoft-OTel-Logs"
             ],
@@ -859,6 +823,9 @@ The listener uses TCP port 4317 by default and the extension's default certifica
           {
             "name": "otelTraces",
             "mode": "pipeline",
+            "enrichWithResourceAttributes": [
+              "*"
+            ],
             "streams": "[variables('traceStreams')]",
             "endpointRouting": [
               "[variables('otlpEndpointName')]"
@@ -933,6 +900,9 @@ The listener uses TCP port 4317 by default and the extension's default certifica
           {
             "name": "secondaryOtelLogs",
             "mode": "pipeline",
+            "enrichWithResourceAttributes": [
+              "*"
+            ],
             "streams": [
               "Microsoft-OTel-Logs"
             ],
@@ -1159,22 +1129,78 @@ Expose the configured OTLP/gRPC port through the collector service or gateway. F
 
 ### Verify OTel routing
 
-Send test logs, metrics, and traces with identifiable attributes through the OTLP listener. Check each destination separately:
+Send test logs, metrics, and traces with a unique marker in their attributes through the OTLP listener. Include a span event if your application emits events. Check each destination separately:
 
 * Confirm that the test logs appear in `OTelLogs` in both Log Analytics workspaces.
 * Confirm that the test traces appear in `OTelSpans` and `OTelResources` in the primary workspace, and check `OTelEvents` if the test traces include events.
 * Confirm that test metrics appear in the Azure Monitor workspace.
 
-For example, run the following query in each Log Analytics workspace to inspect recent logs:
+Run the following query in each Log Analytics workspace to verify log fan-out and inspect log fields:
 
 ```kusto
+let marker = "<unique-test-marker>";
 OTelLogs
 | where TimeGenerated > ago(30m)
-| project TimeGenerated, ServiceName, ResourceAttributes, Attributes, Body
-| take 20
+| where Body contains_cs marker
+    or tostring(Attributes) contains_cs marker
+    or tostring(ResourceAttributes) contains_cs marker
+| project TimeGenerated, Body, ServiceName, Attributes, ResourceAttributes
+| order by TimeGenerated desc
 ```
 
-Use your test attributes to distinguish test telemetry from existing data. Extension provisioning success alone doesn't confirm delivery of all three signals or successful delivery to both log destinations.
+`ServiceName` can be populated while `OTelLogs.ResourceAttributes` is null. These fields are populated independently.
+
+Verify spans and their resource attributes in the primary Log Analytics workspace:
+
+```kusto
+let marker = "<unique-test-marker>";
+OTelSpans
+| where TimeGenerated > ago(30m)
+| where tostring(Attributes) contains_cs marker
+| project TimeGenerated, Name, TraceId, SpanId, ServiceName, Attributes, ResourceAttributesId
+| join kind=leftouter (
+    OTelResources
+    | where TimeGenerated > ago(30m)
+    | project ResourceAttributesId=Id, ResourceServiceName=ServiceName,
+        ResourceAttributes=Attributes
+) on ResourceAttributesId
+| project TimeGenerated, Name, TraceId, SpanId, ServiceName,
+    ResourceServiceName, ResourceAttributes
+| order by TimeGenerated desc
+```
+
+Trace resource attributes can be stored separately in `OTelResources`. Correlate `OTelSpans.ResourceAttributesId` with `OTelResources.Id` as shown in the query.
+
+If the test span includes an event, correlate it with its parent span by `TraceId` and `SpanId`:
+
+```kusto
+let marker = "<unique-test-marker>";
+let markedSpans =
+   OTelSpans
+   | where TimeGenerated > ago(30m)
+   | where tostring(Attributes) contains_cs marker
+   | project SpanName=Name, TraceId, SpanId, ServiceName;
+markedSpans
+| join kind=inner (
+   OTelEvents
+   | where TimeGenerated > ago(30m)
+   | project EventTime=TimeGenerated, EventName=Name, TraceId, SpanId,
+       EventAttributes=Attributes
+) on TraceId, SpanId
+| project EventTime, EventName, SpanName, TraceId, SpanId, ServiceName,
+   EventAttributes
+| order by EventTime desc
+```
+
+Logs, spans, and metrics can appear before span events. `OTelEvents` can arrive several minutes after its parent `OTelSpans` record. There is no cross-table arrival-order guarantee. If the span is present but the event isn't, wait several minutes and rerun the query before concluding that the event was lost.
+
+Use the [Prometheus query API](../metrics/prometheus-api-promql.md) or another PromQL client connected to the Azure Monitor workspace to query the metric by the name emitted by your client. If you attached the marker as a metric attribute, include its normalized label:
+
+```promql
+<metric_name>{test_marker="<unique-test-marker>"}
+```
+
+Extension provisioning success alone doesn't confirm delivery of every signal, successful delivery to both log destinations, or client mTLS authentication.
 
 ## Verify the deployment
 
@@ -1200,7 +1226,7 @@ For every result, require `extension` to equal:
 /subscriptions/<subscription-id>/resourceGroups/<cluster-resource-group>/providers/Microsoft.Kubernetes/connectedClusters/<cluster-name>/providers/Microsoft.KubernetesConfiguration/extensions/<extension-name>
 ```
 
-Confirm that each result's `dcr` is the intended DCR's ARM resource ID. The template automatically grants the extension principal **Monitoring Metrics Publisher** on each dataflow DCR. Verify that these deployment-created assignments are present rather than creating another assignment manually. Role-assignment propagation can take some time; the collector can be running while exports still receive authorization failures.
+Confirm that each result's `dcr` is the intended DCR's Azure Resource Manager resource ID. The template automatically grants the extension principal **Monitoring Metrics Publisher** on each dataflow DCR. Verify that these deployment-created assignments are present rather than creating another assignment manually. Role-assignment propagation can take some time; the collector can be running while exports still receive authorization failures.
 
 ### Check the pipeline and ingestion
 

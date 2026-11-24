@@ -3,7 +3,7 @@ title: What is Azure Monitor pipeline?
 description: Learn what Azure Monitor pipeline is, when to use it, and the recommended setup sequence for edge and multicloud data collection.
 ai-usage: ai-assisted
 ms.topic: overview
-ms.date: 11/18/2026
+ms.date: 11/23/2026
 ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 ---
 
@@ -16,7 +16,13 @@ Azure Monitor pipeline provides centralized governance and a single point of con
 
 The following diagram shows an example that sends Syslog and OTLP data to a Log Analytics workspace. OTel metrics use an Azure Monitor workspace as their destination.
 
-Azure Monitor pipeline runs on Arc-enabled Kubernetes. You can also deploy it on a Linux VM in Azure or an Arc-enabled Linux server (public preview) without Kubernetes. For deployment guidance, supported configurations, and preview limitations, see [Configure Azure Monitor pipeline on Linux VMs](./pipeline-configure-vm.md).
+Azure Monitor pipeline runs on Arc-enabled Kubernetes. You can also deploy it on a Linux VM in Azure or an Arc-enabled Linux server (preview) without Kubernetes. For deployment guidance, supported configurations, and preview limitations, see [Configure Azure Monitor pipeline on Linux VMs](./pipeline-configure-vm.md).
+
+Before you deploy, review:
+
+- [Support and availability](./pipeline-support.md) for deployment platforms, configuration methods, regions, and preview status.
+- [Sources](./pipeline-sources.md) for supported inputs and protocols.
+- [Destinations](./pipeline-destinations.md) for the Azure Monitor outputs available for each signal.
 
 :::image type="content" source="media/pipeline-overview/architecture.png" alt-text="Diagram showing typical Azure Monitor pipeline architecture with multiple locations and devices." lightbox="media/pipeline-overview/architecture.png" border="false":::
 
@@ -33,14 +39,7 @@ Use Azure Monitor pipeline when direct-to-cloud collection doesn't meet your sec
 
 ## Supported data sources
 
-Azure Monitor pipeline currently receives and processes the following data source types:
-
-| Data source | Details | Destination | Status |
-|:---|:---|:---|:---|
-| Syslog | Supports RFC 3164 and RFC 5424 over TCP and UDP. CEF is supported as Syslog data through the same receiver. | The `Syslog` or `CommonSecurityLog` table, or a custom table in a Log Analytics workspace. | Generally available |
-| OTel logs (OTLP) | Supports ingestion of OTel logs from clients to Azure Monitor. | The [`OTelLogs`](../reference/tables/otellogs.md) table or a custom table in a Log Analytics workspace. | Preview |
-| OTel metrics (OTLP) | Supports ingestion of OTel metrics from clients to Azure Monitor. | An [Azure Monitor workspace](../metrics/azure-monitor-workspace-overview.md). | Preview |
-| OTel traces (OTLP) | Supports ingestion of OTel traces from clients to Azure Monitor. | The [`OTelEvents`](../reference/tables/otelevents.md), [`OTelSpans`](../reference/tables/otelspans.md), and [`OTelResources`](../reference/tables/otelresources.md) tables in a Log Analytics workspace. | Preview |
+Azure Monitor pipeline receives Syslog, CEF, and OTLP data. For protocols, destinations, and the status of each signal, see [Sources supported by Azure Monitor pipeline](./pipeline-sources.md).
 
 ## Key capabilities
 
@@ -55,7 +54,7 @@ Azure Monitor pipeline includes a set of capabilities that help address common i
 
 ## How Azure Monitor pipeline works
 
-The Kubernetes-hosted pipeline is a containerized solution that runs on an [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your datacenter, edge location, or another cloud provider. It receives telemetry from clients over standard protocols such as Syslog and OpenTelemetry (OTLP), processes that telemetry, and sends it to Azure Monitor. The pipeline is configured through the Azure portal, ARM templates, Bicep, or Azure CLI.
+The Kubernetes-hosted pipeline is a containerized solution that runs on an [Azure Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your datacenter, edge location, or another cloud provider. It receives telemetry from clients over standard protocols such as Syslog and OpenTelemetry (OTLP), processes that telemetry, and sends it to Azure Monitor. Configure all new Kubernetes deployments with DCRs by using ARM templates or Azure CLI.
 
 > [!NOTE]
 > Azure provides Azure Monitor pipeline with management and integration to Azure Monitor, but you're responsible for operating and maintaining the Kubernetes environment where the pipeline runs. This shared responsibility model allows you to retain control over your local infrastructure.
@@ -75,9 +74,9 @@ A typical Kubernetes deployment is shown in the preceding image and includes the
 
 ## Pipeline configuration
 
-For DCR-based configuration on Arc-enabled Kubernetes (public preview), each pipeline instance runs through a `microsoft.monitor.pipeline` Arc extension. Configure the instance with one pipeline settings DCR and one or more dataflow DCRs. The settings DCR describes the instance's runtime settings; the dataflow DCRs describe what to collect and where to send it. Associations deliver that configuration to the extension.
+For DCR-based configuration on Arc-enabled Kubernetes (preview), each pipeline instance runs through a `microsoft.monitor.pipeline` Arc extension. Configure the instance with one pipeline settings DCR and one or more dataflow DCRs. The settings DCR describes the instance's runtime settings; the dataflow DCRs describe what to collect and where to send it. Associations deliver that configuration to the extension.
 
-This preview includes native OTel logs, metrics, and traces and is configured through [Azure CLI or ARM templates](./pipeline-configure-cli.md). The [current Azure portal experience](./pipeline-configure-portal.md) continues to use PipelineGroup-based configuration. For Linux VMs and Arc-enabled Linux servers, follow the separate [VM extension guidance](./pipeline-configure-vm.md).
+This preview includes native OTel logs, metrics, and traces and is configured through [Azure CLI or ARM templates](./pipeline-configure-cli.md). The Azure portal uses a legacy configuration model and should be used only to manage an existing PipelineGroup deployment. For Linux VMs and Arc-enabled Linux servers, follow the separate [VM extension guidance](./pipeline-configure-vm.md).
 
 | Component | Purpose |
 |:---|:---|
@@ -114,18 +113,13 @@ For guidance on selecting a collection architecture, see [Choose a topology for 
 
 ## Supported configurations
 
-Regional support differs between the DCR-based public preview and the PipelineGroup-based configuration. Use the region list for your configuration model:
-
-- For the `microsoft.monitor.pipeline` extension with DCR-based configuration, see [DCR-based supported regions](./pipeline-configure.md#supported-regions).
-- For the `microsoft.monitor.pipelinecontroller` extension with PipelineGroup-based configuration, see [PipelineGroup supported regions](./pipeline-configure-legacy.md#legacy-overview-supported-configurations).
-
-Arc-enabled Kubernetes deployments support VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11, SUSE Rancher K3s v1.33.3+k3s1, and AKS Arc v1.32.7. Regional availability also depends on the required Azure Arc and `cert-manager` capabilities.
-
-For Azure VM and Arc-enabled Linux server requirements and preview limitations, see [Configure Azure Monitor pipeline on Linux VMs](./pipeline-configure-vm.md).
+See [Azure Monitor pipeline support and availability](./pipeline-support.md) for supported deployment platforms, Kubernetes distributions, configuration methods, regions, and preview status.
 
 ## Related articles
 
 - Complete the cluster setup in [Configure Azure Monitor pipeline](./pipeline-configure.md).
+- Review supported inputs in [Azure Monitor pipeline sources](./pipeline-sources.md).
+- Review supported outputs in [Azure Monitor pipeline destinations](./pipeline-destinations.md).
 - Configure the VM hosting options in [Configure Azure Monitor pipeline on Linux VMs (preview)](./pipeline-configure-vm.md).
 - Review gateway guidance in [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
 - Review encryption options in [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).

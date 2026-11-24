@@ -47,7 +47,7 @@ kubectl label nodes <node-a> <node-b> workload-type=telemetry
 kubectl get nodes --selector workload-type=telemetry --label-columns workload-type,kubernetes.io/hostname
 ```
 
-In the [CLI ARM template](./pipeline-configure-cli.md#deploy-the-arm-template), the `extensionConfigurationSettings` parameter maps to the extension's `properties.configurationSettings`. Merge these entries into the parameters file's `parameters` object, preserving other required extension settings:
+In the [CLI and ARM template example](./pipeline-configure-cli.md#deploy-the-arm-template), the `extensionConfigurationSettings` parameter maps to the extension's `properties.configurationSettings`. Merge these entries into the parameters file's `parameters` object, preserving other required extension settings:
 
 ```json
 {
@@ -73,7 +73,7 @@ The `capability` value is a Kubernetes node-label key. All constraints must matc
 
 Set `pipelineReplicas` separately; placement doesn't increase the replica count. The example requires two eligible hosts because its two collectors can't share a host. Without enough eligible nodes that meet the constraints and have sufficient CPU and memory, a collector remains `Pending`. Placement doesn't add nodes or tolerations, or change volume access modes or topology.
 
-When updating an existing configuration, review all indexed constraints and values. Updating index `0` doesn't remove additional entries. Manage an Arc extension through Arc or its ARM template, not through direct Helm upgrades or StatefulSet patches. For persistent buffering across hosts, also satisfy the [persistent storage prerequisites](./pipeline-configure-cli.md#configure-persistent-storage).
+When updating an existing configuration, review all indexed constraints and values. Updating index `0` doesn't remove additional entries. Manage an Arc extension through Arc or its ARM template, not through direct Helm upgrades or StatefulSet patches. For persistent buffering across hosts, also satisfy the [persistent storage prerequisites](./pipeline-persistent-storage.md#prerequisites).
 
 ## Inspect current placement
 

@@ -1,49 +1,28 @@
 ---
-title: Configure Azure Monitor pipeline
-description: Configure Azure Monitor pipeline with settings and dataflow DCRs, associate them with the pipeline extension, and verify data collection.
+title: Plan and deploy Azure Monitor pipeline
+description: Choose a supported Azure Monitor pipeline deployment platform and configure new deployments with data collection rules.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/18/2026
+ms.date: 11/23/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Configure Azure Monitor pipeline
+# Plan and deploy Azure Monitor pipeline
 
-This article describes DCR-based configuration for [Azure Monitor pipeline](./pipeline-overview.md) on Arc-enabled Kubernetes (preview). The `microsoft.monitor.pipeline` extension runs the pipeline instance. Use one settings data collection rule (DCR) for its listening endpoints and TLS configuration, and one or more dataflow DCRs for collection and destination routing. Associate these DCRs with the extension to apply the configuration.
+Use data collection rule (DCR)-based configuration for all new [Azure Monitor pipeline](./pipeline-overview.md) deployments. On Arc-enabled Kubernetes, the `microsoft.monitor.pipeline` extension runs the pipeline instance. Use one settings DCR for its listening endpoints and TLS configuration, and one or more dataflow DCRs for collection and destination routing. Associate these DCRs with the extension to apply the configuration.
 
-During public preview, use Azure CLI or ARM templates to deploy and manage this configuration, including native OpenTelemetry (OTel) logs, metrics, and traces. The existing Azure portal configuration experience continues to use the PipelineGroup-based model and doesn't configure the DCR-based preview.
+During preview, use Azure CLI or ARM templates to deploy and manage this configuration, including native OpenTelemetry (OTel) logs, metrics, and traces. The Azure portal uses the legacy PipelineGroup model and should be used only to manage an existing deployment.
 
 For Linux VMs in Azure and Arc-enabled Linux servers, see [Configure Azure Monitor pipeline on Linux VMs (preview)](./pipeline-configure-vm.md). Those deployments use a VM extension and different DCR association scopes.
 
 For an explanation of how endpoints, TLS configurations, streams, destinations, and associations fit together, see [Understand the configuration model](./pipeline-configure-cli.md#understand-the-configuration-model).
 
-> [!NOTE]
-> For an existing installation that uses the `microsoft.monitor.pipelinecontroller` extension, see [Legacy pipeline configuration](./pipeline-configure-legacy.md). That guide includes a command to check your installed extension type and version.
+> [!IMPORTANT]
+> Don't create a new PipelineGroup deployment. For an existing installation that uses the `microsoft.monitor.pipelinecontroller` extension, see [Manage existing Azure Monitor pipeline deployments](./pipeline-configure-legacy.md).
 
 ## Supported regions
 
-During the public preview of DCR-based configuration, the `microsoft.monitor.pipeline` extension is deployed in the following regions. Availability also depends on Azure Arc-enabled Kubernetes and the required Certificate Manager extension being supported in the cluster region.
-
-| Region | Region | Region |
-|:---|:---|:---|
-| Australia Central | Australia East | Australia Southeast |
-| Austria East | Belgium Central | Brazil South |
-| Canada Central | Canada East | Central India |
-| Central US | Chile Central | Denmark East |
-| East Asia | East US | East US 2 |
-| France Central | Germany West Central | Indonesia Central |
-| Italy North | Japan East | Japan West |
-| Jio India West | Korea Central | Korea South |
-| Malaysia West | Mexico Central | New Zealand North |
-| North Central US | North Europe | Norway East |
-| Poland Central | Qatar Central | South Africa North |
-| South Central US | South India | Southeast Asia |
-| Spain Central | Sweden Central | Switzerland North |
-| UAE North | UK South | UK West |
-| West Central US | West Europe | West India |
-| West US | West US 2 | West US 3 |
-
-For current public-region availability, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
+See [Support and availability](./pipeline-support.md#supported-regions-for-dcr-based-kubernetes-deployments) for the current list of regions and supported Kubernetes distributions.
 
 ## Prerequisites
 
@@ -62,9 +41,9 @@ Select the approach that fits your needs:
 
 | Configuration | Method | Guidance |
 | --- | --- | --- |
-| DCR-based configuration on Arc-enabled Kubernetes (preview) | Azure CLI or ARM templates | [DCR-based deployment](./pipeline-configure-cli.md). |
-| PipelineGroup-based configuration on Arc-enabled Kubernetes | Azure portal or existing CLI/ARM procedures | [Portal guide](./pipeline-configure-portal.md) and [PipelineGroup configuration](./pipeline-configure-legacy.md). |
-| Linux VMs and Arc-enabled Linux servers (preview) | VM or Arc-enabled server extension | [Linux VM guide](./pipeline-configure-vm.md). |
+| DCR-based configuration on Arc-enabled Kubernetes (preview) | Azure CLI or ARM templates | Recommended for all new Kubernetes deployments. See [DCR-based deployment](./pipeline-configure-cli.md). |
+| Linux VMs and Arc-enabled Linux servers (preview) | VM or Arc-enabled server extension | See the [Linux VM guide](./pipeline-configure-vm.md). |
+| Legacy configuration on Arc-enabled Kubernetes | Azure portal or existing CLI and ARM template procedures | Existing deployments only. See [Manage existing deployments](./pipeline-configure-legacy.md). |
 
 ## Set up the pipeline
 
@@ -85,7 +64,8 @@ For deployment steps, use [Configure Azure Monitor pipeline with CLI or ARM temp
 Configure clients to send telemetry to the listening endpoints defined in the settings DCR.
 
 - For clients outside the cluster, [configure a Kubernetes gateway](./pipeline-kubernetes-gateway.md) and point clients to its reachable IP address and port.
-- For encrypted ingestion, review [TLS configuration](./pipeline-tls.md). Selecting TCP as the transport protocol doesn't enable TLS.
+- For the default mTLS configuration, follow [automated certificate management](./pipeline-tls-automated.md#use-automated-certificate-management). Label the client namespace to receive the server trust bundle, request a managed client certificate, and configure the client to use both.
+- For other encrypted-ingestion options, review [TLS configuration](./pipeline-tls.md). Selecting TCP as the transport protocol doesn't enable TLS.
 - Use UDP only on trusted networks because it doesn't encrypt telemetry.
 
 ## Verify the configuration

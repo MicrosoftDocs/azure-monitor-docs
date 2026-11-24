@@ -65,7 +65,7 @@ When you deploy a pipeline instance with automated certificate management, the o
 
 Deploy the pipeline with TLS enabled. Enable client authentication if you require mTLS. See [Configure Azure Monitor pipeline](./pipeline-configure.md).
 
-For DCR-mode ARM deployments, set `properties.pipelineSettings` in the settings DCR to the following object. Keep the dataflow's endpoint routing and its settings-DCR reference aligned with `syslog6514`, and associate both DCRs with the same extension:
+For DCR-mode ARM template deployments, set `properties.pipelineSettings` in the settings DCR to the following object. Keep the dataflow's endpoint routing and its settings-DCR reference aligned with `syslog6514`, and associate both DCRs with the same extension:
 
 ```json
 {

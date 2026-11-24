@@ -3,7 +3,7 @@ title: Azure Monitor pipeline TLS configuration
 description: Secure data ingestion to Azure Monitor pipeline by configuring TLS.
 ai-usage: ai-assisted
 ms.topic: article
-ms.date: 10/22/2026
+ms.date: 11/23/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
@@ -40,9 +40,9 @@ TLS controls encryption and client authentication on the pipeline's listening en
 | Server-only TLS | Encrypts traffic and authenticates the server without requiring a client certificate. |
 | No TLS | Sends traffic without encryption or certificate authentication. |
 
-Enable **transport security (TLS)** when you [configure the pipeline](./pipeline-configure-portal.md#configure-basics). To require client certificates, also enable **Require client authentication within cluster**. Configure clients to trust the server certificate's issuing CA.
+In DCR mode, TCP receivers use the operator's default mTLS material unless a named TLS configuration overrides that behavior. Select a named mode explicitly when you need server-only TLS or unencrypted TCP. Configure clients to trust the server certificate's issuing CA. UDP traffic isn't protected by TLS; use UDP only on trusted networks.
 
-In DCR mode, TCP receivers use the operator's default mTLS material unless a named TLS configuration overrides that behavior. Select a named mode explicitly when you need server-only TLS or unencrypted TCP. UDP traffic isn't protected by TLS; use UDP only on trusted networks.
+For an existing legacy portal deployment, enable **transport security (TLS)** when you [manage the pipeline](./pipeline-configure-portal.md#review-basic-settings). To require client certificates, also enable **Require client authentication within cluster**.
 
 ## Store TLS configuration in the settings DCR
 
@@ -112,7 +112,7 @@ For more information about how this works and how to set up, see [TLS configurat
 
 Disable TLS only on a trusted network where unencrypted ingestion meets your security requirements. Clear **Enable transport security (TLS)** when you configure the pipeline, and configure clients to use an unencrypted connection.
 
-For ARM configuration, use this `properties.pipelineSettings` object to explicitly disable TLS on a TCP listener. The disabled configuration contains no certificate references:
+For ARM template configuration, use this `properties.pipelineSettings` object to explicitly disable TLS on a TCP listener. The disabled configuration contains no certificate references:
 
 ```json
 {
