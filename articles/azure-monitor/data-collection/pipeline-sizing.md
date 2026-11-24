@@ -3,7 +3,7 @@ title: Azure Monitor pipeline performance and sizing
 description: Learn how to size Azure Monitor pipeline for your throughput requirements, including measured baselines across node sizes, scaling strategies, and capacity planning examples.
 ai-usage: ai-assisted
 ms.topic: best-practice
-ms.date: 05/14/2026
+ms.date: 11/23/2026
 ms.custom: references_regions
 
 #customer intent: As a cloud architect or operations engineer, I want to understand Azure Monitor pipeline throughput and how to size a deployment so that I can allocate the right cluster resources for my expected log volume.
@@ -108,7 +108,7 @@ When incoming traffic exceeds pipeline capacity, the pipeline applies **TCP back
 The baselines in this article are measured under controlled conditions. The following factors might affect throughput in your environment:
 
 - **TLS/mTLS.** Current tests run with TLS disabled. Enabling TLS adds encryption overhead per connection.
-- **Durable buffering.** Current tests run without disk-backed buffers. Enabling durable buffers adds disk I/O overhead but improves reliability during connectivity gaps.
+- **Durable buffering.** Current tests run without disk-backed buffers. Enabling durable buffers adds disk I/O overhead but improves reliability during connectivity gaps. Each buffer also requires a [minimum capacity per CPU core available to the collector](./pipeline-persistent-storage.md#minimum-buffer-size).
 - **Network latency to Log Analytics.** Tests ran on an AKS cluster in Azure with low-latency connectivity. Edge or on-premises deployments with higher network latency to Azure might see reduced effective throughput.
 - **Variable payloads.** The baselines use ~1.2 KB messages. Real-world traffic with variable message sizes and formats might affect parsing throughput.
 - **Additional KQL transformations.** The baselines already include the cost of syslog/CEF parsing. Adding extra KQL transformations before export adds further processing overhead per message.

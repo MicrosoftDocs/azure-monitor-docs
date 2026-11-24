@@ -775,6 +775,57 @@ items:
   - name: Overview
     displayName: data collection methods, collection paths, collection topology, collector-based collection, Azure Monitor agent, Azure Monitor pipeline
     href: data-collection/data-collection-overview.md
+  - name: Azure Monitor pipeline
+    items:
+    - name: Overview
+      href: data-collection/pipeline-overview.md
+    - name: Support and availability
+      href: data-collection/pipeline-support.md
+    - name: Plan and deploy
+      href: data-collection/pipeline-configure.md
+      items:
+      - name: Arc-enabled Kubernetes
+        displayName: Azure Monitor pipeline, DCR, CLI, ARM template, Bicep
+        href: data-collection/pipeline-configure-cli.md
+      - name: Linux VM / Arc-enabled server (preview)
+        displayName: Azure Monitor pipeline
+        href: data-collection/pipeline-configure-vm.md
+      - name: Sizing
+        href: data-collection/pipeline-sizing.md
+    - name: Sources
+      href: data-collection/pipeline-sources.md
+      items:
+      - name: Syslog and CEF
+        href: data-collection/pipeline-system-log-common-event-format.md
+      - name: OpenTelemetry (preview)
+        href: data-collection/pipeline-open-telemetry.md
+    - name: Processing and routing
+      items:
+      - name: Transformations
+        href: data-collection/pipeline-transformations.md
+      - name: Aggregation and filtering
+        href: data-collection/pipeline-filter-aggregate.md
+    - name: Destinations
+      href: data-collection/pipeline-destinations.md
+      items:
+      - name: Azure Monitor Logs
+        href: data-collection/pipeline-destinations-logs.md
+      - name: Azure Monitor metrics
+        href: data-collection/pipeline-destinations-metrics.md
+    - name: Secure and operate
+      items:
+      - name: Gateway and TLS
+        href: data-collection/pipeline-security.md
+      - name: Persistence
+        href: data-collection/pipeline-persistent-storage.md
+      - name: Versions and upgrades
+        href: data-collection/pipeline-versions-upgrades.md
+      - name: Troubleshoot
+        href: data-collection/pipeline-troubleshoot.md
+    - name: Legacy configuration
+      href: data-collection/pipeline-configure-legacy.md
+    - name: FAQ
+      href: data-collection/pipeline-faq.yml
   - name: Data collection rules (DCR)
     items:
     - name: Overview
@@ -1108,50 +1159,6 @@ items:
       href: logs/ingest-logs-event-hub.md
     - name: Stream monitoring data to Event Hubs
       href: data-collection/stream-monitoring-data-event-hubs.md
-  - name: Azure Monitor pipeline
-    items:
-    - name: Overview
-      href: data-collection/pipeline-overview.md
-    - name: FAQ
-      href: data-collection/pipeline-faq.yml
-    - name: Configure
-      items:
-      - name: Configure Azure Monitor pipeline
-        displayName: Azure Monitor pipeline
-        href: data-collection/pipeline-configure.md
-      - name: Configure with the Azure portal
-        displayName: Azure Monitor pipeline
-        href: data-collection/pipeline-configure-portal.md
-      - name: Configure with CLI or ARM templates
-        displayName: Azure Monitor pipeline
-        href: data-collection/pipeline-configure-cli.md
-      - name: Legacy pipeline configuration
-        href: data-collection/pipeline-configure-legacy.md
-      - name: Configure on Linux VMs (preview)
-        displayName: Azure Monitor pipeline, virtual machine, VM extension, Azure Arc, Arc-enabled servers, Syslog, CEF
-        href: data-collection/pipeline-configure-vm.md
-    - name: Transformations
-      href: data-collection/pipeline-transformations.md
-    - name: Configure a Kubernetes gateway
-      displayName: Sample gateway setup
-      href: data-collection/pipeline-kubernetes-gateway.md
-    - name: Transport Layer Security (TLS)
-      items:
-      - name: Configure TLS
-        href: data-collection/pipeline-tls.md
-      - name: Automated certificate management (default TLS)
-        href: data-collection/pipeline-tls-automated.md
-      - name: Customer-managed certificates (BYOC)
-        href: data-collection/pipeline-tls-custom.md
-    - name: Sizing best practices
-      href: data-collection/pipeline-sizing.md
-    - name: Pod placement
-      href: data-collection/pipeline-pod-placement.md
-    - name: Extension versions
-      displayName: Azure Monitor pipeline extension versions
-      href: data-collection/pipeline-extension-versions.md
-    - name: Troubleshoot
-      href: data-collection/pipeline-troubleshoot.md
   - name: Custom metrics in Azure Monitor (preview)
     href: metrics/metrics-custom-overview.md
   - name: Custom metrics ingestion using REST

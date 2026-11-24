@@ -2,7 +2,7 @@
 title: Configure Azure Monitor pipeline on Linux VMs (preview)
 description: Learn how to configure Azure Monitor pipeline on Linux VMs in Azure and Arc-enabled Linux servers, and send Syslog and CEF to Log Analytics.
 ms.topic: how-to
-ms.date: 11/18/2026
+ms.date: 11/23/2026
 ms.custom: devx-track-azurecli, devx-track-bicep
 ai-usage: ai-generated
 ---
@@ -14,7 +14,7 @@ Run [Azure Monitor pipeline](pipeline-overview.md) on a Linux virtual machine (V
 These instructions apply to Azure Monitor pipeline VM extension version 0.2 or later. The Bicep walkthrough uses an existing Azure VM and Log Analytics workspace. For Arc deployment differences, see [Arc-enabled Linux servers](#arc-enabled-linux-servers).
 
 > [!IMPORTANT]
-> Azure Monitor pipeline on Linux VMs in Azure and Arc-enabled Linux servers is in public preview. Use a non-production environment and synthetic or approved test data. Don't depend on this preview for production monitoring, security, compliance, or business operations.
+> Azure Monitor pipeline on Linux VMs in Azure and Arc-enabled Linux servers is in preview. Use a non-production environment and synthetic or approved test data. Don't depend on this preview for production monitoring, security, compliance, or business operations.
 >
 > For legal terms that apply to Azure features in preview, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
@@ -303,7 +303,9 @@ The custom-directory setting requires VM extension version **0.2.8 or later**. C
    }
    ```
 
-   These example limits apply to each buffer, not to the total disk. Size the filesystem for all buffers and other disk usage. Records expire at the retention limit, and the buffer drops the oldest records when it reaches the size limit. Keep this property in the data source DCR, not in the settings DCR.
+   Each buffer requires at least 192 MiB (201.33 MB) for every CPU core available to the collector. Use `202 MB × CPU cores available to the collector` as a simple minimum for `maxStorageUsageMb`. For four available cores, configure at least 808 MB per buffer; the exact minimum rounded up to a whole megabyte is 806 MB. If the pipeline uses `all_cores`, size for the largest core count available to the pipeline.
+
+   These limits apply to each buffer, not to the total disk. Size the filesystem for all buffers and other disk usage. If a buffer limit is below the minimum for the active core count, the pipeline fails to start instead of using fewer cores. Records expire at the retention limit, and the buffer drops the oldest records when it reaches the size limit. Keep this property in the data source DCR, not in the settings DCR.
 
 Continue with the deployment commands in the following section, and then [verify persistent storage](#verify-persistent-storage). These steps don't migrate existing buffered data. Drain existing buffers before changing their location or removing a data source.
 

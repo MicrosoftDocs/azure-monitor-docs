@@ -220,7 +220,7 @@ The following resource example uses the secrets you created earlier to configure
 In this example, `syslog-mtls` joins the endpoint to its TLS definition. `syslog6514` is the endpoint name that the dataflow DCR selects. These names serve different purposes:
 
 1. In the dataflow DCR, set the Syslog data source's `endpointRouting` to `["syslog6514"]`.
-1. Add a `references.pipelineSettingsEndpointRouting` entry named `syslog6514` with `pipelineSettingsResourceId` set to the full ARM resource ID of this settings DCR.
+1. Add a `references.pipelineSettingsEndpointRouting` entry named `syslog6514` with `pipelineSettingsResourceId` set to the full Azure Resource Manager resource ID of this settings DCR.
 1. Associate both DCRs with the same pipeline extension. For the association resource structure, see [Associate both DCRs with the extension](./pipeline-configure-cli.md#associate-both-dcrs-with-the-extension).
 1. Expose the TCP listener to the intended clients and configure them to use TLS on that port.
 

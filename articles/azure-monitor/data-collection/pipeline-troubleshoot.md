@@ -3,7 +3,7 @@ title: Troubleshoot Azure Monitor pipeline
 description: Guidance for troubleshooting issues with Azure Monitor pipeline deployment, configuration, data collection, and connectivity.
 ai-usage: ai-assisted
 ms.topic: troubleshooting-general
-ms.date: 10/21/2026
+ms.date: 11/23/2026
 ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 ---
 
@@ -126,8 +126,8 @@ az k8s-extension show --name <extension-name> \
 Associate both the settings DCR and dataflow DCR with the same pipeline extension.
 
 - Create each association under the Arc connected cluster with Monitor API version `2025-05-11`.
-- Set `properties.dataCollectionRuleId` to the full ARM resource ID of the corresponding DCR.
-- Set `properties.scopeToResourceId` to the full ARM resource ID of the pipeline extension.
+- Set `properties.dataCollectionRuleId` to the full Azure Resource Manager resource ID of the corresponding DCR.
+- Set `properties.scopeToResourceId` to the full Azure Resource Manager resource ID of the pipeline extension.
 - Confirm that both associations retain the same extension scope after an update.
 
 For commands to inspect both associations, see [Check the extension and associations](./pipeline-configure-cli.md#check-the-extension-and-associations).
@@ -223,12 +223,24 @@ If your dataflow includes a transformation:
 - When targeting **standard tables** (e.g., `Syslog`, `CommonSecurityLog`), the transform must preserve all required columns — particularly `TimeGenerated`.
 - Invalid transforms produce `InvalidTransformStatement` or `InvalidTransformStatementForStreamSchema` errors.
 
+### Resource attributes are missing from OTel logs or spans
+
+For native OTLP collection, the Azure Monitor pipeline copies resource attributes onto log and span records only when the corresponding data source sets `enrichWithResourceAttributes` to an array of attribute names.
+
+- Set the property on each applicable `properties.dataSources.otelLogs[]` and `properties.dataSources.otelTraces[]` object. For example, use `["service.name", "service.version"]` to select specific attributes or `["*"]` to select all resource attributes. A Boolean value isn't valid.
+- For multi-workspace log fan-out, set it on the `otelLogs` source in every dataflow DCR.
+- Read the DCR back by using API version `2025-05-11` and confirm that the property is retained.
+- Confirm that the OTel client emits resource attributes, and then send new telemetry. The setting doesn't update records that were already ingested.
+
+`ServiceName` can be populated even when `OTelLogs.ResourceAttributes` is null. For traces, resource attributes can also appear in `OTelResources`; correlate `OTelSpans.ResourceAttributesId` with `OTelResources.Id`.
+
 ### Check persistent storage configuration
 
 If the pipeline uses persistent storage:
 
 - Set `controllerManager.manager.env.pipelinePersistentVolume` in the extension's `properties.configurationSettings` to the name of an existing, available **ReadWriteMany PersistentVolume**. Don't supply a PVC or StorageClass name; the controller creates and binds its own PVC.
-- Set `properties.dataSources.syslog[].persistence.maxStorageUsageMb` and `retentionPeriodMin` in the dataflow DCR. The [persistent Syslog example](./pipeline-configure-cli.md#configure-persistent-storage) uses 1,024 MB and 1,440 minutes (24 hours).
+- Set `persistence.maxStorageUsageMb` and `retentionPeriodMin` on each applicable `syslog`, `otelLogs`, `otelMetrics`, or `otelTraces` data source in the dataflow DCR. See [Configure persistent storage](./pipeline-persistent-storage.md).
+- Size each buffer for 202 MB per CPU core available to the collector. If the pipeline uses `all_cores`, use the largest core count available on any eligible node. A smaller cap prevents the pipeline from starting.
 - Verify that persistent volume claims are bound.
 - Confirm that the pipeline can mount and write to the volume.
 - Check available storage and look for write or backfill errors in pod logs.

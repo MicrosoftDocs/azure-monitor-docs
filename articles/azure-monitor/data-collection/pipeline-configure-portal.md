@@ -1,29 +1,31 @@
 ---
-title: Configure Azure Monitor pipeline with the Azure portal
-description: Learn how to create an Azure Monitor pipeline and dataflows with the Azure portal after you complete the shared setup.
+title: Manage a legacy Azure Monitor pipeline deployment in the Azure portal
+description: Use the Azure portal to manage an existing Azure Monitor pipeline deployment that uses the legacy PipelineGroup configuration model.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/17/2026
+ms.date: 11/23/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Configure Azure Monitor pipeline in the Azure portal
+# Manage a legacy Azure Monitor pipeline deployment in the Azure portal
 
-This article describes the current Azure portal experience, which uses the `microsoft.monitor.pipelinecontroller` extension and PipelineGroup-based configuration. Complete the [PipelineGroup setup prerequisites](./pipeline-configure-legacy.md#legacy-setup-prerequisites) before you start. For automation of this configuration model, use the [PipelineGroup CLI and ARM procedures](./pipeline-configure-legacy.md#legacy-cli).
+> [!IMPORTANT]
+> Use this article only to manage an existing deployment. For all new Azure Monitor pipeline deployments, use [DCR-based configuration](./pipeline-configure-cli.md). Don't create a new PipelineGroup deployment in the Azure portal.
+
+The portal experience uses the `microsoft.monitor.pipelinecontroller` extension and the legacy PipelineGroup configuration model. For automation of this configuration model, use the [legacy CLI and ARM template procedures](./pipeline-configure-legacy.md#legacy-cli).
 
 > [!NOTE]
-> DCR-based configuration and native OpenTelemetry logs, metrics, and traces are available in public preview through [Azure CLI or ARM templates](./pipeline-configure-cli.md), not through this portal experience.
+> DCR-based configuration and native OpenTelemetry logs, metrics, and traces are available in preview through Azure CLI or ARM templates, not through this portal experience.
 
-## Create a pipeline
+## Identify a legacy portal deployment
 
-Start the creation flow from one of the following locations in the Azure portal:
+Use the [extension check](./pipeline-configure-legacy.md#check-the-installed-extension) to confirm that the existing deployment runs the `microsoft.monitor.pipelinecontroller` extension. If it runs `microsoft.monitor.pipeline`, manage it through its DCRs instead of this portal experience.
 
-- From **Azure Monitor pipelines**, select **Create**.
-- From your Arc-enabled Kubernetes cluster, select **Extensions**, and then add **Azure Monitor pipeline extension**.
+In the Azure portal, locate the existing deployment under **Azure Monitor pipelines** or under **Extensions** on its Arc-enabled Kubernetes cluster.
 
-## Configure basics
+## Review basic settings
 
-On the **Basics** tab, provide the following information to deploy the extension and pipeline instance on your cluster.
+Portal-created legacy deployments include the following basic settings.
 
 :::image type="content" source="./media/pipeline-configure/create-pipeline.png" lightbox="./media/pipeline-configure/create-pipeline.png" alt-text="Screenshot of the Create Azure Monitor pipeline screen.":::
 
@@ -37,11 +39,9 @@ On the **Basics** tab, provide the following information to deploy the extension
 | Enable transport security (TLS) | Deploy the pipeline endpoints with TLS enabled so incoming traffic is encrypted in transit. This setting configures the deployment mode only. After deployment, complete the TLS configuration to choose the certificate management approach and TLS mode. For more information, see [Configure TLS](./pipeline-configure-legacy.md#legacy-tls). |
 | Require client authentication within cluster | Require gateway and cluster-local clients to present client certificates when they connect to the pipeline. Use this option when you want mutual TLS (mTLS) for in-cluster or gateway-to-pipeline connections. |
 
-When you're done, select **Next: Dataflows**.
+## Review dataflows
 
-## Configure dataflows
-
-On the **Dataflows** tab, create one or more dataflows for the pipeline instance.
+Each dataflow in an existing portal deployment includes the following settings.
 
 :::image type="content" source="./media/pipeline-configure/create-dataflow.png" lightbox="./media/pipeline-configure/create-dataflow.png" alt-text="Screenshot of the Add dataflow screen.":::
 
@@ -71,22 +71,16 @@ If you specify a transformation, select **Check KQL syntax** before saving the d
 
 :::image type="content" source="./media/pipeline-configure/check-syntax.gif" lightbox="./media/pipeline-configure/check-syntax.gif" alt-text="Screenshot of the KQL syntax checker and a typical error message.":::
 
-For `Syslog` and `CommonSecurityLog`, the transformation has access to the appropriate table columns. For custom tables, the portal experience provides access to only `TimeGenerated`, `SeverityText`, and `Body`. If you need other columns, use the [PipelineGroup CLI and ARM procedures](./pipeline-configure-legacy.md#legacy-cli).
+For `Syslog` and `CommonSecurityLog`, the transformation has access to the appropriate table columns. For custom tables, the portal experience provides access to only `TimeGenerated`, `SeverityText`, and `Body`. If you need other columns, use the [PipelineGroup CLI and ARM template procedures](./pipeline-configure-legacy.md#legacy-cli).
 
 
 > [!NOTE]
 > For details on creating transformations, see [PipelineGroup transformations](./pipeline-configure-legacy.md#legacy-transformations).
 
 
-## Review and create
+## Verify an existing deployment
 
-After you configure the basics and dataflows, review the configuration on the **Review + create** tab. Select **Create**.
-
-Deployment typically takes several minutes while Azure installs the extension, creates the pipeline instance, and applies the dataflow configuration.
-
-## Verify deployment
-
-After deployment completes, use the [PipelineGroup verification steps](./pipeline-configure-legacy.md#legacy-setup-verify-the-configuration) to confirm that the pipeline components are running and that data is reaching your Log Analytics workspace.
+Use the [legacy verification steps](./pipeline-configure-legacy.md#legacy-setup-verify-the-configuration) to confirm that the pipeline components are running and that data is reaching your Log Analytics workspace.
 
 ## Related articles
 

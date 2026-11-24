@@ -1,17 +1,20 @@
 ---
-title: Configure Azure Monitor pipeline with PipelineGroup (legacy)
-description: Configuration reference for existing Azure Monitor PipelineGroup deployments, including setup, TLS, storage, pod placement, gateways, and troubleshooting.
+title: Manage existing Azure Monitor pipeline deployments (legacy)
+description: Manage existing Azure Monitor pipeline deployments that use the legacy PipelineGroup configuration model.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 11/18/2026
+ms.date: 11/23/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Configure Azure Monitor pipeline with PipelineGroup (legacy)
+# Manage existing Azure Monitor pipeline deployments (legacy)
 
-Use this guide for `Microsoft.Monitor/pipelineGroups` deployments that run the `microsoft.monitor.pipelinecontroller` Arc extension. This configuration model is used by the current Azure portal experience.
+> [!IMPORTANT]
+> This configuration model is for existing deployments only. For all new Azure Monitor pipeline deployments, use [DCR-based configuration](./pipeline-configure-cli.md). Don't create a new PipelineGroup deployment.
 
-For DCR-based configuration and native OpenTelemetry (OTel) logs, metrics, and traces with the `microsoft.monitor.pipeline` extension (public preview), use [Configure Azure Monitor pipeline with CLI or ARM templates](./pipeline-configure-cli.md).
+Use this guide to manage `Microsoft.Monitor/pipelineGroups` deployments that run the `microsoft.monitor.pipelinecontroller` Arc extension. The term *PipelineGroup* describes the Azure resource used by this legacy configuration model.
+
+For DCR-based configuration and native OpenTelemetry (OTel) logs, metrics, and traces with the `microsoft.monitor.pipeline` extension (preview), use [Configure Azure Monitor pipeline with CLI or ARM templates](./pipeline-configure-cli.md).
 
 ## Check the installed extension
 
@@ -30,14 +33,14 @@ Extension versions belong to their respective extension types. Compare versions 
 
 ## Configuration reference
 
-The following sections contain the setup and configuration details for PipelineGroup deployments.
+The following sections can help you inspect, update, repair, or troubleshoot an existing PipelineGroup deployment. Don't use these procedures to create a new deployment.
 
 | Task | Section |
 |:---|:---|
 | Understand the architecture. | [Architecture](#legacy-overview). |
-| Prepare the cluster and verify deployment. | [Cluster setup and verification](#legacy-setup). |
-| Configure resources with CLI or ARM templates. | [CLI and ARM deployment](#legacy-cli). |
-| Configure resources in the Azure portal. | [Portal deployment](#legacy-portal). |
+| Inspect the cluster and verify deployment. | [Existing deployment verification](#legacy-setup). |
+| Inspect or update resources with CLI or ARM templates. | [CLI and ARM template reference](#legacy-cli). |
+| Review resources in the Azure portal. | [Portal configuration reference](#legacy-portal). |
 | Filter, reshape, or aggregate telemetry. | [Transformations](#legacy-transformations). |
 | Configure TLS or mTLS. | [TLS configuration](#legacy-tls). |
 | Use automated certificate management. | [Automated certificates](#legacy-tls-automated). |
@@ -63,36 +66,23 @@ The following region list applies only to PipelineGroup-based configuration with
 |:---|:---|
 | - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11<br>- SUSE Rancher K3s v1.33.3+k3s1<br>- AKS Arc v1.32.7 | - Australia East<br>- Brazil South<br>- Canada Central<br>- Central India<br>- Central US<br>- East Asia<br>- East US<br>- East US 2<br>- France Central<br>- Germany West Central<br>- Italy North<br>- Japan East<br>- Korea Central<br>- North Central US<br>- North Europe<br>- Norway East<br>- South Africa North<br>- South India<br>- Sweden Central<br>- Switzerland North<br>- UK South<br>- UK West<br>- West Central US<br>- West Europe<br>- West US<br>- West US 2<br>- West US 3 |
 
-For current public-region availability, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). For regions supported using DCR-based configuration, see [Configure Azure Monitor pipeline](./pipeline-configure.md#supported-regions).
+For current public-region availability, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). For regions supported using DCR-based configuration, see [Support and availability](./pipeline-support.md#supported-regions-for-dcr-based-kubernetes-deployments).
 
 <a id="legacy-setup"></a>
 
-## Cluster setup and verification
+## Existing deployment verification
 
-This article describes the overall setup process for [Azure Monitor pipeline](#legacy-overview) and provides details for the initial common setup to prepare your Arc-enabled Kubernetes cluster for the pipeline.
+Use this section to identify and verify an existing PipelineGroup deployment before you change it.
 
 <a id="legacy-setup-complete-setup-flow"></a>
 
-### Complete setup flow
+### Existing deployment workflow
 
-Complete deployment of an Azure Monitor pipeline includes the following steps:
-
-1. Verify the [prerequisites](#legacy-setup-prerequisites).
-1. [Install cert-manager](/azure/azure-arc/kubernetes/cert-manager-overview) on your Arc-enabled Kubernetes cluster.
-1. Complete deployment of the pipeline by using either of the following methods:
-   - [Configure Azure Monitor pipeline using the Azure portal](#legacy-portal)
-   - [Configure Azure Monitor pipeline using CLI or ARM templates](#legacy-cli)
-1. If you need to filter, aggregate, or reshape incoming data:
-    1. Add [pipeline transformations](#legacy-transformations).
-1. If client data sources are outside the cluster:
-    1. Expose the pipeline through a gateway. See [Azure Monitor pipeline - Gateway for Kubernetes deployment](#legacy-gateway).
-    1. Configure your external clients to connect to the right gateway IP and port. See [Configure a Kubernetes gateway for Azure Monitor pipeline](#legacy-gateway-add-a-new-client-to-an-existing-receiver).
-1. If you need encrypted ingestion:
-    1. Configure TLS. Start with [Azure Monitor pipeline TLS configuration](#legacy-tls).
-1. If default pod placement behavior doesn't meet your performance, isolation, or compliance needs:
-    1. Configure [pod placement](#legacy-placement) for the pipeline.
-
-:::image type="content" source="media/pipeline-configure/pipeline-setup-flow.png" lightbox="media/pipeline-configure/pipeline-setup-flow.png" alt-text="Diagram of Azure Monitor pipeline setup flow with steps for prerequisites, cert-manager, deployment, and decision points for data, TLS, clients, and scheduling." border="false":::
+1. [Check the installed extension](#check-the-installed-extension) and confirm that it is `microsoft.monitor.pipelinecontroller`.
+1. Record the existing extension, custom location, PipelineGroup, DCR, association, role assignment, gateway, TLS, storage, and placement settings before changing them.
+1. Use the [verification steps](#legacy-setup-verify-the-configuration) to establish the current deployment state.
+1. Use the CLI, ARM template, and portal sections only to inspect or update the existing resources. Don't run the retained creation examples to start a new PipelineGroup deployment.
+1. Verify configuration delivery and telemetry delivery again after each change.
 
 
 <a id="legacy-setup-prerequisites"></a>
@@ -104,6 +94,8 @@ Complete deployment of an Azure Monitor pipeline includes the following steps:
   - `Microsoft.Monitor`
 - [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your environment with an external IP address. To connect a cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster).
   - For clusters that enforce the Kubernetes Pod Security `restricted` profile, including Tanzu environments, use Azure Monitor pipeline version 1.7.0 or later. These versions run the operator as a non-root user.
+- The [Certificate Manager extension](/azure/azure-arc/kubernetes/cert-manager-overview) installed on the cluster. The legacy pipeline operator depends on its certificate infrastructure even when TLS is disabled.
+- A [Kubernetes gateway](#legacy-gateway) when clients outside the cluster send data to the pipeline.
 - Custom locations enabled on the Arc-enabled Kubernetes cluster. See [Create and manage custom locations on Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/custom-locations#enable-custom-locations-on-your-cluster).
 - Log Analytics workspace to receive logs from the pipeline. To create a workspace, see [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md).
   - A custom table for OTLP logs, or if you don't want to use the default `Syslog` or `CommonSecurityLog` tables for Syslog data. To create a custom table, see [Create a custom log table in Azure Monitor](../logs/create-custom-table.md). The workspace must be onboarded to Microsoft Sentinel for the `CommonSecurityLog` table to be available.
@@ -111,17 +103,17 @@ Complete deployment of an Azure Monitor pipeline includes the following steps:
 
 <a id="legacy-setup-choose-a-configuration-method"></a>
 
-### Choose a configuration method
+### Choose a management interface
 
-Select the approach that fits your needs:
+Choose how to inspect or update the existing deployment:
 
-| Method | When to use | Key features |
+| Method | Use for | Key features |
 |--------|-------------|--------------|
-| **[Azure portal](#legacy-portal)** | * Getting started<br>* Simple configurations<br>* Quick deployment | * Guided UI experience<br>* Automatic component creation<br>* Built-in validation |
-| **[CLI/ARM templates](#legacy-cli)** | * Advanced scenarios<br>* Automation needed<br>* Custom requirements | * Full configuration control<br>* Buffering to persistent volume<br>* Custom tables<br>* Infrastructure as code |
+| **[Azure portal](#legacy-portal)** | * Reviewing an existing portal-created deployment<br>* Supported edits exposed by the portal | * Guided UI experience<br>* Built-in validation |
+| **[CLI and ARM template reference](#legacy-cli)** | * Inspecting complete resource definitions<br>* Updating advanced settings<br>* Support-assisted recovery | * Full configuration visibility<br>* Buffering and custom-table settings<br>* Infrastructure as code |
 
-> [!TIP]
-> **New to Azure Monitor pipeline?** Start with the portal. You can always switch to CLI/ARM templates later for advanced features.
+> [!IMPORTANT]
+> For a new Azure Monitor pipeline deployment, leave this article and use [DCR-based configuration](./pipeline-configure-cli.md).
 
 
 <a id="legacy-setup-verify-the-configuration"></a>
@@ -258,33 +250,33 @@ The extension should show a `Succeeded` provisioning state.
 
 <a id="legacy-cli"></a>
 
-## CLI and ARM deployment
+## CLI and ARM template reference
 
-Use Azure CLI or ARM templates to deploy the extension, custom location, data collection resources, and pipeline group.
+Use this reference to inspect or update the extension, custom location, data collection resources, and PipelineGroup in an existing deployment.
 
 <a id="legacy-cli-configuration-workflow"></a>
 
-### Configuration workflow
+### Existing resource workflow
 
-Follow these tasks to configure a pipeline by using CLI or ARM templates.
+Record and verify these resources before you change the existing deployment.
 
 | Step | Purpose | Output |
 |:-----|:--------|:-------|
-| Prepare destinations | Prepare the Log Analytics workspace and destination tables. | Destinations ready for incoming data |
-| Add the pipeline extension | Enable Azure Monitor pipeline support on the cluster. | Pipeline extension resource |
-| Create a custom location | Make the Arc-enabled Kubernetes cluster targetable by Azure resources. | Custom location resource |
-| Create a data collection endpoint | Define the ingestion endpoint in Azure Monitor. | DCE resource and logs ingestion URL |
-| Create a data collection rule | Define the schema, routing, and optional transformations in Azure Monitor. | DCR resource and immutable ID |
-| Give the pipeline access to the DCR | Allow the pipeline extension to send data to the DCR. | Role assignment |
-| Create the pipeline configuration | Deploy the pipeline instance and dataflows. | Running pipeline instance |
-| Configure clients | Point your data sources to the pipeline endpoint. | Data flowing through the pipeline |
+| Review destinations | Confirm the Log Analytics workspace and destination tables. | Destination resource IDs and schemas |
+| Inspect the pipeline extension | Confirm the extension type, namespace, version, and identity. | Pipeline extension resource ID and principal ID |
+| Inspect the custom location | Confirm how the cluster is targeted by Azure resources. | Custom location resource ID |
+| Inspect the data collection endpoint | Confirm the Azure Monitor ingestion endpoint. | DCE resource ID and logs ingestion URL |
+| Inspect the data collection rule | Confirm the schema, routing, and transformations. | DCR resource ID and immutable ID |
+| Inspect pipeline access to the DCR | Confirm that the extension identity can send data to the DCR. | Role assignment |
+| Inspect the PipelineGroup resource | Confirm the pipeline instance and dataflows. | Existing PipelineGroup configuration |
+| Verify clients | Confirm that existing data sources use the intended listener. | End-to-end telemetry delivery |
 
 
 <a id="legacy-cli-prepare-destinations"></a>
 
-### Prepare destinations
+### Review destinations
 
-Before you configure the pipeline, confirm or create the destination for each log source.
+Confirm the destination for each log source in the existing deployment. If you add a dataflow to an existing deployment, prepare its destination before you update the PipelineGroup.
 
 | Signal | Destination |
 | :--- | :--- |
@@ -301,14 +293,18 @@ az monitor log-analytics workspace table create --workspace-name my-workspace --
 
 <a id="legacy-cli-create-pipeline-resources"></a>
 
-### Create pipeline resources
-Use the following tasks to configure the Azure Monitor pipeline resources on your cluster.
+### Legacy pipeline resource reference
+
+> [!IMPORTANT]
+> The resource-creation examples in this section are retained only as a reference for inspecting or repairing an existing PipelineGroup deployment. Don't use them to create a new deployment. Work with Microsoft support before you recreate a missing legacy resource.
+
+Use the following sections to understand the resources that make up an existing deployment.
 
 <a id="legacy-cli-add-the-pipeline-extension"></a>
 
-#### Add the pipeline extension
+#### Pipeline extension resource
 
-Start by adding the pipeline extension to your Arc-enabled Kubernetes cluster. Use the same namespace for the pipeline extension and the Azure Monitor pipeline instance that you deploy later in this article. The `releaseNamespace` that you specify for the extension must match the namespace used by the pipeline instance.
+An existing PipelineGroup deployment runs the `microsoft.monitor.pipelinecontroller` extension. The extension and pipeline instance use the same namespace. The retained examples show the expected resource shape for recovery scenarios.
 
 ### [CLI](#tab/cli)
 
@@ -319,7 +315,7 @@ az k8s-extension create --name <pipeline-extension-name> --extension-type micros
 az k8s-extension create --name my-pipeline --extension-type microsoft.monitor.pipelinecontroller --scope cluster --cluster-name my-cluster --resource-group my-resource-group --cluster-type connectedClusters --release-train Preview
 ```
 
-### [ARM](#tab/arm)
+### [ARM template](#tab/arm)
 
 ```json
 {
@@ -330,7 +326,7 @@ az k8s-extension create --name my-pipeline --extension-type microsoft.monitor.pi
             "type": "Microsoft.KubernetesConfiguration/extensions",
             "apiVersion": "2022-11-01",
             "name": "my-extension",
-            "scope": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/aks/providers/Microsoft.Kubernetes/connectedClusters/my-cluster",
+            "scope": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/aks/providers/Microsoft.Kubernetes/connectedClusters/my-cluster",
             "identity": {
                 "type": "SystemAssigned"
             },
@@ -365,10 +361,10 @@ An [Azure custom location](/azure/azure-arc/kubernetes/custom-locations) lets Az
 az customlocation create --name <custom-location-name> --resource-group <resource-group-name> --namespace <name of namespace> --host-resource-id <connectedClusterId> --cluster-extension-ids <extensionId>
 
 ## Example
-az customlocation create --name my-cluster-custom-location --resource-group my-resource-group --namespace my-cluster-custom-location --host-resource-id /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster --cluster-extension-ids /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster/providers/Microsoft.KubernetesConfiguration/extensions/my-cluster
+az customlocation create --name my-cluster-custom-location --resource-group my-resource-group --namespace my-cluster-custom-location --host-resource-id /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster --cluster-extension-ids /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster/providers/Microsoft.KubernetesConfiguration/extensions/my-cluster
 ```
 
-### [ARM](#tab/arm)
+### [ARM template](#tab/arm)
 
 ```json
 {
@@ -381,9 +377,9 @@ az customlocation create --name my-cluster-custom-location --resource-group my-r
             "name": "my-customlocation-eastus2",
             "location": "eastus",
             "properties": {
-                "hostResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster",
+                "hostResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster",
                 "namespace": "my-customlocation-eastus2",
-                "clusterExtensionIds": ["/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster/Providers/Microsoft.KubernetesConfiguration/extensions/my-pipeline"],
+                "clusterExtensionIds": ["/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Kubernetes/connectedClusters/my-cluster/Providers/Microsoft.KubernetesConfiguration/extensions/my-pipeline"],
                 "hostType": "Kubernetes"
             }
         }
@@ -408,7 +404,7 @@ az monitor data-collection endpoint create --name <dce-name> --resource-group <r
  az monitor data-collection endpoint create --name strato-06-dce --resource-group strato --location eastus --public-network-access "Enabled"
 ```
 
-### [ARM](#tab/arm)
+### [ARM template](#tab/arm)
 
 ```json
 {
@@ -439,11 +435,14 @@ az monitor data-collection endpoint create --name <dce-name> --resource-group <r
 ### Create a data collection rule (DCR)
 Azure Monitor stores the DCR and defines how to process the received data from the pipeline. The pipeline configuration specifies the `immutable ID` of this DCR and the `stream` in the DCR that processes the data.
 
+> [!IMPORTANT]
+> The commands and templates in this section are retained only for support-assisted repair of a DCR used by an existing PipelineGroup deployment. Don't use them to create resources for a new deployment.
+
 
 <a id="legacy-cli-define-the-dcr"></a>
 
 #### Define the DCR
-You need to create the DCR before you can create the pipeline configuration. The pipeline configuration needs the immutable ID of the DCR, which is automatically generated when you create the DCR. Define DCRs in JSON. Start with the following sample DCR and update the sections outlined in the table. Then create the DCR by using one of the following methods.
+An existing PipelineGroup configuration references the DCR's immutable ID. Inspect the DCR JSON and compare it with the following sample before you update or repair the resource. The retained commands show the legacy resource shape and shouldn't be used to start a new deployment.
 
 | Parameter | Description |
 |:----------|:------------|
@@ -464,7 +463,7 @@ az monitor data-collection rule create --name 'myDCRName' --location <location> 
 az monitor data-collection rule create --name my-pipeline-dcr --location westus2 --resource-group 'my-resource-group' --rule-file 'C:\MyDCR.json'
 ```
 
-### [ARM](#tab/arm)
+### [ARM template](#tab/arm)
 
 ```json
 {
@@ -491,7 +490,7 @@ az monitor data-collection rule create --name my-pipeline-dcr --location westus2
             "location": "[parameters('location')]",
             "apiVersion": "2024-03-11",
             "properties": {
-                "dataCollectionEndpointId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce",
+                "dataCollectionEndpointId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce",
                 "streamDeclarations": {
                     "Custom-OTLP": {
                         "columns": [
@@ -531,7 +530,7 @@ az monitor data-collection rule create --name my-pipeline-dcr --location westus2
                     "logAnalytics": [
                         {
                             "name": "LogAnayticsWorkspace01",
-                            "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
+                            "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace"
                         }
                     ]
                 },
@@ -573,7 +572,7 @@ az monitor data-collection rule create --name my-pipeline-dcr --location westus2
 ```json
 {
     "properties": {
-        "dataCollectionEndpointId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce",
+        "dataCollectionEndpointId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce",
         "streamDeclarations": {
             "Custom-OTLP": {
                 "columns": [
@@ -613,7 +612,7 @@ az monitor data-collection rule create --name my-pipeline-dcr --location westus2
             "logAnalytics": [
                 {
                     "name": "LogAnayticsWorkspace01",
-                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
+                    "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace"
                 }
             ]
         },
@@ -653,6 +652,9 @@ az monitor data-collection rule create --name my-pipeline-dcr --location westus2
 
 ### Give the pipeline access to the DCR
 
+> [!IMPORTANT]
+> The role-assignment commands in this section are retained only for support-assisted repair of an existing PipelineGroup deployment. Don't use them to create a new deployment.
+
 > [!NOTE]
 > The separate role-assignment step described in the following section applies to this legacy deployment procedure. For the DCR-based configuration, the [provided ARM template](./pipeline-configure-cli.md#deploy-the-arm-template) creates the **Monitoring Metrics Publisher** role assignment automatically; you don't need to run these commands.
 
@@ -678,25 +680,45 @@ Use the output from this command as input to the following command. It gives Azu
 az role assignment create --assignee "<extension principal ID>" --role "Monitoring Metrics Publisher" --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Insights/dataCollectionRules/<dcr-name>"
 
 ## Example:
-az role assignment create --assignee "aaaaaaaa-bbbb-cccc-1111-222222222222" --role "Monitoring Metrics Publisher" --scope "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr"
+az role assignment create --assignee "11111111-1111-1111-1111-111111111111" --role "Monitoring Metrics Publisher" --scope "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr"
 ```
 
 
-### [ARM](#tab/arm)
+### [ARM template](#tab/arm)
+
+Set `monitoringMetricsPublisherRoleDefinitionId` to the full resource ID returned by:
+
+```azurecli
+az role definition list --name "Monitoring Metrics Publisher" --query "[0].id" --output tsv
+```
 
 ```json
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
+    "parameters": {
+        "dataCollectionRuleName": {
+            "type": "string"
+        },
+        "extensionPrincipalId": {
+            "type": "string"
+        },
+        "monitoringMetricsPublisherRoleDefinitionId": {
+            "type": "string",
+            "metadata": {
+                "description": "Full resource ID of the Monitoring Metrics Publisher role definition."
+            }
+        }
+    },
     "resources": [
         {
             "type": "Microsoft.Insights/dataCollectionRules/providers/roleAssignments",
             "apiVersion": "2022-04-01",
-            "name": "my-dcr-role-assignment",
+            "name": "[format('{0}/Microsoft.Authorization/{1}', parameters('dataCollectionRuleName'), guid(parameters('dataCollectionRuleName'), parameters('extensionPrincipalId'), parameters('monitoringMetricsPublisherRoleDefinitionId')))]",
             "properties": {
-                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions','3913510d-42f4-4e42-8a64-420c390055eb')]",
-                "principalId": "aaaaaaaa-bbbb-cccc-1111-222222222222",
-                "scope": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr""
+                "roleDefinitionId": "[parameters('monitoringMetricsPublisherRoleDefinitionId')]",
+                "principalId": "[parameters('extensionPrincipalId')]",
+                "principalType": "ServicePrincipal"
             }
         }
     ]
@@ -707,9 +729,9 @@ az role assignment create --assignee "aaaaaaaa-bbbb-cccc-1111-222222222222" --ro
 
 <a id="legacy-cli-create-the-pipeline-configuration"></a>
 
-### Create the pipeline configuration
+### Pipeline configuration resource
 
-The pipeline configuration defines the details of the pipeline instance and deploys the data flows necessary to receive and send telemetry to the cloud. Format the configuration in JSON, similar to the structure of a DCR. You can only install it by using an ARM template.
+The PipelineGroup resource defines the legacy pipeline instance and its dataflows. Use the following reference to understand or update an existing resource. Don't deploy it to create a new pipeline.
 
 <a id="legacy-cli-data-sources"></a>
 
@@ -759,7 +781,7 @@ The following table describes the sections of the pipeline configuration and cri
 | `extendedLocation` | The `name` property includes the resource ID of the custom location created above. The `type` property is always `CustomLocation`.  |
 | `receivers` | One entry for each receiver in the pipeline. Each receiver specifies the type of data being received, the port it will listen on, and a unique name that will be used in the `pipelines` section of the configuration. |
 | `processors` | Processors modify the data in some way before it's sent to the cloud. This section should be empty if no processors are used. Valid processors include the following:<br><br>`MicrosoftSyslog`<br>Converts data to Syslog format.<br><br>`MicrosoftCommonSecurityLog`<br>Converts data to CEF format.<br><br>`Batch`<br>Specifies the batch time in milliseconds. Default is one minute if this processor isn't specified. A batch processor is required to perform aggregation and customize its interval.  Avoid using batch processor in all other scenarios if you want to send data with minimum latency.<br><br>`TransformLanguage`<br>Specifies a transformation applied to the data before it's sent to the cloud. See [Azure Monitor pipeline transformations](#legacy-transformations). |
-| `exporters` | Includes the details of the DCR that the pipeline will send data to. Includes the following properties.<br><br>`dataCollectionEndpointUrl`<br>Locate this in the Azure portal by navigating to the DCE and copying the **Logs Ingestion** value.<br><br>`dataCollectionRule`<br>Immutable ID of the DCR that defines the data collection in the cloud. From the JSON view of your DCR in the Azure portal, copy the value of the **immutable ID** in the **General** section.<br><br>`stream`<br>Name of the stream in your DCR that will accept the data.<br><br>`maxStorageUsage`<br> Capacity of the persistent volume. When 80% of this capacity is reached, the oldest data is pruned to make room for more data.<br><br>`retentionPeriod`<br> Retention period in minutes. Data is pruned after this amount of time.<br>`schema`: Schema of the data being sent to the cloud. This must match the schema defined in the stream in the DCR. The schema used in the example is valid for both Syslog and OTLP. |
+| `exporters` | Includes details of the DCR that receives data from the pipeline. Includes the following properties.<br><br>`dataCollectionEndpointUrl`<br>Locate this value in the Azure portal by navigating to the DCE and copying **Logs Ingestion**.<br><br>`dataCollectionRule`<br>Immutable ID of the DCR that defines cloud data collection. From the JSON view of the DCR in the Azure portal, copy **Immutable ID** in the **General** section.<br><br>`stream`<br>Name of the stream in the DCR that accepts the data.<br><br>`maxStorageUsage`<br>Capacity of the persistent volume. When usage reaches 80% of this capacity, the pipeline prunes the oldest data to make room for new data.<br><br>`retentionPeriod`<br>Retention period in minutes. The pipeline prunes data after this amount of time.<br>`schema`: Schema of the data sent to the cloud. This schema must match the schema defined in the DCR stream. The example schema is valid for both Syslog and OTLP. |
 | `service` | `pipelines`<br>Includes one entry for each pipeline instance. Each entry matches a `receiver` with an `exporter`, including any `processors` that should be used. Set the pipeline `type` to `Logs`, `Metrics`, or `Traces` to match the OTel signal.<br><br>`persistence`<br>Specifies the name of the persistent volume if persistent storage is enabled. |
 
 <br>
@@ -780,7 +802,7 @@ The following table describes the sections of the pipeline configuration and cri
             "location": "eastus2",
             "apiVersion": "2026-04-01",
             "extendedLocation": {
-                "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
+                "name": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
                 "type": "CustomLocation"
             },
             "name": "my-pipeline-eastus2",
@@ -922,7 +944,7 @@ The following table describes the sections of the pipeline configuration and cri
             "location": "eastus2",
             "apiVersion": "2026-04-01",
             "extendedLocation": {
-                "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
+                "name": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
                 "type": "CustomLocation"
             },
             "name": "my-pipeline-eastus2",
@@ -1590,7 +1612,7 @@ The following table describes the sections of the pipeline configuration and cri
 ``` json
 {
     "properties": {
-        "dataCollectionEndpointId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce",
+        "dataCollectionEndpointId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce",
         "streamDeclarations": {
             "Custom-OTLP": {
                 "columns": [
@@ -1614,7 +1636,7 @@ The following table describes the sections of the pipeline configuration and cri
             "logAnalytics": [
                 {
                     "name": "LogAnayticsWorkspace01",
-                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
+                    "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace"
                 }
             ]
         },
@@ -1676,7 +1698,7 @@ After you create the volume in the appropriate namespace, configure it by using 
             "location": "eastus2",
             "apiVersion": "2026-04-01",
             "extendedLocation": {
-                "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
+                "name": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
                 "type": "CustomLocation"
             },
             "name": "my-pipeline-eastus2",
@@ -1811,24 +1833,23 @@ After you create the volume in the appropriate namespace, configure it by using 
 
 <a id="legacy-portal"></a>
 
-## Portal deployment
+## Portal configuration reference
 
-Use this article after you complete the shared setup in [Configure Azure Monitor pipeline](#legacy-setup). The Azure portal is the quickest way to create a pipeline and its dataflows because it creates the required pipeline resources for you. If you need automation, buffering, or more control over the deployed resources, use [Configure Azure Monitor pipeline with CLI or ARM templates](#legacy-cli).
+Use this section only to understand or manage an existing portal-created PipelineGroup deployment. Don't use the portal to create a new deployment. For all new deployments, use [DCR-based configuration](./pipeline-configure-cli.md).
 
 <a id="legacy-portal-create-a-pipeline"></a>
 
-### Create a pipeline
+### Identify a portal-created deployment
 
-Start the creation flow from one of the following locations in the Azure portal:
+Use the [extension check](#check-the-installed-extension) to confirm that the deployment runs the `microsoft.monitor.pipelinecontroller` extension. If it runs `microsoft.monitor.pipeline`, manage it through its DCRs instead.
 
-- From **Azure Monitor pipelines**, select **Create**.
-- From your Arc-enabled Kubernetes cluster, select **Extensions**, and then add **Azure Monitor pipeline extension**.
+In the Azure portal, locate the existing deployment under **Azure Monitor pipelines** or under **Extensions** on its Arc-enabled Kubernetes cluster.
 
 <a id="legacy-portal-configure-basics"></a>
 
-### Configure basics
+### Review basic settings
 
-On the **Basics** tab, provide the following information to deploy the extension and pipeline instance on your cluster.
+Portal-created legacy deployments include the following basic settings.
 
 :::image type="content" source="./media/pipeline-configure/create-pipeline.png" lightbox="./media/pipeline-configure/create-pipeline.png" alt-text="Screenshot of the Create Azure Monitor pipeline screen.":::
 
@@ -1842,13 +1863,11 @@ On the **Basics** tab, provide the following information to deploy the extension
 | Enable transport security (TLS) | Deploy the pipeline endpoints with TLS enabled so incoming traffic is encrypted in transit. This setting configures the deployment mode only. After deployment, complete the TLS configuration to choose the certificate management approach and TLS mode. For more information, see [Configure TLS](#legacy-tls). |
 | Require client authentication within cluster | Require gateway and cluster-local clients to present client certificates when they connect to the pipeline. Use this option when you want mutual TLS (mTLS) for in-cluster or gateway-to-pipeline connections. |
 
-When you're done, select **Next: Dataflows**.
-
 <a id="legacy-portal-configure-dataflows"></a>
 
-### Configure dataflows
+### Review dataflows
 
-On the **Dataflows** tab, create one or more dataflows for the pipeline instance.
+Each dataflow in an existing portal deployment includes the following settings.
 
 :::image type="content" source="./media/pipeline-configure/create-dataflow.png" lightbox="./media/pipeline-configure/create-dataflow.png" alt-text="Screenshot of the Add dataflow screen.":::
 
@@ -1891,17 +1910,15 @@ For `Syslog` and `CommonSecurityLog`, the transformation has access to the appro
 
 <a id="legacy-portal-review-and-create"></a>
 
-### Review and create
+### Review an existing configuration
 
-After you configure the basics and dataflows, review the configuration on the **Review + create** tab. Select **Create**.
-
-Deployment typically takes several minutes while Azure installs the extension, creates the pipeline instance, and applies the dataflow configuration.
+Before changing an existing deployment, record its current basic settings, dataflows, transformations, destinations, and TLS configuration. Verify the deployment again after any change.
 
 <a id="legacy-portal-verify-deployment"></a>
 
-### Verify deployment
+### Verify an existing deployment
 
-After deployment completes, use the shared verification steps in [Configure Azure Monitor pipeline](#legacy-setup-verify-the-configuration) to confirm that the pipeline components are running and that data is reaching the configured Azure Monitor destination.
+Use the shared [legacy verification steps](#legacy-setup-verify-the-configuration) to confirm that the pipeline components are running and that data is reaching the configured Azure Monitor destination.
 
 <a id="legacy-transformations"></a>
 
@@ -1934,7 +1951,7 @@ After you define the query, select **Check KQL syntax** to validate the syntax o
 
 :::image type="content" source="./media/pipeline-configure/check-syntax.gif" lightbox="./media/pipeline-configure/check-syntax.gif" alt-text="Screenshot of KQL syntax checker and typical error message.":::
 
-### [ARM](#tab/transformations-arm)
+### [ARM template](#tab/transformations-arm)
 
 Define the transformation in the `processors` section of the data flow in the ARM template. Set the `type` of the processor to `TransformLanguage`. Specify the KQL query in the `transformLanguage/transformStatement` property. Reference the processor in the `service/pipelines` section of the data flow configuration.
 
@@ -2244,7 +2261,7 @@ Recommended configurations:
 
 ### Use automated certificate management
 
-When you deploy a pipeline group with default settings, the operator automatically:
+When an existing PipelineGroup deployment uses default settings, the operator automatically:
 
 - Creates unique TLS certificates for each collector service.
 - Configures collectors to use managed server certificates.
@@ -2253,9 +2270,9 @@ When you deploy a pipeline group with default settings, the operator automatical
 
 <a id="legacy-tls-automated-step-1-deploy-pipeline-group"></a>
 
-#### Step 1: Deploy pipeline group
+#### Step 1: Confirm the existing PipelineGroup
 
-Deploy a pipeline group with default TLS settings and mTLS enabled. You don't need to specify a `tlsConfigurations` section for the default behavior.
+Confirm that the existing PipelineGroup uses the default TLS settings with mTLS enabled. The default behavior doesn't require a `tlsConfigurations` section.
 
 <a id="legacy-tls-automated-step-2-get-server-ca-certificate-for-client-validation"></a>
 
@@ -2593,10 +2610,10 @@ To encrypt Secrets at rest, see [Update the key vault mode for an Azure Kubernet
 
 #### Configure pipeline
 
-Use one of the following templates to configure TLS or mTLS for your Azure Monitor pipeline receivers. Before you deploy the template, update the `tlsConfigurations` section to match your requirements.
+Merge the following properties into the existing PipelineGroup resource to configure TLS or mTLS for its receivers. Preserve the resource name, location, extended location, processors, exporters, and service configuration.
 
 - Set `name` to a friendly identifier, such as `byoc-mtls`, and reference that identifier from any receiver in the `tlsConfiguration` field.
-- If the receiver omits `tlsConfiguration`, it uses the platform's default TLS chain created during bootstrap, which covers server-side encryption only.
+- If the receiver omits `tlsConfiguration`, it uses the platform's default mTLS configuration created during bootstrap, including the managed server certificate and client CA.
 - Receivers can share the same TLS configuration, or you can define multiple entries and map each receiver to the appropriate configuration.
 - For BYOC, specify Kubernetes secrets or ConfigMaps for `tlsCertificate` and `clientCa` and specify the correct key for `subLocation` (`tls.crt`, `tls.key`, `ca.crt`).
 - Specify one of the following values for `mode`:
@@ -2605,97 +2622,45 @@ Use one of the following templates to configure TLS or mTLS for your Azure Monit
   - `disabled`: TLS is not required and all TLS material is cleared
 
 
-### [ARM template](#tab/customer-managed-arm)
-
 ```json
 {
-  "type": "Microsoft.Monitor/pipelineGroups",
-  "apiVersion": "2026-04-01",
-  "name": "byoc-cm-pipeline-arm",
-  "location": "eastus2",
-  "properties": {
-    "receivers": [
-      {
-        "name": "syslog",
-        "type": "Syslog",
-        "tlsConfiguration": "byoc-mtls",
-        "syslog": { "endpoint": "0.0.0.0:514" }
+  "receivers": [
+    {
+      "name": "syslog",
+      "type": "Syslog",
+      "tlsConfiguration": "byoc-mtls",
+      "syslog": {
+        "endpoint": "0.0.0.0:514"
       }
-    ],
-    "tlsConfigurations": [
-      {
-        "name": "byoc-mtls",
-        "mode": "mutualTls",
-        "tlsCertificate": {
-          "certificate": {
-            "type": "kubernetesSecret",
-            "location": "collector-server-tls",
-            "subLocation": "tls.crt"
-          },
-          "privateKey": {
-            "type": "kubernetesSecret",
-            "location": "collector-server-tls",
-            "subLocation": "tls.key"
-          }
-        },
-        "clientCa": {
+    }
+  ],
+  "tlsConfigurations": [
+    {
+      "name": "byoc-mtls",
+      "mode": "mutualTls",
+      "tlsCertificate": {
+        "certificate": {
           "type": "kubernetesSecret",
-          "location": "byoc-client-root-ca-secret",
-          "subLocation": "ca.crt"
+          "location": "collector-server-tls",
+          "subLocation": "tls.crt"
+        },
+        "privateKey": {
+          "type": "kubernetesSecret",
+          "location": "collector-server-tls",
+          "subLocation": "tls.key"
         }
+      },
+      "clientCa": {
+        "type": "kubernetesSecret",
+        "location": "byoc-client-root-ca-secret",
+        "subLocation": "ca.crt"
       }
-    ]
-  }
+    }
+  ]
 }
 ```
 
-### [Bicep](#tab/customer-managed-bicep)
-
-```bicep
-param name string = 'byoc-sample'
-param location string = resourceGroup().location
-
-resource pipelineGroup 'Microsoft.Monitor/pipelineGroups@2026-04-01' = {
-  name: '${name}-pipeline'
-  location: location
-  properties: {
-    receivers: [
-      {
-        name: '${name}-syslog'
-        type: 'Syslog'
-        tlsConfiguration: '${name}-mtls'
-        syslog: {
-          endpoint: '0.0.0.0:514'
-        }
-      }
-    ]
-    tlsConfigurations: [
-      {
-        name: '${name}-mtls'
-        mode: 'mutualTls'
-        tlsCertificate: {
-          certificate: {
-            type: 'kubernetesSecret'
-            location: 'collector-server-tls'
-            subLocation: 'tls.crt'
-          }
-          privateKey: {
-            type: 'kubernetesSecret'
-            location: 'collector-server-tls'
-            subLocation: 'tls.key'
-          }
-        }
-        clientCa: {
-          type: 'kubernetesSecret'
-          location: 'byoc-client-root-ca-secret'
-          subLocation: 'ca.crt'
-        }
-      }
-    ]
-  }
-}
-```
----
+Update the existing resource through its managed ARM template or Bicep file. Verify receiver connectivity after the update.
 
 <a id="legacy-tls-custom-example-configurations"></a>
 
@@ -2795,7 +2760,7 @@ Consider using pod placement configuration for the following capabilities:
 <a id="legacy-placement-configuration"></a>
 
 ### Configuration
-ARM or Bicep templates are the only way to configure pod placement, either when creating a new pipeline group or editing an existing one. Add the `executionPlacement` property to your `pipelineGroups` resource properties by using the following structure. If you omit the `executionPlacement` property from the configuration, default Kubernetes scheduling behavior applies. The next section describes the details for each field.
+To update pod placement for an existing pipeline group, use an ARM template or Bicep file. Add the `executionPlacement` property to the resource properties by using the following structure. If you omit `executionPlacement`, default Kubernetes scheduling behavior applies. The next section describes each field.
 
 ```json
 {
@@ -2837,14 +2802,14 @@ The maximum instances per node applies only to replicas of the same pipeline gro
 
 <a id="legacy-placement-deployment"></a>
 
-### Deployment
-Execution placement rules are applied immediately when you create or update your pipeline group resource. If placement requirements can't be satisfied, for example due to a bad configuration, your pipeline group instances aren't deployed and remain in a pending state. Updates to execution placement settings redeploy instances of your pipeline group with the new constraints.
+### Updates
+Execution placement changes take effect immediately when you update an existing pipeline group resource. If the placement requirements can't be satisfied, such as when the configuration is invalid, the existing instances remain pending. Updating execution placement settings redeploys the instances with the new constraints.
 
 <a id="legacy-placement-automatic-pod-labeling"></a>
 
 ### Automatic pod labeling
 
-A pipeline label is automatically added to all pods with the value set to the `pipelineGroup` name. This label is used internally for anti-affinity enforcement when `maxInstancesPerHost: 1` configured. You don't need to manually label pods since this process is handled automatically.
+A pipeline label is automatically added to all pods with the value set to the `pipelineGroup` name. This label is used internally for anti-affinity enforcement when `maxInstancesPerHost: 1` is configured. You don't need to manually label pods since this process is handled automatically.
 
 <a id="legacy-placement-configuration-examples"></a>
 
@@ -3114,7 +3079,7 @@ affinity:
 
 Azure Monitor pipeline services deploy as Kubernetes `ClusterIP` services, so clients outside the cluster can't reach them directly. A gateway exposes the receiver endpoint to external clients such as network devices, firewalls, and other telemetry sources.
 
-This article shows how to deploy and manage a Traefik gateway for Azure Monitor pipeline. It covers a first deployment, adding a receiver to an existing gateway, onboarding another client to an existing receiver, and deploying another pipeline group on the same cluster.
+This section shows how to add or manage a Traefik gateway for an existing pipeline group. It covers adding its first gateway, adding a receiver to an existing gateway, onboarding another client to an existing receiver, and adding a gateway for another existing pipeline group on the same cluster.
 
 > [!NOTE]
 > This article uses Traefik as an example gateway implementation. You can use another gateway if it can expose the pipeline service to external clients and meet your security and routing requirements.
@@ -3124,6 +3089,9 @@ This article shows how to deploy and manage a Traefik gateway for Azure Monitor 
 <a id="legacy-gateway-prerequisites"></a>
 
 ### Prerequisites
+
+> [!IMPORTANT]
+> The TLS-enabled examples in this section secure the gateway-to-pipeline connection. They don't configure TLS on the client-facing connection. To accept TLS from external clients, configure a separate client-facing certificate and TLS termination on the Traefik TCP route, or use TLS passthrough to the pipeline. Don't send a client's TLS handshake through the plaintext client-facing route shown in this section.
 
 - Azure Monitor pipeline installed and working. See [Configure Azure Monitor pipeline](#legacy-setup).
 - Access to `kubectl`, `helm`, and the target cluster.
@@ -3140,7 +3108,7 @@ This article shows how to deploy and manage a Traefik gateway for Azure Monitor 
 
 Use this article when clients outside the cluster need to send data to a pipeline receiver and the pipeline group doesn't already have a gateway. The recommended starting design is one dedicated gateway per pipeline group. That design keeps the setup easier and avoids sharing ports, upgrades, and failures across unrelated pipelines.
 
-Use the later sections in this article if you already have a gateway and need to add a new receiver, onboard another client to an existing receiver, or deploy another pipeline group on the same cluster.
+Use the later sections if you already have a gateway and need to add a receiver, onboard another client to an existing receiver, or add a gateway for another PipelineGroup that already exists on the cluster.
 
 <a id="legacy-gateway-placeholders"></a>
 
@@ -3160,9 +3128,9 @@ This procedure uses multiple YAML files to define configuration. Placeholders in
 
 <a id="legacy-gateway-single-gateway-for-a-new-pipeline-group"></a>
 
-### Single gateway for a new pipeline group
+### Add a gateway to an existing PipelineGroup
 
-The cluster starts with no existing gateway or Azure Monitor pipeline. Deploy one gateway to one Azure Monitor pipeline group to start with. This deployment might include a backend TLS config of server-only TLS or mutual TLS (mTLS) configuration to secure ingestion, but the same steps apply for non-TLS ingestion.
+Use this procedure when an existing PipelineGroup doesn't yet have a gateway. Deploy one gateway for that pipeline. The backend connection can use server-only TLS or mutual TLS (mTLS), and the same routing pattern applies to non-TLS ingestion.
 
 ```text
 TLS-enabled:
@@ -3174,7 +3142,7 @@ TLS-disabled:
 
 
 > [!IMPORTANT]
-> Even though you're using only one pipeline, the following instructions include **label selectors** (`providers.kubernetesCRD.labelSelector` in the Helm values and matching `traefik-instance` labels on the routing resources). This configuration prepares the gateway for future multi-pipeline scenarios and avoids a disruptive Helm upgrade later. If you add a second pipeline in the future with its own dedicated gateway, label selectors ensure each Traefik instance only processes routes intended for its own pipeline.
+> Even if the cluster currently has only one legacy pipeline, the following instructions include **label selectors** (`providers.kubernetesCRD.labelSelector` in the Helm values and matching `traefik-instance` labels on the routing resources). If another existing PipelineGroup later needs its own gateway, label selectors ensure that each Traefik instance processes only its intended routes without requiring a disruptive upgrade to the first gateway.
 
 <a id="legacy-gateway-install-traefik-custom-resource-definitions-crds"></a>
 
@@ -3556,19 +3524,18 @@ Point the new client at `$GATEWAY_IP:514`. No Helm upgrade, routing changes, or 
 
 <a id="legacy-gateway-new-pipeline-group-instance"></a>
 
-### New pipeline group instance
-Deploy a new pipeline group alongside an existing pipeline group on the same cluster.
+### Add a gateway for another existing PipelineGroup
 
-Deploy a new dedicated gateway for the new pipeline, one gateway per pipeline. This approach provides full isolation between the existing and new pipelines, including independent scaling, independent upgrades, and no shared failure domain.
+If the cluster already contains multiple legacy PipelineGroup instances, deploy a dedicated gateway for each existing pipeline. This approach provides full isolation, including independent scaling, upgrades, and failure domains.
 
-Follow the preceding procedure for [Single gateway for new pipeline group](#legacy-gateway-single-gateway-for-a-new-pipeline-group), adjusting the following values for the new pipeline:
+Follow the preceding procedure for [adding a gateway to an existing PipelineGroup](#legacy-gateway-single-gateway-for-a-new-pipeline-group), adjusting the following values for the other pipeline:
 
 | Task | Guidance |
 |---|---|
 | Install Traefik CRDs | Skip this task if you already installed CRDs during the first gateway deployment. |
-| Create the gateway client certificate | Apply `certificates.yaml` with `namespace` set to the new pipeline's namespace. You can reuse the same certificate spec because only the namespace changes. Skip this task for TLS-disabled ingestion. |
-| Configure Traefik routing | Apply `routing.yaml` with the new pipeline name, namespace, receiver port, and entrypoint name. The `traefik-instance` label value must be unique. |
-| Install Traefik | Use a distinct Helm release name, such as `traefik-<new-pipeline-name>`. The `labelSelector` must match the label set in the previous task. |
+| Create the gateway client certificate | Apply `certificates.yaml` with `namespace` set to the other existing pipeline's namespace. You can reuse the same certificate spec because only the namespace changes. Skip this task for TLS-disabled ingestion. |
+| Configure Traefik routing | Apply `routing.yaml` with the other existing pipeline's name, namespace, receiver port, and entrypoint name. The `traefik-instance` label value must be unique. |
+| Install Traefik | Use a distinct Helm release name, such as `traefik-<other-pipeline-name>`. The `labelSelector` must match the label set in the previous task. |
 | Verify | Confirm that the new gateway receives its own LoadBalancer IP. |
 
 ```text
@@ -3577,13 +3544,13 @@ Client B → 20.x.x.2:514 → Traefik instance 2 → [mTLS] → pipeline-2-servi
 ```
 
 > [!NOTE]
-> Adding a new pipeline with its own gateway doesn't affect the existing gateway or its clients. The existing Traefik instance doesn't require a `helm upgrade`.
+> Adding a gateway for another existing PipelineGroup doesn't affect the first gateway or its clients. The existing Traefik instance doesn't require a `helm upgrade`.
 
 <a id="legacy-troubleshooting"></a>
 
 ## Troubleshooting
 
-This article provides guidance for common issues encountered when deploying and using Azure Monitor pipeline.
+This section provides guidance for common issues encountered when managing and using an existing legacy Azure Monitor pipeline deployment.
 
 <a id="legacy-troubleshooting-monitor-pipeline-health-and-performance"></a>
 
