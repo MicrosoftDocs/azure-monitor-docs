@@ -151,7 +151,7 @@
       "author": {
         "articles/advisor/**/*": "ikhapova",
         "articles/azure-monitor/**/*": "austinmccollum",
-        "articles/azure-monitor/agents/**/*": "bandersmsft",
+        "articles/azure-monitor/agents/**/*": "corrinnems",
         "articles/azure-monitor/aiops/**/*": "bandersmsft",
         "articles/azure-monitor/alerts/**/*": "bandersmsft",
         "articles/azure-monitor/app/**/*": "austinmccollum",
@@ -205,7 +205,7 @@
       "ms.author": {
         "articles/advisor/**/*": "ikhapova",
         "articles/azure-monitor/**/*": "austinmc",
-        "articles/azure-monitor/agents/**/*": "banders",
+        "articles/azure-monitor/agents/**/*": "comartin",
         "articles/azure-monitor/aiops/**/*": "banders",
         "articles/azure-monitor/alerts/**/*": "banders",
         "articles/azure-monitor/app/**/*": "austinmc",
