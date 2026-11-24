@@ -168,7 +168,7 @@
         "articles/azure-monitor/optimization-insights/**/*": "hhunter-ms",
         "articles/azure-monitor/profiler/**/*": "corrinnems",
         "articles/azure-monitor/snapshot-debugger/**/*": "hhunter-ms",
-        "articles/azure-monitor/visualize/**/*": "bandersmsft",
+        "articles/azure-monitor/visualize/**/*": "corrinnems",
         "articles/azure-monitor/vm/**/*": "austinmccollum",
         "articles/chaos-studio/**/*": "nikhilkaul",
         "articles/service-health/**/*": "austinmccollum"
@@ -222,7 +222,7 @@
         "articles/azure-monitor/optimization-insights/**/*": "hannahhunter",
         "articles/azure-monitor/profiler/**/*": "comartin",
         "articles/azure-monitor/snapshot-debugger/**/*": "hannahhunter",
-        "articles/azure-monitor/visualize/**/*": "banders",
+        "articles/azure-monitor/visualize/**/*": "comartin",
         "articles/azure-monitor/vm/**/*": "austinmc",
         "articles/chaos-studio/**/*": "nikhilkaul",
         "articles/service-health/**/*": "austinmc"
