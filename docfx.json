@@ -171,7 +171,7 @@
         "articles/azure-monitor/visualize/**/*": "corrinnems",
         "articles/azure-monitor/vm/**/*": "austinmccollum",
         "articles/chaos-studio/**/*": "nikhilkaul",
-        "articles/service-health/**/*": "austinmccollum"
+        "articles/service-health/**/*": "corrinnems"
       },
       "featureFlags": {
         "articles/**/*": [
@@ -225,7 +225,7 @@
         "articles/azure-monitor/visualize/**/*": "comartin",
         "articles/azure-monitor/vm/**/*": "austinmc",
         "articles/chaos-studio/**/*": "nikhilkaul",
-        "articles/service-health/**/*": "austinmc"
+        "articles/service-health/**/*": "comartin"
       },
       "ms.service": {
         "articles/advisor/**/**/*": "azure-advisor",
