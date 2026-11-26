@@ -70,6 +70,8 @@ Simple view helps you quickly find the relevant telemetry and transition to Foun
 
 In this example, you research high token use. Transaction details help you identify that large prompt context and an expensive model drive up token use and costs.
 
+If **Input + Output** is empty for a model call but **Metadata** contains `gen_ai.input.messages` or `gen_ai.output.messages`, check the message structure emitted by your instrumentation. The [OpenTelemetry GenAI message schemas](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/registry/attributes/gen-ai.md) represent messages as objects with a `role` and a `parts` array. Place text in a `text` part's `content` field rather than at the message's top level. Verify the change with synthetic content before capturing real prompts or responses.
+
 ## Agent cost
 
 Use the token consumption charts to understand usage across models and agents and identify opportunities to reduce repeated input.
