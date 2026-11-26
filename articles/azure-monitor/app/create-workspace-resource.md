@@ -879,8 +879,22 @@ To learn how to set the daily cap in the Azure portal, see [Set daily cap on Log
 
 # [Azure CLI](#tab/cli)
 
-> [!NOTE]
-> Currently, Azure doesn't provide a way to set the daily cap for Application Insights via the Azure CLI.
+**Application Insights:**
+
+The following Azure CLI example uses the [az monitor app-insights component billing update](/cli/azure/monitor/app-insights/component/billing#az-monitor-app-insights-component-billing-update) command. The command requires the `application-insights` Azure CLI extension.
+
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+resourceName="<ResourceName>"
+dailyCapInGb="<DailyCapInGb>"
+
+# Update the daily cap for the Application Insights resource
+az monitor app-insights component billing update \
+  --resource-group "$resourceGroupName" \
+  --app "$resourceName" \
+  --cap $dailyCapInGb
+```
 
 **Log Analytics:**
 
@@ -947,8 +961,26 @@ Set-AzOperationalInsightsWorkspace @setAzOperationalInsightsWorkspaceParams
 
 # [REST](#tab/rest)
 
-> [!NOTE]
-> Currently, Azure doesn't provide a way to set the daily cap for Application Insights via the REST API.
+**Application Insights:**
+
+The following REST example updates the current billing features of the Application Insights resource.
+
+```REST
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/components/{resourceName}/currentbillingfeatures?api-version=2015-05-01
+Authorization: Bearer {accessToken}
+Content-Type: application/json
+
+{
+  "CurrentBillingFeatures": [
+    "Basic"
+  ],
+  "DataVolumeCap": {
+    "Cap": <DailyCapInGb>,
+    "WarningThreshold": <WarningThresholdInPercent>,
+    "StopSendNotificationWhenHitCap": false
+  }
+}
+```
 
 **Log Analytics:**
 
@@ -970,8 +1002,30 @@ Content-Type: application/json
 
 # [Bicep](#tab/bicep)
 
-> [!NOTE]
-> Currently, Azure doesn't provide a way to set the daily cap for Application Insights with a Bicep template.
+**Application Insights:**
+
+The following Bicep example uses the [Microsoft.Insights components/pricingPlans](/azure/templates/microsoft.insights/components/pricingplans?pivots=deployment-language-bicep) resource type.
+
+```bicep
+param resourceName string = '<ResourceName>'
+param dailyCapInGb int
+param warningThresholdInPercent int = 90
+
+resource applicationInsightsComponent 'Microsoft.Insights/components@2020-02-02' existing = {
+  name: resourceName
+}
+
+resource pricingPlan 'Microsoft.Insights/components/pricingPlans@2017-10-01' = {
+  parent: applicationInsightsComponent
+  name: 'current'
+  properties: {
+    planType: 'Basic'
+    cap: dailyCapInGb
+    warningThreshold: warningThresholdInPercent
+    stopSendNotificationWhenHitCap: false
+  }
+}
+```
 
 **Log Analytics:**
 
@@ -995,8 +1049,42 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@<ApiVer
 
 # [ARM template](#tab/arm)
 
-> [!NOTE]
-> Currently, Azure doesn't provide a way to set the daily cap for Application Insights using an ARM template.
+**Application Insights:**
+
+The following ARM (JSON) example uses the [Microsoft.Insights components/pricingPlans](/azure/templates/microsoft.insights/components/pricingplans?pivots=deployment-language-arm-template) resource type.
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "resourceName": {
+      "type": "string",
+      "defaultValue": "<ResourceName>"
+    },
+    "dailyCapInGb": {
+      "type": "int"
+    },
+    "warningThresholdInPercent": {
+      "type": "int",
+      "defaultValue": 90
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Insights/components/pricingPlans",
+      "apiVersion": "2017-10-01",
+      "name": "[format('{0}/current', parameters('resourceName'))]",
+      "properties": {
+        "planType": "Basic",
+        "cap": "[parameters('dailyCapInGb')]",
+        "warningThreshold": "[parameters('warningThresholdInPercent')]",
+        "stopSendNotificationWhenHitCap": false
+      }
+    }
+  ]
+}
+```
 
 **Log Analytics:**
 
@@ -1045,6 +1133,7 @@ The following ARM (JSON) example uses the [Microsoft.OperationalInsights workspa
 | azureRegion | \<AzureRegion\> | User input |
 | workspaceName | \<WorkspaceName\> | User input |
 | dailyCapInGb | \<DailyCapInGb\> | User input (numeric) |
+| warningThresholdInPercent | \<WarningThresholdInPercent\> | User input (numeric) |
 | apiVersion | 2025-07-01 | [Reference](/rest/api/loganalytics/workspaces) |
 -->
 ### Set the pricing plan
