@@ -123,6 +123,10 @@ Clients in VNets with existing private endpoints face constraints when accessing
 
 This constraint is a result of the DNS changes made when workspace A2 creates a private endpoint.
 
+### Network changes can take time to apply to queries
+
+After you create a private endpoint or disable public network access, the new state appears in the Azure portal right away, but query enforcement can take up to about 30 minutes. During this time, queries through the private endpoint can fail with `403` while public queries still succeed, or results can alternate. Wait until consecutive results are consistent before you troubleshoot DNS or routing.
+
 ## Next steps
 
 * [Managed Grafana network settings](https://aka.ms/ags/mpe)
